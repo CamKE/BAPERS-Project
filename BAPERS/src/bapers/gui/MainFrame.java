@@ -7012,7 +7012,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
-                    controller.recordBackup(date,filename,locationChosenField.getText());
+                    controller.recordBackup(date, filename, locationChosenField.getText());
                     JOptionPane.showMessageDialog(this, "Backup '" + filename + "' created");
                     locationChosenField.setText(null);
                     logOutButton.doClick();
@@ -7114,6 +7114,24 @@ public class MainFrame extends javax.swing.JFrame {
             String selectedRole = (String) JOptionPane.showInputDialog(this, "Select a new role:", "Update user role", JOptionPane.QUESTION_MESSAGE, null, choices, choices[controller.getRoleID(usersRole) - 1]);
             if (selectedRole != null) {
                 String outcome;
+                //Joseph
+                if (selectedRole.equals("Technician")) {
+                    //Update technician room
+
+                    Object[] possibilities = {"Copy Room", "Development area", "Packing Departments", "Finishing Room"};
+                    String technicianRoom = (String) JOptionPane.showInputDialog(null, "Select room", "Select Room", JOptionPane.PLAIN_MESSAGE, null, possibilities, "Copy Room");
+                    String departmentCode = controller.getDepartmentCode(technicianRoom);
+                    int accountNumber = (Integer) userResultsTable.getValueAt(selectedRow, 0);
+                    // System.out.println(accountNumber);
+                    //If user exists in tech room table then update
+                    if (controller.doesUserExistInTechRoom(accountNumber)) {
+                        controller.updateTechnicianRoom(departmentCode, accountNumber);
+                    } else {
+                        controller.createNewUserInTechRoom(departmentCode, accountNumber);
+                    }
+                    //If new user is added then add user
+
+                }
                 int newRoleid = controller.getRoleID(selectedRole);
                 if (controller.updateUserRole((int) userResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
                     outcome = "Success";
@@ -7398,7 +7416,7 @@ public class MainFrame extends javax.swing.JFrame {
         // materials.
         String material = materialsjTextField.getText();
 
-        if ((!material.isEmpty()) && material.matches("^[a-zA-Z0-9]+[a-z,A-Z,0-9,\\s]*")) {
+        if ((!material.isEmpty())) {
 
             materials.add(new Material(material));
             materialsjTextField.setText("");
@@ -7734,6 +7752,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (index != -1) {
             list2.remove(index);
             standardJobList.setModel(list2);
+
             double total = Double.parseDouble(jobTotalField.getText()) - selectedStdJobs.get(index).getPrice();
             jobTotalField.setText(String.format("%.2f", total));
             selectedStdJobs.remove(index);
@@ -7750,6 +7769,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (index != -1) {
             list1.remove(index);
             materialList.setModel(list1);
+
         } else {
             JOptionPane.showMessageDialog(this, "You need to select a material to remove.");
         }

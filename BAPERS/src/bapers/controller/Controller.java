@@ -463,6 +463,32 @@ public class Controller {
         return tasks;
     }
 
+    public void updateTechnicianRoom(String depCode, int accountNumber) {
+        String SQL = "Update technician_room\n"
+                + "SET Department_code = '" + depCode + "'\n"
+                + "WHERE Account_no = '" + accountNumber + "';";
+        database.write(SQL, conn);
+    }
+
+    public void createNewUserInTechRoom(String depCode, int accountNumber) {
+        String SQL = "INSERT INTO technician_room (Department_code,Account_no)\n"
+                + "VALUES ('" + depCode + "','" + accountNumber + "');";
+        database.write(SQL, conn);
+    }
+
+    public boolean doesUserExistInTechRoom(int accountNumber) {
+        String SQL = "";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("does user exists error");
+        }
+        return false;
+    }
+
     public ArrayList<Object[][]> createReport(int reportIndex, String[] reportPeriod, String info) {
         String startDate = reportPeriod[0];
         String finishDate = reportPeriod[1];
