@@ -6,6 +6,7 @@
 package bapers.gui;
 
 import bapers.AutoBackupConfig;
+import bapers.TimeUpdate;
 import bapers.controller.Controller;
 import bapers.customer.CustomerDetails;
 import bapers.job.Invoice;
@@ -45,7 +46,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -112,6 +113,9 @@ public class MainFrame extends javax.swing.JFrame {
     AutoBackupConfig configData;
 
     String currentPage, previousPage;
+    
+    //Reminder letters test
+    Timer timer = new Timer();
 
     /**
      * Creates new form MainFrame
@@ -141,6 +145,8 @@ public class MainFrame extends javax.swing.JFrame {
         backButton.setVisible(false);
         homeButton.setVisible(false);
         initAutoBackup();
+        
+        timer.schedule(new TimeUpdate(controller,this), 0, TimeUnit.SECONDS.toMillis(5));
     }
 
     public final void initAutoBackup() {
@@ -6206,15 +6212,7 @@ public class MainFrame extends javax.swing.JFrame {
                 //Delete alerts once read
                 controller.deleteAlerts(controller.getRoleID(role));
 
-                //If it is the 23rd and reminder letters have not been generated for this month then generate reminder letters
-                if (s.equals("23") && !controller.reminderLettersAlreadyGenerated(todayDate)) {
-                    //Generate reminder letters...
-                    this.generateReminderLettersForTheMonth();
-                    this.deleteReminderLettersTableInformation();
-                    //Store in databse that reminder letters have been generated for this month
-                    controller.setReminderLetterDate(todayDate);
-                }
-
+    
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid User details");
             }
@@ -8469,7 +8467,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = sdf.format(d);
 
         int taskID = -1;
@@ -8949,7 +8947,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_securityAnswerTextFieldActionPerformed
 
-    private void generateReminderLettersForTheMonth() {
+    public void generateReminderLettersForTheMonth() {
         this.updateReminderLettersTable();
         Date date = new Date();
         DateFormat monthFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -9034,7 +9032,7 @@ public class MainFrame extends javax.swing.JFrame {
         taskTableModel.setRowCount(0);
     }
 
-    private void deleteReminderLettersTableInformation() {
+    public void deleteReminderLettersTableInformation() {
         DefaultTableModel reminderLettersTableModel = (DefaultTableModel) reminderLettersTable.getModel();
         reminderLettersTableModel.setRowCount(0);
     }

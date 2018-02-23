@@ -1187,12 +1187,12 @@ public class Controller {
         switch (statusType) {
             case ("Completed"):
                 SQL = "Update status\n"
-                        + "SET  finish_time = '" + time + "', status_type = '" + statusType + "'\n"
+                        + "SET  finishtime = '" + time + "', status_type = '" + statusType + "'\n"
                         + "WHERE status_id = '" + statusID + "';";
                 break;
             case ("In progress"):
                 SQL = "Update status\n"
-                        + "SET  start_time = '" + time + "', status_type = '" + statusType + "'\n"
+                        + "SET  starttime = '" + time + "', status_type = '" + statusType + "'\n"
                         + "WHERE status_id = '" + statusID + "';";
                 break;
             case ("Not started"):
@@ -1225,12 +1225,12 @@ public class Controller {
         switch (status) {
             case ("Completed"):
                 SQL = "Update status\n"
-                        + "SET  finish_time = '" + time + "', status_type = '" + status + "'\n"
+                        + "SET  finishtime = '" + time + "', status_type = '" + status + "'\n"
                         + "WHERE status_id = '" + statusID + "';";
                 break;
             case ("In progress"):
                 SQL = "Update status\n"
-                        + "SET  start_time = '" + time + "', status_type = '" + status + "'\n"
+                        + "SET  starttime = '" + time + "', status_type = '" + status + "'\n"
                         + "WHERE status_id = '" + statusID + "';";
                 break;
             case ("Not started"):
@@ -1278,12 +1278,12 @@ public class Controller {
         switch (status) {
             case ("Completed"):
                 SQL = "Update status\n"
-                        + "SET  finish_time = '" + time + "', status_type = '" + status + "'\n"
+                        + "SET  finishtime = '" + time + "', status_type = '" + status + "'\n"
                         + "WHERE status_id = '" + statusID + "';";
                 break;
             case ("In progress"):
                 SQL = "Update status\n"
-                        + "SET  start_time = '" + time + "', status_type = '" + status + "'\n"
+                        + "SET  starttime = '" + time + "', status_type = '" + status + "'\n"
                         + "WHERE status_id = '" + statusID + "';";
                 break;
             case ("Not started"):
