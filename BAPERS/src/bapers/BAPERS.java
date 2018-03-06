@@ -5,6 +5,8 @@
  */
 package bapers;
 
+import bapers.database.DBImpl;
+
 /**
  *
  * @author CameronE
@@ -15,6 +17,7 @@ public class BAPERS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        DBImpl connect = new DBImpl();
         // TODO code application logic here
     }
     

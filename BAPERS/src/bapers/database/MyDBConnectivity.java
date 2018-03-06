@@ -18,7 +18,6 @@ public interface MyDBConnectivity {
     
     public int write(String sql);
     
-    public Connection connection();
-    
+    public Connection connect();
     
 }
