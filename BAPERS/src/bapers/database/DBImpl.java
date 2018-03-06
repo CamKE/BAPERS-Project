@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bapers;
+package bapers.database;
 
 /**
  *
  * @author CameronE
  */
-public class Controller {
+public class DBImpl {
     
 }
