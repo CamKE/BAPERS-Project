@@ -23,10 +23,27 @@ public class DBImpl implements MyDBConnectivity {
 
     public DBImpl() {
         conn = connect();
+        rs = read("SELECT variable FROM sys.sys_config");
+        System.out.println("Records from db");
+        try {
+            while (rs.next()) {
+                String variable = rs.getString("variable");
+                System.out.println("variable: " + variable);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
     public ResultSet read(String sql) {
+        try {
+            s = conn.createStatement();
+            return s.executeQuery(sql);
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
         return rs;
     }
 
@@ -47,7 +64,7 @@ public class DBImpl implements MyDBConnectivity {
         } catch (Exception ex) {
             System.out.println("Error: " + ex);
         }
-        
+
         return connect;
     }
 }
