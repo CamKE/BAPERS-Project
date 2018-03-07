@@ -10,3 +10,6 @@ To run project:
 Rules:
 - Make sure to comment all code!
 - GUI window sizes : 950x750 (main windows)
+
+links:
+Icons: https://www.flaticon.com/packs/material-design
