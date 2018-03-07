@@ -11,4 +11,8 @@ package bapers.controller;
  */
 public class Controller {
     
+    public void login(String userid,String password)
+    {
+        System.out.println(userid + "and" + password);
+    }
 }

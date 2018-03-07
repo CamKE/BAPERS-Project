@@ -6,6 +6,7 @@
 package bapers;
 
 import bapers.database.DBImpl;
+import bapers.gui.Login;
 
 /**
  *
@@ -19,6 +20,7 @@ public class BAPERS {
     public static void main(String[] args) {
         DBImpl connect = new DBImpl();
         // TODO code application logic here
+        new Login().setVisible(true);
     }
     
 }

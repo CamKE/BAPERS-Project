@@ -5,16 +5,21 @@
  */
 package bapers.gui;
 
+import bapers.controller.Controller;
+
 /**
  *
  * @author CameronE
  */
 public class Login extends javax.swing.JFrame {
 
+    private Controller controller;
+    
     /**
      * Creates new form Login
      */
     public Login() {
+        controller = new Controller();
         initComponents();
     }
 
@@ -27,101 +32,97 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        topBarPanel = new javax.swing.JPanel();
         LoginText = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        MainPanel = new javax.swing.JPanel();
         UserIDTextField = new javax.swing.JTextField();
-        passwordTextField = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
+        passwordTextField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(52, 73, 94));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        topBarPanel.setBackground(new java.awt.Color(52, 73, 94));
+        topBarPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        LoginText.setHorizontalAlignment(JLabel.CENTER);
         LoginText.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
         LoginText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LoginText.setText("Log In");
         LoginText.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        backButton.setBackground(new java.awt.Color(255, 51, 0));
+        backButton.setBackground(new java.awt.Color(255, 255, 255));
         backButton.setText("Back");
+        backButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout topBarPanelLayout = new javax.swing.GroupLayout(topBarPanel);
+        topBarPanel.setLayout(topBarPanelLayout);
+        topBarPanelLayout.setHorizontalGroup(
+            topBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topBarPanelLayout.createSequentialGroup()
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(259, 259, 259)
                 .addComponent(LoginText)
                 .addContainerGap(393, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 7, Short.MAX_VALUE)
-                .addComponent(LoginText))
+        topBarPanelLayout.setVerticalGroup(
+            topBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(LoginText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 900, 60);
+        getContentPane().add(topBarPanel);
+        topBarPanel.setBounds(0, 0, 900, 60);
 
-        jPanel2.setBackground(new java.awt.Color(75, 119, 190));
-        jPanel2.setMinimumSize(new java.awt.Dimension(900, 632));
-        jPanel2.setPreferredSize(new java.awt.Dimension(900, 640));
+        MainPanel.setBackground(new java.awt.Color(75, 119, 190));
+        MainPanel.setMinimumSize(new java.awt.Dimension(900, 632));
+        MainPanel.setPreferredSize(new java.awt.Dimension(900, 640));
 
+        UserIDTextField.setPreferredSize(new java.awt.Dimension(266, 40));
         UserIDTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UserIDTextFieldActionPerformed(evt);
             }
         });
 
-        passwordTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextFieldActionPerformed(evt);
-            }
-        });
-
         loginButton.setText("Log in");
+        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        passwordTextField.setPreferredSize(new java.awt.Dimension(266, 40));
+
+        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
+        MainPanel.setLayout(MainPanelLayout);
+        MainPanelLayout.setHorizontalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainPanelLayout.createSequentialGroup()
                 .addGap(317, 317, 317)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(UserIDTextField)
-                    .addComponent(passwordTextField)
-                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(UserIDTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(317, 317, 317))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
-                .addComponent(UserIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+        MainPanelLayout.setVerticalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                .addContainerGap(232, Short.MAX_VALUE)
+                .addComponent(UserIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(176, 176, 176))
         );
 
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 60, 900, 630);
+        getContentPane().add(MainPanel);
+        MainPanel.setBounds(0, 60, 900, 630);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,12 +131,9 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UserIDTextFieldActionPerformed
 
-    private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextFieldActionPerformed
-
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
+        controller.login(UserIDTextField.getText(),String.valueOf(passwordTextField.getPassword()));
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
@@ -175,11 +173,11 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LoginText;
+    private javax.swing.JPanel MainPanel;
     private javax.swing.JTextField UserIDTextField;
     private javax.swing.JButton backButton;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginButton;
-    private javax.swing.JTextField passwordTextField;
+    private javax.swing.JPasswordField passwordTextField;
+    private javax.swing.JPanel topBarPanel;
     // End of variables declaration//GEN-END:variables
 }
