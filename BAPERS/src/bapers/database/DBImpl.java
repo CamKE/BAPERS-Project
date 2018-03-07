@@ -10,54 +10,59 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author CameronE
  */
+// An implementation of the database interface. All db interaction
+// is through this class
 public class DBImpl implements MyDBConnectivity {
 
     private Connection conn;
-    private Statement s;
     private ResultSet rs;
 
+    // DB connection must be established anytime this class is 
+    // instantiated
     public DBImpl() {
         conn = connect();
-        rs = read("SELECT * FROM bapers_data.user");
-        System.out.println("Records from db");
-        try {
-            while (rs.next()) {
-                String account_no = rs.getString("account_no");
-                String firstname = rs.getString("firstname");
-                String lastname = rs.getString("lastname");
-                String password_hash = rs.getString("password_hash");
-                String registration_date = rs.getString("registration_date");
-                String role = rs.getString("Role_role_id");
-
-                System.out.println("account_no: " + account_no + ", firstname: " + firstname);
-            }
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
     }
 
+    // Executes sql queries that fetch data (SELECT), and returns the results
     @Override
     public ResultSet read(String sql) {
-        try {
-            s = conn.createStatement();
-            return s.executeQuery(sql);
 
-        } catch (Exception ex) {
+        // Good practice to automatically close the resource to avoid 
+        // tying up db resources
+        try (Statement s = conn.createStatement()) {
+            rs = s.executeQuery(sql);
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
+
         return rs;
     }
 
+    // Executes sql queries that modify table(s) in the bapers db, returning 
+    // an int that indicates the number of affected rows
     @Override
     public int write(String sql) {
-        return 0;
+        int num_rows = 0;
+        
+        // Good practice to automatically close the resource to avoid 
+        // tying up db resources
+        try (Statement s = conn.createStatement()) {
+            num_rows = s.executeUpdate(sql);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return num_rows;
     }
 
+    // Establishes a connection to the bapers db, and returns that connection
     @Override
     public Connection connect() {
         Connection connect = null;
@@ -65,9 +70,8 @@ public class DBImpl implements MyDBConnectivity {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/bapers_data" + "?autoReconnect=true&useSSL=false", "root", "password");
-
-        } catch (Exception ex) {
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/bapers_data?autoReconnect=true&useSSL=false", "root", "password");
+        } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Error: " + ex);
         }
 
