@@ -23,12 +23,18 @@ public class DBImpl implements MyDBConnectivity {
 
     public DBImpl() {
         conn = connect();
-        rs = read("SELECT variable FROM sys.sys_config");
+        rs = read("SELECT * FROM bapers_data.user");
         System.out.println("Records from db");
         try {
             while (rs.next()) {
-                String variable = rs.getString("variable");
-                System.out.println("variable: " + variable);
+                String account_no = rs.getString("account_no");
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                String password_hash = rs.getString("password_hash");
+                String registration_date = rs.getString("registration_date");
+                String role = rs.getString("Role_role_id");
+
+                System.out.println("account_no: " + account_no + ", firstname: " + firstname);
             }
         } catch (Exception ex) {
             System.out.println(ex);
@@ -59,7 +65,7 @@ public class DBImpl implements MyDBConnectivity {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys?autoReconnect=true&useSSL=false", "root", "password");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/bapers_data" + "?autoReconnect=true&useSSL=false", "root", "password");
 
         } catch (Exception ex) {
             System.out.println("Error: " + ex);
