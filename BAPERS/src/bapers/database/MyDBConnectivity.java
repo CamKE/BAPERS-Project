@@ -18,11 +18,11 @@ import java.sql.ResultSet;
 public interface MyDBConnectivity {
     
     // Executes sql queries that fetch data (SELECT), and returns the results
-    public ResultSet read(String sql);
+    public ResultSet read(String sql, Connection conn);
     
     // Executes sql queries that modify table(s) in the bapers db, returning 
     // an int that indicates the status of the query execution
-    public int write(String sql);
+    public int write(String sql, Connection conn);
     
     // Establishes a connection to the bapers db, and returns that connection
     public Connection connect();

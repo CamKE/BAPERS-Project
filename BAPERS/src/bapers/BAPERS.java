@@ -5,7 +5,7 @@
  */
 package bapers;
 
-import bapers.database.DBImpl;
+import bapers.controller.Controller;
 import bapers.gui.MainFrame;
 
 /**
@@ -18,9 +18,8 @@ public class BAPERS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        DBImpl connect = new DBImpl();
         // TODO code application logic here
-        new MainFrame().setVisible(true);
+        new MainFrame(new Controller()).setVisible(true);
     }
     
 }

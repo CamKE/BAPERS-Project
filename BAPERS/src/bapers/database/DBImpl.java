@@ -19,34 +19,29 @@ import java.sql.Statement;
 // is through this class
 public class DBImpl implements MyDBConnectivity {
 
-    private Connection conn;
     private ResultSet rs;
 
     // DB connection must be established anytime this class is 
     // instantiated
-    public DBImpl() {
-        conn = connect();
-    }
+
 
     // Executes sql queries that fetch data (SELECT), and returns the results
     @Override
-    public ResultSet read(String sql) {
+    public ResultSet read(String sql, Connection conn) {
 
-        // Good practice to automatically close the resource to avoid 
-        // tying up db resources
-        try (Statement s = conn.createStatement()) {
-            rs = s.executeQuery(sql);
+        try {
+            Statement s = conn.createStatement();
+            rs = s.executeQuery(sql);         
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
         return rs;
     }
 
     // Executes sql queries that modify table(s) in the bapers db, returning 
     // an int that indicates the number of affected rows
     @Override
-    public int write(String sql) {
+    public int write(String sql ,Connection conn) {
         int num_rows = 0;
         
         // Good practice to automatically close the resource to avoid 

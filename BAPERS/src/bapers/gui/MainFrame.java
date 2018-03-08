@@ -5,6 +5,7 @@
  */
 package bapers.gui;
 
+import bapers.controller.Controller;
 import java.awt.CardLayout;
 
 /**
@@ -15,11 +16,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     private CardLayout card1;
     private CardLayout card2;
+    private Controller controller;
 
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+    public MainFrame(Controller controller) {
+        this.controller = controller;
         initComponents();
         card1 = (CardLayout) cardPanel1.getLayout();
         card2 = (CardLayout) cardPanel2.getLayout();
@@ -292,7 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        userRoleDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        userRoleDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getRoles()));
         userRoleDD.setMaximumSize(new java.awt.Dimension(250, 42));
         userRoleDD.setMinimumSize(new java.awt.Dimension(250, 42));
         userRoleDD.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -517,6 +520,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void createUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserButtonActionPerformed
         // TODO add your handling code here:
+       // controller.createUser();
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -550,12 +554,12 @@ public class MainFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MainFrame(controller).setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
