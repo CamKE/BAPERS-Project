@@ -13,11 +13,16 @@ import java.awt.CardLayout;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    private CardLayout card1;
+    private CardLayout card2;
+
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        card1 = (CardLayout) cardPanel1.getLayout();
+        card2 = (CardLayout) cardPanel2.getLayout();
     }
 
     /**
@@ -35,11 +40,15 @@ public class MainFrame extends javax.swing.JFrame {
         loginPageButton = new javax.swing.JButton();
         RestorePageButton = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
+        loginButton = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
+        userIDField = new javax.swing.JTextField();
+        restorePage = new javax.swing.JPanel();
+        restoreLabel = new javax.swing.JLabel();
+        RestoreButton = new javax.swing.JButton();
+        chooseFileButton = new javax.swing.JButton();
+        fileChosenField = new javax.swing.JTextField();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -54,6 +63,9 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.setLayout(new java.awt.CardLayout());
 
         welcomePage.setBackground(new java.awt.Color(61, 96, 146));
+        welcomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        welcomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+        welcomePage.setPreferredSize(new java.awt.Dimension(900, 640));
 
         BAPERSLabel.setFont(new java.awt.Font("Tahoma", 1, 90)); // NOI18N
         BAPERSLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -61,9 +73,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         loginPageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         loginPageButton.setText("Login");
+        loginPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginPageButtonActionPerformed(evt);
+            }
+        });
 
         RestorePageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         RestorePageButton.setText("Restore");
+        RestorePageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestorePageButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
         welcomePage.setLayout(welcomePageLayout);
@@ -92,67 +114,117 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.add(welcomePage, "welcome");
 
         loginPage.setBackground(new java.awt.Color(61, 96, 146));
+        loginPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        loginPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        loginPage.setPreferredSize(new java.awt.Dimension(900, 640));
 
-        jButton2.setText("Panel3");
+        loginLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        loginLabel.setForeground(new java.awt.Color(255, 255, 255));
+        loginLabel.setText("Login");
 
-        jLabel2.setText("Panel2");
+        loginButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+
+        passwordField.setMaximumSize(new java.awt.Dimension(250, 37));
+        passwordField.setMinimumSize(new java.awt.Dimension(250, 37));
+        passwordField.setPreferredSize(new java.awt.Dimension(250, 37));
+
+        userIDField.setMaximumSize(new java.awt.Dimension(250, 37));
+        userIDField.setMinimumSize(new java.awt.Dimension(250, 37));
+        userIDField.setPreferredSize(new java.awt.Dimension(250, 37));
 
         javax.swing.GroupLayout loginPageLayout = new javax.swing.GroupLayout(loginPage);
         loginPage.setLayout(loginPageLayout);
         loginPageLayout.setHorizontalGroup(
             loginPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginPageLayout.createSequentialGroup()
-                .addContainerGap(437, Short.MAX_VALUE)
-                .addGroup(loginPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPageLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(392, 392, 392))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginPageLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(410, 410, 410))))
+                .addContainerGap(326, Short.MAX_VALUE)
+                .addGroup(loginPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginLabel)
+                    .addComponent(userIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(324, 324, 324))
         );
         loginPageLayout.setVerticalGroup(
             loginPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginPageLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel2)
-                .addGap(196, 196, 196)
-                .addComponent(jButton2)
-                .addContainerGap(331, Short.MAX_VALUE))
+                .addGap(215, 215, 215)
+                .addComponent(loginLabel)
+                .addGap(40, 40, 40)
+                .addComponent(userIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
 
         cardPanel1.add(loginPage, "login");
 
-        jPanel3.setBackground(new java.awt.Color(153, 255, 255));
+        restorePage.setBackground(new java.awt.Color(61, 96, 146));
 
-        jButton3.setText("Panel1");
+        restoreLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        restoreLabel.setForeground(new java.awt.Color(255, 255, 255));
+        restoreLabel.setText("Restore");
 
-        jLabel3.setText("Panel3");
+        RestoreButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        RestoreButton.setText("Restore");
+        RestoreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestoreButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(420, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel3)))
-                .addGap(409, 409, 409))
+        chooseFileButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        chooseFileButton.setText("Choose file");
+        chooseFileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseFileButtonActionPerformed(evt);
+            }
+        });
+
+        fileChosenField.setMaximumSize(new java.awt.Dimension(250, 37));
+        fileChosenField.setMinimumSize(new java.awt.Dimension(250, 37));
+        fileChosenField.setPreferredSize(new java.awt.Dimension(250, 37));
+
+        javax.swing.GroupLayout restorePageLayout = new javax.swing.GroupLayout(restorePage);
+        restorePage.setLayout(restorePageLayout);
+        restorePageLayout.setHorizontalGroup(
+            restorePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, restorePageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(restorePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(RestoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(restoreLabel))
+                .addGap(380, 380, 380))
+            .addGroup(restorePageLayout.createSequentialGroup()
+                .addGap(242, 242, 242)
+                .addComponent(chooseFileButton)
+                .addGap(17, 17, 17)
+                .addComponent(fileChosenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(242, 242, 242))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel3)
-                .addGap(192, 192, 192)
-                .addComponent(jButton3)
-                .addContainerGap(316, Short.MAX_VALUE))
+        restorePageLayout.setVerticalGroup(
+            restorePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(restorePageLayout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(restoreLabel)
+                .addGap(40, 40, 40)
+                .addGroup(restorePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(chooseFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fileChosenField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(RestoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
-        cardPanel1.add(jPanel3, "card4");
+        cardPanel1.add(restorePage, "restore");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -160,6 +232,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         welcomeBar1.setBackground(new java.awt.Color(33, 53, 80));
         welcomeBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        welcomeBar1.setMaximumSize(new java.awt.Dimension(900, 60));
+        welcomeBar1.setMinimumSize(new java.awt.Dimension(900, 60));
 
         javax.swing.GroupLayout welcomeBar1Layout = new javax.swing.GroupLayout(welcomeBar1);
         welcomeBar1.setLayout(welcomeBar1Layout);
@@ -177,10 +251,17 @@ public class MainFrame extends javax.swing.JFrame {
         welcomeBar2.setBackground(new java.awt.Color(33, 53, 80));
         welcomeBar2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        backButton.setBackground(new java.awt.Color(255, 51, 51));
+        backButton.setBackground(new java.awt.Color(40, 64, 97));
+        backButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
         backButton.setText("Back");
-        backButton.setBorderPainted(false);
+        backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.setOpaque(true);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout welcomeBar2Layout = new javax.swing.GroupLayout(welcomeBar2);
         welcomeBar2.setLayout(welcomeBar2Layout);
@@ -214,7 +295,38 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void loginPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "login");
+        card2.show(cardPanel2, "welcomeBar2");
+    }//GEN-LAST:event_loginPageButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "welcome");
+        card2.show(cardPanel2, "welcomeBar1");
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void RestorePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestorePageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "restore");
+        card2.show(cardPanel2, "welcomeBar2");
+    }//GEN-LAST:event_RestorePageButtonActionPerformed
+
+    private void RestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RestoreButtonActionPerformed
+
+    private void chooseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chooseFileButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,17 +365,21 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BAPERSLabel;
+    private javax.swing.JButton RestoreButton;
     private javax.swing.JButton RestorePageButton;
     private javax.swing.JButton backButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton chooseFileButton;
+    private javax.swing.JTextField fileChosenField;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel restoreLabel;
+    private javax.swing.JPanel restorePage;
+    private javax.swing.JTextField userIDField;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
     private javax.swing.JPanel welcomePage;
