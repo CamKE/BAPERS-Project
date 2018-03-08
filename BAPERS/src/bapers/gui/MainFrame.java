@@ -295,7 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        userRoleDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getRoles()));
+        userRoleDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Office Manager","Shift Manager","Receptionist","Technician"}));
         userRoleDD.setMaximumSize(new java.awt.Dimension(250, 42));
         userRoleDD.setMinimumSize(new java.awt.Dimension(250, 42));
         userRoleDD.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -520,7 +520,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void createUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserButtonActionPerformed
         // TODO add your handling code here:
-       // controller.createUser();
+        //validate here
+        if (userFirstNameField.getText().length() > 10) {
+            System.out.println("name cannot be longer than 10 characters");
+        }
+        if (controller.createUser(userFirstNameField.getText(),userLastNameField.getText(),userRoleDD.getSelectedIndex(), NewPasswordField.getPassword())) {
+            card1.show(cardPanel1, "welcome");
+            card2.show(cardPanel2, "welcomeBar1");
+        }
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
