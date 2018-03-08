@@ -31,8 +31,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1 = new javax.swing.JPanel();
         welcome = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        BAPERSLabel = new javax.swing.JLabel();
         loginPageButton = new javax.swing.JButton();
+        RestorePageButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -40,6 +41,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
+        welcomeBar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
@@ -49,35 +51,40 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.setPreferredSize(new java.awt.Dimension(900, 640));
         cardPanel1.setLayout(new java.awt.CardLayout());
 
-        welcome.setBackground(new java.awt.Color(204, 204, 255));
+        welcome.setBackground(new java.awt.Color(61, 96, 146));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 90)); // NOI18N
-        jLabel1.setText("B   A   P   E   R   S");
+        BAPERSLabel.setFont(new java.awt.Font("Tahoma", 1, 90)); // NOI18N
+        BAPERSLabel.setForeground(new java.awt.Color(255, 255, 255));
+        BAPERSLabel.setText("B   A   P   E   R   S");
 
+        loginPageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         loginPageButton.setText("Login");
+
+        RestorePageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        RestorePageButton.setText("Restore");
 
         javax.swing.GroupLayout welcomeLayout = new javax.swing.GroupLayout(welcome);
         welcome.setLayout(welcomeLayout);
         welcomeLayout.setHorizontalGroup(
             welcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomeLayout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
-                .addGroup(welcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomeLayout.createSequentialGroup()
-                        .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(389, 389, 389))))
+                .addGap(75, 75, 75)
+                .addGroup(welcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(BAPERSLabel)
+                    .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75))
         );
         welcomeLayout.setVerticalGroup(
             welcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomeLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addComponent(jLabel1)
+                .addComponent(BAPERSLabel)
                 .addGap(119, 119, 119)
                 .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         cardPanel1.add(welcome, "welcome");
@@ -149,6 +156,22 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
         cardPanel2.setLayout(new java.awt.CardLayout());
 
+        welcomeBar.setBackground(new java.awt.Color(33, 53, 80));
+        welcomeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout welcomeBarLayout = new javax.swing.GroupLayout(welcomeBar);
+        welcomeBar.setLayout(welcomeBarLayout);
+        welcomeBarLayout.setHorizontalGroup(
+            welcomeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 896, Short.MAX_VALUE)
+        );
+        welcomeBarLayout.setVerticalGroup(
+            welcomeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 56, Short.MAX_VALUE)
+        );
+
+        cardPanel2.add(welcomeBar, "card2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,16 +227,18 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BAPERSLabel;
+    private javax.swing.JButton RestorePageButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton loginPageButton;
     private javax.swing.JPanel welcome;
+    private javax.swing.JPanel welcomeBar;
     // End of variables declaration//GEN-END:variables
 }
