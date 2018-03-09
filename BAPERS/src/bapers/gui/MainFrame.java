@@ -73,6 +73,8 @@ public class MainFrame extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
+        setMinimumSize(new java.awt.Dimension(900, 700));
         setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
@@ -524,10 +526,10 @@ public class MainFrame extends javax.swing.JFrame {
         if (userFirstNameField.getText().length() > 10) {
             System.out.println("name cannot be longer than 10 characters");
         }
-        if (controller.createUser(userFirstNameField.getText(),userLastNameField.getText(),userRoleDD.getSelectedIndex(), NewPasswordField.getPassword())) {
-            card1.show(cardPanel1, "welcome");
-            card2.show(cardPanel2, "welcomeBar1");
-        }
+//        if (controller.createUser(userFirstNameField.getText(),userLastNameField.getText(),userRoleDD.getSelectedIndex(), NewPasswordField.getPassword())) {
+//            card1.show(cardPanel1, "welcome");
+//            card2.show(cardPanel2, "welcomeBar1");
+//        }
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

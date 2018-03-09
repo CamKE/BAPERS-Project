@@ -6,10 +6,7 @@
 package bapers.controller;
 
 import bapers.database.DBImpl;
-import bapers.user.UserDetails;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
@@ -17,7 +14,6 @@ import java.sql.SQLException;
  */
 public class Controller {
 
-    //new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }
     private DBImpl database;
     private Connection conn;
 
@@ -26,16 +22,16 @@ public class Controller {
         conn = database.connect();
     }
 
-    public boolean createUser(String firstname, String lastname, int role, char[] password) {
-        int role_id = role+1;
-        //fix this
-       String sql = "INSERT INTO user(firstname,lastname,password_hash,Role_role_id) VALUES (firstname,lastname,null,"+role_id+")";
-        if (database.write(sql, conn) != 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean createUser(String firstname, String lastname, int role, char[] password) {
+//        int role_id = role+1;
+//        //fix this
+//       String sql = "INSERT INTO user(firstname,lastname,password_hash,Role_role_id) VALUES (firstname,lastname,null,"+role_id+")";
+//        if (database.write(sql, conn) != 0) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
 //    public String[] getRoles() {
 //        // ArrayList roles = new ArrayList();
