@@ -5,6 +5,8 @@
  */
 package bapers.payment;
 
+import java.util.Date;
+
 /**
  *
  * @author kelvin
@@ -14,7 +16,7 @@ public class PaymentCard extends Payment {
     private final String cardDetailsLast4Digits;
     private final String cardDetailsExpiryDate;
 
-    public PaymentCard(String paymentNo, double total, String paymentType, String paymentDate, int invoiceNumber, String cardType, String cardDetailsLast4Digits, String cardDetailsExpiryDate) {
+    public PaymentCard(String paymentNo, double total, String paymentType, Date paymentDate, int invoiceNumber, String cardType, String cardDetailsLast4Digits, String cardDetailsExpiryDate) {
         super(paymentNo, total, paymentType, paymentDate, invoiceNumber);
         this.cardType = cardType;
         this.cardDetailsLast4Digits = cardDetailsLast4Digits;
@@ -32,5 +34,4 @@ public class PaymentCard extends Payment {
     public String getCardDetailsExpiryDate() {
         return cardDetailsExpiryDate;
     }
-    
 }

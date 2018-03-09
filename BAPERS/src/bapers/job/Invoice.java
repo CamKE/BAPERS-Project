@@ -32,13 +32,13 @@ public class Invoice {
         this.invoiceLocation = invoiceLocation;
         
         switch (invoiceStatus) {
-            case "Awaiting Payment":
+            case "Awaiting payment":
                 this.invoiceStatus = Status.AWAITINGPAYMENT;
                 break;
-            case "Paid Late":
+            case "Paid late":
                 this.invoiceStatus = Status.PAIDLATE;
                 break;
-            case "Paid On Time":
+            case "Paid on time":
                 this.invoiceStatus = Status.PAIDONTIME;
                 break;
             default:
