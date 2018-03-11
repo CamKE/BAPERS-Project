@@ -43,6 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
         loginPageButton = new javax.swing.JButton();
         RestorePageButton = new javax.swing.JButton();
         tempButton = new javax.swing.JButton();
+        homePageOM = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -67,10 +68,25 @@ public class MainFrame extends javax.swing.JFrame {
         ReenterPasswordLabel = new javax.swing.JLabel();
         createUserButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        officeManagerHomePage = new javax.swing.JPanel();
+        welcomePage1 = new javax.swing.JPanel();
+        jobOfficeManager = new javax.swing.JButton();
+        standardJobsOfficeManager = new javax.swing.JButton();
+        acceptPaymentOfficeManager = new javax.swing.JButton();
+        tasksOfficeManager = new javax.swing.JButton();
+        reportsOfficeManager = new javax.swing.JButton();
+        usersOfficeManager = new javax.swing.JButton();
+        manageCustomersOfficeManager = new javax.swing.JButton();
+        settingsOfficeManager = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
+        homePageBar = new javax.swing.JPanel();
+        welcomeBar3 = new javax.swing.JPanel();
+        officeManagerText = new javax.swing.JLabel();
+        officeManagerWelcomeText = new javax.swing.JLabel();
+        logOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 700));
@@ -114,6 +130,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        homePageOM.setText("homePageOM");
+        homePageOM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homePageOMActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
         welcomePage.setLayout(welcomePageLayout);
         welcomePageLayout.setHorizontalGroup(
@@ -127,22 +150,28 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(75, 75, 75))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tempButton)
-                .addGap(131, 131, 131))
+                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(homePageOM)
+                    .addComponent(tempButton))
+                .addGap(155, 155, 155))
         );
         welcomePageLayout.setVerticalGroup(
             welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePageLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(132, 132, 132)
                 .addComponent(BAPERSLabel)
                 .addGap(119, 119, 119)
                 .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(homePageOM)
+                .addGap(18, 18, 18)
                 .addComponent(tempButton)
                 .addGap(37, 37, 37))
         );
+
+        homePageOM.getAccessibleContext().setAccessibleParent(homePageOM);
 
         cardPanel1.add(welcomePage, "welcome");
 
@@ -357,9 +386,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(userLastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NewRepeatPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createUserPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(363, Short.MAX_VALUE)
                 .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createUserPageLayout.createSequentialGroup()
                         .addComponent(cancelButton)
@@ -403,6 +432,91 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(createUserPage, "createUser");
+
+        welcomePage1.setBackground(new java.awt.Color(61, 96, 146));
+        welcomePage1.setMaximumSize(new java.awt.Dimension(900, 640));
+        welcomePage1.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        jobOfficeManager.setText("Job");
+
+        standardJobsOfficeManager.setText("Standard Jobs");
+
+        acceptPaymentOfficeManager.setText("Accept Payment");
+        acceptPaymentOfficeManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptPaymentOfficeManagerActionPerformed(evt);
+            }
+        });
+
+        tasksOfficeManager.setText("Tasks");
+
+        reportsOfficeManager.setText("Reports");
+
+        usersOfficeManager.setText("Users");
+
+        manageCustomersOfficeManager.setText("Manage Customers");
+
+        settingsOfficeManager.setText("Settings");
+
+        javax.swing.GroupLayout welcomePage1Layout = new javax.swing.GroupLayout(welcomePage1);
+        welcomePage1.setLayout(welcomePage1Layout);
+        welcomePage1Layout.setHorizontalGroup(
+            welcomePage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomePage1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(welcomePage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reportsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(welcomePage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(welcomePage1Layout.createSequentialGroup()
+                        .addComponent(acceptPaymentOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tasksOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(standardJobsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(welcomePage1Layout.createSequentialGroup()
+                        .addComponent(usersOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(manageCustomersOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(settingsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
+        );
+        welcomePage1Layout.setVerticalGroup(
+            welcomePage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomePage1Layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addGroup(welcomePage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jobOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptPaymentOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tasksOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standardJobsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97)
+                .addGroup(welcomePage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reportsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usersOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageCustomersOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settingsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout officeManagerHomePageLayout = new javax.swing.GroupLayout(officeManagerHomePage);
+        officeManagerHomePage.setLayout(officeManagerHomePageLayout);
+        officeManagerHomePageLayout.setHorizontalGroup(
+            officeManagerHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, officeManagerHomePageLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(welcomePage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        officeManagerHomePageLayout.setVerticalGroup(
+            officeManagerHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeManagerHomePageLayout.createSequentialGroup()
+                .addComponent(welcomePage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(officeManagerHomePage, "officeManagerHomePage");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -455,6 +569,64 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel2.add(welcomeBar2, "welcomeBar2");
+
+        welcomeBar3.setBackground(new java.awt.Color(33, 53, 80));
+        welcomeBar3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        officeManagerText.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        officeManagerText.setForeground(new java.awt.Color(255, 255, 255));
+        officeManagerText.setText("Office Manager");
+
+        officeManagerWelcomeText.setFont(new java.awt.Font("Lucida Grande", 1, 26)); // NOI18N
+        officeManagerWelcomeText.setForeground(new java.awt.Color(255, 255, 255));
+        officeManagerWelcomeText.setText("Welcome, User");
+
+        logOutButton.setBackground(new java.awt.Color(40, 64, 97));
+        logOutButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        logOutButton.setForeground(new java.awt.Color(255, 255, 255));
+        logOutButton.setText("Log out");
+        logOutButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logOutButton.setOpaque(true);
+
+        javax.swing.GroupLayout welcomeBar3Layout = new javax.swing.GroupLayout(welcomeBar3);
+        welcomeBar3.setLayout(welcomeBar3Layout);
+        welcomeBar3Layout.setHorizontalGroup(
+            welcomeBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomeBar3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(officeManagerText, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146)
+                .addComponent(officeManagerWelcomeText, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        welcomeBar3Layout.setVerticalGroup(
+            welcomeBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomeBar3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(welcomeBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(officeManagerText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(officeManagerWelcomeText, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(logOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout homePageBarLayout = new javax.swing.GroupLayout(homePageBar);
+        homePageBar.setLayout(homePageBarLayout);
+        homePageBarLayout.setHorizontalGroup(
+            homePageBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePageBarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(welcomeBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        homePageBarLayout.setVerticalGroup(
+            homePageBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(homePageBarLayout.createSequentialGroup()
+                .addComponent(welcomeBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 60, Short.MAX_VALUE))
+        );
+
+        cardPanel2.add(homePageBar, "homePageBar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -536,6 +708,16 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void homePageOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageOMActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "officeManagerHomePage");
+        card2.show(cardPanel2, "homePageBar");
+    }//GEN-LAST:event_homePageOMActionPerformed
+
+    private void acceptPaymentOfficeManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentOfficeManagerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptPaymentOfficeManagerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -579,6 +761,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton RestoreButton;
     private javax.swing.JButton RestorePageButton;
     private javax.swing.JLabel RoleLabel;
+    private javax.swing.JButton acceptPaymentOfficeManager;
     private javax.swing.JButton backButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JPanel cardPanel1;
@@ -588,23 +771,38 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel createUserPage;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel firstnameLabel;
+    private javax.swing.JPanel homePageBar;
+    private javax.swing.JButton homePageOM;
+    private javax.swing.JButton jobOfficeManager;
     private javax.swing.JLabel lastnameLabel;
+    private javax.swing.JButton logOutButton;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JButton manageCustomersOfficeManager;
     private javax.swing.JLabel newUserLabel;
+    private javax.swing.JPanel officeManagerHomePage;
+    private javax.swing.JLabel officeManagerText;
+    private javax.swing.JLabel officeManagerWelcomeText;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JButton reportsOfficeManager;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
+    private javax.swing.JButton settingsOfficeManager;
+    private javax.swing.JButton standardJobsOfficeManager;
+    private javax.swing.JButton tasksOfficeManager;
     private javax.swing.JButton tempButton;
     private javax.swing.JTextField userFirstNameField;
     private javax.swing.JTextField userIDField;
     private javax.swing.JTextField userLastNameField;
     private javax.swing.JComboBox<String> userRoleDD;
+    private javax.swing.JButton usersOfficeManager;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
+    private javax.swing.JPanel welcomeBar3;
     private javax.swing.JPanel welcomePage;
+    private javax.swing.JPanel welcomePage1;
     // End of variables declaration//GEN-END:variables
 }
