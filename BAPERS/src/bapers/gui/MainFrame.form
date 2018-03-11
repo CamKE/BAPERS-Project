@@ -98,7 +98,11 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="homePageOM" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="homePageSM" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="homePageOM" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="tempButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
@@ -114,9 +118,12 @@
                       <Component id="loginPageButton" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="RestorePageButton" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
-                      <Component id="homePageOM" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="homePageOM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="homePageSM" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="tempButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
@@ -176,6 +183,14 @@
               </AccessibilityProperties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homePageOMActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="homePageSM">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="homePageSM"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homePageSMActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -670,21 +685,21 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="welcomePage1" min="-2" max="-2" attributes="0"/>
+                      <Component id="officeManagerPage" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="welcomePage1" min="-2" max="-2" attributes="0"/>
+                      <Component id="officeManagerPage" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="welcomePage1">
+            <Container class="javax.swing.JPanel" name="officeManagerPage">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="92" green="60" red="3d" type="rgb"/>
@@ -789,6 +804,126 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="settingsOfficeManager">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Settings"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="shiftManagerHomePage">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="shiftManagerHomePage"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="88" max="32767" attributes="0"/>
+                      <Component id="shiftManagerPage" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="shiftManagerPage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="shiftManagerPage">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="92" green="60" red="3d" type="rgb"/>
+                </Property>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[900, 640]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[900, 640]"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="standardJobsOfficeManager1" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Component id="jobOfficeManager1" min="-2" pref="196" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="reportsOfficeManager1" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Component id="acceptPaymentOfficeManager1" min="-2" pref="196" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="86" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="tasksOfficeManager1" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Component id="settingsOfficeManager1" min="-2" pref="196" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jobOfficeManager1" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="acceptPaymentOfficeManager1" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="tasksOfficeManager1" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="reportsOfficeManager1" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="standardJobsOfficeManager1" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                              <Component id="settingsOfficeManager1" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="163" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="jobOfficeManager1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Job"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="standardJobsOfficeManager1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Standard Jobs"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="acceptPaymentOfficeManager1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Accept Payment"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceptPaymentOfficeManager1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="tasksOfficeManager1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tasks"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="reportsOfficeManager1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Reports"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="settingsOfficeManager1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Settings"/>
                   </Properties>
@@ -907,10 +1042,10 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="homePageBar">
+        <Container class="javax.swing.JPanel" name="homePageOMBar">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="homePageBar"/>
+              <CardConstraints cardName="homePageOMBar"/>
             </Constraint>
           </Constraints>
 
@@ -927,7 +1062,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="welcomeBar3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -996,6 +1131,120 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="logOutButton">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="61" green="40" red="28" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="18" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Log out"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="opaque" type="boolean" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="true" type="code"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="homePagesSMBar">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="homePageSMBar"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="welcomeBar4" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="welcomeBar4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="welcomeBar4">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="50" green="35" red="21" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Component id="officeManagerText1" min="-2" pref="180" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                          <Component id="officeManagerWelcomeText1" min="-2" pref="246" max="-2" attributes="0"/>
+                          <EmptySpace pref="209" max="32767" attributes="0"/>
+                          <Component id="logOutButton1" min="-2" pref="101" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="officeManagerText1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="officeManagerWelcomeText1" alignment="0" pref="44" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="logOutButton1" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="officeManagerText1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Lucida Grande" size="18" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Shift Manager"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="officeManagerWelcomeText1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Lucida Grande" size="26" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Welcome, User"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="logOutButton1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="61" green="40" red="28" type="rgb"/>
