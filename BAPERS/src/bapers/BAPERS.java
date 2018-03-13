@@ -5,6 +5,9 @@
  */
 package bapers;
 
+import bapers.controller.Controller;
+import bapers.gui.MainFrame;
+
 /**
  *
  * @author CameronE
@@ -16,6 +19,7 @@ public class BAPERS {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new MainFrame(new Controller()).setVisible(true);
     }
     
 }
