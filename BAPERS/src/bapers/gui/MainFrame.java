@@ -58,6 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         backupButton = new javax.swing.JButton();
         chooseLocationButton = new javax.swing.JButton();
         fileChosenField1 = new javax.swing.JTextField();
+        backupDestinationLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -285,38 +286,46 @@ public class MainFrame extends javax.swing.JFrame {
         fileChosenField1.setMinimumSize(new java.awt.Dimension(250, 37));
         fileChosenField1.setPreferredSize(new java.awt.Dimension(250, 37));
 
+        backupDestinationLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        backupDestinationLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backupDestinationLabel.setText("Back up destination:");
+
         javax.swing.GroupLayout backupPageLayout = new javax.swing.GroupLayout(backupPage);
         backupPage.setLayout(backupPageLayout);
         backupPageLayout.setHorizontalGroup(
             backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backupPageLayout.createSequentialGroup()
+                .addGap(265, 265, 265)
+                .addComponent(backupDestinationLabel)
+                .addGap(18, 18, 18)
+                .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chooseLocationButton)
+                    .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(123, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
-                        .addComponent(backupLabel)
-                        .addGap(380, 380, 380))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
                         .addComponent(backupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
-            .addGroup(backupPageLayout.createSequentialGroup()
-                .addGap(408, 408, 408)
-                .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chooseLocationButton)
-                    .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
+                        .addComponent(backupLabel)
+                        .addGap(383, 383, 383))))
         );
         backupPageLayout.setVerticalGroup(
             backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backupPageLayout.createSequentialGroup()
                 .addGap(215, 215, 215)
                 .addComponent(backupLabel)
-                .addGap(40, 40, 40)
-                .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backupDestinationLabel))
                 .addGap(18, 18, 18)
                 .addComponent(chooseLocationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(backupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addGap(80, 80, 80))
         );
 
         cardPanel1.add(backupPage, "backup");
@@ -542,6 +551,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton RestorePageButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton backupButton;
+    private javax.swing.JLabel backupDestinationLabel;
     private javax.swing.JLabel backupLabel;
     private javax.swing.JPanel backupPage;
     private javax.swing.JPanel cardPanel1;
