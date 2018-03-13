@@ -59,6 +59,12 @@ public class MainFrame extends javax.swing.JFrame {
         chooseLocationButton = new javax.swing.JButton();
         fileChosenField1 = new javax.swing.JTextField();
         backupDestinationLabel = new javax.swing.JLabel();
+        userSearchPage = new javax.swing.JPanel();
+        backupLabel1 = new javax.swing.JLabel();
+        backupButton1 = new javax.swing.JButton();
+        chooseLocationButton1 = new javax.swing.JButton();
+        fileChosenField2 = new javax.swing.JTextField();
+        backupDestinationLabel1 = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -66,6 +72,7 @@ public class MainFrame extends javax.swing.JFrame {
         homeBar2 = new javax.swing.JPanel();
         homeButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
+        pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 700));
@@ -305,12 +312,11 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(383, 383, 383))))
             .addGroup(backupPageLayout.createSequentialGroup()
                 .addGap(194, 194, 194)
-                .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(backupDestinationLabel)
+                .addGap(18, 18, 18)
+                .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chooseLocationButton)
-                    .addGroup(backupPageLayout.createSequentialGroup()
-                        .addComponent(backupDestinationLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(194, Short.MAX_VALUE))
         );
         backupPageLayout.setVerticalGroup(
@@ -330,6 +336,78 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(backupPage, "backup");
+
+        userSearchPage.setBackground(new java.awt.Color(61, 96, 146));
+        userSearchPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        userSearchPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        backupLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        backupLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        backupLabel1.setText("Backup");
+
+        backupButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        backupButton1.setText("Backup");
+        backupButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backupButton1ActionPerformed(evt);
+            }
+        });
+
+        chooseLocationButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        chooseLocationButton1.setText("Choose location");
+        chooseLocationButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseLocationButton1ActionPerformed(evt);
+            }
+        });
+
+        fileChosenField2.setMaximumSize(new java.awt.Dimension(250, 37));
+        fileChosenField2.setMinimumSize(new java.awt.Dimension(250, 37));
+        fileChosenField2.setPreferredSize(new java.awt.Dimension(250, 37));
+
+        backupDestinationLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        backupDestinationLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        backupDestinationLabel1.setText("Back up destination:");
+
+        javax.swing.GroupLayout userSearchPageLayout = new javax.swing.GroupLayout(userSearchPage);
+        userSearchPage.setLayout(userSearchPageLayout);
+        userSearchPageLayout.setHorizontalGroup(
+            userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
+                        .addComponent(backupButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
+                        .addComponent(backupLabel1)
+                        .addGap(383, 383, 383))))
+            .addGroup(userSearchPageLayout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addComponent(backupDestinationLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chooseLocationButton1)
+                    .addComponent(fileChosenField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(194, Short.MAX_VALUE))
+        );
+        userSearchPageLayout.setVerticalGroup(
+            userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userSearchPageLayout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(backupLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fileChosenField2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backupDestinationLabel1))
+                .addGap(25, 25, 25)
+                .addComponent(chooseLocationButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addComponent(backupButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+        );
+
+        cardPanel1.add(userSearchPage, "backup");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -419,20 +497,27 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        pageLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        pageLabel.setForeground(new java.awt.Color(255, 255, 255));
+        pageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout homeBar2Layout = new javax.swing.GroupLayout(homeBar2);
         homeBar2.setLayout(homeBar2Layout);
         homeBar2Layout.setHorizontalGroup(
             homeBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homeBar2Layout.createSequentialGroup()
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 690, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
+                .addComponent(pageLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
                 .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         homeBar2Layout.setVerticalGroup(
             homeBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homeBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pageLabel))
         );
 
         cardPanel2.add(homeBar2, "homeBar2");
@@ -503,6 +588,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         card1.show(cardPanel1, "backup");
         card2.show(cardPanel2, "homeBar2");
+        pageLabel.setText("Backup page");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
@@ -510,6 +596,14 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "welcome");
         card2.show(cardPanel2, "welcomeBar1");
     }//GEN-LAST:event_logOutButtonActionPerformed
+
+    private void backupButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backupButton1ActionPerformed
+
+    private void chooseLocationButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseLocationButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chooseLocationButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,15 +646,20 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton RestorePageButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton backupButton;
+    private javax.swing.JButton backupButton1;
     private javax.swing.JLabel backupDestinationLabel;
+    private javax.swing.JLabel backupDestinationLabel1;
     private javax.swing.JLabel backupLabel;
+    private javax.swing.JLabel backupLabel1;
     private javax.swing.JPanel backupPage;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
+    private javax.swing.JButton chooseLocationButton1;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JTextField fileChosenField1;
+    private javax.swing.JTextField fileChosenField2;
     private javax.swing.JPanel homeBar2;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
@@ -569,10 +668,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JLabel pageLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JTextField userIDField;
+    private javax.swing.JPanel userSearchPage;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
     private javax.swing.JPanel welcomePage;
