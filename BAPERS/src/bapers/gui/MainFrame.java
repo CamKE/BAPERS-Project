@@ -60,7 +60,7 @@ public class MainFrame extends javax.swing.JFrame {
         fileChosenField1 = new javax.swing.JTextField();
         backupDestinationLabel = new javax.swing.JLabel();
         userSearchPage = new javax.swing.JPanel();
-        backupLabel1 = new javax.swing.JLabel();
+        findUserLabel = new javax.swing.JLabel();
         backupButton1 = new javax.swing.JButton();
         chooseLocationButton1 = new javax.swing.JButton();
         fileChosenField2 = new javax.swing.JTextField();
@@ -75,9 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -341,9 +339,9 @@ public class MainFrame extends javax.swing.JFrame {
         userSearchPage.setMaximumSize(new java.awt.Dimension(900, 640));
         userSearchPage.setMinimumSize(new java.awt.Dimension(900, 640));
 
-        backupLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        backupLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        backupLabel1.setText("Backup");
+        findUserLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        findUserLabel.setForeground(new java.awt.Color(255, 255, 255));
+        findUserLabel.setText("Find User");
 
         backupButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         backupButton1.setText("Backup");
@@ -374,14 +372,14 @@ public class MainFrame extends javax.swing.JFrame {
         userSearchPageLayout.setHorizontalGroup(
             userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(364, Short.MAX_VALUE)
                 .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
                         .addComponent(backupButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
-                        .addComponent(backupLabel1)
-                        .addGap(383, 383, 383))))
+                        .addComponent(findUserLabel)
+                        .addContainerGap(364, Short.MAX_VALUE))))
             .addGroup(userSearchPageLayout.createSequentialGroup()
                 .addGap(194, 194, 194)
                 .addComponent(backupDestinationLabel1)
@@ -389,20 +387,20 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chooseLocationButton1)
                     .addComponent(fileChosenField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         userSearchPageLayout.setVerticalGroup(
             userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userSearchPageLayout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(backupLabel1)
+                .addGap(92, 92, 92)
+                .addComponent(findUserLabel)
                 .addGap(18, 18, 18)
                 .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fileChosenField2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backupDestinationLabel1))
                 .addGap(25, 25, 25)
                 .addComponent(chooseLocationButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(backupButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
@@ -650,7 +648,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel backupDestinationLabel;
     private javax.swing.JLabel backupDestinationLabel1;
     private javax.swing.JLabel backupLabel;
-    private javax.swing.JLabel backupLabel1;
     private javax.swing.JPanel backupPage;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
@@ -660,6 +657,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JTextField fileChosenField1;
     private javax.swing.JTextField fileChosenField2;
+    private javax.swing.JLabel findUserLabel;
     private javax.swing.JPanel homeBar2;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
