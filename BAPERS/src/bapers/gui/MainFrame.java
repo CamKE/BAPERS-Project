@@ -68,9 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
         logOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -294,14 +292,6 @@ public class MainFrame extends javax.swing.JFrame {
         backupPage.setLayout(backupPageLayout);
         backupPageLayout.setHorizontalGroup(
             backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backupPageLayout.createSequentialGroup()
-                .addGap(265, 265, 265)
-                .addComponent(backupDestinationLabel)
-                .addGap(18, 18, 18)
-                .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chooseLocationButton)
-                    .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(123, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,6 +301,15 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
                         .addComponent(backupLabel)
                         .addGap(383, 383, 383))))
+            .addGroup(backupPageLayout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chooseLocationButton)
+                    .addGroup(backupPageLayout.createSequentialGroup()
+                        .addComponent(backupDestinationLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
         backupPageLayout.setVerticalGroup(
             backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
