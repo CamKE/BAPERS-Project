@@ -7,6 +7,7 @@ package bapers.gui;
 
 import bapers.controller.Controller;
 import java.awt.CardLayout;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -37,6 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         cardPanel1 = new javax.swing.JPanel();
         welcomePage = new javax.swing.JPanel();
         BAPERSLabel = new javax.swing.JLabel();
@@ -53,18 +55,13 @@ public class MainFrame extends javax.swing.JFrame {
         RestoreButton = new javax.swing.JButton();
         chooseFileButton = new javax.swing.JButton();
         fileChosenField = new javax.swing.JTextField();
+        userSearchPage = new javax.swing.JPanel();
         backupPage = new javax.swing.JPanel();
-        backupLabel = new javax.swing.JLabel();
+        BackupDataLabel = new javax.swing.JLabel();
         backupButton = new javax.swing.JButton();
         chooseLocationButton = new javax.swing.JButton();
-        fileChosenField1 = new javax.swing.JTextField();
+        locationChosenField = new javax.swing.JTextField();
         backupDestinationLabel = new javax.swing.JLabel();
-        userSearchPage = new javax.swing.JPanel();
-        findUserLabel = new javax.swing.JLabel();
-        backupButton1 = new javax.swing.JButton();
-        chooseLocationButton1 = new javax.swing.JButton();
-        fileChosenField2 = new javax.swing.JTextField();
-        backupDestinationLabel1 = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -264,13 +261,30 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(restorePage, "restore");
 
+        userSearchPage.setBackground(new java.awt.Color(61, 96, 146));
+        userSearchPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        userSearchPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        javax.swing.GroupLayout userSearchPageLayout = new javax.swing.GroupLayout(userSearchPage);
+        userSearchPage.setLayout(userSearchPageLayout);
+        userSearchPageLayout.setHorizontalGroup(
+            userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        userSearchPageLayout.setVerticalGroup(
+            userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        cardPanel1.add(userSearchPage, "userSearch");
+
         backupPage.setBackground(new java.awt.Color(61, 96, 146));
         backupPage.setMaximumSize(new java.awt.Dimension(900, 640));
         backupPage.setMinimumSize(new java.awt.Dimension(900, 640));
 
-        backupLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        backupLabel.setForeground(new java.awt.Color(255, 255, 255));
-        backupLabel.setText("Backup");
+        BackupDataLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        BackupDataLabel.setForeground(new java.awt.Color(255, 255, 255));
+        BackupDataLabel.setText("Backup Data");
 
         backupButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         backupButton.setText("Backup");
@@ -288,9 +302,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        fileChosenField1.setMaximumSize(new java.awt.Dimension(250, 37));
-        fileChosenField1.setMinimumSize(new java.awt.Dimension(250, 37));
-        fileChosenField1.setPreferredSize(new java.awt.Dimension(250, 37));
+        locationChosenField.setEditable(false);
+        locationChosenField.setMaximumSize(new java.awt.Dimension(250, 37));
+        locationChosenField.setMinimumSize(new java.awt.Dimension(250, 37));
+        locationChosenField.setPreferredSize(new java.awt.Dimension(250, 37));
 
         backupDestinationLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         backupDestinationLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -301,112 +316,40 @@ public class MainFrame extends javax.swing.JFrame {
         backupPageLayout.setHorizontalGroup(
             backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(334, Short.MAX_VALUE)
                 .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
                         .addComponent(backupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backupPageLayout.createSequentialGroup()
-                        .addComponent(backupLabel)
-                        .addGap(383, 383, 383))))
+                        .addComponent(BackupDataLabel)
+                        .addContainerGap(335, Short.MAX_VALUE))))
             .addGroup(backupPageLayout.createSequentialGroup()
                 .addGap(194, 194, 194)
                 .addComponent(backupDestinationLabel)
                 .addGap(18, 18, 18)
                 .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chooseLocationButton)
-                    .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(194, Short.MAX_VALUE))
+                    .addComponent(locationChosenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         backupPageLayout.setVerticalGroup(
             backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backupPageLayout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(backupLabel)
+                .addGap(92, 92, 92)
+                .addComponent(BackupDataLabel)
                 .addGap(18, 18, 18)
                 .addGroup(backupPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fileChosenField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(locationChosenField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backupDestinationLabel))
                 .addGap(25, 25, 25)
                 .addComponent(chooseLocationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(backupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
 
         cardPanel1.add(backupPage, "backup");
-
-        userSearchPage.setBackground(new java.awt.Color(61, 96, 146));
-        userSearchPage.setMaximumSize(new java.awt.Dimension(900, 640));
-        userSearchPage.setMinimumSize(new java.awt.Dimension(900, 640));
-
-        findUserLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        findUserLabel.setForeground(new java.awt.Color(255, 255, 255));
-        findUserLabel.setText("Find User");
-
-        backupButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        backupButton1.setText("Backup");
-        backupButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backupButton1ActionPerformed(evt);
-            }
-        });
-
-        chooseLocationButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        chooseLocationButton1.setText("Choose location");
-        chooseLocationButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chooseLocationButton1ActionPerformed(evt);
-            }
-        });
-
-        fileChosenField2.setMaximumSize(new java.awt.Dimension(250, 37));
-        fileChosenField2.setMinimumSize(new java.awt.Dimension(250, 37));
-        fileChosenField2.setPreferredSize(new java.awt.Dimension(250, 37));
-
-        backupDestinationLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        backupDestinationLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        backupDestinationLabel1.setText("Back up destination:");
-
-        javax.swing.GroupLayout userSearchPageLayout = new javax.swing.GroupLayout(userSearchPage);
-        userSearchPage.setLayout(userSearchPageLayout);
-        userSearchPageLayout.setHorizontalGroup(
-            userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
-                .addContainerGap(364, Short.MAX_VALUE)
-                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
-                        .addComponent(backupButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
-                        .addComponent(findUserLabel)
-                        .addContainerGap(364, Short.MAX_VALUE))))
-            .addGroup(userSearchPageLayout.createSequentialGroup()
-                .addGap(194, 194, 194)
-                .addComponent(backupDestinationLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chooseLocationButton1)
-                    .addComponent(fileChosenField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        userSearchPageLayout.setVerticalGroup(
-            userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userSearchPageLayout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(findUserLabel)
-                .addGap(18, 18, 18)
-                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fileChosenField2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backupDestinationLabel1))
-                .addGap(25, 25, 25)
-                .addComponent(chooseLocationButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
-                .addComponent(backupButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
-        );
-
-        cardPanel1.add(userSearchPage, "backup");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -575,14 +518,6 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_homeButtonActionPerformed
 
-    private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backupButtonActionPerformed
-
-    private void chooseLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseLocationButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chooseLocationButtonActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "backup");
@@ -596,13 +531,37 @@ public class MainFrame extends javax.swing.JFrame {
         card2.show(cardPanel2, "welcomeBar1");
     }//GEN-LAST:event_logOutButtonActionPerformed
 
-    private void backupButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButton1ActionPerformed
+    private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_backupButton1ActionPerformed
+        Process p = null;
+        try {
+            Runtime runtime = Runtime.getRuntime();
+           // String[] cmd = {"cmd.exe", "/c", "C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump -u root -ppassword bapers_data -r C:\\db.sql"};
+            p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump -u root -ppassword bapers_data -r C:\\db.sql");
 
-    private void chooseLocationButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseLocationButton1ActionPerformed
+            int processComplete = p.waitFor();
+            if (processComplete == 0) {
+                System.out.println("backup completed");
+            } else {
+                System.out.println("backup failed");
+                System.out.println(p.getErrorStream());
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_backupButtonActionPerformed
+
+    private void chooseLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseLocationButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chooseLocationButton1ActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.showOpenDialog(this);
+        String directory = chooser.getSelectedFile().getPath();
+        directory = directory.replace('\\', '/');
+
+        locationChosenField.setText(directory);
+    }//GEN-LAST:event_chooseLocationButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -641,27 +600,23 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BAPERSLabel;
+    private javax.swing.JLabel BackupDataLabel;
     private javax.swing.JButton RestoreButton;
     private javax.swing.JButton RestorePageButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton backupButton;
-    private javax.swing.JButton backupButton1;
     private javax.swing.JLabel backupDestinationLabel;
-    private javax.swing.JLabel backupDestinationLabel1;
-    private javax.swing.JLabel backupLabel;
     private javax.swing.JPanel backupPage;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
-    private javax.swing.JButton chooseLocationButton1;
     private javax.swing.JTextField fileChosenField;
-    private javax.swing.JTextField fileChosenField1;
-    private javax.swing.JTextField fileChosenField2;
-    private javax.swing.JLabel findUserLabel;
     private javax.swing.JPanel homeBar2;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JTextField locationChosenField;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
