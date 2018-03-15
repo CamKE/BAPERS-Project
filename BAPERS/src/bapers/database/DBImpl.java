@@ -20,9 +20,11 @@ import java.sql.Statement;
 public class DBImpl implements MyDBConnectivity {
 
     private ResultSet rs;
+    private Statement st;
 
     // DB connection must be established anytime this class is 
     // instantiated
+    
 
 
     // Executes sql queries that fetch data (SELECT), and returns the results
@@ -70,4 +72,21 @@ public class DBImpl implements MyDBConnectivity {
 
         return connect;
     }
+    
+    public void getData(){
+        try{
+            
+            String query = "select * from Task";
+            rs = st.executeQuery(query);
+            System.out.print("Records from Database");
+            while(rs.next()){
+                String description = rs.getString("description");
+                System.out.println("Description: "+description);
+            }
+            
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+    }
+    
 }
