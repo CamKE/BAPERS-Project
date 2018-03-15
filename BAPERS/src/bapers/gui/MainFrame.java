@@ -64,6 +64,8 @@ public class MainFrame extends javax.swing.JFrame {
         userFirstnameLabel = new javax.swing.JLabel();
         UserLastnameField = new javax.swing.JTextField();
         userLastnameLabel = new javax.swing.JLabel();
+        UserRoleSearchDrop = new javax.swing.JComboBox<>();
+        userLastnameLabel1 = new javax.swing.JLabel();
         backupPage = new javax.swing.JPanel();
         BackupDataLabel = new javax.swing.JLabel();
         backupButton = new javax.swing.JButton();
@@ -80,9 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -316,6 +316,15 @@ public class MainFrame extends javax.swing.JFrame {
         userLastnameLabel.setForeground(new java.awt.Color(255, 255, 255));
         userLastnameLabel.setText("Lastname:");
 
+        UserRoleSearchDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Office Manager","Shift Manager","Receptionist","Technician" }));
+        UserRoleSearchDrop.setMaximumSize(new java.awt.Dimension(250, 45));
+        UserRoleSearchDrop.setMinimumSize(new java.awt.Dimension(250, 45));
+        UserRoleSearchDrop.setPreferredSize(new java.awt.Dimension(250, 45));
+
+        userLastnameLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        userLastnameLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        userLastnameLabel1.setText("Role:");
+
         javax.swing.GroupLayout userSearchPageLayout = new javax.swing.GroupLayout(userSearchPage);
         userSearchPage.setLayout(userSearchPageLayout);
         userSearchPageLayout.setHorizontalGroup(
@@ -335,13 +344,17 @@ public class MainFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(userSearchPageLayout.createSequentialGroup()
-                                .addComponent(userLastnameLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(UserLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(userSearchPageLayout.createSequentialGroup()
                                 .addComponent(userFirstnameLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(UserFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(UserFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(userSearchPageLayout.createSequentialGroup()
+                                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(userLastnameLabel)
+                                    .addComponent(userLastnameLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(UserRoleSearchDrop, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(UserLastnameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(235, Short.MAX_VALUE))
         );
         userSearchPageLayout.setVerticalGroup(
@@ -361,7 +374,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UserLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userLastnameLabel))
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserRoleSearchDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userLastnameLabel1))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         cardPanel1.add(userSearchPage, "userSearch");
@@ -701,6 +718,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField UserFirstnameField;
     private javax.swing.JTextField UserLastnameField;
     private javax.swing.JTextField UserNumberField;
+    private javax.swing.JComboBox<String> UserRoleSearchDrop;
     private javax.swing.JButton backButton;
     private javax.swing.JButton backupButton;
     private javax.swing.JLabel backupDestinationLabel;
@@ -729,6 +747,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel userFirstnameLabel;
     private javax.swing.JTextField userIDField;
     private javax.swing.JLabel userLastnameLabel;
+    private javax.swing.JLabel userLastnameLabel1;
     private javax.swing.JLabel userNumberLabel;
     private javax.swing.JPanel userSearchPage;
     private javax.swing.JPanel welcomeBar1;
