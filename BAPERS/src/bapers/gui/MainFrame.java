@@ -66,6 +66,7 @@ public class MainFrame extends javax.swing.JFrame {
         userLastnameLabel = new javax.swing.JLabel();
         UserRoleSearchDrop = new javax.swing.JComboBox<>();
         userLastnameLabel1 = new javax.swing.JLabel();
+        searchUserButton = new javax.swing.JButton();
         backupPage = new javax.swing.JPanel();
         BackupDataLabel = new javax.swing.JLabel();
         backupButton = new javax.swing.JButton();
@@ -325,6 +326,14 @@ public class MainFrame extends javax.swing.JFrame {
         userLastnameLabel1.setForeground(new java.awt.Color(255, 255, 255));
         userLastnameLabel1.setText("Role:");
 
+        searchUserButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        searchUserButton.setText("Search");
+        searchUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchUserButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout userSearchPageLayout = new javax.swing.GroupLayout(userSearchPage);
         userSearchPage.setLayout(userSearchPageLayout);
         userSearchPageLayout.setHorizontalGroup(
@@ -355,7 +364,10 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(UserRoleSearchDrop, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(UserLastnameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addGap(235, 235, 235))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
+                .addComponent(searchUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
         );
         userSearchPageLayout.setVerticalGroup(
             userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,7 +390,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UserRoleSearchDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userLastnameLabel1))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addComponent(searchUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
 
         cardPanel1.add(userSearchPage, "userSearch");
@@ -675,6 +689,10 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel.setText("User search page");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void searchUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchUserButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -727,6 +745,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
+    private javax.swing.JButton createUserButton;
+    private javax.swing.JButton createUserButton1;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
     private javax.swing.JPanel homeBar2;
@@ -744,6 +764,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
+    private javax.swing.JButton searchUserButton;
     private javax.swing.JLabel userFirstnameLabel;
     private javax.swing.JTextField userIDField;
     private javax.swing.JLabel userLastnameLabel;
