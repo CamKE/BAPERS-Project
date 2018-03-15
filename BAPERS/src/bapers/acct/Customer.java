@@ -12,14 +12,16 @@ package bapers.acct;
 public class Customer {
     private String accountNo;
     private String accountHolderName;
+    private String prefix;
     private String email;
     private String address;
     private String phoneNumber;
     private boolean isSuspended;
 
-    public Customer(String accountNo, String accountHolderName, String email, String address, String phoneNumber, boolean isSuspended) {
+    public Customer(String accountNo, String accountHolderName, String prefix, String email, String address, String phoneNumber, boolean isSuspended) {
         this.accountNo = accountNo;
         this.accountHolderName = accountHolderName;
+        this.prefix = prefix;
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -40,6 +42,14 @@ public class Customer {
 
     public void setAccountHolderName(String accountHolderName) {
         this.accountHolderName = accountHolderName;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
     public String getEmail() {
@@ -73,5 +83,7 @@ public class Customer {
     public void setIsSuspended(boolean isSuspended) {
         this.isSuspended = isSuspended;
     }
+
+    
     
 }
