@@ -20,10 +20,9 @@ import java.sql.Statement;
 public class DBImpl implements MyDBConnectivity {
 
     private ResultSet rs;
-
+    Connection connect;
     // DB connection must be established anytime this class is 
     // instantiated
-
 
     // Executes sql queries that fetch data (SELECT), and returns the results
     @Override
@@ -31,7 +30,7 @@ public class DBImpl implements MyDBConnectivity {
 
         try {
             Statement s = conn.createStatement();
-            rs = s.executeQuery(sql);         
+            rs = s.executeQuery(sql);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -41,9 +40,9 @@ public class DBImpl implements MyDBConnectivity {
     // Executes sql queries that modify table(s) in the bapers db, returning 
     // an int that indicates the number of affected rows
     @Override
-    public int write(String sql ,Connection conn) {
+    public int write(String sql, Connection conn) {
         int num_rows = 0;
-        
+
         // Good practice to automatically close the resource to avoid 
         // tying up db resources
         try (Statement s = conn.createStatement()) {
@@ -58,8 +57,7 @@ public class DBImpl implements MyDBConnectivity {
     // Establishes a connection to the bapers db, and returns that connection
     @Override
     public Connection connect() {
-        Connection connect = null;
-
+      
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
