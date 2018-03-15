@@ -21,6 +21,25 @@ public class Controller {
         database = new DBImpl();
         conn = database.connect();
     }
+    
+    public boolean createStandardJob(String code, String job_description, double price) {
+        boolean success = false;
+        String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ("+code+"," +job_description+"," +price+");";        
+        
+        try {
+            database.write(SQL, conn);
+            success = true;
+        } catch (Exception e) {
+            System.out.println("create standard job Error");
+        }
+        return success;
+    }
+        //fix this
+       
+    }
+        
+        
+                
+    
 
 
-}

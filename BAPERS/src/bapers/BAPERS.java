@@ -13,6 +13,8 @@ import bapers.gui.MainFrame;
  * @author CameronE
  */
 public class BAPERS {
+    
+    
 
     /**
      * @param args the command line arguments
@@ -20,6 +22,7 @@ public class BAPERS {
     public static void main(String[] args) {
         // TODO code application logic here
         new MainFrame(new Controller()).setVisible(true);
+        
     }
     
 }
