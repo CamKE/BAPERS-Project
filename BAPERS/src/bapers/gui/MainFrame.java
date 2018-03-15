@@ -60,6 +60,10 @@ public class MainFrame extends javax.swing.JFrame {
         findUserLabel = new javax.swing.JLabel();
         userNumberLabel = new javax.swing.JLabel();
         UserNumberField = new javax.swing.JTextField();
+        UserFirstnameField = new javax.swing.JTextField();
+        userFirstnameLabel = new javax.swing.JLabel();
+        UserLastnameField = new javax.swing.JTextField();
+        userLastnameLabel = new javax.swing.JLabel();
         backupPage = new javax.swing.JPanel();
         BackupDataLabel = new javax.swing.JLabel();
         backupButton = new javax.swing.JButton();
@@ -294,21 +298,51 @@ public class MainFrame extends javax.swing.JFrame {
         UserNumberField.setMinimumSize(new java.awt.Dimension(250, 37));
         UserNumberField.setPreferredSize(new java.awt.Dimension(250, 37));
 
+        UserFirstnameField.setEditable(false);
+        UserFirstnameField.setMaximumSize(new java.awt.Dimension(250, 37));
+        UserFirstnameField.setMinimumSize(new java.awt.Dimension(250, 37));
+        UserFirstnameField.setPreferredSize(new java.awt.Dimension(250, 37));
+
+        userFirstnameLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        userFirstnameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        userFirstnameLabel.setText("Firstname:");
+
+        UserLastnameField.setEditable(false);
+        UserLastnameField.setMaximumSize(new java.awt.Dimension(250, 37));
+        UserLastnameField.setMinimumSize(new java.awt.Dimension(250, 37));
+        UserLastnameField.setPreferredSize(new java.awt.Dimension(250, 37));
+
+        userLastnameLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        userLastnameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        userLastnameLabel.setText("Lastname:");
+
         javax.swing.GroupLayout userSearchPageLayout = new javax.swing.GroupLayout(userSearchPage);
         userSearchPage.setLayout(userSearchPageLayout);
         userSearchPageLayout.setHorizontalGroup(
             userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userSearchPageLayout.createSequentialGroup()
-                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(userSearchPageLayout.createSequentialGroup()
+                            .addGap(364, 364, 364)
+                            .addComponent(findUserLabel))
+                        .addGroup(userSearchPageLayout.createSequentialGroup()
+                            .addGap(235, 235, 235)
+                            .addComponent(userNumberLabel)
+                            .addGap(18, 18, 18)
+                            .addComponent(UserNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(userSearchPageLayout.createSequentialGroup()
-                        .addGap(364, 364, 364)
-                        .addComponent(findUserLabel))
-                    .addGroup(userSearchPageLayout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(userNumberLabel)
-                        .addGap(32, 32, 32)
-                        .addComponent(UserNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(228, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(userSearchPageLayout.createSequentialGroup()
+                                .addComponent(userLastnameLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(UserLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(userSearchPageLayout.createSequentialGroup()
+                                .addComponent(userFirstnameLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(UserFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
         userSearchPageLayout.setVerticalGroup(
             userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +353,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userNumberLabel)
                     .addComponent(UserNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(434, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userFirstnameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userLastnameLabel))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         cardPanel1.add(userSearchPage, "userSearch");
@@ -656,6 +698,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel BackupDataLabel;
     private javax.swing.JButton RestoreButton;
     private javax.swing.JButton RestorePageButton;
+    private javax.swing.JTextField UserFirstnameField;
+    private javax.swing.JTextField UserLastnameField;
     private javax.swing.JTextField UserNumberField;
     private javax.swing.JButton backButton;
     private javax.swing.JButton backupButton;
@@ -682,7 +726,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
+    private javax.swing.JLabel userFirstnameLabel;
     private javax.swing.JTextField userIDField;
+    private javax.swing.JLabel userLastnameLabel;
     private javax.swing.JLabel userNumberLabel;
     private javax.swing.JPanel userSearchPage;
     private javax.swing.JPanel welcomeBar1;
