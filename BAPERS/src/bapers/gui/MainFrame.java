@@ -9,13 +9,22 @@ import bapers.acct.Customer;
 import bapers.acct.Material;
 import bapers.controller.Controller;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
  * @author CameronE
  */
 public class MainFrame extends javax.swing.JFrame {
+    
+    // Lists
+    List<Material> materials = new ArrayList<Material>();
+    
+    //materials counter
+    int mCount = 0;
 
     private CardLayout card1;
     private CardLayout card2;
@@ -186,7 +195,6 @@ public class MainFrame extends javax.swing.JFrame {
         selectInvoicejButton = new javax.swing.JButton();
         paymentTypejLabel = new javax.swing.JLabel();
         latePaymentCanceljButton = new javax.swing.JButton();
-        invoicejTextField = new javax.swing.JTextField();
         expiryDatejTextField = new javax.swing.JTextField();
         paymentTypeComboBox = new javax.swing.JComboBox<>();
         latePaymentSubmitjButton = new javax.swing.JButton();
@@ -195,6 +203,8 @@ public class MainFrame extends javax.swing.JFrame {
         totaljLabel = new javax.swing.JLabel();
         cardTypejComboBox = new javax.swing.JComboBox<>();
         last4DigitjLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        invoicejList = new javax.swing.JList<>();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -220,7 +230,13 @@ public class MainFrame extends javax.swing.JFrame {
         officeManagerWelcomeText3 = new javax.swing.JLabel();
         logOutButton3 = new javax.swing.JButton();
         acceptJobMBar = new javax.swing.JPanel();
-        acceptJobLabel1 = new javax.swing.JLabel();
+        acceptJobLabel = new javax.swing.JLabel();
+        acceptLatePaymentMBar = new javax.swing.JPanel();
+        acceptLatePaymentLabel = new javax.swing.JLabel();
+        searchCustomerMBar = new javax.swing.JPanel();
+        searchCustomerLabel = new javax.swing.JLabel();
+        createCustomerMBar = new javax.swing.JPanel();
+        createCustomerLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 700));
@@ -940,21 +956,16 @@ public class MainFrame extends javax.swing.JFrame {
         specialInstructionsLabel.setForeground(new java.awt.Color(255, 255, 255));
         specialInstructionsLabel.setText("Special Instructions:");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jList1.setMaximumSize(new java.awt.Dimension(85, 507));
         jList1.setMinimumSize(new java.awt.Dimension(85, 507));
         jList1.setPreferredSize(new java.awt.Dimension(85, 507));
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         materialsjScrollPane.setViewportView(jList1);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jList2.setMaximumSize(new java.awt.Dimension(85, 507));
         jList2.setMinimumSize(new java.awt.Dimension(85, 507));
         jList2.setPreferredSize(new java.awt.Dimension(85, 507));
@@ -965,11 +976,6 @@ public class MainFrame extends javax.swing.JFrame {
         customerInfojTextField.setMinimumSize(new java.awt.Dimension(308, 42));
         customerInfojTextField.setPreferredSize(new java.awt.Dimension(308, 42));
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jList3.setMaximumSize(new java.awt.Dimension(85, 507));
         jList3.setMinimumSize(new java.awt.Dimension(85, 507));
         jList3.setPreferredSize(new java.awt.Dimension(85, 507));
@@ -1228,9 +1234,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         cancelCreationjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         cancelCreationjButton.setText("Cancel");
-        cancelCreationjButton.setMaximumSize(new java.awt.Dimension(101, 37));
-        cancelCreationjButton.setMinimumSize(new java.awt.Dimension(101, 37));
-        cancelCreationjButton.setPreferredSize(new java.awt.Dimension(101, 37));
         cancelCreationjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelCreationjButtonActionPerformed(evt);
@@ -1394,7 +1397,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(buildingNumberjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(streetNamejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(streetNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(createCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(createCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createCustomerjPanelLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addGroup(createCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1408,7 +1411,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(createCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createCustomerjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelCreationjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelCreationjButton))
                 .addContainerGap(213, Short.MAX_VALUE))
         );
 
@@ -1795,16 +1798,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        invoicejTextField.setText("No invoice selected");
-        invoicejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        invoicejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        invoicejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-
         expiryDatejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
         expiryDatejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
         expiryDatejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        paymentTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        paymentTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Card", "Cash" }));
         paymentTypeComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
         paymentTypeComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
         paymentTypeComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -1827,7 +1825,7 @@ public class MainFrame extends javax.swing.JFrame {
         totaljLabel.setForeground(new java.awt.Color(255, 255, 255));
         totaljLabel.setText("Total:");
 
-        cardTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cardTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MasterCard", "Visa", "American Express" }));
         cardTypejComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
         cardTypejComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
         cardTypejComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -1836,43 +1834,56 @@ public class MainFrame extends javax.swing.JFrame {
         last4DigitjLabel.setForeground(new java.awt.Color(255, 255, 255));
         last4DigitjLabel.setText("Last 4 digits:");
 
+        invoicejList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(invoicejList);
+
         javax.swing.GroupLayout acceptLatePaymentjPanelLayout = new javax.swing.GroupLayout(acceptLatePaymentjPanel);
         acceptLatePaymentjPanel.setLayout(acceptLatePaymentjPanelLayout);
         acceptLatePaymentjPanelLayout.setHorizontalGroup(
             acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(last4DigitjLabel)
-                    .addComponent(expiryDatejLabel)
-                    .addComponent(totaljLabel)
-                    .addComponent(paymentTypejLabel)
-                    .addComponent(cardTypejLabel)
-                    .addComponent(selectInvoicejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(last4DigitjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(paymentTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cardTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(expiryDatejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(invoicejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(338, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(last4DigitjLabel)
+                            .addComponent(expiryDatejLabel)
+                            .addComponent(totaljLabel)
+                            .addComponent(paymentTypejLabel)
+                            .addComponent(cardTypejLabel)
+                            .addComponent(selectInvoicejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
+                                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(last4DigitjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(paymentTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cardTypejComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(expiryDatejTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE))
+                            .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(174, 174, 174))
         );
         acceptLatePaymentjPanelLayout.setVerticalGroup(
             acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectInvoicejButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(invoicejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                .addGap(50, 50, 50)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectInvoicejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
                         .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1897,7 +1908,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout acceptLatePaymentLayout = new javax.swing.GroupLayout(acceptLatePayment);
@@ -2243,9 +2254,9 @@ public class MainFrame extends javax.swing.JFrame {
         acceptJobMBar.setMinimumSize(new java.awt.Dimension(900, 60));
         acceptJobMBar.setPreferredSize(new java.awt.Dimension(900, 60));
 
-        acceptJobLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        acceptJobLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        acceptJobLabel1.setText("Acccept Job");
+        acceptJobLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        acceptJobLabel.setForeground(new java.awt.Color(255, 255, 255));
+        acceptJobLabel.setText("Acccept Job");
 
         javax.swing.GroupLayout acceptJobMBarLayout = new javax.swing.GroupLayout(acceptJobMBar);
         acceptJobMBar.setLayout(acceptJobMBarLayout);
@@ -2253,17 +2264,97 @@ public class MainFrame extends javax.swing.JFrame {
             acceptJobMBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(acceptJobMBarLayout.createSequentialGroup()
                 .addGap(340, 340, 340)
-                .addComponent(acceptJobLabel1)
+                .addComponent(acceptJobLabel)
                 .addContainerGap(341, Short.MAX_VALUE))
         );
         acceptJobMBarLayout.setVerticalGroup(
             acceptJobMBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptJobMBarLayout.createSequentialGroup()
                 .addGap(0, 22, Short.MAX_VALUE)
-                .addComponent(acceptJobLabel1))
+                .addComponent(acceptJobLabel))
         );
 
         cardPanel2.add(acceptJobMBar, "acceptJobBar");
+
+        acceptLatePaymentMBar.setBackground(new java.awt.Color(33, 53, 80));
+        acceptLatePaymentMBar.setMaximumSize(new java.awt.Dimension(900, 60));
+        acceptLatePaymentMBar.setMinimumSize(new java.awt.Dimension(900, 60));
+        acceptLatePaymentMBar.setPreferredSize(new java.awt.Dimension(900, 60));
+
+        acceptLatePaymentLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        acceptLatePaymentLabel.setForeground(new java.awt.Color(255, 255, 255));
+        acceptLatePaymentLabel.setText("Acccept Late Payment");
+
+        javax.swing.GroupLayout acceptLatePaymentMBarLayout = new javax.swing.GroupLayout(acceptLatePaymentMBar);
+        acceptLatePaymentMBar.setLayout(acceptLatePaymentMBarLayout);
+        acceptLatePaymentMBarLayout.setHorizontalGroup(
+            acceptLatePaymentMBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentMBarLayout.createSequentialGroup()
+                .addContainerGap(249, Short.MAX_VALUE)
+                .addComponent(acceptLatePaymentLabel)
+                .addGap(249, 249, 249))
+        );
+        acceptLatePaymentMBarLayout.setVerticalGroup(
+            acceptLatePaymentMBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentMBarLayout.createSequentialGroup()
+                .addGap(0, 16, Short.MAX_VALUE)
+                .addComponent(acceptLatePaymentLabel))
+        );
+
+        cardPanel2.add(acceptLatePaymentMBar, "acceptLatePaymentBar");
+
+        searchCustomerMBar.setBackground(new java.awt.Color(33, 53, 80));
+        searchCustomerMBar.setMaximumSize(new java.awt.Dimension(900, 60));
+        searchCustomerMBar.setMinimumSize(new java.awt.Dimension(900, 60));
+        searchCustomerMBar.setPreferredSize(new java.awt.Dimension(900, 60));
+
+        searchCustomerLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        searchCustomerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchCustomerLabel.setText("Search Customer");
+
+        javax.swing.GroupLayout searchCustomerMBarLayout = new javax.swing.GroupLayout(searchCustomerMBar);
+        searchCustomerMBar.setLayout(searchCustomerMBarLayout);
+        searchCustomerMBarLayout.setHorizontalGroup(
+            searchCustomerMBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchCustomerMBarLayout.createSequentialGroup()
+                .addContainerGap(296, Short.MAX_VALUE)
+                .addComponent(searchCustomerLabel)
+                .addGap(295, 295, 295))
+        );
+        searchCustomerMBarLayout.setVerticalGroup(
+            searchCustomerMBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchCustomerMBarLayout.createSequentialGroup()
+                .addGap(0, 16, Short.MAX_VALUE)
+                .addComponent(searchCustomerLabel))
+        );
+
+        cardPanel2.add(searchCustomerMBar, "searchCustomerBar");
+
+        createCustomerMBar.setBackground(new java.awt.Color(33, 53, 80));
+        createCustomerMBar.setMaximumSize(new java.awt.Dimension(900, 60));
+        createCustomerMBar.setMinimumSize(new java.awt.Dimension(900, 60));
+
+        createCustomerLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        createCustomerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        createCustomerLabel.setText("Create Customer");
+
+        javax.swing.GroupLayout createCustomerMBarLayout = new javax.swing.GroupLayout(createCustomerMBar);
+        createCustomerMBar.setLayout(createCustomerMBarLayout);
+        createCustomerMBarLayout.setHorizontalGroup(
+            createCustomerMBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createCustomerMBarLayout.createSequentialGroup()
+                .addContainerGap(347, Short.MAX_VALUE)
+                .addComponent(createCustomerLabel)
+                .addGap(249, 249, 249))
+        );
+        createCustomerMBarLayout.setVerticalGroup(
+            createCustomerMBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createCustomerMBarLayout.createSequentialGroup()
+                .addGap(0, 16, Short.MAX_VALUE)
+                .addComponent(createCustomerLabel))
+        );
+
+        cardPanel2.add(createCustomerMBar, "createCustomerBar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2378,7 +2469,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void acceptPaymentReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentReceptionistActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "acceptLatePayment");
-        card2.show(cardPanel2, "welcomeBar1");
+        card2.show(cardPanel2, "acceptLatePaymentBar");
     }//GEN-LAST:event_acceptPaymentReceptionistActionPerformed
 
     private void homePageRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageRActionPerformed
@@ -2419,8 +2510,20 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addMaterialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaterialButtonActionPerformed
         // TODO add your handling code here:
-        
-        
+        if (materialsjTextField != null) {
+            ++mCount;
+            String material = materialsjTextField.getText();
+            materials.add(new Material(mCount,material));
+            //        System.out.println(material);
+            materialsjTextField.setText("");
+            DefaultListModel t = new DefaultListModel();
+            for (int i = 0; i < materials.size(); ++i) {
+                t.addElement(materials.get(i).getMaterialDescription());
+            }
+            jList1.setModel(t);
+        } else {
+            System.out.println("You need to enter something");
+        }
     }//GEN-LAST:event_addMaterialButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
@@ -2430,13 +2533,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "searchCustomerPanel");
-        card2.show(cardPanel2, "acceptJobBar");
+        card2.show(cardPanel2, "searchCustomerBar");
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void createCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomerButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "createCustomerPanel");
-        card2.show(cardPanel2, "acceptJobBar");
+        card2.show(cardPanel2, "createCustomerBar");
     }//GEN-LAST:event_createCustomerButtonActionPerformed
 
     private void addJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJobButtonActionPerformed
@@ -2507,6 +2610,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cityjTextFieldActionPerformed
 
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jList1ValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -2551,10 +2658,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton RestorePageButton;
     private javax.swing.JLabel RoleLabel;
     private javax.swing.JPanel acceptJob;
-    private javax.swing.JLabel acceptJobLabel1;
+    private javax.swing.JLabel acceptJobLabel;
     private javax.swing.JPanel acceptJobMBar;
     private javax.swing.JPanel acceptJobjPanel;
     private javax.swing.JPanel acceptLatePayment;
+    private javax.swing.JLabel acceptLatePaymentLabel;
+    private javax.swing.JPanel acceptLatePaymentMBar;
     private javax.swing.JPanel acceptLatePaymentjPanel;
     private javax.swing.JButton acceptPaymentOfficeManager;
     private javax.swing.JButton acceptPaymentReceptionist;
@@ -2588,6 +2697,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField contactSurnamejTextField;
     private javax.swing.JPanel createCustomer;
     private javax.swing.JButton createCustomerButton;
+    private javax.swing.JLabel createCustomerLabel;
+    private javax.swing.JPanel createCustomerMBar;
     private javax.swing.JButton createCustomerjButton;
     private javax.swing.JPanel createCustomerjPanel;
     private javax.swing.JButton createUserButton;
@@ -2618,10 +2729,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel homePagesSMBar;
     private javax.swing.JLabel inDefaultSjLabel;
     private javax.swing.JComboBox<String> inDefaultjComboBox;
-    private javax.swing.JTextField invoicejTextField;
+    private javax.swing.JList<String> invoicejList;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton jobEnquiryTechnician;
     private javax.swing.JButton jobOfficeManager;
@@ -2684,6 +2796,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel searchCustomer;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JButton searchCustomerFJobjButton;
+    private javax.swing.JLabel searchCustomerLabel;
+    private javax.swing.JPanel searchCustomerMBar;
     private javax.swing.JPanel searchCustomerjPanel;
     private javax.swing.JButton selectInvoicejButton;
     private javax.swing.JComboBox<String> selectPriority;
