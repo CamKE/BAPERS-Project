@@ -45,6 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
         loginPageButton = new javax.swing.JButton();
         RestorePageButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -72,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
         setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
@@ -106,10 +108,17 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
+        jButton1.setText("backup");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("searchuser");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -127,7 +136,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addGap(208, 208, 208))
+                .addGap(60, 60, 60)
+                .addComponent(jButton2)
+                .addGap(69, 69, 69))
         );
         welcomePageLayout.setVerticalGroup(
             welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +150,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(122, 122, 122))
         );
 
@@ -536,7 +549,7 @@ public class MainFrame extends javax.swing.JFrame {
         Process p = null;
         try {
             Runtime runtime = Runtime.getRuntime();
-           // String[] cmd = {"cmd.exe", "/c", "C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump -u root -ppassword bapers_data -r C:\\db.sql"};
+            // String[] cmd = {"cmd.exe", "/c", "C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump -u root -ppassword bapers_data -r C:\\db.sql"};
             p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump -u root -ppassword bapers_data -r C:\\db.sql");
 
             int processComplete = p.waitFor();
@@ -562,6 +575,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         locationChosenField.setText(directory);
     }//GEN-LAST:event_chooseLocationButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "userSearch");
+        card2.show(cardPanel2, "homeBar2");
+        pageLabel.setText("User search page");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -615,6 +635,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel homeBar2;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JTextField locationChosenField;
     private javax.swing.JButton logOutButton;
