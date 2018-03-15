@@ -83,7 +83,9 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
+        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -745,8 +747,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
-    private javax.swing.JButton createUserButton;
-    private javax.swing.JButton createUserButton1;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
     private javax.swing.JPanel homeBar2;
