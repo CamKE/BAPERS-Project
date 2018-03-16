@@ -22,9 +22,9 @@ public class Controller {
         conn = database.connect();
     }
     
-    public boolean createStandardJob(String code, String job_description, double price) {
+    public boolean createStandardJob(String code1, String job_description1, double price1) {
         boolean success = false;
-        String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ("+code+"," +job_description+"," +price+");";        
+        String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ('"+code1+"','" +job_description1+"','" +price1+"');";        
         
         try {
             database.write(SQL, conn);
