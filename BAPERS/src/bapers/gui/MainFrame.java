@@ -7,6 +7,7 @@ package bapers.gui;
 
 import bapers.controller.Controller;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -1439,7 +1440,39 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_homePageRActionPerformed
 
     private void createNewTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTaskButtonActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:                                          
+
+        boolean valid = true;
+        //Initialise values
+        String description_task = descriptionNewTaskField.getText();
+        double price_task = Double.parseDouble(priceNewTaskField.getText());
+        int duration_min = durationNewTaskMinsDD.getSelectedIndex();
+        int Department_department_code = departmentNewTaskDD.getSelectedIndex();
+        int shelf_slot_task = shelfSlotTaskDD.getSelectedIndex();
+        
+
+        
+
+        //Check fields are not empty
+        if (description_task.equals("") || price_task == 0 ) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Please insert data");
+        }
+        
+        else {
+            valid = true;
+        }
+
+        
+
+        //Will only execute method in controller if all preconditions are met
+        if (valid) {
+            if (controller.createNewTask(description_task,duration_min,price_task,Department_department_code,shelf_slot_task)) {
+                JOptionPane.showMessageDialog(null, "Task created");
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to create Task");
+            }
+        }
     }//GEN-LAST:event_createNewTaskButtonActionPerformed
 
     private void cancelButtonCreateTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonCreateTaskActionPerformed
