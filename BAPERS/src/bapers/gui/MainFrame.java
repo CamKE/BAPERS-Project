@@ -108,10 +108,10 @@ public class MainFrame extends javax.swing.JFrame {
         shelfSlotNewTaskLabel = new javax.swing.JLabel();
         createNewTaskButton = new javax.swing.JButton();
         cancelButtonCreateTask = new javax.swing.JButton();
-        priceNewTaskField = new javax.swing.JPasswordField();
         shelfSlotTaskDD = new javax.swing.JComboBox<>();
         departmentNewTaskDD = new javax.swing.JComboBox<>();
         durationNewTaskMinsDD = new javax.swing.JComboBox<>();
+        priceNewTaskField = new javax.swing.JTextField();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -491,7 +491,7 @@ public class MainFrame extends javax.swing.JFrame {
         createUserPageLayout.setVerticalGroup(
             createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createUserPageLayout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
+                .addContainerGap(84, Short.MAX_VALUE)
                 .addComponent(newUserLabel)
                 .addGap(18, 18, 18)
                 .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -839,15 +839,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        priceNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
-        priceNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
-        priceNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
-        priceNewTaskField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                priceNewTaskFieldActionPerformed(evt);
-            }
-        });
-
         shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"CR001","CROO2","DR001","DR002","PK001","PK002"}));
         shelfSlotTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
         shelfSlotTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
@@ -878,6 +869,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        priceNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
+        priceNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
+        priceNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
+
         javax.swing.GroupLayout createTaskPageLayout = new javax.swing.GroupLayout(createTaskPage);
         createTaskPage.setLayout(createTaskPageLayout);
         createTaskPageLayout.setHorizontalGroup(
@@ -893,13 +888,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descriptionNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(shelfSlotTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(departmentNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(createTaskPageLayout.createSequentialGroup()
                         .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
                 .addContainerGap(361, Short.MAX_VALUE)
@@ -1479,10 +1474,6 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonCreateTaskActionPerformed
 
-    private void priceNewTaskFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceNewTaskFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_priceNewTaskFieldActionPerformed
-
     private void durationNewTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationNewTaskDDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_durationNewTaskDDActionPerformed
@@ -1652,7 +1643,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel priceLabel;
-    private javax.swing.JPasswordField priceNewTaskField;
+    private javax.swing.JTextField priceNewTaskField;
     private javax.swing.JPanel receptionHomePage;
     private javax.swing.JPanel receptionistHomePage;
     private javax.swing.JButton reportsOfficeManager;

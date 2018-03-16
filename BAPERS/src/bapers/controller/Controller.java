@@ -34,11 +34,11 @@ public class Controller {
  //       }
  //   }
  
-       public boolean createNewTask(String description, int duration, double price, int department, int shelf_slot){
+       public boolean createNewTask(String description_task, int duration, double price_task, int department, int shelf_slot_task){
         boolean success = false;      
-        String sql = "INSERT INTO TASK(description_task,duration_min,price_task,Department_department_code,shelf_slot_task) VALUES ("+description+","+duration+","+price+","+department+","+shelf_slot+")";
+        String sql = "INSERT INTO TASK(description,duration_min,price,Department_department_code,shelf_slot) VALUES ("+description_task+","+duration+","+price_task+","+department+","+shelf_slot_task+")";
         try {
-            database.write(SQL, conn);
+            database.write(sql, conn);
             success = true;
         } catch (Exception e) {
             System.out.println("create new task Error");
