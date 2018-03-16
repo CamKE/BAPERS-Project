@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -628,19 +629,43 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void RestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreButtonActionPerformed
         // TODO add your handling code here:
+        String[] restoreCmd = new String[]{"C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe ", "--user=root --password=password -e", "source " + fileChosenField.getText()};
+
+        if (fileChosenField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please select a file");
+        } else {
+            try {
+                Runtime runtime = Runtime.getRuntime();
+                //Process p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe -uroot -ppassword bapers_data < \"" + fileChosenField.getText() + "\"");
+                Process p = runtime.exec(restoreCmd);
+
+                int processComplete = p.waitFor();
+                if (processComplete == 0) {
+                    JOptionPane.showMessageDialog(null, "Restore done");
+                    locationChosenField.setText(null);
+                    logOutButton.doClick();
+                } else {
+                    System.out.println(processComplete);
+                    JOptionPane.showMessageDialog(null, "Restore failed");
+                }
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+        }
     }//GEN-LAST:event_RestoreButtonActionPerformed
 
     private void chooseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileButtonActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
+        chooser.setFileFilter(new FileNameExtensionFilter("sql file", "sql"));
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.showOpenDialog(this);
 
         try {
             String directory = chooser.getSelectedFile().getPath();
             directory = directory.replace('\\', '/');
-            locationChosenField.setText(directory);
+            fileChosenField.setText(directory);
         } catch (Exception ex) {
             System.out.println(ex);
         }
