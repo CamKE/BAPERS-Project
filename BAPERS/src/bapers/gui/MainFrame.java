@@ -632,6 +632,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void chooseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileButtonActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooser.showOpenDialog(this);
+
+        try {
+            String directory = chooser.getSelectedFile().getPath();
+            directory = directory.replace('\\', '/');
+            locationChosenField.setText(directory);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_chooseFileButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
@@ -667,6 +679,8 @@ public class MainFrame extends javax.swing.JFrame {
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
                     JOptionPane.showMessageDialog(null, "Backup created");
+                    locationChosenField.setText(null);
+                    logOutButton.doClick();
                 } else {
                     JOptionPane.showMessageDialog(null, "Backup failed");
                 }
