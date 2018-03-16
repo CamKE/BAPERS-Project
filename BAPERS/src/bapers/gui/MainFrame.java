@@ -629,7 +629,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void RestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreButtonActionPerformed
         // TODO add your handling code here:
-        String[] restoreCmd = new String[]{"C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe ", "--user=root --password=password -e", "source " + fileChosenField.getText()};
+        String[] restoreCmd = new String[]{"C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe", "--user=root","--password=password","-e", "source "+fileChosenField.getText()};
 
         if (fileChosenField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select a file");
@@ -642,7 +642,7 @@ public class MainFrame extends javax.swing.JFrame {
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
                     JOptionPane.showMessageDialog(null, "Restore done");
-                    locationChosenField.setText(null);
+                    fileChosenField.setText(null);
                     logOutButton.doClick();
                 } else {
                     System.out.println(processComplete);
