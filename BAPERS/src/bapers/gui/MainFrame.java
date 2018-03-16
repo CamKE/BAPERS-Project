@@ -653,13 +653,12 @@ public class MainFrame extends javax.swing.JFrame {
         Process p = null;
         try {
             Runtime runtime = Runtime.getRuntime();
-            // String[] cmd = {"cmd.exe", "/c", "C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump -u root -ppassword bapers_data -r C:\\db.sql"};
-            p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump -u root -ppassword bapers_data -r C:\\db.sql");
-
+            p = runtime.exec("cmd.exe /c \"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe\" --user=root --password=password --host=localhost bapers_data > C:\\Users\\CameronE\\Desktop\\testty.sql");
             int processComplete = p.waitFor();
             if (processComplete == 0) {
                 System.out.println("backup completed");
             } else {
+                System.out.println(processComplete);
                 System.out.println("backup failed");
                 System.out.println(p.getErrorStream());
 
