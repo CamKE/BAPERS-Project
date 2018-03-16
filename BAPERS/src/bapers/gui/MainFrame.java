@@ -9,6 +9,7 @@ import bapers.controller.Controller;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -301,12 +302,10 @@ public class MainFrame extends javax.swing.JFrame {
         userNumberLabel.setForeground(new java.awt.Color(255, 255, 255));
         userNumberLabel.setText("User number:");
 
-        UserNumberField.setEditable(false);
         UserNumberField.setMaximumSize(new java.awt.Dimension(250, 37));
         UserNumberField.setMinimumSize(new java.awt.Dimension(250, 37));
         UserNumberField.setPreferredSize(new java.awt.Dimension(250, 37));
 
-        UserFirstnameField.setEditable(false);
         UserFirstnameField.setMaximumSize(new java.awt.Dimension(250, 37));
         UserFirstnameField.setMinimumSize(new java.awt.Dimension(250, 37));
         UserFirstnameField.setPreferredSize(new java.awt.Dimension(250, 37));
@@ -315,7 +314,6 @@ public class MainFrame extends javax.swing.JFrame {
         userFirstnameLabel.setForeground(new java.awt.Color(255, 255, 255));
         userFirstnameLabel.setText("Firstname:");
 
-        UserLastnameField.setEditable(false);
         UserLastnameField.setMaximumSize(new java.awt.Dimension(250, 37));
         UserLastnameField.setMinimumSize(new java.awt.Dimension(250, 37));
         UserLastnameField.setPreferredSize(new java.awt.Dimension(250, 37));
@@ -324,10 +322,15 @@ public class MainFrame extends javax.swing.JFrame {
         userLastnameLabel.setForeground(new java.awt.Color(255, 255, 255));
         userLastnameLabel.setText("Lastname:");
 
-        UserRoleSearchDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Office Manager","Shift Manager","Receptionist","Technician" }));
+        UserRoleSearchDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Any", "Office Manager","Shift Manager","Receptionist","Technician" }));
         UserRoleSearchDrop.setMaximumSize(new java.awt.Dimension(250, 45));
         UserRoleSearchDrop.setMinimumSize(new java.awt.Dimension(250, 45));
         UserRoleSearchDrop.setPreferredSize(new java.awt.Dimension(250, 45));
+        UserRoleSearchDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserRoleSearchDropActionPerformed(evt);
+            }
+        });
 
         userLastnameLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         userLastnameLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -629,7 +632,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void RestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreButtonActionPerformed
         // TODO add your handling code here:
-        String[] restoreCmd = new String[]{"C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe", "--user=root","--password=password","-e", "source "+fileChosenField.getText()};
+        String[] restoreCmd = new String[]{"C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe", "--user=root", "--password=password", "-e", "source " + fileChosenField.getText()};
 
         if (fileChosenField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select a file");
@@ -740,7 +743,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserButtonActionPerformed
         // TODO add your handling code here:
+        //checks whether usernumber field only contains digits
+        System.out.println(Pattern.matches("[a-z]","j"));
+        //regex needs to be recapped
+        if (Pattern.matches("\\d","8") == false) {
+            JOptionPane.showMessageDialog(null, "User number: Numbers only");
+        }
     }//GEN-LAST:event_searchUserButtonActionPerformed
+
+    private void UserRoleSearchDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserRoleSearchDropActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserRoleSearchDropActionPerformed
 
     /**
      * @param args the command line arguments
