@@ -20,6 +20,7 @@ public class BAPERS {
     public static void main(String[] args) {
         // TODO code application logic here
         new MainFrame(new Controller()).setVisible(true);
+        
     }
     
 }

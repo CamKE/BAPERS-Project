@@ -73,20 +73,5 @@ public class DBImpl implements MyDBConnectivity {
         return connect;
     }
     
-    public void getData(){
-        try{
-            
-            String query = "select * from Task";
-            rs = st.executeQuery(query);
-            System.out.print("Records from Database");
-            while(rs.next()){
-                String description = rs.getString("description");
-                System.out.println("Description: "+description);
-            }
-            
-        }catch(Exception ex){
-            System.out.println(ex);
-        }
-    }
     
 }
