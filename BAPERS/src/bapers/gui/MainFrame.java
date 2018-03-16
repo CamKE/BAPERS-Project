@@ -7,7 +7,10 @@ package bapers.gui;
 
 import bapers.controller.Controller;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JFileChooser;
+import java.text.DateFormat;
 
 /**
  *
@@ -653,15 +656,17 @@ public class MainFrame extends javax.swing.JFrame {
         Process p = null;
         try {
             Runtime runtime = Runtime.getRuntime();
-            p = runtime.exec("cmd.exe /c \"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe\" --user=root --password=password --host=localhost bapers_data > C:\\Users\\CameronE\\Desktop\\testty.sql");
+            String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+            date = date.replace(' ', '_');
+            date = date.replace(':', '-');
+            String filename = "BAPERS_" + date + ".sql";
+            p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump.exe -uroot -ppassword -B bapers_data -r \"" + locationChosenField.getText() + "\\" + filename + "\"");
+
             int processComplete = p.waitFor();
             if (processComplete == 0) {
                 System.out.println("backup completed");
             } else {
-                System.out.println(processComplete);
                 System.out.println("backup failed");
-                System.out.println(p.getErrorStream());
-
             }
         } catch (Exception ex) {
             System.out.println(ex);
