@@ -16,7 +16,6 @@ public class Controller {
 
     private DBImpl database;
     private Connection conn;
-    private String SQL;
 
     public Controller() {
         database = new DBImpl();
@@ -34,11 +33,11 @@ public class Controller {
  //       }
  //   }
  
-       public boolean createNewTask(String description_task, int duration, double price_task, int department, int shelf_slot_task){
+       public boolean createNewTask(String description1, int duration1, double price1, int department1, int shelf_slot1){
         boolean success = false;      
-        String sql = "INSERT INTO TASK(description,duration_min,price,Department_department_code,shelf_slot) VALUES ("+description_task+","+duration+","+price_task+","+department+","+shelf_slot_task+")";
+        String SQL = "INSERT INTO TASK(description,duration_min,price,Department_department_code,shelf_slot) VALUES ('"+description1+"','"+duration1+"','"+price1+"','"+department1+"','" +shelf_slot1+"');";   
         try {
-            database.write(sql, conn);
+            database.write(SQL, conn);
             success = true;
         } catch (Exception e) {
             System.out.println("create new task Error");
