@@ -27,6 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         card1 = (CardLayout) cardPanel1.getLayout();
         card2 = (CardLayout) cardPanel2.getLayout();
+        backButton.setVisible(false);
     }
 
     /**
@@ -74,10 +75,10 @@ public class MainFrame extends javax.swing.JFrame {
         locationChosenField = new javax.swing.JTextField();
         backupDestinationLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
-        welcomeBar1 = new javax.swing.JPanel();
-        welcomeBar2 = new javax.swing.JPanel();
+        welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
-        homeBar2 = new javax.swing.JPanel();
+        welcomePageLabel = new javax.swing.JLabel();
+        homeBar = new javax.swing.JPanel();
         homeButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
         pageLabel = new javax.swing.JLabel();
@@ -477,26 +478,8 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
         cardPanel2.setLayout(new java.awt.CardLayout());
 
-        welcomeBar1.setBackground(new java.awt.Color(33, 53, 80));
-        welcomeBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        welcomeBar1.setMaximumSize(new java.awt.Dimension(900, 60));
-        welcomeBar1.setMinimumSize(new java.awt.Dimension(900, 60));
-
-        javax.swing.GroupLayout welcomeBar1Layout = new javax.swing.GroupLayout(welcomeBar1);
-        welcomeBar1.setLayout(welcomeBar1Layout);
-        welcomeBar1Layout.setHorizontalGroup(
-            welcomeBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 896, Short.MAX_VALUE)
-        );
-        welcomeBar1Layout.setVerticalGroup(
-            welcomeBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 56, Short.MAX_VALUE)
-        );
-
-        cardPanel2.add(welcomeBar1, "welcomeBar1");
-
-        welcomeBar2.setBackground(new java.awt.Color(33, 53, 80));
-        welcomeBar2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        welcomeBar.setBackground(new java.awt.Color(33, 53, 80));
+        welcomeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         backButton.setBackground(new java.awt.Color(40, 64, 97));
         backButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -510,25 +493,33 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout welcomeBar2Layout = new javax.swing.GroupLayout(welcomeBar2);
-        welcomeBar2.setLayout(welcomeBar2Layout);
-        welcomeBar2Layout.setHorizontalGroup(
-            welcomeBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(welcomeBar2Layout.createSequentialGroup()
+        welcomePageLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        welcomePageLabel.setForeground(new java.awt.Color(255, 255, 255));
+        welcomePageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout welcomeBarLayout = new javax.swing.GroupLayout(welcomeBar);
+        welcomeBar.setLayout(welcomeBarLayout);
+        welcomeBarLayout.setHorizontalGroup(
+            welcomeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomeBarLayout.createSequentialGroup()
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 793, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
+                .addComponent(welcomePageLabel)
+                .addContainerGap(472, Short.MAX_VALUE))
         );
-        welcomeBar2Layout.setVerticalGroup(
-            welcomeBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+        welcomeBarLayout.setVerticalGroup(
+            welcomeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(welcomePageLabel))
         );
 
-        cardPanel2.add(welcomeBar2, "welcomeBar2");
+        cardPanel2.add(welcomeBar, "welcomeBar");
 
-        homeBar2.setBackground(new java.awt.Color(33, 53, 80));
-        homeBar2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        homeBar2.setMaximumSize(new java.awt.Dimension(900, 60));
-        homeBar2.setMinimumSize(new java.awt.Dimension(900, 60));
+        homeBar.setBackground(new java.awt.Color(33, 53, 80));
+        homeBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        homeBar.setMaximumSize(new java.awt.Dimension(900, 60));
+        homeBar.setMinimumSize(new java.awt.Dimension(900, 60));
 
         homeButton.setBackground(new java.awt.Color(40, 64, 97));
         homeButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -564,26 +555,26 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel.setForeground(new java.awt.Color(255, 255, 255));
         pageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout homeBar2Layout = new javax.swing.GroupLayout(homeBar2);
-        homeBar2.setLayout(homeBar2Layout);
-        homeBar2Layout.setHorizontalGroup(
-            homeBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(homeBar2Layout.createSequentialGroup()
+        javax.swing.GroupLayout homeBarLayout = new javax.swing.GroupLayout(homeBar);
+        homeBar.setLayout(homeBarLayout);
+        homeBarLayout.setHorizontalGroup(
+            homeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(homeBarLayout.createSequentialGroup()
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
                 .addComponent(pageLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
                 .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        homeBar2Layout.setVerticalGroup(
-            homeBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(homeBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        homeBarLayout.setVerticalGroup(
+            homeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(homeBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(pageLabel))
         );
 
-        cardPanel2.add(homeBar2, "homeBar2");
+        cardPanel2.add(homeBar, "homeBar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -612,19 +603,24 @@ public class MainFrame extends javax.swing.JFrame {
     private void loginPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPageButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "login");
-        card2.show(cardPanel2, "welcomeBar2");
+        backButton.setVisible(true);
+        welcomePageLabel.setVisible(true);
+        welcomePageLabel.setText("Login page");
     }//GEN-LAST:event_loginPageButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "welcome");
-        card2.show(cardPanel2, "welcomeBar1");
+        backButton.setVisible(false);
+        welcomePageLabel.setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void RestorePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestorePageButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "restore");
-        card2.show(cardPanel2, "welcomeBar2");
+        backButton.setVisible(true);
+        welcomePageLabel.setVisible(true);
+        welcomePageLabel.setText("Restore page");
     }//GEN-LAST:event_RestorePageButtonActionPerformed
 
     private void RestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreButtonActionPerformed
@@ -642,14 +638,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "backup");
-        card2.show(cardPanel2, "homeBar2");
+        card2.show(cardPanel2, "homeBar");
         pageLabel.setText("Backup page");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "welcome");
-        card2.show(cardPanel2, "welcomeBar1");
+        card2.show(cardPanel2, "welcomeBar");
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
@@ -687,7 +683,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "userSearch");
-        card2.show(cardPanel2, "homeBar2");
+        card2.show(cardPanel2, "homeBar");
         pageLabel.setText("User search page");
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -749,7 +745,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton chooseLocationButton;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
-    private javax.swing.JPanel homeBar2;
+    private javax.swing.JPanel homeBar;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -771,8 +767,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel userLastnameLabel1;
     private javax.swing.JLabel userNumberLabel;
     private javax.swing.JPanel userSearchPage;
-    private javax.swing.JPanel welcomeBar1;
-    private javax.swing.JPanel welcomeBar2;
+    private javax.swing.JPanel welcomeBar;
     private javax.swing.JPanel welcomePage;
+    private javax.swing.JLabel welcomePageLabel;
     // End of variables declaration//GEN-END:variables
 }
