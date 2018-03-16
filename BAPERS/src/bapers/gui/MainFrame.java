@@ -1444,17 +1444,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         boolean valid = true;
         //Initialise values
-        String description_task = descriptionNewTaskField.getText();
-        double price_task = Double.parseDouble(priceNewTaskField.getText());
+        String description = descriptionNewTaskField.getText();
+        double price = Double.parseDouble(priceNewTaskField.getText());
         int duration_min = durationNewTaskMinsDD.getSelectedIndex();
         int Department_department_code = departmentNewTaskDD.getSelectedIndex();
-        int shelf_slot_task = shelfSlotTaskDD.getSelectedIndex();
+        int shelf_slot = shelfSlotTaskDD.getSelectedIndex();
         
 
         
 
         //Check fields are not empty
-        if (description_task.equals("") || price_task == 0 ) {
+        if (description.equals("") || price == 0 ) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
         }
@@ -1467,7 +1467,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Will only execute method in controller if all preconditions are met
         if (valid) {
-            if (controller.createNewTask(description_task,duration_min,price_task,Department_department_code,shelf_slot_task)) {
+            if (controller.createNewTask(description,duration_min,price,Department_department_code,shelf_slot)) {
                 JOptionPane.showMessageDialog(null, "Task created");
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to create Task");
