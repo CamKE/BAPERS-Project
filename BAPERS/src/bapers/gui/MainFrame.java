@@ -37,11 +37,8 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         cardPanel1 = new javax.swing.JPanel();
-        welcomePage = new javax.swing.JPanel();
-        BAPERSLabel = new javax.swing.JLabel();
-        loginPageButton = new javax.swing.JButton();
-        RestorePageButton = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -52,10 +49,56 @@ public class MainFrame extends javax.swing.JFrame {
         RestoreButton = new javax.swing.JButton();
         chooseFileButton = new javax.swing.JButton();
         fileChosenField = new javax.swing.JTextField();
+        welcomePage = new javax.swing.JPanel();
+        BAPERSLabel = new javax.swing.JLabel();
+        loginPageButton = new javax.swing.JButton();
+        RestorePageButton = new javax.swing.JButton();
+        viewCustomerProfilePage = new javax.swing.JPanel();
+        welcomeBar3 = new javax.swing.JPanel();
+        homeButton1 = new javax.swing.JButton();
+        logOutButton1 = new javax.swing.JButton();
+        viewProfilePageLabel = new javax.swing.JLabel();
+        welcomeBar4 = new javax.swing.JPanel();
+        backButton1 = new javax.swing.JToggleButton();
+        accountDetailsBox = new javax.swing.JPanel();
+        accountHolderName = new javax.swing.JLabel();
+        customerName = new javax.swing.JLabel();
+        customerNumber = new javax.swing.JLabel();
+        registrationDate = new javax.swing.JLabel();
+        accountStatusBox = new javax.swing.JPanel();
+        statusLabel = new javax.swing.JLabel();
+        typeLabel = new javax.swing.JLabel();
+        inDefaultLabel = new javax.swing.JLabel();
+        discountLabel = new javax.swing.JLabel();
+        statusAnswerLabel = new javax.swing.JLabel();
+        typeAnswerLabel = new javax.swing.JLabel();
+        inDefaultAnswerLabel = new javax.swing.JLabel();
+        discountAnswerLabel = new javax.swing.JLabel();
+        actionsBox = new javax.swing.JPanel();
+        actionsLabel = new javax.swing.JLabel();
+        assignDiscountButton = new javax.swing.JButton();
+        updateAccountStatusButton = new javax.swing.JButton();
+        changeAccountTypebutton = new javax.swing.JButton();
+        viewPaymentsButton = new javax.swing.JButton();
+        viewInvoicesButton = new javax.swing.JButton();
+        jobsThisMonthBox = new javax.swing.JPanel();
+        actualAmountOfMonthlyJobsLabel = new javax.swing.JLabel();
+        amountOfJobsThisMonthLabel = new javax.swing.JLabel();
+        latePaymentsBox = new javax.swing.JPanel();
+        actualAmountOfLatePayments = new javax.swing.JLabel();
+        amountOfLatePayments = new javax.swing.JLabel();
+        addressBox = new javax.swing.JPanel();
+        buildingNoLabel = new javax.swing.JLabel();
+        roadNameLabel = new javax.swing.JLabel();
+        cityLabel = new javax.swing.JLabel();
+        postCodeLabel = new javax.swing.JLabel();
+        addressLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 700));
@@ -67,57 +110,6 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.setMaximumSize(new java.awt.Dimension(900, 640));
         cardPanel1.setPreferredSize(new java.awt.Dimension(900, 640));
         cardPanel1.setLayout(new java.awt.CardLayout());
-
-        welcomePage.setBackground(new java.awt.Color(61, 96, 146));
-        welcomePage.setMaximumSize(new java.awt.Dimension(900, 640));
-        welcomePage.setMinimumSize(new java.awt.Dimension(900, 640));
-        welcomePage.setPreferredSize(new java.awt.Dimension(900, 640));
-
-        BAPERSLabel.setFont(new java.awt.Font("Tahoma", 1, 90)); // NOI18N
-        BAPERSLabel.setForeground(new java.awt.Color(255, 255, 255));
-        BAPERSLabel.setText("B   A   P   E   R   S");
-
-        loginPageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        loginPageButton.setText("Login");
-        loginPageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginPageButtonActionPerformed(evt);
-            }
-        });
-
-        RestorePageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        RestorePageButton.setText("Restore");
-        RestorePageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RestorePageButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
-        welcomePage.setLayout(welcomePageLayout);
-        welcomePageLayout.setHorizontalGroup(
-            welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(welcomePageLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(BAPERSLabel)
-                    .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
-        );
-        welcomePageLayout.setVerticalGroup(
-            welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(welcomePageLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(BAPERSLabel)
-                .addGap(119, 119, 119)
-                .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        cardPanel1.add(welcomePage, "welcome");
 
         loginPage.setBackground(new java.awt.Color(61, 96, 146));
         loginPage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -235,6 +227,475 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(restorePage, "restore");
 
+        welcomePage.setBackground(new java.awt.Color(61, 96, 146));
+        welcomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        welcomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+        welcomePage.setPreferredSize(new java.awt.Dimension(900, 640));
+
+        BAPERSLabel.setFont(new java.awt.Font("Tahoma", 1, 90)); // NOI18N
+        BAPERSLabel.setForeground(new java.awt.Color(255, 255, 255));
+        BAPERSLabel.setText("B   A   P   E   R   S");
+
+        loginPageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        loginPageButton.setText("Login");
+        loginPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginPageButtonActionPerformed(evt);
+            }
+        });
+
+        RestorePageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        RestorePageButton.setText("Restore");
+        RestorePageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestorePageButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
+        welcomePage.setLayout(welcomePageLayout);
+        welcomePageLayout.setHorizontalGroup(
+            welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomePageLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(BAPERSLabel)
+                    .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75))
+        );
+        welcomePageLayout.setVerticalGroup(
+            welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomePageLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(BAPERSLabel)
+                .addGap(119, 119, 119)
+                .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(welcomePage, "welcome");
+
+        viewCustomerProfilePage.setBackground(new java.awt.Color(61, 96, 146));
+
+        welcomeBar3.setBackground(new java.awt.Color(33, 53, 80));
+        welcomeBar3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        homeButton1.setBackground(new java.awt.Color(40, 64, 97));
+        homeButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        homeButton1.setForeground(new java.awt.Color(255, 255, 255));
+        homeButton1.setText("Home");
+        homeButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        homeButton1.setOpaque(true);
+        homeButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButton1ActionPerformed(evt);
+            }
+        });
+
+        logOutButton1.setBackground(new java.awt.Color(40, 64, 97));
+        logOutButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        logOutButton1.setForeground(new java.awt.Color(255, 255, 255));
+        logOutButton1.setText("Log Out");
+        logOutButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logOutButton1.setOpaque(true);
+        logOutButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButton1ActionPerformed(evt);
+            }
+        });
+
+        viewProfilePageLabel.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        viewProfilePageLabel.setForeground(new java.awt.Color(255, 255, 255));
+        viewProfilePageLabel.setText("View Profile Page");
+
+        javax.swing.GroupLayout welcomeBar3Layout = new javax.swing.GroupLayout(welcomeBar3);
+        welcomeBar3.setLayout(welcomeBar3Layout);
+        welcomeBar3Layout.setHorizontalGroup(
+            welcomeBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomeBar3Layout.createSequentialGroup()
+                .addComponent(homeButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel)
+                .addGap(154, 154, 154)
+                .addComponent(logOutButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        welcomeBar3Layout.setVerticalGroup(
+            welcomeBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomeBar3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(logOutButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel))
+        );
+
+        welcomeBar4.setBackground(new java.awt.Color(33, 53, 80));
+        welcomeBar4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        backButton1.setText("Back");
+
+        javax.swing.GroupLayout welcomeBar4Layout = new javax.swing.GroupLayout(welcomeBar4);
+        welcomeBar4.setLayout(welcomeBar4Layout);
+        welcomeBar4Layout.setHorizontalGroup(
+            welcomeBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomeBar4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backButton1)
+                .addContainerGap())
+        );
+        welcomeBar4Layout.setVerticalGroup(
+            welcomeBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomeBar4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backButton1)
+                .addContainerGap())
+        );
+
+        accountDetailsBox.setBackground(new java.awt.Color(255, 255, 255));
+
+        accountHolderName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        accountHolderName.setText("Account Holder Name");
+
+        customerName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        customerName.setText("Mr John Doe");
+
+        customerNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        customerNumber.setText("07777 999999");
+
+        registrationDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        registrationDate.setText("Registered On: 01/01/0001");
+
+        javax.swing.GroupLayout accountDetailsBoxLayout = new javax.swing.GroupLayout(accountDetailsBox);
+        accountDetailsBox.setLayout(accountDetailsBoxLayout);
+        accountDetailsBoxLayout.setHorizontalGroup(
+            accountDetailsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, accountDetailsBoxLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(accountDetailsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(accountHolderName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customerNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(registrationDate, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        accountDetailsBoxLayout.setVerticalGroup(
+            accountDetailsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountDetailsBoxLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(accountHolderName)
+                .addGap(22, 22, 22)
+                .addComponent(customerName)
+                .addGap(22, 22, 22)
+                .addComponent(customerNumber)
+                .addGap(22, 22, 22)
+                .addComponent(registrationDate)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        accountStatusBox.setBackground(new java.awt.Color(255, 255, 255));
+
+        statusLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        statusLabel.setText("Status:");
+
+        typeLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        typeLabel.setText("Type:");
+
+        inDefaultLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        inDefaultLabel.setText("In default:");
+
+        discountLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        discountLabel.setText("Discount:");
+
+        statusAnswerLabel.setBackground(new java.awt.Color(204, 204, 204));
+        statusAnswerLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        statusAnswerLabel.setText("Active");
+        statusAnswerLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        statusAnswerLabel.setOpaque(true);
+
+        typeAnswerLabel.setBackground(new java.awt.Color(204, 204, 204));
+        typeAnswerLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        typeAnswerLabel.setText("Valued");
+        typeAnswerLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        typeAnswerLabel.setOpaque(true);
+
+        inDefaultAnswerLabel.setBackground(new java.awt.Color(204, 204, 204));
+        inDefaultAnswerLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        inDefaultAnswerLabel.setText("No");
+        inDefaultAnswerLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        inDefaultAnswerLabel.setOpaque(true);
+
+        discountAnswerLabel.setBackground(new java.awt.Color(204, 204, 204));
+        discountAnswerLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        discountAnswerLabel.setText("Fixed");
+        discountAnswerLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        discountAnswerLabel.setOpaque(true);
+
+        javax.swing.GroupLayout accountStatusBoxLayout = new javax.swing.GroupLayout(accountStatusBox);
+        accountStatusBox.setLayout(accountStatusBoxLayout);
+        accountStatusBoxLayout.setHorizontalGroup(
+            accountStatusBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountStatusBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(accountStatusBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeLabel)
+                    .addComponent(discountLabel)
+                    .addComponent(inDefaultLabel)
+                    .addComponent(statusLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(accountStatusBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(typeAnswerLabel)
+                    .addComponent(statusAnswerLabel)
+                    .addComponent(inDefaultAnswerLabel)
+                    .addComponent(discountAnswerLabel))
+                .addGap(29, 29, 29))
+        );
+        accountStatusBoxLayout.setVerticalGroup(
+            accountStatusBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountStatusBoxLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(accountStatusBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statusLabel)
+                    .addComponent(statusAnswerLabel))
+                .addGap(22, 22, 22)
+                .addGroup(accountStatusBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeLabel)
+                    .addComponent(typeAnswerLabel))
+                .addGap(20, 20, 20)
+                .addGroup(accountStatusBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inDefaultLabel)
+                    .addComponent(inDefaultAnswerLabel))
+                .addGap(18, 18, 18)
+                .addGroup(accountStatusBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(discountLabel)
+                    .addComponent(discountAnswerLabel))
+                .addGap(22, 22, 22))
+        );
+
+        actionsBox.setBackground(new java.awt.Color(255, 255, 255));
+
+        actionsLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        actionsLabel.setText("Actions");
+
+        assignDiscountButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        assignDiscountButton.setText("Assign Discount");
+
+        updateAccountStatusButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        updateAccountStatusButton.setText("Update Account status");
+
+        changeAccountTypebutton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        changeAccountTypebutton.setText("Change Account Type");
+
+        viewPaymentsButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        viewPaymentsButton.setText("View Payments");
+
+        viewInvoicesButton.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        viewInvoicesButton.setText("View Invoices");
+
+        javax.swing.GroupLayout actionsBoxLayout = new javax.swing.GroupLayout(actionsBox);
+        actionsBox.setLayout(actionsBoxLayout);
+        actionsBoxLayout.setHorizontalGroup(
+            actionsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actionsBoxLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(actionsLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(actionsBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(actionsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(assignDiscountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewInvoicesButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewPaymentsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(changeAccountTypebutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateAccountStatusButton, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        actionsBoxLayout.setVerticalGroup(
+            actionsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(actionsBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(actionsLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(assignDiscountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(updateAccountStatusButton)
+                .addGap(12, 12, 12)
+                .addComponent(changeAccountTypebutton)
+                .addGap(12, 12, 12)
+                .addComponent(viewPaymentsButton)
+                .addGap(12, 12, 12)
+                .addComponent(viewInvoicesButton)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        jobsThisMonthBox.setBackground(new java.awt.Color(255, 255, 255));
+
+        actualAmountOfMonthlyJobsLabel.setBackground(new java.awt.Color(204, 204, 204));
+        actualAmountOfMonthlyJobsLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        actualAmountOfMonthlyJobsLabel.setText("180");
+        actualAmountOfMonthlyJobsLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        actualAmountOfMonthlyJobsLabel.setOpaque(true);
+
+        amountOfJobsThisMonthLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        amountOfJobsThisMonthLabel.setText("Jobs this month:");
+
+        javax.swing.GroupLayout jobsThisMonthBoxLayout = new javax.swing.GroupLayout(jobsThisMonthBox);
+        jobsThisMonthBox.setLayout(jobsThisMonthBoxLayout);
+        jobsThisMonthBoxLayout.setHorizontalGroup(
+            jobsThisMonthBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobsThisMonthBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(amountOfJobsThisMonthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(actualAmountOfMonthlyJobsLabel)
+                .addGap(22, 22, 22))
+        );
+        jobsThisMonthBoxLayout.setVerticalGroup(
+            jobsThisMonthBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobsThisMonthBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jobsThisMonthBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(actualAmountOfMonthlyJobsLabel)
+                    .addComponent(amountOfJobsThisMonthLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        latePaymentsBox.setBackground(new java.awt.Color(255, 255, 255));
+
+        actualAmountOfLatePayments.setBackground(new java.awt.Color(204, 204, 204));
+        actualAmountOfLatePayments.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        actualAmountOfLatePayments.setText("3");
+        actualAmountOfLatePayments.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        actualAmountOfLatePayments.setOpaque(true);
+
+        amountOfLatePayments.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        amountOfLatePayments.setText("Late Payments:");
+
+        javax.swing.GroupLayout latePaymentsBoxLayout = new javax.swing.GroupLayout(latePaymentsBox);
+        latePaymentsBox.setLayout(latePaymentsBoxLayout);
+        latePaymentsBoxLayout.setHorizontalGroup(
+            latePaymentsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, latePaymentsBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(amountOfLatePayments)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(actualAmountOfLatePayments)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        latePaymentsBoxLayout.setVerticalGroup(
+            latePaymentsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(latePaymentsBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(latePaymentsBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(actualAmountOfLatePayments)
+                    .addComponent(amountOfLatePayments))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        addressBox.setBackground(new java.awt.Color(255, 255, 255));
+
+        buildingNoLabel.setBackground(new java.awt.Color(204, 204, 204));
+        buildingNoLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        buildingNoLabel.setText("Building No.");
+        buildingNoLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buildingNoLabel.setOpaque(true);
+
+        roadNameLabel.setBackground(new java.awt.Color(204, 204, 204));
+        roadNameLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        roadNameLabel.setText("Road Name");
+        roadNameLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        roadNameLabel.setOpaque(true);
+
+        cityLabel.setBackground(new java.awt.Color(204, 204, 204));
+        cityLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        cityLabel.setText("City");
+        cityLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cityLabel.setOpaque(true);
+
+        postCodeLabel.setBackground(new java.awt.Color(204, 204, 204));
+        postCodeLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        postCodeLabel.setText("Post Code");
+        postCodeLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        postCodeLabel.setOpaque(true);
+
+        addressLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        addressLabel.setText("Address:");
+
+        javax.swing.GroupLayout addressBoxLayout = new javax.swing.GroupLayout(addressBox);
+        addressBox.setLayout(addressBoxLayout);
+        addressBoxLayout.setHorizontalGroup(
+            addressBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addressBoxLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addressBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buildingNoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addComponent(addressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(roadNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(postCodeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addressBoxLayout.setVerticalGroup(
+            addressBoxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addressBoxLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addressLabel)
+                .addGap(18, 18, 18)
+                .addComponent(buildingNoLabel)
+                .addGap(18, 18, 18)
+                .addComponent(roadNameLabel)
+                .addGap(18, 18, 18)
+                .addComponent(cityLabel)
+                .addGap(18, 18, 18)
+                .addComponent(postCodeLabel)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout viewCustomerProfilePageLayout = new javax.swing.GroupLayout(viewCustomerProfilePage);
+        viewCustomerProfilePage.setLayout(viewCustomerProfilePageLayout);
+        viewCustomerProfilePageLayout.setHorizontalGroup(
+            viewCustomerProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(welcomeBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(welcomeBar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(viewCustomerProfilePageLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(viewCustomerProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewCustomerProfilePageLayout.createSequentialGroup()
+                        .addComponent(actionsBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(viewCustomerProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(viewCustomerProfilePageLayout.createSequentialGroup()
+                                .addComponent(jobsThisMonthBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(latePaymentsBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addressBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(viewCustomerProfilePageLayout.createSequentialGroup()
+                        .addComponent(accountDetailsBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(accountStatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        viewCustomerProfilePageLayout.setVerticalGroup(
+            viewCustomerProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewCustomerProfilePageLayout.createSequentialGroup()
+                .addComponent(welcomeBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewCustomerProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(accountDetailsBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(accountStatusBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(viewCustomerProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(actionsBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(viewCustomerProfilePageLayout.createSequentialGroup()
+                        .addGroup(viewCustomerProfilePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(latePaymentsBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jobsThisMonthBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addressBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(welcomeBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
         cardPanel2.setLayout(new java.awt.CardLayout());
@@ -293,6 +754,11 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(cardPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(cardPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(viewCustomerProfilePage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,9 +767,16 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(cardPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(viewCustomerProfilePage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        setSize(new java.awt.Dimension(900, 700));
+        viewCustomerProfilePage.getAccessibleContext().setAccessibleName("viewCustomerProfilePage");
+
+        setSize(new java.awt.Dimension(892, 700));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -336,6 +809,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void chooseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseFileButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chooseFileButtonActionPerformed
+
+    private void homeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeButton1ActionPerformed
+
+    private void logOutButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logOutButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,21 +857,62 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel BAPERSLabel;
     private javax.swing.JButton RestoreButton;
     private javax.swing.JButton RestorePageButton;
+    private javax.swing.JPanel accountDetailsBox;
+    private javax.swing.JLabel accountHolderName;
+    private javax.swing.JPanel accountStatusBox;
+    private javax.swing.JPanel actionsBox;
+    private javax.swing.JLabel actionsLabel;
+    private javax.swing.JLabel actualAmountOfLatePayments;
+    private javax.swing.JLabel actualAmountOfMonthlyJobsLabel;
+    private javax.swing.JPanel addressBox;
+    private javax.swing.JLabel addressLabel;
+    private javax.swing.JLabel amountOfJobsThisMonthLabel;
+    private javax.swing.JLabel amountOfLatePayments;
+    private javax.swing.JButton assignDiscountButton;
     private javax.swing.JButton backButton;
+    private javax.swing.JToggleButton backButton1;
+    private javax.swing.JLabel buildingNoLabel;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
+    private javax.swing.JButton changeAccountTypebutton;
     private javax.swing.JButton chooseFileButton;
+    private javax.swing.JLabel cityLabel;
+    private javax.swing.JLabel customerName;
+    private javax.swing.JLabel customerNumber;
+    private javax.swing.JLabel discountAnswerLabel;
+    private javax.swing.JLabel discountLabel;
     private javax.swing.JTextField fileChosenField;
+    private javax.swing.JButton homeButton1;
+    private javax.swing.JLabel inDefaultAnswerLabel;
+    private javax.swing.JLabel inDefaultLabel;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JPanel jobsThisMonthBox;
+    private javax.swing.JPanel latePaymentsBox;
+    private javax.swing.JButton logOutButton1;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel postCodeLabel;
+    private javax.swing.JLabel registrationDate;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
+    private javax.swing.JLabel roadNameLabel;
+    private javax.swing.JLabel statusAnswerLabel;
+    private javax.swing.JLabel statusLabel;
+    private javax.swing.JLabel typeAnswerLabel;
+    private javax.swing.JLabel typeLabel;
+    private javax.swing.JButton updateAccountStatusButton;
     private javax.swing.JTextField userIDField;
+    private javax.swing.JPanel viewCustomerProfilePage;
+    private javax.swing.JButton viewInvoicesButton;
+    private javax.swing.JButton viewPaymentsButton;
+    private javax.swing.JLabel viewProfilePageLabel;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
+    private javax.swing.JPanel welcomeBar3;
+    private javax.swing.JPanel welcomeBar4;
     private javax.swing.JPanel welcomePage;
     // End of variables declaration//GEN-END:variables
 }
