@@ -10,7 +10,7 @@ import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JFileChooser;
-import java.text.DateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -653,24 +653,28 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
         // TODO add your handling code here:
-        Process p = null;
-        try {
-            Runtime runtime = Runtime.getRuntime();
-            String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
-            date = date.replace(' ', '_');
-            date = date.replace(':', '-');
-            String filename = "BAPERS_" + date + ".sql";
-            p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump.exe -uroot -ppassword -B bapers_data -r \"" + locationChosenField.getText() + "\\" + filename + "\"");
+        if (locationChosenField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please select a directory");
+        } else {
+            try {
+                Runtime runtime = Runtime.getRuntime();
+                String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+                date = date.replace(' ', '_');
+                date = date.replace(':', '-');
+                String filename = "BAPERS_" + date + ".sql";
+                Process p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump.exe -uroot -ppassword -B bapers_data -r \"" + locationChosenField.getText() + "\\" + filename + "\"");
 
-            int processComplete = p.waitFor();
-            if (processComplete == 0) {
-                System.out.println("backup completed");
-            } else {
-                System.out.println("backup failed");
+                int processComplete = p.waitFor();
+                if (processComplete == 0) {
+                    JOptionPane.showMessageDialog(null, "Backup created");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Backup failed");
+                }
+            } catch (Exception ex) {
+                System.out.println(ex);
             }
-        } catch (Exception ex) {
-            System.out.println(ex);
         }
+
     }//GEN-LAST:event_backupButtonActionPerformed
 
     private void chooseLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseLocationButtonActionPerformed
@@ -678,10 +682,14 @@ public class MainFrame extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.showOpenDialog(this);
-        String directory = chooser.getSelectedFile().getPath();
-        directory = directory.replace('\\', '/');
 
-        locationChosenField.setText(directory);
+        try {
+            String directory = chooser.getSelectedFile().getPath();
+            directory = directory.replace('\\', '/');
+            locationChosenField.setText(directory);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }//GEN-LAST:event_chooseLocationButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
