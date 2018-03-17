@@ -5,14 +5,12 @@
  */
 package bapers.gui;
 
-import bapers.acct.Customer;
 import bapers.acct.Material;
 import bapers.controller.Controller;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 
 /**
  *
@@ -22,7 +20,6 @@ public class MainFrame extends javax.swing.JFrame {
     
     // Lists
     List<Material> materials = new ArrayList<Material>();
-    
     //materials counter
     int mCount = 0;
 
@@ -188,6 +185,7 @@ public class MainFrame extends javax.swing.JFrame {
         discountStatusjComboBox = new javax.swing.JComboBox<>();
         inDefaultjComboBox = new javax.swing.JComboBox<>();
         registrationDatejComboBox = new javax.swing.JComboBox<>();
+        isManagerjToggleButton = new javax.swing.JToggleButton();
         acceptLatePayment = new javax.swing.JPanel();
         acceptLatePaymentjPanel = new javax.swing.JPanel();
         expiryDatejLabel = new javax.swing.JLabel();
@@ -239,9 +237,7 @@ public class MainFrame extends javax.swing.JFrame {
         createCustomerLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -924,11 +920,21 @@ public class MainFrame extends javax.swing.JFrame {
         selectStdJob.setMaximumSize(new java.awt.Dimension(250, 42));
         selectStdJob.setMinimumSize(new java.awt.Dimension(250, 42));
         selectStdJob.setPreferredSize(new java.awt.Dimension(250, 42));
+        selectStdJob.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectStdJobActionPerformed(evt);
+            }
+        });
 
         selectPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select Priority", "Normal", "Urgent", "Stipulated"}));
         selectPriority.setMaximumSize(new java.awt.Dimension(250, 42));
         selectPriority.setMinimumSize(new java.awt.Dimension(250, 42));
         selectPriority.setPreferredSize(new java.awt.Dimension(250, 42));
+        selectPriority.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectPriorityActionPerformed(evt);
+            }
+        });
 
         searchCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         searchCustomerButton.setText("Search Customer");
@@ -1024,48 +1030,52 @@ public class MainFrame extends javax.swing.JFrame {
         acceptJobjPanel.setLayout(acceptJobjPanelLayout);
         acceptJobjPanelLayout.setHorizontalGroup(
             acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptJobjPanelLayout.createSequentialGroup()
                 .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                        .addComponent(searchCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(createCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(customerInfojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(totalLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(totalAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                        .addComponent(cancelAcceptJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectStdJob, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addJobButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(selectPriority, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(specialInstructionsLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(materialSubmittedLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addMaterialButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(stdJobsjScrollPane1)
-                            .addComponent(materialsjScrollPane)
-                            .addComponent(specialInstructionsScrollPane)
-                            .addComponent(materialsjTextField)
+                        .addGap(33, 33, 33)
+                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                                .addComponent(removeButton)
-                                .addGap(36, 36, 36)
                                 .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(selectStdJob, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addJobButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(selectPriority, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(specialInstructionsLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(materialSubmittedLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(addMaterialButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(stdJobsjScrollPane1)
+                                    .addComponent(materialsjScrollPane)
+                                    .addComponent(specialInstructionsScrollPane)
+                                    .addComponent(materialsjTextField)
                                     .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                                        .addComponent(totalLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(totalAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                                        .addComponent(removeButton)
+                                        .addGap(36, 36, 36)
                                         .addComponent(surchargeLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(surchargejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(percentageLabel)))
-                                .addGap(0, 110, Short.MAX_VALUE)))))
+                                        .addComponent(percentageLabel)
+                                        .addGap(0, 110, Short.MAX_VALUE))))
+                            .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                                        .addComponent(searchCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(createCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(customerInfojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                                        .addComponent(cancelAcceptJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(45, 45, 45))
         );
         acceptJobjPanelLayout.setVerticalGroup(
@@ -1107,24 +1117,28 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(percentageLabel)
                             .addComponent(surchargejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalAmountLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(acceptJobjPanelLayout.createSequentialGroup()
                         .addComponent(specialInstructionsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalAmountLabel))
+                        .addGap(31, 31, 31)
                         .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cancelAcceptJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(specialInstructionsLabel))
-                .addGap(141, 141, 141))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
+        customerInfojTextField.setEditable(false);
+        surchargejTextField.setVisible(false);
         surchargejTextField.getAccessibleContext().setAccessibleName("");
+        percentageLabel.setVisible(false);
         percentageLabel.getAccessibleContext().setAccessibleName("");
+        surchargeLabel.setVisible(false);
         surchargeLabel.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout acceptJobLayout = new javax.swing.GroupLayout(acceptJob);
@@ -1552,6 +1566,7 @@ public class MainFrame extends javax.swing.JFrame {
         managerjPanel.setMaximumSize(new java.awt.Dimension(900, 250));
         managerjPanel.setMinimumSize(new java.awt.Dimension(900, 250));
         managerjPanel.setPreferredSize(new java.awt.Dimension(900, 250));
+        managerjPanel.setVisible(false);
 
         streetNameSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         streetNameSjLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -1710,6 +1725,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        isManagerjToggleButton.setText("Test");
+        isManagerjToggleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isManagerjToggleButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout searchCustomerjPanelLayout = new javax.swing.GroupLayout(searchCustomerjPanel);
         searchCustomerjPanel.setLayout(searchCustomerjPanelLayout);
         searchCustomerjPanelLayout.setHorizontalGroup(
@@ -1719,7 +1741,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(managerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchCustomerjPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(147, 147, 147)
+                .addComponent(isManagerjToggleButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1735,7 +1759,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(isManagerjToggleButton))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
@@ -1806,6 +1831,11 @@ public class MainFrame extends javax.swing.JFrame {
         paymentTypeComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
         paymentTypeComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
         paymentTypeComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+        paymentTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paymentTypeComboBoxActionPerformed(evt);
+            }
+        });
 
         latePaymentSubmitjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         latePaymentSubmitjButton.setText("Submit");
@@ -1813,9 +1843,11 @@ public class MainFrame extends javax.swing.JFrame {
         latePaymentSubmitjButton.setMinimumSize(new java.awt.Dimension(159, 37));
         latePaymentSubmitjButton.setPreferredSize(new java.awt.Dimension(159, 37));
 
+        jTextField3.setText("£");
         jTextField3.setMaximumSize(new java.awt.Dimension(250, 42));
         jTextField3.setMinimumSize(new java.awt.Dimension(250, 42));
         jTextField3.setPreferredSize(new java.awt.Dimension(250, 42));
+        jTextField3.setEditable(false);
 
         cardTypejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         cardTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -2510,17 +2542,23 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addMaterialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaterialButtonActionPerformed
         // TODO add your handling code here:
-        if (materialsjTextField != null) {
+        // TODO: use hash table
+        if (materialsjTextField.getText().matches("[a-z,A-Z]([a-z,A-Z,\\s])+")) {
             ++mCount;
             String material = materialsjTextField.getText();
             materials.add(new Material(mCount,material));
-            //        System.out.println(material);
+//            System.out.println(material);
             materialsjTextField.setText("");
             DefaultListModel t = new DefaultListModel();
+            
             for (int i = 0; i < materials.size(); ++i) {
                 t.addElement(materials.get(i).getMaterialDescription());
             }
+            
             jList1.setModel(t);
+        } else if (materialsjTextField.getText().matches("\\s+")) {
+            System.out.println("You need to enter something other than just white space");
+            materialsjTextField.setText("");
         } else {
             System.out.println("You need to enter something");
         }
@@ -2550,6 +2588,8 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         card1.show(cardPanel1, "receptionistHomePage");
         card2.show(cardPanel2, "homePageR");
+        materials.clear();
+        mCount = 0;
     }//GEN-LAST:event_cancelAcceptJobButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
@@ -2613,6 +2653,57 @@ public class MainFrame extends javax.swing.JFrame {
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jList1ValueChanged
+
+    private void paymentTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentTypeComboBoxActionPerformed
+        // TODO add your handling code here:
+        if (paymentTypeComboBox.getSelectedItem().toString().equals("Card")) {
+            // shows the labels for card payment
+            cardTypejLabel.setVisible(true);
+            expiryDatejLabel.setVisible(true);
+            last4DigitjLabel.setVisible(true);
+            
+            // shows the text field for card payment
+            cardTypejComboBox.setVisible(true);
+            expiryDatejTextField.setVisible(true);
+            last4DigitjTextField.setVisible(true);
+        } else {
+            // hides the labels for card payment
+            cardTypejLabel.setVisible(false);
+            expiryDatejLabel.setVisible(false);
+            last4DigitjLabel.setVisible(false);
+            
+            // hides the text field for card payment
+            cardTypejComboBox.setVisible(false);
+            expiryDatejTextField.setVisible(false);
+            last4DigitjTextField.setVisible(false);
+        }
+    }//GEN-LAST:event_paymentTypeComboBoxActionPerformed
+
+    private void selectPriorityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPriorityActionPerformed
+        // TODO add your handling code here:
+        if (selectPriority.getSelectedItem().toString().equals("Stipulated")) {
+            surchargeLabel.setVisible(true);
+            surchargejTextField.setVisible(true);
+            percentageLabel.setVisible(true);
+        } else {
+            surchargeLabel.setVisible(false);
+            surchargejTextField.setVisible(false);
+            percentageLabel.setVisible(false);
+        }
+    }//GEN-LAST:event_selectPriorityActionPerformed
+
+    private void selectStdJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectStdJobActionPerformed
+        // TODO add your handling code here:
+        //controller.getStandardJobs();
+    }//GEN-LAST:event_selectStdJobActionPerformed
+
+    private void isManagerjToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isManagerjToggleButtonActionPerformed
+        // TODO add your handling code here:
+        if (isManagerjToggleButton.isSelected())
+            managerjPanel.setVisible(true);
+        else
+            managerjPanel.setVisible(false);
+    }//GEN-LAST:event_isManagerjToggleButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2730,6 +2821,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel inDefaultSjLabel;
     private javax.swing.JComboBox<String> inDefaultjComboBox;
     private javax.swing.JList<String> invoicejList;
+    private javax.swing.JToggleButton isManagerjToggleButton;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
