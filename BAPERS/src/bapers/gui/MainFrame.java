@@ -112,6 +112,8 @@ public class MainFrame extends javax.swing.JFrame {
         departmentNewTaskDD = new javax.swing.JComboBox<>();
         durationNewTaskMinsDD = new javax.swing.JComboBox<>();
         priceNewTaskField = new javax.swing.JTextField();
+        hoursLabel = new javax.swing.JLabel();
+        minutesLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -793,7 +795,7 @@ public class MainFrame extends javax.swing.JFrame {
         descriptionNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
         descriptionNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        durationNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0hr","1hr","2hrs","3hrs","4hrs","5hrs","6hrs","7hrs","8hrs","9hr","10hrs","11hrs","12hrs","13hrs","14hrs","15hrs","16hrs","17hrs","18hrs","19hrs","20hrs","21hrs","22hrs","23rhs","24hrs"}));
+        durationNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"}));
         durationNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
         durationNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
         durationNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -839,7 +841,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"CR001","CROO2","DR001","DR002","PK001","PK002"}));
+        shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getShelfSlots()));
         shelfSlotTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
         shelfSlotTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
         shelfSlotTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -849,7 +851,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy Room","Development","Packing"}));
+        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy room","Dark room","Packing"}));
         departmentNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
         departmentNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
         departmentNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -859,7 +861,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        durationNewTaskMinsDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0min","10min","20min","30min","40min","50min"}));
+        durationNewTaskMinsDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0","15","30","45"}));
         durationNewTaskMinsDD.setMaximumSize(new java.awt.Dimension(250, 42));
         durationNewTaskMinsDD.setMinimumSize(new java.awt.Dimension(250, 42));
         durationNewTaskMinsDD.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -872,6 +874,14 @@ public class MainFrame extends javax.swing.JFrame {
         priceNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
         priceNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
         priceNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        hoursLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        hoursLabel.setForeground(new java.awt.Color(255, 255, 255));
+        hoursLabel.setText("hrs");
+
+        minutesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        minutesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        minutesLabel.setText("mins");
 
         javax.swing.GroupLayout createTaskPageLayout = new javax.swing.GroupLayout(createTaskPage);
         createTaskPage.setLayout(createTaskPageLayout);
@@ -892,21 +902,25 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(departmentNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(createTaskPageLayout.createSequentialGroup()
                         .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(hoursLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(minutesLabel))
                     .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
                 .addContainerGap(361, Short.MAX_VALUE)
                 .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
+                        .addComponent(newTaskLabel1)
+                        .addGap(362, 362, 362))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
                         .addComponent(cancelButtonCreateTask)
                         .addGap(35, 35, 35)
                         .addComponent(createNewTaskButton)
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
-                        .addComponent(newTaskLabel1)
-                        .addGap(362, 362, 362))))
+                        .addGap(50, 50, 50))))
         );
         createTaskPageLayout.setVerticalGroup(
             createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -921,7 +935,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(durationLabel)
                     .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hoursLabel)
+                    .addComponent(minutesLabel))
                 .addGap(23, 23, 23)
                 .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(priceLabel)
@@ -1441,11 +1457,12 @@ public class MainFrame extends javax.swing.JFrame {
         //Initialise values
         String description = descriptionNewTaskField.getText();
         double price = Double.parseDouble(priceNewTaskField.getText());
-        int duration_min = durationNewTaskMinsDD.getSelectedIndex();
-        int Department_department_code = departmentNewTaskDD.getSelectedIndex();
-        int shelf_slot = shelfSlotTaskDD.getSelectedIndex();
+        int duration_min =  Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
+        int duration_hours = Integer.parseInt((String) durationNewTaskDD.getSelectedItem());
+        String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
+        int shelf_slot = Integer.parseInt((String) shelfSlotTaskDD.getSelectedItem());
         
-
+        duration_min += duration_hours*60;
         
 
         //Check fields are not empty
@@ -1613,6 +1630,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel homePageTBar;
     private javax.swing.JPanel homePageTechnician;
     private javax.swing.JPanel homePagesSMBar;
+    private javax.swing.JLabel hoursLabel;
     private javax.swing.JButton jobEnquiryTechnician;
     private javax.swing.JButton jobOfficeManager;
     private javax.swing.JButton jobReceptionist;
@@ -1628,6 +1646,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
     private javax.swing.JButton manageCustomersOfficeManager;
+    private javax.swing.JLabel minutesLabel;
     private javax.swing.JLabel newTaskLabel1;
     private javax.swing.JLabel newUserLabel;
     private javax.swing.JPanel officeManagerHomePage;
