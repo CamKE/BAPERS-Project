@@ -851,7 +851,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy room","Dark room","Packing"}));
+        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy room","Dark room","Development area", "Printing room", "Finishing room", "Packaging department"}));
         departmentNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
         departmentNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
         departmentNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
