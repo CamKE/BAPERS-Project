@@ -7,6 +7,8 @@ package bapers.controller;
 
 import bapers.database.DBImpl;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,6 +22,37 @@ public class Controller {
     public Controller() {
         database = new DBImpl();
         conn = database.connect();
+    }
+    
+    public int numStandardJobs() {
+        String sql = "SELECT COUNT(*) AS rowcount FROM standardjob";
+        try {
+            ResultSet rs = database.read(sql, conn);
+            rs.next();
+            return rs.getInt("rowcount");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return 0;
+    }
+
+    public String[] getStandardJobs() {
+        // ArrayList roles = new ArrayList();
+        //should there be this much code in a controller????
+        String[] roles = new String[numStandardJobs()];
+        int i = 0;
+        String sql = "select job_description from standardjob";
+
+        //close resultset after use
+        try (ResultSet result = database.read(sql, conn)) {
+            while (result.next()) {
+                roles[i] = result.getString("job_description");
+                i++;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return roles;
     }
 
 //    public boolean createUser(String firstname, String lastname, int role, char[] password) {
