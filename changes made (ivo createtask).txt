@@ -1,0 +1,24 @@
+- changed department1 from int to string: this is because it is a 2 character string in the database (char(2), CR for copy room, PD for packaging department, etc.)
+- swapped the position of shelf_slot in the list of fields (relative to its actual position in the database table 'task')
+- inserted the deparments into my database (you need to run the script i give you for everything to work)
+- added a switch case to associate the departments name with its code: department name needs to be converted into its code to be inserted (as the fk field is the code)
+- changed 
+        int Department_department_code = departmentNewTaskDD.getSelectedIndex(); 
+to 
+		String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
+		
+the index of the dropdown means nothing if you just insert it into the table. you want the actual 
+value they selected, not the index (the position that data is in the dropdown list)
+
+- changed shelf slot value. should just be a integer (maybe between 1 and 100? thats what i done in this casse)
+i made the dropdown display values 1 - 100 (made a function in the controller to display them, can manipulate it 
+in the future to hide taken slots).
+
+-         int shelf_slot = (int) shelfSlotTaskDD.getSelectedItem();
+shelf slots an int, so we store it like that. using index doesnt make sense in this case either
+        int duration_min = (int) durationNewTaskMinsDD.getSelectedItem();
+same thing.
+- you put the 'hrs' in the dropdown. why??? put it as text on the page instead, makes no sense repeated in the dd
+
+-         duration_min += duration_hours*60;
+added the hours to the total time (you didnt use the hours before)
