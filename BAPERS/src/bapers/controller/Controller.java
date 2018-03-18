@@ -6,8 +6,13 @@
 package bapers.controller;
 
 import bapers.database.DBImpl;
+import bapers.user.UserDetails;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,17 +28,13 @@ public class Controller {
         conn = database.connect();
     }
 
-    public boolean findUser(String userNumber, String firstName, String lastName, String role) {
+    public ArrayList<UserDetails> findUser(String userNumber, String firstName, String lastName, String role) {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT * from user WHERE 1=1 ");
 
         if (!userNumber.isEmpty()) {
             sb.append("AND account_no = ").append(Integer.parseInt(userNumber));
         } else {
-            boolean a = !firstName.isEmpty();
-            boolean b = !lastName.isEmpty();
-            boolean c = !role.equals("Any");
-
             if (!firstName.isEmpty()) {
                 sb.append(" AND firstname = '").append(firstName).append("'");
             }
@@ -63,8 +64,18 @@ public class Controller {
         }
         System.out.println(sb.toString());
         ResultSet rs = database.read(sb.toString(), conn);
-        System.out.println("yo");
-        return false;
+
+        ArrayList<UserDetails> userList = new ArrayList<>();
+        UserDetails user;
+        try {
+            while (rs.next()) {
+                user = new UserDetails(rs.getInt("account_no"), rs.getString("firstname"), rs.getString("lastname"), rs.getBlob("password_hash"), rs.getTimestamp("registration_date"), rs.getInt("Role_role_id"));
+                userList.add(user);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return userList;
     }
 
 }

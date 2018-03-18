@@ -6,8 +6,10 @@
 package bapers.gui;
 
 import bapers.controller.Controller;
+import bapers.user.UserDetails;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
@@ -79,6 +81,7 @@ public class MainFrame extends javax.swing.JFrame {
         chooseLocationButton = new javax.swing.JButton();
         locationChosenField = new javax.swing.JTextField();
         backupDestinationLabel = new javax.swing.JLabel();
+        userResultsPage = new javax.swing.JPanel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -89,9 +92,7 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -480,6 +481,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(backupPage, "backup");
 
+        userResultsPage.setBackground(new java.awt.Color(61, 96, 146));
+        userResultsPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        userResultsPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        javax.swing.GroupLayout userResultsPageLayout = new javax.swing.GroupLayout(userResultsPage);
+        userResultsPage.setLayout(userResultsPageLayout);
+        userResultsPageLayout.setHorizontalGroup(
+            userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        userResultsPageLayout.setVerticalGroup(
+            userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        cardPanel1.add(userResultsPage, "userResults");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -778,7 +796,8 @@ public class MainFrame extends javax.swing.JFrame {
         
        
         if (valid) {
-            controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
+            ArrayList<UserDetails> users = controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
+            System.out.println(users.get(0).getFirstname());
         }
 
     }//GEN-LAST:event_searchUserButtonActionPerformed
@@ -862,6 +881,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel userLastnameLabel;
     private javax.swing.JLabel userLastnameLabel1;
     private javax.swing.JLabel userNumberLabel;
+    private javax.swing.JPanel userResultsPage;
     private javax.swing.JPanel userSearchPage;
     private javax.swing.JPanel welcomeBar;
     private javax.swing.JPanel welcomePage;
