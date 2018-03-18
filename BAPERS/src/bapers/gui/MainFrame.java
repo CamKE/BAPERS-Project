@@ -798,6 +798,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (valid) {
             ArrayList<UserDetails> users = controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
             System.out.println(users.get(0).getFirstname());
+            //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
         }
 
     }//GEN-LAST:event_searchUserButtonActionPerformed
