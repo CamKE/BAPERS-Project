@@ -775,9 +775,10 @@ public class MainFrame extends javax.swing.JFrame {
                 valid = false;
             }
         }
-
+        
+       
         if (valid) {
-            controller.findUser(Integer.parseInt(userNumber), firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
+            controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
         }
 
     }//GEN-LAST:event_searchUserButtonActionPerformed
