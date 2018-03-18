@@ -646,9 +646,8 @@ public class MainFrame extends javax.swing.JFrame {
                 if (processComplete == 0) {
                     JOptionPane.showMessageDialog(null, "Restore done");
                     fileChosenField.setText(null);
-                    logOutButton.doClick();
+                    backButton.doClick();
                 } else {
-                    System.out.println(processComplete);
                     JOptionPane.showMessageDialog(null, "Restore failed");
                 }
             } catch (Exception ex) {
@@ -706,7 +705,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
-                    JOptionPane.showMessageDialog(null, "Backup created");
+                    JOptionPane.showMessageDialog(null, "Backup '" + filename + "' created");
                     locationChosenField.setText(null);
                     logOutButton.doClick();
                 } else {
@@ -743,12 +742,44 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserButtonActionPerformed
         // TODO add your handling code here:
-        //checks whether usernumber field only contains digits
-        System.out.println(Pattern.matches("[a-z]","j"));
+        String userNumber = UserNumberField.getText();
+        String firstName = UserFirstnameField.getText();
+        String lastName = UserLastnameField.getText();
+        boolean valid = true;
+
         //regex needs to be recapped
-        if (Pattern.matches("\\d","8") == false) {
-            JOptionPane.showMessageDialog(null, "User number: Numbers only");
+        if (!userNumber.isEmpty()) {
+            if (!Pattern.matches("(\\d)+", userNumber)) {
+                JOptionPane.showMessageDialog(null, "User number: Numbers only");
+                valid = false;
+            } else if (userNumber.length() > 5) {
+                JOptionPane.showMessageDialog(null, "User number: Cannot be longer than five digits");
+                valid = false;
+            }
         }
+        if (!firstName.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", firstName)) {
+                JOptionPane.showMessageDialog(null, "User firstname: letters only");
+                valid = false;
+            } else if (firstName.length() > 35) {
+                JOptionPane.showMessageDialog(null, "User firstname: Cannot be longer than 35 characters");
+                valid = false;
+            }
+        }
+        if (!lastName.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", lastName)) {
+                JOptionPane.showMessageDialog(null, "User lastname: letters only");
+                valid = false;
+            } else if (lastName.length() > 35) {
+                JOptionPane.showMessageDialog(null, "User lastname: Cannot be longer than 35 characters");
+                valid = false;
+            }
+        }
+
+        if (valid) {
+            controller.findUser(Integer.parseInt(userNumber), firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
+        }
+
     }//GEN-LAST:event_searchUserButtonActionPerformed
 
     private void UserRoleSearchDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserRoleSearchDropActionPerformed
