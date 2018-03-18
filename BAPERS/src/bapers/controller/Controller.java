@@ -29,7 +29,7 @@ public class Controller {
 
        if (!userNumber.isEmpty())
        {
-           sql = sql.concat("account_no = " + Integer.parseInt(userNumber));
+           sql = sql.concat("account_no = '" + Integer.parseInt(userNumber) + "");
        } else {
            
        }
