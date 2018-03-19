@@ -5,7 +5,7 @@
  */
 package bapers.acct;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -17,55 +17,61 @@ public class Invoice {
         AWAITINGPAYMENT, PAIDONTIME, PAIDLATE;
     }
     
-    private final int Invoice_no;
-    private final int Job_job_no;
-    private final double total_payable;
-    private final Date date_issued;
-    private Status invoice_status = Status.AWAITINGPAYMENT;
-    private final String invoice_location;
+    private final int invoiceNo;
+    private final int jobJobNo;
+    private final double totalPayable;
+    private final Date dateIssued;
+    private Status invoiceStatus = Status.AWAITINGPAYMENT;
+    private final String invoiceLocation;
 
-    public Invoice(int Invoice_no, int Job_job_no, double total_payable, Date date_issued, String invoice_status, String invoice_location) {
-        this.Invoice_no = Invoice_no;
-        this.Job_job_no = Job_job_no;
-        this.total_payable = total_payable;
-        this.date_issued = date_issued;
-        this.invoice_location = invoice_location;
+    public Invoice(int invoiceNo, int jobJobNo, double totalPayable, Date dateIssued, String invoiceStatus, String invoiceLocation) {
+        this.invoiceNo = invoiceNo;
+        this.jobJobNo = jobJobNo;
+        this.totalPayable = totalPayable;
+        this.dateIssued = dateIssued;
+        this.invoiceLocation = invoiceLocation;
         
-        if (invoice_status.equals("Awaiting Payment")) {
-            this.invoice_status = Status.AWAITINGPAYMENT;
-        } else if (invoice_status.equals("Paid Late")) {
-            this.invoice_status = Status.PAIDLATE;
-        } else if (invoice_status.equals("Paid On Time")) {
-            this.invoice_status = Status.PAIDONTIME;
+        switch (invoiceStatus) {
+            case "Awaiting Payment":
+                this.invoiceStatus = Status.AWAITINGPAYMENT;
+                break;
+            case "Paid Late":
+                this.invoiceStatus = Status.PAIDLATE;
+                break;
+            case "Paid On Time":
+                this.invoiceStatus = Status.PAIDONTIME;
+                break;
+            default:
+                break;
         }
     }
 
-    public int getInvoice_no() {
-        return Invoice_no;
+    public int getInvoiceNo() {
+        return invoiceNo;
     }
 
-    public int getJob_job_no() {
-        return Job_job_no;
+    public int getJobJobNo() {
+        return jobJobNo;
     }
 
-    public double getTotal_payable() {
-        return total_payable;
+    public double getTotalPayable() {
+        return totalPayable;
     }
 
-    public Date getDate_issued() {
-        return date_issued;
+    public Date getDateIssued() {
+        return dateIssued;
     }
 
-    public Status getInvoice_status() {
-        return invoice_status;
+    public Status getInvoiceStatus() {
+        return invoiceStatus;
     }
 
-    public String getInvoice_location() {
-        return invoice_location;
+    public String getInvoiceLocation() {
+        return invoiceLocation;
     }
 
-    public void setInvoice_status(Status invoice_status) {
-        this.invoice_status = invoice_status;
+    public void setInvoiceStatus(Status invoiceStatus) {
+        this.invoiceStatus = invoiceStatus;
     }
     
 }
