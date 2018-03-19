@@ -529,8 +529,8 @@ public class MainFrame extends javax.swing.JFrame {
         String userID = userIDField.getText();
         String password = passwordField.getText();
 
-//Check fields are not empty
-        if (userID.equals("")) {
+        //Check fields are not empty
+        if (userID.equals("") || password.equals("")) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
         }
@@ -542,6 +542,7 @@ public class MainFrame extends javax.swing.JFrame {
         switch (roleID) {
             case 1:
                 System.out.println("Technician homepage");
+                //Insert code to show pages here:
                 //card1.show(cardPanel1, "restore");
                 //card2.show(cardPanel2, "welcomeBar2");
                 break;
@@ -555,7 +556,7 @@ public class MainFrame extends javax.swing.JFrame {
                 System.out.println("Receptionist homepage");
                 break;
             case 0:
-                JOptionPane.showMessageDialog(null, "Incorrect account number");
+                JOptionPane.showMessageDialog(null, "Invalid User details");
         }
 
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -628,6 +629,8 @@ public class MainFrame extends javax.swing.JFrame {
             //Insert pop up error
         }
 
+        //Get RoleID
+        roleID = controller.getRole(role);
  
         //Will only execute method in controller if all preconditions are met
         if (valid) {
@@ -638,20 +641,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
         
-              switch (role) {
-            case "Technician":
-                roleID = 1;
-                break;
-            case "Office Manager":
-                roleID = 2;
-                break;
-            case "Shift Manager":
-                roleID = 3;
-                break;
-            case "Receptionist":
-                roleID = 4;
-                break;
-        }
+           
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void userRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userRoleComboBoxActionPerformed

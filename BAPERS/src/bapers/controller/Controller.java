@@ -6,8 +6,10 @@
 package bapers.controller;
 
 import bapers.database.DBImpl;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
+
 
 /**
  *
@@ -17,7 +19,7 @@ public class Controller {
 
     private DBImpl database;
     private Connection conn;
-    private ResultSet rs, rsPassword;
+    private ResultSet rs;
 
     public Controller() {
         database = new DBImpl();
@@ -27,10 +29,14 @@ public class Controller {
 
     public int login(String userID, String password) {
         int roleId = 0;
-        String userPassword;
+        int hashPassword = password.hashCode();
         try {
-            String userSQL = "SELECT* FROM USER WHERE account_no ='" + userID + "';";
-            rs = database.read(userSQL, conn);
+
+            //Check user details sql query
+            String SQL = "SELECT* FROM USER WHERE account_no ='" + userID + "' and password_hash = cast('" + hashPassword + "' as BINARY(32));";
+            rs = database.read(SQL, conn);
+
+            //If user details are valid
             if (rs.next()) {
                 roleId = Integer.parseInt(rs.getString("Role_role_id"));
             } else {
@@ -46,9 +52,11 @@ public class Controller {
 
     public boolean createUser(String firstname, String lastName, String password, int roleId) {
         boolean success = false;
-         String SQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id) Values ('"+firstname+"','"+lastName+"','"+password+"','"+roleId+"');";
+        int hashPassword = password.hashCode();
+        String userSQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id) VALUES ('" + firstname + "','" + lastName + "','" + hashPassword + "','" + roleId + "');";
+
         try {
-            database.write(SQL, conn);
+            database.write(userSQL, conn);
             success = true;
         } catch (Exception e) {
             System.out.println("Create user Error");
@@ -56,4 +64,24 @@ public class Controller {
         return success;
     }
 
+    public int getRole(String role) {
+        int roleID = 0;
+        switch (role) {
+            case "Technician":
+                roleID = 1;
+                break;
+            case "Office Manager":
+                roleID = 2;
+                break;
+            case "Shift Manager":
+                roleID = 3;
+                break;
+            case "Receptionist":
+                roleID = 4;
+                break;
+        }
+        return roleID;
+    }
+
+  
 }
