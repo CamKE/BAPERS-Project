@@ -43,17 +43,18 @@ public class Controller {
     }
 
     public String[] getStandardJobs() {
-        // ArrayList roles = new ArrayList();
-        //should there be this much code in a controller????
         String[] roles = new String[numStandardJobs()];
         int i = 0;
-        String sql = "select job_description from standardjob";
+        String sql = "select * from standardjob";
 
         //close resultset after use
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
-                roles[i] = result.getString("job_description");
-                i++;
+                //roles[i] = result.getString("job_description");
+                //i++;
+                
+                String[] token;
+                
             }
         } catch (SQLException ex) {
             System.out.println(ex);
