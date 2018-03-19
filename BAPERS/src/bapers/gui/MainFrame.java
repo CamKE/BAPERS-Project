@@ -9,6 +9,7 @@ import bapers.acct.Customer;
 import bapers.acct.Invoice;
 import bapers.acct.Material;
 import bapers.acct.Payment;
+import bapers.acct.StandardJob;
 import bapers.controller.Controller;
 import java.awt.CardLayout;
 import java.text.ParseException;
@@ -28,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     // Lists
     List<Material> materials = new ArrayList<>();
-    List<String> stdJobs = new ArrayList<>();
+    List<StandardJob> stdJobs = new ArrayList<>();
     List<Invoice> selectedInvoices = new ArrayList<>();
     
     DefaultListModel t = new DefaultListModel();
@@ -2715,6 +2716,12 @@ public class MainFrame extends javax.swing.JFrame {
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         // TODO add your handling code here
 //        jList3.getModel().getElementAt(jList3.getSelectedIndex());
+        if (jList3.isSelectedIndex(jList3.getSelectedIndex())) {
+            stdJobs.remove(jList3.getSelectedIndex());
+            t2.remove(jList3.getSelectedIndex());
+        } else {
+            System.out.println("You need to select a standard job to delete");
+        }
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
@@ -2732,12 +2739,18 @@ public class MainFrame extends javax.swing.JFrame {
     private void addJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJobButtonActionPerformed
         // TODO add your handling code here:
         //selectStdJob.getSelectedItem();
-        stdJobs.add(selectStdJob.getSelectedItem().toString());
+        double total = 0;
+        t2.clear();
+        stdJobs.add(new StandardJob("12","12",21));
+        selectStdJob.getSelectedItem();
             
-//        for (int i = 0; i < stdJobs.size(); ++i)
-//            t2.addElement(stdJobs.get(i));
+        for (int i = 0; i < stdJobs.size(); ++i) {
+            t2.addElement(stdJobs.get(i));
+            total += stdJobs.get(i).getPrice();
+        }
             
         jList3.setModel(t2);
+        totalAmountLabel.setText("£" + total);
     }//GEN-LAST:event_addJobButtonActionPerformed
 
     private void cancelAcceptJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAcceptJobButtonActionPerformed
