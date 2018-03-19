@@ -56,6 +56,7 @@ public class Controller {
                 departmentCode = "PD";
                 break; // optional
         }
+        //gets the data from the SQL database  
         String SQL = "INSERT INTO TASK(description,duration_min,shelf_slot,price,Department_department_code) VALUES ('" + description1 + "','" + duration1 + "','" + shelf_slot1 + "','" + price1 + "','" + departmentCode + "');";
         try {
             database.write(SQL, conn);
@@ -65,7 +66,7 @@ public class Controller {
         }
         return success;
     }
-    
+    // A loop that allows for 100 different shelf slots
     public String[] getShelfSlots()
     {
         String[] shelfSlots = new String[100];

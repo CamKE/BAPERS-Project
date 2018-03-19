@@ -1454,7 +1454,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:                                          
 
         boolean valid = true;
-        //Initialise values
+        //Initialise values to get the data from the GUI buttons
         String description = descriptionNewTaskField.getText();
         double price = Double.parseDouble(priceNewTaskField.getText());
         int duration_min =  Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
@@ -1465,7 +1465,7 @@ public class MainFrame extends javax.swing.JFrame {
         duration_min += duration_hours*60;
         
 
-        //Check fields are not empty
+        //Check fields are not empty in the GUI, then pop up will show if no data is inserted
         if (description.equals("") || price == 0 ) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
