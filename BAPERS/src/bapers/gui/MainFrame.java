@@ -2734,8 +2734,8 @@ public class MainFrame extends javax.swing.JFrame {
         //selectStdJob.getSelectedItem();
         stdJobs.add(selectStdJob.getSelectedItem().toString());
             
-        for (int i = 0; i < stdJobs.size(); ++i)
-            t2.addElement(stdJobs.get(i));
+//        for (int i = 0; i < stdJobs.size(); ++i)
+//            t2.addElement(stdJobs.get(i));
             
         jList3.setModel(t2);
     }//GEN-LAST:event_addJobButtonActionPerformed
