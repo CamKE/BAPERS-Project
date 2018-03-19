@@ -12,38 +12,27 @@ import java.sql.Date;
  * @author Kelvin
  */
 public class Payment {
-    private double amount;
-    private boolean card;
-    private Date dateOfPayment;
+    
+//    paymentNo
+//    total
+//    paymentType
+//    paymentDate
+//    invoiceInvoiceNo
+//    cardDetailsLast4digits
+//    cardDetailsExpiryDate
+            
+    private int paymentNo;
+    private double total;
+    private String paymentType;
+    private int paymentDate;
+    private int invoiceNumber;
 
-    public Payment(double amount, boolean card, Date dateOfPayment) {
-        this.amount = amount;
-        this.card = card;
-        this.dateOfPayment = dateOfPayment;
+    public Payment(int paymentNo, double total, int paymentDate, int invoiceNumber) {
+        this.paymentNo = paymentNo;
+        this.total = total;
+        this.paymentDate = paymentDate;
+        this.invoiceNumber = invoiceNumber;
     }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public boolean isCard() {
-        return card;
-    }
-
-    public void setCard(boolean card) {
-        this.card = card;
-    }
-
-    public Date getDateOfPayment() {
-        return dateOfPayment;
-    }
-
-    public void setDateOfPayment(Date dateOfPayment) {
-        this.dateOfPayment = dateOfPayment;
-    }
+    
     
 }
