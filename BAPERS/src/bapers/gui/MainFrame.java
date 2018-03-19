@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -85,6 +86,9 @@ public class MainFrame extends javax.swing.JFrame {
         userResultsPage = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         userResultsTable = new javax.swing.JTable();
+        searchAgainButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        changeRoleButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -499,14 +503,55 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Account number", "Firstname", "Lastname", "Role", "Date registered", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         userResultsTable.setMaximumSize(new java.awt.Dimension(750, 500));
         userResultsTable.setMinimumSize(new java.awt.Dimension(750, 500));
         userResultsTable.setPreferredSize(new java.awt.Dimension(750, 500));
         jScrollPane1.setViewportView(userResultsTable);
         if (userResultsTable.getColumnModel().getColumnCount() > 0) {
+            userResultsTable.getColumnModel().getColumn(0).setResizable(false);
+            userResultsTable.getColumnModel().getColumn(1).setResizable(false);
             userResultsTable.getColumnModel().getColumn(2).setResizable(false);
+            userResultsTable.getColumnModel().getColumn(3).setResizable(false);
+            userResultsTable.getColumnModel().getColumn(4).setResizable(false);
+            userResultsTable.getColumnModel().getColumn(5).setResizable(false);
         }
+
+        searchAgainButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        searchAgainButton.setText("Search Again");
+        searchAgainButton.setMaximumSize(new java.awt.Dimension(175, 45));
+        searchAgainButton.setMinimumSize(new java.awt.Dimension(175, 45));
+        searchAgainButton.setPreferredSize(new java.awt.Dimension(175, 45));
+
+        deleteButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        deleteButton.setText("Delete");
+        deleteButton.setMaximumSize(new java.awt.Dimension(130, 45));
+        deleteButton.setMinimumSize(new java.awt.Dimension(130, 45));
+        deleteButton.setPreferredSize(new java.awt.Dimension(130, 45));
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        changeRoleButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        changeRoleButton.setText("Change role");
+        changeRoleButton.setMaximumSize(new java.awt.Dimension(165, 45));
+        changeRoleButton.setMinimumSize(new java.awt.Dimension(165, 45));
+        changeRoleButton.setPreferredSize(new java.awt.Dimension(165, 45));
+        changeRoleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeRoleButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userResultsPageLayout = new javax.swing.GroupLayout(userResultsPage);
         userResultsPage.setLayout(userResultsPageLayout);
@@ -514,15 +559,27 @@ public class MainFrame extends javax.swing.JFrame {
             userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userResultsPageLayout.createSequentialGroup()
                 .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(userResultsPageLayout.createSequentialGroup()
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(changeRoleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75))
         );
         userResultsPageLayout.setVerticalGroup(
             userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userResultsPageLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(143, 143, 143))
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changeRoleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(searchAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106))
         );
 
         cardPanel1.add(userResultsPage, "userResults");
@@ -682,7 +739,7 @@ public class MainFrame extends javax.swing.JFrame {
         String[] restoreCmd = new String[]{"C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe", "--user=root", "--password=password", "-e", "source " + fileChosenField.getText()};
 
         if (fileChosenField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please select a file");
+            JOptionPane.showMessageDialog(this, "Please select a file");
         } else {
             try {
                 Runtime runtime = Runtime.getRuntime();
@@ -691,11 +748,11 @@ public class MainFrame extends javax.swing.JFrame {
 
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
-                    JOptionPane.showMessageDialog(null, "Restore done");
+                    JOptionPane.showMessageDialog(this, "Restore done");
                     fileChosenField.setText(null);
                     backButton.doClick();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Restore failed");
+                    JOptionPane.showMessageDialog(this, "Restore failed");
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
@@ -740,7 +797,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
         // TODO add your handling code here:
         if (locationChosenField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please select a directory");
+            JOptionPane.showMessageDialog(this, "Please select a directory");
         } else {
             try {
                 Runtime runtime = Runtime.getRuntime();
@@ -752,11 +809,11 @@ public class MainFrame extends javax.swing.JFrame {
 
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
-                    JOptionPane.showMessageDialog(null, "Backup '" + filename + "' created");
+                    JOptionPane.showMessageDialog(this, "Backup '" + filename + "' created");
                     locationChosenField.setText(null);
                     logOutButton.doClick();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Backup failed");
+                    JOptionPane.showMessageDialog(this, "Backup failed");
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
@@ -797,28 +854,28 @@ public class MainFrame extends javax.swing.JFrame {
         //regex needs to be recapped
         if (!userNumber.isEmpty()) {
             if (!Pattern.matches("(\\d)+", userNumber)) {
-                JOptionPane.showMessageDialog(null, "User number: Numbers only");
+                JOptionPane.showMessageDialog(this, "User number: Numbers only");
                 valid = false;
             } else if (userNumber.length() > 5) {
-                JOptionPane.showMessageDialog(null, "User number: Cannot be longer than five digits");
+                JOptionPane.showMessageDialog(this, "User number: Cannot be longer than five digits");
                 valid = false;
             }
         }
         if (!firstName.isEmpty()) {
             if (!Pattern.matches("(\\D)+", firstName)) {
-                JOptionPane.showMessageDialog(null, "User firstname: letters only");
+                JOptionPane.showMessageDialog(this, "User firstname: letters only");
                 valid = false;
             } else if (firstName.length() > 35) {
-                JOptionPane.showMessageDialog(null, "User firstname: Cannot be longer than 35 characters");
+                JOptionPane.showMessageDialog(this, "User firstname: Cannot be longer than 35 characters");
                 valid = false;
             }
         }
         if (!lastName.isEmpty()) {
             if (!Pattern.matches("(\\D)+", lastName)) {
-                JOptionPane.showMessageDialog(null, "User lastname: letters only");
+                JOptionPane.showMessageDialog(this, "User lastname: letters only");
                 valid = false;
             } else if (lastName.length() > 35) {
-                JOptionPane.showMessageDialog(null, "User lastname: Cannot be longer than 35 characters");
+                JOptionPane.showMessageDialog(this, "User lastname: Cannot be longer than 35 characters");
                 valid = false;
             }
         }
@@ -840,6 +897,9 @@ public class MainFrame extends javax.swing.JFrame {
             card1.show(cardPanel1, "userResults");
             //card2.show(cardPanel2, "homeBar");
             pageLabel.setText("User results page");
+
+            userResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
             //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
         }
 
@@ -848,6 +908,33 @@ public class MainFrame extends javax.swing.JFrame {
     private void UserRoleSearchDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserRoleSearchDropActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UserRoleSearchDropActionPerformed
+
+    private void changeRoleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeRoleButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changeRoleButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = userResultsTable.getSelectedRow();
+        if (selectedRow != -1) {
+            int userId = (int) userResultsTable.getValueAt(selectedRow, 0);
+            int response = JOptionPane.showConfirmDialog(this, "Are you sure you would like to delete user with id " + userId + "?");
+
+            if (response == 0) {
+                String outcome;
+                if (controller.deleteUser(userId)) {
+                    outcome = "Success";
+                    DefaultTableModel tblModel = (DefaultTableModel) userResultsTable.getModel();
+                    tblModel.removeRow(selectedRow);
+                } else {
+                    outcome = "Fail";
+                }
+                JOptionPane.showMessageDialog(this, outcome);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -899,8 +986,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel backupPage;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
+    private javax.swing.JButton changeRoleButton;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
     private javax.swing.JPanel homeBar;
@@ -919,6 +1008,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
+    private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchUserButton;
     private javax.swing.JLabel userFirstnameLabel;
     private javax.swing.JTextField userIDField;

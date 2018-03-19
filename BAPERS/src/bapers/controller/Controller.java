@@ -78,4 +78,9 @@ public class Controller {
         return userList;
     }
 
+    public boolean deleteUser(int userId) {
+        String sql = "DELETE FROM user WHERE account_no = " + userId;
+        
+        return database.write(sql, conn) != 0;
+    }
 }
