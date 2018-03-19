@@ -5,10 +5,16 @@
  */
 package bapers.controller;
 
+import bapers.acct.Customer;
+import bapers.acct.Invoice;
 import bapers.database.DBImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,8 +22,8 @@ import java.sql.SQLException;
  */
 public class Controller {
 
-    private DBImpl database;
-    private Connection conn;
+    private final DBImpl database;
+    private final Connection conn;
 
     public Controller() {
         database = new DBImpl();
@@ -54,34 +60,24 @@ public class Controller {
         }
         return roles;
     }
-
-//    public boolean createUser(String firstname, String lastname, int role, char[] password) {
-//        int role_id = role+1;
-//        //fix this
-//       String sql = "INSERT INTO user(firstname,lastname,password_hash,Role_role_id) VALUES (firstname,lastname,null,"+role_id+")";
-//        if (database.write(sql, conn) != 0) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-
-//    public String[] getRoles() {
-//        // ArrayList roles = new ArrayList();
-//        //should there be this much code in a controller????
-//        String[] roles = new String[4];
-//        int i = 0;
-//        String sql = "select role_description from role";
-//
-//        //close resultset after use
-//        try (ResultSet result = database.read(sql, conn)) {
-//            while (result.next()) {
-//                roles[i] = result.getString("role_description");
-//                i++;
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//        }
-//        return roles;
-//    }
+    
+    public void createCustomerAccount(Customer cust) {
+        String sql = "INSERT INTO CUSTOMER VALUES";
+    }
+    
+    public ArrayList<Invoice> getInvoices() throws ParseException {
+        String sql = "";
+        
+        // putting data into array list
+        ArrayList<Invoice> invoices = new ArrayList<>();
+       
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = format.parse("2012-12-13 14:54:30"); 
+        
+        Invoice i;
+        i = new Invoice(2, 2, 20, new Date(), "Awaiting payment", "Test");
+        
+        invoices.add(i);
+        return invoices;
+    }
 }
