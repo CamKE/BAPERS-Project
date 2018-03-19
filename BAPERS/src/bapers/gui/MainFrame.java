@@ -95,7 +95,9 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
+        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -488,20 +490,19 @@ public class MainFrame extends javax.swing.JFrame {
         userResultsPage.setMaximumSize(new java.awt.Dimension(900, 640));
         userResultsPage.setMinimumSize(new java.awt.Dimension(900, 640));
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(750, 400));
+
         userResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Account number", "Firstname", "Lastname", "Role", "Date registered", "Action"
             }
         ));
-        userResultsTable.setMaximumSize(new java.awt.Dimension(750, 60));
-        userResultsTable.setMinimumSize(new java.awt.Dimension(750, 60));
-        userResultsTable.setPreferredSize(new java.awt.Dimension(750, 60));
+        userResultsTable.setMaximumSize(new java.awt.Dimension(750, 500));
+        userResultsTable.setMinimumSize(new java.awt.Dimension(750, 500));
+        userResultsTable.setPreferredSize(new java.awt.Dimension(750, 500));
         jScrollPane1.setViewportView(userResultsTable);
         if (userResultsTable.getColumnModel().getColumnCount() > 0) {
             userResultsTable.getColumnModel().getColumn(2).setResizable(false);
@@ -513,15 +514,15 @@ public class MainFrame extends javax.swing.JFrame {
             userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userResultsPageLayout.createSequentialGroup()
                 .addContainerGap(75, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
         );
         userResultsPageLayout.setVerticalGroup(
             userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userResultsPageLayout.createSequentialGroup()
                 .addGap(97, 97, 97)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(143, 143, 143))
         );
 
         cardPanel1.add(userResultsPage, "userResults");
@@ -834,12 +835,11 @@ public class MainFrame extends javax.swing.JFrame {
                 row[3] = users.get(i).getRole_id();
                 row[4] = users.get(i).getDatetime();
                 row[5] = "hello";
-                tblModel.addColumn(row);
+                tblModel.insertRow(i, row);
             }
             card1.show(cardPanel1, "userResults");
             //card2.show(cardPanel2, "homeBar");
             pageLabel.setText("User results page");
-            System.out.println(users.get(0).getFirstname());
             //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
         }
 
