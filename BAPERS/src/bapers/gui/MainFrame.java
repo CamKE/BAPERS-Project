@@ -1466,7 +1466,7 @@ public class MainFrame extends javax.swing.JFrame {
         
 
         //Check fields are not empty
-        if (description.equals("") || price == 0 ) {
+        if (description.isEmpty() || price == 0 ) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
         }
