@@ -21,7 +21,7 @@ public class Controller {
         database = new DBImpl();
         conn = database.connect();
     }
-    
+    //Creates a new standard job using the input from the GUI 
     public boolean createStandardJob(String code1, String job_description1, double price1) {
         boolean success = false;
         String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ('"+code1+"','" +job_description1+"','" +price1+"');";        
@@ -34,7 +34,7 @@ public class Controller {
         }
         return success;
     }
-        //fix this
+        
        
     }
         

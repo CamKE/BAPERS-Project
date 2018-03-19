@@ -380,7 +380,6 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(descriptionField)
                                 .addGap(1, 1, 1))
                             .addComponent(descriptionLabel))
-                        .addGap(18, 18, 18)
                         .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(createStandardJobLayout.createSequentialGroup()
                                 .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -537,7 +536,17 @@ public class MainFrame extends javax.swing.JFrame {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
         }
-        
+        //check code field is not bigger than 6 characters
+        else if (codeField.getText().length() > 6){
+            valid = false;
+            JOptionPane.showMessageDialog(null, "The code cannot be longer than 6 characters");
+        }
+        //check description field is not bigger than 45 characters
+        else if (descriptionField.getText().length() > 45){
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Description cannot be longer than 45 characters");
+        }
+              
         else {
             valid = true;
         }
