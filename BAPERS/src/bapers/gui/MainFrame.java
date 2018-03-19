@@ -517,6 +517,7 @@ public class MainFrame extends javax.swing.JFrame {
         userResultsTable.setMaximumSize(new java.awt.Dimension(750, 500));
         userResultsTable.setMinimumSize(new java.awt.Dimension(750, 500));
         userResultsTable.setPreferredSize(new java.awt.Dimension(750, 500));
+        userResultsTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(userResultsTable);
         if (userResultsTable.getColumnModel().getColumnCount() > 0) {
             userResultsTable.getColumnModel().getColumn(0).setResizable(false);
@@ -532,6 +533,11 @@ public class MainFrame extends javax.swing.JFrame {
         searchAgainButton.setMaximumSize(new java.awt.Dimension(175, 45));
         searchAgainButton.setMinimumSize(new java.awt.Dimension(175, 45));
         searchAgainButton.setPreferredSize(new java.awt.Dimension(175, 45));
+        searchAgainButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchAgainButtonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         deleteButton.setText("Delete");
@@ -923,7 +929,7 @@ public class MainFrame extends javax.swing.JFrame {
                 int newRoleid = controller.convertRole(selectedRole);
                 if (controller.updateUserRole((int) userResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
                     outcome = "Success";
-                    tblModel.setValueAt(newRoleid, selectedRow, 3);
+                    tblModel.setValueAt(newRoleid, userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()), 3);
                 } else {
                     outcome = "Fail";
                 }
@@ -956,6 +962,13 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a row to delete");
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void searchAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "userSearch");
+        pageLabel.setText("User search page");
+        tblModel.setRowCount(0);
+    }//GEN-LAST:event_searchAgainButtonActionPerformed
 
     /**
      * @param args the command line arguments
