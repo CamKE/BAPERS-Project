@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,23 +43,7 @@ public class Controller {
                 sb.append(" AND lastname = '").append(lastName).append("'");
             }
             if (!role.equals("Any")) {
-                int role_id = 0;
-                switch (role) {
-                    case "Office Manager":
-                        role_id = 1;
-                        break;
-                    case "Shift Manager":
-                        role_id = 2;
-                        break;
-                    case "Receptionist":
-                        role_id = 3;
-                        break;
-                    case "Technician":
-                        role_id = 4;
-                        break;
-//                    default: // Optional
-//                    // Statements
-                }
+                int role_id = convertRole(role);
                 sb.append(" AND Role_role_id = ").append(role_id);
             }
         }
@@ -80,6 +65,33 @@ public class Controller {
 
     public boolean deleteUser(int userId) {
         String sql = "DELETE FROM user WHERE account_no = " + userId;
+
+        return database.write(sql, conn) != 0;
+    }
+
+    public int convertRole(String role) {
+        int role_id = 0;
+        switch (role) {
+            case "Office Manager":
+                role_id = 1;
+                break;
+            case "Shift Manager":
+                role_id = 2;
+                break;
+            case "Receptionist":
+                role_id = 3;
+                break;
+            case "Technician":
+                role_id = 4;
+                break;
+        }
+
+        return role_id;
+    }
+    
+    public boolean updateUserRole(int userId,int newRole)
+    {
+        String sql = "UPDATE user SET Role_role_id = " + newRole + " WHERE account_no = " + userId;
         
         return database.write(sql, conn) != 0;
     }

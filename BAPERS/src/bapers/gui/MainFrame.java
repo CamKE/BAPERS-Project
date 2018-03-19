@@ -27,6 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     private CardLayout card1;
     private CardLayout card2;
     private Controller controller;
+    DefaultTableModel tblModel;
 
     /**
      * Creates new form MainFrame
@@ -496,6 +497,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(750, 400));
 
+        userResultsTable.setAutoCreateRowSorter(true);
         userResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -883,7 +885,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (valid) {
             ArrayList<UserDetails> users = controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
 
-            DefaultTableModel tblModel = (DefaultTableModel) userResultsTable.getModel();
+            tblModel = (DefaultTableModel) userResultsTable.getModel();
             Object[] row = new Object[6];
             for (int i = 0; i < users.size(); i++) {
                 row[0] = users.get(i).getAccount_no();
@@ -911,11 +913,30 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void changeRoleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeRoleButtonActionPerformed
         // TODO add your handling code here:
+        int selectedRow = userResultsTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String[] choices = {"Office Manager", "Shift Manager", "Receptionist", "Technician"};
+
+            String selectedRole = (String) JOptionPane.showInputDialog(this, "Select a new role:", "Update user role", JOptionPane.QUESTION_MESSAGE, null, choices, choices[((int) userResultsTable.getValueAt(selectedRow, 3)) - 1]);
+            if (selectedRole != null) {
+                String outcome;
+                int newRoleid = controller.convertRole(selectedRole);
+                if (controller.updateUserRole((int) userResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
+                    outcome = "Success";
+                    tblModel.setValueAt(newRoleid, selectedRow, 3);
+                } else {
+                    outcome = "Fail";
+                }
+                JOptionPane.showMessageDialog(this, outcome);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a row to update");
+        }
     }//GEN-LAST:event_changeRoleButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRow = userResultsTable.getSelectedRow();
+        int selectedRow = userResultsTable.getSelectedRow(); // index 0 here
         if (selectedRow != -1) {
             int userId = (int) userResultsTable.getValueAt(selectedRow, 0);
             int response = JOptionPane.showConfirmDialog(this, "Are you sure you would like to delete user with id " + userId + "?");
@@ -924,8 +945,8 @@ public class MainFrame extends javax.swing.JFrame {
                 String outcome;
                 if (controller.deleteUser(userId)) {
                     outcome = "Success";
-                    DefaultTableModel tblModel = (DefaultTableModel) userResultsTable.getModel();
-                    tblModel.removeRow(selectedRow);
+                    //we need the selected elements position relative to the model before the sort
+                    tblModel.removeRow(userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()));
                 } else {
                     outcome = "Fail";
                 }
