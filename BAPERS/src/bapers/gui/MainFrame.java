@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -82,6 +83,8 @@ public class MainFrame extends javax.swing.JFrame {
         locationChosenField = new javax.swing.JTextField();
         backupDestinationLabel = new javax.swing.JLabel();
         userResultsPage = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userResultsTable = new javax.swing.JTable();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -485,15 +488,40 @@ public class MainFrame extends javax.swing.JFrame {
         userResultsPage.setMaximumSize(new java.awt.Dimension(900, 640));
         userResultsPage.setMinimumSize(new java.awt.Dimension(900, 640));
 
+        userResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Account number", "Firstname", "Lastname", "Role", "Date registered", "Action"
+            }
+        ));
+        userResultsTable.setMaximumSize(new java.awt.Dimension(750, 60));
+        userResultsTable.setMinimumSize(new java.awt.Dimension(750, 60));
+        userResultsTable.setPreferredSize(new java.awt.Dimension(750, 60));
+        jScrollPane1.setViewportView(userResultsTable);
+        if (userResultsTable.getColumnModel().getColumnCount() > 0) {
+            userResultsTable.getColumnModel().getColumn(2).setResizable(false);
+        }
+
         javax.swing.GroupLayout userResultsPageLayout = new javax.swing.GroupLayout(userResultsPage);
         userResultsPage.setLayout(userResultsPageLayout);
         userResultsPageLayout.setHorizontalGroup(
             userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userResultsPageLayout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
         userResultsPageLayout.setVerticalGroup(
             userResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(userResultsPageLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         cardPanel1.add(userResultsPage, "userResults");
@@ -793,10 +821,24 @@ public class MainFrame extends javax.swing.JFrame {
                 valid = false;
             }
         }
-        
-       
+
         if (valid) {
             ArrayList<UserDetails> users = controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
+
+            DefaultTableModel tblModel = (DefaultTableModel) userResultsTable.getModel();
+            Object[] row = new Object[6];
+            for (int i = 0; i < users.size(); i++) {
+                row[0] = users.get(i).getAccount_no();
+                row[1] = users.get(i).getFirstname();
+                row[2] = users.get(i).getLastname();
+                row[3] = users.get(i).getRole_id();
+                row[4] = users.get(i).getDatetime();
+                row[5] = "hello";
+                tblModel.addColumn(row);
+            }
+            card1.show(cardPanel1, "userResults");
+            //card2.show(cardPanel2, "homeBar");
+            pageLabel.setText("User results page");
             System.out.println(users.get(0).getFirstname());
             //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
         }
@@ -866,6 +908,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField locationChosenField;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton loginButton;
@@ -883,6 +926,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel userLastnameLabel1;
     private javax.swing.JLabel userNumberLabel;
     private javax.swing.JPanel userResultsPage;
+    private javax.swing.JTable userResultsTable;
     private javax.swing.JPanel userSearchPage;
     private javax.swing.JPanel welcomeBar;
     private javax.swing.JPanel welcomePage;
