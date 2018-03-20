@@ -57,6 +57,7 @@ public class MainFrame extends javax.swing.JFrame {
         RestorePageButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        tempButton = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -90,6 +91,19 @@ public class MainFrame extends javax.swing.JFrame {
         searchAgainButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         changeRoleButton = new javax.swing.JButton();
+        createUserPage = new javax.swing.JPanel();
+        newUserLabel = new javax.swing.JLabel();
+        userLastNameField = new javax.swing.JTextField();
+        userFirstNameField = new javax.swing.JTextField();
+        NewRepeatPasswordField = new javax.swing.JPasswordField();
+        NewPasswordField = new javax.swing.JPasswordField();
+        userRoleComboBox = new javax.swing.JComboBox<>();
+        firstnameLabel = new javax.swing.JLabel();
+        lastnameLabel = new javax.swing.JLabel();
+        RoleLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        ReenterPasswordLabel = new javax.swing.JLabel();
+        createUserButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -100,9 +114,7 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -149,6 +161,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        tempButton.setText("tempButton");
+        tempButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tempButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
         welcomePage.setLayout(welcomePageLayout);
         welcomePageLayout.setHorizontalGroup(
@@ -162,6 +181,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(75, 75, 75))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePageLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(tempButton)
+                .addGap(71, 71, 71)
                 .addComponent(jButton1)
                 .addGap(60, 60, 60)
                 .addComponent(jButton2)
@@ -176,11 +197,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(122, 122, 122))
+                    .addComponent(jButton2)
+                    .addComponent(tempButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(99, 99, 99))
         );
 
         cardPanel1.add(welcomePage, "welcome");
@@ -592,6 +614,150 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(userResultsPage, "userResults");
 
+        createUserPage.setBackground(new java.awt.Color(61, 96, 146));
+        createUserPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        createUserPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        newUserLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        newUserLabel.setForeground(new java.awt.Color(255, 255, 255));
+        newUserLabel.setText("New User");
+
+        userLastNameField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        userLastNameField.setMaximumSize(new java.awt.Dimension(250, 42));
+        userLastNameField.setMinimumSize(new java.awt.Dimension(250, 42));
+        userLastNameField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        userFirstNameField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        userFirstNameField.setMaximumSize(new java.awt.Dimension(250, 42));
+        userFirstNameField.setMinimumSize(new java.awt.Dimension(250, 42));
+        userFirstNameField.setPreferredSize(new java.awt.Dimension(250, 42));
+        userFirstNameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userFirstNameFieldActionPerformed(evt);
+            }
+        });
+
+        NewRepeatPasswordField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        NewRepeatPasswordField.setMaximumSize(new java.awt.Dimension(250, 42));
+        NewRepeatPasswordField.setMinimumSize(new java.awt.Dimension(250, 42));
+        NewRepeatPasswordField.setPreferredSize(new java.awt.Dimension(250, 42));
+        NewRepeatPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewRepeatPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        NewPasswordField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        NewPasswordField.setMaximumSize(new java.awt.Dimension(250, 42));
+        NewPasswordField.setMinimumSize(new java.awt.Dimension(250, 42));
+        NewPasswordField.setPreferredSize(new java.awt.Dimension(250, 42));
+        NewPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        userRoleComboBox.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        userRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technician", "Shift Manager", "Office Manager", "Receptionist", " " }));
+        userRoleComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
+        userRoleComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
+        userRoleComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+        userRoleComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userRoleComboBoxActionPerformed(evt);
+            }
+        });
+
+        firstnameLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        firstnameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        firstnameLabel.setText("Firstname:");
+
+        lastnameLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lastnameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        lastnameLabel.setText("Lastname:");
+
+        RoleLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        RoleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        RoleLabel.setText("Role:");
+
+        passwordLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setText("Password:");
+
+        ReenterPasswordLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        ReenterPasswordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ReenterPasswordLabel.setText("Reenter password:");
+
+        createUserButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        createUserButton.setText("Create User");
+        createUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createUserButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout createUserPageLayout = new javax.swing.GroupLayout(createUserPage);
+        createUserPage.setLayout(createUserPageLayout);
+        createUserPageLayout.setHorizontalGroup(
+            createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createUserPageLayout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lastnameLabel)
+                    .addComponent(RoleLabel)
+                    .addComponent(passwordLabel)
+                    .addComponent(ReenterPasswordLabel)
+                    .addComponent(firstnameLabel))
+                .addGap(18, 18, 18)
+                .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(userRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userFirstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userLastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NewRepeatPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(204, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createUserPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createUserPageLayout.createSequentialGroup()
+                        .addComponent(createUserButton)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createUserPageLayout.createSequentialGroup()
+                        .addComponent(newUserLabel)
+                        .addGap(362, 362, 362))))
+        );
+        createUserPageLayout.setVerticalGroup(
+            createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createUserPageLayout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(newUserLabel)
+                .addGap(18, 18, 18)
+                .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userFirstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstnameLabel))
+                .addGap(25, 25, 25)
+                .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userLastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastnameLabel))
+                .addGap(25, 25, 25)
+                .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RoleLabel))
+                .addGap(25, 25, 25)
+                .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordLabel))
+                .addGap(25, 25, 25)
+                .addGroup(createUserPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NewRepeatPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReenterPasswordLabel))
+                .addGap(59, 59, 59)
+                .addComponent(createUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+        );
+
+        cardPanel1.add(createUserPage, "createUser");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -717,6 +883,40 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
+                int roleID = -1;
+        boolean valid = true;
+        String userID = userIDField.getText();
+        String password = passwordField.getText();
+
+        //Check fields are not empty
+        if (userID.equals("") || password.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Please insert data");
+        }
+
+        if (valid) {
+            roleID = controller.login(userID,password);
+        }
+
+        switch (roleID) {
+            case 1:
+                System.out.println("Technician homepage");
+                //Insert code to show pages here:
+                //card1.show(cardPanel1, "restore");
+                //card2.show(cardPanel2, "welcomeBar2");
+                break;
+            case 2:
+                System.out.println("Office Manager homepage");
+                break;
+            case 3:
+                System.out.println("Shift Manager homepage");
+                break;
+            case 4:
+                System.out.println("Receptionist homepage");
+                break;
+            case 0:
+                JOptionPane.showMessageDialog(null, "Invalid User details");
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void loginPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPageButtonActionPerformed
@@ -970,6 +1170,70 @@ public class MainFrame extends javax.swing.JFrame {
         tblModel.setRowCount(0);
     }//GEN-LAST:event_searchAgainButtonActionPerformed
 
+    private void tempButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "createUser");
+        card2.show(cardPanel2, "welcomeBar2");
+    }//GEN-LAST:event_tempButtonActionPerformed
+
+    private void userFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFirstNameFieldActionPerformed
+
+    }//GEN-LAST:event_userFirstNameFieldActionPerformed
+
+    private void NewRepeatPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewRepeatPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NewRepeatPasswordFieldActionPerformed
+
+    private void NewPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NewPasswordFieldActionPerformed
+
+    private void userRoleComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userRoleComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userRoleComboBoxActionPerformed
+
+    private void createUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserButtonActionPerformed
+        boolean valid = true;
+        //Initialise values
+        String firstName = userFirstNameField.getText();
+        String surname = userLastNameField.getText();
+        String password = NewPasswordField.getText();
+        String role = (String) userRoleComboBox.getSelectedItem();
+        int roleID = 0;
+
+        //Check first name field
+        if (userFirstNameField.getText().length() > 10) {
+            JOptionPane.showMessageDialog(null, "Name cannot be longer than 10 characters");
+            valid = false;
+        }
+
+        //Check fields are not empty
+        if (firstName.equals("") || surname.equals("") || password.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Please insert data");
+        }
+
+        //Check passwords match
+        if (!NewPasswordField.getText().equals(NewRepeatPasswordField.getText())) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Passwords do not match");
+            //Insert pop up error
+        }
+
+        //Get RoleID
+        roleID = controller.getRole(role);
+
+        //Will only execute method in controller if all preconditions are met
+        if (valid) {
+            if (controller.createUser(firstName, surname, password, roleID)) {
+                JOptionPane.showMessageDialog(null, "User created");
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to create user");
+            }
+        }
+
+    }//GEN-LAST:event_createUserButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1008,8 +1272,12 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BAPERSLabel;
     private javax.swing.JLabel BackupDataLabel;
+    private javax.swing.JPasswordField NewPasswordField;
+    private javax.swing.JPasswordField NewRepeatPasswordField;
+    private javax.swing.JLabel ReenterPasswordLabel;
     private javax.swing.JButton RestoreButton;
     private javax.swing.JButton RestorePageButton;
+    private javax.swing.JLabel RoleLabel;
     private javax.swing.JTextField UserFirstnameField;
     private javax.swing.JTextField UserLastnameField;
     private javax.swing.JTextField UserNumberField;
@@ -1023,34 +1291,44 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton changeRoleButton;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
+    private javax.swing.JButton createUserButton;
+    private javax.swing.JPanel createUserPage;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
+    private javax.swing.JLabel firstnameLabel;
     private javax.swing.JPanel homeBar;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lastnameLabel;
     private javax.swing.JTextField locationChosenField;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JLabel newUserLabel;
     private javax.swing.JLabel pageLabel;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchUserButton;
+    private javax.swing.JButton tempButton;
+    private javax.swing.JTextField userFirstNameField;
     private javax.swing.JLabel userFirstnameLabel;
     private javax.swing.JTextField userIDField;
+    private javax.swing.JTextField userLastNameField;
     private javax.swing.JLabel userLastnameLabel;
     private javax.swing.JLabel userLastnameLabel1;
     private javax.swing.JLabel userNumberLabel;
     private javax.swing.JPanel userResultsPage;
     private javax.swing.JTable userResultsTable;
+    private javax.swing.JComboBox<String> userRoleComboBox;
     private javax.swing.JPanel userSearchPage;
     private javax.swing.JPanel welcomeBar;
     private javax.swing.JPanel welcomePage;

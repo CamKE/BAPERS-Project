@@ -56,7 +56,7 @@ public class Controller {
         int hashPassword = password.hashCode();
         String userSQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id) VALUES ('" + firstname + "','" + lastName + "','" + hashPassword + "','" + roleId + "');";
 
-        return database.write(userSQL, conn) == 0;
+        return database.write(userSQL, conn) != 0;
     }
 
     public int getRole(String role) {
