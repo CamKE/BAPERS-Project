@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,6 +39,7 @@ public class Controller {
         // Closes resultset after use
         try (ResultSet rs = database.read(SQL, conn)) {
             //If user details are valid
+
             if (rs.next()) {
                 role = rs.getString("role_description");
             }
@@ -54,6 +57,23 @@ public class Controller {
 
         // Return whether or not rows have been affected
         return database.write(userSQL, conn) != 0;
+    }
+
+    public int getUserID(String password) {
+        int hashPassword = password.hashCode();
+        int userID = 0;
+        String sql = "SELECT account_no FROM user WHERE password_hash = cast('" + hashPassword + "' as BINARY(32))";
+
+        try (ResultSet rs = database.read(sql, conn)) {
+            if (rs.next())
+            {
+                userID = rs.getInt("account_no");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return userID;
     }
 
     // takes a roles description, and returns its id in the role table
@@ -74,7 +94,7 @@ public class Controller {
     public ArrayList<UserDetails> findUser(String userNumber, String firstName, String lastName, String role) {
         StringBuilder sb = new StringBuilder();
         // 1=1 is ignored by sql. it allows for ease of adding conditions to the statement (AND)
-        sb.append("SELECT * from user WHERE 1=1 ");
+        sb.append("SELECT user.account_no, user.firstname, user.lastname, user.password_hash, user.registration_date, role.role_description from user INNER JOIN role ON user.Role_role_id = role.role_id WHERE 1=1 ");
 
         // The sql statement is constructed based on the values given
         if (!userNumber.isEmpty()) {
@@ -101,7 +121,7 @@ public class Controller {
             //for each user in the results returned
             while (rs.next()) {
                 // place their details into a userdetails object
-                user = new UserDetails(rs.getInt("account_no"), rs.getString("firstname"), rs.getString("lastname"), rs.getBlob("password_hash"), rs.getTimestamp("registration_date"), rs.getInt("Role_role_id"));
+                user = new UserDetails(rs.getInt("account_no"), rs.getString("firstname"), rs.getString("lastname"), rs.getBlob("password_hash"), rs.getTimestamp("registration_date"), rs.getString("role_description"));
                 //add their userdetails object to the arraylist of users
                 userList.add(user);
             }

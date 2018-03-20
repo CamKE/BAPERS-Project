@@ -1442,27 +1442,30 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please insert data");
         } else {
             role = controller.login(userID, password);
+            if (role != null) {
+                switch (role) {
+                    case "Office Manager":
+                        System.out.println("Office Manager");
+                        card1.show(cardPanel1, "officeManagerHomePage");
+                        card2.show(cardPanel2, "homeBar");
+                        pageLabel.setText("User search page");
+                        break;
+                    case "Shift Manager":
+                        System.out.println("Shift Manager");
+                        break;
+                    case "Technician":
+                        System.out.println("Technician");
+                        break;
+                    case "Receptionist":
+                        System.out.println("Receptionist");
+                        break;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid User details");
+            }
+
         }
         System.out.println(role);
-        switch (role) {
-            case "Office Manager":
-                System.out.println("Office Manager");
-                card1.show(cardPanel1, "officeManagerHomePage");
-                card2.show(cardPanel2, "homeBar");
-                pageLabel.setText("User search page");
-                break;
-            case "Shift Manager":
-                System.out.println("Shift Manager");
-                break;
-            case "Technician":
-                System.out.println("Technician");
-                break;
-            case "Receptionist":
-                System.out.println("Receptionist");
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "Invalid User details");
-        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void loginPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPageButtonActionPerformed
@@ -1643,7 +1646,7 @@ public class MainFrame extends javax.swing.JFrame {
                 row[0] = users.get(i).getAccount_no();
                 row[1] = users.get(i).getFirstname();
                 row[2] = users.get(i).getLastname();
-                row[3] = users.get(i).getRole_id();
+                row[3] = users.get(i).getRole();
                 row[4] = users.get(i).getDatetime();
                 row[5] = "hello";
                 tblModel.insertRow(i, row);
@@ -1668,14 +1671,14 @@ public class MainFrame extends javax.swing.JFrame {
         int selectedRow = userResultsTable.getSelectedRow();
         if (selectedRow != -1) {
             String[] choices = {"Office Manager", "Shift Manager", "Receptionist", "Technician"};
-
-            String selectedRole = (String) JOptionPane.showInputDialog(this, "Select a new role:", "Update user role", JOptionPane.QUESTION_MESSAGE, null, choices, choices[((int) userResultsTable.getValueAt(selectedRow, 3)) - 1]);
+            String usersRole = (String) userResultsTable.getValueAt(selectedRow, 3);
+            String selectedRole = (String) JOptionPane.showInputDialog(this, "Select a new role:", "Update user role", JOptionPane.QUESTION_MESSAGE, null, choices, choices[controller.getRoleID(usersRole) - 1]);
             if (selectedRole != null) {
                 String outcome;
                 int newRoleid = controller.getRoleID(selectedRole);
                 if (controller.updateUserRole((int) userResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
                     outcome = "Success";
-                    tblModel.setValueAt(newRoleid, userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()), 3);
+                    tblModel.setValueAt(selectedRole, userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()), 3);
                 } else {
                     outcome = "Fail";
                 }
@@ -1740,7 +1743,6 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_userRoleComboBoxActionPerformed
 
     private void createUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserButtonActionPerformed
-        boolean valid = true;
         //Initialise values
         String firstName = userFirstNameField.getText();
         String surname = userLastNameField.getText();
@@ -1750,33 +1752,25 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Check first name field
         if (userFirstNameField.getText().length() > 10) {
-            JOptionPane.showMessageDialog(null, "Name cannot be longer than 10 characters");
-            valid = false;
-        }
-
-        //Check fields are not empty
-        if (firstName.equals("") || surname.equals("") || password.equals("")) {
-            valid = false;
-            JOptionPane.showMessageDialog(null, "Please insert data");
-        }
-
-        //Check passwords match
-        if (!NewPasswordField.getText().equals(NewRepeatPasswordField.getText())) {
-            valid = false;
-            JOptionPane.showMessageDialog(null, "Passwords do not match");
+            JOptionPane.showMessageDialog(this, "Name cannot be longer than 10 characters");
+            
+            //Check fields are not empty
+        } else if (firstName.equals("") || surname.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please insert data");
+            
+            //Check passwords match
+        } else if (!NewPasswordField.getText().equals(NewRepeatPasswordField.getText())) {
+            JOptionPane.showMessageDialog(this, "Passwords do not match");
             //Insert pop up error
-        }
-
-        //Get RoleID
-        roleID = controller.getRoleID(role);
-        System.out.println(roleID);
-
-        //Will only execute method in controller if all preconditions are met
-        if (valid) {
+            
+            //Will only execute method in controller if all preconditions are met
+        } else {
+            //Get RoleID
+            roleID = controller.getRoleID(role);
             if (controller.createUser(firstName, surname, password, roleID)) {
-                JOptionPane.showMessageDialog(null, "User created");
+                JOptionPane.showMessageDialog(this, "User created with id: " + controller.getUserID(password));
             } else {
-                JOptionPane.showMessageDialog(null, "Failed to create user");
+                JOptionPane.showMessageDialog(this, "Failed to create user");
             }
         }
 

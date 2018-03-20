@@ -20,15 +20,15 @@ public class UserDetails {
     private String lastname;
     private Blob password;
     private Timestamp datetime;
-    private int role_id;
+    private String role;
 
-    public UserDetails(int account_no, String firstname, String lastname, Blob password, Timestamp datetime, int role_id) {
+    public UserDetails(int account_no, String firstname, String lastname, Blob password, Timestamp datetime, String role) {
         this.account_no = account_no;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.datetime = datetime;
-        this.role_id = role_id;
+        this.role = role;
     }
 
     public int getAccount_no() {
@@ -71,12 +71,12 @@ public class UserDetails {
         this.datetime = datetime;
     }
 
-    public int getRole_id() {
-        return role_id;
+    public String getRole() {
+        return role;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRole(String role_id) {
+        this.role = role_id;
     }
     
     
