@@ -1757,6 +1757,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Accept Job"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceptJobPageButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="collectJobPageButton">
               <Properties>
@@ -1823,6 +1826,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Create Task"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createTaskPageButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -2027,7 +2033,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="createCustomer">
+        <Container class="javax.swing.JPanel" name="createCustomerPage">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[900, 640]"/>
@@ -2636,7 +2642,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="searchCustomer">
+        <Container class="javax.swing.JPanel" name="searchCustomerPage">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[900, 640]"/>
@@ -3305,7 +3311,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="acceptJob">
+        <Container class="javax.swing.JPanel" name="acceptJobPage">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="92" green="60" red="3d" type="rgb"/>
@@ -3831,7 +3837,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="acceptLatePayment">
+        <Container class="javax.swing.JPanel" name="acceptPaymentPage">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[900, 640]"/>
@@ -3845,7 +3851,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="acceptLatePayment"/>
+              <CardConstraints cardName="acceptPayment"/>
             </Constraint>
           </Constraints>
 
@@ -4197,7 +4203,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="searchInvoice">
+        <Container class="javax.swing.JPanel" name="searchInvoicePage">
           <Properties>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[900, 700]"/>

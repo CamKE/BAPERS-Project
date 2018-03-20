@@ -178,7 +178,7 @@ public class MainFrame extends javax.swing.JFrame {
         backupSettingsPageButton = new javax.swing.JButton();
         reportSettingsPageButton = new javax.swing.JButton();
         restoreSettingsPageButton = new javax.swing.JButton();
-        createCustomer = new javax.swing.JPanel();
+        createCustomerPage = new javax.swing.JPanel();
         createCustomerjPanel = new javax.swing.JPanel();
         accountHolderNojLabel = new javax.swing.JLabel();
         prefixjLabel = new javax.swing.JLabel();
@@ -202,7 +202,7 @@ public class MainFrame extends javax.swing.JFrame {
         cityjLabel = new javax.swing.JLabel();
         accountHolderNamejLabel = new javax.swing.JLabel();
         accountHolderNamejTextField = new javax.swing.JTextField();
-        searchCustomer = new javax.swing.JPanel();
+        searchCustomerPage = new javax.swing.JPanel();
         searchCustomerjPanel = new javax.swing.JPanel();
         receptionistjPanel = new javax.swing.JPanel();
         searchCustomerAccountNojLabel = new javax.swing.JLabel();
@@ -233,7 +233,7 @@ public class MainFrame extends javax.swing.JFrame {
         inDefaultjComboBox = new javax.swing.JComboBox<>();
         registrationDatejComboBox = new javax.swing.JComboBox<>();
         isManagerjToggleButton = new javax.swing.JToggleButton();
-        acceptJob = new javax.swing.JPanel();
+        acceptJobPage = new javax.swing.JPanel();
         acceptJobjPanel = new javax.swing.JPanel();
         addMaterialButton = new javax.swing.JButton();
         addJobButton = new javax.swing.JButton();
@@ -260,7 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         specialInstructionjTextField = new javax.swing.JTextField();
-        acceptLatePayment = new javax.swing.JPanel();
+        acceptPaymentPage = new javax.swing.JPanel();
         acceptLatePaymentjPanel = new javax.swing.JPanel();
         expiryDatejLabel = new javax.swing.JLabel();
         last4DigitjTextField = new javax.swing.JTextField();
@@ -277,7 +277,7 @@ public class MainFrame extends javax.swing.JFrame {
         last4DigitjLabel = new javax.swing.JLabel();
         invoicejScrollPane = new javax.swing.JScrollPane();
         invoicejList = new javax.swing.JList<>();
-        searchInvoice = new javax.swing.JPanel();
+        searchInvoicePage = new javax.swing.JPanel();
         searchInvoicejPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         invoicejTable = new javax.swing.JTable();
@@ -1216,6 +1216,11 @@ public class MainFrame extends javax.swing.JFrame {
         jobHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
 
         acceptJobPageButton.setText("Accept Job");
+        acceptJobPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptJobPageButtonActionPerformed(evt);
+            }
+        });
 
         collectJobPageButton.setText("Collect Job");
 
@@ -1254,6 +1259,11 @@ public class MainFrame extends javax.swing.JFrame {
         manageTasksPageButton.setText("Manage Tasks");
 
         createTaskPageButton.setText("Create Task");
+        createTaskPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createTaskPageButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout taskHomePageLayout = new javax.swing.GroupLayout(taskHomePage);
         taskHomePage.setLayout(taskHomePageLayout);
@@ -1400,10 +1410,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(settingsHomePage, "settingsHomePage");
 
-        createCustomer.setMaximumSize(new java.awt.Dimension(900, 640));
-        createCustomer.setMinimumSize(new java.awt.Dimension(900, 640));
-        createCustomer.setName(""); // NOI18N
-        createCustomer.setPreferredSize(new java.awt.Dimension(900, 640));
+        createCustomerPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        createCustomerPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        createCustomerPage.setName(""); // NOI18N
+        createCustomerPage.setPreferredSize(new java.awt.Dimension(900, 640));
 
         createCustomerjPanel.setBackground(new java.awt.Color(61, 96, 146));
         createCustomerjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -1679,32 +1689,32 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(220, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout createCustomerLayout = new javax.swing.GroupLayout(createCustomer);
-        createCustomer.setLayout(createCustomerLayout);
-        createCustomerLayout.setHorizontalGroup(
-            createCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout createCustomerPageLayout = new javax.swing.GroupLayout(createCustomerPage);
+        createCustomerPage.setLayout(createCustomerPageLayout);
+        createCustomerPageLayout.setHorizontalGroup(
+            createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(createCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(createCustomerLayout.createSequentialGroup()
+            .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(createCustomerPageLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(createCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        createCustomerLayout.setVerticalGroup(
-            createCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        createCustomerPageLayout.setVerticalGroup(
+            createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(createCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(createCustomerLayout.createSequentialGroup()
+            .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(createCustomerPageLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(createCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        cardPanel1.add(createCustomer, "createCustomer");
+        cardPanel1.add(createCustomerPage, "createCustomer");
 
-        searchCustomer.setMaximumSize(new java.awt.Dimension(900, 640));
-        searchCustomer.setMinimumSize(new java.awt.Dimension(900, 640));
-        searchCustomer.setPreferredSize(new java.awt.Dimension(900, 640));
+        searchCustomerPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        searchCustomerPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        searchCustomerPage.setPreferredSize(new java.awt.Dimension(900, 640));
 
         searchCustomerjPanel.setBackground(new java.awt.Color(61, 96, 146));
         searchCustomerjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -2005,31 +2015,31 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout searchCustomerLayout = new javax.swing.GroupLayout(searchCustomer);
-        searchCustomer.setLayout(searchCustomerLayout);
-        searchCustomerLayout.setHorizontalGroup(
-            searchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout searchCustomerPageLayout = new javax.swing.GroupLayout(searchCustomerPage);
+        searchCustomerPage.setLayout(searchCustomerPageLayout);
+        searchCustomerPageLayout.setHorizontalGroup(
+            searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(searchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchCustomerLayout.createSequentialGroup()
+            .addGroup(searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchCustomerPageLayout.createSequentialGroup()
                     .addComponent(searchCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        searchCustomerLayout.setVerticalGroup(
-            searchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        searchCustomerPageLayout.setVerticalGroup(
+            searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(searchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchCustomerLayout.createSequentialGroup()
+            .addGroup(searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchCustomerPageLayout.createSequentialGroup()
                     .addComponent(searchCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        cardPanel1.add(searchCustomer, "searchCustomer");
+        cardPanel1.add(searchCustomerPage, "searchCustomer");
 
-        acceptJob.setBackground(new java.awt.Color(61, 96, 146));
-        acceptJob.setMaximumSize(new java.awt.Dimension(900, 640));
-        acceptJob.setMinimumSize(new java.awt.Dimension(900, 640));
-        acceptJob.setPreferredSize(new java.awt.Dimension(900, 640));
+        acceptJobPage.setBackground(new java.awt.Color(61, 96, 146));
+        acceptJobPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        acceptJobPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        acceptJobPage.setPreferredSize(new java.awt.Dimension(900, 640));
 
         acceptJobjPanel.setBackground(new java.awt.Color(61, 96, 146));
         acceptJobjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -2295,25 +2305,25 @@ public class MainFrame extends javax.swing.JFrame {
         percentageLabel.setVisible(false);
         surchargeLabel.setVisible(false);
 
-        javax.swing.GroupLayout acceptJobLayout = new javax.swing.GroupLayout(acceptJob);
-        acceptJob.setLayout(acceptJobLayout);
-        acceptJobLayout.setHorizontalGroup(
-            acceptJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout acceptJobPageLayout = new javax.swing.GroupLayout(acceptJobPage);
+        acceptJobPage.setLayout(acceptJobPageLayout);
+        acceptJobPageLayout.setHorizontalGroup(
+            acceptJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(acceptJobjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        acceptJobLayout.setVerticalGroup(
-            acceptJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptJobLayout.createSequentialGroup()
+        acceptJobPageLayout.setVerticalGroup(
+            acceptJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptJobPageLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(acceptJobjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        cardPanel1.add(acceptJob, "acceptJob");
+        cardPanel1.add(acceptJobPage, "acceptJob");
 
-        acceptLatePayment.setMaximumSize(new java.awt.Dimension(900, 640));
-        acceptLatePayment.setMinimumSize(new java.awt.Dimension(900, 640));
-        acceptLatePayment.setPreferredSize(new java.awt.Dimension(900, 640));
+        acceptPaymentPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        acceptPaymentPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        acceptPaymentPage.setPreferredSize(new java.awt.Dimension(900, 640));
 
         acceptLatePaymentjPanel.setBackground(new java.awt.Color(61, 96, 146));
         acceptLatePaymentjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -2467,31 +2477,31 @@ public class MainFrame extends javax.swing.JFrame {
 
         TotalLatePayjTextField.setEditable(false);
 
-        javax.swing.GroupLayout acceptLatePaymentLayout = new javax.swing.GroupLayout(acceptLatePayment);
-        acceptLatePayment.setLayout(acceptLatePaymentLayout);
-        acceptLatePaymentLayout.setHorizontalGroup(
-            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout acceptPaymentPageLayout = new javax.swing.GroupLayout(acceptPaymentPage);
+        acceptPaymentPage.setLayout(acceptPaymentPageLayout);
+        acceptPaymentPageLayout.setHorizontalGroup(
+            acceptPaymentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
+            .addGroup(acceptPaymentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptPaymentPageLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(acceptLatePaymentjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        acceptLatePaymentLayout.setVerticalGroup(
-            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        acceptPaymentPageLayout.setVerticalGroup(
+            acceptPaymentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
+            .addGroup(acceptPaymentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptPaymentPageLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(acceptLatePaymentjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        cardPanel1.add(acceptLatePayment, "acceptLatePayment");
+        cardPanel1.add(acceptPaymentPage, "acceptPayment");
 
-        searchInvoice.setMaximumSize(new java.awt.Dimension(900, 700));
-        searchInvoice.setMinimumSize(new java.awt.Dimension(900, 700));
+        searchInvoicePage.setMaximumSize(new java.awt.Dimension(900, 700));
+        searchInvoicePage.setMinimumSize(new java.awt.Dimension(900, 700));
 
         searchInvoicejPanel.setBackground(new java.awt.Color(61, 96, 146));
         searchInvoicejPanel.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -2550,28 +2560,28 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(178, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout searchInvoiceLayout = new javax.swing.GroupLayout(searchInvoice);
-        searchInvoice.setLayout(searchInvoiceLayout);
-        searchInvoiceLayout.setHorizontalGroup(
-            searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout searchInvoicePageLayout = new javax.swing.GroupLayout(searchInvoicePage);
+        searchInvoicePage.setLayout(searchInvoicePageLayout);
+        searchInvoicePageLayout.setHorizontalGroup(
+            searchInvoicePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchInvoiceLayout.createSequentialGroup()
+            .addGroup(searchInvoicePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchInvoicePageLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(searchInvoicejPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        searchInvoiceLayout.setVerticalGroup(
-            searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        searchInvoicePageLayout.setVerticalGroup(
+            searchInvoicePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchInvoiceLayout.createSequentialGroup()
+            .addGroup(searchInvoicePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchInvoicePageLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(searchInvoicejPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        cardPanel1.add(searchInvoice, "searchInvoice");
+        cardPanel1.add(searchInvoicePage, "searchInvoice");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -3103,6 +3113,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void acceptPaymentPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentPageButtonActionPerformed
         // TODO add your handling code here:
+        card1.show(cardPanel1, "acceptPayment");
+        homeButton.setVisible(true);
+        pageLabel.setText("Accept payment page");
     }//GEN-LAST:event_acceptPaymentPageButtonActionPerformed
 
     private void jobMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobMenuPageButtonActionPerformed
@@ -3583,6 +3596,18 @@ public class MainFrame extends javax.swing.JFrame {
         card2.show(cardPanel2, "acceptLatePaymentBar");
     }//GEN-LAST:event_cancelInvoiceSeletionjButtonActionPerformed
 
+    private void acceptJobPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptJobPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "acceptJob");
+        pageLabel.setText("Accept Job page");
+    }//GEN-LAST:event_acceptJobPageButtonActionPerformed
+
+    private void createTaskPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "createNewTask");
+        pageLabel.setText("Create task page");
+    }//GEN-LAST:event_createTaskPageButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3632,11 +3657,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField UserLastnameField;
     private javax.swing.JTextField UserNumberField;
     private javax.swing.JComboBox<String> UserRoleSearchDrop;
-    private javax.swing.JPanel acceptJob;
+    private javax.swing.JPanel acceptJobPage;
     private javax.swing.JButton acceptJobPageButton;
     private javax.swing.JPanel acceptJobjPanel;
-    private javax.swing.JPanel acceptLatePayment;
     private javax.swing.JPanel acceptLatePaymentjPanel;
+    private javax.swing.JPanel acceptPaymentPage;
     private javax.swing.JButton acceptPaymentPageButton;
     private javax.swing.JLabel accountHolderNamejLabel;
     private javax.swing.JTextField accountHolderNamejTextField;
@@ -3670,8 +3695,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel cityjLabel;
     private javax.swing.JTextField cityjTextField;
     private javax.swing.JButton collectJobPageButton;
-    private javax.swing.JPanel createCustomer;
     private javax.swing.JButton createCustomerButton;
+    private javax.swing.JPanel createCustomerPage;
     private javax.swing.JButton createCustomerjButton;
     private javax.swing.JPanel createCustomerjPanel;
     private javax.swing.JButton createNewTaskButton;
@@ -3779,13 +3804,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField searchContactFirstNamejTextField;
     private javax.swing.JLabel searchContactSurnamejLabel;
     private javax.swing.JTextField searchContactSurnamejTextField;
-    private javax.swing.JPanel searchCustomer;
     private javax.swing.JLabel searchCustomerAccountNojLabel;
     private javax.swing.JTextField searchCustomerAccountNojTextField;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JButton searchCustomerFJobjButton;
+    private javax.swing.JPanel searchCustomerPage;
     private javax.swing.JPanel searchCustomerjPanel;
-    private javax.swing.JPanel searchInvoice;
+    private javax.swing.JPanel searchInvoicePage;
     private javax.swing.JPanel searchInvoicejPanel;
     private javax.swing.JButton searchUserButton;
     private javax.swing.JButton selectInvoicejButton;
