@@ -7,6 +7,7 @@ package bapers.controller;
 
 import bapers.acct.Customer;
 import bapers.acct.Invoice;
+import bapers.acct.Payment;
 import bapers.database.DBImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -80,5 +81,9 @@ public class Controller {
         
         invoices.add(i);
         return invoices;
+    }
+    
+    public void recordPayment(Payment p) {
+        String sql = "";
     }
 }
