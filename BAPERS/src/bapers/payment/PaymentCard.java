@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-import bapers.acct.PaymentDetails;
+package bapers.payment;
+
 import java.util.Date;
 
 /**

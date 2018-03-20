@@ -5,10 +5,10 @@
  */
 package bapers.controller;
 
-import bapers.acct.CustomerDetails;
-import bapers.acct.Invoice;
-import bapers.acct.PaymentDetails;
+import bapers.customer.CustomerDetails;
 import bapers.database.DBImpl;
+import bapers.job.Invoice;
+import bapers.payment.PaymentDetails;
 import bapers.user.UserDetails;
 import java.sql.Connection;
 import java.sql.ResultSet;

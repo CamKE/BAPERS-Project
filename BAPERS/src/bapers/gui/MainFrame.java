@@ -5,12 +5,13 @@
  */
 package bapers.gui;
 
-import bapers.acct.CustomerDetails;
-import bapers.acct.Invoice;
-import bapers.acct.Material;
-import bapers.acct.PaymentDetails;
-import bapers.acct.StandardJob;
 import bapers.controller.Controller;
+import bapers.customer.CustomerDetails;
+import bapers.job.Invoice;
+import bapers.job.Material;
+import bapers.job.StandardJob;
+import bapers.payment.PaymentCard;
+import bapers.payment.PaymentDetails;
 import bapers.user.UserDetails;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -40,6 +42,16 @@ public class MainFrame extends javax.swing.JFrame {
     private final Controller controller;
     private UserDetails loggedInUser;
     DefaultTableModel tblModel;
+
+    int mCount = 0;
+    List<Material> materials = new ArrayList<>();
+    List<StandardJob> stdJobs = new ArrayList<>();
+    List<Invoice> selectedInvoices = new ArrayList<>();
+
+    // list models that are used to for the scroll
+    DefaultListModel t = new DefaultListModel();
+    DefaultListModel t2 = new DefaultListModel();
+    DefaultTableModel m;
 
     /**
      * Creates new form MainFrame
@@ -3147,6 +3159,18 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_prefixjComboBoxActionPerformed
 
+    private boolean isAllEnteredCorrectly() {
+        // returns true of the fields that the user is required to enter is not false and if they are the right format
+        return !accountHolderNojTextField.getText().equals("") && accountHolderNojTextField.getText().matches("([0-9])+")
+                && !accountHolderNamejTextField.getText().equals("")
+                && !firstNameField.getText().equals("")
+                && !surnameField.getText().equals("")
+                && !streetNameField.getText().equals("")
+                && !postCodeField.getText().equals("")
+                && !cityField.getText().equals("")
+                && !phoneNumberField.getText().equals("") && phoneNumberField.getText().matches("[0][0-9]{9}")
+                && !buildingNumberField.getText().equals("") && buildingNumberField.getText().matches("[0-9]{2}");
+    }
     private void createCustomerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomerjButtonActionPerformed
         // TODO add your handling code here:
         if (isAllEnteredCorrectly()) { // if this method turns true account will be created based on inserted information
@@ -3241,10 +3265,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void isManagerjToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isManagerjToggleButtonActionPerformed
         // TODO add your handling code here:
         // toggles between showing the office manager search and not showing  based on a button being selected
-        if (isManagerjToggleButton.isSelected())
-        managerjPanel.setVisible(true);
-        else
-        managerjPanel.setVisible(false);
+        if (isManagerjToggleButton.isSelected()) {
+            managerjPanel.setVisible(true);
+        } else {
+            managerjPanel.setVisible(false);
+        }
     }//GEN-LAST:event_isManagerjToggleButtonActionPerformed
 
     private void addMaterialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaterialButtonActionPerformed
@@ -3256,7 +3281,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (materialsjTextField.getText().matches("[a-z,A-Z]([a-z,A-Z,\\s])+[a-z,A-Z]")) {
             ++mCount;
             String material = materialsjTextField.getText();
-            materials.add(new Material(mCount,material));
+            materials.add(new Material(mCount, material));
             //            System.out.println(material);
             materialsjTextField.setText("");
 
@@ -3267,8 +3292,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
             jList1.setModel(t);
-            if (!jTextArea2.getText().equals(""))
-            jTextArea2.setText("");
+            if (!jTextArea2.getText().equals("")) {
+                jTextArea2.setText("");
+            }
         } else if (materialsjTextField.getText().matches("\\s+")) {
             System.out.println("You need to enter something other than just white space");
             jTextArea2.setText("You need to enter something other than just white space");
@@ -3285,7 +3311,7 @@ public class MainFrame extends javax.swing.JFrame {
         // adds a selected standard job to a list and arraylist
         double total = 0;
         t2.clear();
-        stdJobs.add(new StandardJob("12","Test",21));
+        stdJobs.add(new StandardJob("12", "Test", 21));
         selectStdJob.getSelectedItem();
 
         for (int i = 0; i < stdJobs.size(); ++i) {
@@ -3386,7 +3412,7 @@ public class MainFrame extends javax.swing.JFrame {
                 System.out.println("Table updated");
             }
         } catch (ParseException ex) {
-            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
             System.out.println("Table not updated");
         }
     }//GEN-LAST:event_selectInvoicejButtonActionPerformed
@@ -3438,11 +3464,9 @@ public class MainFrame extends javax.swing.JFrame {
         PaymentDetails payInfo;
         if (invoicejList.getModel().getSize() != 0) { // first check to see if there is a invoice selected
             if (paymentTypeComboBox.getSelectedItem().toString().equals("Card")) { // if card is selected for payment type
-                if (
-                    // checks to see if format for the card info is entered correctly
-                    expiryDatejTextField.getText().matches("[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
-                    && last4DigitjTextField.getText().matches("[0-9]{4}")
-                ) {
+                if ( // checks to see if format for the card info is entered correctly
+                        expiryDatejTextField.getText().matches("[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
+                        && last4DigitjTextField.getText().matches("[0-9]{4}")) {
                     // grabs infor for card payment
                     int[] paymentNo = new int[selectedInvoices.size()];
                     int[] invoiceNumber = new int[selectedInvoices.size()];
@@ -3460,14 +3484,14 @@ public class MainFrame extends javax.swing.JFrame {
                     final String cardDetailsExpiryDate = expiryDatejTextField.getText();
 
                     PaymentDetails paymentR = new PaymentCard(
-                        paymentNo,
-                        invoiceNumber,
-                        total,
-                        paymentType,
-                        paymentDate,
-                        cardType,
-                        cardDetailsLast4digits,
-                        cardDetailsExpiryDate
+                            paymentNo,
+                            invoiceNumber,
+                            total,
+                            paymentType,
+                            paymentDate,
+                            cardType,
+                            cardDetailsLast4digits,
+                            cardDetailsExpiryDate
                     );
 
                     controller.recordPayment(paymentR);
@@ -3531,8 +3555,9 @@ public class MainFrame extends javax.swing.JFrame {
         selectedInvoices.add(invoice); // adds the invoice to the arraylist
 
         // grabs all elements from arraylist and adds to a model object
-        for (int i = 0; i < selectedInvoices.size(); ++i)
-        t.addElement(selectedInvoices.get(i).getInvoiceLocation());
+        for (int i = 0; i < selectedInvoices.size(); ++i) {
+            t.addElement(selectedInvoices.get(i).getInvoiceLocation());
+        }
 
         invoicejList.setModel(t); // sets the model from the t typed model object
 
@@ -3545,6 +3570,15 @@ public class MainFrame extends javax.swing.JFrame {
         card2.show(cardPanel2, "acceptLatePaymentBar");
     }//GEN-LAST:event_selectSelectedInvoicejButtonActionPerformed
 
+    public double calculateTotal() {
+        //calculates the total amount needed to be paid based on the number and type of
+        //invoices being selected.
+        double totalResult = 0;
+        for (int i = 0; i < selectedInvoices.size(); ++i) {
+            totalResult += selectedInvoices.get(i).getTotalPayable();
+        }
+        return totalResult;
+    }
     private void cancelInvoiceSeletionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelInvoiceSeletionjButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "acceptLatePayment");
