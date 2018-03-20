@@ -65,9 +65,6 @@ public class MainFrame extends javax.swing.JFrame {
         BAPERSLabel = new javax.swing.JLabel();
         loginPageButton = new javax.swing.JButton();
         RestorePageButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        tempButton = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -204,27 +201,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("backup");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("searchuser");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        tempButton.setText("createUser");
-        tempButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tempButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
         welcomePage.setLayout(welcomePageLayout);
         welcomePageLayout.setHorizontalGroup(
@@ -236,14 +212,6 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePageLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(tempButton)
-                .addGap(71, 71, 71)
-                .addComponent(jButton1)
-                .addGap(60, 60, 60)
-                .addComponent(jButton2)
-                .addGap(69, 69, 69))
         );
         welcomePageLayout.setVerticalGroup(
             welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,12 +222,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(tempButton))
-                .addGap(263, 263, 263))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         cardPanel1.add(welcomePage, "welcome");
@@ -1195,6 +1158,11 @@ public class MainFrame extends javax.swing.JFrame {
         userHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
 
         manageUsersPageButton.setText("Manage Users");
+        manageUsersPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageUsersPageButtonActionPerformed(evt);
+            }
+        });
 
         createUserPageButton.setText("Create User");
         createUserPageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1262,6 +1230,11 @@ public class MainFrame extends javax.swing.JFrame {
         settingsHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
 
         backupPageButton.setText("Backup Data");
+        backupPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backupPageButtonActionPerformed(evt);
+            }
+        });
 
         backupSettingsPageButton.setText("Backup Settings");
 
@@ -1467,7 +1440,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 card1.show(cardPanel1, "homePage");
                 card2.show(cardPanel2, "homeBar");
-                pageLabel.setText(role);
+                pageLabel.setText("Welcome, " + role + "!");
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid User details");
             }
@@ -1547,14 +1520,8 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "homePage");
         pageLabel.setText("Backup page");
         homeButton.setVisible(false);
+        pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
     }//GEN-LAST:event_homeButtonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "backup");
-        card2.show(cardPanel2, "homeBar");
-        pageLabel.setText("Backup page");
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         // TODO add your handling code here:
@@ -1564,6 +1531,7 @@ public class MainFrame extends javax.swing.JFrame {
             c.setVisible(true);
         }
         backButton.setVisible(false);
+        welcomePageLabel.setVisible(false);
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
@@ -1608,13 +1576,6 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println(ex);
         }
     }//GEN-LAST:event_chooseLocationButtonActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "userSearch");
-        card2.show(cardPanel2, "homeBar");
-        pageLabel.setText("User search page");
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void searchUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserButtonActionPerformed
         // TODO add your handling code here:
@@ -1733,13 +1694,6 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel.setText("User search page");
         tblModel.setRowCount(0);
     }//GEN-LAST:event_searchAgainButtonActionPerformed
-
-    private void tempButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempButtonActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "createUser");
-        card2.show(cardPanel2, "homeBar");
-        pageLabel.setText("User create page");
-    }//GEN-LAST:event_tempButtonActionPerformed
 
     private void userFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFirstNameFieldActionPerformed
 
@@ -1889,6 +1843,18 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel.setText("User create page");
     }//GEN-LAST:event_createUserPageButtonActionPerformed
 
+    private void backupPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "backup");
+        pageLabel.setText("Backup data page");
+    }//GEN-LAST:event_backupPageButtonActionPerformed
+
+    private void manageUsersPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUsersPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "userSearch");
+        pageLabel.setText("User search page");
+    }//GEN-LAST:event_manageUsersPageButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1975,8 +1941,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton homeButton;
     private javax.swing.JPanel homePage;
     private javax.swing.JLabel hoursLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jobEnquiryPageButton;
@@ -2018,7 +1982,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton standardJobsMenuPageButton;
     private javax.swing.JPanel taskHomePage;
     private javax.swing.JButton tasksMenuPageButton;
-    private javax.swing.JButton tempButton;
     private javax.swing.JTextField userFirstNameField;
     private javax.swing.JLabel userFirstnameLabel;
     private javax.swing.JPanel userHomePage;
