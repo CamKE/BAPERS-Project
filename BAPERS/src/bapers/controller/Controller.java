@@ -8,6 +8,7 @@ package bapers.controller;
 import bapers.acct.Customer;
 import bapers.acct.Invoice;
 import bapers.acct.Payment;
+import bapers.acct.PaymentCard;
 import bapers.database.DBImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -84,6 +85,21 @@ public class Controller {
     }
     
     public void recordPayment(Payment p) {
-        String sql = "";
+        p.getInvoiceNumber();
+        p.getPaymentNo();
+        p.getTotal();
+        p.getPaymentType();
+        p.getPaymentDate();
+//        p.getCardType();
+//        p.getCardDetailsLast4digits();
+//        p.getCardDetailsExpiryDate();
+        
+        String sql = "INSERT INTO PAYMENT VALUES (" + ");";
+        
+        try {
+            database.write(sql, conn);
+        } catch (Exception e) {
+            System.out.println("Exception error: " + e);
+        }
     }
 }
