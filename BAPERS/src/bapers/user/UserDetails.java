@@ -7,6 +7,7 @@ package bapers.user;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -19,10 +20,10 @@ public class UserDetails {
     private String firstname;
     private String lastname;
     private Blob password;
-    private Date datetime;
+    private Timestamp datetime;
     private int role_id;
 
-    public UserDetails(int account_no, String firstname, String lastname, Blob password, Date datetime, int role_id) {
+    public UserDetails(int account_no, String firstname, String lastname, Blob password, Timestamp datetime, int role_id) {
         this.account_no = account_no;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -63,11 +64,11 @@ public class UserDetails {
         this.password = password;
     }
 
-    public Date getDatetime() {
+    public Timestamp getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(Date datetime) {
+    public void setDatetime(Timestamp datetime) {
         this.datetime = datetime;
     }
 
