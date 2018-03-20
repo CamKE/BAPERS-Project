@@ -51,17 +51,10 @@ public class Controller {
     }
 
     public boolean createUser(String firstname, String lastName, String password, int roleId) {
-        boolean success = false;
         int hashPassword = password.hashCode();
         String userSQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id) VALUES ('" + firstname + "','" + lastName + "','" + hashPassword + "','" + roleId + "');";
 
-        try {
-            database.write(userSQL, conn);
-            success = true;
-        } catch (Exception e) {
-            System.out.println("Create user Error");
-        }
-        return success;
+        return database.write(userSQL, conn) == 0;
     }
 
     public int getRole(String role) {
