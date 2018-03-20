@@ -9,6 +9,8 @@ import bapers.acct.Customer;
 import bapers.acct.Invoice;
 import bapers.acct.Material;
 import bapers.acct.Payment;
+import bapers.acct.PaymentCard;
+import bapers.acct.PaymentCash;
 import bapers.acct.StandardJob;
 import bapers.controller.Controller;
 import java.awt.CardLayout;
@@ -2958,11 +2960,34 @@ public class MainFrame extends javax.swing.JFrame {
                     && last4DigitjTextField.getText().matches("[0-9]{4}")
                 ) {
                     // grabs infor for card payment
-                    TotalLatePayjTextField.getText();
-                    paymentTypeComboBox.getSelectedItem().toString();
-                    cardTypejComboBox.getSelectedItem().toString();
-                    expiryDatejTextField.getText();
-                    last4DigitjTextField.getText();
+                    int[] paymentNo = new int[selectedInvoices.size()];
+                    int[] invoiceNumber = new int[selectedInvoices.size()];
+                    final double total = Double.parseDouble(TotalLatePayjTextField.getText());
+                    final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
+                    final Date paymentDate = new Date();
+                    
+                    for (int i = 0; i < selectedInvoices.size(); ++i) {
+                        paymentNo[i] = selectedInvoices.get(i).getJobJobNo();
+                        invoiceNumber[i] = selectedInvoices.get(i).getInvoiceNo();
+                    }
+                    
+                    final String cardType = cardTypejComboBox.getSelectedItem().toString();
+                    final String cardDetailsLast4digits = last4DigitjTextField.getText();
+                    final String cardDetailsExpiryDate = expiryDatejTextField.getText();
+                    
+                   Payment paymentR = new PaymentCard(
+                           paymentNo, 
+                           invoiceNumber, 
+                           total, 
+                           paymentType, 
+                           paymentDate, 
+                           cardType, 
+                           cardDetailsLast4digits, 
+                           cardDetailsExpiryDate
+                   );
+                   
+                   controller.recordPayment(paymentR);
+                    
                     System.out.println("payment info attained");
                     
                     // clears the model and the total 
