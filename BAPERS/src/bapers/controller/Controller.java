@@ -27,24 +27,23 @@ public class Controller {
     }
 
     // Attempts to login the user into the system, given that their details are valid
-    public String login(String userID, String password) {
-        String role = null;
+    public UserDetails login(String userID, String password) {
         // the hash for the password entered is created and stored. (passsword hash field has to not be unique. password hashes will clash otherwise)
         int hashPassword = password.hashCode();
         // Check user details sql query
-        String SQL = "SELECT role.role_description FROM role INNER JOIN user ON role.role_id = user.Role_role_id WHERE user.account_no ='" + userID + "' and user.password_hash = cast('" + hashPassword + "' as BINARY(32));";
+        String SQL = "SELECT user.account_no, user.firstname, user.lastname, user.password_hash, user.registration_date, role.role_description FROM role INNER JOIN user ON role.role_id = user.Role_role_id WHERE user.account_no ='" + userID + "' and user.password_hash = cast('" + hashPassword + "' as BINARY(32));";
 
         // Closes resultset after use
         try (ResultSet rs = database.read(SQL, conn)) {
             //If user details are valid
-
             if (rs.next()) {
-                role = rs.getString("role_description");
+               UserDetails user = new UserDetails(rs.getInt("account_no"), rs.getString("firstname"), rs.getString("lastname"), rs.getBlob("password_hash"), rs.getTimestamp("registration_date"), rs.getString("role_description"));
+               return user;
             }
         } catch (Exception ex) {
             System.out.println("Log in Error: " + ex);
         }
-        return role;
+        return null;
     }
 
     // Attempts to create a new user in the system, given the details are valid
@@ -63,14 +62,13 @@ public class Controller {
         String sql = "SELECT account_no FROM user WHERE password_hash = cast('" + hashPassword + "' as BINARY(32))";
 
         try (ResultSet rs = database.read(sql, conn)) {
-            if (rs.next())
-            {
+            if (rs.next()) {
                 userID = rs.getInt("account_no");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
+
         return userID;
     }
 

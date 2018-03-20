@@ -28,6 +28,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final CardLayout card1;
     private final CardLayout card2;
     private final Controller controller;
+    private UserDetails loggedInUser;
     DefaultTableModel tblModel;
 
     /**
@@ -38,6 +39,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame(Controller controller) {
         // Set the controller 
         this.controller = controller;
+        loggedInUser = null;
         initComponents();
         // set the card layout for the main section of the screen
         card1 = (CardLayout) cardPanel1.getLayout();
@@ -1195,6 +1197,11 @@ public class MainFrame extends javax.swing.JFrame {
         manageUsersPageButton.setText("Manage Users");
 
         createUserPageButton.setText("Create User");
+        createUserPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createUserPageButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userHomePageLayout = new javax.swing.GroupLayout(userHomePage);
         userHomePage.setLayout(userHomePageLayout);
@@ -1428,7 +1435,8 @@ public class MainFrame extends javax.swing.JFrame {
         if (userID.equals("") || password.equals("")) {
             JOptionPane.showMessageDialog(null, "Please insert data");
         } else {
-            role = controller.login(userID, password);
+            loggedInUser = controller.login(userID, password);
+            role = loggedInUser.getRole();
             if (role != null) {
                 switch (role) {
                     case "Shift Manager":
@@ -1537,6 +1545,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "homePage");
+        pageLabel.setText("Backup page");
         homeButton.setVisible(false);
     }//GEN-LAST:event_homeButtonActionPerformed
 
@@ -1873,6 +1882,12 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "settingsHomePage");
         homeButton.setVisible(true);
     }//GEN-LAST:event_settingsMenuPageButtonActionPerformed
+
+    private void createUserPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "createUser");
+        pageLabel.setText("User create page");
+    }//GEN-LAST:event_createUserPageButtonActionPerformed
 
     /**
      * @param args the command line arguments
