@@ -114,7 +114,9 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
+        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -161,7 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        tempButton.setText("tempButton");
+        tempButton.setText("createUser");
         tempButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tempButtonActionPerformed(evt);
@@ -197,11 +199,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(tempButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tempButton))
                 .addGap(99, 99, 99))
         );
 
@@ -883,7 +885,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-                int roleID = -1;
+        int roleID = -1;
         boolean valid = true;
         String userID = userIDField.getText();
         String password = passwordField.getText();
@@ -895,7 +897,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         if (valid) {
-            roleID = controller.login(userID,password);
+            roleID = controller.login(userID, password);
         }
 
         switch (roleID) {
@@ -1126,7 +1128,7 @@ public class MainFrame extends javax.swing.JFrame {
             String selectedRole = (String) JOptionPane.showInputDialog(this, "Select a new role:", "Update user role", JOptionPane.QUESTION_MESSAGE, null, choices, choices[((int) userResultsTable.getValueAt(selectedRow, 3)) - 1]);
             if (selectedRole != null) {
                 String outcome;
-                int newRoleid = controller.convertRole(selectedRole);
+                int newRoleid = controller.getRoleID(selectedRole);
                 if (controller.updateUserRole((int) userResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
                     outcome = "Success";
                     tblModel.setValueAt(newRoleid, userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()), 3);
@@ -1173,7 +1175,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void tempButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "createUser");
-        card2.show(cardPanel2, "welcomeBar2");
+        card2.show(cardPanel2, "homeBar");
+        pageLabel.setText("User create page");
     }//GEN-LAST:event_tempButtonActionPerformed
 
     private void userFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFirstNameFieldActionPerformed
@@ -1221,7 +1224,8 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         //Get RoleID
-        roleID = controller.getRole(role);
+        roleID = controller.getRoleID(role);
+        System.out.println(roleID);
 
         //Will only execute method in controller if all preconditions are met
         if (valid) {

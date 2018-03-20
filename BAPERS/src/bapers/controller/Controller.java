@@ -11,8 +11,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -20,68 +18,65 @@ import java.util.logging.Logger;
  */
 public class Controller {
 
-    private DBImpl database;
-    private Connection conn;
-    private ResultSet rs;
+    final private DBImpl database;
+    final private Connection conn;
 
     public Controller() {
         database = new DBImpl();
         conn = database.connect();
     }
 
+    // Attempts to login the user into the system, given that their details are valid
     public int login(String userID, String password) {
         int roleId = 0;
+        // the hash for the password entered is created and stored
         int hashPassword = password.hashCode();
-        try {
+        // Check user details sql query
+        String SQL = "SELECT* FROM USER WHERE account_no ='" + userID + "' and password_hash = cast('" + hashPassword + "' as BINARY(32));";
 
-            //Check user details sql query
-            String SQL = "SELECT* FROM USER WHERE account_no ='" + userID + "' and password_hash = cast('" + hashPassword + "' as BINARY(32));";
-            rs = database.read(SQL, conn);
-
+        // Closes resultset after use
+        try (ResultSet rs = database.read(SQL, conn)) {
             //If user details are valid
             if (rs.next()) {
                 roleId = Integer.parseInt(rs.getString("Role_role_id"));
-            } else {
-                roleId = 0;
             }
-
-        } catch (Exception e) {
-            System.out.println("Log in Error");
+        } catch (Exception ex) {
+            System.out.println("Log in Error: " + ex);
         }
         return roleId;
-
     }
 
+    // Attempts to create a new user in the system, given the details are valid
     public boolean createUser(String firstname, String lastName, String password, int roleId) {
         int hashPassword = password.hashCode();
+        // Write the user details into the database
         String userSQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id) VALUES ('" + firstname + "','" + lastName + "','" + hashPassword + "','" + roleId + "');";
 
+        // Return whether or not rows have been affected
         return database.write(userSQL, conn) != 0;
     }
 
-    public int getRole(String role) {
+    // takes a roles description, and returns its id in the role table
+    public int getRoleID(String role) {
         int roleID = 0;
-        switch (role) {
-            case "Technician":
-                roleID = 1;
-                break;
-            case "Office Manager":
-                roleID = 2;
-                break;
-            case "Shift Manager":
-                roleID = 3;
-                break;
-            case "Receptionist":
-                roleID = 4;
-                break;
+        String sql = "SELECT role_id FROM role WHERE role_description = '" + role + "'";
+        try (ResultSet rs = database.read(sql, conn)) {
+            if (rs.next()) {
+                roleID = rs.getInt("role_id");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
         return roleID;
     }
 
+    // finds all the users for the given search criteria. returns all users if no criteria is given
     public ArrayList<UserDetails> findUser(String userNumber, String firstName, String lastName, String role) {
         StringBuilder sb = new StringBuilder();
+        // 1=1 is ignored by sql. it allows for ease of adding conditions to the statement (AND)
         sb.append("SELECT * from user WHERE 1=1 ");
 
+        // The sql statement is constructed based on the values given
         if (!userNumber.isEmpty()) {
             sb.append("AND account_no = ").append(Integer.parseInt(userNumber));
         } else {
@@ -92,52 +87,39 @@ public class Controller {
                 sb.append(" AND lastname = '").append(lastName).append("'");
             }
             if (!role.equals("Any")) {
-                int role_id = convertRole(role);
+                int role_id = getRoleID(role);
                 sb.append(" AND Role_role_id = ").append(role_id);
             }
         }
-        System.out.println(sb.toString());
-        ResultSet rs = database.read(sb.toString(), conn);
 
+        // stores all the users returned
         ArrayList<UserDetails> userList = new ArrayList<>();
+        //stores a user's details
         UserDetails user;
-        try {
+
+        try (ResultSet rs = database.read(sb.toString(), conn)) {
+            //for each user in the results returned
             while (rs.next()) {
+                // place their details into a userdetails object
                 user = new UserDetails(rs.getInt("account_no"), rs.getString("firstname"), rs.getString("lastname"), rs.getBlob("password_hash"), rs.getTimestamp("registration_date"), rs.getInt("Role_role_id"));
+                //add their userdetails object to the arraylist of users
                 userList.add(user);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
+        
         return userList;
     }
 
+    // Removes a user from the user table
     public boolean deleteUser(int userId) {
         String sql = "DELETE FROM user WHERE account_no = " + userId;
 
         return database.write(sql, conn) != 0;
     }
 
-    public int convertRole(String role) {
-        int role_id = 0;
-        switch (role) {
-            case "Office Manager":
-                role_id = 1;
-                break;
-            case "Shift Manager":
-                role_id = 2;
-                break;
-            case "Receptionist":
-                role_id = 3;
-                break;
-            case "Technician":
-                role_id = 4;
-                break;
-        }
-
-        return role_id;
-    }
-
+    // Updates a given user's role
     public boolean updateUserRole(int userId, int newRole) {
         String sql = "UPDATE user SET Role_role_id = " + newRole + " WHERE account_no = " + userId;
 
