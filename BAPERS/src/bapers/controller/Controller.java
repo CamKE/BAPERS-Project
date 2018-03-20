@@ -5,6 +5,9 @@
  */
 package bapers.controller;
 
+import bapers.acct.CustomerDetails;
+import bapers.acct.Invoice;
+import bapers.acct.PaymentDetails;
 import bapers.database.DBImpl;
 import bapers.user.UserDetails;
 import java.sql.Connection;
@@ -220,7 +223,7 @@ public class Controller {
         return roles;
     }
 
-    public void createCustomerAccount(Customer cust) {
+    public void createCustomerAccount(CustomerDetails cust) {
         String sql = "INSERT INTO CUSTOMER VALUES";
     }
 
@@ -241,7 +244,7 @@ public class Controller {
         return invoices;
     }
 
-    public void recordPayment(Payment p) {
+    public void recordPayment(PaymentDetails p) {
         String sql = "";
     }
 }
