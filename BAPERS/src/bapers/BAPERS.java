@@ -18,7 +18,7 @@ public class BAPERS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // show the jframe window, provide a new controller object
         new MainFrame(new Controller()).setVisible(true);
     }
     

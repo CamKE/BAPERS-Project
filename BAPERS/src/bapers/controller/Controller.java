@@ -29,7 +29,7 @@ public class Controller {
     // Attempts to login the user into the system, given that their details are valid
     public int login(String userID, String password) {
         int roleId = 0;
-        // the hash for the password entered is created and stored
+        // the hash for the password entered is created and stored. (passsword hash field has to not be unique. password hashes will clash otherwise)
         int hashPassword = password.hashCode();
         // Check user details sql query
         String SQL = "SELECT* FROM USER WHERE account_no ='" + userID + "' and password_hash = cast('" + hashPassword + "' as BINARY(32));";

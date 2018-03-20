@@ -24,19 +24,25 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private CardLayout card1;
-    private CardLayout card2;
-    private Controller controller;
+    private final CardLayout card1;
+    private final CardLayout card2;
+    private final Controller controller;
     DefaultTableModel tblModel;
 
     /**
      * Creates new form MainFrame
+     * @param controller
      */
     public MainFrame(Controller controller) {
+        // Set the controller 
         this.controller = controller;
         initComponents();
+        
+        // set the card layout for the main section of the screen
         card1 = (CardLayout) cardPanel1.getLayout();
+        // set the card layout for the top section of the screen
         card2 = (CardLayout) cardPanel2.getLayout();
+        // hide the button on the welcome bar
         backButton.setVisible(false);
     }
 
