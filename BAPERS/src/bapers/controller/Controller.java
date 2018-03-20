@@ -10,7 +10,10 @@ import bapers.user.UserDetails;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -37,8 +40,8 @@ public class Controller {
         try (ResultSet rs = database.read(SQL, conn)) {
             //If user details are valid
             if (rs.next()) {
-               UserDetails user = new UserDetails(rs.getInt("account_no"), rs.getString("firstname"), rs.getString("lastname"), rs.getBlob("password_hash"), rs.getTimestamp("registration_date"), rs.getString("role_description"));
-               return user;
+                UserDetails user = new UserDetails(rs.getInt("account_no"), rs.getString("firstname"), rs.getString("lastname"), rs.getBlob("password_hash"), rs.getTimestamp("registration_date"), rs.getString("role_description"));
+                return user;
             }
         } catch (Exception ex) {
             System.out.println("Log in Error: " + ex);
@@ -186,5 +189,59 @@ public class Controller {
         }
 
         return shelfSlots;
+    }
+
+    public int numStandardJobs() {
+        String sql = "SELECT COUNT(*) AS rowcount FROM standardjob";
+        try {
+            ResultSet rs = database.read(sql, conn);
+            rs.next();
+            return rs.getInt("rowcount");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return 0;
+    }
+
+    public String[] getStandardJobs() {
+        String[] roles = new String[numStandardJobs()];
+        int i = 0;
+        String sql = "select * from standardjob";
+
+        //close resultset after use
+        try (ResultSet result = database.read(sql, conn)) {
+            while (result.next()) {
+                roles[i] = result.getString("job_description");
+                i++;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return roles;
+    }
+
+    public void createCustomerAccount(Customer cust) {
+        String sql = "INSERT INTO CUSTOMER VALUES";
+    }
+
+    public ArrayList<Invoice> getInvoices() throws ParseException {
+        String sql = "";
+
+        // putting data into array list
+        ArrayList<Invoice> invoices = new ArrayList<>();
+
+        //may be causing depreciated error
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = format.parse("2012-12-13 14:54:30");
+
+        Invoice i;
+        i = new Invoice(2, 2, 20, new Date(), "Awaiting payment", "Test");
+
+        invoices.add(i);
+        return invoices;
+    }
+
+    public void recordPayment(Payment p) {
+        String sql = "";
     }
 }
