@@ -8,6 +8,7 @@ package bapers.gui;
 import bapers.controller.Controller;
 import bapers.user.UserDetails;
 import java.awt.CardLayout;
+import java.awt.Window;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,13 +32,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainFrame
+     *
      * @param controller
      */
     public MainFrame(Controller controller) {
         // Set the controller 
         this.controller = controller;
         initComponents();
-        
         // set the card layout for the main section of the screen
         card1 = (CardLayout) cardPanel1.getLayout();
         // set the card layout for the top section of the screen
@@ -166,7 +167,9 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
+        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -854,6 +857,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createUserPage, "createUser");
 
+        officeManagerHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        officeManagerHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+        officeManagerHomePage.setPreferredSize(new java.awt.Dimension(900, 640));
+
         officeManagerPage.setBackground(new java.awt.Color(61, 96, 146));
         officeManagerPage.setMaximumSize(new java.awt.Dimension(900, 640));
         officeManagerPage.setMinimumSize(new java.awt.Dimension(900, 640));
@@ -944,6 +951,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(officeManagerHomePage, "officeManagerHomePage");
 
+        shiftManagerHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        shiftManagerHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+        shiftManagerHomePage.setPreferredSize(new java.awt.Dimension(900, 640));
+
         shiftManagerPage.setBackground(new java.awt.Color(61, 96, 146));
         shiftManagerPage.setMaximumSize(new java.awt.Dimension(900, 640));
         shiftManagerPage.setMinimumSize(new java.awt.Dimension(900, 640));
@@ -1017,6 +1028,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(shiftManagerHomePage, "shiftManagerHomePage");
 
+        technicianHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        technicianHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+        technicianHomePage.setPreferredSize(new java.awt.Dimension(900, 640));
+
         technicianPage.setBackground(new java.awt.Color(61, 96, 146));
         technicianPage.setMaximumSize(new java.awt.Dimension(900, 640));
         technicianPage.setMinimumSize(new java.awt.Dimension(900, 640));
@@ -1061,6 +1076,10 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(technicianHomePage, "technicianHomePage");
+
+        receptionistHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        receptionistHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+        receptionistHomePage.setPreferredSize(new java.awt.Dimension(900, 640));
 
         receptionHomePage.setBackground(new java.awt.Color(61, 96, 146));
         receptionHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -1408,44 +1427,40 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(900, 700));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        int roleID = -1;
-        boolean valid = true;
+        String role = null;
         String userID = userIDField.getText();
         String password = passwordField.getText();
 
         //Check fields are not empty
         if (userID.equals("") || password.equals("")) {
-            valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
+        } else {
+            role = controller.login(userID, password);
         }
 
-        if (valid) {
-            roleID = controller.login(userID, password);
-        }
-
-        switch (roleID) {
-            case 1:
-                System.out.println("Technician homepage");
-                //Insert code to show pages here:
-                //card1.show(cardPanel1, "restore");
-                //card2.show(cardPanel2, "welcomeBar2");
+        switch (role) {
+            case "Office Manager":
+                System.out.println("Office Manager");
+                card1.show(cardPanel1, "officeManagerHomePage");
+                card2.show(cardPanel2, "homeBar");
+                pageLabel.setText("User search page");
                 break;
-            case 2:
-                System.out.println("Office Manager homepage");
+            case "Shift Manager":
+                System.out.println("Shift Manager");
                 break;
-            case 3:
-                System.out.println("Shift Manager homepage");
+            case "Technician":
+                System.out.println("Technician");
                 break;
-            case 4:
-                System.out.println("Receptionist homepage");
+            case "Receptionist":
+                System.out.println("Receptionist");
                 break;
-            case 0:
+            default:
                 JOptionPane.showMessageDialog(null, "Invalid User details");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -1770,25 +1785,29 @@ public class MainFrame extends javax.swing.JFrame {
     private void homePageOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageOMActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "officeManagerHomePage");
-        card2.show(cardPanel2, "homePageOMBar");
+        card2.show(cardPanel2, "homeBar");
+        pageLabel.setText("Welcome!");
     }//GEN-LAST:event_homePageOMActionPerformed
 
     private void homePageSMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageSMActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "shiftManagerHomePage");
-        card2.show(cardPanel2, "homePageSMBar");
+        card2.show(cardPanel2, "homeBar");
+        pageLabel.setText("Welcome!");
     }//GEN-LAST:event_homePageSMActionPerformed
 
     private void homePageTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageTActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "technicianHomePage");
-        card2.show(cardPanel2, "homePageT");
+        card2.show(cardPanel2, "homeBar");
+        pageLabel.setText("Welcome!");
     }//GEN-LAST:event_homePageTActionPerformed
 
     private void homePageRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageRActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "receptionistHomePage");
-        card2.show(cardPanel2, "homePageR");
+        card2.show(cardPanel2, "homeBar");
+        pageLabel.setText("Welcome!");
     }//GEN-LAST:event_homePageRActionPerformed
 
     private void acceptPaymentOfficeManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentOfficeManagerActionPerformed
@@ -1824,26 +1843,24 @@ public class MainFrame extends javax.swing.JFrame {
         //Initialise values to get the data from the GUI buttons
         String description = descriptionNewTaskField.getText();
         double price = Double.parseDouble(priceNewTaskField.getText());
-        int duration_min =  Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
+        int duration_min = Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
         int duration_hours = Integer.parseInt((String) durationNewTaskDD.getSelectedItem());
         String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
         int shelf_slot = Integer.parseInt((String) shelfSlotTaskDD.getSelectedItem());
 
-        duration_min += duration_hours*60;
+        duration_min += duration_hours * 60;
 
         //Check fields are not empty in the GUI, then pop up will show if no data is inserted
-        if (description.equals("") || price == 0 ) {
+        if (description.equals("") || price == 0) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
-        }
-
-        else {
+        } else {
             valid = true;
         }
 
         //Will only execute method in controller if all preconditions are met
         if (valid) {
-            if (controller.createNewTask(description,duration_min,price,Department_department_code,shelf_slot)) {
+            if (controller.createNewTask(description, duration_min, price, Department_department_code, shelf_slot)) {
                 JOptionPane.showMessageDialog(null, "Task created");
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to create Task");

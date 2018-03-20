@@ -27,23 +27,23 @@ public class Controller {
     }
 
     // Attempts to login the user into the system, given that their details are valid
-    public int login(String userID, String password) {
-        int roleId = 0;
+    public String login(String userID, String password) {
+        String role = null;
         // the hash for the password entered is created and stored. (passsword hash field has to not be unique. password hashes will clash otherwise)
         int hashPassword = password.hashCode();
         // Check user details sql query
-        String SQL = "SELECT* FROM USER WHERE account_no ='" + userID + "' and password_hash = cast('" + hashPassword + "' as BINARY(32));";
+        String SQL = "SELECT role.role_description FROM role INNER JOIN user ON role.role_id = user.Role_role_id WHERE user.account_no ='" + userID + "' and user.password_hash = cast('" + hashPassword + "' as BINARY(32));";
 
         // Closes resultset after use
         try (ResultSet rs = database.read(SQL, conn)) {
             //If user details are valid
             if (rs.next()) {
-                roleId = Integer.parseInt(rs.getString("Role_role_id"));
+                role = rs.getString("role_description");
             }
         } catch (Exception ex) {
             System.out.println("Log in Error: " + ex);
         }
-        return roleId;
+        return role;
     }
 
     // Attempts to create a new user in the system, given the details are valid
