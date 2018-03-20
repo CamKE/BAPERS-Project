@@ -108,7 +108,7 @@ public class Controller {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        
+
         return userList;
     }
 
@@ -124,5 +124,51 @@ public class Controller {
         String sql = "UPDATE user SET Role_role_id = " + newRole + " WHERE account_no = " + userId;
 
         return database.write(sql, conn) != 0;
+    }
+
+    public boolean createNewTask(String description1, int duration1, double price1, String department1, int shelf_slot1) {
+        boolean success = false;
+        //swapped shelf slots position in the query relative to how it is in the table in workbench (may or may not make a difference)
+        String departmentCode = "";
+        switch (department1) {
+            case "Copy room":
+                departmentCode = "CR";
+                break; // optional
+            case "Dark room":
+                departmentCode = "DR";
+                break; // optional
+            case "Development area":
+                departmentCode = "DA";
+                break; // optional
+            case "Printing room":
+                departmentCode = "PR";
+                break; // optional
+            case "Finshing room":
+                departmentCode = "FR";
+                break; // optional
+            case "Packaging department":
+                departmentCode = "PD";
+                break; // optional
+        }
+        //gets the data from the SQL database  
+        String SQL = "INSERT INTO TASK(description,duration_min,shelf_slot,price,Department_department_code) VALUES ('" + description1 + "','" + duration1 + "','" + shelf_slot1 + "','" + price1 + "','" + departmentCode + "');";
+        try {
+            database.write(SQL, conn);
+            success = true;
+        } catch (Exception e) {
+            System.out.println("create new task Error");
+        }
+        return success;
+    }
+
+    // A loop that allows for 100 different shelf slots
+    public String[] getShelfSlots() {
+        String[] shelfSlots = new String[100];
+
+        for (int i = 0; i < 100; i++) {
+            shelfSlots[i] = String.valueOf(i + 1);
+        }
+
+        return shelfSlots;
     }
 }

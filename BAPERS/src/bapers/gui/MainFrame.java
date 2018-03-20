@@ -64,6 +64,10 @@ public class MainFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         tempButton = new javax.swing.JButton();
+        homePageOM = new javax.swing.JButton();
+        homePageSM = new javax.swing.JButton();
+        homePageT = new javax.swing.JButton();
+        homePageR = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -110,6 +114,48 @@ public class MainFrame extends javax.swing.JFrame {
         passwordLabel = new javax.swing.JLabel();
         ReenterPasswordLabel = new javax.swing.JLabel();
         createUserButton = new javax.swing.JButton();
+        officeManagerHomePage = new javax.swing.JPanel();
+        officeManagerPage = new javax.swing.JPanel();
+        jobOfficeManager = new javax.swing.JButton();
+        standardJobsOfficeManager = new javax.swing.JButton();
+        acceptPaymentOfficeManager = new javax.swing.JButton();
+        tasksOfficeManager = new javax.swing.JButton();
+        reportsOfficeManager = new javax.swing.JButton();
+        usersOfficeManager = new javax.swing.JButton();
+        manageCustomersOfficeManager = new javax.swing.JButton();
+        settingsOfficeManager = new javax.swing.JButton();
+        shiftManagerHomePage = new javax.swing.JPanel();
+        shiftManagerPage = new javax.swing.JPanel();
+        jobShiftManager = new javax.swing.JButton();
+        standardJobsShiftManager = new javax.swing.JButton();
+        acceptPaymentShiftManager = new javax.swing.JButton();
+        tasksShiftManager = new javax.swing.JButton();
+        reportsShiftManager = new javax.swing.JButton();
+        settingsShiftManager = new javax.swing.JButton();
+        technicianHomePage = new javax.swing.JPanel();
+        technicianPage = new javax.swing.JPanel();
+        jobEnquiryTechnician = new javax.swing.JButton();
+        receptionistHomePage = new javax.swing.JPanel();
+        receptionHomePage = new javax.swing.JPanel();
+        jobReceptionist = new javax.swing.JButton();
+        acceptPaymentReceptionist = new javax.swing.JButton();
+        createTaskPage = new javax.swing.JPanel();
+        newTaskLabel1 = new javax.swing.JLabel();
+        descriptionNewTaskField = new javax.swing.JTextField();
+        durationNewTaskDD = new javax.swing.JComboBox<>();
+        descriptionLabel = new javax.swing.JLabel();
+        durationLabel = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+        departmentNewTaskLabel = new javax.swing.JLabel();
+        shelfSlotNewTaskLabel = new javax.swing.JLabel();
+        createNewTaskButton = new javax.swing.JButton();
+        cancelButtonCreateTask = new javax.swing.JButton();
+        shelfSlotTaskDD = new javax.swing.JComboBox<>();
+        departmentNewTaskDD = new javax.swing.JComboBox<>();
+        durationNewTaskMinsDD = new javax.swing.JComboBox<>();
+        priceNewTaskField = new javax.swing.JTextField();
+        hoursLabel = new javax.swing.JLabel();
+        minutesLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -120,9 +166,7 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -176,6 +220,34 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        homePageOM.setText("homePageOM");
+        homePageOM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homePageOMActionPerformed(evt);
+            }
+        });
+
+        homePageSM.setText("homePageSM");
+        homePageSM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homePageSMActionPerformed(evt);
+            }
+        });
+
+        homePageT.setText("homePageT");
+        homePageT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homePageTActionPerformed(evt);
+            }
+        });
+
+        homePageR.setText("homePageR");
+        homePageR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homePageRActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
         welcomePage.setLayout(welcomePageLayout);
         welcomePageLayout.setHorizontalGroup(
@@ -189,11 +261,21 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(75, 75, 75))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tempButton)
-                .addGap(71, 71, 71)
-                .addComponent(jButton1)
-                .addGap(60, 60, 60)
-                .addComponent(jButton2)
+                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(welcomePageLayout.createSequentialGroup()
+                        .addComponent(homePageR)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(homePageT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(homePageSM)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(homePageOM))
+                    .addGroup(welcomePageLayout.createSequentialGroup()
+                        .addComponent(tempButton)
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton1)
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton2)))
                 .addGap(69, 69, 69))
         );
         welcomePageLayout.setVerticalGroup(
@@ -205,7 +287,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(homePageOM)
+                    .addComponent(homePageSM)
+                    .addComponent(homePageT)
+                    .addComponent(homePageR))
+                .addGap(18, 18, 18)
                 .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -766,6 +854,441 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createUserPage, "createUser");
 
+        officeManagerPage.setBackground(new java.awt.Color(61, 96, 146));
+        officeManagerPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        officeManagerPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        jobOfficeManager.setText("Job");
+
+        standardJobsOfficeManager.setText("Standard Jobs");
+
+        acceptPaymentOfficeManager.setText("Accept Payment");
+        acceptPaymentOfficeManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptPaymentOfficeManagerActionPerformed(evt);
+            }
+        });
+
+        tasksOfficeManager.setText("Tasks");
+        tasksOfficeManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tasksOfficeManagerActionPerformed(evt);
+            }
+        });
+
+        reportsOfficeManager.setText("Reports");
+
+        usersOfficeManager.setText("Users");
+
+        manageCustomersOfficeManager.setText("Manage Customers");
+
+        settingsOfficeManager.setText("Settings");
+
+        javax.swing.GroupLayout officeManagerPageLayout = new javax.swing.GroupLayout(officeManagerPage);
+        officeManagerPage.setLayout(officeManagerPageLayout);
+        officeManagerPageLayout.setHorizontalGroup(
+            officeManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeManagerPageLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(officeManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reportsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(officeManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(officeManagerPageLayout.createSequentialGroup()
+                        .addComponent(acceptPaymentOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tasksOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(standardJobsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(officeManagerPageLayout.createSequentialGroup()
+                        .addComponent(usersOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(manageCustomersOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(settingsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24))
+        );
+        officeManagerPageLayout.setVerticalGroup(
+            officeManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeManagerPageLayout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addGroup(officeManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jobOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptPaymentOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tasksOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standardJobsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97)
+                .addGroup(officeManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reportsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usersOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageCustomersOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settingsOfficeManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout officeManagerHomePageLayout = new javax.swing.GroupLayout(officeManagerHomePage);
+        officeManagerHomePage.setLayout(officeManagerHomePageLayout);
+        officeManagerHomePageLayout.setHorizontalGroup(
+            officeManagerHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, officeManagerHomePageLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(officeManagerPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        officeManagerHomePageLayout.setVerticalGroup(
+            officeManagerHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeManagerHomePageLayout.createSequentialGroup()
+                .addComponent(officeManagerPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(officeManagerHomePage, "officeManagerHomePage");
+
+        shiftManagerPage.setBackground(new java.awt.Color(61, 96, 146));
+        shiftManagerPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        shiftManagerPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        jobShiftManager.setText("Job");
+
+        standardJobsShiftManager.setText("Standard Jobs");
+
+        acceptPaymentShiftManager.setText("Accept Payment");
+        acceptPaymentShiftManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptPaymentShiftManagerActionPerformed(evt);
+            }
+        });
+
+        tasksShiftManager.setText("Tasks");
+
+        reportsShiftManager.setText("Reports");
+
+        settingsShiftManager.setText("Settings");
+
+        javax.swing.GroupLayout shiftManagerPageLayout = new javax.swing.GroupLayout(shiftManagerPage);
+        shiftManagerPage.setLayout(shiftManagerPageLayout);
+        shiftManagerPageLayout.setHorizontalGroup(
+            shiftManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(shiftManagerPageLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(shiftManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(standardJobsShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jobShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82)
+                .addGroup(shiftManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reportsShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptPaymentShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGroup(shiftManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tasksShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settingsShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80))
+        );
+        shiftManagerPageLayout.setVerticalGroup(
+            shiftManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(shiftManagerPageLayout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addGroup(shiftManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jobShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptPaymentShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tasksShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(92, 92, 92)
+                .addGroup(shiftManagerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reportsShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standardJobsShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settingsShiftManager, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout shiftManagerHomePageLayout = new javax.swing.GroupLayout(shiftManagerHomePage);
+        shiftManagerHomePage.setLayout(shiftManagerHomePageLayout);
+        shiftManagerHomePageLayout.setHorizontalGroup(
+            shiftManagerHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, shiftManagerHomePageLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(shiftManagerPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        shiftManagerHomePageLayout.setVerticalGroup(
+            shiftManagerHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(shiftManagerHomePageLayout.createSequentialGroup()
+                .addComponent(shiftManagerPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(shiftManagerHomePage, "shiftManagerHomePage");
+
+        technicianPage.setBackground(new java.awt.Color(61, 96, 146));
+        technicianPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        technicianPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        jobEnquiryTechnician.setText("Job Enquiry");
+        jobEnquiryTechnician.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobEnquiryTechnicianActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout technicianPageLayout = new javax.swing.GroupLayout(technicianPage);
+        technicianPage.setLayout(technicianPageLayout);
+        technicianPageLayout.setHorizontalGroup(
+            technicianPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(technicianPageLayout.createSequentialGroup()
+                .addGap(343, 343, 343)
+                .addComponent(jobEnquiryTechnician, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(361, Short.MAX_VALUE))
+        );
+        technicianPageLayout.setVerticalGroup(
+            technicianPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(technicianPageLayout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(jobEnquiryTechnician, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(299, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout technicianHomePageLayout = new javax.swing.GroupLayout(technicianHomePage);
+        technicianHomePage.setLayout(technicianHomePageLayout);
+        technicianHomePageLayout.setHorizontalGroup(
+            technicianHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, technicianHomePageLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(technicianPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        technicianHomePageLayout.setVerticalGroup(
+            technicianHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(technicianHomePageLayout.createSequentialGroup()
+                .addComponent(technicianPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(technicianHomePage, "technicianHomePage");
+
+        receptionHomePage.setBackground(new java.awt.Color(61, 96, 146));
+        receptionHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        receptionHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        jobReceptionist.setText("Job");
+
+        acceptPaymentReceptionist.setText("Accept Payment");
+        acceptPaymentReceptionist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptPaymentReceptionistActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout receptionHomePageLayout = new javax.swing.GroupLayout(receptionHomePage);
+        receptionHomePage.setLayout(receptionHomePageLayout);
+        receptionHomePageLayout.setHorizontalGroup(
+            receptionHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receptionHomePageLayout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(jobReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
+                .addComponent(acceptPaymentReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(259, Short.MAX_VALUE))
+        );
+        receptionHomePageLayout.setVerticalGroup(
+            receptionHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receptionHomePageLayout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addGroup(receptionHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jobReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptPaymentReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(283, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout receptionistHomePageLayout = new javax.swing.GroupLayout(receptionistHomePage);
+        receptionistHomePage.setLayout(receptionistHomePageLayout);
+        receptionistHomePageLayout.setHorizontalGroup(
+            receptionistHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, receptionistHomePageLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(receptionHomePage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        receptionistHomePageLayout.setVerticalGroup(
+            receptionistHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receptionistHomePageLayout.createSequentialGroup()
+                .addComponent(receptionHomePage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(receptionistHomePage, "receptionistHomePage");
+
+        createTaskPage.setBackground(new java.awt.Color(61, 96, 146));
+        createTaskPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        createTaskPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        newTaskLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        newTaskLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        newTaskLabel1.setText("New Task");
+
+        descriptionNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
+        descriptionNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
+        descriptionNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        durationNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"}));
+        durationNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        durationNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        durationNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        durationNewTaskDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                durationNewTaskDDActionPerformed(evt);
+            }
+        });
+
+        descriptionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        descriptionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        descriptionLabel.setText("Description:");
+
+        durationLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        durationLabel.setForeground(new java.awt.Color(255, 255, 255));
+        durationLabel.setText("Duration:");
+
+        priceLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        priceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        priceLabel.setText("Price:");
+
+        departmentNewTaskLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        departmentNewTaskLabel.setForeground(new java.awt.Color(255, 255, 255));
+        departmentNewTaskLabel.setText("Department:");
+
+        shelfSlotNewTaskLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        shelfSlotNewTaskLabel.setForeground(new java.awt.Color(255, 255, 255));
+        shelfSlotNewTaskLabel.setText("Shelf slot:");
+
+        createNewTaskButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        createNewTaskButton.setText("Create ");
+        createNewTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewTaskButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButtonCreateTask.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        cancelButtonCreateTask.setText("Cancel");
+        cancelButtonCreateTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonCreateTaskActionPerformed(evt);
+            }
+        });
+
+        shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getShelfSlots()));
+        shelfSlotTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        shelfSlotTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        shelfSlotTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        shelfSlotTaskDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shelfSlotTaskDDActionPerformed(evt);
+            }
+        });
+
+        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy room","Dark room","Development area", "Printing room", "Finishing room", "Packaging department"}));
+        departmentNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        departmentNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        departmentNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        departmentNewTaskDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departmentNewTaskDDActionPerformed(evt);
+            }
+        });
+
+        durationNewTaskMinsDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0","15","30","45"}));
+        durationNewTaskMinsDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        durationNewTaskMinsDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        durationNewTaskMinsDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        durationNewTaskMinsDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                durationNewTaskMinsDDActionPerformed(evt);
+            }
+        });
+
+        priceNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
+        priceNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
+        priceNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        hoursLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        hoursLabel.setForeground(new java.awt.Color(255, 255, 255));
+        hoursLabel.setText("hrs");
+
+        minutesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        minutesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        minutesLabel.setText("mins");
+
+        javax.swing.GroupLayout createTaskPageLayout = new javax.swing.GroupLayout(createTaskPage);
+        createTaskPage.setLayout(createTaskPageLayout);
+        createTaskPageLayout.setHorizontalGroup(
+            createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createTaskPageLayout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(descriptionLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(durationLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(priceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(departmentNewTaskLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(shelfSlotNewTaskLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(descriptionNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shelfSlotTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(departmentNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(createTaskPageLayout.createSequentialGroup()
+                        .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(hoursLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(minutesLabel))
+                    .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(134, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
+                .addContainerGap(361, Short.MAX_VALUE)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
+                        .addComponent(newTaskLabel1)
+                        .addGap(362, 362, 362))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
+                        .addComponent(cancelButtonCreateTask)
+                        .addGap(35, 35, 35)
+                        .addComponent(createNewTaskButton)
+                        .addGap(50, 50, 50))))
+        );
+        createTaskPageLayout.setVerticalGroup(
+            createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createTaskPageLayout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(newTaskLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(descriptionNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descriptionLabel))
+                .addGap(26, 26, 26)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(durationLabel)
+                    .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hoursLabel)
+                    .addComponent(minutesLabel))
+                .addGap(23, 23, 23)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(priceLabel)
+                    .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(departmentNewTaskLabel)
+                    .addComponent(departmentNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(shelfSlotNewTaskLabel)
+                    .addComponent(shelfSlotTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(cancelButtonCreateTask, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createNewTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80))
+        );
+
+        cardPanel1.add(createTaskPage, "createNewTask");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -1244,6 +1767,106 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_createUserButtonActionPerformed
 
+    private void homePageOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageOMActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "officeManagerHomePage");
+        card2.show(cardPanel2, "homePageOMBar");
+    }//GEN-LAST:event_homePageOMActionPerformed
+
+    private void homePageSMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageSMActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "shiftManagerHomePage");
+        card2.show(cardPanel2, "homePageSMBar");
+    }//GEN-LAST:event_homePageSMActionPerformed
+
+    private void homePageTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageTActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "technicianHomePage");
+        card2.show(cardPanel2, "homePageT");
+    }//GEN-LAST:event_homePageTActionPerformed
+
+    private void homePageRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageRActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "receptionistHomePage");
+        card2.show(cardPanel2, "homePageR");
+    }//GEN-LAST:event_homePageRActionPerformed
+
+    private void acceptPaymentOfficeManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentOfficeManagerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptPaymentOfficeManagerActionPerformed
+
+    private void tasksOfficeManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksOfficeManagerActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "createNewTask");
+        card2.show(cardPanel2, "createNewTaskBar");
+    }//GEN-LAST:event_tasksOfficeManagerActionPerformed
+
+    private void acceptPaymentShiftManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentShiftManagerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptPaymentShiftManagerActionPerformed
+
+    private void jobEnquiryTechnicianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobEnquiryTechnicianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jobEnquiryTechnicianActionPerformed
+
+    private void acceptPaymentReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentReceptionistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptPaymentReceptionistActionPerformed
+
+    private void durationNewTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationNewTaskDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_durationNewTaskDDActionPerformed
+
+    private void createNewTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTaskButtonActionPerformed
+        // TODO add your handling code here:
+
+        boolean valid = true;
+        //Initialise values to get the data from the GUI buttons
+        String description = descriptionNewTaskField.getText();
+        double price = Double.parseDouble(priceNewTaskField.getText());
+        int duration_min =  Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
+        int duration_hours = Integer.parseInt((String) durationNewTaskDD.getSelectedItem());
+        String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
+        int shelf_slot = Integer.parseInt((String) shelfSlotTaskDD.getSelectedItem());
+
+        duration_min += duration_hours*60;
+
+        //Check fields are not empty in the GUI, then pop up will show if no data is inserted
+        if (description.equals("") || price == 0 ) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Please insert data");
+        }
+
+        else {
+            valid = true;
+        }
+
+        //Will only execute method in controller if all preconditions are met
+        if (valid) {
+            if (controller.createNewTask(description,duration_min,price,Department_department_code,shelf_slot)) {
+                JOptionPane.showMessageDialog(null, "Task created");
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to create Task");
+            }
+        }
+    }//GEN-LAST:event_createNewTaskButtonActionPerformed
+
+    private void cancelButtonCreateTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonCreateTaskActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonCreateTaskActionPerformed
+
+    private void shelfSlotTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shelfSlotTaskDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_shelfSlotTaskDDActionPerformed
+
+    private void departmentNewTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentNewTaskDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_departmentNewTaskDDActionPerformed
+
+    private void durationNewTaskMinsDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationNewTaskMinsDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_durationNewTaskMinsDDActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1292,27 +1915,49 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField UserLastnameField;
     private javax.swing.JTextField UserNumberField;
     private javax.swing.JComboBox<String> UserRoleSearchDrop;
+    private javax.swing.JButton acceptPaymentOfficeManager;
+    private javax.swing.JButton acceptPaymentReceptionist;
+    private javax.swing.JButton acceptPaymentShiftManager;
     private javax.swing.JButton backButton;
     private javax.swing.JButton backupButton;
     private javax.swing.JLabel backupDestinationLabel;
     private javax.swing.JPanel backupPage;
+    private javax.swing.JButton cancelButtonCreateTask;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JButton changeRoleButton;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
+    private javax.swing.JButton createNewTaskButton;
+    private javax.swing.JPanel createTaskPage;
     private javax.swing.JButton createUserButton;
     private javax.swing.JPanel createUserPage;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JComboBox<String> departmentNewTaskDD;
+    private javax.swing.JLabel departmentNewTaskLabel;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JTextField descriptionNewTaskField;
+    private javax.swing.JLabel durationLabel;
+    private javax.swing.JComboBox<String> durationNewTaskDD;
+    private javax.swing.JComboBox<String> durationNewTaskMinsDD;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
     private javax.swing.JLabel firstnameLabel;
     private javax.swing.JPanel homeBar;
     private javax.swing.JButton homeButton;
+    private javax.swing.JButton homePageOM;
+    private javax.swing.JButton homePageR;
+    private javax.swing.JButton homePageSM;
+    private javax.swing.JButton homePageT;
+    private javax.swing.JLabel hoursLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jobEnquiryTechnician;
+    private javax.swing.JButton jobOfficeManager;
+    private javax.swing.JButton jobReceptionist;
+    private javax.swing.JButton jobShiftManager;
     private javax.swing.JLabel lastnameLabel;
     private javax.swing.JTextField locationChosenField;
     private javax.swing.JButton logOutButton;
@@ -1320,14 +1965,37 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JButton manageCustomersOfficeManager;
+    private javax.swing.JLabel minutesLabel;
+    private javax.swing.JLabel newTaskLabel1;
     private javax.swing.JLabel newUserLabel;
+    private javax.swing.JPanel officeManagerHomePage;
+    private javax.swing.JPanel officeManagerPage;
     private javax.swing.JLabel pageLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JTextField priceNewTaskField;
+    private javax.swing.JPanel receptionHomePage;
+    private javax.swing.JPanel receptionistHomePage;
+    private javax.swing.JButton reportsOfficeManager;
+    private javax.swing.JButton reportsShiftManager;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchUserButton;
+    private javax.swing.JButton settingsOfficeManager;
+    private javax.swing.JButton settingsShiftManager;
+    private javax.swing.JLabel shelfSlotNewTaskLabel;
+    private javax.swing.JComboBox<String> shelfSlotTaskDD;
+    private javax.swing.JPanel shiftManagerHomePage;
+    private javax.swing.JPanel shiftManagerPage;
+    private javax.swing.JButton standardJobsOfficeManager;
+    private javax.swing.JButton standardJobsShiftManager;
+    private javax.swing.JButton tasksOfficeManager;
+    private javax.swing.JButton tasksShiftManager;
+    private javax.swing.JPanel technicianHomePage;
+    private javax.swing.JPanel technicianPage;
     private javax.swing.JButton tempButton;
     private javax.swing.JTextField userFirstNameField;
     private javax.swing.JLabel userFirstnameLabel;
@@ -1340,6 +2008,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable userResultsTable;
     private javax.swing.JComboBox<String> userRoleComboBox;
     private javax.swing.JPanel userSearchPage;
+    private javax.swing.JButton usersOfficeManager;
     private javax.swing.JPanel welcomeBar;
     private javax.swing.JPanel welcomePage;
     private javax.swing.JLabel welcomePageLabel;
