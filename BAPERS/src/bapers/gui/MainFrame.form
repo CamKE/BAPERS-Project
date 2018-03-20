@@ -1553,7 +1553,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jobHomePage">
+        <Container class="javax.swing.JPanel" name="reportHomePage">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="92" green="60" red="3d" type="rgb"/>
@@ -1570,7 +1570,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="jobHomePage"/>
+              <CardConstraints cardName="reportHomePage"/>
             </Constraint>
           </Constraints>
 
@@ -1578,13 +1578,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="144" max="32767" attributes="0"/>
-                      <Component id="acceptJobPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                      <Component id="manageReportsPageButton" min="-2" pref="196" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="collectJobPageButton" min="-2" pref="196" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jobEnquiryPageButton" min="-2" pref="196" max="-2" attributes="0"/>
-                      <EmptySpace pref="144" max="32767" attributes="0"/>
+                      <Component id="createReportPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1593,9 +1591,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace pref="254" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="acceptJobPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
-                          <Component id="collectJobPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
-                          <Component id="jobEnquiryPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="manageReportsPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="createReportPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="254" max="32767" attributes="0"/>
                   </Group>
@@ -1603,19 +1600,14 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="acceptJobPageButton">
+            <Component class="javax.swing.JButton" name="manageReportsPageButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Accept Job"/>
+                <Property name="text" type="java.lang.String" value="Manage Reports"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="collectJobPageButton">
+            <Component class="javax.swing.JButton" name="createReportPageButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Collect Job"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jobEnquiryPageButton">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Job Enquiry"/>
+                <Property name="text" type="java.lang.String" value="Create Report"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -1702,6 +1694,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reports"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reportsMenuPageButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="tasksMenuPageButton">
               <Properties>
@@ -1715,6 +1710,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Users"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usersMenuPageButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="manageCustomersMenuPageButton">
               <Properties>
@@ -1725,11 +1723,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Settings"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="settingsMenuPageButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="standardJobsMenuPageButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Standard Jobs"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="standardJobsMenuPageButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="acceptPaymentPageButton">
               <Properties>
@@ -1738,6 +1742,318 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceptPaymentPageButtonActionPerformed"/>
               </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jobHomePage">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="92" green="60" red="3d" type="rgb"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="jobHomePage"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="144" max="32767" attributes="0"/>
+                      <Component id="acceptJobPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="collectJobPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jobEnquiryPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace pref="144" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="254" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="acceptJobPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="collectJobPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="jobEnquiryPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="254" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="acceptJobPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Accept Job"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="collectJobPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Collect Job"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jobEnquiryPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Job Enquiry"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="taskHomePage">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="92" green="60" red="3d" type="rgb"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="taskHomePage"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                      <Component id="manageTasksPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="createTaskPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="254" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="manageTasksPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="createTaskPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="254" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="manageTasksPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manage Tasks"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="createTaskPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Create Task"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="userHomePage">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="92" green="60" red="3d" type="rgb"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="userHomePage"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                      <Component id="manageUsersPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="createUserPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="254" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="manageUsersPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="createUserPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="254" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="manageUsersPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manage Users"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="createUserPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Create User"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="standardJobHomePage">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="92" green="60" red="3d" type="rgb"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="standardJobHomePage"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                      <Component id="manageSJobPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="createSJobPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="254" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="manageSJobPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="createSJobPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="254" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="manageSJobPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manage Standard Jobs"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="createSJobPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Create Standard Job"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="settingsHomePage">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="92" green="60" red="3d" type="rgb"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="settingsHomePage"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="reportSettingsPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="restoreSettingsPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="backupPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="backupSettingsPageButton" min="-2" pref="196" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="248" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="139" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="backupPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="backupSettingsPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="reportSettingsPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="restoreSettingsPageButton" alignment="3" min="-2" pref="132" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="140" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="backupPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Backup Data"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="backupSettingsPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Backup Settings"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="reportSettingsPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Report Settings"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="restoreSettingsPageButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Restore Settings"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

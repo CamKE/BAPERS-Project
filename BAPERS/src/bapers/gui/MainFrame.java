@@ -45,6 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
         card2 = (CardLayout) cardPanel2.getLayout();
         // hide the button on the welcome bar
         backButton.setVisible(false);
+        homeButton.setVisible(false);
     }
 
     /**
@@ -128,10 +129,9 @@ public class MainFrame extends javax.swing.JFrame {
         priceNewTaskField = new javax.swing.JTextField();
         hoursLabel = new javax.swing.JLabel();
         minutesLabel = new javax.swing.JLabel();
-        jobHomePage = new javax.swing.JPanel();
-        acceptJobPageButton = new javax.swing.JButton();
-        collectJobPageButton = new javax.swing.JButton();
-        jobEnquiryPageButton = new javax.swing.JButton();
+        reportHomePage = new javax.swing.JPanel();
+        manageReportsPageButton = new javax.swing.JButton();
+        createReportPageButton = new javax.swing.JButton();
         homePage = new javax.swing.JPanel();
         jobMenuPageButton = new javax.swing.JButton();
         reportsMenuPageButton = new javax.swing.JButton();
@@ -141,6 +141,24 @@ public class MainFrame extends javax.swing.JFrame {
         settingsMenuPageButton = new javax.swing.JButton();
         standardJobsMenuPageButton = new javax.swing.JButton();
         acceptPaymentPageButton = new javax.swing.JButton();
+        jobHomePage = new javax.swing.JPanel();
+        acceptJobPageButton = new javax.swing.JButton();
+        collectJobPageButton = new javax.swing.JButton();
+        jobEnquiryPageButton = new javax.swing.JButton();
+        taskHomePage = new javax.swing.JPanel();
+        manageTasksPageButton = new javax.swing.JButton();
+        createTaskPageButton = new javax.swing.JButton();
+        userHomePage = new javax.swing.JPanel();
+        manageUsersPageButton = new javax.swing.JButton();
+        createUserPageButton = new javax.swing.JButton();
+        standardJobHomePage = new javax.swing.JPanel();
+        manageSJobPageButton = new javax.swing.JButton();
+        createSJobPageButton = new javax.swing.JButton();
+        settingsHomePage = new javax.swing.JPanel();
+        backupPageButton = new javax.swing.JButton();
+        backupSettingsPageButton = new javax.swing.JButton();
+        reportSettingsPageButton = new javax.swing.JButton();
+        restoreSettingsPageButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -971,42 +989,37 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createTaskPage, "createNewTask");
 
-        jobHomePage.setBackground(new java.awt.Color(61, 96, 146));
-        jobHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
-        jobHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
-        jobHomePage.setPreferredSize(new java.awt.Dimension(900, 640));
+        reportHomePage.setBackground(new java.awt.Color(61, 96, 146));
+        reportHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        reportHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+        reportHomePage.setPreferredSize(new java.awt.Dimension(900, 640));
 
-        acceptJobPageButton.setText("Accept Job");
+        manageReportsPageButton.setText("Manage Reports");
 
-        collectJobPageButton.setText("Collect Job");
+        createReportPageButton.setText("Create Report");
 
-        jobEnquiryPageButton.setText("Job Enquiry");
-
-        javax.swing.GroupLayout jobHomePageLayout = new javax.swing.GroupLayout(jobHomePage);
-        jobHomePage.setLayout(jobHomePageLayout);
-        jobHomePageLayout.setHorizontalGroup(
-            jobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobHomePageLayout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addComponent(acceptJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout reportHomePageLayout = new javax.swing.GroupLayout(reportHomePage);
+        reportHomePage.setLayout(reportHomePageLayout);
+        reportHomePageLayout.setHorizontalGroup(
+            reportHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportHomePageLayout.createSequentialGroup()
+                .addContainerGap(248, Short.MAX_VALUE)
+                .addComponent(manageReportsPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(collectJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jobEnquiryPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addComponent(createReportPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
         );
-        jobHomePageLayout.setVerticalGroup(
-            jobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jobHomePageLayout.createSequentialGroup()
+        reportHomePageLayout.setVerticalGroup(
+            reportHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportHomePageLayout.createSequentialGroup()
                 .addContainerGap(254, Short.MAX_VALUE)
-                .addGroup(jobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(acceptJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(collectJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jobEnquiryPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(reportHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manageReportsPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createReportPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(254, Short.MAX_VALUE))
         );
 
-        cardPanel1.add(jobHomePage, "jobHomePage");
+        cardPanel1.add(reportHomePage, "reportHomePage");
 
         homePage.setBackground(new java.awt.Color(61, 96, 146));
         homePage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -1020,6 +1033,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         reportsMenuPageButton.setText("Reports");
+        reportsMenuPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportsMenuPageButtonActionPerformed(evt);
+            }
+        });
 
         tasksMenuPageButton.setText("Tasks");
         tasksMenuPageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1029,12 +1047,27 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         usersMenuPageButton.setText("Users");
+        usersMenuPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usersMenuPageButtonActionPerformed(evt);
+            }
+        });
 
         manageCustomersMenuPageButton.setText("Manage Customers");
 
         settingsMenuPageButton.setText("Settings");
+        settingsMenuPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingsMenuPageButtonActionPerformed(evt);
+            }
+        });
 
         standardJobsMenuPageButton.setText("Standard Jobs");
+        standardJobsMenuPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                standardJobsMenuPageButtonActionPerformed(evt);
+            }
+        });
 
         acceptPaymentPageButton.setText("Accept Payment");
         acceptPaymentPageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1087,6 +1120,180 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(homePage, "homePage");
+
+        jobHomePage.setBackground(new java.awt.Color(61, 96, 146));
+        jobHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        jobHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        acceptJobPageButton.setText("Accept Job");
+
+        collectJobPageButton.setText("Collect Job");
+
+        jobEnquiryPageButton.setText("Job Enquiry");
+
+        javax.swing.GroupLayout jobHomePageLayout = new javax.swing.GroupLayout(jobHomePage);
+        jobHomePage.setLayout(jobHomePageLayout);
+        jobHomePageLayout.setHorizontalGroup(
+            jobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobHomePageLayout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(acceptJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(collectJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jobEnquiryPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+        jobHomePageLayout.setVerticalGroup(
+            jobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobHomePageLayout.createSequentialGroup()
+                .addContainerGap(254, Short.MAX_VALUE)
+                .addGroup(jobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acceptJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(collectJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jobEnquiryPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(254, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(jobHomePage, "jobHomePage");
+
+        taskHomePage.setBackground(new java.awt.Color(61, 96, 146));
+        taskHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        taskHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        manageTasksPageButton.setText("Manage Tasks");
+
+        createTaskPageButton.setText("Create Task");
+
+        javax.swing.GroupLayout taskHomePageLayout = new javax.swing.GroupLayout(taskHomePage);
+        taskHomePage.setLayout(taskHomePageLayout);
+        taskHomePageLayout.setHorizontalGroup(
+            taskHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, taskHomePageLayout.createSequentialGroup()
+                .addContainerGap(248, Short.MAX_VALUE)
+                .addComponent(manageTasksPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(createTaskPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
+        );
+        taskHomePageLayout.setVerticalGroup(
+            taskHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskHomePageLayout.createSequentialGroup()
+                .addContainerGap(254, Short.MAX_VALUE)
+                .addGroup(taskHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manageTasksPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createTaskPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(254, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(taskHomePage, "taskHomePage");
+
+        userHomePage.setBackground(new java.awt.Color(61, 96, 146));
+        userHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        userHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        manageUsersPageButton.setText("Manage Users");
+
+        createUserPageButton.setText("Create User");
+
+        javax.swing.GroupLayout userHomePageLayout = new javax.swing.GroupLayout(userHomePage);
+        userHomePage.setLayout(userHomePageLayout);
+        userHomePageLayout.setHorizontalGroup(
+            userHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userHomePageLayout.createSequentialGroup()
+                .addContainerGap(248, Short.MAX_VALUE)
+                .addComponent(manageUsersPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(createUserPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
+        );
+        userHomePageLayout.setVerticalGroup(
+            userHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userHomePageLayout.createSequentialGroup()
+                .addContainerGap(254, Short.MAX_VALUE)
+                .addGroup(userHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manageUsersPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createUserPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(254, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(userHomePage, "userHomePage");
+
+        standardJobHomePage.setBackground(new java.awt.Color(61, 96, 146));
+        standardJobHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        standardJobHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        manageSJobPageButton.setText("Manage Standard Jobs");
+
+        createSJobPageButton.setText("Create Standard Job");
+
+        javax.swing.GroupLayout standardJobHomePageLayout = new javax.swing.GroupLayout(standardJobHomePage);
+        standardJobHomePage.setLayout(standardJobHomePageLayout);
+        standardJobHomePageLayout.setHorizontalGroup(
+            standardJobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, standardJobHomePageLayout.createSequentialGroup()
+                .addContainerGap(248, Short.MAX_VALUE)
+                .addComponent(manageSJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(createSJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
+        );
+        standardJobHomePageLayout.setVerticalGroup(
+            standardJobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(standardJobHomePageLayout.createSequentialGroup()
+                .addContainerGap(254, Short.MAX_VALUE)
+                .addGroup(standardJobHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manageSJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createSJobPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(254, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(standardJobHomePage, "standardJobHomePage");
+
+        settingsHomePage.setBackground(new java.awt.Color(61, 96, 146));
+        settingsHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        settingsHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        backupPageButton.setText("Backup Data");
+
+        backupSettingsPageButton.setText("Backup Settings");
+
+        reportSettingsPageButton.setText("Report Settings");
+
+        restoreSettingsPageButton.setText("Restore Settings");
+
+        javax.swing.GroupLayout settingsHomePageLayout = new javax.swing.GroupLayout(settingsHomePage);
+        settingsHomePage.setLayout(settingsHomePageLayout);
+        settingsHomePageLayout.setHorizontalGroup(
+            settingsHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingsHomePageLayout.createSequentialGroup()
+                .addContainerGap(248, Short.MAX_VALUE)
+                .addGroup(settingsHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(settingsHomePageLayout.createSequentialGroup()
+                        .addComponent(reportSettingsPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(restoreSettingsPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(settingsHomePageLayout.createSequentialGroup()
+                        .addComponent(backupPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(backupSettingsPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(248, Short.MAX_VALUE))
+        );
+        settingsHomePageLayout.setVerticalGroup(
+            settingsHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingsHomePageLayout.createSequentialGroup()
+                .addContainerGap(139, Short.MAX_VALUE)
+                .addGroup(settingsHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backupPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backupSettingsPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97)
+                .addGroup(settingsHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reportSettingsPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(restoreSettingsPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(140, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(settingsHomePage, "settingsHomePage");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -1236,7 +1443,7 @@ public class MainFrame extends javax.swing.JFrame {
                         tasksMenuPageButton.setVisible(false);
                         settingsMenuPageButton.setVisible(false);
                         standardJobsMenuPageButton.setVisible(false);
-                        collectJobPageButton.setVisible(false);
+                        createReportPageButton.setVisible(false);
                         acceptPaymentPageButton.setVisible(false);
                         break;
                     case "Receptionist":
@@ -1246,7 +1453,7 @@ public class MainFrame extends javax.swing.JFrame {
                         tasksMenuPageButton.setVisible(false);
                         settingsMenuPageButton.setVisible(false);
                         standardJobsMenuPageButton.setVisible(false);
-                        collectJobPageButton.setVisible(false);
+                        createReportPageButton.setVisible(false);
                         break;
                 }
 
@@ -1329,6 +1536,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
+        card1.show(cardPanel1, "homePage");
+        homeButton.setVisible(false);
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1342,9 +1551,10 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         card1.show(cardPanel1, "welcome");
         card2.show(cardPanel2, "welcomeBar");
-        for (Component c : jobHomePage.getComponents()) {
+        for (Component c : reportHomePage.getComponents()) {
             c.setVisible(true);
         }
+        backButton.setVisible(false);
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
@@ -1626,6 +1836,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void tasksMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksMenuPageButtonActionPerformed
         // TODO add your handling code here:
+        card1.show(cardPanel1, "taskHomePage");
+        homeButton.setVisible(true);
     }//GEN-LAST:event_tasksMenuPageButtonActionPerformed
 
     private void acceptPaymentPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentPageButtonActionPerformed
@@ -1635,7 +1847,32 @@ public class MainFrame extends javax.swing.JFrame {
     private void jobMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobMenuPageButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "jobHomePage");
+        homeButton.setVisible(true);
     }//GEN-LAST:event_jobMenuPageButtonActionPerformed
+
+    private void reportsMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsMenuPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "reportHomePage");
+        homeButton.setVisible(true);
+    }//GEN-LAST:event_reportsMenuPageButtonActionPerformed
+
+    private void usersMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersMenuPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "userHomePage");
+        homeButton.setVisible(true);
+    }//GEN-LAST:event_usersMenuPageButtonActionPerformed
+
+    private void standardJobsMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardJobsMenuPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "standardJobHomePage");
+        homeButton.setVisible(true);
+    }//GEN-LAST:event_standardJobsMenuPageButtonActionPerformed
+
+    private void settingsMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsMenuPageButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "settingsHomePage");
+        homeButton.setVisible(true);
+    }//GEN-LAST:event_settingsMenuPageButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1691,6 +1928,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton backupButton;
     private javax.swing.JLabel backupDestinationLabel;
     private javax.swing.JPanel backupPage;
+    private javax.swing.JButton backupPageButton;
+    private javax.swing.JButton backupSettingsPageButton;
     private javax.swing.JButton cancelButtonCreateTask;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
@@ -1699,9 +1938,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton chooseLocationButton;
     private javax.swing.JButton collectJobPageButton;
     private javax.swing.JButton createNewTaskButton;
+    private javax.swing.JButton createReportPageButton;
+    private javax.swing.JButton createSJobPageButton;
     private javax.swing.JPanel createTaskPage;
+    private javax.swing.JButton createTaskPageButton;
     private javax.swing.JButton createUserButton;
     private javax.swing.JPanel createUserPage;
+    private javax.swing.JButton createUserPageButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
     private javax.swing.JLabel departmentNewTaskLabel;
@@ -1732,6 +1975,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
     private javax.swing.JButton manageCustomersMenuPageButton;
+    private javax.swing.JButton manageReportsPageButton;
+    private javax.swing.JButton manageSJobPageButton;
+    private javax.swing.JButton manageTasksPageButton;
+    private javax.swing.JButton manageUsersPageButton;
     private javax.swing.JLabel minutesLabel;
     private javax.swing.JLabel newTaskLabel1;
     private javax.swing.JLabel newUserLabel;
@@ -1740,19 +1987,26 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField priceNewTaskField;
+    private javax.swing.JPanel reportHomePage;
+    private javax.swing.JButton reportSettingsPageButton;
     private javax.swing.JButton reportsMenuPageButton;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
+    private javax.swing.JButton restoreSettingsPageButton;
     private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchUserButton;
+    private javax.swing.JPanel settingsHomePage;
     private javax.swing.JButton settingsMenuPageButton;
     private javax.swing.JLabel shelfSlotNewTaskLabel;
     private javax.swing.JComboBox<String> shelfSlotTaskDD;
+    private javax.swing.JPanel standardJobHomePage;
     private javax.swing.JButton standardJobsMenuPageButton;
+    private javax.swing.JPanel taskHomePage;
     private javax.swing.JButton tasksMenuPageButton;
     private javax.swing.JButton tempButton;
     private javax.swing.JTextField userFirstNameField;
     private javax.swing.JLabel userFirstnameLabel;
+    private javax.swing.JPanel userHomePage;
     private javax.swing.JTextField userIDField;
     private javax.swing.JTextField userLastNameField;
     private javax.swing.JLabel userLastnameLabel;
