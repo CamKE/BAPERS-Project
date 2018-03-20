@@ -20,6 +20,14 @@ public class BAPERS {
     public static void main(String[] args) {
         // show the jframe window, provide a new controller object
         new MainFrame(new Controller()).setVisible(true);
+        /**
+         *  Logins:
+         * user id       password       role
+         *     54           1           OM
+         *     55           2           SM
+         *     56           3           R
+         *     57           4           T
+         */
     }
     
 }
