@@ -1443,7 +1443,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             role = controller.login(userID, password);
         }
-
+        System.out.println(role);
         switch (role) {
             case "Office Manager":
                 System.out.println("Office Manager");
