@@ -5,7 +5,7 @@
  */
 package bapers.acct;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -21,18 +21,40 @@ public class Payment {
 //    cardDetailsLast4digits
 //    cardDetailsExpiryDate
             
-    private int paymentNo;
-    private double total;
-    private String paymentType;
-    private int paymentDate;
-    private int invoiceNumber;
+    private final int[] paymentNo;
+    private final int[] invoiceNumber;
+    private final double total;
+    private final String paymentType;
+    private final Date paymentDate;
 
-    public Payment(int paymentNo, double total, int paymentDate, int invoiceNumber) {
+    public Payment(int[] paymentNo, int[] invoiceNumber, double total, String paymentType, Date paymentDate) {
         this.paymentNo = paymentNo;
-        this.total = total;
-        this.paymentDate = paymentDate;
         this.invoiceNumber = invoiceNumber;
+        this.total = total;
+        this.paymentType = paymentType;
+        this.paymentDate = paymentDate;
     }
+
+    public int[] getPaymentNo() {
+        return paymentNo;
+    }
+
+    public int[] getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public Date getPaymentDate() {
+        return paymentDate;
+    }
+
     
     
 }
