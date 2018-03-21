@@ -2717,8 +2717,10 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please insert data");
         } else {
             loggedInUser = controller.login(userID, password);
-            role = loggedInUser.getRole();
-            if (role != null) {
+            if (loggedInUser != null) {
+                
+                role = loggedInUser.getRole();
+                
                 switch (role) {
                     case "Shift Manager":
                         System.out.println("Shift Manager");
@@ -2732,7 +2734,7 @@ public class MainFrame extends javax.swing.JFrame {
                         tasksMenuPageButton.setVisible(false);
                         settingsMenuPageButton.setVisible(false);
                         standardJobsMenuPageButton.setVisible(false);
-                        createReportPageButton.setVisible(false);
+                        reportsMenuPageButton.setVisible(false);
                         acceptPaymentPageButton.setVisible(false);
                         break;
                     case "Receptionist":
@@ -2742,7 +2744,7 @@ public class MainFrame extends javax.swing.JFrame {
                         tasksMenuPageButton.setVisible(false);
                         settingsMenuPageButton.setVisible(false);
                         standardJobsMenuPageButton.setVisible(false);
-                        createReportPageButton.setVisible(false);
+                        reportsMenuPageButton.setVisible(false);
                         break;
                 }
 
@@ -2835,7 +2837,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         card1.show(cardPanel1, "welcome");
         card2.show(cardPanel2, "welcomeBar");
-        for (Component c : reportHomePage.getComponents()) {
+        for (Component c : homePage.getComponents()) {
             c.setVisible(true);
         }
         backButton.setVisible(false);
