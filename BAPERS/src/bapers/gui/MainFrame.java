@@ -246,7 +246,7 @@ public class MainFrame extends javax.swing.JFrame {
         specialInstructionsLabel = new javax.swing.JLabel();
         materialsjScrollPane = new javax.swing.JScrollPane();
         materialList = new javax.swing.JList<>();
-        customerInfojTextField = new javax.swing.JTextField();
+        customerInfoField = new javax.swing.JTextField();
         stdJobsjScrollPane1 = new javax.swing.JScrollPane();
         standardJobList = new javax.swing.JList<>();
         materialSubmittedLabel = new javax.swing.JLabel();
@@ -2147,10 +2147,10 @@ public class MainFrame extends javax.swing.JFrame {
         });
         materialsjScrollPane.setViewportView(materialList);
 
-        customerInfojTextField.setText("No Customer Selected");
-        customerInfojTextField.setMaximumSize(new java.awt.Dimension(308, 42));
-        customerInfojTextField.setMinimumSize(new java.awt.Dimension(308, 42));
-        customerInfojTextField.setPreferredSize(new java.awt.Dimension(308, 42));
+        customerInfoField.setText("No Customer Selected");
+        customerInfoField.setMaximumSize(new java.awt.Dimension(308, 42));
+        customerInfoField.setMinimumSize(new java.awt.Dimension(308, 42));
+        customerInfoField.setPreferredSize(new java.awt.Dimension(308, 42));
 
         standardJobList.setMaximumSize(new java.awt.Dimension(85, 507));
         standardJobList.setMinimumSize(new java.awt.Dimension(85, 507));
@@ -2251,7 +2251,7 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(createCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(customerInfojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(customerInfoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(acceptJobjPanelLayout.createSequentialGroup()
                                         .addComponent(cancelAcceptJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -2272,7 +2272,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(createCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(customerInfojTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerInfoField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(materialsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2319,7 +2319,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(130, Short.MAX_VALUE))
         );
 
-        customerInfojTextField.setEditable(false);
+        customerInfoField.setEditable(false);
         surchargejTextField.setVisible(false);
         percentageLabel.setVisible(false);
         surchargeLabel.setVisible(false);
@@ -2786,9 +2786,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         selectCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         selectCustomerButton.setText("Select Customer");
-        selectCustomerButton.setMaximumSize(new java.awt.Dimension(205, 45));
-        selectCustomerButton.setMinimumSize(new java.awt.Dimension(205, 45));
-        selectCustomerButton.setPreferredSize(new java.awt.Dimension(205, 45));
+        selectCustomerButton.setMaximumSize(new java.awt.Dimension(210, 45));
+        selectCustomerButton.setMinimumSize(new java.awt.Dimension(210, 45));
+        selectCustomerButton.setPreferredSize(new java.awt.Dimension(210, 45));
         selectCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectCustomerButtonActionPerformed(evt);
@@ -3907,6 +3907,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void selectCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerButtonActionPerformed
         // TODO add your handling code here:
+        int selectedRow = customerResultsTable.getSelectedRow(); // index 0 here
+        if (selectedRow != -1) {
+            customerInfoField.setText("Contact name: " + ((String) customerResultsTable.getValueAt(selectedRow, 1)) + ", ID: " + ((int) customerResultsTable.getValueAt(selectedRow, 0)));
+            acceptJobPageButton.doClick();
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a customer");
+        }
     }//GEN-LAST:event_selectCustomerButtonActionPerformed
 
     private void searchCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerFJobjButtonActionPerformed
@@ -3999,7 +4006,7 @@ public class MainFrame extends javax.swing.JFrame {
                 row[0] = customers.get(i).getAccountNo();
                 row[1] = customers.get(i).getAccountHolderName();
                 System.out.println(row[1]);
-                row[2] = customers.get(i).getPrefix()+ " " +customers.get(i).getFirstName()+ " " +customers.get(i).getLastName();
+                row[2] = customers.get(i).getPrefix() + " " + customers.get(i).getFirstName() + " " + customers.get(i).getLastName();
                 row[3] = customers.get(i).getCustomerType();
                 row[4] = customers.get(i).getCustomerStatus();
                 tblModel.insertRow(i, row);
@@ -4125,7 +4132,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField custAccountNoField;
     private javax.swing.JTextField custFirstnameField;
     private javax.swing.JTextField custLastnameField;
-    private javax.swing.JTextField customerInfojTextField;
+    private javax.swing.JTextField customerInfoField;
     private com.toedter.calendar.JDateChooser customerRegDateField;
     private javax.swing.JPanel customerResultsPage;
     private javax.swing.JTable customerResultsTable;
