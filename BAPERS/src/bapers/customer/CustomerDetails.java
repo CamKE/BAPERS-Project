@@ -5,50 +5,38 @@
  */
 package bapers.customer;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
  * @author kelvin
  */
 public class CustomerDetails {
-    private String accountNo;
-    private String accountHolderName;
-    private String prefix;
-    private String firstName;
-    private String surName;
-    private String streetName;
-    private String postCode;
-    private String city;
-    private String phoneNumber;
-    private boolean isSuspended;
-    private boolean inDefault;
-    private boolean isValued;
-    private Date registrationDate;
-    private String buildingNo;
 
-    public CustomerDetails(String accountNo, String accountHolderName, String prefix, String firstName, String surName, String streetName, String postCode, String city, String phoneNumber, String buildingNo) {
-        this.accountNo = accountNo;
-        this.accountHolderName = accountHolderName;
-        this.prefix = prefix;
-        this.firstName = firstName;
-        this.surName = surName;
-        this.streetName = streetName;
-        this.postCode = postCode;
-        this.city = city;
-        this.phoneNumber = phoneNumber;
-        this.buildingNo = buildingNo;
-        isSuspended = false;
-        inDefault = false;
-        isValued = false;
-        registrationDate = new Date();
+    int accountNo;
+    String accountHolderName;
+    String prefix;
+    String firstName;
+    String lastName;
+    String streetName;
+    String postCode;
+    String city;
+    String phoneNumber;
+    Boolean isSuspended;
+    Boolean inDefault;
+    Boolean isValued;
+    Timestamp regDate;
+    int buildingNo;
+
+    public CustomerDetails(int accountNo, String accountHolderName, String prefix, String firstName, String lastName, String streetName, String postCode, String city, String phoneNumber, Boolean isSuspended, Boolean inDefault, Boolean isValued, Timestamp regDate, int buildingNo) {
+
     }
 
-    public String getAccountNo() {
+    public int getAccountNo() {
         return accountNo;
     }
 
-    public void setAccountNo(String accountNo) {
+    public void setAccountNo(int accountNo) {
         this.accountNo = accountNo;
     }
 
@@ -76,12 +64,12 @@ public class CustomerDetails {
         this.firstName = firstName;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getStreetName() {
@@ -116,43 +104,44 @@ public class CustomerDetails {
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isIsSuspended() {
+    public Boolean getIsSuspended() {
         return isSuspended;
     }
 
-    public void setIsSuspended(boolean isSuspended) {
+    public void setIsSuspended(Boolean isSuspended) {
         this.isSuspended = isSuspended;
     }
 
-    public boolean isInDefault() {
+    public Boolean getInDefault() {
         return inDefault;
     }
 
-    public void setInDefault(boolean inDefault) {
+    public void setInDefault(Boolean inDefault) {
         this.inDefault = inDefault;
     }
 
-    public boolean isIsValued() {
+    public Boolean getIsValued() {
         return isValued;
     }
 
-    public void setIsValued(boolean isValued) {
+    public void setIsValued(Boolean isValued) {
         this.isValued = isValued;
     }
 
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public Timestamp getRegDate() {
+        return regDate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setRegDate(Timestamp regDate) {
+        this.regDate = regDate;
     }
 
-    public String getBuildingNo() {
+    public int getBuildingNo() {
         return buildingNo;
     }
 
-    public void setBuildingNo(String buildingNo) {
+    public void setBuildingNo(int buildingNo) {
         this.buildingNo = buildingNo;
     }
+
 }

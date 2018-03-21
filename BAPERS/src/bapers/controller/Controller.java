@@ -93,6 +93,71 @@ public class Controller {
         return roleID;
     }
 
+    public ArrayList<CustomerDetails> findCustomer(String customerNumber, String cFirstName, String cLastName, String accountHName, String streetName, String postCode, String city, String phone, String customerType, String customerStatus, String inDefault, String regDate) {
+        StringBuilder sb = new StringBuilder();
+        // 1=1 is ignored by sql. it allows for ease of adding conditions to the statement (AND)
+        sb.append("SELECT * from customer WHERE 1=1 ");
+
+        // The sql statement is constructed based on the values given
+        if (!customerNumber.isEmpty()) {
+            sb.append("AND account_no = ").append(Integer.parseInt(customerNumber));
+        } else {
+            if (!cFirstName.isEmpty()) {
+                sb.append(" AND firstname = '").append(cFirstName).append("'");
+            }
+            if (!cLastName.isEmpty()) {
+                sb.append(" AND lastname = '").append(cLastName).append("'");
+            }
+            if (!accountHName.isEmpty()) {
+                sb.append(" AND account_holder_name = '").append(accountHName).append("'");
+            }
+            if (!streetName.isEmpty()) {
+                sb.append(" AND street_name = '").append(streetName).append("'");
+            }
+            if (!postCode.isEmpty()) {
+                sb.append(" AND postcode = '").append(postCode).append("'");
+            }
+            if (!city.isEmpty()) {
+                sb.append(" AND city = '").append(city).append("'");
+            }
+            if (!phone.isEmpty()) {
+                sb.append(" AND phone = '").append(phone).append("'");
+            }
+            if (!customerType.equals("Any")) {
+                sb.append(" AND is_valued = ").append(customerType.equals("Valued"));
+            }
+            if (!customerStatus.equals("Any")) {
+                sb.append(" AND is_suspended = ").append(customerStatus.equals("Suspended"));
+            }
+            if (!inDefault.equals("Any")) {
+                sb.append(" AND in_default = ").append(inDefault.equals("In Default"));
+            }
+            //probably doesnt work atm
+            if (!regDate.isEmpty()) {
+                sb.append(" AND registration_date = '").append(regDate).append("'");
+            }
+        }
+
+        // stores all the customers returned
+        ArrayList<CustomerDetails> customerList = new ArrayList<>();
+        //stores a customer's details
+        CustomerDetails customer;
+
+        try (ResultSet rs = database.read(sb.toString(), conn)) {
+            //for each user in the results returned
+            while (rs.next()) {
+                // place their details into a userdetails object
+                customer = new CustomerDetails(rs.getInt("account_no"),rs.getString("account_holder_name"),rs.getString("prefix"), rs.getString("firstname"), rs.getString("lastname"),rs.getString("street_name"),rs.getString("postcode"),rs.getString("city"), rs.getString("phone"), rs.getBoolean("is_suspended"),rs.getBoolean("in_default"), rs.getBoolean("is_valued"), rs.getTimestamp("registration_date"),rs.getInt("building_no"));
+                //add their userdetails object to the arraylist of users
+                customerList.add(customer);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return customerList;
+    }
+
     // finds all the users for the given search criteria. returns all users if no criteria is given
     public ArrayList<UserDetails> findUser(String userNumber, String firstName, String lastName, String role) {
         StringBuilder sb = new StringBuilder();
@@ -248,12 +313,12 @@ public class Controller {
     public void recordPayment(PaymentDetails p) {
         String sql = "";
     }
-    
-        //Creates a new standard job using the input from the GUI 
+
+    //Creates a new standard job using the input from the GUI 
     public boolean createStandardJob(String code1, String job_description1, double price1) {
         boolean success = false;
-        String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ('"+code1+"','" +job_description1+"','" +price1+"');";        
-        
+        String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ('" + code1 + "','" + job_description1 + "','" + price1 + "');";
+
         try {
             database.write(SQL, conn);
             success = true;
@@ -262,5 +327,5 @@ public class Controller {
         }
         return success;
     }
-    
+
 }

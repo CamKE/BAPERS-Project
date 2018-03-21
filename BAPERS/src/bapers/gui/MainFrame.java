@@ -114,7 +114,7 @@ public class MainFrame extends javax.swing.JFrame {
         backupDestinationLabel = new javax.swing.JLabel();
         userResultsPage = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        customerResultsTable = new javax.swing.JTable();
+        userResultsTable = new javax.swing.JTable();
         searchAgainButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         changeRoleButton = new javax.swing.JButton();
@@ -229,7 +229,7 @@ public class MainFrame extends javax.swing.JFrame {
         cityField1 = new javax.swing.JTextField();
         phoneField1 = new javax.swing.JTextField();
         customerTypeDD = new javax.swing.JComboBox<>();
-        discountStatusDD = new javax.swing.JComboBox<>();
+        accountStatusDD = new javax.swing.JComboBox<>();
         inDefaultDD = new javax.swing.JComboBox<>();
         customerRegDateField = new com.toedter.calendar.JDateChooser();
         acceptJobPage = new javax.swing.JPanel();
@@ -299,7 +299,7 @@ public class MainFrame extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         customerResultsPage = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        userResultsTable1 = new javax.swing.JTable();
+        customerResultsTable = new javax.swing.JTable();
         searchAgainButton1 = new javax.swing.JButton();
         selectCustomerButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
@@ -683,8 +683,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(750, 400));
 
-        customerResultsTable.setAutoCreateRowSorter(true);
-        customerResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+        userResultsTable.setAutoCreateRowSorter(true);
+        userResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -700,17 +700,17 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        customerResultsTable.setMaximumSize(new java.awt.Dimension(750, 500));
-        customerResultsTable.setMinimumSize(new java.awt.Dimension(750, 500));
-        customerResultsTable.setPreferredSize(new java.awt.Dimension(750, 500));
-        customerResultsTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(customerResultsTable);
-        if (customerResultsTable.getColumnModel().getColumnCount() > 0) {
-            customerResultsTable.getColumnModel().getColumn(0).setResizable(false);
-            customerResultsTable.getColumnModel().getColumn(1).setResizable(false);
-            customerResultsTable.getColumnModel().getColumn(2).setResizable(false);
-            customerResultsTable.getColumnModel().getColumn(3).setResizable(false);
-            customerResultsTable.getColumnModel().getColumn(4).setResizable(false);
+        userResultsTable.setMaximumSize(new java.awt.Dimension(750, 500));
+        userResultsTable.setMinimumSize(new java.awt.Dimension(750, 500));
+        userResultsTable.setPreferredSize(new java.awt.Dimension(750, 500));
+        userResultsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(userResultsTable);
+        if (userResultsTable.getColumnModel().getColumnCount() > 0) {
+            userResultsTable.getColumnModel().getColumn(0).setResizable(false);
+            userResultsTable.getColumnModel().getColumn(1).setResizable(false);
+            userResultsTable.getColumnModel().getColumn(2).setResizable(false);
+            userResultsTable.getColumnModel().getColumn(3).setResizable(false);
+            userResultsTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         searchAgainButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -1826,6 +1826,11 @@ public class MainFrame extends javax.swing.JFrame {
         searchCustomerFJobjButton.setMaximumSize(new java.awt.Dimension(163, 37));
         searchCustomerFJobjButton.setMinimumSize(new java.awt.Dimension(163, 37));
         searchCustomerFJobjButton.setPreferredSize(new java.awt.Dimension(163, 37));
+        searchCustomerFJobjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomerFJobjButtonActionPerformed(evt);
+            }
+        });
 
         cancelCustomerFJobjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         cancelCustomerFJobjButton.setText("Cancel");
@@ -1901,10 +1906,10 @@ public class MainFrame extends javax.swing.JFrame {
         customerTypeDD.setMinimumSize(new java.awt.Dimension(200, 42));
         customerTypeDD.setPreferredSize(new java.awt.Dimension(200, 42));
 
-        discountStatusDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        discountStatusDD.setMaximumSize(new java.awt.Dimension(200, 42));
-        discountStatusDD.setMinimumSize(new java.awt.Dimension(200, 42));
-        discountStatusDD.setPreferredSize(new java.awt.Dimension(200, 42));
+        accountStatusDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        accountStatusDD.setMaximumSize(new java.awt.Dimension(200, 42));
+        accountStatusDD.setMinimumSize(new java.awt.Dimension(200, 42));
+        accountStatusDD.setPreferredSize(new java.awt.Dimension(200, 42));
 
         inDefaultDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
         inDefaultDD.setMaximumSize(new java.awt.Dimension(200, 42));
@@ -1951,7 +1956,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(customerTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(discountStatusDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(accountStatusDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(inDefaultDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(customerRegDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(91, 91, 91))
@@ -1975,7 +1980,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(managerjPanelLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(discountStatusDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(accountStatusDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(accountStatusjLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2738,8 +2743,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane4.setPreferredSize(new java.awt.Dimension(750, 400));
 
-        userResultsTable1.setAutoCreateRowSorter(true);
-        userResultsTable1.setModel(new javax.swing.table.DefaultTableModel(
+        customerResultsTable.setAutoCreateRowSorter(true);
+        customerResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -2755,17 +2760,17 @@ public class MainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        userResultsTable1.setMaximumSize(new java.awt.Dimension(750, 500));
-        userResultsTable1.setMinimumSize(new java.awt.Dimension(750, 500));
-        userResultsTable1.setPreferredSize(new java.awt.Dimension(750, 500));
-        userResultsTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(userResultsTable1);
-        if (userResultsTable1.getColumnModel().getColumnCount() > 0) {
-            userResultsTable1.getColumnModel().getColumn(0).setResizable(false);
-            userResultsTable1.getColumnModel().getColumn(1).setResizable(false);
-            userResultsTable1.getColumnModel().getColumn(2).setResizable(false);
-            userResultsTable1.getColumnModel().getColumn(3).setResizable(false);
-            userResultsTable1.getColumnModel().getColumn(4).setResizable(false);
+        customerResultsTable.setMaximumSize(new java.awt.Dimension(750, 500));
+        customerResultsTable.setMinimumSize(new java.awt.Dimension(750, 500));
+        customerResultsTable.setPreferredSize(new java.awt.Dimension(750, 500));
+        customerResultsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(customerResultsTable);
+        if (customerResultsTable.getColumnModel().getColumnCount() > 0) {
+            customerResultsTable.getColumnModel().getColumn(0).setResizable(false);
+            customerResultsTable.getColumnModel().getColumn(1).setResizable(false);
+            customerResultsTable.getColumnModel().getColumn(2).setResizable(false);
+            customerResultsTable.getColumnModel().getColumn(3).setResizable(false);
+            customerResultsTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         searchAgainButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -3165,7 +3170,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (valid) {
             ArrayList<UserDetails> users = controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
 
-            tblModel = (DefaultTableModel) customerResultsTable.getModel();
+            tblModel = (DefaultTableModel) userResultsTable.getModel();
             Object[] row = new Object[5];
             for (int i = 0; i < users.size(); i++) {
                 row[0] = users.get(i).getAccount_no();
@@ -3179,7 +3184,7 @@ public class MainFrame extends javax.swing.JFrame {
             //card2.show(cardPanel2, "homeBar");
             pageLabel.setText("User results page");
 
-            customerResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            userResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
             //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
         }
@@ -3192,17 +3197,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void changeRoleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeRoleButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRow = customerResultsTable.getSelectedRow();
+        int selectedRow = userResultsTable.getSelectedRow();
         if (selectedRow != -1) {
             String[] choices = {"Office Manager", "Shift Manager", "Receptionist", "Technician"};
-            String usersRole = (String) customerResultsTable.getValueAt(selectedRow, 3);
+            String usersRole = (String) userResultsTable.getValueAt(selectedRow, 3);
             String selectedRole = (String) JOptionPane.showInputDialog(this, "Select a new role:", "Update user role", JOptionPane.QUESTION_MESSAGE, null, choices, choices[controller.getRoleID(usersRole) - 1]);
             if (selectedRole != null) {
                 String outcome;
                 int newRoleid = controller.getRoleID(selectedRole);
-                if (controller.updateUserRole((int) customerResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
+                if (controller.updateUserRole((int) userResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
                     outcome = "Success";
-                    tblModel.setValueAt(selectedRole, customerResultsTable.getRowSorter().convertRowIndexToModel(customerResultsTable.getSelectedRow()), 3);
+                    tblModel.setValueAt(selectedRole, userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()), 3);
                 } else {
                     outcome = "Fail";
                 }
@@ -3215,9 +3220,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRow = customerResultsTable.getSelectedRow(); // index 0 here
+        int selectedRow = userResultsTable.getSelectedRow(); // index 0 here
         if (selectedRow != -1) {
-            int userId = (int) customerResultsTable.getValueAt(selectedRow, 0);
+            int userId = (int) userResultsTable.getValueAt(selectedRow, 0);
             int response = JOptionPane.showConfirmDialog(this, "Are you sure you would like to delete user with id " + userId + "?");
 
             if (response == 0) {
@@ -3225,7 +3230,7 @@ public class MainFrame extends javax.swing.JFrame {
                 if (controller.deleteUser(userId)) {
                     outcome = "Success";
                     //we need the selected elements position relative to the model before the sort
-                    tblModel.removeRow(customerResultsTable.getRowSorter().convertRowIndexToModel(customerResultsTable.getSelectedRow()));
+                    tblModel.removeRow(userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()));
                 } else {
                     outcome = "Fail";
                 }
@@ -3439,9 +3444,7 @@ public class MainFrame extends javax.swing.JFrame {
             String buildingNo = buildingNumberField.getText();
 
             // assigns the variables to the class
-            customerAccount = new CustomerDetails(accountHolderNo, accountHolderName, prefix, firstName, surname, streetName, postCode, city, phoneNumber, buildingNo);
-            controller.createCustomerAccount(customerAccount);
-
+            //controller.createCustomerAccount(customerAccount);
             // sets the fields that the customer input back to null
             accountHolderNojTextField.setText("");
             accountHolderNamejTextField.setText("");
@@ -3897,11 +3900,119 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchAgainButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton1ActionPerformed
         // TODO add your handling code here:
+        card1.show(cardPanel1, "customerSearch");
+        pageLabel.setText("Customer search page");
+        tblModel.setRowCount(0);
     }//GEN-LAST:event_searchAgainButton1ActionPerformed
 
     private void selectCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selectCustomerButtonActionPerformed
+
+    private void searchCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerFJobjButtonActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        String customerNumber = custAccountNoField.getText();
+        String cFirstName = custFirstnameField.getText();
+        String cLastName = custLastnameField.getText();
+        String accountHName = custAccountHNameField.getText();
+        String streetName = streetNameField1.getText();
+        String postCode = postCodeField1.getText();
+        String city = cityField1.getText();
+        String phone = phoneField1.getText();
+        String isValued = (String) customerTypeDD.getSelectedItem();
+        String isSuspended = (String) accountStatusDD.getSelectedItem();
+        String inDefault = (String) inDefaultDD.getSelectedItem();
+        String regDate = customerRegDateField.getDateFormatString();
+        boolean valid = true;
+
+        //regex needs to be recapped
+        if (!customerNumber.isEmpty()) {
+            if (!Pattern.matches("(\\d)+", customerNumber)) {
+                JOptionPane.showMessageDialog(this, "Customer number: Numbers only");
+                valid = false;
+            } else if (customerNumber.length() > 5) {
+                JOptionPane.showMessageDialog(this, "Customer number: Cannot be longer than five digits");
+                valid = false;
+            }
+        }
+        if (!cFirstName.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", cFirstName)) {
+                JOptionPane.showMessageDialog(this, "Customer contact firstname: letters only");
+                valid = false;
+            } else if (cFirstName.length() > 35) {
+                JOptionPane.showMessageDialog(this, "Customer contact firstname: Cannot be longer than 35 characters");
+                valid = false;
+            }
+        }
+        if (!cLastName.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", cLastName)) {
+                JOptionPane.showMessageDialog(this, "Customer contact lastname: letters only");
+                valid = false;
+            } else if (cLastName.length() > 35) {
+                JOptionPane.showMessageDialog(this, "User contact lastname: Cannot be longer than 35 characters");
+                valid = false;
+            }
+        }
+        if (!accountHName.isEmpty() && accountHName.length() > 80) {
+            JOptionPane.showMessageDialog(this, "Account holders name: Cannot be longer than 80 characters");
+            valid = false;
+        }
+        if (!streetName.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", streetName)) {
+                JOptionPane.showMessageDialog(this, "Customer contact lastname: letters only");
+                valid = false;
+            } else if (streetName.length() > 80) {
+                JOptionPane.showMessageDialog(this, "Street name: Cannot be longer than 80 characters");
+                valid = false;
+            }
+        }
+        if (!postCode.isEmpty()) {
+            if (!Pattern.matches("([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\\s?[0-9][A-Za-z]{2})", postCode)) {
+                JOptionPane.showMessageDialog(this, "Poscode: Invalid format");
+                valid = false;
+            }
+        }
+
+        if (!city.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", city)) {
+                JOptionPane.showMessageDialog(this, "City: letters only");
+                valid = false;
+            } else if (city.length() > 60) {
+                JOptionPane.showMessageDialog(this, "City: Cannot be longer than 60 characters");
+                valid = false;
+            }
+        }
+
+        if (!phone.isEmpty()) {
+            if (!Pattern.matches("^(((\\+44\\s?\\d{4}|\\(?0\\d{4}\\)?)\\s?\\d{3}\\s?\\d{3})|((\\+44\\s?\\d{3}|\\(?0\\d{3}\\)?)\\s?\\d{3}\\s?\\d{4})|((\\+44\\s?\\d{2}|\\(?0\\d{2}\\)?)\\s?\\d{4}\\s?\\d{4}))(\\s?\\#(\\d{4}|\\d{3}))?$", phone)) {
+                JOptionPane.showMessageDialog(this, "Phone: Invalid format");
+                valid = false;
+            }
+        }
+        if (valid) {
+            ArrayList<CustomerDetails> customers = controller.findCustomer(customerNumber, cFirstName, cLastName, accountHName, streetName, postCode, city, phone, isValued, isSuspended, inDefault, regDate);
+
+            tblModel = (DefaultTableModel) customerResultsTable.getModel();
+            Object[] row = new Object[5];
+            for (int i = 0; i < customers.size(); i++) {
+                row[0] = customers.get(i).getAccountNo();
+                row[1] = customers.get(i).getAccountHolderName();
+                row[2] = customers.get(i).getPrefix() + customers.get(i).getFirstName() + customers.get(i).getLastName();
+                row[3] = customers.get(i).getIsValued();
+                row[4] = customers.get(i).getIsSuspended();
+                tblModel.insertRow(i, row);
+            }
+            card1.show(cardPanel1, "customerResults");
+            //card2.show(cardPanel2, "homeBar");
+            pageLabel.setText("Customer results page");
+
+            customerResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
+        }
+
+    }//GEN-LAST:event_searchCustomerFJobjButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3962,6 +4073,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField accountHolderNamejTextField;
     private javax.swing.JLabel accountHolderNojLabel;
     private javax.swing.JTextField accountHolderNojTextField;
+    private javax.swing.JComboBox<String> accountStatusDD;
     private javax.swing.JLabel accountStatusjLabel;
     private javax.swing.JButton addButton;
     private javax.swing.JButton addJobButton;
@@ -4025,7 +4137,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JLabel descriptionLabel1;
     private javax.swing.JTextField descriptionNewTaskField;
-    private javax.swing.JComboBox<String> discountStatusDD;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JComboBox<String> durationNewTaskDD;
     private javax.swing.JComboBox<String> durationNewTaskMinsDD;
@@ -4162,7 +4273,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel userLastnameLabel1;
     private javax.swing.JLabel userNumberLabel;
     private javax.swing.JPanel userResultsPage;
-    private javax.swing.JTable userResultsTable1;
+    private javax.swing.JTable userResultsTable;
     private javax.swing.JComboBox<String> userRoleComboBox;
     private javax.swing.JPanel userSearchPage;
     private javax.swing.JButton usersMenuPageButton;
