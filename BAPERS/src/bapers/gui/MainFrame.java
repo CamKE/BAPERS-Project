@@ -1901,17 +1901,17 @@ public class MainFrame extends javax.swing.JFrame {
         phoneField1.setMinimumSize(new java.awt.Dimension(250, 42));
         phoneField1.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        customerTypeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valued", "Normal" }));
+        customerTypeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Valued", "Normal" }));
         customerTypeDD.setMaximumSize(new java.awt.Dimension(200, 42));
         customerTypeDD.setMinimumSize(new java.awt.Dimension(200, 42));
         customerTypeDD.setPreferredSize(new java.awt.Dimension(200, 42));
 
-        accountStatusDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        accountStatusDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Active", "Suspended" }));
         accountStatusDD.setMaximumSize(new java.awt.Dimension(200, 42));
         accountStatusDD.setMinimumSize(new java.awt.Dimension(200, 42));
         accountStatusDD.setPreferredSize(new java.awt.Dimension(200, 42));
 
-        inDefaultDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
+        inDefaultDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "True", "False" }));
         inDefaultDD.setMaximumSize(new java.awt.Dimension(200, 42));
         inDefaultDD.setMinimumSize(new java.awt.Dimension(200, 42));
         inDefaultDD.setPreferredSize(new java.awt.Dimension(200, 42));
@@ -3900,7 +3900,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchAgainButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton1ActionPerformed
         // TODO add your handling code here:
-        card1.show(cardPanel1, "customerSearch");
+        card1.show(cardPanel1, "searchCustomer");
         pageLabel.setText("Customer search page");
         tblModel.setRowCount(0);
     }//GEN-LAST:event_searchAgainButton1ActionPerformed
@@ -3998,9 +3998,10 @@ public class MainFrame extends javax.swing.JFrame {
             for (int i = 0; i < customers.size(); i++) {
                 row[0] = customers.get(i).getAccountNo();
                 row[1] = customers.get(i).getAccountHolderName();
-                row[2] = customers.get(i).getPrefix() + customers.get(i).getFirstName() + customers.get(i).getLastName();
-                row[3] = customers.get(i).getIsValued();
-                row[4] = customers.get(i).getIsSuspended();
+                System.out.println(row[1]);
+                row[2] = customers.get(i).getPrefix()+ " " +customers.get(i).getFirstName()+ " " +customers.get(i).getLastName();
+                row[3] = customers.get(i).getCustomerType();
+                row[4] = customers.get(i).getCustomerStatus();
                 tblModel.insertRow(i, row);
             }
             card1.show(cardPanel1, "customerResults");

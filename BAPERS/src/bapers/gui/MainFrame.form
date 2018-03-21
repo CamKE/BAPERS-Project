@@ -3209,11 +3209,8 @@
                     </Component>
                     <Component class="javax.swing.JComboBox" name="customerTypeDD">
                       <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="2">
-                            <StringItem index="0" value="Valued"/>
-                            <StringItem index="1" value="Normal"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Any&quot;, &quot;Valued&quot;, &quot;Normal&quot; })" type="code"/>
                         </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[200, 42]"/>
@@ -3231,13 +3228,8 @@
                     </Component>
                     <Component class="javax.swing.JComboBox" name="accountStatusDD">
                       <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Any&quot;, &quot;Active&quot;, &quot;Suspended&quot; })" type="code"/>
                         </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[200, 42]"/>
@@ -3255,11 +3247,8 @@
                     </Component>
                     <Component class="javax.swing.JComboBox" name="inDefaultDD">
                       <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="2">
-                            <StringItem index="0" value="True"/>
-                            <StringItem index="1" value="False"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Any&quot;, &quot;True&quot;, &quot;False&quot; })" type="code"/>
                         </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[200, 42]"/>

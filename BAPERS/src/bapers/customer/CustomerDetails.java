@@ -29,7 +29,20 @@ public class CustomerDetails {
     int buildingNo;
 
     public CustomerDetails(int accountNo, String accountHolderName, String prefix, String firstName, String lastName, String streetName, String postCode, String city, String phoneNumber, Boolean isSuspended, Boolean inDefault, Boolean isValued, Timestamp regDate, int buildingNo) {
-
+        this.accountNo = accountNo;
+        this.accountHolderName = accountHolderName;
+        this.prefix = prefix;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.streetName = streetName;
+        this.postCode = postCode;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
+        this.isSuspended = isSuspended;
+        this.inDefault = inDefault;
+        this.isValued = isValued;
+        this.regDate = regDate;
+        this.buildingNo = buildingNo;
     }
 
     public int getAccountNo() {
@@ -106,6 +119,22 @@ public class CustomerDetails {
 
     public Boolean getIsSuspended() {
         return isSuspended;
+    }
+
+    public String getCustomerStatus() {
+        if (isSuspended) {
+            return "Suspended";
+        } else {
+            return "Active";
+        }
+    }
+
+    public String getCustomerType() {
+        if (isValued) {
+            return "Valued";
+        } else {
+            return "Normal";
+        }
     }
 
     public void setIsSuspended(Boolean isSuspended) {

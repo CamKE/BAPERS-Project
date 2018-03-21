@@ -133,11 +133,11 @@ public class Controller {
                 sb.append(" AND in_default = ").append(inDefault.equals("In Default"));
             }
             //probably doesnt work atm
-            if (!regDate.isEmpty()) {
+            if (!regDate.equals("dd-MMM-yyyy")) {
                 sb.append(" AND registration_date = '").append(regDate).append("'");
             }
         }
-
+        System.out.println(sb.toString());
         // stores all the customers returned
         ArrayList<CustomerDetails> customerList = new ArrayList<>();
         //stores a customer's details
@@ -290,7 +290,7 @@ public class Controller {
     }
 
     public void createCustomerAccount(CustomerDetails cust) {
-        String sql = "INSERT INTO CUSTOMER VALUES";
+        String sql = "insert into customer(account_holder_name, prefix,firstname,lastname, street_name,postcode,city,phone,is_suspended,in_default,is_valued) values();";
     }
 
     public ArrayList<Invoice> getInvoices() throws ParseException {
