@@ -8,6 +8,7 @@ package bapers.controller;
 import bapers.customer.CustomerDetails;
 import bapers.database.DBImpl;
 import bapers.job.Invoice;
+import bapers.job.StandardJob;
 import bapers.payment.PaymentDetails;
 import bapers.user.UserDetails;
 import java.sql.Connection;
@@ -247,4 +248,5 @@ public class Controller {
     public void recordPayment(PaymentDetails p) {
         String sql = "";
     }
+    
 }

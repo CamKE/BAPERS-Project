@@ -240,15 +240,16 @@ public class MainFrame extends javax.swing.JFrame {
         totalLabel = new javax.swing.JLabel();
         removeButton = new javax.swing.JButton();
         selectStdJob = new javax.swing.JComboBox<>();
+        selectStdJob.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getStandardJobs()));
         selectPriority = new javax.swing.JComboBox<>();
         searchCustomerButton = new javax.swing.JButton();
         createCustomerButton = new javax.swing.JButton();
         specialInstructionsLabel = new javax.swing.JLabel();
         materialsjScrollPane = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        materialList = new javax.swing.JList<>();
         customerInfojTextField = new javax.swing.JTextField();
         stdJobsjScrollPane1 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        standardJobList = new javax.swing.JList<>();
         materialSubmittedLabel = new javax.swing.JLabel();
         cancelAcceptJobButton = new javax.swing.JButton();
         submitButton = new javax.swing.JButton();
@@ -1077,7 +1078,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(80, 80, 80))
         );
 
-        cardPanel1.add(createTaskPage, "createNewTask");
+        cardPanel1.add(createTaskPage, "createTask");
 
         reportHomePage.setBackground(new java.awt.Color(61, 96, 146));
         reportHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -2118,25 +2119,25 @@ public class MainFrame extends javax.swing.JFrame {
         specialInstructionsLabel.setForeground(new java.awt.Color(255, 255, 255));
         specialInstructionsLabel.setText("Special Instructions:");
 
-        jList1.setMaximumSize(new java.awt.Dimension(85, 507));
-        jList1.setMinimumSize(new java.awt.Dimension(85, 507));
-        jList1.setPreferredSize(new java.awt.Dimension(85, 507));
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        materialList.setMaximumSize(new java.awt.Dimension(85, 507));
+        materialList.setMinimumSize(new java.awt.Dimension(85, 507));
+        materialList.setPreferredSize(new java.awt.Dimension(85, 507));
+        materialList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1ValueChanged(evt);
+                materialListValueChanged(evt);
             }
         });
-        materialsjScrollPane.setViewportView(jList1);
+        materialsjScrollPane.setViewportView(materialList);
 
         customerInfojTextField.setText("No Customer Selected");
         customerInfojTextField.setMaximumSize(new java.awt.Dimension(308, 42));
         customerInfojTextField.setMinimumSize(new java.awt.Dimension(308, 42));
         customerInfojTextField.setPreferredSize(new java.awt.Dimension(308, 42));
 
-        jList3.setMaximumSize(new java.awt.Dimension(85, 507));
-        jList3.setMinimumSize(new java.awt.Dimension(85, 507));
-        jList3.setPreferredSize(new java.awt.Dimension(85, 507));
-        stdJobsjScrollPane1.setViewportView(jList3);
+        standardJobList.setMaximumSize(new java.awt.Dimension(85, 507));
+        standardJobList.setMinimumSize(new java.awt.Dimension(85, 507));
+        standardJobList.setPreferredSize(new java.awt.Dimension(85, 507));
+        stdJobsjScrollPane1.setViewportView(standardJobList);
 
         materialSubmittedLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         materialSubmittedLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -2718,9 +2719,9 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             loggedInUser = controller.login(userID, password);
             if (loggedInUser != null) {
-                
+
                 role = loggedInUser.getRole();
-                
+
                 switch (role) {
                     case "Shift Manager":
                         System.out.println("Shift Manager");
@@ -2736,6 +2737,8 @@ public class MainFrame extends javax.swing.JFrame {
                         standardJobsMenuPageButton.setVisible(false);
                         reportsMenuPageButton.setVisible(false);
                         acceptPaymentPageButton.setVisible(false);
+                        collectJobPageButton.setVisible(false);
+                        acceptJobPageButton.setVisible(false);
                         break;
                     case "Receptionist":
                         System.out.println("Receptionist");
@@ -2840,6 +2843,8 @@ public class MainFrame extends javax.swing.JFrame {
         for (Component c : homePage.getComponents()) {
             c.setVisible(true);
         }
+        collectJobPageButton.setVisible(false);
+        acceptJobPageButton.setVisible(false);
         backButton.setVisible(false);
         welcomePageLabel.setVisible(false);
     }//GEN-LAST:event_logOutButtonActionPerformed
@@ -3304,7 +3309,7 @@ public class MainFrame extends javax.swing.JFrame {
                 t.addElement(materials.get(i).getMaterialDescription());
             }
 
-            jList1.setModel(t);
+            materialList.setModel(t);
             if (!jTextArea2.getText().equals("")) {
                 jTextArea2.setText("");
             }
@@ -3332,7 +3337,7 @@ public class MainFrame extends javax.swing.JFrame {
             total += stdJobs.get(i).getPrice(); // takse the price value from the arraylist to be totaled
         }
 
-        jList3.setModel(t2); // updates the list with new values
+        standardJobList.setModel(t2); // updates the list with new values
         totalAmountLabel.setText("£" + total);
     }//GEN-LAST:event_addJobButtonActionPerformed
 
@@ -3341,9 +3346,9 @@ public class MainFrame extends javax.swing.JFrame {
         //        jList3.getModel().getElementAt(jList3.getSelectedIndex());
         // checks to see if a row is selected in a list, if it is
         // it will remove the selected row from the list and the array of standard jobs
-        if (jList3.isSelectedIndex(jList3.getSelectedIndex())) {
-            stdJobs.remove(jList3.getSelectedIndex());
-            t2.remove(jList3.getSelectedIndex());
+        if (standardJobList.isSelectedIndex(standardJobList.getSelectedIndex())) {
+            stdJobs.remove(standardJobList.getSelectedIndex());
+            t2.remove(standardJobList.getSelectedIndex());
         } else {
             System.out.println("You need to select a standard job to delete");
         }
@@ -3370,19 +3375,19 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
         // TODO add your handling code here:
-        card1.show(cardPanel1, "searchCustomerPanel");
-        card2.show(cardPanel2, "searchCustomerBar");
+        card1.show(cardPanel1, "searchCustomer");
+        pageLabel.setText("Search Customer page");
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void createCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomerButtonActionPerformed
         // TODO add your handling code here:
-        card1.show(cardPanel1, "createCustomerPanel");
-        card2.show(cardPanel2, "createCustomerBar");
+        card1.show(cardPanel1, "createCustomer");
+        pageLabel.setText("Create Customer page");
     }//GEN-LAST:event_createCustomerButtonActionPerformed
 
-    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+    private void materialListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_materialListValueChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_jList1ValueChanged
+    }//GEN-LAST:event_materialListValueChanged
 
     private void cancelAcceptJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAcceptJobButtonActionPerformed
         // TODO add your handling code here:
@@ -3403,8 +3408,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void selectInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButtonActionPerformed
         // TODO add your handling code here:
-        card1.show(cardPanel1, "searchInvoicePage");
-        card2.show(cardPanel2, "acceptLatePaymentBar");
+        card1.show(cardPanel1, "searchInvoice");
+        pageLabel.setText("Search Invoice page");
 
         // updates the tables for selecting invoices
         m = (DefaultTableModel) invoicejTable.getModel(); // grabs the current model
@@ -3606,7 +3611,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void createTaskPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskPageButtonActionPerformed
         // TODO add your handling code here:
-        card1.show(cardPanel1, "createNewTask");
+        card1.show(cardPanel1, "createTask");
         pageLabel.setText("Create task page");
     }//GEN-LAST:event_createTaskPageButtonActionPerformed
 
@@ -3739,8 +3744,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable invoicejTable;
     private javax.swing.JToggleButton isManagerjToggleButton;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3765,6 +3768,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton manageTasksPageButton;
     private javax.swing.JButton manageUsersPageButton;
     private javax.swing.JPanel managerjPanel;
+    private javax.swing.JList<String> materialList;
     private javax.swing.JLabel materialSubmittedLabel;
     private javax.swing.JScrollPane materialsjScrollPane;
     private javax.swing.JTextField materialsjTextField;
@@ -3826,6 +3830,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField specialInstructionjTextField;
     private javax.swing.JLabel specialInstructionsLabel;
     private javax.swing.JPanel standardJobHomePage;
+    private javax.swing.JList<String> standardJobList;
     private javax.swing.JButton standardJobsMenuPageButton;
     private javax.swing.JScrollPane stdJobsjScrollPane1;
     private javax.swing.JTextField streetNameField;
