@@ -778,26 +778,20 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="userResultsTable">
+                <Component class="javax.swing.JTable" name="customerResultsTable">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="0">
+                      <Table columnCount="5" rowCount="0">
                         <Column editable="false" title="Account number" type="java.lang.Object"/>
                         <Column editable="false" title="Firstname" type="java.lang.Object"/>
                         <Column editable="false" title="Lastname" type="java.lang.Object"/>
                         <Column editable="false" title="Role" type="java.lang.Object"/>
                         <Column editable="false" title="Date registered" type="java.lang.Object"/>
-                        <Column editable="false" title="Action" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
                           <Editor/>
@@ -2677,7 +2671,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="700" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="640" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="searchCustomerjPanel" min="-2" max="-2" attributes="0"/>
@@ -2699,6 +2693,9 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[900, 700]"/>
                 </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[900, 640]"/>
+                </Property>
               </Properties>
 
               <Layout>
@@ -2710,13 +2707,11 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                          <Component id="isManagerjToggleButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="cancelCustomerFJobjButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="searchCustomerFJobjButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2727,13 +2722,12 @@
                           <Component id="receptionistjPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="managerjPanel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="searchCustomerFJobjButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cancelCustomerFJobjButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="isManagerjToggleButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="98" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2765,10 +2759,10 @@
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="searchCustomerAccountNojTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchContactFirstNamejTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchContactSurnamejTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchAccountHolderNamejTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="custAccountNoField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="custFirstnameField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="custLastnameField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="custAccountHNameField" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -2780,22 +2774,22 @@
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="searchCustomerAccountNojLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchCustomerAccountNojTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="custAccountNoField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="searchContactFirstNamejLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchContactFirstNamejTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="custFirstnameField" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="searchContactSurnamejLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchContactSurnamejTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="custLastnameField" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="searchAccountHolderNamejLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchAccountHolderNamejTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="custAccountHNameField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="22" max="32767" attributes="0"/>
                           </Group>
@@ -2822,7 +2816,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Contact first name:"/>
+                        <Property name="text" type="java.lang.String" value="Contact firstname:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="searchContactSurnamejLabel">
@@ -2833,7 +2827,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Contact surname:"/>
+                        <Property name="text" type="java.lang.String" value="Contact lastname:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="searchAccountHolderNamejLabel">
@@ -2847,7 +2841,7 @@
                         <Property name="text" type="java.lang.String" value="Account Holder Name:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="searchCustomerAccountNojTextField">
+                    <Component class="javax.swing.JTextField" name="custAccountNoField">
                       <Properties>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 42]"/>
@@ -2860,7 +2854,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="searchContactFirstNamejTextField">
+                    <Component class="javax.swing.JTextField" name="custFirstnameField">
                       <Properties>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 42]"/>
@@ -2873,7 +2867,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="searchContactSurnamejTextField">
+                    <Component class="javax.swing.JTextField" name="custLastnameField">
                       <Properties>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 42]"/>
@@ -2886,7 +2880,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="searchAccountHolderNamejTextField">
+                    <Component class="javax.swing.JTextField" name="custAccountHNameField">
                       <Properties>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 42]"/>
@@ -2967,8 +2961,8 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="cityjTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="phonejTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cityField1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="phoneField1" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -2977,12 +2971,12 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="streetNameSjLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="streetNamejTextField" min="-2" max="-2" attributes="0"/>
+                                              <Component id="streetNameField1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="postcodeSjLabel" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="postCodejTextField" min="-2" max="-2" attributes="0"/>
+                                              <Component id="postCodeField1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -2995,26 +2989,28 @@
                                   <Component id="registrationDateSjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="customerTypejComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="discountStatusjComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="inDefaultjComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="registrationDatejComboBox" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="customerTypeDD" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="discountStatusDD" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="inDefaultDD" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="customerRegDateField" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="23" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="customerTypeSjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="customerTypejComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="streetNamejTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="customerTypeDD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="streetNameField1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   </Group>
@@ -3028,33 +3024,33 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="discountStatusjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="discountStatusDD" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="accountStatusjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="inDefaultSjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="inDefaultjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="inDefaultDD" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="registrationDateSjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="registrationDatejComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="registrationDateSjLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="customerRegDateField" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="postCodejTextField" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="postCodeField1" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="postcodeSjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="cityjTextField" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cityField1" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="citySjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="phonejTextField" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="phoneField1" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="phoneSjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -3153,7 +3149,7 @@
                         <Property name="text" type="java.lang.String" value="Registration date:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="streetNamejTextField">
+                    <Component class="javax.swing.JTextField" name="streetNameField1">
                       <Properties>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 42]"/>
@@ -3166,7 +3162,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="postCodejTextField">
+                    <Component class="javax.swing.JTextField" name="postCodeField1">
                       <Properties>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 42]"/>
@@ -3179,7 +3175,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="cityjTextField">
+                    <Component class="javax.swing.JTextField" name="cityField1">
                       <Properties>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 42]"/>
@@ -3192,10 +3188,10 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cityjTextFieldActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cityField1ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="phonejTextField">
+                    <Component class="javax.swing.JTextField" name="phoneField1">
                       <Properties>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[250, 42]"/>
@@ -3208,7 +3204,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="customerTypejComboBox">
+                    <Component class="javax.swing.JComboBox" name="customerTypeDD">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
@@ -3230,7 +3226,7 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="discountStatusjComboBox">
+                    <Component class="javax.swing.JComboBox" name="discountStatusDD">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
@@ -3254,7 +3250,7 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="inDefaultjComboBox">
+                    <Component class="javax.swing.JComboBox" name="inDefaultDD">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
@@ -3276,16 +3272,8 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="registrationDatejComboBox">
+                    <Component class="com.toedter.calendar.JDateChooser" name="customerRegDateField">
                       <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Item 1"/>
-                            <StringItem index="1" value="Item 2"/>
-                            <StringItem index="2" value="Item 3"/>
-                            <StringItem index="3" value="Item 4"/>
-                          </StringArray>
-                        </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[200, 42]"/>
                         </Property>
@@ -3296,20 +3284,9 @@
                           <Dimension value="[200, 42]"/>
                         </Property>
                       </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JToggleButton" name="isManagerjToggleButton">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Test"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="isManagerjToggleButtonActionPerformed"/>
-                  </Events>
-                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -4571,6 +4548,164 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="customerResultsPage">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="92" green="60" red="3d" type="rgb"/>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[900, 640]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="customerResults"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="searchAgainButton1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="selectCustomerButton" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <Component id="selectCustomerButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane4" pref="374" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="searchAgainButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <Properties>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[750, 400]"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="userResultsTable1">
+                  <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="5" rowCount="0">
+                        <Column editable="false" title="Account number" type="java.lang.Object"/>
+                        <Column editable="false" title="Account holder name" type="java.lang.Object"/>
+                        <Column editable="false" title="Contact name" type="java.lang.Object"/>
+                        <Column editable="false" title="Customer type" type="java.lang.Object"/>
+                        <Column editable="false" title="Account status" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[750, 500]"/>
+                    </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[750, 500]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[750, 500]"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="searchAgainButton1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="24" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Search Again"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[175, 45]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[175, 45]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[175, 45]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchAgainButton1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="selectCustomerButton">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="24" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Select Customer"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[205, 45]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[205, 45]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[205, 45]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectCustomerButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

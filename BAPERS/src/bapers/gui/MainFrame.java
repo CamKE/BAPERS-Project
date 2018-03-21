@@ -114,7 +114,7 @@ public class MainFrame extends javax.swing.JFrame {
         backupDestinationLabel = new javax.swing.JLabel();
         userResultsPage = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        userResultsTable = new javax.swing.JTable();
+        customerResultsTable = new javax.swing.JTable();
         searchAgainButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         changeRoleButton = new javax.swing.JButton();
@@ -209,10 +209,10 @@ public class MainFrame extends javax.swing.JFrame {
         searchContactFirstNamejLabel = new javax.swing.JLabel();
         searchContactSurnamejLabel = new javax.swing.JLabel();
         searchAccountHolderNamejLabel = new javax.swing.JLabel();
-        searchCustomerAccountNojTextField = new javax.swing.JTextField();
-        searchContactFirstNamejTextField = new javax.swing.JTextField();
-        searchContactSurnamejTextField = new javax.swing.JTextField();
-        searchAccountHolderNamejTextField = new javax.swing.JTextField();
+        custAccountNoField = new javax.swing.JTextField();
+        custFirstnameField = new javax.swing.JTextField();
+        custLastnameField = new javax.swing.JTextField();
+        custAccountHNameField = new javax.swing.JTextField();
         searchCustomerFJobjButton = new javax.swing.JButton();
         cancelCustomerFJobjButton = new javax.swing.JButton();
         managerjPanel = new javax.swing.JPanel();
@@ -224,15 +224,14 @@ public class MainFrame extends javax.swing.JFrame {
         accountStatusjLabel = new javax.swing.JLabel();
         inDefaultSjLabel = new javax.swing.JLabel();
         registrationDateSjLabel = new javax.swing.JLabel();
-        streetNamejTextField = new javax.swing.JTextField();
-        postCodejTextField = new javax.swing.JTextField();
-        cityjTextField = new javax.swing.JTextField();
-        phonejTextField = new javax.swing.JTextField();
-        customerTypejComboBox = new javax.swing.JComboBox<>();
-        discountStatusjComboBox = new javax.swing.JComboBox<>();
-        inDefaultjComboBox = new javax.swing.JComboBox<>();
-        registrationDatejComboBox = new javax.swing.JComboBox<>();
-        isManagerjToggleButton = new javax.swing.JToggleButton();
+        streetNameField1 = new javax.swing.JTextField();
+        postCodeField1 = new javax.swing.JTextField();
+        cityField1 = new javax.swing.JTextField();
+        phoneField1 = new javax.swing.JTextField();
+        customerTypeDD = new javax.swing.JComboBox<>();
+        discountStatusDD = new javax.swing.JComboBox<>();
+        inDefaultDD = new javax.swing.JComboBox<>();
+        customerRegDateField = new com.toedter.calendar.JDateChooser();
         acceptJobPage = new javax.swing.JPanel();
         acceptJobjPanel = new javax.swing.JPanel();
         addMaterialButton = new javax.swing.JButton();
@@ -298,6 +297,11 @@ public class MainFrame extends javax.swing.JFrame {
         totalField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        customerResultsPage = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        userResultsTable1 = new javax.swing.JTable();
+        searchAgainButton1 = new javax.swing.JButton();
+        selectCustomerButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -679,35 +683,34 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(750, 400));
 
-        userResultsTable.setAutoCreateRowSorter(true);
-        userResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+        customerResultsTable.setAutoCreateRowSorter(true);
+        customerResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Account number", "Firstname", "Lastname", "Role", "Date registered", "Action"
+                "Account number", "Firstname", "Lastname", "Role", "Date registered"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        userResultsTable.setMaximumSize(new java.awt.Dimension(750, 500));
-        userResultsTable.setMinimumSize(new java.awt.Dimension(750, 500));
-        userResultsTable.setPreferredSize(new java.awt.Dimension(750, 500));
-        userResultsTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(userResultsTable);
-        if (userResultsTable.getColumnModel().getColumnCount() > 0) {
-            userResultsTable.getColumnModel().getColumn(0).setResizable(false);
-            userResultsTable.getColumnModel().getColumn(1).setResizable(false);
-            userResultsTable.getColumnModel().getColumn(2).setResizable(false);
-            userResultsTable.getColumnModel().getColumn(3).setResizable(false);
-            userResultsTable.getColumnModel().getColumn(4).setResizable(false);
-            userResultsTable.getColumnModel().getColumn(5).setResizable(false);
+        customerResultsTable.setMaximumSize(new java.awt.Dimension(750, 500));
+        customerResultsTable.setMinimumSize(new java.awt.Dimension(750, 500));
+        customerResultsTable.setPreferredSize(new java.awt.Dimension(750, 500));
+        customerResultsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(customerResultsTable);
+        if (customerResultsTable.getColumnModel().getColumnCount() > 0) {
+            customerResultsTable.getColumnModel().getColumn(0).setResizable(false);
+            customerResultsTable.getColumnModel().getColumn(1).setResizable(false);
+            customerResultsTable.getColumnModel().getColumn(2).setResizable(false);
+            customerResultsTable.getColumnModel().getColumn(3).setResizable(false);
+            customerResultsTable.getColumnModel().getColumn(4).setResizable(false);
         }
 
         searchAgainButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -1739,6 +1742,7 @@ public class MainFrame extends javax.swing.JFrame {
         searchCustomerjPanel.setBackground(new java.awt.Color(61, 96, 146));
         searchCustomerjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
         searchCustomerjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
+        searchCustomerjPanel.setPreferredSize(new java.awt.Dimension(900, 640));
 
         receptionistjPanel.setBackground(new java.awt.Color(34, 54, 81));
         receptionistjPanel.setMaximumSize(new java.awt.Dimension(900, 250));
@@ -1750,31 +1754,31 @@ public class MainFrame extends javax.swing.JFrame {
 
         searchContactFirstNamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         searchContactFirstNamejLabel.setForeground(new java.awt.Color(255, 255, 255));
-        searchContactFirstNamejLabel.setText("Contact first name:");
+        searchContactFirstNamejLabel.setText("Contact firstname:");
 
         searchContactSurnamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         searchContactSurnamejLabel.setForeground(new java.awt.Color(255, 255, 255));
-        searchContactSurnamejLabel.setText("Contact surname:");
+        searchContactSurnamejLabel.setText("Contact lastname:");
 
         searchAccountHolderNamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         searchAccountHolderNamejLabel.setForeground(new java.awt.Color(255, 255, 255));
         searchAccountHolderNamejLabel.setText("Account Holder Name:");
 
-        searchCustomerAccountNojTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        searchCustomerAccountNojTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        searchCustomerAccountNojTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        custAccountNoField.setMaximumSize(new java.awt.Dimension(250, 42));
+        custAccountNoField.setMinimumSize(new java.awt.Dimension(250, 42));
+        custAccountNoField.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        searchContactFirstNamejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        searchContactFirstNamejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        searchContactFirstNamejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        custFirstnameField.setMaximumSize(new java.awt.Dimension(250, 42));
+        custFirstnameField.setMinimumSize(new java.awt.Dimension(250, 42));
+        custFirstnameField.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        searchContactSurnamejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        searchContactSurnamejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        searchContactSurnamejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        custLastnameField.setMaximumSize(new java.awt.Dimension(250, 42));
+        custLastnameField.setMinimumSize(new java.awt.Dimension(250, 42));
+        custLastnameField.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        searchAccountHolderNamejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        searchAccountHolderNamejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        searchAccountHolderNamejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        custAccountHNameField.setMaximumSize(new java.awt.Dimension(250, 42));
+        custAccountHNameField.setMinimumSize(new java.awt.Dimension(250, 42));
+        custAccountHNameField.setPreferredSize(new java.awt.Dimension(250, 42));
 
         javax.swing.GroupLayout receptionistjPanelLayout = new javax.swing.GroupLayout(receptionistjPanel);
         receptionistjPanel.setLayout(receptionistjPanelLayout);
@@ -1789,10 +1793,10 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(searchCustomerAccountNojLabel))
                 .addGap(10, 10, 10)
                 .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchCustomerAccountNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchContactFirstNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchContactSurnamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchAccountHolderNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(custAccountNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custAccountHNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         receptionistjPanelLayout.setVerticalGroup(
@@ -1801,19 +1805,19 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchCustomerAccountNojLabel)
-                    .addComponent(searchCustomerAccountNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(custAccountNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchContactFirstNamejLabel)
-                    .addComponent(searchContactFirstNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(custFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchContactSurnamejLabel)
-                    .addComponent(searchContactSurnamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(custLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchAccountHolderNamejLabel)
-                    .addComponent(searchAccountHolderNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(custAccountHNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -1871,46 +1875,45 @@ public class MainFrame extends javax.swing.JFrame {
         registrationDateSjLabel.setForeground(new java.awt.Color(255, 255, 255));
         registrationDateSjLabel.setText("Registration date:");
 
-        streetNamejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        streetNamejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        streetNamejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        streetNameField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        streetNameField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        streetNameField1.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        postCodejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        postCodejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        postCodejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        postCodeField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        postCodeField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        postCodeField1.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        cityjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        cityjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        cityjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-        cityjTextField.addActionListener(new java.awt.event.ActionListener() {
+        cityField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        cityField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        cityField1.setPreferredSize(new java.awt.Dimension(250, 42));
+        cityField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cityjTextFieldActionPerformed(evt);
+                cityField1ActionPerformed(evt);
             }
         });
 
-        phonejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        phonejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        phonejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        phoneField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        phoneField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        phoneField1.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        customerTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valued", "Normal" }));
-        customerTypejComboBox.setMaximumSize(new java.awt.Dimension(200, 42));
-        customerTypejComboBox.setMinimumSize(new java.awt.Dimension(200, 42));
-        customerTypejComboBox.setPreferredSize(new java.awt.Dimension(200, 42));
+        customerTypeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valued", "Normal" }));
+        customerTypeDD.setMaximumSize(new java.awt.Dimension(200, 42));
+        customerTypeDD.setMinimumSize(new java.awt.Dimension(200, 42));
+        customerTypeDD.setPreferredSize(new java.awt.Dimension(200, 42));
 
-        discountStatusjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        discountStatusjComboBox.setMaximumSize(new java.awt.Dimension(200, 42));
-        discountStatusjComboBox.setMinimumSize(new java.awt.Dimension(200, 42));
-        discountStatusjComboBox.setPreferredSize(new java.awt.Dimension(200, 42));
+        discountStatusDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        discountStatusDD.setMaximumSize(new java.awt.Dimension(200, 42));
+        discountStatusDD.setMinimumSize(new java.awt.Dimension(200, 42));
+        discountStatusDD.setPreferredSize(new java.awt.Dimension(200, 42));
 
-        inDefaultjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
-        inDefaultjComboBox.setMaximumSize(new java.awt.Dimension(200, 42));
-        inDefaultjComboBox.setMinimumSize(new java.awt.Dimension(200, 42));
-        inDefaultjComboBox.setPreferredSize(new java.awt.Dimension(200, 42));
+        inDefaultDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
+        inDefaultDD.setMaximumSize(new java.awt.Dimension(200, 42));
+        inDefaultDD.setMinimumSize(new java.awt.Dimension(200, 42));
+        inDefaultDD.setPreferredSize(new java.awt.Dimension(200, 42));
 
-        registrationDatejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        registrationDatejComboBox.setMaximumSize(new java.awt.Dimension(200, 42));
-        registrationDatejComboBox.setMinimumSize(new java.awt.Dimension(200, 42));
-        registrationDatejComboBox.setPreferredSize(new java.awt.Dimension(200, 42));
+        customerRegDateField.setMaximumSize(new java.awt.Dimension(200, 42));
+        customerRegDateField.setMinimumSize(new java.awt.Dimension(200, 42));
+        customerRegDateField.setPreferredSize(new java.awt.Dimension(200, 42));
 
         javax.swing.GroupLayout managerjPanelLayout = new javax.swing.GroupLayout(managerjPanel);
         managerjPanel.setLayout(managerjPanelLayout);
@@ -1925,19 +1928,19 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(phoneSjLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cityField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
                                 .addComponent(streetNameSjLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(streetNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(streetNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
                                 .addComponent(postcodeSjLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(postCodejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(postCodeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(20, 20, 20)
                 .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(customerTypeSjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1945,23 +1948,24 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(inDefaultSjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(registrationDateSjLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(customerTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(discountStatusjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inDefaultjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(registrationDatejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(customerTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(discountStatusDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inDefaultDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerRegDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91))
         );
         managerjPanelLayout.setVerticalGroup(
             managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(managerjPanelLayout.createSequentialGroup()
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(customerTypeSjLabel)
-                            .addComponent(customerTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(streetNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(customerTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(streetNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1971,37 +1975,30 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(managerjPanelLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(discountStatusjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(discountStatusDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(accountStatusjLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inDefaultSjLabel)
-                            .addComponent(inDefaultjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inDefaultDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(registrationDateSjLabel)
-                            .addComponent(registrationDatejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(customerRegDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(managerjPanelLayout.createSequentialGroup()
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(postCodejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(postCodeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(postcodeSjLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cityField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(citySjLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(phoneSjLabel))))
                 .addContainerGap())
         );
-
-        isManagerjToggleButton.setText("Test");
-        isManagerjToggleButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                isManagerjToggleButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout searchCustomerjPanelLayout = new javax.swing.GroupLayout(searchCustomerjPanel);
         searchCustomerjPanel.setLayout(searchCustomerjPanelLayout);
@@ -2012,13 +2009,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(managerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchCustomerjPanelLayout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(isManagerjToggleButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGap(109, 109, 109))
         );
         searchCustomerjPanelLayout.setVerticalGroup(
             searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2027,12 +2022,11 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(receptionistjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(managerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addGroup(searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(isManagerjToggleButton))
-                .addContainerGap(98, Short.MAX_VALUE))
+                    .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout searchCustomerPageLayout = new javax.swing.GroupLayout(searchCustomerPage);
@@ -2047,7 +2041,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         searchCustomerPageLayout.setVerticalGroup(
             searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
             .addGroup(searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(searchCustomerPageLayout.createSequentialGroup()
                     .addComponent(searchCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2738,6 +2732,90 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createStandardJobPage, "createStandardJob");
 
+        customerResultsPage.setBackground(new java.awt.Color(61, 96, 146));
+        customerResultsPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        customerResultsPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(750, 400));
+
+        userResultsTable1.setAutoCreateRowSorter(true);
+        userResultsTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Account number", "Account holder name", "Contact name", "Customer type", "Account status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        userResultsTable1.setMaximumSize(new java.awt.Dimension(750, 500));
+        userResultsTable1.setMinimumSize(new java.awt.Dimension(750, 500));
+        userResultsTable1.setPreferredSize(new java.awt.Dimension(750, 500));
+        userResultsTable1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane4.setViewportView(userResultsTable1);
+        if (userResultsTable1.getColumnModel().getColumnCount() > 0) {
+            userResultsTable1.getColumnModel().getColumn(0).setResizable(false);
+            userResultsTable1.getColumnModel().getColumn(1).setResizable(false);
+            userResultsTable1.getColumnModel().getColumn(2).setResizable(false);
+            userResultsTable1.getColumnModel().getColumn(3).setResizable(false);
+            userResultsTable1.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        searchAgainButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        searchAgainButton1.setText("Search Again");
+        searchAgainButton1.setMaximumSize(new java.awt.Dimension(175, 45));
+        searchAgainButton1.setMinimumSize(new java.awt.Dimension(175, 45));
+        searchAgainButton1.setPreferredSize(new java.awt.Dimension(175, 45));
+        searchAgainButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchAgainButton1ActionPerformed(evt);
+            }
+        });
+
+        selectCustomerButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        selectCustomerButton.setText("Select Customer");
+        selectCustomerButton.setMaximumSize(new java.awt.Dimension(205, 45));
+        selectCustomerButton.setMinimumSize(new java.awt.Dimension(205, 45));
+        selectCustomerButton.setPreferredSize(new java.awt.Dimension(205, 45));
+        selectCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectCustomerButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout customerResultsPageLayout = new javax.swing.GroupLayout(customerResultsPage);
+        customerResultsPage.setLayout(customerResultsPageLayout);
+        customerResultsPageLayout.setHorizontalGroup(
+            customerResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerResultsPageLayout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addGroup(customerResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(searchAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75))
+        );
+        customerResultsPageLayout.setVerticalGroup(
+            customerResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerResultsPageLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(selectCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(searchAgainButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106))
+        );
+
+        cardPanel1.add(customerResultsPage, "customerResults");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -2987,6 +3065,7 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "homePage");
         pageLabel.setText("Backup page");
         homeButton.setVisible(false);
+        tblModel.setRowCount(0);
         pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
     }//GEN-LAST:event_homeButtonActionPerformed
 
@@ -2997,9 +3076,10 @@ public class MainFrame extends javax.swing.JFrame {
         for (Component c : homePage.getComponents()) {
             c.setVisible(true);
         }
-        collectJobPageButton.setVisible(false);
-        acceptJobPageButton.setVisible(false);
+        collectJobPageButton.setVisible(true);
+        acceptJobPageButton.setVisible(true);
         backButton.setVisible(false);
+        managerjPanel.setVisible(false);
         welcomePageLabel.setVisible(false);
     }//GEN-LAST:event_logOutButtonActionPerformed
 
@@ -3085,22 +3165,21 @@ public class MainFrame extends javax.swing.JFrame {
         if (valid) {
             ArrayList<UserDetails> users = controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
 
-            tblModel = (DefaultTableModel) userResultsTable.getModel();
-            Object[] row = new Object[6];
+            tblModel = (DefaultTableModel) customerResultsTable.getModel();
+            Object[] row = new Object[5];
             for (int i = 0; i < users.size(); i++) {
                 row[0] = users.get(i).getAccount_no();
                 row[1] = users.get(i).getFirstname();
                 row[2] = users.get(i).getLastname();
                 row[3] = users.get(i).getRole();
                 row[4] = users.get(i).getDatetime();
-                row[5] = "hello";
                 tblModel.insertRow(i, row);
             }
             card1.show(cardPanel1, "userResults");
             //card2.show(cardPanel2, "homeBar");
             pageLabel.setText("User results page");
 
-            userResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            customerResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
             //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
         }
@@ -3113,17 +3192,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void changeRoleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeRoleButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRow = userResultsTable.getSelectedRow();
+        int selectedRow = customerResultsTable.getSelectedRow();
         if (selectedRow != -1) {
             String[] choices = {"Office Manager", "Shift Manager", "Receptionist", "Technician"};
-            String usersRole = (String) userResultsTable.getValueAt(selectedRow, 3);
+            String usersRole = (String) customerResultsTable.getValueAt(selectedRow, 3);
             String selectedRole = (String) JOptionPane.showInputDialog(this, "Select a new role:", "Update user role", JOptionPane.QUESTION_MESSAGE, null, choices, choices[controller.getRoleID(usersRole) - 1]);
             if (selectedRole != null) {
                 String outcome;
                 int newRoleid = controller.getRoleID(selectedRole);
-                if (controller.updateUserRole((int) userResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
+                if (controller.updateUserRole((int) customerResultsTable.getValueAt(selectedRow, 0), newRoleid)) {
                     outcome = "Success";
-                    tblModel.setValueAt(selectedRole, userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()), 3);
+                    tblModel.setValueAt(selectedRole, customerResultsTable.getRowSorter().convertRowIndexToModel(customerResultsTable.getSelectedRow()), 3);
                 } else {
                     outcome = "Fail";
                 }
@@ -3136,9 +3215,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRow = userResultsTable.getSelectedRow(); // index 0 here
+        int selectedRow = customerResultsTable.getSelectedRow(); // index 0 here
         if (selectedRow != -1) {
-            int userId = (int) userResultsTable.getValueAt(selectedRow, 0);
+            int userId = (int) customerResultsTable.getValueAt(selectedRow, 0);
             int response = JOptionPane.showConfirmDialog(this, "Are you sure you would like to delete user with id " + userId + "?");
 
             if (response == 0) {
@@ -3146,7 +3225,7 @@ public class MainFrame extends javax.swing.JFrame {
                 if (controller.deleteUser(userId)) {
                     outcome = "Success";
                     //we need the selected elements position relative to the model before the sort
-                    tblModel.removeRow(userResultsTable.getRowSorter().convertRowIndexToModel(userResultsTable.getSelectedRow()));
+                    tblModel.removeRow(customerResultsTable.getRowSorter().convertRowIndexToModel(customerResultsTable.getSelectedRow()));
                 } else {
                     outcome = "Fail";
                 }
@@ -3415,34 +3494,24 @@ public class MainFrame extends javax.swing.JFrame {
     private void cancelCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCustomerFJobjButtonActionPerformed
         // TODO add your handling code here:
         // clears receptionist search field when cancel button is entered
-        searchCustomerAccountNojTextField.setText("");
-        searchContactFirstNamejTextField.setText("");
-        searchContactSurnamejTextField.setText("");
-        searchAccountHolderNamejTextField.setText("");
+        custAccountNoField.setText("");
+        custFirstnameField.setText("");
+        custLastnameField.setText("");
+        custAccountHNameField.setText("");
 
         // clears office manager search fields
-        streetNamejTextField.setText("");
-        postCodejTextField.setText("");
-        cityjTextField.setText("");
-        phonejTextField.setText("");
+        streetNameField1.setText("");
+        postCodeField1.setText("");
+        cityField1.setText("");
+        phoneField1.setText("");
 
         card1.show(cardPanel1, "acceptJobPage");
         card2.show(cardPanel2, "acceptJobBar");
     }//GEN-LAST:event_cancelCustomerFJobjButtonActionPerformed
 
-    private void cityjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityjTextFieldActionPerformed
+    private void cityField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cityjTextFieldActionPerformed
-
-    private void isManagerjToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isManagerjToggleButtonActionPerformed
-        // TODO add your handling code here:
-        // toggles between showing the office manager search and not showing  based on a button being selected
-        if (isManagerjToggleButton.isSelected()) {
-            managerjPanel.setVisible(true);
-        } else {
-            managerjPanel.setVisible(false);
-        }
-    }//GEN-LAST:event_isManagerjToggleButtonActionPerformed
+    }//GEN-LAST:event_cityField1ActionPerformed
 
     private void addMaterialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaterialButtonActionPerformed
         // TODO add your handling code here:
@@ -3531,6 +3600,9 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         card1.show(cardPanel1, "searchCustomer");
         pageLabel.setText("Search Customer page");
+        if (loggedInUser.getRole().equals("Office Manager")) {
+            managerjPanel.setVisible(true);
+        }
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void createCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomerButtonActionPerformed
@@ -3823,6 +3895,14 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel.setText("Create Standard Job page");
     }//GEN-LAST:event_createSJobPageButtonActionPerformed
 
+    private void searchAgainButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchAgainButton1ActionPerformed
+
+    private void selectCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectCustomerButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3908,9 +3988,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
     private javax.swing.JTextField cityField;
+    private javax.swing.JTextField cityField1;
     private javax.swing.JLabel citySjLabel;
     private javax.swing.JLabel cityjLabel;
-    private javax.swing.JTextField cityjTextField;
     private javax.swing.JTextField codeField;
     private javax.swing.JLabel codeLabel;
     private javax.swing.JButton collectJobPageButton;
@@ -3928,9 +4008,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton createUserButton;
     private javax.swing.JPanel createUserPage;
     private javax.swing.JButton createUserPageButton;
+    private javax.swing.JTextField custAccountHNameField;
+    private javax.swing.JTextField custAccountNoField;
+    private javax.swing.JTextField custFirstnameField;
+    private javax.swing.JTextField custLastnameField;
     private javax.swing.JTextField customerInfojTextField;
+    private com.toedter.calendar.JDateChooser customerRegDateField;
+    private javax.swing.JPanel customerResultsPage;
+    private javax.swing.JTable customerResultsTable;
+    private javax.swing.JComboBox<String> customerTypeDD;
     private javax.swing.JLabel customerTypeSjLabel;
-    private javax.swing.JComboBox<String> customerTypejComboBox;
     private javax.swing.JButton deleteButton;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
     private javax.swing.JLabel departmentNewTaskLabel;
@@ -3938,7 +4025,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JLabel descriptionLabel1;
     private javax.swing.JTextField descriptionNewTaskField;
-    private javax.swing.JComboBox<String> discountStatusjComboBox;
+    private javax.swing.JComboBox<String> discountStatusDD;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JComboBox<String> durationNewTaskDD;
     private javax.swing.JComboBox<String> durationNewTaskMinsDD;
@@ -3953,16 +4040,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton homeButton;
     private javax.swing.JPanel homePage;
     private javax.swing.JLabel hoursLabel;
+    private javax.swing.JComboBox<String> inDefaultDD;
     private javax.swing.JLabel inDefaultSjLabel;
-    private javax.swing.JComboBox<String> inDefaultjComboBox;
     private javax.swing.JList<String> invoicejList;
     private javax.swing.JScrollPane invoicejScrollPane;
     private javax.swing.JTable invoicejTable;
-    private javax.swing.JToggleButton isManagerjToggleButton;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton jobEnquiryPageButton;
     private javax.swing.JPanel jobHomePage;
@@ -3998,13 +4085,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> paymentTypeComboBox;
     private javax.swing.JLabel paymentTypejLabel;
     private javax.swing.JLabel percentageLabel;
+    private javax.swing.JTextField phoneField1;
     private javax.swing.JTextField phoneNumberField;
     private javax.swing.JLabel phoneNumberjLabel;
     private javax.swing.JLabel phoneSjLabel;
-    private javax.swing.JTextField phonejTextField;
     private javax.swing.JTextField postCodeField;
+    private javax.swing.JTextField postCodeField1;
     private javax.swing.JLabel postCodejLabel;
-    private javax.swing.JTextField postCodejTextField;
     private javax.swing.JLabel postcodeSjLabel;
     private javax.swing.JComboBox<String> prefixjComboBox;
     private javax.swing.JLabel prefixjLabel;
@@ -4012,7 +4099,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField priceNewTaskField;
     private javax.swing.JPanel receptionistjPanel;
     private javax.swing.JLabel registrationDateSjLabel;
-    private javax.swing.JComboBox<String> registrationDatejComboBox;
     private javax.swing.JButton removeButton;
     private javax.swing.JButton removeTaskButton;
     private javax.swing.JPanel reportHomePage;
@@ -4022,14 +4108,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel restorePage;
     private javax.swing.JButton restoreSettingsPageButton;
     private javax.swing.JLabel searchAccountHolderNamejLabel;
-    private javax.swing.JTextField searchAccountHolderNamejTextField;
     private javax.swing.JButton searchAgainButton;
+    private javax.swing.JButton searchAgainButton1;
     private javax.swing.JLabel searchContactFirstNamejLabel;
-    private javax.swing.JTextField searchContactFirstNamejTextField;
     private javax.swing.JLabel searchContactSurnamejLabel;
-    private javax.swing.JTextField searchContactSurnamejTextField;
     private javax.swing.JLabel searchCustomerAccountNojLabel;
-    private javax.swing.JTextField searchCustomerAccountNojTextField;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JButton searchCustomerFJobjButton;
     private javax.swing.JPanel searchCustomerPage;
@@ -4038,6 +4121,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel searchInvoicejPanel;
     private javax.swing.JButton searchUserButton;
     private javax.swing.JComboBox<String> selectATaskBox;
+    private javax.swing.JButton selectCustomerButton;
     private javax.swing.JButton selectInvoicejButton;
     private javax.swing.JComboBox<String> selectPriority;
     private javax.swing.JButton selectSelectedInvoicejButton;
@@ -4053,9 +4137,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton standardJobsMenuPageButton;
     private javax.swing.JScrollPane stdJobsjScrollPane1;
     private javax.swing.JTextField streetNameField;
+    private javax.swing.JTextField streetNameField1;
     private javax.swing.JLabel streetNameSjLabel;
     private javax.swing.JLabel streetNamejLabel;
-    private javax.swing.JTextField streetNamejTextField;
     private javax.swing.JButton submitButton;
     private javax.swing.JLabel surchargeLabel;
     private javax.swing.JTextField surchargejTextField;
@@ -4078,7 +4162,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel userLastnameLabel1;
     private javax.swing.JLabel userNumberLabel;
     private javax.swing.JPanel userResultsPage;
-    private javax.swing.JTable userResultsTable;
+    private javax.swing.JTable userResultsTable1;
     private javax.swing.JComboBox<String> userRoleComboBox;
     private javax.swing.JPanel userSearchPage;
     private javax.swing.JButton usersMenuPageButton;
