@@ -111,7 +111,36 @@ public class MainFrame extends javax.swing.JFrame {
         actualDiscountRateTextField = new javax.swing.JTextField();
         percentageLabel = new javax.swing.JLabel();
         variableDiscountPage = new javax.swing.JPanel();
+        backBar4 = new javax.swing.JPanel();
+        backButton5 = new javax.swing.JToggleButton();
+        applyButton1 = new javax.swing.JToggleButton();
+        titleBar4 = new javax.swing.JPanel();
+        homeButton4 = new javax.swing.JButton();
+        logOutButton4 = new javax.swing.JButton();
+        viewProfilePageLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         flexibleDiscountPage = new javax.swing.JPanel();
+        backBar5 = new javax.swing.JPanel();
+        backButton6 = new javax.swing.JToggleButton();
+        applyButton2 = new javax.swing.JToggleButton();
+        titleBar5 = new javax.swing.JPanel();
+        homeButton5 = new javax.swing.JButton();
+        logOutButton5 = new javax.swing.JButton();
+        viewProfilePageLabel5 = new javax.swing.JLabel();
+        addBoundLabel = new javax.swing.JLabel();
+        upperBoundLabel = new javax.swing.JLabel();
+        lowerBoundLabel = new javax.swing.JLabel();
+        discountRateLabel1 = new javax.swing.JLabel();
+        upperBoundTextField = new javax.swing.JTextField();
+        lowerBoundTextField = new javax.swing.JTextField();
+        discountRateTextField = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        removeBandButton = new javax.swing.JButton();
+        bandScrollBar = new javax.swing.JScrollBar();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        bandsTable = new javax.swing.JTable();
+        percentageLabel1 = new javax.swing.JLabel();
         cardPanel1 = new javax.swing.JPanel();
         restorePage = new javax.swing.JPanel();
         restoreLabel = new javax.swing.JLabel();
@@ -209,15 +238,7 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Payments", "Type", "Jobs", "Tasks", "Card Type", "Last 4 digits", "Expiry"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(paymentResultsTable);
 
         javax.swing.GroupLayout viewPaymentsPageLayout = new javax.swing.GroupLayout(viewPaymentsPage);
@@ -928,26 +949,325 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(backBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        variableDiscountPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        backBar4.setBackground(new java.awt.Color(33, 53, 80));
+        backBar4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        backButton5.setText("Back");
+
+        applyButton1.setText("Apply");
+        applyButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout backBar4Layout = new javax.swing.GroupLayout(backBar4);
+        backBar4.setLayout(backBar4Layout);
+        backBar4Layout.setHorizontalGroup(
+            backBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backBar4Layout.createSequentialGroup()
+                .addComponent(backButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(applyButton1)
+                .addContainerGap())
+        );
+        backBar4Layout.setVerticalGroup(
+            backBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backBar4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(backBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton5)
+                    .addComponent(applyButton1))
+                .addContainerGap())
+        );
+
+        titleBar4.setBackground(new java.awt.Color(33, 53, 80));
+        titleBar4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        homeButton4.setBackground(new java.awt.Color(40, 64, 97));
+        homeButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        homeButton4.setForeground(new java.awt.Color(255, 255, 255));
+        homeButton4.setText("Home");
+        homeButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        homeButton4.setOpaque(true);
+        homeButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButton4ActionPerformed(evt);
+            }
+        });
+
+        logOutButton4.setBackground(new java.awt.Color(40, 64, 97));
+        logOutButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        logOutButton4.setForeground(new java.awt.Color(255, 255, 255));
+        logOutButton4.setText("Log Out");
+        logOutButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logOutButton4.setOpaque(true);
+        logOutButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButton4ActionPerformed(evt);
+            }
+        });
+
+        viewProfilePageLabel4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        viewProfilePageLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        viewProfilePageLabel4.setText("Assign Variable Discount Plan");
+
+        javax.swing.GroupLayout titleBar4Layout = new javax.swing.GroupLayout(titleBar4);
+        titleBar4.setLayout(titleBar4Layout);
+        titleBar4Layout.setHorizontalGroup(
+            titleBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar4Layout.createSequentialGroup()
+                .addComponent(homeButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel4)
+                .addGap(33, 33, 33)
+                .addComponent(logOutButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        titleBar4Layout.setVerticalGroup(
+            titleBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(logOutButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel4))
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"0001", "Printing", "2.40", "2"},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Task ID", "Task Description", "Price (£)", "Discount (%)"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
         javax.swing.GroupLayout variableDiscountPageLayout = new javax.swing.GroupLayout(variableDiscountPage);
         variableDiscountPage.setLayout(variableDiscountPageLayout);
         variableDiscountPageLayout.setHorizontalGroup(
             variableDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, variableDiscountPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
+            .addComponent(backBar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titleBar4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         variableDiscountPageLayout.setVerticalGroup(
             variableDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGroup(variableDiscountPageLayout.createSequentialGroup()
+                .addComponent(titleBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(backBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        flexibleDiscountPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        backBar5.setBackground(new java.awt.Color(33, 53, 80));
+        backBar5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        backButton6.setText("Back");
+
+        applyButton2.setText("Apply");
+        applyButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout backBar5Layout = new javax.swing.GroupLayout(backBar5);
+        backBar5.setLayout(backBar5Layout);
+        backBar5Layout.setHorizontalGroup(
+            backBar5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backBar5Layout.createSequentialGroup()
+                .addComponent(backButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(applyButton2)
+                .addContainerGap())
+        );
+        backBar5Layout.setVerticalGroup(
+            backBar5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backBar5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(backBar5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton6)
+                    .addComponent(applyButton2))
+                .addContainerGap())
+        );
+
+        titleBar5.setBackground(new java.awt.Color(33, 53, 80));
+        titleBar5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        homeButton5.setBackground(new java.awt.Color(40, 64, 97));
+        homeButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        homeButton5.setForeground(new java.awt.Color(255, 255, 255));
+        homeButton5.setText("Home");
+        homeButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        homeButton5.setOpaque(true);
+        homeButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButton5ActionPerformed(evt);
+            }
+        });
+
+        logOutButton5.setBackground(new java.awt.Color(40, 64, 97));
+        logOutButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        logOutButton5.setForeground(new java.awt.Color(255, 255, 255));
+        logOutButton5.setText("Log Out");
+        logOutButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logOutButton5.setOpaque(true);
+        logOutButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButton5ActionPerformed(evt);
+            }
+        });
+
+        viewProfilePageLabel5.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        viewProfilePageLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        viewProfilePageLabel5.setText("Assign Flexible Discount Plan");
+
+        javax.swing.GroupLayout titleBar5Layout = new javax.swing.GroupLayout(titleBar5);
+        titleBar5.setLayout(titleBar5Layout);
+        titleBar5Layout.setHorizontalGroup(
+            titleBar5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar5Layout.createSequentialGroup()
+                .addComponent(homeButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel5)
+                .addGap(33, 33, 33)
+                .addComponent(logOutButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        titleBar5Layout.setVerticalGroup(
+            titleBar5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(logOutButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel5))
+        );
+
+        addBoundLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addBoundLabel.setForeground(new java.awt.Color(255, 255, 255));
+        addBoundLabel.setText("Add Bound:");
+
+        upperBoundLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        upperBoundLabel.setForeground(new java.awt.Color(255, 255, 255));
+        upperBoundLabel.setText("Upper Bound:");
+
+        lowerBoundLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lowerBoundLabel.setForeground(new java.awt.Color(255, 255, 255));
+        lowerBoundLabel.setText("Lower Bound:");
+
+        discountRateLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        discountRateLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        discountRateLabel1.setText("Discount Rate:");
+
+        upperBoundTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upperBoundTextFieldActionPerformed(evt);
+            }
+        });
+
+        discountRateTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discountRateTextFieldActionPerformed(evt);
+            }
+        });
+
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        removeBandButton.setText("Remove Band");
+
+        bandsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(bandsTable);
+
+        percentageLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        percentageLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        percentageLabel1.setText("%");
 
         javax.swing.GroupLayout flexibleDiscountPageLayout = new javax.swing.GroupLayout(flexibleDiscountPage);
         flexibleDiscountPage.setLayout(flexibleDiscountPageLayout);
         flexibleDiscountPageLayout.setHorizontalGroup(
             flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(flexibleDiscountPageLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(discountRateLabel1)
+                    .addComponent(lowerBoundLabel)
+                    .addComponent(upperBoundLabel)
+                    .addComponent(addBoundLabel))
+                .addGap(42, 42, 42)
+                .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addButton)
+                    .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(flexibleDiscountPageLayout.createSequentialGroup()
+                            .addComponent(discountRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(percentageLabel1)
+                            .addGap(41, 41, 41))
+                        .addComponent(upperBoundTextField)
+                        .addComponent(lowerBoundTextField)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeBandButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bandScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
+            .addComponent(titleBar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backBar5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         flexibleDiscountPageLayout.setVerticalGroup(
             flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, flexibleDiscountPageLayout.createSequentialGroup()
+                .addComponent(titleBar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(flexibleDiscountPageLayout.createSequentialGroup()
+                        .addComponent(addBoundLabel)
+                        .addGap(35, 35, 35)
+                        .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(upperBoundLabel)
+                            .addComponent(upperBoundTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lowerBoundLabel)
+                            .addComponent(lowerBoundTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(discountRateLabel1)
+                            .addComponent(discountRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(percentageLabel1)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(bandScrollBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton)
+                    .addComponent(removeBandButton))
+                .addGap(92, 92, 92)
+                .addComponent(backBar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1216,6 +1536,42 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_actualDiscountRateTextFieldActionPerformed
 
+    private void applyButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_applyButton1ActionPerformed
+
+    private void homeButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeButton4ActionPerformed
+
+    private void logOutButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logOutButton4ActionPerformed
+
+    private void applyButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_applyButton2ActionPerformed
+
+    private void homeButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeButton5ActionPerformed
+
+    private void logOutButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logOutButton5ActionPerformed
+
+    private void upperBoundTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperBoundTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upperBoundTextFieldActionPerformed
+
+    private void discountRateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountRateTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_discountRateTextFieldActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1263,22 +1619,32 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel actualAmountOfLatePayments;
     private javax.swing.JLabel actualAmountOfMonthlyJobsLabel;
     private javax.swing.JTextField actualDiscountRateTextField;
+    private javax.swing.JLabel addBoundLabel;
+    private javax.swing.JButton addButton;
     private javax.swing.JPanel addressBox;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel amountOfJobsThisMonthLabel;
     private javax.swing.JLabel amountOfLatePayments;
     private javax.swing.JToggleButton applyButton;
+    private javax.swing.JToggleButton applyButton1;
+    private javax.swing.JToggleButton applyButton2;
     private javax.swing.JButton assignDiscountButton;
     private javax.swing.JPanel assignDiscountOptionsPage;
     private javax.swing.JPanel backBar;
     private javax.swing.JPanel backBar1;
     private javax.swing.JPanel backBar2;
     private javax.swing.JPanel backBar3;
+    private javax.swing.JPanel backBar4;
+    private javax.swing.JPanel backBar5;
     private javax.swing.JButton backButton;
     private javax.swing.JToggleButton backButton1;
     private javax.swing.JToggleButton backButton2;
     private javax.swing.JToggleButton backButton3;
     private javax.swing.JToggleButton backButton4;
+    private javax.swing.JToggleButton backButton5;
+    private javax.swing.JToggleButton backButton6;
+    private javax.swing.JScrollBar bandScrollBar;
+    private javax.swing.JTable bandsTable;
     private javax.swing.JLabel buildingNoLabel;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
@@ -1290,6 +1656,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel discountAnswerLabel;
     private javax.swing.JLabel discountLabel;
     private javax.swing.JLabel discountRateLabel;
+    private javax.swing.JLabel discountRateLabel1;
+    private javax.swing.JTextField discountRateTextField;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JButton fixedButton;
     private javax.swing.JPanel fixedDiscountPlanPage;
@@ -1298,23 +1666,34 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton homeButton1;
     private javax.swing.JButton homeButton2;
     private javax.swing.JButton homeButton3;
+    private javax.swing.JButton homeButton4;
+    private javax.swing.JButton homeButton5;
     private javax.swing.JLabel inDefaultAnswerLabel;
     private javax.swing.JLabel inDefaultLabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel jobsThisMonthBox;
     private javax.swing.JPanel latePaymentsBox;
     private javax.swing.JButton logOutButton1;
     private javax.swing.JButton logOutButton2;
     private javax.swing.JButton logOutButton3;
+    private javax.swing.JButton logOutButton4;
+    private javax.swing.JButton logOutButton5;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JLabel lowerBoundLabel;
+    private javax.swing.JTextField lowerBoundTextField;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTable paymentResultsTable;
     private javax.swing.JLabel percentageLabel;
+    private javax.swing.JLabel percentageLabel1;
     private javax.swing.JLabel postCodeLabel;
     private javax.swing.JLabel registrationDate;
+    private javax.swing.JButton removeBandButton;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JLabel roadNameLabel;
@@ -1324,9 +1703,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel titleBar1;
     private javax.swing.JPanel titleBar2;
     private javax.swing.JPanel titleBar3;
+    private javax.swing.JPanel titleBar4;
+    private javax.swing.JPanel titleBar5;
     private javax.swing.JLabel typeAnswerLabel;
     private javax.swing.JLabel typeLabel;
     private javax.swing.JButton updateAccountStatusButton;
+    private javax.swing.JLabel upperBoundLabel;
+    private javax.swing.JTextField upperBoundTextField;
     private javax.swing.JTextField userIDField;
     private javax.swing.JButton variableButton;
     private javax.swing.JPanel variableDiscountPage;
@@ -1338,6 +1721,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel viewProfilePageLabel1;
     private javax.swing.JLabel viewProfilePageLabel2;
     private javax.swing.JLabel viewProfilePageLabel3;
+    private javax.swing.JLabel viewProfilePageLabel4;
+    private javax.swing.JLabel viewProfilePageLabel5;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
     private javax.swing.JPanel welcomePage;
