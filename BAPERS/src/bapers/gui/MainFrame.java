@@ -38,12 +38,15 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
-        cardPanel1 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
         userIDField = new javax.swing.JTextField();
+        jScrollBar1 = new javax.swing.JScrollBar();
+        cardPanel1 = new javax.swing.JPanel();
         restorePage = new javax.swing.JPanel();
         restoreLabel = new javax.swing.JLabel();
         RestoreButton = new javax.swing.JButton();
@@ -100,16 +103,27 @@ public class MainFrame extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
-        setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
-        setResizable(false);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
-        cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
-        cardPanel1.setMaximumSize(new java.awt.Dimension(900, 640));
-        cardPanel1.setPreferredSize(new java.awt.Dimension(900, 640));
-        cardPanel1.setLayout(new java.awt.CardLayout());
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         loginPage.setBackground(new java.awt.Color(61, 96, 146));
         loginPage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -163,7 +177,16 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(110, 110, 110))
         );
 
-        cardPanel1.add(loginPage, "login");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 700));
+        setMinimumSize(new java.awt.Dimension(900, 700));
+        setPreferredSize(new java.awt.Dimension(900, 700));
+        setResizable(false);
+
+        cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        cardPanel1.setMaximumSize(new java.awt.Dimension(900, 640));
+        cardPanel1.setPreferredSize(new java.awt.Dimension(900, 640));
+        cardPanel1.setLayout(new java.awt.CardLayout());
 
         restorePage.setBackground(new java.awt.Color(61, 96, 146));
         restorePage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -756,9 +779,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(cardPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 102, Short.MAX_VALUE)
                     .addComponent(viewCustomerProfilePage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 103, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -769,14 +792,14 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 75, Short.MAX_VALUE)
                     .addComponent(viewCustomerProfilePage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 75, Short.MAX_VALUE)))
         );
 
         viewCustomerProfilePage.getAccessibleContext().setAccessibleName("viewCustomerProfilePage");
 
-        setSize(new java.awt.Dimension(892, 700));
+        setSize(new java.awt.Dimension(461, 467));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -886,6 +909,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel inDefaultAnswerLabel;
     private javax.swing.JLabel inDefaultLabel;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JPanel jobsThisMonthBox;
     private javax.swing.JPanel latePaymentsBox;
     private javax.swing.JButton logOutButton1;
