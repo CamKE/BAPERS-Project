@@ -141,6 +141,38 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         bandsTable = new javax.swing.JTable();
         percentageLabel1 = new javax.swing.JLabel();
+        updateAccountStatusPage = new javax.swing.JPanel();
+        backBar6 = new javax.swing.JPanel();
+        backButton7 = new javax.swing.JToggleButton();
+        titleBar6 = new javax.swing.JPanel();
+        homeButton6 = new javax.swing.JButton();
+        logOutButton6 = new javax.swing.JButton();
+        viewProfilePageLabel6 = new javax.swing.JLabel();
+        accountStatusComboBox = new javax.swing.JComboBox<>();
+        inDefaultComboBox = new javax.swing.JComboBox<>();
+        saveButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        accountStatusLabel = new javax.swing.JLabel();
+        inDefaultLabel1 = new javax.swing.JLabel();
+        changeAccountType = new javax.swing.JPanel();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        accountTypeLabel = new javax.swing.JLabel();
+        accountTypeComboBox = new javax.swing.JComboBox<>();
+        saveAccountTypeButton = new javax.swing.JButton();
+        cancelAccountTypeButton = new javax.swing.JButton();
+        titleBar7 = new javax.swing.JPanel();
+        homeButton7 = new javax.swing.JButton();
+        logOutButton7 = new javax.swing.JButton();
+        viewProfilePageLabel7 = new javax.swing.JLabel();
+        invoiceSearchResultsPage = new javax.swing.JPanel();
+        titleBar8 = new javax.swing.JPanel();
+        homeButton8 = new javax.swing.JButton();
+        logOutButton8 = new javax.swing.JButton();
+        viewProfilePageLabel8 = new javax.swing.JLabel();
+        backBar7 = new javax.swing.JPanel();
+        backButton8 = new javax.swing.JToggleButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        invoiceResultsTable1 = new javax.swing.JTable();
         cardPanel1 = new javax.swing.JPanel();
         restorePage = new javax.swing.JPanel();
         restoreLabel = new javax.swing.JLabel();
@@ -1270,6 +1302,361 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(backBar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        updateAccountStatusPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        backBar6.setBackground(new java.awt.Color(33, 53, 80));
+        backBar6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        backButton7.setText("Back");
+
+        javax.swing.GroupLayout backBar6Layout = new javax.swing.GroupLayout(backBar6);
+        backBar6.setLayout(backBar6Layout);
+        backBar6Layout.setHorizontalGroup(
+            backBar6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backBar6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(backButton7))
+        );
+        backBar6Layout.setVerticalGroup(
+            backBar6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backBar6Layout.createSequentialGroup()
+                .addComponent(backButton7)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        titleBar6.setBackground(new java.awt.Color(33, 53, 80));
+        titleBar6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        homeButton6.setBackground(new java.awt.Color(40, 64, 97));
+        homeButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        homeButton6.setForeground(new java.awt.Color(255, 255, 255));
+        homeButton6.setText("Home");
+        homeButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        homeButton6.setOpaque(true);
+        homeButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButton6ActionPerformed(evt);
+            }
+        });
+
+        logOutButton6.setBackground(new java.awt.Color(40, 64, 97));
+        logOutButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        logOutButton6.setForeground(new java.awt.Color(255, 255, 255));
+        logOutButton6.setText("Log Out");
+        logOutButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logOutButton6.setOpaque(true);
+        logOutButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButton6ActionPerformed(evt);
+            }
+        });
+
+        viewProfilePageLabel6.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        viewProfilePageLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        viewProfilePageLabel6.setText("Update Account Status");
+
+        javax.swing.GroupLayout titleBar6Layout = new javax.swing.GroupLayout(titleBar6);
+        titleBar6.setLayout(titleBar6Layout);
+        titleBar6Layout.setHorizontalGroup(
+            titleBar6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar6Layout.createSequentialGroup()
+                .addComponent(homeButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(viewProfilePageLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(logOutButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        titleBar6Layout.setVerticalGroup(
+            titleBar6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logOutButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel6))
+        );
+
+        accountStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
+
+        inDefaultComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "False", "True" }));
+
+        saveButton.setText("Save");
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        accountStatusLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        accountStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
+        accountStatusLabel.setText("Account Status");
+
+        inDefaultLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        inDefaultLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        inDefaultLabel1.setText("In default");
+
+        javax.swing.GroupLayout updateAccountStatusPageLayout = new javax.swing.GroupLayout(updateAccountStatusPage);
+        updateAccountStatusPage.setLayout(updateAccountStatusPageLayout);
+        updateAccountStatusPageLayout.setHorizontalGroup(
+            updateAccountStatusPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(backBar6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titleBar6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateAccountStatusPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(updateAccountStatusPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(updateAccountStatusPageLayout.createSequentialGroup()
+                        .addGroup(updateAccountStatusPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inDefaultLabel1)
+                            .addComponent(cancelButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(updateAccountStatusPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inDefaultComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveButton))
+                        .addGap(17, 17, 17))
+                    .addGroup(updateAccountStatusPageLayout.createSequentialGroup()
+                        .addComponent(accountStatusLabel)
+                        .addGap(48, 48, 48)
+                        .addComponent(accountStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(127, 127, 127))
+        );
+        updateAccountStatusPageLayout.setVerticalGroup(
+            updateAccountStatusPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateAccountStatusPageLayout.createSequentialGroup()
+                .addComponent(titleBar6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addGroup(updateAccountStatusPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accountStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(accountStatusLabel))
+                .addGap(18, 18, 18)
+                .addGroup(updateAccountStatusPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inDefaultComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inDefaultLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(updateAccountStatusPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton)
+                    .addComponent(cancelButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(backBar6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        changeAccountType.setBackground(new java.awt.Color(61, 96, 146));
+
+        jInternalFrame1.setVisible(true);
+
+        accountTypeLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        accountTypeLabel.setText("Account Type");
+
+        accountTypeComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        accountTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valued", "Normal" }));
+
+        saveAccountTypeButton.setText("Save");
+
+        cancelAccountTypeButton.setText("Cancel");
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accountTypeLabel)
+                    .addComponent(cancelAccountTypeButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(saveAccountTypeButton)
+                    .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63))
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(accountTypeLabel)
+                    .addComponent(accountTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveAccountTypeButton)
+                    .addComponent(cancelAccountTypeButton))
+                .addGap(33, 33, 33))
+        );
+
+        titleBar7.setBackground(new java.awt.Color(33, 53, 80));
+        titleBar7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        homeButton7.setBackground(new java.awt.Color(40, 64, 97));
+        homeButton7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        homeButton7.setForeground(new java.awt.Color(255, 255, 255));
+        homeButton7.setText("Home");
+        homeButton7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        homeButton7.setOpaque(true);
+        homeButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButton7ActionPerformed(evt);
+            }
+        });
+
+        logOutButton7.setBackground(new java.awt.Color(40, 64, 97));
+        logOutButton7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        logOutButton7.setForeground(new java.awt.Color(255, 255, 255));
+        logOutButton7.setText("Log Out");
+        logOutButton7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logOutButton7.setOpaque(true);
+        logOutButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButton7ActionPerformed(evt);
+            }
+        });
+
+        viewProfilePageLabel7.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        viewProfilePageLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        viewProfilePageLabel7.setText("Account Type");
+
+        javax.swing.GroupLayout titleBar7Layout = new javax.swing.GroupLayout(titleBar7);
+        titleBar7.setLayout(titleBar7Layout);
+        titleBar7Layout.setHorizontalGroup(
+            titleBar7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar7Layout.createSequentialGroup()
+                .addComponent(homeButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(viewProfilePageLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(logOutButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        titleBar7Layout.setVerticalGroup(
+            titleBar7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logOutButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel7))
+        );
+
+        javax.swing.GroupLayout changeAccountTypeLayout = new javax.swing.GroupLayout(changeAccountType);
+        changeAccountType.setLayout(changeAccountTypeLayout);
+        changeAccountTypeLayout.setHorizontalGroup(
+            changeAccountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changeAccountTypeLayout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(titleBar7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        changeAccountTypeLayout.setVerticalGroup(
+            changeAccountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changeAccountTypeLayout.createSequentialGroup()
+                .addComponent(titleBar7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
+        );
+
+        invoiceSearchResultsPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        titleBar8.setBackground(new java.awt.Color(33, 53, 80));
+        titleBar8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        homeButton8.setBackground(new java.awt.Color(40, 64, 97));
+        homeButton8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        homeButton8.setForeground(new java.awt.Color(255, 255, 255));
+        homeButton8.setText("Home");
+        homeButton8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        homeButton8.setOpaque(true);
+        homeButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButton8ActionPerformed(evt);
+            }
+        });
+
+        logOutButton8.setBackground(new java.awt.Color(40, 64, 97));
+        logOutButton8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        logOutButton8.setForeground(new java.awt.Color(255, 255, 255));
+        logOutButton8.setText("Log Out");
+        logOutButton8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logOutButton8.setOpaque(true);
+        logOutButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButton8ActionPerformed(evt);
+            }
+        });
+
+        viewProfilePageLabel8.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        viewProfilePageLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        viewProfilePageLabel8.setText("Invoice Search Results");
+
+        javax.swing.GroupLayout titleBar8Layout = new javax.swing.GroupLayout(titleBar8);
+        titleBar8.setLayout(titleBar8Layout);
+        titleBar8Layout.setHorizontalGroup(
+            titleBar8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar8Layout.createSequentialGroup()
+                .addComponent(homeButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel8)
+                .addGap(97, 97, 97)
+                .addComponent(logOutButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        titleBar8Layout.setVerticalGroup(
+            titleBar8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleBar8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(logOutButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(viewProfilePageLabel8))
+        );
+
+        backBar7.setBackground(new java.awt.Color(33, 53, 80));
+        backBar7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        backButton8.setText("Back");
+
+        javax.swing.GroupLayout backBar7Layout = new javax.swing.GroupLayout(backBar7);
+        backBar7.setLayout(backBar7Layout);
+        backBar7Layout.setHorizontalGroup(
+            backBar7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backBar7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backButton8)
+                .addContainerGap())
+        );
+        backBar7Layout.setVerticalGroup(
+            backBar7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backBar7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backButton8)
+                .addContainerGap())
+        );
+
+        invoiceResultsTable1.setAutoCreateColumnsFromModel(false);
+        invoiceResultsTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Payments", "Type", "Jobs", "Tasks", "Card Type", "Last 4 digits", "Expiry"
+            }
+        ));
+        jScrollPane4.setViewportView(invoiceResultsTable1);
+
+        javax.swing.GroupLayout invoiceSearchResultsPageLayout = new javax.swing.GroupLayout(invoiceSearchResultsPage);
+        invoiceSearchResultsPage.setLayout(invoiceSearchResultsPageLayout);
+        invoiceSearchResultsPageLayout.setHorizontalGroup(
+            invoiceSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(titleBar8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backBar7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(invoiceSearchResultsPageLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        invoiceSearchResultsPageLayout.setVerticalGroup(
+            invoiceSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(invoiceSearchResultsPageLayout.createSequentialGroup()
+                .addComponent(titleBar8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backBar7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
@@ -1572,6 +1959,34 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void homeButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeButton6ActionPerformed
+
+    private void logOutButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logOutButton6ActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void homeButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeButton7ActionPerformed
+
+    private void logOutButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logOutButton7ActionPerformed
+
+    private void homeButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_homeButton8ActionPerformed
+
+    private void logOutButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logOutButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1614,6 +2029,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel accountDetailsBox;
     private javax.swing.JLabel accountHolderName;
     private javax.swing.JPanel accountStatusBox;
+    private javax.swing.JComboBox<String> accountStatusComboBox;
+    private javax.swing.JLabel accountStatusLabel;
+    private javax.swing.JComboBox<String> accountTypeComboBox;
+    private javax.swing.JLabel accountTypeLabel;
     private javax.swing.JPanel actionsBox;
     private javax.swing.JLabel actionsLabel;
     private javax.swing.JLabel actualAmountOfLatePayments;
@@ -1636,6 +2055,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel backBar3;
     private javax.swing.JPanel backBar4;
     private javax.swing.JPanel backBar5;
+    private javax.swing.JPanel backBar6;
+    private javax.swing.JPanel backBar7;
     private javax.swing.JButton backButton;
     private javax.swing.JToggleButton backButton1;
     private javax.swing.JToggleButton backButton2;
@@ -1643,11 +2064,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton backButton4;
     private javax.swing.JToggleButton backButton5;
     private javax.swing.JToggleButton backButton6;
+    private javax.swing.JToggleButton backButton7;
+    private javax.swing.JToggleButton backButton8;
     private javax.swing.JScrollBar bandScrollBar;
     private javax.swing.JTable bandsTable;
     private javax.swing.JLabel buildingNoLabel;
+    private javax.swing.JButton cancelAccountTypeButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
+    private javax.swing.JPanel changeAccountType;
     private javax.swing.JButton changeAccountTypebutton;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JLabel cityLabel;
@@ -1668,11 +2094,20 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton homeButton3;
     private javax.swing.JButton homeButton4;
     private javax.swing.JButton homeButton5;
+    private javax.swing.JButton homeButton6;
+    private javax.swing.JButton homeButton7;
+    private javax.swing.JButton homeButton8;
     private javax.swing.JLabel inDefaultAnswerLabel;
+    private javax.swing.JComboBox<String> inDefaultComboBox;
     private javax.swing.JLabel inDefaultLabel;
+    private javax.swing.JLabel inDefaultLabel1;
+    private javax.swing.JTable invoiceResultsTable1;
+    private javax.swing.JPanel invoiceSearchResultsPage;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jobsThisMonthBox;
     private javax.swing.JPanel latePaymentsBox;
@@ -1681,6 +2116,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton logOutButton3;
     private javax.swing.JButton logOutButton4;
     private javax.swing.JButton logOutButton5;
+    private javax.swing.JButton logOutButton6;
+    private javax.swing.JButton logOutButton7;
+    private javax.swing.JButton logOutButton8;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
@@ -1697,6 +2135,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JLabel roadNameLabel;
+    private javax.swing.JButton saveAccountTypeButton;
+    private javax.swing.JButton saveButton;
     private javax.swing.JLabel statusAnswerLabel;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JPanel titleBar;
@@ -1705,9 +2145,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel titleBar3;
     private javax.swing.JPanel titleBar4;
     private javax.swing.JPanel titleBar5;
+    private javax.swing.JPanel titleBar6;
+    private javax.swing.JPanel titleBar7;
+    private javax.swing.JPanel titleBar8;
     private javax.swing.JLabel typeAnswerLabel;
     private javax.swing.JLabel typeLabel;
     private javax.swing.JButton updateAccountStatusButton;
+    private javax.swing.JPanel updateAccountStatusPage;
     private javax.swing.JLabel upperBoundLabel;
     private javax.swing.JTextField upperBoundTextField;
     private javax.swing.JTextField userIDField;
@@ -1723,6 +2167,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel viewProfilePageLabel3;
     private javax.swing.JLabel viewProfilePageLabel4;
     private javax.swing.JLabel viewProfilePageLabel5;
+    private javax.swing.JLabel viewProfilePageLabel6;
+    private javax.swing.JLabel viewProfilePageLabel7;
+    private javax.swing.JLabel viewProfilePageLabel8;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
     private javax.swing.JPanel welcomePage;
