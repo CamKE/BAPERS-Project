@@ -110,8 +110,8 @@ public class MainFrame extends javax.swing.JFrame {
         discountRateLabel = new javax.swing.JLabel();
         actualDiscountRateTextField = new javax.swing.JTextField();
         percentageLabel = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        variableDiscountPage = new javax.swing.JPanel();
+        flexibleDiscountPage = new javax.swing.JPanel();
         cardPanel1 = new javax.swing.JPanel();
         restorePage = new javax.swing.JPanel();
         restoreLabel = new javax.swing.JLabel();
@@ -928,25 +928,25 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(backBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        javax.swing.GroupLayout variableDiscountPageLayout = new javax.swing.GroupLayout(variableDiscountPage);
+        variableDiscountPage.setLayout(variableDiscountPageLayout);
+        variableDiscountPageLayout.setHorizontalGroup(
+            variableDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 576, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        variableDiscountPageLayout.setVerticalGroup(
+            variableDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 443, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout flexibleDiscountPageLayout = new javax.swing.GroupLayout(flexibleDiscountPage);
+        flexibleDiscountPage.setLayout(flexibleDiscountPageLayout);
+        flexibleDiscountPageLayout.setHorizontalGroup(
+            flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        flexibleDiscountPageLayout.setVerticalGroup(
+            flexibleDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
@@ -1294,13 +1294,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton fixedButton;
     private javax.swing.JPanel fixedDiscountPlanPage;
     private javax.swing.JButton flexibleButton;
+    private javax.swing.JPanel flexibleDiscountPage;
     private javax.swing.JButton homeButton1;
     private javax.swing.JButton homeButton2;
     private javax.swing.JButton homeButton3;
     private javax.swing.JLabel inDefaultAnswerLabel;
     private javax.swing.JLabel inDefaultLabel;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jobsThisMonthBox;
     private javax.swing.JPanel latePaymentsBox;
@@ -1330,6 +1329,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton updateAccountStatusButton;
     private javax.swing.JTextField userIDField;
     private javax.swing.JButton variableButton;
+    private javax.swing.JPanel variableDiscountPage;
     private javax.swing.JPanel viewCustomerProfilePage;
     private javax.swing.JButton viewInvoicesButton;
     private javax.swing.JButton viewPaymentsButton;
