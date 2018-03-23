@@ -1818,7 +1818,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void deleteTaskTableInformation() {
         //taskTable.setModel(new DefaultTableModel(null, new String[]{"Task ID", "Description", "Location", "Shelf Slot"}));
-        ArrayList<TaskInformation> tasks = controller.getTasks();
+       //ArrayList<TaskInformation> tasks = controller.getTasks();
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
         taskTableModel.setRowCount(0);
     }
