@@ -1752,7 +1752,7 @@ public class Controller {
                     String customerName = rs.getString("firstname") + " " + rs.getString("lastname");
 
                     LatePaymentInvoice invoice = new LatePaymentInvoice(rs.getInt("Invoice_no"), customerName, rs.getInt("total_payable"), rs.getDate("date_issued"),
-                            rs.getString("street_name"), rs.getString("city"), rs.getString("postcode"), rs.getString("lastname"));
+                            rs.getString("street_name"), rs.getString("city"), rs.getString("postcode"), rs.getString("lastname"),rs.getString("prefix"));
 
                     invoiceList.add(invoice);
                 }
@@ -1819,12 +1819,13 @@ public class Controller {
         String SQL = "SELECT * FROM customer\n"
                 + "Inner join job on customer.account_no = job.Customer_account_no\n"
                 + "inner join invoice on job.job_no = invoice.Job_job_no\n"
-                + "WHERE Invoice_no = '" + invoiceNumber + "';";
+                + "WHERE Invoice_no = '" + invoiceNumber + "' AND in_default = '1';";
         rs = database.read(SQL, conn);
         try {
             if (rs.next()) {
                 inDefault = true;
-            }
+
+            } 
         } catch (Exception e) {
             System.out.println("Is customer in default error");
         }
@@ -1839,6 +1840,5 @@ public class Controller {
                 + "WHERE Invoice_no = '" + invoiceNumber + "';";
         database.write(SQL, conn);
     }
-    
 
 }

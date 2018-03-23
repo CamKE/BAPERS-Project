@@ -16,6 +16,20 @@ import java.sql.Date;
 public class LatePaymentInvoice {
 
     /**
+     * @return the prefix
+     */
+    public String getPrefix() {
+        return prefix;
+    }
+
+    /**
+     * @param prefix the prefix to set
+     */
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    /**
      * @return the streetName
      */
     public String getStreetName() {
@@ -134,8 +148,9 @@ public class LatePaymentInvoice {
     private String city;
     private String postCode;
     private String lastName;
+    private String prefix;
     
-    public LatePaymentInvoice (int invoiceNumber, String customerName, int amountDue, Date date, String streetName,String city,String postCode, String lastName){
+    public LatePaymentInvoice (int invoiceNumber, String customerName, int amountDue, Date date, String streetName,String city,String postCode, String lastName, String prefix){
         this.invoiceNumber = invoiceNumber;
         this.customerName = customerName;
         this.amountDue = amountDue;
@@ -144,5 +159,6 @@ public class LatePaymentInvoice {
         this.city = city;
         this.postCode = postCode;
         this.lastName = lastName;
+        this.prefix = prefix;
     }
 }

@@ -5949,7 +5949,7 @@ public class MainFrame extends javax.swing.JFrame {
                     this.deleteReminderLettersTableInformation();
                     //Store in databse that reminder letters have been generated for this month
                     controller.setReminderLetterDate(todayDate);
-
+                    JOptionPane.showMessageDialog(null, "Reminder letters have been created for this month");
                 }
 
             } else {
@@ -8089,7 +8089,8 @@ public class MainFrame extends javax.swing.JFrame {
             document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getPostCode()));
             document.add(new Paragraph("  "));
 
-            document.add(new Paragraph("Dear Ms " + controller.getLatePaymentInvoices(month).get(z).getLastName() + ", "));
+            document.add(new Paragraph("Dear " + controller.getLatePaymentInvoices(month).get(z).getPrefix()
+                    + " " + controller.getLatePaymentInvoices(month).get(z).getLastName() + ", "));
             document.add(new Paragraph("  "));
             //Invoice table
             PdfPTable pdfTable = new PdfPTable(reminderLettersTable.getColumnCount());
@@ -8120,7 +8121,7 @@ public class MainFrame extends javax.swing.JFrame {
             document.add(new Paragraph("Yours sincereley,"));
             document.add(new Paragraph("   G. Lancaster "));
             document.close();
-            JOptionPane.showMessageDialog(null, "Reminder letters have been created for this month");
+
         } catch (DocumentException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -8188,7 +8189,7 @@ public class MainFrame extends javax.swing.JFrame {
             document.add(new Paragraph("Yours sincereley,"));
             document.add(new Paragraph("   G. Lancaster "));
             document.close();
-            JOptionPane.showMessageDialog(null, "Reminder letters have been created for this month");
+            
         } catch (DocumentException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -8547,10 +8548,11 @@ public class MainFrame extends javax.swing.JFrame {
             //
             int invoiceNumber = Integer.parseInt(String.valueOf(reminderLettersTable.getModel().getValueAt(i, 1)));
             if (controller.hasFirstReminderLetterBeenGenerated(invoiceNumber)) {
-                if (controller.isCustomerInDefault(invoiceNumber)) {
+                // System.out.println(controller.isCustomerInDefault(invoiceNumber));
+                if (controller.isCustomerInDefault(invoiceNumber) == true) {
                     //Generate third reminder letter
                     //Change customer status to suspended
-controller.setCustomerToInDefault(invoiceNumber);
+                    controller.setCustomerToSuspended(invoiceNumber);
                     //Alert office manager
                     System.out.println("Third reminder letter generated...");
 
@@ -8575,7 +8577,6 @@ controller.setCustomerToInDefault(invoiceNumber);
                 System.out.println("Alert office manager of late payment...");
             }
 
-            //If third reminder letter needs to be generated send alert to office manager legal action needs to be taken
         }
     }
 
