@@ -5,8 +5,12 @@
  */
 package bapers.controller;
 
+import bapers.task.TaskInformation;
 import bapers.database.DBImpl;
 import java.sql.Connection;
+import java.util.*;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +20,7 @@ public class Controller {
 
     private DBImpl database;
     private Connection conn;
+    private ResultSet rs;
 
     public Controller() {
         database = new DBImpl();
@@ -61,21 +66,94 @@ public class Controller {
             database.write(SQL, conn);
             success = true;
         } catch (Exception e) {
-            System.out.println("create new task Error");
+            System.out.println("Create new task Error");
         }
         return success;
     }
-    
-    public String[] getShelfSlots()
-    {
-        String[] shelfSlots = new String[100];
-        
-        for (int i = 0; i < 100; i++)
-        {
-            shelfSlots[i] = String.valueOf(i+1);
+
+    public ArrayList<TaskInformation> getTasks() {
+        String SQL = "SELECT * FROM task;";
+        rs = database.read(SQL, conn);
+        ArrayList<TaskInformation> taskInfo = new ArrayList<>();
+        TaskInformation task;
+        try {
+            System.out.println("Getting task information...");
+            while (rs.next()) {
+
+                task = new TaskInformation(rs.getInt("task_id"), rs.getString("description"), rs.getInt("duration_min"), rs.getInt("shelf_slot"), rs.getDouble("price"),
+                        rs.getString("Department_department_code"));
+                taskInfo.add(task);
+            }
+        } catch (Exception e) {
+            System.out.println("update task table Error");
         }
-        
+        return taskInfo;
+    }
+
+    public String[] getShelfSlots() {
+        String[] shelfSlots = new String[100];
+
+        for (int i = 0; i < 100; i++) {
+            shelfSlots[i] = String.valueOf(i + 1);
+        }
+
         return shelfSlots;
+    }
+
+    public String getDepartmentCode(String department1) {
+        String departmentCode = "";
+        switch (department1) {
+            case "Copy Room":
+                departmentCode = "CR";
+                break; // optional
+            case "Dark Room":
+                departmentCode = "DR";
+                break; // optional
+            case "Development Area":
+                departmentCode = "DA";
+                break; // optional
+            case "Printing Room":
+                departmentCode = "PR";
+                break; // optional
+            case "Finshing Room":
+                departmentCode = "FR";
+                break; // optional
+            case "Packaging Department":
+                departmentCode = "PD";
+                break; // optional
+        }
+        return departmentCode;
+    }
+
+    public boolean updateTask(int taskID, String description, int shelfSlot, double price, String departmentCode) {
+        boolean success = false;
+        String depCode = this.getDepartmentCode(departmentCode);
+
+        String SQL = "Update task\n"
+                + "SET description = '" + description + "',Department_department_code = '" + depCode + "',shelf_slot = '" + shelfSlot + "',price = '" + price + "'\n"
+                + "WHERE task_id =" + taskID + ";";
+        database.write(SQL, conn);
+        try {
+            if (rs.next()) {
+                success = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Update Task Error");
+        }
+        return success;
+    }
+    public boolean deleteTask(int taskID){
+        boolean success = false;
+        String SQL = "DELETE FROM task WHERE task_id = " + taskID + ";";
+        database.write(SQL,conn);
+        try {
+            if (rs.next()){
+                success = true;
+            }
+        } catch (Exception e){
+            System.out.println("Delete Task Error");
+        }
+        return success;
     }
 }
 //    public String[] getRoles() {

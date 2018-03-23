@@ -8,6 +8,10 @@ package bapers.gui;
 import bapers.controller.Controller;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
+import bapers.task.TaskInformation;
+import java.util.*;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -48,6 +52,15 @@ public class MainFrame extends javax.swing.JFrame {
         homePageSM = new javax.swing.JButton();
         homePageT = new javax.swing.JButton();
         homePageR = new javax.swing.JButton();
+        manageTasksPage = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taskTable = new javax.swing.JTable();
+        editButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        taskPage = new javax.swing.JPanel();
+        manageTasksButton = new javax.swing.JButton();
+        createTaskButton = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -114,6 +127,19 @@ public class MainFrame extends javax.swing.JFrame {
         priceNewTaskField = new javax.swing.JTextField();
         hoursLabel = new javax.swing.JLabel();
         minutesLabel = new javax.swing.JLabel();
+        editTaskPage = new javax.swing.JPanel();
+        newDescriptionLabel = new javax.swing.JLabel();
+        newDescriptionLabel1 = new javax.swing.JLabel();
+        newDescriptionLabel2 = new javax.swing.JLabel();
+        newDescriptionLabel3 = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
+        descriptionText = new javax.swing.JTextField();
+        shelfSlotText = new javax.swing.JTextField();
+        priceText = new javax.swing.JTextField();
+        departmentComboBox = new javax.swing.JComboBox<>();
+        taskIDLabel = new javax.swing.JLabel();
+        taskIDText = new javax.swing.JTextField();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -260,6 +286,113 @@ public class MainFrame extends javax.swing.JFrame {
         homePageOM.getAccessibleContext().setAccessibleParent(homePageOM);
 
         cardPanel1.add(welcomePage, "welcome");
+
+        manageTasksPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        taskTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Task ID", "Description", "Location", "Shelf Slot"
+            }
+        ));
+        jScrollPane1.setViewportView(taskTable);
+
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout manageTasksPageLayout = new javax.swing.GroupLayout(manageTasksPage);
+        manageTasksPage.setLayout(manageTasksPageLayout);
+        manageTasksPageLayout.setHorizontalGroup(
+            manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageTasksPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
+                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
+            .addGroup(manageTasksPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        manageTasksPageLayout.setVerticalGroup(
+            manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageTasksPageLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                    .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(89, 89, 89))
+        );
+
+        cardPanel1.add(manageTasksPage, "manageTasksPage");
+
+        taskPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        manageTasksButton.setText("Manage Tasks");
+        manageTasksButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageTasksButtonActionPerformed(evt);
+            }
+        });
+
+        createTaskButton.setText("Create Task");
+        createTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createTaskButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout taskPageLayout = new javax.swing.GroupLayout(taskPage);
+        taskPage.setLayout(taskPageLayout);
+        taskPageLayout.setHorizontalGroup(
+            taskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskPageLayout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(manageTasksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(152, 152, 152)
+                .addComponent(createTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(242, Short.MAX_VALUE))
+        );
+        taskPageLayout.setVerticalGroup(
+            taskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskPageLayout.createSequentialGroup()
+                .addGap(267, 267, 267)
+                .addGroup(taskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manageTasksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(292, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(taskPage, "taskPage");
 
         loginPage.setBackground(new java.awt.Color(61, 96, 146));
         loginPage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -959,6 +1092,114 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createTaskPage, "createNewTask");
 
+        editTaskPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        newDescriptionLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        newDescriptionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        newDescriptionLabel.setText("New Description");
+
+        newDescriptionLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        newDescriptionLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        newDescriptionLabel1.setText("New Department");
+
+        newDescriptionLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        newDescriptionLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        newDescriptionLabel2.setText("New Price");
+
+        newDescriptionLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        newDescriptionLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        newDescriptionLabel3.setText("New Shelf Slot");
+
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        departmentComboBox.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        departmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Copy Room", "Development Area", "Dark Room", "Finishing Room", "Packaging Department", "Printing Room", " " }));
+
+        taskIDLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        taskIDLabel.setForeground(new java.awt.Color(255, 255, 255));
+        taskIDLabel.setText("Task ID");
+
+        javax.swing.GroupLayout editTaskPageLayout = new javax.swing.GroupLayout(editTaskPage);
+        editTaskPage.setLayout(editTaskPageLayout);
+        editTaskPageLayout.setHorizontalGroup(
+            editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editTaskPageLayout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTaskPageLayout.createSequentialGroup()
+                        .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newDescriptionLabel3)
+                            .addComponent(newDescriptionLabel1)
+                            .addComponent(newDescriptionLabel2))
+                        .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editTaskPageLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(shelfSlotText, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(editTaskPageLayout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(departmentComboBox, 0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTaskPageLayout.createSequentialGroup()
+                        .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(taskIDLabel)
+                            .addComponent(newDescriptionLabel))
+                        .addGap(82, 82, 82)
+                        .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(descriptionText, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                            .addComponent(taskIDText))))
+                .addContainerGap(193, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTaskPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(121, 121, 121))
+        );
+        editTaskPageLayout.setVerticalGroup(
+            editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editTaskPageLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(taskIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(taskIDText))
+                .addGap(18, 18, 18)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(descriptionText)
+                    .addComponent(newDescriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newDescriptionLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(departmentComboBox))
+                .addGap(27, 27, 27)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(shelfSlotText)
+                    .addComponent(newDescriptionLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newDescriptionLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(priceText))
+                .addGap(86, 86, 86)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91))
+        );
+
+        cardPanel1.add(editTaskPage, "editTaskPage");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
         cardPanel2.setLayout(new java.awt.CardLayout());
@@ -1457,29 +1698,24 @@ public class MainFrame extends javax.swing.JFrame {
         //Initialise values
         String description = descriptionNewTaskField.getText();
         double price = Double.parseDouble(priceNewTaskField.getText());
-        int duration_min =  Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
+        int duration_min = Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
         int duration_hours = Integer.parseInt((String) durationNewTaskDD.getSelectedItem());
         String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
         int shelf_slot = Integer.parseInt((String) shelfSlotTaskDD.getSelectedItem());
-        
-        duration_min += duration_hours*60;
-        
+
+        duration_min += duration_hours * 60;
 
         //Check fields are not empty
-        if (description.isEmpty() || price == 0 ) {
+        if (description.isEmpty() || price == 0) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
-        }
-        
-        else {
+        } else {
             valid = true;
         }
 
-        
-
         //Will only execute method in controller if all preconditions are met
         if (valid) {
-            if (controller.createNewTask(description,duration_min,price,Department_department_code,shelf_slot)) {
+            if (controller.createNewTask(description, duration_min, price, Department_department_code, shelf_slot)) {
                 JOptionPane.showMessageDialog(null, "Task created");
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to create Task");
@@ -1505,8 +1741,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void tasksOfficeManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksOfficeManagerActionPerformed
         // TODO add your handling code here:
-        card1.show(cardPanel1, "createNewTask");
-        card2.show(cardPanel2, "createNewTaskBar");
+        card1.show(cardPanel1, "taskPage");
+        //card2.show(cardPanel2, "createNewTaskBar");
     }//GEN-LAST:event_tasksOfficeManagerActionPerformed
 
     private void logOutButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton3ActionPerformed
@@ -1551,6 +1787,139 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_durationNewTaskMinsDDActionPerformed
 
+    private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "createNewTask");
+    }//GEN-LAST:event_createTaskButtonActionPerformed
+
+    private void manageTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTasksButtonActionPerformed
+        //Get task information from controller class
+        updateTaskTable();
+        card1.show(cardPanel1, "manageTasksPage");
+        //taskTable.setSelectionModel(ListSelectionModel.SINGLE_SELECTION);
+
+    }//GEN-LAST:event_manageTasksButtonActionPerformed
+
+    private void updateTaskTable() {
+        //Get task information from controller class
+        ArrayList<TaskInformation> tasks = controller.getTasks();
+        DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
+        taskTableModel.setRowCount(tasks.size());
+        Object[] row = new Object[4];
+        for (int i = 0; i < tasks.size(); i++) {
+            row[0] = tasks.get(i).getTaskID();
+            row[1] = tasks.get(i).getDescription();
+            row[2] = tasks.get(i).getDepartmentCode();
+            row[3] = tasks.get(i).getShelfSlot();
+            taskTableModel.insertRow(1, row);
+        }
+
+    }
+
+    private void deleteTaskTableInformation() {
+        //taskTable.setModel(new DefaultTableModel(null, new String[]{"Task ID", "Description", "Location", "Shelf Slot"}));
+        ArrayList<TaskInformation> tasks = controller.getTasks();
+        DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
+        taskTableModel.setRowCount(0);
+    }
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "taskPage");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+     card1.show(cardPanel1, "editTaskPage");
+  
+
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        card1.show(cardPanel1, "manageTasksPage");
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+//Initialise values:
+        boolean valid = true;
+        String taskID = taskIDText.getText();
+        String description = descriptionText.getText();
+        String department = (String) departmentComboBox.getSelectedItem();
+        String shelfSlot = (shelfSlotText.getText());
+        String price = (priceText.getText());
+        //Preconditions:
+        if (description.equals("") || department.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Please insert data");
+        }
+        //Check shelf slot value is numeric
+        try {
+            Integer.parseInt(shelfSlot);
+        } catch (NumberFormatException e) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter numeric values for shelfSlot");
+        }
+        //Check if price value is numeric
+        try {
+            Integer.parseInt(price);
+        } catch (NumberFormatException e) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter numeric values for price");
+        }
+        //Check if task is numeric
+        try {
+            Integer.parseInt(price);
+        } catch (NumberFormatException e) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter numeric values for Task ID");
+        }
+
+        //Save new values for task
+        if (valid) {
+            if (controller.updateTask(Integer.parseInt(taskID), description, Integer.parseInt(shelfSlot), Double.parseDouble(price), department)) {
+                JOptionPane.showMessageDialog(null, "Failed to update task");
+            } else {
+                JOptionPane.showMessageDialog(null, "Task Updated");
+                //Update Task table
+                deleteTaskTableInformation();
+                updateTaskTable();
+                card1.show(cardPanel1, "manageTasksPage");
+            }
+        }
+
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        int selectedRowIndex = -1;
+        boolean inBounds = false;
+        int taskID = -1;
+        //Check if a row has been selected
+
+        //Get row index
+        if (taskTable.getRowSelectionAllowed()) {
+            selectedRowIndex = taskTable.getSelectedRow();
+        }
+        if ((selectedRowIndex >= 0)) {
+            inBounds = true;
+        }
+        if (!inBounds) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+        //Check row has values
+        if (taskTable.getModel().getValueAt(selectedRowIndex, 0) != null) {
+            //Get task id from table
+            taskID = (Integer) taskTable.getModel().getValueAt(selectedRowIndex, 0);
+            if (controller.deleteTask(taskID)) {
+                System.out.println("Delete failed");
+            } else {
+                System.out.println("Delete worked");
+                //Update Task table
+                deleteTaskTableInformation();
+                updateTaskTable();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1565,16 +1934,24 @@ public class MainFrame extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1598,6 +1975,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton acceptPaymentReceptionist;
     private javax.swing.JButton acceptPaymentShiftManager;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelButtonCreateTask;
     private javax.swing.JPanel cardPanel1;
@@ -1606,17 +1984,23 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel createNewTaskBar;
     private javax.swing.JButton createNewTaskButton;
     private javax.swing.JPanel createNewTaskOM;
+    private javax.swing.JButton createTaskButton;
     private javax.swing.JLabel createTaskHead;
     private javax.swing.JPanel createTaskPage;
     private javax.swing.JButton createUserButton;
     private javax.swing.JPanel createUserPage;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JComboBox<String> departmentComboBox;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
     private javax.swing.JLabel departmentNewTaskLabel;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextField descriptionNewTaskField;
+    private javax.swing.JTextField descriptionText;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JComboBox<String> durationNewTaskDD;
     private javax.swing.JComboBox<String> durationNewTaskMinsDD;
+    private javax.swing.JButton editButton;
+    private javax.swing.JPanel editTaskPage;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel firstnameLabel;
     private javax.swing.JLabel homeButtonNewTask;
@@ -1631,6 +2015,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel homePageTechnician;
     private javax.swing.JPanel homePagesSMBar;
     private javax.swing.JLabel hoursLabel;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jobEnquiryTechnician;
     private javax.swing.JButton jobOfficeManager;
     private javax.swing.JButton jobReceptionist;
@@ -1646,7 +2032,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
     private javax.swing.JButton manageCustomersOfficeManager;
+    private javax.swing.JButton manageTasksButton;
+    private javax.swing.JPanel manageTasksPage;
     private javax.swing.JLabel minutesLabel;
+    private javax.swing.JLabel newDescriptionLabel;
+    private javax.swing.JLabel newDescriptionLabel1;
+    private javax.swing.JLabel newDescriptionLabel2;
+    private javax.swing.JLabel newDescriptionLabel3;
     private javax.swing.JLabel newTaskLabel1;
     private javax.swing.JLabel newUserLabel;
     private javax.swing.JPanel officeManagerHomePage;
@@ -1663,20 +2055,27 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField priceNewTaskField;
+    private javax.swing.JTextField priceText;
     private javax.swing.JPanel receptionHomePage;
     private javax.swing.JPanel receptionistHomePage;
     private javax.swing.JButton reportsOfficeManager;
     private javax.swing.JButton reportsShiftManager;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
+    private javax.swing.JButton saveButton;
     private javax.swing.JButton settingsOfficeManager;
     private javax.swing.JButton settingsShiftManager;
     private javax.swing.JLabel shelfSlotNewTaskLabel;
     private javax.swing.JComboBox<String> shelfSlotTaskDD;
+    private javax.swing.JTextField shelfSlotText;
     private javax.swing.JPanel shiftManagerHomePage;
     private javax.swing.JPanel shiftManagerPage;
     private javax.swing.JButton standardJobsOfficeManager;
     private javax.swing.JButton standardJobsShiftManager;
+    private javax.swing.JLabel taskIDLabel;
+    private javax.swing.JTextField taskIDText;
+    private javax.swing.JPanel taskPage;
+    private javax.swing.JTable taskTable;
     private javax.swing.JButton tasksOfficeManager;
     private javax.swing.JButton tasksShiftManager;
     private javax.swing.JPanel technicianHomePage;
