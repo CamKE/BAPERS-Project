@@ -23,8 +23,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -375,6 +378,11 @@ public class MainFrame extends javax.swing.JFrame {
         loginPage.setMaximumSize(new java.awt.Dimension(900, 640));
         loginPage.setMinimumSize(new java.awt.Dimension(900, 640));
         loginPage.setPreferredSize(new java.awt.Dimension(900, 640));
+        loginPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                loginPageComponentHidden(evt);
+            }
+        });
 
         loginLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         loginLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -4021,6 +4029,21 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_searchCustomerFJobjButtonActionPerformed
+
+    private void loginPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_loginPageComponentHidden
+        // TODO add your handling code here:
+        resetComponents(loginPage);
+    }//GEN-LAST:event_loginPageComponentHidden
+
+    private void resetComponents(JPanel panel) {
+        for (Component c : panel.getComponents()) {
+            if (c instanceof JTextField) {
+                ((JTextField) c).setText("");
+            } else if (c instanceof JComboBox) {
+                ((JComboBox) c).setSelectedIndex(0);
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
