@@ -43,6 +43,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         cardPanel1 = new javax.swing.JPanel();
+        jobSearchResultsPage = new javax.swing.JPanel();
+        backButon = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jobSearchResultsTable = new javax.swing.JTable();
         welcomePage = new javax.swing.JPanel();
         BAPERSLabel = new javax.swing.JLabel();
         loginPageButton = new javax.swing.JButton();
@@ -52,6 +56,13 @@ public class MainFrame extends javax.swing.JFrame {
         homePageSM = new javax.swing.JButton();
         homePageT = new javax.swing.JButton();
         homePageR = new javax.swing.JButton();
+        searchJobPage = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jobNumberTextField = new javax.swing.JTextField();
+        searchJobButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        customerNumberText = new javax.swing.JTextField();
+        searchCustomerButton = new javax.swing.JButton();
         manageTasksPage = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -178,6 +189,48 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.setPreferredSize(new java.awt.Dimension(900, 640));
         cardPanel1.setLayout(new java.awt.CardLayout());
 
+        jobSearchResultsPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        backButon.setText("Back");
+
+        jobSearchResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Job no", "#Standard Jobs", "Issued by", "Recorded by", "Deadline"
+            }
+        ));
+        jScrollPane2.setViewportView(jobSearchResultsTable);
+
+        javax.swing.GroupLayout jobSearchResultsPageLayout = new javax.swing.GroupLayout(jobSearchResultsPage);
+        jobSearchResultsPage.setLayout(jobSearchResultsPageLayout);
+        jobSearchResultsPageLayout.setHorizontalGroup(
+            jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(139, 139, 139))
+            .addGroup(jobSearchResultsPageLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        jobSearchResultsPageLayout.setVerticalGroup(
+            jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
+        );
+
+        cardPanel1.add(jobSearchResultsPage, "card15");
+
         welcomePage.setBackground(new java.awt.Color(61, 96, 146));
         welcomePage.setMaximumSize(new java.awt.Dimension(900, 640));
         welcomePage.setMinimumSize(new java.awt.Dimension(900, 640));
@@ -286,6 +339,68 @@ public class MainFrame extends javax.swing.JFrame {
         homePageOM.getAccessibleContext().setAccessibleParent(homePageOM);
 
         cardPanel1.add(welcomePage, "welcome");
+
+        searchJobPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Customer Number:");
+
+        searchJobButton.setText("Search Job");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Job Number:");
+
+        searchCustomerButton.setText("Search Customer");
+
+        javax.swing.GroupLayout searchJobPageLayout = new javax.swing.GroupLayout(searchJobPage);
+        searchJobPage.setLayout(searchJobPageLayout);
+        searchJobPageLayout.setHorizontalGroup(
+            searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchJobPageLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jobNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(searchJobPageLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(customerNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(52, 52, 52)
+                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
+            .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchJobPageLayout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(629, Short.MAX_VALUE)))
+        );
+        searchJobPageLayout.setVerticalGroup(
+            searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchJobPageLayout.createSequentialGroup()
+                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(searchJobPageLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(searchJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchJobPageLayout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jobNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(57, 57, 57)
+                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(customerNumberText)
+                    .addComponent(searchCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
+            .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchJobPageLayout.createSequentialGroup()
+                    .addGap(183, 183, 183)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(418, Short.MAX_VALUE)))
+        );
+
+        cardPanel1.add(searchJobPage, "searchJobPage");
 
         manageTasksPage.setBackground(new java.awt.Color(61, 96, 146));
 
@@ -1974,6 +2089,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton acceptPaymentOfficeManager;
     private javax.swing.JButton acceptPaymentReceptionist;
     private javax.swing.JButton acceptPaymentShiftManager;
+    private javax.swing.JButton backButon;
     private javax.swing.JButton backButton;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelButton;
@@ -1989,6 +2105,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel createTaskPage;
     private javax.swing.JButton createUserButton;
     private javax.swing.JPanel createUserPage;
+    private javax.swing.JTextField customerNumberText;
     private javax.swing.JButton deleteButton;
     private javax.swing.JComboBox<String> departmentComboBox;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
@@ -2016,10 +2133,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel homePagesSMBar;
     private javax.swing.JLabel hoursLabel;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jobEnquiryTechnician;
+    private javax.swing.JTextField jobNumberTextField;
     private javax.swing.JButton jobOfficeManager;
     private javax.swing.JButton jobReceptionist;
+    private javax.swing.JPanel jobSearchResultsPage;
+    private javax.swing.JTable jobSearchResultsTable;
     private javax.swing.JButton jobShiftManager;
     private javax.swing.JLabel lastnameLabel;
     private javax.swing.JButton logOutButton;
@@ -2063,6 +2186,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton searchCustomerButton;
+    private javax.swing.JButton searchJobButton;
+    private javax.swing.JPanel searchJobPage;
     private javax.swing.JButton settingsOfficeManager;
     private javax.swing.JButton settingsShiftManager;
     private javax.swing.JLabel shelfSlotNewTaskLabel;
