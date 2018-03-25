@@ -44,14 +44,13 @@ public class MainFrame extends javax.swing.JFrame {
     private UserDetails loggedInUser;
     DefaultTableModel tblModel;
 
-    int mCount = 0;
-    List<Material> materials = new ArrayList<>();
-    List<StandardJob> stdJobs = new ArrayList<>();
-    List<Invoice> selectedInvoices = new ArrayList<>();
-
+    List<Material> materials;
+    List<StandardJob> stdJobs;
+    List<Invoice> selectedInvoices;
+    List<StandardJob> selectedStdJobs;
     // list models that are used to for the scroll
-    DefaultListModel t = new DefaultListModel();
-    DefaultListModel t2 = new DefaultListModel();
+    DefaultListModel list1;
+    DefaultListModel list2;
     DefaultTableModel m;
 
     /**
@@ -60,6 +59,13 @@ public class MainFrame extends javax.swing.JFrame {
      * @param controller
      */
     public MainFrame(Controller controller) {
+        selectedInvoices = new ArrayList<>();
+        selectedStdJobs = new ArrayList<>();
+        stdJobs = new ArrayList<>();
+        materials = new ArrayList<>();
+        list1 = new DefaultListModel();
+        list2 = new DefaultListModel();
+
         // Set the controller 
         this.controller = controller;
         loggedInUser = null;
@@ -240,9 +246,7 @@ public class MainFrame extends javax.swing.JFrame {
         addMaterialButton = new javax.swing.JButton();
         addJobButton = new javax.swing.JButton();
         totalLabel = new javax.swing.JLabel();
-        removeButton = new javax.swing.JButton();
-        selectStdJob = new javax.swing.JComboBox<>();
-        selectStdJob.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getStandardJobs()));
+        stdJobDD = new javax.swing.JComboBox<>();
         selectPriority = new javax.swing.JComboBox<>();
         searchCustomerButton = new javax.swing.JButton();
         createCustomerButton = new javax.swing.JButton();
@@ -250,8 +254,6 @@ public class MainFrame extends javax.swing.JFrame {
         materialsjScrollPane = new javax.swing.JScrollPane();
         materialList = new javax.swing.JList<>();
         customerInfoField = new javax.swing.JTextField();
-        stdJobsjScrollPane1 = new javax.swing.JScrollPane();
-        standardJobList = new javax.swing.JList<>();
         materialSubmittedLabel = new javax.swing.JLabel();
         cancelAcceptJobButton = new javax.swing.JButton();
         submitButton = new javax.swing.JButton();
@@ -263,6 +265,10 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         specialInstructionjTextField = new javax.swing.JTextField();
+        materialsjScrollPane1 = new javax.swing.JScrollPane();
+        standardJobList = new javax.swing.JList<>();
+        removeJobButton = new javax.swing.JButton();
+        removeMaterialButton = new javax.swing.JButton();
         acceptPaymentPage = new javax.swing.JPanel();
         acceptLatePaymentjPanel = new javax.swing.JPanel();
         expiryDatejLabel = new javax.swing.JLabel();
@@ -2067,6 +2073,11 @@ public class MainFrame extends javax.swing.JFrame {
         acceptJobPage.setMaximumSize(new java.awt.Dimension(900, 640));
         acceptJobPage.setMinimumSize(new java.awt.Dimension(900, 640));
         acceptJobPage.setPreferredSize(new java.awt.Dimension(900, 640));
+        acceptJobPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                acceptJobPageComponentShown(evt);
+            }
+        });
 
         acceptJobjPanel.setBackground(new java.awt.Color(61, 96, 146));
         acceptJobjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -2092,20 +2103,12 @@ public class MainFrame extends javax.swing.JFrame {
         totalLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalLabel.setText("Total:");
 
-        removeButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        removeButton.setText("Remove Job");
-        removeButton.addActionListener(new java.awt.event.ActionListener() {
+        stdJobDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        stdJobDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        stdJobDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        stdJobDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButtonActionPerformed(evt);
-            }
-        });
-
-        selectStdJob.setMaximumSize(new java.awt.Dimension(250, 42));
-        selectStdJob.setMinimumSize(new java.awt.Dimension(250, 42));
-        selectStdJob.setPreferredSize(new java.awt.Dimension(250, 42));
-        selectStdJob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectStdJobActionPerformed(evt);
+                stdJobDDActionPerformed(evt);
             }
         });
 
@@ -2160,11 +2163,6 @@ public class MainFrame extends javax.swing.JFrame {
         customerInfoField.setMinimumSize(new java.awt.Dimension(308, 42));
         customerInfoField.setPreferredSize(new java.awt.Dimension(308, 42));
 
-        standardJobList.setMaximumSize(new java.awt.Dimension(85, 507));
-        standardJobList.setMinimumSize(new java.awt.Dimension(85, 507));
-        standardJobList.setPreferredSize(new java.awt.Dimension(85, 507));
-        stdJobsjScrollPane1.setViewportView(standardJobList);
-
         materialSubmittedLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         materialSubmittedLabel.setForeground(new java.awt.Color(255, 255, 255));
         materialSubmittedLabel.setText("Materials Submitted:");
@@ -2214,6 +2212,32 @@ public class MainFrame extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
 
+        standardJobList.setMaximumSize(new java.awt.Dimension(85, 507));
+        standardJobList.setMinimumSize(new java.awt.Dimension(85, 507));
+        standardJobList.setPreferredSize(new java.awt.Dimension(85, 507));
+        standardJobList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                standardJobListValueChanged(evt);
+            }
+        });
+        materialsjScrollPane1.setViewportView(standardJobList);
+
+        removeJobButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        removeJobButton.setText("Remove Job");
+        removeJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeJobButtonActionPerformed(evt);
+            }
+        });
+
+        removeMaterialButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        removeMaterialButton.setText("Remove Item");
+        removeMaterialButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeMaterialButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout acceptJobjPanelLayout = new javax.swing.GroupLayout(acceptJobjPanel);
         acceptJobjPanel.setLayout(acceptJobjPanelLayout);
         acceptJobjPanelLayout.setHorizontalGroup(
@@ -2226,48 +2250,51 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(totalAmountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(37, 37, 37)
+                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(stdJobDD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptJobjPanelLayout.createSequentialGroup()
+                                .addComponent(removeJobButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addJobButton))
+                            .addComponent(selectPriority, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(materialSubmittedLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptJobjPanelLayout.createSequentialGroup()
+                                .addComponent(removeMaterialButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(addMaterialButton))
+                            .addComponent(specialInstructionsLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(materialsjScrollPane)
+                            .addComponent(materialsjTextField)
+                            .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                                .addGap(199, 199, 199)
+                                .addComponent(surchargeLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(surchargejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(percentageLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(specialInstructionjTextField)
+                            .addComponent(materialsjScrollPane1)))
+                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                        .addGap(0, 51, Short.MAX_VALUE)
                         .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(selectStdJob, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addJobButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(selectPriority, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(materialSubmittedLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(addMaterialButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(specialInstructionsLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(searchCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(stdJobsjScrollPane1)
-                                    .addComponent(materialsjScrollPane)
-                                    .addComponent(materialsjTextField)
-                                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                                        .addComponent(removeButton)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(surchargeLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(surchargejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(percentageLabel)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(specialInstructionjTextField)))
+                                .addComponent(createCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(customerInfoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                                .addGap(0, 18, Short.MAX_VALUE)
-                                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                                        .addComponent(searchCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(createCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(customerInfoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                                        .addComponent(cancelAcceptJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, acceptJobjPanelLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(cancelAcceptJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, acceptJobjPanelLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(45, 45, 45))
         );
         acceptJobjPanelLayout.setVerticalGroup(
@@ -2281,35 +2308,39 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(createCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchCustomerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(customerInfoField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(materialsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(materialSubmittedLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                        .addComponent(addMaterialButton)
-                        .addGap(10, 10, 10))
-                    .addComponent(materialsjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                        .addComponent(selectStdJob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addJobButton))
-                    .addComponent(stdJobsjScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(materialSubmittedLabel)
+                    .addComponent(materialsjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(materialsjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(surchargeLabel))
-                    .addComponent(selectPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addMaterialButton)
+                        .addComponent(removeMaterialButton)))
+                .addGap(11, 11, 11)
+                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(acceptJobjPanelLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(percentageLabel)
-                            .addComponent(surchargejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                        .addComponent(stdJobDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addJobButton)
+                            .addComponent(removeJobButton)))
+                    .addComponent(materialsjScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(surchargeLabel)
+                            .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(percentageLabel)
+                                    .addComponent(surchargejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(acceptJobjPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selectPriority, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
                 .addGroup(acceptJobjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(specialInstructionsLabel)
                     .addComponent(specialInstructionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3530,30 +3561,18 @@ public class MainFrame extends javax.swing.JFrame {
         // if so, it will add the inputted material into the arraylist
         // then update a new model which will be used to display the list of
         // materials.
-        if (materialsjTextField.getText().matches("[a-z,A-Z]([a-z,A-Z,\\s])+[a-z,A-Z]")) {
-            ++mCount;
-            String material = materialsjTextField.getText();
-            materials.add(new Material(mCount, material));
-            //            System.out.println(material);
+        String material = materialsjTextField.getText();
+
+        if ((!material.isEmpty()) && material.matches("^[a-zA-Z0-9]+[a-z,A-Z,0-9,\\s]*")) {
+
+            materials.add(new Material(material));
             materialsjTextField.setText("");
 
-            DefaultListModel t = new DefaultListModel();
+            list1.addElement(materials.get(materials.size() - 1).getMaterialDescription());
 
-            for (int i = 0; i < materials.size(); ++i) {
-                t.addElement(materials.get(i).getMaterialDescription());
-            }
-
-            materialList.setModel(t);
-            if (!jTextArea2.getText().equals("")) {
-                jTextArea2.setText("");
-            }
-        } else if (materialsjTextField.getText().matches("\\s+")) {
-            System.out.println("You need to enter something other than just white space");
-            jTextArea2.setText("You need to enter something other than just white space");
-            materialsjTextField.setText("");
+            materialList.setModel(list1);
         } else {
-            System.out.println("You need to enter something");
-            jTextArea2.setText("You need to enter something");
+            JOptionPane.showMessageDialog(this, "Please enter a material to be added.");
         }
     }//GEN-LAST:event_addMaterialButtonActionPerformed
 
@@ -3561,36 +3580,23 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //selectStdJob.getSelectedItem();
         // adds a selected standard job to a list and arraylist
-        double total = 0;
-        t2.clear();
-        stdJobs.add(new StandardJob("12", "Test", 21));
-        selectStdJob.getSelectedItem();
 
-        for (int i = 0; i < stdJobs.size(); ++i) {
-            t2.addElement(stdJobs.get(i).getJobDescription());
-            total += stdJobs.get(i).getPrice(); // takse the price value from the arraylist to be totaled
+        int stdJobIndex = stdJobDD.getSelectedIndex();
+
+        if (stdJobIndex != 0) {
+
+            selectedStdJobs.add(stdJobs.get(stdJobIndex-1));
+
+            list2.addElement(selectedStdJobs.get(selectedStdJobs.size() - 1).getJobDescription());
+            standardJobList.setModel(list2);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a standard job to be added.");
         }
-
-        standardJobList.setModel(t2); // updates the list with new values
-        totalAmountLabel.setText("£" + total);
     }//GEN-LAST:event_addJobButtonActionPerformed
 
-    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+    private void stdJobDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stdJobDDActionPerformed
         // TODO add your handling code here
-        //        jList3.getModel().getElementAt(jList3.getSelectedIndex());
-        // checks to see if a row is selected in a list, if it is
-        // it will remove the selected row from the list and the array of standard jobs
-        if (standardJobList.isSelectedIndex(standardJobList.getSelectedIndex())) {
-            stdJobs.remove(standardJobList.getSelectedIndex());
-            t2.remove(standardJobList.getSelectedIndex());
-        } else {
-            System.out.println("You need to select a standard job to delete");
-        }
-    }//GEN-LAST:event_removeButtonActionPerformed
-
-    private void selectStdJobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectStdJobActionPerformed
-        // TODO add your handling code here
-    }//GEN-LAST:event_selectStdJobActionPerformed
+    }//GEN-LAST:event_stdJobDDActionPerformed
 
     private void selectPriorityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectPriorityActionPerformed
         // TODO add your handling code here:
@@ -3627,12 +3633,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_materialListValueChanged
 
     private void cancelAcceptJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAcceptJobButtonActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "receptionistHomePage");
-        card2.show(cardPanel2, "homePageR");
-        materials.clear();
-        mCount = 0;
-        t2.clear();
+//        // TODO add your handling code here:
+//        card1.show(cardPanel1, "receptionistHomePage");
+//        card2.show(cardPanel2, "homePageR");
+//        materials.clear();
+//        t2.clear();
     }//GEN-LAST:event_cancelAcceptJobButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
@@ -3676,7 +3681,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // invoice informaiton and total
         TotalLatePayjTextField.setText("");
-        t.clear();
+        list1.clear();
 
         // clears the data for card detials
         expiryDatejTextField.setText("");
@@ -3755,7 +3760,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                     // clears the model and the total
                     TotalLatePayjTextField.setText("");
-                    t.clear();
+                    list1.clear();
 
                     // clears the data for card detials
                     expiryDatejTextField.setText("");
@@ -3770,7 +3775,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 // clears the model and the total
                 TotalLatePayjTextField.setText("");
-                t.clear();
+                list1.clear();
 
                 // clears the data for card detials
                 expiryDatejTextField.setText("");
@@ -3811,10 +3816,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         // grabs all elements from arraylist and adds to a model object
         for (int i = 0; i < selectedInvoices.size(); ++i) {
-            t.addElement(selectedInvoices.get(i).getInvoiceLocation());
+            list1.addElement(selectedInvoices.get(i).getInvoiceLocation());
         }
 
-        invoicejList.setModel(t); // sets the model from the t typed model object
+        invoicejList.setModel(list1); // sets the model from the t typed model object
 
         TotalLatePayjTextField.setText(Double.toString(calculateTotal()));
 
@@ -4035,6 +4040,48 @@ public class MainFrame extends javax.swing.JFrame {
         resetComponents(loginPage);
     }//GEN-LAST:event_loginPageComponentHidden
 
+    private void standardJobListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_standardJobListValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_standardJobListValueChanged
+
+    private void removeJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJobButtonActionPerformed
+//        // TODO add your handling code here:
+//        //        jList3.getModel().getElementAt(jList3.getSelectedIndex());
+//        // checks to see if a row is selected in a list, if it is
+//        // it will remove the selected row from the list and the array of standard jobs
+//        if (standardJobList.isSelectedIndex(standardJobList.getSelectedIndex())) {
+//            stdJobs.remove(standardJobList.getSelectedIndex());
+//            t2.remove(standardJobList.getSelectedIndex());
+//        } else {
+//            System.out.println("You need to select a standard job to delete");
+//        }
+    }//GEN-LAST:event_removeJobButtonActionPerformed
+
+    private void removeMaterialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMaterialButtonActionPerformed
+        // TODO add your handling code here:
+        int index = materialList.getSelectedIndex();
+        if (index != -1) {
+            list1.remove(index);
+            materialList.setModel(list1);
+        } else {
+            JOptionPane.showMessageDialog(this, "You need to select a material to remove.");
+        }
+    }//GEN-LAST:event_removeMaterialButtonActionPerformed
+
+    private void acceptJobPageComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_acceptJobPageComponentShown
+        // TODO add your handling code here:
+        stdJobs = controller.getStandardJobs();
+
+        String[] stdJobList = new String[stdJobs.size()+1];
+        
+        stdJobList[0] = "Select a standard job.";
+        for (int i = 0; i < stdJobs.size(); i++) {
+            stdJobList[i+1] = stdJobs.get(i).getJobDescription();
+        }
+
+        stdJobDD.setModel(new javax.swing.DefaultComboBoxModel<>(stdJobList));
+    }//GEN-LAST:event_acceptJobPageComponentShown
+
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
@@ -4216,6 +4263,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> materialList;
     private javax.swing.JLabel materialSubmittedLabel;
     private javax.swing.JScrollPane materialsjScrollPane;
+    private javax.swing.JScrollPane materialsjScrollPane1;
     private javax.swing.JTextField materialsjTextField;
     private javax.swing.JLabel minutesLabel;
     private javax.swing.JLabel newStandardJobLabel;
@@ -4241,7 +4289,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField priceNewTaskField;
     private javax.swing.JPanel receptionistjPanel;
     private javax.swing.JLabel registrationDateSjLabel;
-    private javax.swing.JButton removeButton;
+    private javax.swing.JButton removeJobButton;
+    private javax.swing.JButton removeMaterialButton;
     private javax.swing.JButton removeTaskButton;
     private javax.swing.JPanel reportHomePage;
     private javax.swing.JButton reportSettingsPageButton;
@@ -4267,7 +4316,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton selectInvoicejButton;
     private javax.swing.JComboBox<String> selectPriority;
     private javax.swing.JButton selectSelectedInvoicejButton;
-    private javax.swing.JComboBox<String> selectStdJob;
     private javax.swing.JPanel settingsHomePage;
     private javax.swing.JButton settingsMenuPageButton;
     private javax.swing.JLabel shelfSlotNewTaskLabel;
@@ -4277,7 +4325,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel standardJobHomePage;
     private javax.swing.JList<String> standardJobList;
     private javax.swing.JButton standardJobsMenuPageButton;
-    private javax.swing.JScrollPane stdJobsjScrollPane1;
+    private javax.swing.JComboBox<String> stdJobDD;
     private javax.swing.JTextField streetNameField;
     private javax.swing.JTextField streetNameField1;
     private javax.swing.JLabel streetNameSjLabel;

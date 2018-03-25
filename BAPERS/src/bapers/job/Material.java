@@ -13,17 +13,8 @@ public class Material {
     private int materialID;
     private String materialDescription;
 
-    public Material(int materialID, String materialDescription) {
-        this.materialID = materialID;
+    public Material(String materialDescription) {
         this.materialDescription = materialDescription;
-    }
-
-    public int getMaterialID() {
-        return materialID;
-    }
-
-    public void setMaterialID(int materialID) {
-        this.materialID = materialID;
     }
 
     public String getMaterialDescription() {

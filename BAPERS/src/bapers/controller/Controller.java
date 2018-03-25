@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -272,21 +273,19 @@ public class Controller {
         return 0;
     }
 
-    public String[] getStandardJobs() {
-        String[] roles = new String[numStandardJobs()];
-        int i = 0;
+    public List<StandardJob> getStandardJobs() {
+        List<StandardJob> stdJobs = new ArrayList<>();
         String sql = "select * from standardjob";
-
+        
         //close resultset after use
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
-                roles[i] = result.getString("job_description");
-                i++;
+                stdJobs.add(new StandardJob(result.getString("code"),result.getString("job_description"),result.getDouble("price")));
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return roles;
+        return stdJobs;
     }
 
     public void createCustomerAccount(CustomerDetails cust) {
