@@ -66,16 +66,18 @@ public class MainFrame extends javax.swing.JFrame {
         codeField = new javax.swing.JTextField();
         selectATaskBox = new javax.swing.JComboBox<>();
         addButton = new javax.swing.JButton();
-        taskField = new javax.swing.JTextField();
         removeTaskButton = new javax.swing.JButton();
         totalLabel = new javax.swing.JLabel();
         totalField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         manageStandardJob = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         standardJobTable = new javax.swing.JTable();
+        deleteStandardJobButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -338,6 +340,8 @@ public class MainFrame extends javax.swing.JFrame {
         cancelButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cancelButton.setText("Cancel");
 
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout createStandardJobLayout = new javax.swing.GroupLayout(createStandardJob);
         createStandardJob.setLayout(createStandardJobLayout);
         createStandardJobLayout.setHorizontalGroup(
@@ -347,24 +351,20 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(newStandardJobLabel)
                 .addGap(323, 323, 323))
             .addGroup(createStandardJobLayout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addButton)
-                    .addComponent(descriptionLabel)
-                    .addComponent(codeLabel)
-                    .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createStandardJobLayout.createSequentialGroup()
-                        .addComponent(codeField)
-                        .addGap(323, 323, 323))
-                    .addGroup(createStandardJobLayout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(descriptionLabel)
+                            .addComponent(codeLabel)
+                            .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addButton))
+                        .addGap(18, 18, 18)
                         .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taskField, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(createStandardJobLayout.createSequentialGroup()
-                .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(descriptionField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
+                            .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(createStandardJobLayout.createSequentialGroup()
                         .addGap(402, 402, 402)
                         .addComponent(removeTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,39 +381,42 @@ public class MainFrame extends javax.swing.JFrame {
         );
         createStandardJobLayout.setVerticalGroup(
             createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createStandardJobLayout.createSequentialGroup()
+            .addGroup(createStandardJobLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(newStandardJobLabel)
+                .addGap(33, 33, 33)
+                .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(codeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(codeField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(createStandardJobLayout.createSequentialGroup()
+                        .addComponent(descriptionField, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
+                    .addComponent(descriptionLabel))
                 .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(createStandardJobLayout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createStandardJobLayout.createSequentialGroup()
+                                .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(removeTaskButton)
+                                    .addComponent(totalLabel))
+                                .addGap(294, 294, 294))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createStandardJobLayout.createSequentialGroup()
+                                .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(createButton)
+                                    .addComponent(cancelButton))
+                                .addGap(215, 215, 215))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createStandardJobLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(newStandardJobLabel)
-                        .addGap(33, 33, 33)
-                        .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(codeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(codeField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(createStandardJobLayout.createSequentialGroup()
-                                .addComponent(descriptionField)
-                                .addGap(1, 1, 1))
-                            .addComponent(descriptionLabel))
-                        .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(createStandardJobLayout.createSequentialGroup()
-                                .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addButton))
-                            .addComponent(taskField))
-                        .addGap(56, 56, 56)
-                        .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(removeTaskButton)
-                            .addComponent(totalLabel))))
-                .addGap(48, 48, 48)
-                .addGroup(createStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createButton)
-                    .addComponent(cancelButton))
-                .addGap(215, 215, 215))
+                        .addGap(8, 8, 8)
+                        .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(addButton)
+                        .addContainerGap())))
         );
 
         cardPanel1.add(createStandardJob, "createStandardJob");
@@ -433,25 +436,41 @@ public class MainFrame extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(standardJobTable);
 
+        deleteStandardJobButton.setText("Delete Job");
+        deleteStandardJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteStandardJobButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout manageStandardJobLayout = new javax.swing.GroupLayout(manageStandardJob);
         manageStandardJob.setLayout(manageStandardJobLayout);
         manageStandardJobLayout.setHorizontalGroup(
             manageStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageStandardJobLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageStandardJobLayout.createSequentialGroup()
-                .addContainerGap(197, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(196, 196, 196))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(manageStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageStandardJobLayout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageStandardJobLayout.createSequentialGroup()
+                        .addComponent(deleteStandardJobButton)
+                        .addGap(211, 211, 211))))
         );
         manageStandardJobLayout.setVerticalGroup(
             manageStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageStandardJobLayout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addGroup(manageStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(179, 179, 179))
+                .addGap(29, 29, 29)
+                .addComponent(deleteStandardJobButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addGap(110, 110, 110))
         );
 
         cardPanel1.add(manageStandardJob, "manageStandardJob");
@@ -567,6 +586,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_codeFieldActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+
+        
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -651,6 +673,32 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void deleteStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteStandardJobButtonActionPerformed
+        
+        int selectedRow = standardJobTable.getSelectedRow(); // index 0 here
+        if (selectedRow != -1) {
+            String code = (String) standardJobTable.getValueAt(selectedRow, 0);
+            int response = JOptionPane.showConfirmDialog(this, "Are you sure you would like to delete standard job with code " + code + "?");
+
+            if (response == 0) {
+                String outcome;
+                if (controller.deleteStandardJob(code)) {
+                    outcome = "Success";
+                    //we need the selected elements position relative to the model before the sort
+                    DefaultTableModel standardJobTableMode1 = (DefaultTableModel) standardJobTable.getModel();
+                    standardJobTableMode1.removeRow(standardJobTable.getRowSorter().convertRowIndexToModel(standardJobTable.getSelectedRow()));
+                } else {
+                    outcome = "Fail";
+                }
+                JOptionPane.showMessageDialog(this, outcome);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+        }
+        
+        
+    }//GEN-LAST:event_deleteStandardJobButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -700,12 +748,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel codeLabel;
     private javax.swing.JButton createButton;
     private javax.swing.JPanel createStandardJob;
+    private javax.swing.JButton deleteStandardJobButton;
     private javax.swing.JTextField descriptionField;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
@@ -719,7 +770,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel restorePage;
     private javax.swing.JComboBox<String> selectATaskBox;
     private javax.swing.JTable standardJobTable;
-    private javax.swing.JTextField taskField;
     private javax.swing.JTextField totalField;
     private javax.swing.JLabel totalLabel;
     private javax.swing.JTextField userIDField;

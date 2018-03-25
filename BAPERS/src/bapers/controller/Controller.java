@@ -58,6 +58,14 @@ public class Controller {
         }
         return standardJobInfo;
     }
+    
+    
+    public boolean deleteStandardJob(String code) {
+
+        String sql = "DELETE FROM standardjob WHERE code = " + code;
+        return database.write(sql, conn) != 0;
+
+    }
 
        
     }
