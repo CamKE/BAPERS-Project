@@ -62,13 +62,22 @@ public class Controller {
     
     public boolean deleteStandardJob(String code) {
 
-        String sql = "DELETE FROM standardjob WHERE code = " + code;
-        return database.write(sql, conn) != 0;
-
+        boolean success = false;
+        String SQL = "DELETE FROM standardjob WHERE code = " + code + ";";
+        database.write(SQL,conn);
+        try {
+            if (rs.next()){
+                success = true;
+            }
+        } catch (Exception e){
+            System.out.println("Delete Job Error");
+        }
+        return success;
+    }
     }
 
        
-    }
+    
 
 
         
