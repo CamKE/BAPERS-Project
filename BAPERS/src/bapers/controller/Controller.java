@@ -6,7 +6,11 @@
 package bapers.controller;
 
 import bapers.database.DBImpl;
+import bapers.job.StandardJob;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,6 +20,7 @@ public class Controller {
 
     private DBImpl database;
     private Connection conn;
+    private ResultSet rs;
 
     public Controller() {
         database = new DBImpl();
@@ -35,8 +40,29 @@ public class Controller {
         return success;
     }
         
+    
+    public ArrayList<StandardJob> getStandardJob() {
+        String SQL = "SELECT * FROM standardjob;";
+        rs = database.read(SQL, conn);
+        ArrayList<StandardJob> standardJobInfo = new ArrayList<>();
+        StandardJob standardJob;
+        try {
+            System.out.println("Getting standard job information...");
+            while (rs.next()) {
+
+                standardJob = new StandardJob(rs.getString("code"), rs.getString("job_description"), rs.getDouble("price"));
+                standardJobInfo.add(standardJob);
+            }
+        } catch (Exception e) {
+            System.out.println("update standard job table Error");
+        }
+        return standardJobInfo;
+    }
+
        
     }
+
+
         
         
                 

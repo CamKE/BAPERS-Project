@@ -6,8 +6,11 @@
 package bapers.gui;
 
 import bapers.controller.Controller;
+import bapers.job.StandardJob;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,6 +47,7 @@ public class MainFrame extends javax.swing.JFrame {
         loginPageButton = new javax.swing.JButton();
         RestorePageButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -68,6 +72,10 @@ public class MainFrame extends javax.swing.JFrame {
         totalField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        manageStandardJob = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        standardJobTable = new javax.swing.JTable();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -116,6 +124,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
         welcomePage.setLayout(welcomePageLayout);
         welcomePageLayout.setHorizontalGroup(
@@ -126,9 +141,11 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(BAPERSLabel)
                     .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePageLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(176, 176, 176)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(211, 211, 211))
         );
@@ -142,7 +159,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
 
@@ -399,6 +418,44 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createStandardJob, "createStandardJob");
 
+        manageStandardJob.setBackground(new java.awt.Color(61, 96, 146));
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton3.setText("Back");
+
+        standardJobTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Code", "Job Description", "Price", "Action"
+            }
+        ));
+        jScrollPane2.setViewportView(standardJobTable);
+
+        javax.swing.GroupLayout manageStandardJobLayout = new javax.swing.GroupLayout(manageStandardJob);
+        manageStandardJob.setLayout(manageStandardJobLayout);
+        manageStandardJobLayout.setHorizontalGroup(
+            manageStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageStandardJobLayout.createSequentialGroup()
+                .addContainerGap(197, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(196, 196, 196))
+        );
+        manageStandardJobLayout.setVerticalGroup(
+            manageStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageStandardJobLayout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addGroup(manageStandardJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addGap(179, 179, 179))
+        );
+
+        cardPanel1.add(manageStandardJob, "manageStandardJob");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
         cardPanel2.setLayout(new java.awt.CardLayout());
@@ -526,13 +583,13 @@ public class MainFrame extends javax.swing.JFrame {
         //Initialise values
         String code = codeField.getText();
         String job_description = descriptionField.getText();
-        double price = Double.parseDouble(totalField.getText());
+        String price = totalField.getText();
         
 
         
 
         //Check fields are not empty
-        if (code.equals("") || job_description.equals("") || price == 0) {
+        if (code.equals("") || job_description.equals("") || price.equals("")) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
         }
@@ -555,7 +612,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Will only execute method in controller if all preconditions are met
         if (valid) {
-            if (controller.createStandardJob(code, job_description, price)) {
+            if (controller.createStandardJob(code, job_description, Double.parseDouble(price))) {
                 JOptionPane.showMessageDialog(null, "Standard Job created");
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to create Standard Job");
@@ -566,6 +623,33 @@ public class MainFrame extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_createButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+         //Get standard job information from controller class
+        updateStandardJobTable();
+        card1.show(cardPanel1, "manageStandardJob");
+        //taskTable.setSelectionModel(ListSelectionModel.SINGLE_SELECTION);
+
+    }                                                 
+
+    private void updateStandardJobTable() {
+        //Get task information from controller class
+        ArrayList<StandardJob> standardjob = controller.getStandardJob();
+        DefaultTableModel standardJobTableMode1 = (DefaultTableModel) standardJobTable.getModel();
+        Object[] row = new Object[3];
+        for (int i = 0; i < standardjob.size(); i++) {
+            row[0] = standardjob.get(i).getCode();
+            row[1] = standardjob.get(i).getJobDescription();
+            row[2] = standardjob.get(i).getPrice();
+            standardJobTableMode1.insertRow(i, row);
+        }
+
+        
+
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -620,16 +704,21 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JPanel manageStandardJob;
     private javax.swing.JLabel newStandardJobLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton removeTaskButton;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JComboBox<String> selectATaskBox;
+    private javax.swing.JTable standardJobTable;
     private javax.swing.JTextField taskField;
     private javax.swing.JTextField totalField;
     private javax.swing.JLabel totalLabel;
