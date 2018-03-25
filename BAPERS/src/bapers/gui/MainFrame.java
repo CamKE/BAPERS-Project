@@ -6,6 +6,7 @@
 package bapers.gui;
 
 import bapers.controller.Controller;
+import bapers.job.JobDetails;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import bapers.task.TaskInformation;
@@ -47,6 +48,7 @@ public class MainFrame extends javax.swing.JFrame {
         backButon = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jobSearchResultsTable = new javax.swing.JTable();
+        viewJobButton = new javax.swing.JButton();
         welcomePage = new javax.swing.JPanel();
         BAPERSLabel = new javax.swing.JLabel();
         loginPageButton = new javax.swing.JButton();
@@ -192,19 +194,31 @@ public class MainFrame extends javax.swing.JFrame {
         jobSearchResultsPage.setBackground(new java.awt.Color(61, 96, 146));
 
         backButon.setText("Back");
+        backButon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButonActionPerformed(evt);
+            }
+        });
 
         jobSearchResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Job no", "#Standard Jobs", "Issued by", "Recorded by", "Deadline"
+                "Job no", "Issued by", "Deadline", "Status"
             }
         ));
         jScrollPane2.setViewportView(jobSearchResultsTable);
+
+        viewJobButton.setText("View");
+        viewJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJobButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jobSearchResultsPageLayout = new javax.swing.GroupLayout(jobSearchResultsPage);
         jobSearchResultsPage.setLayout(jobSearchResultsPageLayout);
@@ -212,6 +226,8 @@ public class MainFrame extends javax.swing.JFrame {
             jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
                 .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(139, 139, 139))
             .addGroup(jobSearchResultsPageLayout.createSequentialGroup()
@@ -225,11 +241,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(backButon, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(viewJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(90, 90, 90))
         );
 
-        cardPanel1.add(jobSearchResultsPage, "card15");
+        cardPanel1.add(jobSearchResultsPage, "jobSearchResultsPage");
 
         welcomePage.setBackground(new java.awt.Color(61, 96, 146));
         welcomePage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -347,12 +365,22 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setText("Customer Number:");
 
         searchJobButton.setText("Search Job");
+        searchJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchJobButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Job Number:");
 
         searchCustomerButton.setText("Search Customer");
+        searchCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomerButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchJobPageLayout = new javax.swing.GroupLayout(searchJobPage);
         searchJobPage.setLayout(searchJobPageLayout);
@@ -1932,19 +1960,23 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void deleteTaskTableInformation() {
-        //taskTable.setModel(new DefaultTableModel(null, new String[]{"Task ID", "Description", "Location", "Shelf Slot"}));
-       //ArrayList<TaskInformation> tasks = controller.getTasks();
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
         taskTableModel.setRowCount(0);
     }
+    
+    private void deleteJobTableInformation(){
+        DefaultTableModel jobTableModel = (DefaultTableModel) jobSearchResultsTable.getModel();
+        jobTableModel.setRowCount(0);
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "taskPage");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-     card1.show(cardPanel1, "editTaskPage");
-  
+        card1.show(cardPanel1, "editTaskPage");
+
 
     }//GEN-LAST:event_editButtonActionPerformed
 
@@ -1960,6 +1992,8 @@ public class MainFrame extends javax.swing.JFrame {
         String department = (String) departmentComboBox.getSelectedItem();
         String shelfSlot = (shelfSlotText.getText());
         String price = (priceText.getText());
+        //String is used for price and shelfSlot but will be converted to int/double when checking values below
+
         //Preconditions:
         if (description.equals("") || department.equals("")) {
             valid = false;
@@ -1974,7 +2008,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
         //Check if price value is numeric
         try {
-            Integer.parseInt(price);
+            Double.parseDouble(price);
         } catch (NumberFormatException e) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Enter numeric values for price");
@@ -2006,8 +2040,8 @@ public class MainFrame extends javax.swing.JFrame {
         int selectedRowIndex = -1;
         boolean inBounds = false;
         int taskID = -1;
-        //Check if a row has been selected
 
+        //Check if a row has been selected
         //Get row index
         if (taskTable.getRowSelectionAllowed()) {
             selectedRowIndex = taskTable.getSelectedRow();
@@ -2034,6 +2068,93 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void viewJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobButtonActionPerformed
+        int selectedRowIndex = -1;
+        boolean inBounds = false;
+        int jobNumber = -1;
+        //Get row index
+        if (jobSearchResultsTable.getRowSelectionAllowed()) {
+            selectedRowIndex = jobSearchResultsTable.getSelectedRow();
+        }
+        if ((selectedRowIndex >= 0)) {
+            inBounds = true;
+        }
+         if (!inBounds) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+            //Check row has values
+        if (jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0) != null &&
+                !(jobSearchResultsTable.getModel().getValueAt(selectedRowIndex,3).equals("In progress"))) {
+            //Get job Number from table
+            jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0);
+            System.out.println("Payment page...");
+            //Insert code for job payment here ...
+        } else {
+            JOptionPane.showMessageDialog(null, "Job is still in progress");
+        }
+    }//GEN-LAST:event_viewJobButtonActionPerformed
+
+    private void backButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButonActionPerformed
+controller.clearJob();
+        card1.show(cardPanel1, "searchJobPage");
+    }//GEN-LAST:event_backButonActionPerformed
+
+    private void searchJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobButtonActionPerformed
+        boolean valid = true;
+        String jobNumber = jobNumberTextField.getText();
+
+        if (jobNumber.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter a job number");
+        }
+
+        if (valid) {
+            if (controller.doesJobExist(jobNumber, true)) {
+                controller.addJob(jobNumber);
+                updateCollectJobTable();
+                card1.show(cardPanel1, "jobSearchResultsPage");
+            } else {
+                JOptionPane.showMessageDialog(null, "Job number does not exist");
+            }
+        }
+    }//GEN-LAST:event_searchJobButtonActionPerformed
+
+    private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
+        boolean valid = true;
+        String customerNumber = customerNumberText.getText();
+
+        if (customerNumber.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter a customer number");
+        }
+        if (valid) {
+            if (controller.doesJobExist(customerNumber, false)) {
+                controller.addJob(customerNumber);
+                updateCollectJobTable();
+                card1.show(cardPanel1, "jobSearchResultsPage");
+            } else {
+                JOptionPane.showMessageDialog(null, "Customer number does not exist");
+            }
+
+        }
+    }//GEN-LAST:event_searchCustomerButtonActionPerformed
+
+    private void updateCollectJobTable() {
+        //Get job information from controller class
+
+        ArrayList<JobDetails> jobs = controller.getJob();
+        DefaultTableModel jobTableModel = (DefaultTableModel) jobSearchResultsTable.getModel();
+        jobTableModel.setRowCount(jobs.size());
+        Object[] row = new Object[4];
+        for (int i = 0; i < jobs.size(); i++) {
+            row[0] = jobs.get(i).getJobNumber();
+            row[1] = jobs.get(i).getIssuedBy();
+            row[2] = jobs.get(i).getDeadline();
+            row[3] = jobs.get(i).getStatus();
+            jobTableModel.insertRow(1, row);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -2212,6 +2333,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField userLastNameField;
     private javax.swing.JComboBox<String> userRoleDD;
     private javax.swing.JButton usersOfficeManager;
+    private javax.swing.JButton viewJobButton;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
     private javax.swing.JPanel welcomeBar3;

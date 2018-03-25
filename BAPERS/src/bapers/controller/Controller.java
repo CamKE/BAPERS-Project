@@ -7,10 +7,10 @@ package bapers.controller;
 
 import bapers.task.TaskInformation;
 import bapers.database.DBImpl;
+import bapers.job.JobDetails;
 import java.sql.Connection;
 import java.util.*;
 import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +21,8 @@ public class Controller {
     private DBImpl database;
     private Connection conn;
     private ResultSet rs;
+    ArrayList<JobDetails> jobInfo = new ArrayList<>();
+    JobDetails job;
 
     public Controller() {
         database = new DBImpl();
@@ -90,6 +92,59 @@ public class Controller {
         return taskInfo;
     }
 
+    public void addJob(String userInput) {
+        String SQL = "SELECT * from job"
+                + " inner join user on job.User_account_no = user.account_no "
+                + "inner join status on job.Status_status_id = status.status_id"
+                + " WHERE job_no = '"+userInput+"';";
+
+        //Read job information from database
+        rs = database.read(SQL, conn);
+        try {
+            while (rs.next()) {
+                //Combine first name and last name
+                String issuedBy = rs.getString("firstname") + " " + rs.getString("lastname");
+                //Create job instance
+                job = new JobDetails(rs.getInt("job_no"), rs.getTime("Deadline_date_received"), issuedBy, rs.getString("status_type"));
+                jobInfo.add(job);
+            }
+        } catch (Exception e) {
+            System.out.println("Get job error");
+        }
+       
+    }
+    
+    public ArrayList<JobDetails> getJob(){
+        return jobInfo;
+    }
+    
+    public void clearJob(){
+        jobInfo.clear();
+    }
+
+    public boolean doesJobExist(String userInput, boolean isJobNumberInput) {
+        boolean exists = false;
+  
+        String SQL = "";
+        if (isJobNumberInput) {
+            SQL = "SELECT * FROM job WHERE job_no = '" + userInput + "';";
+
+        } else {
+            SQL = "SELECT * FROM job WHERE Customer_account_no = '" + userInput + "';";
+
+        }
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                exists = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Job exist error");
+        }
+        return exists;
+    }
+
+
     public String[] getShelfSlots() {
         String[] shelfSlots = new String[100];
 
@@ -142,15 +197,16 @@ public class Controller {
         }
         return success;
     }
-    public boolean deleteTask(int taskID){
+
+    public boolean deleteTask(int taskID) {
         boolean success = false;
         String SQL = "DELETE FROM task WHERE task_id = " + taskID + ";";
-        database.write(SQL,conn);
+        database.write(SQL, conn);
         try {
-            if (rs.next()){
+            if (rs.next()) {
                 success = true;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Delete Task Error");
         }
         return success;
