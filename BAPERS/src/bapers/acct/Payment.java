@@ -22,13 +22,13 @@ public class Payment {
 //    cardDetailsLast4digits
 //    cardDetailsExpiryDate
             
-    private final int[] paymentNo;
+    private final int paymentNo;
     private final double total;
     private final String paymentType;
     private final String paymentDate;
     private final int[] invoiceNumber;
 
-    public Payment(int[] paymentNo, double total, String paymentType, String paymentDate, int[] invoiceNumber) {
+    public Payment(int paymentNo, double total, String paymentType, String paymentDate, int[] invoiceNumber) {
         this.paymentNo = paymentNo;
         this.total = total;
         this.paymentType = paymentType;
@@ -36,7 +36,7 @@ public class Payment {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public int[] getPaymentNo() {
+    public int getPaymentNo() {
         return paymentNo;
     }
 
@@ -55,7 +55,5 @@ public class Payment {
     public int[] getInvoiceNumber() {
         return invoiceNumber;
     }
-
-    
-    
+        
 }

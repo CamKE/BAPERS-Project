@@ -101,46 +101,69 @@ public class Controller {
         return invoices;
     }
     
-    public void recordPayment(Payment p) {
+    public void recordPayment(Payment p, String type) {
         String sql = "";
-        if (p instanceof PaymentCard) {            
-            
-            final int[] paymentNo = p.getPaymentNo();
+        if (type.equals("Card")) {
+            final int paymentNo = p.getPaymentNo();
             final double total = p.getTotal();
             final String paymentType = p.getPaymentType();
-            
-            String paymentDate;
-            paymentDate =  p.getPaymentDate();
-            
+            String paymentDate =  p.getPaymentDate();
             final int[] invoiceNumber = p.getInvoiceNumber();
             //final String cardType = ((PaymentCard) p).getCardType();
             final String cardDetailsLast4digits = ((PaymentCard) p).getCardDetailsLast4digits();
             final String cardDetailsExpiryDate = ((PaymentCard) p).getCardDetailsExpiryDate();
             
             sql = "INSERT INTO PaymentRecord VALUES (" 
-                    + paymentNo[0] 
+                    + paymentNo 
                     + ',' + total 
                     + ", \"" + paymentType 
                     + "\"," + '\'' + paymentDate + '\''
                     + ',' + invoiceNumber[0] + ","
                     + "\"" +  cardDetailsLast4digits
                     + "\"," + "\"" + cardDetailsExpiryDate + "\"" + ");";
+            //System.out.println(sql);
+            
+            try {
+                database.write(sql, conn);
+            } catch (Exception e) {
+                System.out.println("Exception error: " + e);
+            }
+            
+            String sql2 = "UPDATE bapers_data.invoice SET invoice_status='Paid on time' WHERE `Invoice_no`= " 
+                    + '\'' + paymentNo + '\'' +";" ;
+            try {
+                database.write(sql2, conn);
+            } catch (Exception e) {
+                System.out.println("Exception error: " + e);
+            }
+        } else if (type.equals("Cash")) {
+            final int paymentNo = p.getPaymentNo();
+            final double total = p.getTotal();
+            final String paymentType = p.getPaymentType();
+            String paymentDate =  p.getPaymentDate();
+            final int[] invoiceNumber = p.getInvoiceNumber();
+            
+            sql = "INSERT INTO CashPaymentRecord VALUES (" 
+                    + paymentNo 
+                    + ',' + total 
+                    + ", \"" + paymentType 
+                    + "\"," + '\'' + paymentDate + '\''
+                    + ',' + invoiceNumber[0] + ");";
             System.out.println(sql);
             
-        } else if (p instanceof PaymentCash) {
-//            final int[] paymentNo = p.getPaymentNo();
-//            final int[] invoiceNumber = p.getInvoiceNumber();
-//            final double total = p.getTotal();
-//            final String paymentType = p.getPaymentType();
-//            final Date paymentDate = p.getPaymentDate();
-//            sql = "INSERT INTO PAYMENT VALUES (" + paymentNo + invoiceNumber + total + paymentType 
-//                    + paymentDate + ");";
-        }
-        
-        try {
-            database.write(sql, conn);
-        } catch (Exception e) {
-            System.out.println("Exception error: " + e);
+            try {
+                database.write(sql, conn);
+            } catch (Exception e) {
+                System.out.println("Exception error: " + e);
+            }
+            
+            String sql2 = "UPDATE bapers_data.invoice SET invoice_status='Paid on time' WHERE `Invoice_no`= " 
+                    + '\'' + paymentNo + '\'' +";" ;
+            try {
+                database.write(sql2, conn);
+            } catch (Exception e) {
+                System.out.println("Exception error: " + e);
+            }
         }
     }
 }
