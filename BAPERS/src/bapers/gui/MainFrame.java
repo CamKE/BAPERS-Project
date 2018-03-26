@@ -3148,6 +3148,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void selectSelectedInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSelectedInvoicejButtonActionPerformed
         // TODO add your handling code here:  
+        if (invoicejTable.getSelectedRow() == 1) {
         // gets the selected position from the invoice table
         int row = invoicejTable.getSelectedRow();
         int columnCount = invoicejTable.getColumnCount();
@@ -3195,6 +3196,9 @@ public class MainFrame extends javax.swing.JFrame {
         
         card1.show(cardPanel1, "acceptLatePayment");
         card2.show(cardPanel2, "acceptLatePaymentBar");
+        } else {
+            System.out.println("You need to select a record");
+        }
         
     }//GEN-LAST:event_selectSelectedInvoicejButtonActionPerformed
 
