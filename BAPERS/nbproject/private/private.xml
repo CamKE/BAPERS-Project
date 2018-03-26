@@ -5,7 +5,9 @@
         <group>
             <file>file:/Users/kelvin/Documents/NetBeansProjects/BAPERS-Project/BAPERS/src/bapers/controller/Controller.java</file>
             <file>file:/Users/kelvin/Documents/NetBeansProjects/BAPERS-Project/BAPERS/src/bapers/gui/MainFrame.java</file>
-            <file>file:/Users/kelvin/Documents/NetBeansProjects/BAPERS-Project/BAPERS/src/bapers/database/MyDBConnectivity.java</file>
+            <file>file:/Users/kelvin/Documents/NetBeansProjects/BAPERS-Project/BAPERS/src/bapers/acct/Payment.java</file>
+            <file>file:/Users/kelvin/Documents/NetBeansProjects/BAPERS-Project/BAPERS/src/bapers/acct/PaymentCash.java</file>
+            <file>file:/Users/kelvin/Documents/NetBeansProjects/BAPERS-Project/BAPERS/src/bapers/acct/PaymentCard.java</file>
         </group>
     </open-files>
 </project-private>

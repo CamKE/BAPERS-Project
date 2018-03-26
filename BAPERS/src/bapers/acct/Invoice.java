@@ -35,10 +35,10 @@ public class Invoice {
             case "Awaiting Payment":
                 this.invoiceStatus = Status.AWAITINGPAYMENT;
                 break;
-            case "Paid Late":
+            case "Paid late":
                 this.invoiceStatus = Status.PAIDLATE;
                 break;
-            case "Paid On Time":
+            case "Paid on time":
                 this.invoiceStatus = Status.PAIDONTIME;
                 break;
             default:

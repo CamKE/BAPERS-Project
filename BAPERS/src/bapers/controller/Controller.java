@@ -9,14 +9,16 @@ import bapers.acct.Customer;
 import bapers.acct.Invoice;
 import bapers.acct.Payment;
 import bapers.acct.PaymentCard;
+import bapers.acct.PaymentCash;
 import bapers.database.DBImpl;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -51,13 +53,17 @@ public class Controller {
 
         //close resultset after use
         try (ResultSet result = database.read(sql, conn)) {
-            while (result.next()) {
-                //roles[i] = result.getString("job_description");
-                //i++;
-                
-                String[] token;
-                
-            }
+            result.next();
+            roles[i] = result.getString("code");
+            System.out.println(roles[i]);
+//            while (result.next()) {
+//                roles[i] = result.getString("code");
+//                 System.out.println(roles[i]);
+//                i++;
+//               
+//                String[] token;
+//                
+//            }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -68,33 +74,68 @@ public class Controller {
         String sql = "INSERT INTO CUSTOMER VALUES";
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
     public ArrayList<Invoice> getInvoices() throws ParseException {
-        String sql = "";
+        String sql = "select * from Invoice";
         
         // putting data into array list
         ArrayList<Invoice> invoices = new ArrayList<>();
-       
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = format.parse("2012-12-13 14:54:30"); 
-        
-        Invoice i;
-        i = new Invoice(2, 2, 20, new Date(), "Awaiting payment", "Test");
-        
-        invoices.add(i);
+        try (ResultSet result = database.read(sql, conn)) {
+            while (result.next()) {
+                Invoice invoice = new Invoice(result.getInt("Invoice_no"), result.getInt("Job_job_no"), 
+                result.getInt("total_payable"), result.getDate("date_issued"), result.getString("invoice_status"),
+                result.getString("invoice_location"));
+                if(invoice.getInvoiceStatus().equals(Invoice.Status.AWAITINGPAYMENT))
+                    invoices.add(invoice);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
         return invoices;
     }
     
     public void recordPayment(Payment p) {
-        p.getInvoiceNumber();
-        p.getPaymentNo();
-        p.getTotal();
-        p.getPaymentType();
-        p.getPaymentDate();
-//        p.getCardType();
-//        p.getCardDetailsLast4digits();
-//        p.getCardDetailsExpiryDate();
-        
-        String sql = "INSERT INTO PAYMENT VALUES (" + ");";
+        String sql = "";
+        if (p instanceof PaymentCard) {            
+            
+            final int[] paymentNo = p.getPaymentNo();
+            final double total = p.getTotal();
+            final String paymentType = p.getPaymentType();
+            
+            String paymentDate;
+            paymentDate =  p.getPaymentDate();
+            
+            final int[] invoiceNumber = p.getInvoiceNumber();
+            //final String cardType = ((PaymentCard) p).getCardType();
+            final String cardDetailsLast4digits = ((PaymentCard) p).getCardDetailsLast4digits();
+            final String cardDetailsExpiryDate = ((PaymentCard) p).getCardDetailsExpiryDate();
+            
+            sql = "INSERT INTO PaymentRecord VALUES (" 
+                    + paymentNo[0] 
+                    + ',' + total 
+                    + ", \"" + paymentType 
+                    + "\"," + '\'' + paymentDate + '\''
+                    + ',' + invoiceNumber[0] + ","
+                    + "\"" +  cardDetailsLast4digits
+                    + "\"," + "\"" + cardDetailsExpiryDate + "\"" + ");";
+            System.out.println(sql);
+            
+        } else if (p instanceof PaymentCash) {
+//            final int[] paymentNo = p.getPaymentNo();
+//            final int[] invoiceNumber = p.getInvoiceNumber();
+//            final double total = p.getTotal();
+//            final String paymentType = p.getPaymentType();
+//            final Date paymentDate = p.getPaymentDate();
+//            sql = "INSERT INTO PAYMENT VALUES (" + paymentNo + invoiceNumber + total + paymentType 
+//                    + paymentDate + ");";
+        }
         
         try {
             database.write(sql, conn);

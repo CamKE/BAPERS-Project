@@ -16,14 +16,12 @@ public class PaymentCard extends Payment {
     private final String cardDetailsLast4digits;
     private final String cardDetailsExpiryDate;
 
-    public PaymentCard(int[] paymentNo, int[] invoiceNumber, double total, String paymentType, Date paymentDate, String cardType, String cardDetailsLast4digits, String cardDetailsExpiryDate) {
-        super(paymentNo, invoiceNumber, total, paymentType, paymentDate);
+    public PaymentCard(int[] paymentNo, double total, String paymentType, String paymentDate, int[] invoiceNumber, String cardType, String cardDetailsLast4digits, String cardDetailsExpiryDate) {
+        super(paymentNo, total, paymentType, paymentDate, invoiceNumber);
         this.cardType = cardType;
         this.cardDetailsLast4digits = cardDetailsLast4digits;
         this.cardDetailsExpiryDate = cardDetailsExpiryDate;
     }
-    
-    
 
     public String getCardType() {
         return cardType;

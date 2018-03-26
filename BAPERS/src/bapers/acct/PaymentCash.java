@@ -13,8 +13,9 @@ import java.util.Date;
  */
 public class PaymentCash extends Payment {
 
-    public PaymentCash(int[] paymentNo, int[] invoiceNumber, double total, String paymentType, Date paymentDate) {
-        super(paymentNo, invoiceNumber, total, paymentType, paymentDate);
+    public PaymentCash(int[] paymentNo, double total, String paymentType, String paymentDate, int[] invoiceNumber) {
+        super(paymentNo, total, paymentType, paymentDate, invoiceNumber);
     }
-    
+
+     
 }
