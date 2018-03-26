@@ -44,11 +44,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         cardPanel1 = new javax.swing.JPanel();
-        jobSearchResultsPage = new javax.swing.JPanel();
-        backButon = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jobSearchResultsTable = new javax.swing.JTable();
-        viewJobButton = new javax.swing.JButton();
         welcomePage = new javax.swing.JPanel();
         BAPERSLabel = new javax.swing.JLabel();
         loginPageButton = new javax.swing.JButton();
@@ -58,6 +53,11 @@ public class MainFrame extends javax.swing.JFrame {
         homePageSM = new javax.swing.JButton();
         homePageT = new javax.swing.JButton();
         homePageR = new javax.swing.JButton();
+        jobSearchResultsPage = new javax.swing.JPanel();
+        backButon = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jobSearchResultsTable = new javax.swing.JTable();
+        viewJobButton = new javax.swing.JButton();
         searchJobPage = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jobNumberTextField = new javax.swing.JTextField();
@@ -191,64 +191,6 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.setPreferredSize(new java.awt.Dimension(900, 640));
         cardPanel1.setLayout(new java.awt.CardLayout());
 
-        jobSearchResultsPage.setBackground(new java.awt.Color(61, 96, 146));
-
-        backButon.setText("Back");
-        backButon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButonActionPerformed(evt);
-            }
-        });
-
-        jobSearchResultsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Job no", "Issued by", "Deadline", "Status"
-            }
-        ));
-        jScrollPane2.setViewportView(jobSearchResultsTable);
-
-        viewJobButton.setText("View");
-        viewJobButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewJobButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jobSearchResultsPageLayout = new javax.swing.GroupLayout(jobSearchResultsPage);
-        jobSearchResultsPage.setLayout(jobSearchResultsPageLayout);
-        jobSearchResultsPageLayout.setHorizontalGroup(
-            jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(139, 139, 139))
-            .addGroup(jobSearchResultsPageLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
-        );
-        jobSearchResultsPageLayout.setVerticalGroup(
-            jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addGroup(jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(backButon, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                    .addComponent(viewJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(90, 90, 90))
-        );
-
-        cardPanel1.add(jobSearchResultsPage, "jobSearchResultsPage");
-
         welcomePage.setBackground(new java.awt.Color(61, 96, 146));
         welcomePage.setMaximumSize(new java.awt.Dimension(900, 640));
         welcomePage.setMinimumSize(new java.awt.Dimension(900, 640));
@@ -357,6 +299,64 @@ public class MainFrame extends javax.swing.JFrame {
         homePageOM.getAccessibleContext().setAccessibleParent(homePageOM);
 
         cardPanel1.add(welcomePage, "welcome");
+
+        jobSearchResultsPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        backButon.setText("Back");
+        backButon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButonActionPerformed(evt);
+            }
+        });
+
+        jobSearchResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Job no", "Issued by", "Deadline", "Status"
+            }
+        ));
+        jScrollPane2.setViewportView(jobSearchResultsTable);
+
+        viewJobButton.setText("View");
+        viewJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJobButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jobSearchResultsPageLayout = new javax.swing.GroupLayout(jobSearchResultsPage);
+        jobSearchResultsPage.setLayout(jobSearchResultsPageLayout);
+        jobSearchResultsPageLayout.setHorizontalGroup(
+            jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(139, 139, 139))
+            .addGroup(jobSearchResultsPageLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        jobSearchResultsPageLayout.setVerticalGroup(
+            jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(backButon, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(viewJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(90, 90, 90))
+        );
+
+        cardPanel1.add(jobSearchResultsPage, "jobSearchResultsPage");
 
         searchJobPage.setBackground(new java.awt.Color(61, 96, 146));
 
@@ -1013,6 +1013,11 @@ public class MainFrame extends javax.swing.JFrame {
         receptionHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
 
         jobReceptionist.setText("Job");
+        jobReceptionist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobReceptionistActionPerformed(evt);
+            }
+        });
 
         acceptPaymentReceptionist.setText("Accept Payment");
         acceptPaymentReceptionist.addActionListener(new java.awt.event.ActionListener() {
@@ -1963,12 +1968,12 @@ public class MainFrame extends javax.swing.JFrame {
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
         taskTableModel.setRowCount(0);
     }
-    
-    private void deleteJobTableInformation(){
+
+    private void deleteJobTableInformation() {
         DefaultTableModel jobTableModel = (DefaultTableModel) jobSearchResultsTable.getModel();
         jobTableModel.setRowCount(0);
     }
-    
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "taskPage");
@@ -2080,12 +2085,12 @@ public class MainFrame extends javax.swing.JFrame {
         if ((selectedRowIndex >= 0)) {
             inBounds = true;
         }
-         if (!inBounds) {
+        if (!inBounds) {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
-            //Check row has values
-        if (jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0) != null &&
-                !(jobSearchResultsTable.getModel().getValueAt(selectedRowIndex,3).equals("In progress"))) {
+        //Check row has values
+        if (jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0) != null
+                && !(jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 3).equals("In progress"))) {
             //Get job Number from table
             jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0);
             System.out.println("Payment page...");
@@ -2096,7 +2101,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_viewJobButtonActionPerformed
 
     private void backButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButonActionPerformed
-controller.clearJob();
+        controller.clearJob();
         card1.show(cardPanel1, "searchJobPage");
     }//GEN-LAST:event_backButonActionPerformed
 
@@ -2139,6 +2144,10 @@ controller.clearJob();
 
         }
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
+
+    private void jobReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobReceptionistActionPerformed
+          card1.show(cardPanel1, "searchJobPage");
+    }//GEN-LAST:event_jobReceptionistActionPerformed
 
     private void updateCollectJobTable() {
         //Get job information from controller class
