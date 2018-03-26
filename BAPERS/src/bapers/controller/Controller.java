@@ -74,16 +74,22 @@ public class Controller {
     }
 
     public ArrayList<TaskInformation> getTasks() {
+        //Get information from task table from the database
         String SQL = "SELECT * FROM task;";
         rs = database.read(SQL, conn);
+        
+        //Create array list of tasks
         ArrayList<TaskInformation> taskInfo = new ArrayList<>();
         TaskInformation task;
+        
+        //Get task infromatino from database and set it to new task instance(s)
         try {
-            System.out.println("Getting task information...");
             while (rs.next()) {
-
+                //Convert department code to department name
+                String departmentName = this.getDepartmentName(rs.getString("Department_department_code"));
+                //Create new task 
                 task = new TaskInformation(rs.getInt("task_id"), rs.getString("description"), rs.getInt("duration_min"), rs.getInt("shelf_slot"), rs.getDouble("price"),
-                        rs.getString("Department_department_code"));
+                        departmentName);
                 taskInfo.add(task);
             }
         } catch (Exception e) {
@@ -92,11 +98,39 @@ public class Controller {
         return taskInfo;
     }
 
+    public String getDepartmentName(String departmentCode){
+        
+        //Convert department code to department name
+               String departmentName = "";
+        switch (departmentCode) {
+            case "CR":
+                departmentName = "Copy Room";
+                break; // optional
+            case "DR":
+                departmentName = "Dark Room";
+                break; // optional
+            case "DA":
+                departmentName = "Development Area";
+                break; // optional
+            case "PR":
+                departmentName = "Printing Room";
+                break; // optional
+            case "FR":
+                departmentName = "Finishing Room";
+                break; // optional
+            case "PD":
+                departmentName = "Packaging Department";
+                break; // optional
+        }
+        return departmentName;
+    }
     public void addJob(String userInput) {
+        
+        //Get job information from database
         String SQL = "SELECT * from job"
                 + " inner join user on job.User_account_no = user.account_no "
                 + "inner join status on job.Status_status_id = status.status_id"
-                + " WHERE job_no = '"+userInput+"';";
+                + " WHERE job_no = '" + userInput + "';";
 
         //Read job information from database
         rs = database.read(SQL, conn);
@@ -104,27 +138,55 @@ public class Controller {
             while (rs.next()) {
                 //Combine first name and last name
                 String issuedBy = rs.getString("firstname") + " " + rs.getString("lastname");
+                
+                //Determine if job is collected
+                boolean isCollected;
+                int collectedValue = rs.getInt("is_collected");
+                
+                if (collectedValue == 0){
+                    isCollected = false;
+                } else{
+                    isCollected = true;
+                }
+               
+                
                 //Create job instance
-                job = new JobDetails(rs.getInt("job_no"), rs.getTime("Deadline_date_received"), issuedBy, rs.getString("status_type"));
+                job = new JobDetails(rs.getInt("job_no"), rs.getTime("Deadline_date_received"), issuedBy, rs.getString("status_type"),isCollected);
                 jobInfo.add(job);
             }
         } catch (Exception e) {
             System.out.println("Get job error");
         }
-       
+
     }
-    
-    public ArrayList<JobDetails> getJob(){
+
+    public ArrayList<JobDetails> getJob() {
         return jobInfo;
     }
-    
-    public void clearJob(){
+
+    public void clearJob() {
         jobInfo.clear();
+    }
+    
+    public Integer getInvoiceNumber( ){
+        //Get invoice number from database
+        int jobNumber =  job.getJobNumber();
+        String SQL = "SELECT invoice_no  FROM invoice,job WHERE job.job_no = invoice.Job_job_no AND job_no = '"+jobNumber+"';";
+        rs = database.read(SQL,conn);
+        int invoiceNumber = 0;
+        try {
+            if (rs.next()){
+               invoiceNumber = rs.getInt("invoice_no");
+            }
+        } catch (Exception e){
+            System.out.println("Get Invoice Number Error");
+        }
+     return invoiceNumber;
     }
 
     public boolean doesJobExist(String userInput, boolean isJobNumberInput) {
         boolean exists = false;
-  
+
         String SQL = "";
         if (isJobNumberInput) {
             SQL = "SELECT * FROM job WHERE job_no = '" + userInput + "';";
@@ -135,6 +197,7 @@ public class Controller {
         }
         rs = database.read(SQL, conn);
         try {
+            //If job exists ...
             if (rs.next()) {
                 exists = true;
             }
@@ -143,7 +206,21 @@ public class Controller {
         }
         return exists;
     }
-
+    
+    public boolean doesTaskExist(String userINput){
+        boolean exists = false;
+        String SQL = "SELECT * FROM task WHERE task_id = '" +userINput + "';";
+        rs = database.read(SQL,conn);
+        try {
+            //If task exists ...
+            if (rs.next()){
+                exists = true;
+            }
+        } catch (Exception e){
+            System.out.println("Task exist error");
+        }
+        return exists;
+    }
 
     public String[] getShelfSlots() {
         String[] shelfSlots = new String[100];
@@ -156,6 +233,7 @@ public class Controller {
     }
 
     public String getDepartmentCode(String department1) {
+        //Convert department name to departmenet code
         String departmentCode = "";
         switch (department1) {
             case "Copy Room":
@@ -170,7 +248,7 @@ public class Controller {
             case "Printing Room":
                 departmentCode = "PR";
                 break; // optional
-            case "Finshing Room":
+            case "Finishing Room":
                 departmentCode = "FR";
                 break; // optional
             case "Packaging Department":
@@ -211,6 +289,12 @@ public class Controller {
         }
         return success;
     }
+    
+    public void setJobNumber(int jobNumber){
+      job.setJobNumber(jobNumber);
+    }
+    
+   
 }
 //    public String[] getRoles() {
 //        // ArrayList roles = new ArrayList();

@@ -57,7 +57,7 @@ public class MainFrame extends javax.swing.JFrame {
         backButon = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jobSearchResultsTable = new javax.swing.JTable();
-        viewJobButton = new javax.swing.JButton();
+        collectJobButton = new javax.swing.JButton();
         searchJobPage = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jobNumberTextField = new javax.swing.JTextField();
@@ -311,21 +311,21 @@ public class MainFrame extends javax.swing.JFrame {
 
         jobSearchResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Job no", "Issued by", "Deadline", "Status"
+                "Job no", "Issued by", "Deadline", "Status", "Collected"
             }
         ));
         jScrollPane2.setViewportView(jobSearchResultsTable);
 
-        viewJobButton.setText("View");
-        viewJobButton.addActionListener(new java.awt.event.ActionListener() {
+        collectJobButton.setText("Collect");
+        collectJobButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewJobButtonActionPerformed(evt);
+                collectJobButtonActionPerformed(evt);
             }
         });
 
@@ -334,15 +334,15 @@ public class MainFrame extends javax.swing.JFrame {
         jobSearchResultsPageLayout.setHorizontalGroup(
             jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(447, Short.MAX_VALUE)
+                .addComponent(collectJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(139, 139, 139))
             .addGroup(jobSearchResultsPageLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jobSearchResultsPageLayout.setVerticalGroup(
             jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +352,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(backButon, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                    .addComponent(viewJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(collectJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(90, 90, 90))
         );
 
@@ -441,10 +441,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         taskTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Task ID", "Description", "Location", "Shelf Slot"
@@ -1840,10 +1837,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_homePageRActionPerformed
 
     private void createNewTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTaskButtonActionPerformed
-        // TODO add your handling code here:                                          
 
-        boolean valid = true;
         //Initialise values
+        boolean valid = true;
         String description = descriptionNewTaskField.getText();
         double price = Double.parseDouble(priceNewTaskField.getText());
         int duration_min = Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
@@ -1936,7 +1932,6 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_durationNewTaskMinsDDActionPerformed
 
     private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
-        // TODO add your handling code here:
         card1.show(cardPanel1, "createNewTask");
     }//GEN-LAST:event_createTaskButtonActionPerformed
 
@@ -1944,7 +1939,7 @@ public class MainFrame extends javax.swing.JFrame {
         //Get task information from controller class
         updateTaskTable();
         card1.show(cardPanel1, "manageTasksPage");
-        //taskTable.setSelectionModel(ListSelectionModel.SINGLE_SELECTION);
+
 
     }//GEN-LAST:event_manageTasksButtonActionPerformed
 
@@ -1952,7 +1947,8 @@ public class MainFrame extends javax.swing.JFrame {
         //Get task information from controller class
         ArrayList<TaskInformation> tasks = controller.getTasks();
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
-        taskTableModel.setRowCount(tasks.size());
+        taskTableModel.setRowCount((tasks.size() / 2));
+        //Set table
         Object[] row = new Object[4];
         for (int i = 0; i < tasks.size(); i++) {
             row[0] = tasks.get(i).getTaskID();
@@ -2028,14 +2024,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Save new values for task
         if (valid) {
-            if (controller.updateTask(Integer.parseInt(taskID), description, Integer.parseInt(shelfSlot), Double.parseDouble(price), department)) {
-                JOptionPane.showMessageDialog(null, "Failed to update task");
+
+            if (controller.doesTaskExist(taskID)) {
+                if (controller.updateTask(Integer.parseInt(taskID), description, Integer.parseInt(shelfSlot), Double.parseDouble(price), department)) {
+                    JOptionPane.showMessageDialog(null, "Failed to update task");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Task Updated");
+                    //Update Task table
+                    deleteTaskTableInformation();
+                    updateTaskTable();
+                    card1.show(cardPanel1, "manageTasksPage");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Task Updated");
-                //Update Task table
-                deleteTaskTableInformation();
-                updateTaskTable();
-                card1.show(cardPanel1, "manageTasksPage");
+                JOptionPane.showMessageDialog(null, "Task does not exist");
             }
         }
 
@@ -2061,20 +2062,20 @@ public class MainFrame extends javax.swing.JFrame {
         if (taskTable.getModel().getValueAt(selectedRowIndex, 0) != null) {
             //Get task id from table
             taskID = (Integer) taskTable.getModel().getValueAt(selectedRowIndex, 0);
-            if (controller.deleteTask(taskID)) {
-                System.out.println("Delete failed");
-            } else {
-                System.out.println("Delete worked");
-                //Update Task table
+            //Delete task from table
+
+            if (!controller.deleteTask(taskID)) {
+                //Update new Task table
                 deleteTaskTableInformation();
                 updateTaskTable();
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void viewJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobButtonActionPerformed
+    private void collectJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectJobButtonActionPerformed
         int selectedRowIndex = -1;
         boolean inBounds = false;
         int jobNumber = -1;
@@ -2090,15 +2091,22 @@ public class MainFrame extends javax.swing.JFrame {
         }
         //Check row has values
         if (jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0) != null
-                && !(jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 3).equals("In progress"))) {
+                && !(jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 3).equals("In progress"))
+                && jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 4) != "true") {
+            
             //Get job Number from table
             jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0);
-            System.out.println("Payment page...");
+            //Set job number in JobDetails class
+            controller.setJobNumber(jobNumber);
+            
+            //Parse to payment page with invoice number
+            System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber());
             //Insert code for job payment here ...
         } else {
             JOptionPane.showMessageDialog(null, "Job is still in progress");
         }
-    }//GEN-LAST:event_viewJobButtonActionPerformed
+
+    }//GEN-LAST:event_collectJobButtonActionPerformed
 
     private void backButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButonActionPerformed
         controller.clearJob();
@@ -2146,7 +2154,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void jobReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobReceptionistActionPerformed
-          card1.show(cardPanel1, "searchJobPage");
+        card1.show(cardPanel1, "searchJobPage");
     }//GEN-LAST:event_jobReceptionistActionPerformed
 
     private void updateCollectJobTable() {
@@ -2155,12 +2163,14 @@ public class MainFrame extends javax.swing.JFrame {
         ArrayList<JobDetails> jobs = controller.getJob();
         DefaultTableModel jobTableModel = (DefaultTableModel) jobSearchResultsTable.getModel();
         jobTableModel.setRowCount(jobs.size());
-        Object[] row = new Object[4];
+        //Set table
+        Object[] row = new Object[5];
         for (int i = 0; i < jobs.size(); i++) {
             row[0] = jobs.get(i).getJobNumber();
             row[1] = jobs.get(i).getIssuedBy();
             row[2] = jobs.get(i).getDeadline();
             row[3] = jobs.get(i).getStatus();
+            row[4] = jobs.get(i).isIsCollected();
             jobTableModel.insertRow(1, row);
         }
     }
@@ -2227,6 +2237,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JButton chooseFileButton;
+    private javax.swing.JButton collectJobButton;
     private javax.swing.JPanel createNewTaskBar;
     private javax.swing.JButton createNewTaskButton;
     private javax.swing.JPanel createNewTaskOM;
@@ -2342,7 +2353,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField userLastNameField;
     private javax.swing.JComboBox<String> userRoleDD;
     private javax.swing.JButton usersOfficeManager;
-    private javax.swing.JButton viewJobButton;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
     private javax.swing.JPanel welcomeBar3;
