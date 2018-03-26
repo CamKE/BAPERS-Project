@@ -131,7 +131,7 @@ public class Controller {
                 sb.append(" AND is_suspended = ").append(customerStatus.equals("Suspended"));
             }
             if (!inDefault.equals("Any")) {
-                sb.append(" AND in_default = ").append(inDefault.equals("In Default"));
+                sb.append(" AND in_default = ").append(inDefault.equals("True"));
             }
             //probably doesnt work atm
             if (!regDate.equals("dd-MMM-yyyy")) {

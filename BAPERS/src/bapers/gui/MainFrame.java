@@ -4147,7 +4147,7 @@ public class MainFrame extends javax.swing.JFrame {
                 ((JComboBox) c).setSelectedIndex(0);
             } else if (c instanceof JTable)
             {
-               ((JTable) c).getModel()
+               ((JTable) c).setModel(new DefaultTableModel());
             }
                 
         }
