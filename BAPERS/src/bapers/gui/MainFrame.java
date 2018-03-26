@@ -9,6 +9,7 @@ import bapers.controller.Controller;
 import bapers.job.StandardJob;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -313,7 +314,12 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         selectATaskBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectATaskBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Task" }));
+        selectATaskBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Task", "Print photos", "Use of large copy camera", "black and white film processing" }));
+        selectATaskBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectATaskBoxActionPerformed(evt);
+            }
+        });
 
         addButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         addButton.setText("Add");
@@ -601,10 +607,13 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_codeFieldActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+       
+        DefaultListModel liss = new DefaultListModel();
 
+        String  s = selectATaskBox.getSelectedItem().toString();
         
-        
-        
+        liss.addElement(s);
+        jList1.setModel(liss);
         
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
@@ -725,6 +734,10 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "welcome");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void selectATaskBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectATaskBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectATaskBoxActionPerformed
 
     /**
      * @param args the command line arguments
