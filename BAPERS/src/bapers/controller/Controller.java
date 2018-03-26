@@ -148,7 +148,7 @@ public class Controller {
             //for each user in the results returned
             while (rs.next()) {
                 // place their details into a userdetails object
-                customer = new CustomerDetails(rs.getInt("account_no"),rs.getString("account_holder_name"),rs.getString("prefix"), rs.getString("firstname"), rs.getString("lastname"),rs.getString("street_name"),rs.getString("postcode"),rs.getString("city"), rs.getString("phone"), rs.getBoolean("is_suspended"),rs.getBoolean("in_default"), rs.getBoolean("is_valued"), rs.getTimestamp("registration_date"),rs.getInt("building_no"));
+                customer = new CustomerDetails(rs.getInt("account_no"), rs.getString("account_holder_name"), rs.getString("prefix"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("street_name"), rs.getString("postcode"), rs.getString("city"), rs.getString("phone"), rs.getBoolean("is_suspended"), rs.getBoolean("in_default"), rs.getBoolean("is_valued"), rs.getTimestamp("registration_date"), rs.getInt("building_no"));
                 //add their userdetails object to the arraylist of users
                 customerList.add(customer);
             }
@@ -276,11 +276,11 @@ public class Controller {
     public List<StandardJob> getStandardJobs() {
         List<StandardJob> stdJobs = new ArrayList<>();
         String sql = "select * from standardjob";
-        
+
         //close resultset after use
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
-                stdJobs.add(new StandardJob(result.getString("code"),result.getString("job_description"),result.getDouble("price")));
+                stdJobs.add(new StandardJob(result.getString("code"), result.getString("job_description"), result.getDouble("price")));
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -288,8 +288,26 @@ public class Controller {
         return stdJobs;
     }
 
-    public void createCustomerAccount(CustomerDetails cust) {
-        String sql = "insert into customer(account_holder_name, prefix,firstname,lastname, street_name,postcode,city,phone,is_suspended,in_default,is_valued) values();";
+    public CustomerDetails getLastCustomer() {
+        String sql = "SELECT * FROM customer ORDER BY account_no DESC LIMIT 1";
+
+        CustomerDetails customer = null;
+
+        try (ResultSet result = database.read(sql, conn)) {
+            if (result.next()) {
+                customer = new CustomerDetails(result.getInt("account_no"), result.getString("account_holder_name"), result.getString("prefix"), result.getString("firstname"), result.getString("lastname"), result.getString("street_name"), result.getString("postcode"), result.getString("city"), result.getString("phone"), result.getBoolean("is_suspended"), result.getBoolean("in_default"), result.getBoolean("is_valued"), result.getTimestamp("registration_date"), result.getInt("building_no"));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return customer;
+    }
+
+    public boolean createCustomerAccount(String cFirstName, String cLastName, String accountHName, String streetName, String postCode, String city, String phone, String prefix, String buildingNo) {
+        String sql = "insert into customer(account_holder_name, prefix,firstname,lastname, street_name,postcode,city,phone) values('" + accountHName + "','" + prefix + "','" + cFirstName + "','" + cLastName + "','" + streetName + "','" + postCode + "','" + city + "','" + phone + "');";
+
+        return database.write(sql, conn) != 0;
     }
 
     public ArrayList<Invoice> getInvoices() throws ParseException {
