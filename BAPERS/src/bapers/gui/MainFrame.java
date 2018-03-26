@@ -27,6 +27,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -2082,6 +2083,7 @@ public class MainFrame extends javax.swing.JFrame {
         acceptJobjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
         acceptJobjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
 
+        jobTotalField.setEditable(false);
         jobTotalField.setText("0");
         jobTotalField.setMaximumSize(new java.awt.Dimension(72, 42));
         jobTotalField.setMinimumSize(new java.awt.Dimension(72, 42));
@@ -2105,7 +2107,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         totalLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         totalLabel.setForeground(new java.awt.Color(255, 255, 255));
-        totalLabel.setText("Total: £");
+        totalLabel.setText("Total (excluding surcharge): £");
 
         stdJobDD.setMaximumSize(new java.awt.Dimension(250, 42));
         stdJobDD.setMinimumSize(new java.awt.Dimension(250, 42));
@@ -2162,7 +2164,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         materialsjScrollPane.setViewportView(materialList);
 
-        customerInfoField.setText("No Customer Selected");
+        customerInfoField.setEditable(false);
         customerInfoField.setMaximumSize(new java.awt.Dimension(308, 42));
         customerInfoField.setMinimumSize(new java.awt.Dimension(308, 42));
         customerInfoField.setPreferredSize(new java.awt.Dimension(308, 42));
@@ -2230,7 +2232,7 @@ public class MainFrame extends javax.swing.JFrame {
         surchargeLabel.setText("Surcharge:");
         surchargeLabel.setName(""); // NOI18N
 
-        surchargejTextField.setText("100");
+        surchargejTextField.setEditable(false);
         surchargejTextField.setMaximumSize(new java.awt.Dimension(72, 42));
         surchargejTextField.setMinimumSize(new java.awt.Dimension(72, 42));
         surchargejTextField.setPreferredSize(new java.awt.Dimension(72, 42));
@@ -2250,8 +2252,8 @@ public class MainFrame extends javax.swing.JFrame {
         stipulatedFieldsLayout.setHorizontalGroup(
             stipulatedFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(stipulatedFieldsLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(completionTimeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(completionTimeDD, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(surchargeLabel)
                 .addGap(18, 18, 18)
@@ -2780,6 +2782,11 @@ public class MainFrame extends javax.swing.JFrame {
         customerResultsPage.setBackground(new java.awt.Color(61, 96, 146));
         customerResultsPage.setMaximumSize(new java.awt.Dimension(900, 640));
         customerResultsPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        customerResultsPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                customerResultsPageComponentHidden(evt);
+            }
+        });
 
         jScrollPane4.setPreferredSize(new java.awt.Dimension(750, 400));
 
@@ -3608,19 +3615,34 @@ public class MainFrame extends javax.swing.JFrame {
         // if the selected list is Stipulated then the extra field needed to calculate
         // Stipulated are shown.
         String selectedItem = ((String) selectPriority.getSelectedItem());
+
         switch (selectedItem) {
             case "Stipulated":
                 stipulatedFields.setVisible(true);
-                completionTimeDD.setVisible(true);
+                completionTimeDD.setEnabled(true);
+                completionTimeDD.setEditable(false);
+
+//                List<String> duration = new ArrayList<>();
+//                
+//                for (int i = 1652 hours 45 minutes; i > this is where the jobs total time should go; i-= 15)
+//                {
+//                    
+//                }
                 break;
             case "Urgent":
                 stipulatedFields.setVisible(true);
                 completionTimeDD.setEnabled(false);
+                completionTimeDD.setEditable(true);
+                surchargejTextField.setText(100 + " %");
+                completionTimeDD.setSelectedItem("3 hours");
+
                 break;
             default:
+                surchargejTextField.setText(0 + " %");
                 stipulatedFields.setVisible(false);
                 break;
         }
+
     }//GEN-LAST:event_selectPriorityActionPerformed
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
@@ -3652,6 +3674,17 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
+        if (customerInfoField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a customer.");
+        } else if (materials.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please add material.");
+        } else if (selectedStdJobs.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please add a standard job.");
+        } else if (selectPriority.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Please select a priority level.");
+        } else {
+            
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     private void materialsjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materialsjTextFieldActionPerformed
@@ -4101,13 +4134,22 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_completionTimeDDActionPerformed
 
+    private void customerResultsPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_customerResultsPageComponentHidden
+        // TODO add your handling code here:
+        resetComponents(customerResultsPage);
+    }//GEN-LAST:event_customerResultsPageComponentHidden
+
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
                 ((JTextField) c).setText("");
             } else if (c instanceof JComboBox) {
                 ((JComboBox) c).setSelectedIndex(0);
+            } else if (c instanceof JTable)
+            {
+               ((JTable) c).getModel()
             }
+                
         }
     }
 

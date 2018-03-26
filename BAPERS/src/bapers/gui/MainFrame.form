@@ -3464,6 +3464,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="jobTotalField">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[72, 42]"/>
@@ -3506,7 +3507,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Total: &#xa3;"/>
+                    <Property name="text" type="java.lang.String" value="Total (excluding surcharge): &#xa3;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="stdJobDD">
@@ -3634,7 +3635,7 @@
                 </Container>
                 <Component class="javax.swing.JTextField" name="customerInfoField">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="No Customer Selected"/>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[308, 42]"/>
                     </Property>
@@ -3765,8 +3766,8 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="completionTimeDD" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="completionTimeDD" min="-2" pref="200" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="surchargeLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -3802,7 +3803,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="surchargejTextField">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="100"/>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[72, 42]"/>
                         </Property>
@@ -4587,6 +4588,9 @@
               <Dimension value="[900, 640]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="customerResultsPageComponentHidden"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="customerResults"/>
