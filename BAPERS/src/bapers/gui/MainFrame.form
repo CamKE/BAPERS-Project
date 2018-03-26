@@ -2883,13 +2883,11 @@
                                   <Component id="registrationDateSjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="customerTypeDD" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="accountStatusDD" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="inDefaultDD" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="customerRegDateField" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="customerTypeDD" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="accountStatusDD" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="inDefaultDD" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="customerRegDateField" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                           </Group>
@@ -2916,23 +2914,6 @@
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="accountStatusDD" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="accountStatusjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="inDefaultSjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="inDefaultDD" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="registrationDateSjLabel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="customerRegDateField" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="postCodeField1" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="postcodeSjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -2948,8 +2929,24 @@
                                           <Component id="phoneSjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="accountStatusDD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="accountStatusjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="inDefaultSjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="inDefaultDD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="registrationDateSjLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="customerRegDateField" min="-2" pref="42" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3156,17 +3153,6 @@
                       </AuxValues>
                     </Component>
                     <Component class="com.toedter.calendar.JDateChooser" name="customerRegDateField">
-                      <Properties>
-                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 42]"/>
-                        </Property>
-                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 42]"/>
-                        </Property>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 42]"/>
-                        </Property>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
