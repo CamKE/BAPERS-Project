@@ -3893,7 +3893,6 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         card1.show(cardPanel1, "searchCustomer");
         pageLabel.setText("Customer search page");
-        tblModel.setRowCount(0);
     }//GEN-LAST:event_searchAgainButton1ActionPerformed
 
     private void selectCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerButtonActionPerformed
@@ -4072,6 +4071,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void customerResultsPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_customerResultsPageComponentHidden
         // TODO add your handling code here:
         resetComponents(customerResultsPage);
+        if (tblModel != null) {
+            tblModel.setRowCount(0);
+        }
     }//GEN-LAST:event_customerResultsPageComponentHidden
 
     private void resetComponents(JPanel panel) {
@@ -4080,10 +4082,7 @@ public class MainFrame extends javax.swing.JFrame {
                 ((JTextField) c).setText("");
             } else if (c instanceof JComboBox) {
                 ((JComboBox) c).setSelectedIndex(0);
-            } else if (c instanceof JTable) {
-                ((JTable) c).setModel(new DefaultTableModel());
             }
-
         }
     }
 
