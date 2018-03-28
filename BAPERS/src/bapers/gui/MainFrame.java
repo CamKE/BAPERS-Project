@@ -8,9 +8,14 @@ package bapers.gui;
 import bapers.controller.Controller;
 import bapers.job.StandardJob;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,7 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     private CardLayout card1;
     private CardLayout card2;
     private Controller controller;
-
+    DefaultListModel list1 = new DefaultListModel();
     /**
      * Creates new form MainFrame
      */
@@ -288,6 +293,11 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.add(restorePage, "restore");
 
         createStandardJob.setBackground(new java.awt.Color(61, 96, 146));
+        createStandardJob.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                createStandardJobComponentHidden(evt);
+            }
+        });
 
         newStandardJobLabel.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         newStandardJobLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -331,6 +341,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         removeTaskButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         removeTaskButton.setText("Remove task");
+        removeTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeTaskButtonActionPerformed(evt);
+            }
+        });
 
         totalLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         totalLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -346,6 +361,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         cancelButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jList1);
 
@@ -429,6 +449,11 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.add(createStandardJob, "createStandardJob");
 
         manageStandardJob.setBackground(new java.awt.Color(61, 96, 146));
+        manageStandardJob.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                manageStandardJobComponentHidden(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton3.setText("Back");
@@ -608,12 +633,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
        
-        DefaultListModel liss = new DefaultListModel();
+        
 
         String  s = selectATaskBox.getSelectedItem().toString();
         
-        liss.addElement(s);
-        jList1.setModel(liss);
+        list1.addElement(s);
+        jList1.setModel(list1);
         
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
@@ -621,6 +646,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         card1.show(cardPanel1, "createStandardJob");
+        card2.show(cardPanel2, "welcomeBar2");
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -677,6 +703,7 @@ public class MainFrame extends javax.swing.JFrame {
          //Get standard job information from controller class
         updateStandardJobTable();
         card1.show(cardPanel1, "manageStandardJob");
+        card2.show(cardPanel2, "welcomeBar2");
         //taskTable.setSelectionModel(ListSelectionModel.SINGLE_SELECTION);
 
     }                                                 
@@ -714,13 +741,15 @@ public class MainFrame extends javax.swing.JFrame {
                     DefaultTableModel standardJobTableMode1 = (DefaultTableModel) standardJobTable.getModel();
                     standardJobTableMode1.removeRow(standardJobTable.getRowSorter().convertRowIndexToModel(standardJobTable.getSelectedRow()));
                 } else {
-                    outcome = "Fail";
+                    outcome = "OK";
                 }
                 JOptionPane.showMessageDialog(this, outcome);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a row to delete");
         }
+        
+        
         
         
     }//GEN-LAST:event_deleteStandardJobButtonActionPerformed
@@ -739,6 +768,50 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_selectATaskBoxActionPerformed
 
+    private void removeTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTaskButtonActionPerformed
+
+        if (jList1.isSelectedIndex(jList1.getSelectedIndex())) {
+            selectATaskBox.remove(jList1.getSelectedIndex());
+            list1.remove(jList1.getSelectedIndex());
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a task to remove");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeTaskButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        
+        card1.show(cardPanel1, "welcome");
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void createStandardJobComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createStandardJobComponentHidden
+
+        resetComponents(createStandardJob);
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_createStandardJobComponentHidden
+
+    private void manageStandardJobComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_manageStandardJobComponentHidden
+
+        resetComponents(manageStandardJob);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageStandardJobComponentHidden
+
+    private void resetComponents(JPanel panel){
+        for (Component c : panel.getComponents()){
+            if (c instanceof JTextField) {
+                ((JTextField) c).setText("");
+            } else if (c instanceof JComboBox){
+                ((JComboBox) c).setSelectedIndex(0);
+            
+            }
+        }
+            
+    }
+    
     /**
      * @param args the command line arguments
      */
