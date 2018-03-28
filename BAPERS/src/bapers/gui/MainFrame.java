@@ -37,6 +37,8 @@ public class MainFrame extends javax.swing.JFrame {
         card1 = (CardLayout) cardPanel1.getLayout();
         card2 = (CardLayout) cardPanel2.getLayout();
     }
+    
+        
 
     /**
      * This method is called from within the constructor to initialize the form.

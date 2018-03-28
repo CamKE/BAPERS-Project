@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,6 +75,25 @@ public class Controller {
         }
         return success;
     }
+    
+    
+    public void fillComboBoxTask(){
+        try{
+            String SQL = "SELECT * FROM task";
+            rs = database.read(SQL, conn);
+            
+            while(rs.next()){
+                String description = rs.getString("description");
+                selectATaskBox.addItem(description);
+                
+            }
+            
+        }catch(Exception e){
+            System.out.println("Error");
+            
+        }
+    }
+
     }
 
        
