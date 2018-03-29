@@ -7,10 +7,12 @@ package bapers.controller;
 
 import bapers.database.DBImpl;
 import bapers.job.StandardJob;
+import bapers.task.Task;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -77,8 +79,8 @@ public class Controller {
     }
     
     
-    public void fillComboBoxTask(){
-        try{
+    public List<Task> fillComboBoxTask(){
+        /*try{
             String SQL = "SELECT * FROM task";
             rs = database.read(SQL, conn);
             
@@ -91,7 +93,48 @@ public class Controller {
         }catch(Exception e){
             System.out.println("Error");
             
+        }*/
+    
+    List<Task> taskDescription = new ArrayList<>();
+        String sql = "SELECT * from TASK";
+
+        //close resultset after use
+        try (ResultSet result = database.read(sql, conn)) {
+            while (result.next()) {
+                taskDescription.add(new Task(result.getInt("task_id"), result.getString("description"), result.getInt("duration_min"), result.getInt("shelf_slot"), result.getDouble("price"), result.getString("Department_department")));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } 
+        return taskDescription;
+    }
+    
+    
+    public int numStandardJobs() {
+        String sql = "SELECT COUNT(*) AS rowcount FROM standardjob";
+        try {
+            ResultSet rs = database.read(sql, conn);
+            rs.next();
+            return rs.getInt("rowcount");
+        } catch (SQLException ex) {
+            System.out.println(ex);
         }
+        return 0;
+    }
+
+    public List<StandardJob> getStandardJobs() {
+        List<StandardJob> stdJobs = new ArrayList<>();
+        String sql = "select * from standardjob";
+
+        //close resultset after use
+        try (ResultSet result = database.read(sql, conn)) {
+            while (result.next()) {
+                stdJobs.add(new StandardJob(result.getString("code"), result.getString("job_description"), result.getDouble("price")));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } 
+        return stdJobs;
     }
 
     }

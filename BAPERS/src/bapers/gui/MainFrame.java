@@ -10,6 +10,7 @@ import bapers.job.StandardJob;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -24,14 +25,29 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private CardLayout card1;
-    private CardLayout card2;
-    private Controller controller;
-    DefaultListModel list1 = new DefaultListModel();
+        private final CardLayout card1;
+    private final CardLayout card2;
+    private final Controller controller;
+    DefaultTableModel tblModel;
+
+    
+    List<StandardJob> stdJobs;
+    
+    List<StandardJob> selectedStdJobs;
+    // list models that are used to for the scroll
+    DefaultListModel list1;
+    DefaultListModel list2;
+    DefaultTableModel m;
     /**
      * Creates new form MainFrame
      */
     public MainFrame(Controller controller) {
+        selectedStdJobs = new ArrayList<>();
+        stdJobs = new ArrayList<>();
+        
+        list1 = new DefaultListModel();
+        list2 = new DefaultListModel();
+        
         this.controller = controller;
         initComponents();
         card1 = (CardLayout) cardPanel1.getLayout();
@@ -39,6 +55,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
         
+    
+    public void SelectATaskCombo(){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -636,11 +656,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
        
         
-
-        String  s = selectATaskBox.getSelectedItem().toString();
-        
-        list1.addElement(s);
-        jList1.setModel(list1);
+       
         
         // TODO add your handling code here:
     }//GEN-LAST:event_addButtonActionPerformed
@@ -767,6 +783,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void selectATaskBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectATaskBoxActionPerformed
+
+
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_selectATaskBoxActionPerformed
 
