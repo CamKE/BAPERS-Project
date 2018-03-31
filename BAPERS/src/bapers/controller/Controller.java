@@ -8,6 +8,7 @@ package bapers.controller;
 import bapers.customer.CustomerDetails;
 import bapers.database.DBImpl;
 import bapers.job.Invoice;
+import bapers.job.Material;
 import bapers.job.StandardJob;
 import bapers.payment.PaymentDetails;
 import bapers.user.UserDetails;
@@ -345,4 +346,8 @@ public class Controller {
         return success;
     }
 
+   public void acceptJob(String id, List<Material> materials, List<StandardJob> stdJobs,double total)
+   {
+       System.out.println(id);
+   }
 }
