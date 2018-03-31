@@ -346,8 +346,27 @@ public class Controller {
         return success;
     }
 
-   public void acceptJob(String id, List<Material> materials, List<StandardJob> stdJobs,double total)
-   {
-       System.out.println(id);
-   }
+    public void acceptJob(String customerId, List<Material> materials, List<StandardJob> stdJobs, double total, UserDetails user, String specialInstructions, String completionTime, String surcharge, String priority) {
+        int userId = user.getAccount_no();
+        int statusId = 0;
+        String sql = "INSERT INTO status(status_type) VALUES ('Not started');";
+
+        if (database.write(sql, conn) != 0) {
+            sql = "SELECT status_id FROM status ORDER BY status_id DESC LIMIT 1";
+            try (ResultSet result = database.read(sql, conn)) {
+                if (result.next()) {
+                    statusId = result.getInt("status_id");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        String completiontime = completionTime.replaceAll("[\\D]", "");
+        int value = Integer.parseInt(surcharge.replaceAll("[\\D]", ""));
+        sql = "INSERT INTO completiontime(completion_time, surcharge, Priority_priority_description) VALUES ('" + completiontime + ":0" + "','" + value + "','" + priority + "');";
+        database.write(sql, conn);
+        
+        sql = "INSERT INTO job(User_account_no, Customer_account_no, Status_status_id,Deadline_date_received,Deadline_CompletionTime_completion_time,special_instructions) VALUES ('" + userId + "','" + customerId + "','" + statusId + "','" + statusId + "','" + statusId + "','" + specialInstructions + "');";
+
+    }
 }

@@ -39,13 +39,13 @@ import javax.swing.table.DefaultTableModel;
  * @author CameronE
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    
     private final CardLayout card1;
     private final CardLayout card2;
     private final Controller controller;
     private UserDetails loggedInUser;
     DefaultTableModel tblModel;
-
+    
     List<Material> materials;
     List<StandardJob> stdJobs;
     List<Invoice> selectedInvoices;
@@ -2915,9 +2915,9 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             loggedInUser = controller.login(userID, password);
             if (loggedInUser != null) {
-
+                
                 role = loggedInUser.getRole();
-
+                
                 switch (role) {
                     case "Shift Manager":
                         System.out.println("Shift Manager");
@@ -2946,14 +2946,14 @@ public class MainFrame extends javax.swing.JFrame {
                         reportsMenuPageButton.setVisible(false);
                         break;
                 }
-
+                
                 card1.show(cardPanel1, "homePage");
                 card2.show(cardPanel2, "homeBar");
                 pageLabel.setText("Welcome, " + role + "!");
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid User details");
             }
-
+            
         }
         System.out.println(role);
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -2984,7 +2984,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void RestoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreButtonActionPerformed
         // TODO add your handling code here:
         String[] restoreCmd = new String[]{"C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe", "--user=root", "--password=password", "-e", "source " + fileChosenField.getText()};
-
+        
         if (fileChosenField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please select a file");
         } else {
@@ -2992,7 +2992,7 @@ public class MainFrame extends javax.swing.JFrame {
                 Runtime runtime = Runtime.getRuntime();
                 //Process p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysql.exe -uroot -ppassword bapers_data < \"" + fileChosenField.getText() + "\"");
                 Process p = runtime.exec(restoreCmd);
-
+                
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
                     JOptionPane.showMessageDialog(this, "Restore done");
@@ -3014,7 +3014,7 @@ public class MainFrame extends javax.swing.JFrame {
         chooser.setFileFilter(new FileNameExtensionFilter("sql file", "sql"));
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.showOpenDialog(this);
-
+        
         try {
             String directory = chooser.getSelectedFile().getPath();
             directory = directory.replace('\\', '/');
@@ -3061,7 +3061,7 @@ public class MainFrame extends javax.swing.JFrame {
                 date = date.replace(':', '-');
                 String filename = "BAPERS_" + date + ".sql";
                 Process p = runtime.exec("C:/Program Files/MySQL/MySQL Server 5.7/bin/mysqldump.exe -uroot -ppassword -B bapers_data -r \"" + locationChosenField.getText() + "\\" + filename + "\"");
-
+                
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
                     JOptionPane.showMessageDialog(this, "Backup '" + filename + "' created");
@@ -3082,7 +3082,7 @@ public class MainFrame extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.showOpenDialog(this);
-
+        
         try {
             String directory = chooser.getSelectedFile().getPath();
             directory = directory.replace('\\', '/');
@@ -3127,10 +3127,10 @@ public class MainFrame extends javax.swing.JFrame {
                 valid = false;
             }
         }
-
+        
         if (valid) {
             ArrayList<UserDetails> users = controller.findUser(userNumber, firstName, lastName, (String) UserRoleSearchDrop.getSelectedItem());
-
+            
             tblModel = (DefaultTableModel) userResultsTable.getModel();
             Object[] row = new Object[5];
             for (int i = 0; i < users.size(); i++) {
@@ -3144,7 +3144,7 @@ public class MainFrame extends javax.swing.JFrame {
             card1.show(cardPanel1, "userResults");
             //card2.show(cardPanel2, "homeBar");
             pageLabel.setText("User results page");
-
+            
             userResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
             //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
@@ -3185,7 +3185,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (selectedRow != -1) {
             int userId = (int) userResultsTable.getValueAt(selectedRow, 0);
             int response = JOptionPane.showConfirmDialog(this, "Are you sure you would like to delete user with id " + userId + "?");
-
+            
             if (response == 0) {
                 String outcome;
                 if (controller.deleteUser(userId)) {
@@ -3274,7 +3274,7 @@ public class MainFrame extends javax.swing.JFrame {
         int duration_hours = Integer.parseInt((String) durationNewTaskDD.getSelectedItem());
         String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
         int shelf_slot = Integer.parseInt((String) shelfSlotTaskDD.getSelectedItem());
-
+        
         duration_min += duration_hours * 60;
 
         //Check fields are not empty in the GUI, then pop up will show if no data is inserted
@@ -3375,7 +3375,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void prefixjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prefixjComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prefixjComboBoxActionPerformed
-
+    
 
     private void createCustomerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomerjButtonActionPerformed
         // TODO add your handling code here:
@@ -3477,14 +3477,14 @@ public class MainFrame extends javax.swing.JFrame {
         // then update a new model which will be used to display the list of
         // materials.
         String material = materialsjTextField.getText();
-
+        
         if ((!material.isEmpty()) && material.matches("^[a-zA-Z0-9]+[a-z,A-Z,0-9,\\s]*")) {
-
+            
             materials.add(new Material(material));
             materialsjTextField.setText("");
-
+            
             list1.addElement(materials.get(materials.size() - 1).getMaterialDescription());
-
+            
             materialList.setModel(list1);
         } else {
             JOptionPane.showMessageDialog(this, "Please enter a material to be added.");
@@ -3497,17 +3497,17 @@ public class MainFrame extends javax.swing.JFrame {
         // adds a selected standard job to a list and arraylist
 
         int stdJobIndex = stdJobDD.getSelectedIndex();
-
+        
         if (stdJobIndex != 0) {
-
+            
             selectedStdJobs.add(stdJobs.get(stdJobIndex - 1));
-
+            
             list2.addElement(selectedStdJobs.get(selectedStdJobs.size() - 1).getJobDescription());
             standardJobList.setModel(list2);
             double total = Double.parseDouble(jobTotalField.getText()) + selectedStdJobs.get(selectedStdJobs.size() - 1).getPrice();
             jobTotalField.setText(String.format("%.2f", total));
             stdJobDD.setSelectedIndex(0);
-
+            
         } else {
             JOptionPane.showMessageDialog(this, "Please select a standard job to be added.");
         }
@@ -3522,7 +3522,7 @@ public class MainFrame extends javax.swing.JFrame {
         // if the selected list is Stipulated then the extra field needed to calculate
         // Stipulated are shown.
         String selectedItem = ((String) selectPriority.getSelectedItem());
-
+        
         switch (selectedItem) {
             case "Stipulated":
                 stipulatedFields.setVisible(true);
@@ -3542,7 +3542,7 @@ public class MainFrame extends javax.swing.JFrame {
                 completionTimeDD.setEditable(true);
                 surchargejTextField.setText(100 + " %");
                 completionTimeDD.setSelectedItem("3 hours");
-
+                
                 break;
             default:
                 surchargejTextField.setText(0 + " %");
@@ -3584,9 +3584,9 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (selectPriority.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Please select a priority level.");
         } else {
-            String[] parts = customerInfoField.getText().split("\\ID:");
+            String[] parts = customerInfoField.getText().split("\\:");
             double total = Double.parseDouble(jobTotalField.getText()) * Double.parseDouble(jobTotalField.getText());
-            controller.acceptJob(parts[1], materials, selectedStdJobs, total);
+            controller.acceptJob(parts[2], materials, selectedStdJobs, total, loggedInUser, specialInstructionjTextField.getText(), (String) completionTimeDD.getSelectedItem(), (String) surchargejTextField.getText(), (String) selectPriority.getSelectedItem());
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
@@ -3632,7 +3632,7 @@ public class MainFrame extends javax.swing.JFrame {
         // clears the data for card detials
         expiryDatejTextField.setText("");
         last4DigitjTextField.setText("");
-
+        
         card1.show(cardPanel1, "receptionistHomePage");
         card2.show(cardPanel2, "homePageR");
     }//GEN-LAST:event_latePaymentCanceljButtonActionPerformed
@@ -3679,16 +3679,16 @@ public class MainFrame extends javax.swing.JFrame {
                     final double total = Double.parseDouble(TotalLatePayjTextField.getText());
                     final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
                     final Date paymentDate = new Date();
-
+                    
                     for (int i = 0; i < selectedInvoices.size(); ++i) {
                         paymentNo[i] = selectedInvoices.get(i).getJobJobNo();
                         invoiceNumber[i] = selectedInvoices.get(i).getInvoiceNo();
                     }
-
+                    
                     final String cardType = cardTypejComboBox.getSelectedItem().toString();
                     final String cardDetailsLast4digits = last4DigitjTextField.getText();
                     final String cardDetailsExpiryDate = expiryDatejTextField.getText();
-
+                    
                     PaymentDetails paymentR = new PaymentCard(
                             paymentNo,
                             invoiceNumber,
@@ -3699,9 +3699,9 @@ public class MainFrame extends javax.swing.JFrame {
                             cardDetailsLast4digits,
                             cardDetailsExpiryDate
                     );
-
+                    
                     controller.recordPayment(paymentR);
-
+                    
                     System.out.println("payment info attained");
 
                     // clears the model and the total
@@ -3713,7 +3713,7 @@ public class MainFrame extends javax.swing.JFrame {
                     last4DigitjTextField.setText("");
                 }
             }
-
+            
             if (paymentTypeComboBox.getSelectedItem().toString().equals("Cash")) { // if card is selected for payment type
                 // grabs info for cash payment
                 TotalLatePayjTextField.getText();
@@ -3737,7 +3737,7 @@ public class MainFrame extends javax.swing.JFrame {
         // gets the selected position from the invoice table
         int row = invoicejTable.getSelectedRow();
         int columnCount = invoicejTable.getColumnCount();
-
+        
         Invoice invoice;
         Object[] obj = new Object[6];
 
@@ -3755,27 +3755,27 @@ public class MainFrame extends javax.swing.JFrame {
         Date dateIssued = new Date(obj[3].toString());
         String invoiceStatus = obj[4].toString();
         String invoiceLocation = obj[5].toString();
-
+        
         invoice = new Invoice(invoiceNo, jobJobNo, totalPayable, dateIssued, invoiceStatus, invoiceLocation);
-
+        
         selectedInvoices.add(invoice); // adds the invoice to the arraylist
 
         // grabs all elements from arraylist and adds to a model object
         for (int i = 0; i < selectedInvoices.size(); ++i) {
             list1.addElement(selectedInvoices.get(i).getInvoiceLocation());
         }
-
+        
         invoicejList.setModel(list1); // sets the model from the t typed model object
 
         TotalLatePayjTextField.setText(Double.toString(calculateTotal()));
-
+        
         m.setRowCount(0); // clears the table since it will take the old values and
         // re-display when re-entered into the search invoice
 
         card1.show(cardPanel1, "acceptLatePayment");
         card2.show(cardPanel2, "acceptLatePaymentBar");
     }//GEN-LAST:event_selectSelectedInvoicejButtonActionPerformed
-
+    
     public double calculateTotal() {
         //calculates the total amount needed to be paid based on the number and type of
         //invoices being selected.
@@ -3816,7 +3816,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-
+        
         boolean valid = true;
         //Initialise values
         String code = codeField.getText();
@@ -3938,7 +3938,7 @@ public class MainFrame extends javax.swing.JFrame {
                 valid = false;
             }
         }
-
+        
         if (!city.isEmpty()) {
             if (!Pattern.matches("(\\D)+", city)) {
                 JOptionPane.showMessageDialog(this, "City: letters only");
@@ -3948,7 +3948,7 @@ public class MainFrame extends javax.swing.JFrame {
                 valid = false;
             }
         }
-
+        
         if (!phone.isEmpty()) {
             if (!Pattern.matches("^(((\\+44\\s?\\d{4}|\\(?0\\d{4}\\)?)\\s?\\d{3}\\s?\\d{3})|((\\+44\\s?\\d{3}|\\(?0\\d{3}\\)?)\\s?\\d{3}\\s?\\d{4})|((\\+44\\s?\\d{2}|\\(?0\\d{2}\\)?)\\s?\\d{4}\\s?\\d{4}))(\\s?\\#(\\d{4}|\\d{3}))?$", phone)) {
                 JOptionPane.showMessageDialog(this, "Phone: Invalid format");
@@ -3957,7 +3957,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
         if (valid) {
             ArrayList<CustomerDetails> customers = controller.findCustomer(customerNumber, cFirstName, cLastName, accountHName, streetName, postCode, city, phone, isValued, isSuspended, inDefault, regDate);
-
+            
             tblModel = (DefaultTableModel) customerResultsTable.getModel();
             Object[] row = new Object[5];
             for (int i = 0; i < customers.size(); i++) {
@@ -3972,7 +3972,7 @@ public class MainFrame extends javax.swing.JFrame {
             card1.show(cardPanel1, "customerResults");
             //card2.show(cardPanel2, "homeBar");
             pageLabel.setText("Customer results page");
-
+            
             customerResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
             //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
@@ -3998,7 +3998,7 @@ public class MainFrame extends javax.swing.JFrame {
             double total = Double.parseDouble(jobTotalField.getText()) - selectedStdJobs.get(index).getPrice();
             jobTotalField.setText(String.format("%.2f", total));
             selectedStdJobs.remove(index);
-
+            
             for (StandardJob s : selectedStdJobs) {
                 System.out.println(s.getJobDescription());
             }
@@ -4020,16 +4020,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void acceptJobPageComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_acceptJobPageComponentShown
         // TODO add your handling code here:
-        jobTotalField.setText("0");
+        if (jobTotalField.getText().equals("")) {
+            jobTotalField.setText("0");
+        }
         stdJobs = controller.getStandardJobs();
-
+        
         String[] stdJobList = new String[stdJobs.size() + 1];
-
+        
         stdJobList[0] = "Select a standard job.";
         for (int i = 0; i < stdJobs.size(); i++) {
             stdJobList[i + 1] = stdJobs.get(i).getJobDescription();
         }
-
+        
         stdJobDD.setModel(new javax.swing.DefaultComboBoxModel<>(stdJobList));
     }//GEN-LAST:event_acceptJobPageComponentShown
 
@@ -4068,7 +4070,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         resetComponents(createCustomerPage);
     }//GEN-LAST:event_createCustomerPageComponentHidden
-
+    
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
