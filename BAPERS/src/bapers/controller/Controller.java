@@ -361,6 +361,7 @@ public class Controller {
                 System.out.println(ex);
             }
         }
+        //CONTINUE HERE. PUT IN THE NORMAL COMPLETION TIME ENTRY, THEN WRAP THE SQL AND WRITE IN AN IF THE DEADLINE IS STIPULATED, THEN WRITE, OTHERWISE, ITS ALREADY THERE, THEN CONTINUE TRYING TO MAKE UP THE JOBS DATA
         String completiontime = completionTime.replaceAll("[\\D]", "");
         int value = Integer.parseInt(surcharge.replaceAll("[\\D]", ""));
         sql = "INSERT INTO completiontime(completion_time, surcharge, Priority_priority_description) VALUES ('" + completiontime + ":0" + "','" + value + "','" + priority + "');";
