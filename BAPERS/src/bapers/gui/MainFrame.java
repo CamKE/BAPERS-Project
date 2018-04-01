@@ -3112,16 +3112,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void selectInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButtonActionPerformed
         // TODO add your handling code here:
-        card1.show(cardPanel1, "searchInvoicePage");
-        card2.show(cardPanel2, "acceptLatePaymentBar"); 
-       
         // updates the tables for selecting invoices
         m = (DefaultTableModel) invoicejTable.getModel(); // grabs the current model
         ArrayList<Invoice> invoicesList;
         try {
+            // initialse invoicesList arraylist with data from controller
             invoicesList = controller.getInvoices();
+            
+            
             Object rowData[] = new Object[6];
-            // grabs data from ("database")
             for (int i = 0; i < invoicesList.size(); ++i) {
                 rowData[0] = invoicesList.get(i).getInvoiceNo();
                 rowData[1] = invoicesList.get(i).getJobJobNo();
@@ -3133,6 +3132,10 @@ public class MainFrame extends javax.swing.JFrame {
                 m.addRow(rowData);
                 System.out.println("Table updated");
             }
+            
+            // change page
+            card1.show(cardPanel1, "searchInvoicePage");
+            card2.show(cardPanel2, "acceptLatePaymentBar"); 
         } catch (ParseException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Table not updated");
@@ -3148,58 +3151,57 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void selectSelectedInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSelectedInvoicejButtonActionPerformed
         // TODO add your handling code here:  
-        if (invoicejTable.getSelectedRow() == 1) {
-        // gets the selected position from the invoice table
-        int row = invoicejTable.getSelectedRow();
-        int columnCount = invoicejTable.getColumnCount();
-        
-        Object[] obj = new Object[6];
-        
-        // gets all the row information from the selected invoice in the table
-        // and places it in the array 
-        for (int i = 0; i < columnCount; ++i)
-            obj[i] = invoicejTable.getValueAt(row, i);
-        
-        final SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
-        // variables getting the values and parsing them so that they are at the right type
-        // to create a new invoice
-        int invoiceNo = Integer.parseInt(obj[0].toString());
-        int jobJobNo = Integer.parseInt(obj[1].toString());
-        double totalPayable = Double.parseDouble(obj[2].toString());
-        Date dateIssued = (Date) obj[3];
-        String invoiceStatus = obj[4].toString();
-        String invoiceLocation = obj[5].toString();
-        
-        Invoice invoice = new Invoice(invoiceNo, jobJobNo, totalPayable, dateIssued, invoiceStatus, invoiceLocation);
-        
-        int count = 0;
-        final int check = invoice.getInvoiceNo();
-        for (int i = 0; i < selectedInvoices.size(); ++i)
-            if (selectedInvoices.get(i).getInvoiceNo() == check)
-                ++count;
-        //System.out.println("Count: " + count);
+        if (invoicejTable.getSelectedRow() >= 0) {
+            // gets the selected position from the invoice table
+            int row = invoicejTable.getSelectedRow();
+            int columnCount = invoicejTable.getColumnCount();
 
-        if (count < 1) {
-            selectedInvoices.add(invoice); // adds the invoice to the arraylist
-        
-//        System.out.println(selectedInvoices.size());
-        
-        //grabs all elements from arraylist and adds to a model object
-        for (int i = 0; i < selectedInvoices.size(); ++i)
-            t.addElement(selectedInvoices.get(i).getInvoiceNo());
-        invoicejList.setModel(t); // sets the model from the t typed model object
-        }
-        TotalLatePayjTextField.setText(Double.toString(calculateTotal()));
-        
-        m.setRowCount(0); // clears the table since it will take the old values and
-        // re-display when re-entered into the search invoice
-        
-        card1.show(cardPanel1, "acceptLatePayment");
-        card2.show(cardPanel2, "acceptLatePaymentBar");
+            Object[] obj = new Object[6];
+
+            // gets all the row information from the selected invoice in the table
+            // and places it in the array 
+            for (int i = 0; i < columnCount; ++i)
+                obj[i] = invoicejTable.getValueAt(row, i);
+
+            final SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+            // variables getting the values and parsing them so that they are at the right type
+            // to create a new invoice
+            int invoiceNo = Integer.parseInt(obj[0].toString());
+            int jobJobNo = Integer.parseInt(obj[1].toString());
+            double totalPayable = Double.parseDouble(obj[2].toString());
+            Date dateIssued = (Date) obj[3];
+            String invoiceStatus = obj[4].toString();
+            String invoiceLocation = obj[5].toString();
+
+            Invoice invoice = new Invoice(invoiceNo, jobJobNo, totalPayable, dateIssued, invoiceStatus, invoiceLocation);
+
+            int count = 0;
+            final int check = invoice.getInvoiceNo();
+            for (int i = 0; i < selectedInvoices.size(); ++i)
+                if (selectedInvoices.get(i).getInvoiceNo() == check)
+                    ++count;
+            //System.out.println("Count: " + count);
+
+            if (count < 1) {
+                selectedInvoices.add(invoice); // adds the invoice to the arraylist
+
+    //        System.out.println(selectedInvoices.size());
+
+            //grabs all elements from arraylist and adds to a model object
+            for (int i = 0; i < selectedInvoices.size(); ++i)
+                t.addElement(selectedInvoices.get(i).getInvoiceNo());
+            invoicejList.setModel(t); // sets the model from the t typed model object
+            }
+            TotalLatePayjTextField.setText(Double.toString(calculateTotal()));
+
+            m.setRowCount(0); // clears the table since it will take the old values and
+            // re-display when re-entered into the search invoice
+
+            card1.show(cardPanel1, "acceptLatePayment");
+            card2.show(cardPanel2, "acceptLatePaymentBar");
         } else {
             System.out.println("You need to select a record");
-        }
-        
+        }  
     }//GEN-LAST:event_selectSelectedInvoicejButtonActionPerformed
 
     private void searchInvoiceByInvoiceNojTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldActionPerformed
