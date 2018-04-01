@@ -349,48 +349,32 @@ public class Controller {
     }
 
     public boolean acceptJob(String customerId, List<Material> materials, List<StandardJob> stdJobs, double total, UserDetails user, String specialInstructions, String completionTime, String surcharge, String priority) {
+        //get user id user account
         int userId = user.getAccount_no();
-        int statusId = 0;
-        String sql = "INSERT INTO status(status_type) VALUES ('Not started');";
+        // initialise a statusid variable to store the status id from the results
+        String sql;
 
-        if (database.write(sql, conn) != 0) {
-            sql = "SELECT status_id FROM status ORDER BY status_id DESC LIMIT 1";
-            try (ResultSet result = database.read(sql, conn)) {
-                if (result.next()) {
-                    statusId = result.getInt("status_id");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
         //CONTINUE HERE. PUT IN THE NORMAL COMPLETION TIME ENTRY, THEN WRAP THE SQL AND WRITE IN AN IF THE DEADLINE IS STIPULATED, THEN WRITE, OTHERWISE, ITS ALREADY THERE, THEN CONTINUE TRYING TO MAKE UP THE JOBS DATA
         String completiontime = completionTime.split("[\\s]")[0];
-        int value = Integer.parseInt(surcharge.replaceAll("[\\D]", ""));
         if (priority.equals("Stipulated")) {
+            int value = Integer.parseInt(surcharge.replaceAll("[\\D]", ""));
             sql = "INSERT INTO completiontime(completion_time, surcharge, Priority_priority_description) VALUES ('" + completiontime + ":0" + "','" + value + "','" + priority + "');";
             database.write(sql, conn);
         }
 
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.HOUR_OF_DAY, Integer.parseInt(completiontime));
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String deadline = dateFormat.format(cal.getTime());
-        sql = "INSERT INTO deadline(deadline, CompletionTime_completion_time) VALUES ('" + deadline + "','" + completiontime + ":0" + "');";
+        sql = "INSERT INTO job(User_account_no, Customer_account_no,Deadline_CompletionTime_completion_time,special_instructions) VALUES ('" + userId + "','" + customerId + "','" + completiontime + ":0" + "','" + specialInstructions + "');";
 
-        String dateReceived = null;
         if (database.write(sql, conn) != 0) {
-            sql = "SELECT date_received FROM deadline ORDER BY date_received DESC LIMIT 1";
-            try (ResultSet result = database.read(sql, conn)) {
-                if (result.next()) {
-                    dateReceived = result.getString("date_received");
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex);
+            StringBuilder sb = new StringBuilder();
+            sb.append("INSERT INTO job_standardjobs(StandardJob_code) VALUES");
+            for (StandardJob j : stdJobs) {
+                sb.append("('").append(j.getCode()).append("'),");
             }
+            sb.deleteCharAt(sb.length()-1);
+            database.write(sb.toString(), conn);
+            System.out.println(sb.toString());
+            return true;
         }
-        
-        sql = "INSERT INTO job(User_account_no, Customer_account_no, Status_status_id,Deadline_date_received,Deadline_CompletionTime_completion_time,special_instructions) VALUES ('" + userId + "','" + customerId + "','" + statusId + "','" + dateReceived + "','" + completiontime + ":0" + "','" + specialInstructions + "');";
-
-        return database.write(sql, conn) != 0;
+        return false;
     }
 }
