@@ -87,12 +87,6 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1 = new javax.swing.JPanel();
         welcomePage = new javax.swing.JPanel();
         BAPERSLabel = new javax.swing.JLabel();
-        loginPageButton = new javax.swing.JButton();
-        RestorePageButton = new javax.swing.JButton();
-        tempButton = new javax.swing.JButton();
-        homePageOM = new javax.swing.JButton();
-        homePageSM = new javax.swing.JButton();
-        homePageT = new javax.swing.JButton();
         homePageR = new javax.swing.JButton();
         autoBackConfig = new javax.swing.JButton();
         receptionistHomePage = new javax.swing.JPanel();
@@ -268,50 +262,6 @@ public class MainFrame extends javax.swing.JFrame {
         BAPERSLabel.setForeground(new java.awt.Color(255, 255, 255));
         BAPERSLabel.setText("B   A   P   E   R   S");
 
-        loginPageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        loginPageButton.setText("Login");
-        loginPageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginPageButtonActionPerformed(evt);
-            }
-        });
-
-        RestorePageButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        RestorePageButton.setText("Restore");
-        RestorePageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RestorePageButtonActionPerformed(evt);
-            }
-        });
-
-        tempButton.setText("tempButton");
-        tempButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tempButtonActionPerformed(evt);
-            }
-        });
-
-        homePageOM.setText("homePageOM");
-        homePageOM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homePageOMActionPerformed(evt);
-            }
-        });
-
-        homePageSM.setText("homePageSM");
-        homePageSM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homePageSMActionPerformed(evt);
-            }
-        });
-
-        homePageT.setText("homePageT");
-        homePageT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                homePageTActionPerformed(evt);
-            }
-        });
-
         homePageR.setText("homePageR");
         homePageR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,50 +281,28 @@ public class MainFrame extends javax.swing.JFrame {
         welcomePageLayout.setHorizontalGroup(
             welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePageLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(BAPERSLabel)
-                    .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(welcomePageLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(BAPERSLabel))
+                    .addGroup(welcomePageLayout.createSequentialGroup()
+                        .addGap(274, 274, 274)
                         .addComponent(autoBackConfig)
                         .addGap(36, 36, 36)
-                        .addComponent(homePageR)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(homePageT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(homePageSM)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(homePageOM))
-                    .addComponent(tempButton))
-                .addGap(155, 155, 155))
+                        .addComponent(homePageR)))
+                .addGap(75, 75, 75))
         );
         welcomePageLayout.setVerticalGroup(
             welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePageLayout.createSequentialGroup()
                 .addGap(132, 132, 132)
                 .addComponent(BAPERSLabel)
-                .addGap(119, 119, 119)
-                .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                 .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(homePageOM)
-                    .addComponent(homePageSM)
-                    .addComponent(homePageT)
                     .addComponent(homePageR)
                     .addComponent(autoBackConfig))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tempButton)
-                .addGap(37, 37, 37))
+                .addGap(114, 114, 114))
         );
-
-        homePageOM.getAccessibleContext().setAccessibleParent(homePageOM);
 
         cardPanel1.add(welcomePage, "welcome");
 
@@ -2255,47 +2183,11 @@ public class MainFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPageButtonActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "login");
-        card2.show(cardPanel2, "welcomeBar2");
-    }//GEN-LAST:event_loginPageButtonActionPerformed
-
-    private void RestorePageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestorePageButtonActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "restore");
-        card2.show(cardPanel2, "welcomeBar2");
-    }//GEN-LAST:event_RestorePageButtonActionPerformed
-
-    private void tempButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempButtonActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "createUser");
-        card2.show(cardPanel2, "welcomeBar2");
-    }//GEN-LAST:event_tempButtonActionPerformed
-
-    private void homePageOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageOMActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "officeManagerHomePage");
-        card2.show(cardPanel2, "homePageOMBar");
-    }//GEN-LAST:event_homePageOMActionPerformed
-
-    private void homePageSMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageSMActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "shiftManagerHomePage");
-        card2.show(cardPanel2, "homePageSMBar");
-    }//GEN-LAST:event_homePageSMActionPerformed
-
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "welcome");
         card2.show(cardPanel2, "welcomeBar1");
     }//GEN-LAST:event_backButtonActionPerformed
-
-    private void homePageTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageTActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "technicianHomePage");
-        card2.show(cardPanel2, "homePageT");
-    }//GEN-LAST:event_homePageTActionPerformed
 
     private void acceptPaymentReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentReceptionistActionPerformed
         // TODO add your handling code here:
@@ -2913,7 +2805,6 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AutoBackupConfigjPanel;
     private javax.swing.JLabel BAPERSLabel;
-    private javax.swing.JButton RestorePageButton;
     private javax.swing.JTextField TotalLatePayjTextField;
     private javax.swing.JPanel acceptJob;
     private javax.swing.JLabel acceptJobLabel;
@@ -2969,13 +2860,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField expiryDatejTextField;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNamejLabel;
-    private javax.swing.JButton homePageOM;
     private javax.swing.JPanel homePageOMBar;
     private javax.swing.JButton homePageR;
     private javax.swing.JPanel homePageRBar;
     private javax.swing.JPanel homePageReceptionist;
-    private javax.swing.JButton homePageSM;
-    private javax.swing.JButton homePageT;
     private javax.swing.JPanel homePageTBar;
     private javax.swing.JPanel homePageTechnician;
     private javax.swing.JPanel homePagesSMBar;
@@ -2999,7 +2887,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton logOutButton1;
     private javax.swing.JButton logOutButton2;
     private javax.swing.JButton logOutButton3;
-    private javax.swing.JButton loginPageButton;
     private javax.swing.JPanel managerjPanel;
     private javax.swing.JLabel materialSubmittedLabel;
     private javax.swing.JScrollPane materialsjScrollPane;
@@ -3068,7 +2955,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField surchargejTextField;
     private javax.swing.JTextField surnameField;
     private javax.swing.JLabel surnamejLabel;
-    private javax.swing.JButton tempButton;
     private javax.swing.JLabel totalAmountLabel;
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totaljLabel;
