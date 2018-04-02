@@ -7,6 +7,7 @@ package bapers.gui;
 
 import bapers.controller.Controller;
 import bapers.job.StandardJob;
+import bapers.task.Task;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
     List<StandardJob> stdJobs;
     
     List<StandardJob> selectedStdJobs;
+    List<Task> tasks;
     // list models that are used to for the scroll
     DefaultListModel list1;
     DefaultListModel list2;
@@ -44,7 +46,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame(Controller controller) {
         selectedStdJobs = new ArrayList<>();
         stdJobs = new ArrayList<>();
-        
+        tasks = new ArrayList<>();
         list1 = new DefaultListModel();
         list2 = new DefaultListModel();
         
@@ -107,6 +109,9 @@ public class MainFrame extends javax.swing.JFrame {
         standardJobTable = new javax.swing.JTable();
         deleteStandardJobButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        taskSearchResults = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        taskTable = new javax.swing.JTable();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -490,7 +495,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Code", "Job Description", "Price", "Action"
+                "Code", "Job Description", "Price"
             }
         ));
         jScrollPane2.setViewportView(standardJobTable);
@@ -542,6 +547,40 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(manageStandardJob, "manageStandardJob");
+
+        taskSearchResults.setBackground(new java.awt.Color(61, 96, 146));
+
+        taskTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Task_id", "Description", "Location", "Shelf_slot", "Price"
+            }
+        ));
+        jScrollPane3.setViewportView(taskTable);
+
+        javax.swing.GroupLayout taskSearchResultsLayout = new javax.swing.GroupLayout(taskSearchResults);
+        taskSearchResults.setLayout(taskSearchResultsLayout);
+        taskSearchResultsLayout.setHorizontalGroup(
+            taskSearchResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskSearchResultsLayout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(372, Short.MAX_VALUE))
+        );
+        taskSearchResultsLayout.setVerticalGroup(
+            taskSearchResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskSearchResultsLayout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(taskSearchResults, "taskSearchResults");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -654,7 +693,21 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_codeFieldActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-       
+        int taskIndex = selectATaskBox.getSelectedIndex();
+
+        if (taskIndex != 0) {
+
+            tasks.add(tasks.get(taskIndex - 1));
+
+            list2.addElement(tasks.get(tasks.size() - 1).getTaskDescription());
+            jList1.setModel(list2);
+            
+            selectATaskBox.setSelectedIndex(0);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a task to be added.");
+        }
+               
         
        
         
@@ -677,6 +730,8 @@ public class MainFrame extends javax.swing.JFrame {
         String job_description = descriptionField.getText();
         String price = totalField.getText();
         
+        String taskSelected = jList1.getSelectedValue();
+        
 
         
 
@@ -695,6 +750,8 @@ public class MainFrame extends javax.swing.JFrame {
             valid = false;
             JOptionPane.showMessageDialog(null, "Description cannot be longer than 45 characters");
         }
+        
+        
               
         else {
             valid = true;
@@ -704,7 +761,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Will only execute method in controller if all preconditions are met
         if (valid) {
-            if (controller.createStandardJob(code, job_description, Double.parseDouble(price))) {
+            if (controller.createStandardJob(code, job_description, Double.parseDouble(price), taskSelected)) {
                 JOptionPane.showMessageDialog(null, "Standard Job created");
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to create Standard Job");
@@ -773,6 +830,31 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteStandardJobButtonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        
+        
+         //Get standard job information from controller class
+        updateTaskTable();
+        card1.show(cardPanel1, "taskSearchResults");
+        card2.show(cardPanel2, "welcomeBar2");
+        //taskTable.setSelectionModel(ListSelectionModel.SINGLE_SELECTION);
+
+    }                                                 
+
+    private void updateTaskTable() {
+        //Get task information from controller class
+        ArrayList<Task> task = controller.getTask();
+        DefaultTableModel taskTableMode1 = (DefaultTableModel) taskTable.getModel();
+        Object[] row = new Object[3];
+        for (int i = 0; i < task.size(); i++) {
+            row[0] = task.get(i).getTask_id();
+            row[1] = task.get(i).getTaskDescription();
+            row[2] = task.get(i).getDuration_min();
+            row[3] = task.get(i).getShelf_slot();
+            row[4] = task.get(i).getPrice();
+            taskTableMode1.insertRow(i, row);
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -783,7 +865,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void selectATaskBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectATaskBoxActionPerformed
-
+        selectATaskBox.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getTasks()));
 
         
         // TODO add your handling code here:
@@ -893,6 +975,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
@@ -905,6 +988,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel restorePage;
     private javax.swing.JComboBox<String> selectATaskBox;
     private javax.swing.JTable standardJobTable;
+    private javax.swing.JPanel taskSearchResults;
+    private javax.swing.JTable taskTable;
     private javax.swing.JTextField totalField;
     private javax.swing.JLabel totalLabel;
     private javax.swing.JTextField userIDField;

@@ -30,9 +30,11 @@ public class Controller {
         conn = database.connect();
     }
     //Creates a new standard job using the input from the GUI 
-    public boolean createStandardJob(String code1, String job_description1, double price1) {
+    
+    public boolean createStandardJob(String code1, String job_description1, double price1, String taskSelected) {
         boolean success = false;
-        String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ('"+code1+"','" +job_description1+"','" +price1+"');";        
+        //This does not work, Have to add a sql query where it would link with the standardjob_task table
+        String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ('"+code1+"','" +job_description1+"','" +price1+"') INSERT INTO STANDARDJOB_TASKS(StandardJob_code, Task_task_id) VALUES ('"+code1+"','"+taskSelected+"');";        
         
         try {
             database.write(SQL, conn);
@@ -79,39 +81,8 @@ public class Controller {
     }
     
     
-    public List<Task> fillComboBoxTask(){
-        /*try{
-            String SQL = "SELECT * FROM task";
-            rs = database.read(SQL, conn);
-            
-            while(rs.next()){
-                String description = rs.getString("description");
-                selectATaskBox.addItem(description);
-                
-            }
-            
-        }catch(Exception e){
-            System.out.println("Error");
-            
-        }*/
-    
-    List<Task> taskDescription = new ArrayList<>();
-        String sql = "SELECT * from TASK";
-
-        //close resultset after use
-        try (ResultSet result = database.read(sql, conn)) {
-            while (result.next()) {
-                taskDescription.add(new Task(result.getInt("task_id"), result.getString("description"), result.getInt("duration_min"), result.getInt("shelf_slot"), result.getDouble("price"), result.getString("Department_department")));
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } 
-        return taskDescription;
-    }
-    
-    
-    public int numStandardJobs() {
-        String sql = "SELECT COUNT(*) AS rowcount FROM standardjob";
+    public int numTasks() {
+        String sql = "SELECT COUNT(*) AS rowcount FROM task";
         try {
             ResultSet rs = database.read(sql, conn);
             rs.next();
@@ -122,21 +93,50 @@ public class Controller {
         return 0;
     }
 
-    public List<StandardJob> getStandardJobs() {
-        List<StandardJob> stdJobs = new ArrayList<>();
-        String sql = "select * from standardjob";
+    
+    
+    public String[] getTasks() {
+        String[] roles = new String[numTasks()];
+        int i = 0;
+        String sql = "select * from task";
 
         //close resultset after use
         try (ResultSet result = database.read(sql, conn)) {
+            result.next();
+            roles[i] = result.getString("description");
+            System.out.println(roles[i]);
             while (result.next()) {
-                stdJobs.add(new StandardJob(result.getString("code"), result.getString("job_description"), result.getDouble("price")));
+                roles[i] = result.getString("description");
+                System.out.println(roles[i]);
+                i++;
             }
         } catch (SQLException ex) {
             System.out.println(ex);
-        } 
-        return stdJobs;
+        }
+        return roles;
+    }
+    
+    
+    public ArrayList<Task> getTask() {
+        String SQL = "SELECT * FROM task;";
+        rs = database.read(SQL, conn);
+        ArrayList<Task> taskInfo = new ArrayList<>();
+        Task tasks;
+        try {
+            System.out.println("Getting task information...");
+            while (rs.next()) {
+
+                tasks = new Task(rs.getInt("task_id"), rs.getString("description"), rs.getInt("duration_min"), rs.getInt("shelf_slot"), rs.getDouble("price"), rs.getString("Department_department_code"));
+                taskInfo.add(tasks);
+            }
+        } catch (Exception e) {
+            System.out.println("update task table Error");
+        }
+        return taskInfo;
     }
 
+    
+    
     }
 
        
