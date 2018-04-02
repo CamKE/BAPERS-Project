@@ -5,24 +5,22 @@
  */
 package bapers.gui;
 
-import bapers.acct.Customer;
-import bapers.acct.Invoice;
-import bapers.acct.Material;
-import bapers.acct.Payment;
-import bapers.acct.PaymentCard;
-import bapers.acct.PaymentCash;
-import bapers.acct.StandardJob;
+import bapers.acct.*;
 import bapers.controller.Controller;
 import java.awt.CardLayout;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -32,6 +30,7 @@ import javax.swing.table.TableRowSorter;
  * @author CameronE
  */
 public class MainFrame extends javax.swing.JFrame {
+    Calendar date = Calendar.getInstance();
     
     int paymentNo = 0;
     
@@ -51,13 +50,26 @@ public class MainFrame extends javax.swing.JFrame {
     private final CardLayout card1;
     private final CardLayout card2;
     private final Controller controller;
-
+    AutoBackupConfig test;
+    Timer time = new Timer();
+    Calendar calendar = Calendar.getInstance();
+    
+            
     /**
      * Creates new form MainFrame
      * @param controller
      */
     public MainFrame(Controller controller) {
         this.controller = controller;
+        this.test = controller.getAutoBackupConfigData();
+        
+        if (this.test != null) {
+            //calendar.set(WIDTH, WIDTH);
+            time.schedule(new AutoBackup(test), 0, TimeUnit.HOURS.toMillis(8));
+        } else {
+            System.out.println("No auto update");
+        }
+        
         initComponents();
         card1 = (CardLayout) cardPanel1.getLayout();
         card2 = (CardLayout) cardPanel2.getLayout();
@@ -82,6 +94,7 @@ public class MainFrame extends javax.swing.JFrame {
         homePageSM = new javax.swing.JButton();
         homePageT = new javax.swing.JButton();
         homePageR = new javax.swing.JButton();
+        autoBackConfig = new javax.swing.JButton();
         loginPage = new javax.swing.JPanel();
         loginLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
@@ -240,6 +253,16 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoiceByJobNumberjTextField = new javax.swing.JTextField();
         searchInvoiceByInvoiceNojLabel = new javax.swing.JLabel();
         searchInvoiceByJobNumberjLabel = new javax.swing.JLabel();
+        AutoBackupConfigjPanel = new javax.swing.JPanel();
+        autoBackupLocationjTextField = new javax.swing.JTextField();
+        backupLocationjLabel = new javax.swing.JLabel();
+        backupFrequencyjLabel = new javax.swing.JLabel();
+        backupModejLabel = new javax.swing.JLabel();
+        backupModejComboBox = new javax.swing.JComboBox<>();
+        backupFrequencyjComboBox = new javax.swing.JComboBox<>();
+        selectAutoBackupLocationjButton = new javax.swing.JButton();
+        cancelAutoBackupConfigjButton = new javax.swing.JButton();
+        confirmAutoBackupConfigjButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -341,6 +364,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        autoBackConfig.setText("autoBackupConfig");
+        autoBackConfig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoBackConfigActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
         welcomePage.setLayout(welcomePageLayout);
         welcomePageLayout.setHorizontalGroup(
@@ -356,6 +386,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(welcomePageLayout.createSequentialGroup()
+                        .addComponent(autoBackConfig)
+                        .addGap(36, 36, 36)
                         .addComponent(homePageR)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(homePageT)
@@ -375,12 +407,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(loginPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(RestorePageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homePageOM)
                     .addComponent(homePageSM)
                     .addComponent(homePageT)
-                    .addComponent(homePageR))
+                    .addComponent(homePageR)
+                    .addComponent(autoBackConfig))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tempButton)
                 .addGap(37, 37, 37))
@@ -501,7 +534,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(fileChosenField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(RestoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         cardPanel1.add(restorePage, "restore");
@@ -2173,6 +2206,119 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(searchInvoice, "searchInvoicePage");
 
+        AutoBackupConfigjPanel.setBackground(new java.awt.Color(61, 96, 146));
+        AutoBackupConfigjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
+        AutoBackupConfigjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
+        AutoBackupConfigjPanel.setPreferredSize(new java.awt.Dimension(900, 700));
+        AutoBackupConfigjPanel.setSize(new java.awt.Dimension(900, 700));
+
+        autoBackupLocationjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        autoBackupLocationjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        autoBackupLocationjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        backupLocationjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        backupLocationjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backupLocationjLabel.setText("Backup Location:");
+
+        backupFrequencyjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        backupFrequencyjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backupFrequencyjLabel.setText("Backup Frequency:");
+
+        backupModejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        backupModejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backupModejLabel.setText("Backup Mode:");
+
+        backupModejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Reminder", "Auto" }));
+        backupModejComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
+        backupModejComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
+        backupModejComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        backupFrequencyjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hourly", "Every 12 hours", "Daily", "Weekly", "Monthly", "Every 3 months", "Every 6 months" }));
+        backupFrequencyjComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
+        backupFrequencyjComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
+        backupFrequencyjComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        selectAutoBackupLocationjButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        selectAutoBackupLocationjButton.setText("Select Location");
+        selectAutoBackupLocationjButton.setMaximumSize(new java.awt.Dimension(159, 37));
+        selectAutoBackupLocationjButton.setMinimumSize(new java.awt.Dimension(159, 37));
+        selectAutoBackupLocationjButton.setPreferredSize(new java.awt.Dimension(159, 37));
+        selectAutoBackupLocationjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectAutoBackupLocationjButtonActionPerformed(evt);
+            }
+        });
+
+        cancelAutoBackupConfigjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        cancelAutoBackupConfigjButton.setText("Cancel");
+        cancelAutoBackupConfigjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelAutoBackupConfigjButtonActionPerformed(evt);
+            }
+        });
+
+        confirmAutoBackupConfigjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        confirmAutoBackupConfigjButton.setText("Confirm");
+        confirmAutoBackupConfigjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmAutoBackupConfigjButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AutoBackupConfigjPanelLayout = new javax.swing.GroupLayout(AutoBackupConfigjPanel);
+        AutoBackupConfigjPanel.setLayout(AutoBackupConfigjPanelLayout);
+        AutoBackupConfigjPanelLayout.setHorizontalGroup(
+            AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AutoBackupConfigjPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelAutoBackupConfigjButton)
+                .addGap(18, 18, 18)
+                .addComponent(confirmAutoBackupConfigjButton)
+                .addGap(114, 114, 114))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AutoBackupConfigjPanelLayout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backupFrequencyjLabel)
+                    .addComponent(backupLocationjLabel)
+                    .addComponent(backupModejLabel))
+                .addGap(18, 18, 18)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backupModejComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(backupFrequencyjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(autoBackupLocationjTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, AutoBackupConfigjPanelLayout.createSequentialGroup()
+                        .addComponent(selectAutoBackupLocationjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(203, 203, 203))
+        );
+        AutoBackupConfigjPanelLayout.setVerticalGroup(
+            AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AutoBackupConfigjPanelLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backupModejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backupModejLabel))
+                .addGap(18, 18, 18)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backupFrequencyjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backupFrequencyjLabel))
+                .addGap(18, 18, 18)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backupLocationjLabel)
+                    .addComponent(autoBackupLocationjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectAutoBackupLocationjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelAutoBackupConfigjButton)
+                    .addComponent(confirmAutoBackupConfigjButton))
+                .addContainerGap(366, Short.MAX_VALUE))
+        );
+
+        TotalLatePayjTextField.setEditable(false);
+
+        cardPanel1.add(AutoBackupConfigjPanel, "AutoBackupConfig");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
         cardPanel2.setLayout(new java.awt.CardLayout());
@@ -3040,14 +3186,10 @@ public class MainFrame extends javax.swing.JFrame {
                     final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
                     final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                     final String paymentDate = dateFormat.format(new Date());
-                    int[] invoiceNumber = new int[selectedInvoices.size()];
+                    final int invoiceNumber = selectedInvoices.get(0).getInvoiceNo();     
                     final String cardType = cardTypejComboBox.getSelectedItem().toString();
                     final String cardDetailsLast4digits = last4DigitjTextField.getText();
                     final String cardDetailsExpiryDate = expiryDatejTextField.getText();
-                    
-                    for (int i = 0; i < selectedInvoices.size(); ++i) {
-                        invoiceNumber[i] = selectedInvoices.get(i).getInvoiceNo();
-                    }
                     
                    Payment paymentRecord = new PaymentCard(
                            paymentNo, 
@@ -3079,11 +3221,7 @@ public class MainFrame extends javax.swing.JFrame {
                 final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
                 final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                 final String paymentDate = dateFormat.format(new Date());
-                int[] invoiceNumber = new int[selectedInvoices.size()];
-                
-                for (int i = 0; i < selectedInvoices.size(); ++i) {
-                    invoiceNumber[i] = selectedInvoices.get(i).getInvoiceNo();
-                }
+                final int invoiceNumber = selectedInvoices.get(0).getInvoiceNo();
                 
                 Payment paymentRecord = new PaymentCash(
                            paymentNo, 
@@ -3238,6 +3376,49 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchInvoiceByJobNumberjTextFieldActionPerformed
 
+    private void selectAutoBackupLocationjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAutoBackupLocationjButtonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.showOpenDialog(this);
+
+        try {
+            String directory = chooser.getSelectedFile().getPath();
+            directory = directory.replace('\\', '/');
+            autoBackupLocationjTextField.setText(directory);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_selectAutoBackupLocationjButtonActionPerformed
+
+    private void autoBackConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoBackConfigActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "AutoBackupConfig");
+        card2.show(cardPanel2, "acceptLatePaymentBar");
+    }//GEN-LAST:event_autoBackConfigActionPerformed
+
+    private void cancelAutoBackupConfigjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAutoBackupConfigjButtonActionPerformed
+        // TODO add your handling code here:
+        autoBackupLocationjTextField.setText("");
+        card1.show(cardPanel1, "welcome");
+        card2.show(cardPanel2, "welcomeBar1");
+    }//GEN-LAST:event_cancelAutoBackupConfigjButtonActionPerformed
+
+    private void confirmAutoBackupConfigjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAutoBackupConfigjButtonActionPerformed
+        // TODO add your handling code here:
+        if (!autoBackupLocationjTextField.getText().equals("")) {
+            String mode = backupModejComboBox.getSelectedItem().toString();
+            String frequency = backupFrequencyjComboBox.getSelectedItem().toString();
+            String location = autoBackupLocationjTextField.getText();
+            AutoBackupConfig config = new AutoBackupConfig(mode, frequency, location);
+
+            controller.setAutoBackupConfig(config);
+            autoBackupLocationjTextField.setText("");
+        } else {
+            System.out.println("You need to pick a location");
+        }
+    }//GEN-LAST:event_confirmAutoBackupConfigjButtonActionPerformed
+
     public double calculateTotal() {
         //calculates the total amount needed to be paid based on the number and type of
         //invoices being selected.
@@ -3284,6 +3465,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AutoBackupConfigjPanel;
     private javax.swing.JLabel BAPERSLabel;
     private javax.swing.JPasswordField NewPasswordField;
     private javax.swing.JPasswordField NewRepeatPasswordField;
@@ -3310,10 +3492,18 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel accountStatusjLabel;
     private javax.swing.JButton addJobButton;
     private javax.swing.JButton addMaterialButton;
+    private javax.swing.JButton autoBackConfig;
+    private javax.swing.JTextField autoBackupLocationjTextField;
     private javax.swing.JButton backButton;
+    private javax.swing.JComboBox<String> backupFrequencyjComboBox;
+    private javax.swing.JLabel backupFrequencyjLabel;
+    private javax.swing.JLabel backupLocationjLabel;
+    private javax.swing.JComboBox<String> backupModejComboBox;
+    private javax.swing.JLabel backupModejLabel;
     private javax.swing.JTextField buildingNumberField;
     private javax.swing.JLabel buildingNumberjLabel;
     private javax.swing.JButton cancelAcceptJobButton;
+    private javax.swing.JButton cancelAutoBackupConfigjButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelCreationjButton;
     private javax.swing.JButton cancelCustomerFJobjButton;
@@ -3327,6 +3517,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel citySjLabel;
     private javax.swing.JLabel cityjLabel;
     private javax.swing.JTextField cityjTextField;
+    private javax.swing.JButton confirmAutoBackupConfigjButton;
     private javax.swing.JPanel createCustomer;
     private javax.swing.JButton createCustomerButton;
     private javax.swing.JLabel createCustomerLabel;
@@ -3444,6 +3635,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel searchInvoiceByJobNumberjLabel;
     private javax.swing.JTextField searchInvoiceByJobNumberjTextField;
     private javax.swing.JPanel searchInvoicejPanel;
+    private javax.swing.JButton selectAutoBackupLocationjButton;
     private javax.swing.JButton selectInvoicejButton;
     private javax.swing.JComboBox<String> selectPriority;
     private javax.swing.JButton selectSelectedInvoicejButton;
