@@ -5,19 +5,12 @@
  */
 package bapers.controller;
 
-import bapers.acct.Customer;
-import bapers.acct.Invoice;
-import bapers.acct.Payment;
-import bapers.acct.PaymentCard;
-import bapers.acct.PaymentCash;
+import bapers.acct.*;
 import bapers.database.DBImpl;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -71,16 +64,43 @@ public class Controller {
     }
     
     public void createCustomerAccount(Customer cust) {
-        String sql = "INSERT INTO CUSTOMER VALUES";
+        
     }
     
     
     
     
     
+    public AutoBackupConfig getAutoBackupConfigData() {
+        String sql = "select * from BackupSettings";
+        AutoBackupConfig autoData = null;
+        
+        try (ResultSet result = database.read(sql, conn)) {
+            result.next();
+            autoData = new AutoBackupConfig(result.getString("backup_mode"), result.getString("backup_frequency"), result.getString("backup_location"));
+            
+            System.out.println(autoData.getBackupMode());
+            System.out.println(autoData.getBackupFrequency());
+            System.out.println(autoData.getBackupLocation());
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return autoData;
+    }
     
-    
-    
+    public void setAutoBackupConfig(AutoBackupConfig config) {
+        String sql = "INSERT INTO `bapers_data`.`BackupSettings` (`backup_mode`, `backup_frequency`, `backup_location`) VALUES (" 
+                + "\'" + config.getBackupMode().toLowerCase() + "\', " 
+                + "\'" + config.getBackupFrequency().toLowerCase() + "\', " 
+                + "\'" + config.getBackupLocation() + "\'" + ");";
+        
+        try {
+            database.write(sql, conn);
+            System.out.println("Complete");
+        } catch (Exception e) {
+            System.out.println("Exception error: " + e);
+        }
+    }
     
     public ArrayList<Invoice> getInvoices() throws ParseException {
         String sql = "select * from Invoice";
@@ -108,7 +128,7 @@ public class Controller {
             final double total = p.getTotal();
             final String paymentType = p.getPaymentType();
             String paymentDate =  p.getPaymentDate();
-            final int[] invoiceNumber = p.getInvoiceNumber();
+            final int invoiceNumber = p.getInvoiceNumber();
             //final String cardType = ((PaymentCard) p).getCardType();
             final String cardDetailsLast4digits = ((PaymentCard) p).getCardDetailsLast4digits();
             final String cardDetailsExpiryDate = ((PaymentCard) p).getCardDetailsExpiryDate();
@@ -118,7 +138,7 @@ public class Controller {
                     + ',' + total 
                     + ", \"" + paymentType 
                     + "\"," + '\'' + paymentDate + '\''
-                    + ',' + invoiceNumber[0] + ","
+                    + ',' + invoiceNumber + ","
                     + "\"" +  cardDetailsLast4digits
                     + "\"," + "\"" + cardDetailsExpiryDate + "\"" + ");";
             //System.out.println(sql);
@@ -141,14 +161,14 @@ public class Controller {
             final double total = p.getTotal();
             final String paymentType = p.getPaymentType();
             String paymentDate =  p.getPaymentDate();
-            final int[] invoiceNumber = p.getInvoiceNumber();
+            final int invoiceNumber = p.getInvoiceNumber();
             
-            sql = "INSERT INTO CashPaymentRecord VALUES (" 
+            sql = "INSERT INTO PaymentRecord VALUES (" 
                     + paymentNo 
                     + ',' + total 
                     + ", \"" + paymentType 
                     + "\"," + '\'' + paymentDate + '\''
-                    + ',' + invoiceNumber[0] + ");";
+                    + ',' + invoiceNumber + ");";
             System.out.println(sql);
             
             try {
