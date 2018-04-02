@@ -26,9 +26,9 @@ public class Payment {
     private final double total;
     private final String paymentType;
     private final String paymentDate;
-    private final int[] invoiceNumber;
+    private final int invoiceNumber;
 
-    public Payment(int paymentNo, double total, String paymentType, String paymentDate, int[] invoiceNumber) {
+    public Payment(int paymentNo, double total, String paymentType, String paymentDate, int invoiceNumber) {
         this.paymentNo = paymentNo;
         this.total = total;
         this.paymentType = paymentType;
@@ -52,7 +52,7 @@ public class Payment {
         return paymentDate;
     }
 
-    public int[] getInvoiceNumber() {
+    public int getInvoiceNumber() {
         return invoiceNumber;
     }
         
