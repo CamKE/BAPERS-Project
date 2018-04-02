@@ -122,7 +122,7 @@ public class Controller {
     }
     
     public void recordPayment(Payment p, String type) {
-        String sql = "";
+        String sql;
         if (type.equals("Card")) {
             final int paymentNo = p.getPaymentNo();
             final double total = p.getTotal();

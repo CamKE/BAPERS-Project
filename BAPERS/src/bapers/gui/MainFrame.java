@@ -2690,7 +2690,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchInvoiceByInvoiceNojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldKeyReleased
         // TODO add your handling code here:
-        String text = searchInvoiceByInvoiceNojTextField.getText().toString();
+        String text = searchInvoiceByInvoiceNojTextField.getText();
         if (text.length() != 0) {
             DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
             TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
@@ -2701,10 +2701,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchInvoiceByJobNumberjTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByJobNumberjTextFieldKeyReleased
         // TODO add your handling code here:
-        String text = searchInvoiceByJobNumberjTextField.getText().toString();
+        String text = searchInvoiceByJobNumberjTextField.getText();
         if (text.length() != 0) {
             DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
-            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
+            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
             invoicejTable.setRowSorter(tr);
             tr.setRowFilter(RowFilter.regexFilter(text, 1));
         }
