@@ -283,7 +283,7 @@ public class Controller {
         //close resultset after use
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
-                stdJobs.add(new StandardJob(result.getString("code"), result.getString("job_description"), result.getDouble("price")));
+                stdJobs.add(new StandardJob(result.getString("code"), result.getString("job_description"), result.getDouble("price"), result.getInt("duration_min")));
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -355,14 +355,15 @@ public class Controller {
         String sql;
 
         //CONTINUE HERE. PUT IN THE NORMAL COMPLETION TIME ENTRY, THEN WRAP THE SQL AND WRITE IN AN IF THE DEADLINE IS STIPULATED, THEN WRITE, OTHERWISE, ITS ALREADY THERE, THEN CONTINUE TRYING TO MAKE UP THE JOBS DATA
-        String completiontime = completionTime.split("[\\s]")[0];
+        String[] completiontime = completionTime.split("[\\s]");
+        System.out.println(completiontime[0] + completiontime[2]+"00");
         if (priority.equals("Stipulated")) {
             int value = Integer.parseInt(surcharge.replaceAll("[\\D]", ""));
-            sql = "INSERT INTO completiontime(completion_time, surcharge, Priority_priority_description) VALUES ('" + completiontime + ":0" + "','" + value + "','" + priority + "');";
+            sql = "INSERT INTO completiontime(completion_time, surcharge, Priority_priority_description) VALUES ('" + completiontime[0]+":"+completiontime[2] + "','" + value + "','" + priority + "');";
             database.write(sql, conn);
         }
 
-        sql = "INSERT INTO job(User_account_no, Customer_account_no,Deadline_CompletionTime_completion_time,special_instructions) VALUES ('" + userId + "','" + customerId + "','" + completiontime + ":0" + "','" + specialInstructions + "');";
+        sql = "INSERT INTO job(User_account_no, Customer_account_no,Deadline_CompletionTime_completion_time,special_instructions) VALUES ('" + userId + "','" + customerId + "','" + completiontime[0]+":"+completiontime[2] + "','" + specialInstructions + "');";
 
         if (database.write(sql, conn) != 0) {
             StringBuilder sb = new StringBuilder();
@@ -370,8 +371,17 @@ public class Controller {
             for (StandardJob j : stdJobs) {
                 sb.append("('").append(j.getCode()).append("'),");
             }
-            sb.deleteCharAt(sb.length()-1);
+            sb.deleteCharAt(sb.length() - 1);
             database.write(sb.toString(), conn);
+            
+            sb = new StringBuilder();
+            sb.append("INSERT INTO material(material_description) VALUES");
+            for (Material j : materials) {
+                sb.append("('").append(j.getMaterialDescription()).append("'),");
+            }
+            sb.deleteCharAt(sb.length() - 1);
+            database.write(sb.toString(), conn);
+            
             System.out.println(sb.toString());
             return true;
         }

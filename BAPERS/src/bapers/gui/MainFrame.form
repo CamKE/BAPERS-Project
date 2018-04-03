@@ -3546,6 +3546,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="standardJobListPropertyChange"/>
                     <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="standardJobListValueChanged"/>
                   </Events>
                   <AuxValues>
@@ -3651,7 +3652,7 @@
                 <Component class="javax.swing.JComboBox" name="completionTimeDD">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[]{&quot;Select time&quot;, &quot;24 hours&quot;, &quot;3 hours&quot;})" type="code"/>
+                      <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[]{&quot;Select time&quot;})" type="code"/>
                     </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[250, 42]"/>

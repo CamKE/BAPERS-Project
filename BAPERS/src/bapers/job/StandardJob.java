@@ -13,11 +13,21 @@ public class StandardJob {
     String code;
     String jobDescription;
     double price;
+    int durationMin;
 
-    public StandardJob(String code, String jobDescription, double price) {
+    public StandardJob(String code, String jobDescription, double price, int durationMin) {
         this.code = code;
         this.jobDescription = jobDescription;
         this.price = price;
+        this.durationMin = durationMin;
+    }
+
+    public int getDurationMin() {
+        return durationMin;
+    }
+
+    public void setDurationMin(int durationMin) {
+        this.durationMin = durationMin;
     }
 
     public String getCode() {

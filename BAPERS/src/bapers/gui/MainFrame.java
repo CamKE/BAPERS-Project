@@ -2130,6 +2130,11 @@ public class MainFrame extends javax.swing.JFrame {
         standardJobList.setMaximumSize(new java.awt.Dimension(85, 507));
         standardJobList.setMinimumSize(new java.awt.Dimension(85, 507));
         standardJobList.setPreferredSize(new java.awt.Dimension(85, 507));
+        standardJobList.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                standardJobListPropertyChange(evt);
+            }
+        });
         standardJobList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 standardJobListValueChanged(evt);
@@ -2169,7 +2174,7 @@ public class MainFrame extends javax.swing.JFrame {
         surchargejTextField.setMinimumSize(new java.awt.Dimension(72, 42));
         surchargejTextField.setPreferredSize(new java.awt.Dimension(72, 42));
 
-        completionTimeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select time", "24 hours", "3 hours"}));
+        completionTimeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select time"}));
         completionTimeDD.setMaximumSize(new java.awt.Dimension(250, 42));
         completionTimeDD.setMinimumSize(new java.awt.Dimension(250, 42));
         completionTimeDD.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -3504,14 +3509,39 @@ public class MainFrame extends javax.swing.JFrame {
 
             list2.addElement(selectedStdJobs.get(selectedStdJobs.size() - 1).getJobDescription());
             standardJobList.setModel(list2);
-            double total = Double.parseDouble(jobTotalField.getText()) + selectedStdJobs.get(selectedStdJobs.size() - 1).getPrice();
+            StandardJob newstdJob = selectedStdJobs.get(selectedStdJobs.size() - 1);
+            double total = Double.parseDouble(jobTotalField.getText()) + newstdJob.getPrice();
             jobTotalField.setText(String.format("%.2f", total));
             stdJobDD.setSelectedIndex(0);
-
+            updateCompletionTimeSelection();
         } else {
             JOptionPane.showMessageDialog(this, "Please select a standard job to be added.");
         }
     }//GEN-LAST:event_addJobButtonActionPerformed
+
+    private void updateCompletionTimeSelection() {
+        int totalDuration = 0;
+
+        for (StandardJob s : selectedStdJobs) {
+            totalDuration += s.getDurationMin();
+        }
+
+        System.out.println(totalDuration);
+
+        List<String> duration = new ArrayList<>();
+        duration.add("Select a time");
+
+        for (int i = 165; i > totalDuration; i -= 15) {
+            int hours = i / 60;
+            int mins = i - (hours * 60);
+            duration.add(hours + " hours " + mins + " mins");
+        }
+
+        String[] durations = new String[duration.size()];
+        durations = duration.toArray(durations);
+
+        completionTimeDD.setModel(new javax.swing.DefaultComboBoxModel<>(durations));
+    }
 
     private void stdJobDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stdJobDDActionPerformed
         // TODO add your handling code here
@@ -3524,30 +3554,23 @@ public class MainFrame extends javax.swing.JFrame {
         String selectedItem = ((String) selectPriority.getSelectedItem());
 
         switch (selectedItem) {
-            case "Normal":
-                completionTimeDD.setSelectedItem("24 hours");
-                break;
             case "Stipulated":
                 stipulatedFields.setVisible(true);
                 completionTimeDD.setEnabled(true);
                 completionTimeDD.setEditable(false);
+                completionTimeDD.setSelectedIndex(0);
 
-//                List<String> duration = new ArrayList<>();
-//                
-//                for (int i = 165 2 hours 45 minutes; i > this is where the jobs total time should go; i-= 15)
-//                {
-//                    
-//                }
                 break;
             case "Urgent":
                 stipulatedFields.setVisible(true);
                 completionTimeDD.setEnabled(false);
                 completionTimeDD.setEditable(true);
                 surchargejTextField.setText(100 + " %");
-                completionTimeDD.setSelectedItem("3 hours");
+                completionTimeDD.setSelectedItem("3 hours 0 mins");
 
                 break;
             default:
+                completionTimeDD.setSelectedItem("24 hours 0 mins");
                 surchargejTextField.setText(0 + " %");
                 stipulatedFields.setVisible(false);
                 break;
@@ -3586,6 +3609,10 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please add a standard job.");
         } else if (selectPriority.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Please select a priority level.");
+        } else if (selectPriority.getSelectedIndex() == 3 && completionTimeDD.getModel().getSize() == 1) {
+            JOptionPane.showMessageDialog(this, "You cannot stipulate a deadline for this job");
+        } else if (selectPriority.getSelectedIndex() == 3 && completionTimeDD.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Please select a completion time");
         } else {
             String[] parts = customerInfoField.getText().split("\\:");
             double total = Double.parseDouble(jobTotalField.getText()) * Double.parseDouble(jobTotalField.getText());
@@ -4005,9 +4032,7 @@ public class MainFrame extends javax.swing.JFrame {
             jobTotalField.setText(String.format("%.2f", total));
             selectedStdJobs.remove(index);
 
-            for (StandardJob s : selectedStdJobs) {
-                System.out.println(s.getJobDescription());
-            }
+            updateCompletionTimeSelection();
         } else {
             JOptionPane.showMessageDialog(this, "You need to select a standard job to remove.");
         }
@@ -4043,6 +4068,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void completionTimeDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completionTimeDDActionPerformed
         // TODO add your handling code here:
+        if (selectPriority.getSelectedIndex() == 3) {
+            int surcharge = (completionTimeDD.getSelectedIndex() * 5) + 100;
+            surchargejTextField.setText(Integer.toString(surcharge) + " %");
+        }
     }//GEN-LAST:event_completionTimeDDActionPerformed
 
     private void customerResultsPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_customerResultsPageComponentHidden
@@ -4075,6 +4104,11 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         resetComponents(createCustomerPage);
     }//GEN-LAST:event_createCustomerPageComponentHidden
+
+    private void standardJobListPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_standardJobListPropertyChange
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_standardJobListPropertyChange
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
