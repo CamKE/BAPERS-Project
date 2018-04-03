@@ -388,7 +388,11 @@ public class Controller {
         }
         return false;
     }
-
+//to do: we need to generate pdf for invoice, then store it. we also need to print a receipt, but obviously we wont have a printer so just generate a xml page for the receipt or
+    //another pdf. then we must alert the office and shift managers of the new job.
+    //after this, just implement lukas' branch code and fix it up
+    //do report gen stuff tomorrow
+    //move on to games tech cw
     private void createInvoice(double total, int surcharge) {
         double total_payable = total * ((surcharge / 100.0) + 1);
         String sql = "INSERT INTO invoice(total_payable)";
