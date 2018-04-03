@@ -348,22 +348,21 @@ public class Controller {
         return success;
     }
 
-    public boolean acceptJob(String customerId, List<Material> materials, List<StandardJob> stdJobs, double total, UserDetails user, String specialInstructions, String completionTime, String surcharge, String priority) {
+    public boolean acceptJob(String customerId, List<Material> materials, List<StandardJob> stdJobs, double total, UserDetails user, String specialInstructions, String completionTime, String surchargeText, String priority) {
         //get user id user account
         int userId = user.getAccount_no();
         // initialise a statusid variable to store the status id from the results
         String sql;
 
-        //CONTINUE HERE. PUT IN THE NORMAL COMPLETION TIME ENTRY, THEN WRAP THE SQL AND WRITE IN AN IF THE DEADLINE IS STIPULATED, THEN WRITE, OTHERWISE, ITS ALREADY THERE, THEN CONTINUE TRYING TO MAKE UP THE JOBS DATA
+        int surcharge = Integer.parseInt(surchargeText.replaceAll("[\\D]", ""));
         String[] completiontime = completionTime.split("[\\s]");
-        System.out.println(completiontime[0] + completiontime[2]+"00");
+        System.out.println(completiontime[0] + completiontime[2] + "00");
         if (priority.equals("Stipulated")) {
-            int value = Integer.parseInt(surcharge.replaceAll("[\\D]", ""));
-            sql = "INSERT INTO completiontime(completion_time, surcharge, Priority_priority_description) VALUES ('" + completiontime[0]+":"+completiontime[2] + "','" + value + "','" + priority + "');";
+            sql = "INSERT INTO completiontime(completion_time, surcharge, Priority_priority_description) VALUES ('" + completiontime[0] + ":" + completiontime[2] + "','" + surcharge + "','" + priority + "');";
             database.write(sql, conn);
         }
 
-        sql = "INSERT INTO job(User_account_no, Customer_account_no,Deadline_CompletionTime_completion_time,special_instructions) VALUES ('" + userId + "','" + customerId + "','" + completiontime[0]+":"+completiontime[2] + "','" + specialInstructions + "');";
+        sql = "INSERT INTO job(User_account_no, Customer_account_no,Deadline_CompletionTime_completion_time,special_instructions) VALUES ('" + userId + "','" + customerId + "','" + completiontime[0] + ":" + completiontime[2] + "','" + specialInstructions + "');";
 
         if (database.write(sql, conn) != 0) {
             StringBuilder sb = new StringBuilder();
@@ -373,7 +372,7 @@ public class Controller {
             }
             sb.deleteCharAt(sb.length() - 1);
             database.write(sb.toString(), conn);
-            
+
             sb = new StringBuilder();
             sb.append("INSERT INTO material(material_description) VALUES");
             for (Material j : materials) {
@@ -381,10 +380,17 @@ public class Controller {
             }
             sb.deleteCharAt(sb.length() - 1);
             database.write(sb.toString(), conn);
-            
+
             System.out.println(sb.toString());
+
+            createInvoice(total,surcharge);
             return true;
         }
         return false;
+    }
+
+    private void createInvoice(double total, int surcharge) {
+        double total_payable = total * ((surcharge / 100.0) + 1);
+        String sql = "INSERT INTO invoice(total_payable)";
     }
 }

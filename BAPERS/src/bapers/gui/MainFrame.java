@@ -3467,7 +3467,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void cancelCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCustomerFJobjButtonActionPerformed
         // TODO add your handling code here:
-        currentPage = "acceptJob";
         acceptJobPageButton.doClick();
     }//GEN-LAST:event_cancelCustomerFJobjButtonActionPerformed
 
@@ -3826,6 +3825,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void acceptJobPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptJobPageButtonActionPerformed
         // TODO add your handling code here:
+        currentPage = "acceptJob";
         card1.show(cardPanel1, "acceptJob");
         pageLabel.setText("Accept Job page");
     }//GEN-LAST:event_acceptJobPageButtonActionPerformed
