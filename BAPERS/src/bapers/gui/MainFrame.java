@@ -45,6 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final Controller controller;
     private UserDetails loggedInUser;
     DefaultTableModel tblModel;
+    String[] durations;
 
     List<Material> materials;
     List<StandardJob> stdJobs;
@@ -68,6 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
         materials = new ArrayList<>();
         list1 = new DefaultListModel();
         list2 = new DefaultListModel();
+        durations = new String[]{"Select a time"};
         currentPage = "";
         // Set the controller 
         this.controller = controller;
@@ -3536,10 +3538,12 @@ public class MainFrame extends javax.swing.JFrame {
             duration.add(hours + " hours " + mins + " mins");
         }
 
-        String[] durations = new String[duration.size()];
+        durations = new String[duration.size()];
         durations = duration.toArray(durations);
 
-        completionTimeDD.setModel(new javax.swing.DefaultComboBoxModel<>(durations));
+        if (selectPriority.getSelectedIndex() == 3) {
+            completionTimeDD.setModel(new javax.swing.DefaultComboBoxModel<>(durations));
+        }
     }
 
     private void stdJobDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stdJobDDActionPerformed
@@ -3558,6 +3562,7 @@ public class MainFrame extends javax.swing.JFrame {
                 completionTimeDD.setEnabled(true);
                 completionTimeDD.setEditable(false);
                 completionTimeDD.setSelectedIndex(0);
+                completionTimeDD.setModel(new javax.swing.DefaultComboBoxModel<>(durations));
 
                 break;
             case "Urgent":
@@ -3569,6 +3574,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 break;
             default:
+                completionTimeDD.setEditable(true);
                 completionTimeDD.setSelectedItem("24 hours 0 mins");
                 surchargejTextField.setText(0 + " %");
                 stipulatedFields.setVisible(false);
@@ -3613,12 +3619,17 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (selectPriority.getSelectedIndex() == 3 && completionTimeDD.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Please select a completion time");
         } else {
-            String[] parts = customerInfoField.getText().split("\\:");
-            double total = Double.parseDouble(jobTotalField.getText()) * Double.parseDouble(jobTotalField.getText());
-            if (controller.acceptJob(parts[2], materials, selectedStdJobs, total, loggedInUser, specialInstructionjTextField.getText(), (String) completionTimeDD.getSelectedItem(), (String) surchargejTextField.getText(), (String) selectPriority.getSelectedItem())) {
-                JOptionPane.showMessageDialog(this, "Job created");
-                homeButton.doClick();
+            String surcharge = (String) surchargejTextField.getText().replaceAll("[\\D]", "");
+            double total = Double.parseDouble(jobTotalField.getText()) * ((Integer.parseInt(surcharge) / 100.0) + 1);
+            int response = JOptionPane.showConfirmDialog(this, "Total : £" + String.format("%.2f", total) + " (including surcharge and VAT). Is the customer happy to proceed?");
+            if (response == 0) {
+                String[] parts = customerInfoField.getText().split("\\:");
+                if (controller.acceptJob(parts[2], materials, selectedStdJobs, total, loggedInUser, specialInstructionjTextField.getText(), (String) completionTimeDD.getSelectedItem(), surcharge, (String) selectPriority.getSelectedItem())) {
+                    JOptionPane.showMessageDialog(this, "Job created");
+                    homeButton.doClick();
+                }
             }
+
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 

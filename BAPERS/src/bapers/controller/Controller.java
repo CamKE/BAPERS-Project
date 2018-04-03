@@ -12,16 +12,17 @@ import bapers.job.Material;
 import bapers.job.StandardJob;
 import bapers.payment.PaymentDetails;
 import bapers.user.UserDetails;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 
 /**
  *
@@ -354,7 +355,7 @@ public class Controller {
         // initialise a statusid variable to store the status id from the results
         String sql;
 
-        int surcharge = Integer.parseInt(surchargeText.replaceAll("[\\D]", ""));
+        int surcharge = Integer.parseInt(surchargeText);
         String[] completiontime = completionTime.split("[\\s]");
         System.out.println(completiontime[0] + completiontime[2] + "00");
         if (priority.equals("Stipulated")) {
@@ -383,8 +384,7 @@ public class Controller {
 
             System.out.println(sb.toString());
 
-            createInvoice(total,surcharge);
-            return true;
+            return createInvoice(total, surcharge);
         }
         return false;
     }
@@ -393,8 +393,13 @@ public class Controller {
     //after this, just implement lukas' branch code and fix it up
     //do report gen stuff tomorrow
     //move on to games tech cw
-    private void createInvoice(double total, int surcharge) {
-        double total_payable = total * ((surcharge / 100.0) + 1);
-        String sql = "INSERT INTO invoice(total_payable)";
+
+    private boolean createInvoice(double totalPayable, int surcharge) {
+        System.out.println("£"+totalPayable);
+        System.out.println(surcharge + " surcharge");
+
+        String sql = "INSERT INTO invoice(total_payable,invoice_location) VALUES (" + totalPayable + ",'invoice copy for customer to take')";
+
+        return database.write(sql, conn) != 0;
     }
 }
