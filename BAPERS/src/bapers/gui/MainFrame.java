@@ -323,7 +323,7 @@ public class MainFrame extends javax.swing.JFrame {
         periodFromLabel = new javax.swing.JLabel();
         createReportButton = new javax.swing.JButton();
         reportStartPeriod = new com.toedter.calendar.JDateChooser();
-        reportEndPeroid = new com.toedter.calendar.JDateChooser();
+        reportEndPeriod = new com.toedter.calendar.JDateChooser();
         periodToLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
@@ -2930,8 +2930,8 @@ public class MainFrame extends javax.swing.JFrame {
         reportStartPeriod.setMinimumSize(new java.awt.Dimension(250, 42));
         reportStartPeriod.setPreferredSize(new java.awt.Dimension(250, 42));
 
-        reportEndPeroid.setMinimumSize(new java.awt.Dimension(250, 42));
-        reportEndPeroid.setPreferredSize(new java.awt.Dimension(250, 42));
+        reportEndPeriod.setMinimumSize(new java.awt.Dimension(250, 42));
+        reportEndPeriod.setPreferredSize(new java.awt.Dimension(250, 42));
 
         periodToLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         periodToLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -2967,7 +2967,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(periodToLabel)
                             .addGap(18, 18, 18)
-                            .addComponent(reportEndPeroid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(reportEndPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         createReportPageLayout.setVerticalGroup(
@@ -2986,7 +2986,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(periodFromLabel)
                     .addComponent(reportStartPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(periodToLabel)
-                    .addComponent(reportEndPeroid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(reportEndPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addComponent(findCustomerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
@@ -4409,6 +4409,21 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void createReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createReportButtonActionPerformed
         // TODO add your handling code here:
+        int reportIndex = reportTypeDD.getSelectedIndex();
+        Date[] reportPeriod = new Date[]{reportStartPeriod.getDate(), reportEndPeriod.getDate()};
+        String customerInfo = customerInfoField1.getText();
+        System.out.println(reportPeriod[0]);
+        if (reportIndex == 0) {
+            JOptionPane.showMessageDialog(this, "Please select a report type");
+        } else if (reportPeriod[0] == null || reportPeriod[1] == null || !reportPeriod[1].after(reportPeriod[0])) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid report peroid");
+        } else if (reportIndex == 3 && customerInfo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a customer");
+        } else {
+            if (controller.createReport(reportIndex, reportPeriod, customerInfo)) {
+                System.out.println("wooooo");
+            }
+        }
     }//GEN-LAST:event_createReportButtonActionPerformed
 
     private void createReportPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createReportPageComponentHidden
@@ -4644,7 +4659,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton removeJobButton;
     private javax.swing.JButton removeMaterialButton;
     private javax.swing.JButton removeTaskButton;
-    private com.toedter.calendar.JDateChooser reportEndPeroid;
+    private com.toedter.calendar.JDateChooser reportEndPeriod;
     private javax.swing.JPanel reportHomePage;
     private javax.swing.JLabel reportPeriodLabel;
     private javax.swing.JButton reportSettingsPageButton;

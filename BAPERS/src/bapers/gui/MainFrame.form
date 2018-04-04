@@ -4677,7 +4677,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="periodToLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="reportEndPeroid" min="-2" max="-2" attributes="0"/>
+                                  <Component id="reportEndPeriod" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -4702,7 +4702,7 @@
                           <Component id="periodFromLabel" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="reportStartPeriod" alignment="2" min="-2" max="-2" attributes="0"/>
                           <Component id="periodToLabel" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="reportEndPeroid" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="reportEndPeriod" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="findCustomerPanel" min="-2" max="-2" attributes="0"/>
@@ -4878,7 +4878,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="reportEndPeroid">
+            <Component class="com.toedter.calendar.JDateChooser" name="reportEndPeriod">
               <Properties>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[250, 42]"/>

@@ -419,4 +419,20 @@ public class Controller {
         }
         return tasks;
     }
+
+    public boolean createReport(int reportIndex, Date[] reportPeriod, String customerInfo) {
+        switch (reportIndex) {
+            case 1:
+                System.out.println("Individual performance report");
+                break; // optional
+            case 2:
+                System.out.println("Summary performance report");
+                break; // optional
+            case 3:
+                System.out.println("Customer report");
+                break; // optional
+        }
+        
+        return true;
+    }
 }
