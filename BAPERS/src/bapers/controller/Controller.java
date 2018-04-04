@@ -334,17 +334,20 @@ public class Controller {
     }
 
     //Creates a new standard job using the input from the GUI 
-    public boolean createStandardJob(String code1, String job_description1, double price1) {
-        boolean success = false;
-        String SQL = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ('" + code1 + "','" + job_description1 + "','" + price1 + "');";
+    public boolean createStandardJob(String code1, String job_description1, double price1, List<Task> selectedTasks) {
+        String sql = "INSERT INTO STANDARDJOB(code, job_description, price) VALUES ('" + code1 + "','" + job_description1 + "','" + price1 + "');";
 
-        try {
-            database.write(SQL, conn);
-            success = true;
-        } catch (Exception e) {
-            System.out.println("create standard job Error");
+        if (database.write(sql, conn) != 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("INSERT INTO standardjob_tasks(StandardJob_code,Task_task_id) VALUES");
+            for (Task t : selectedTasks) {
+                sb.append("('").append(code1).append("',").append(t.getTaskId()).append("),");
+            }
+            sb.deleteCharAt(sb.length() - 1);
+            database.write(sb.toString(), conn);
+            return true;
         }
-        return success;
+        return false;
     }
 
     public boolean acceptJob(String customerId, List<Material> materials, List<StandardJob> stdJobs, double total, UserDetails user, String specialInstructions, String completionTime, String surchargeText, String priority) {
@@ -409,7 +412,7 @@ public class Controller {
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
                 String shelfslot = result.getString("Department_department_code") + result.getString("shelf_slot");
-                tasks.add(new Task(result.getInt("task_id"), result.getString("description"), result.getInt("duration_min"), shelfslot,result.getDouble("price")));
+                tasks.add(new Task(result.getInt("task_id"), result.getString("description"), result.getInt("duration_min"), shelfslot, result.getDouble("price")));
             }
         } catch (SQLException ex) {
             System.out.println(ex);

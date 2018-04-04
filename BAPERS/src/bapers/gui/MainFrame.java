@@ -51,6 +51,7 @@ public class MainFrame extends javax.swing.JFrame {
     List<Task> tasks;
     List<Invoice> selectedInvoices;
     List<StandardJob> selectedStdJobs;
+    List<Task> selectedTasks;
     // list models that are used to for the scroll
     DefaultListModel list1;
     DefaultListModel list2;
@@ -64,6 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame(Controller controller) {
         selectedInvoices = new ArrayList<>();
+        selectedTasks = new ArrayList<>();
         selectedStdJobs = new ArrayList<>();
         stdJobs = new ArrayList<>();
         materials = new ArrayList<>();
@@ -295,7 +297,6 @@ public class MainFrame extends javax.swing.JFrame {
         codeField = new javax.swing.JTextField();
         selectATaskBox = new javax.swing.JComboBox<>();
         addButton = new javax.swing.JButton();
-        taskField = new javax.swing.JTextField();
         removeTaskButton = new javax.swing.JButton();
         stdJobTotalField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
@@ -304,6 +305,8 @@ public class MainFrame extends javax.swing.JFrame {
         codeLabel = new javax.swing.JLabel();
         descLabel = new javax.swing.JLabel();
         totalLabel1 = new javax.swing.JLabel();
+        materialsjScrollPane2 = new javax.swing.JScrollPane();
+        standardJobList1 = new javax.swing.JList<>();
         customerResultsPage = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         customerResultsTable = new javax.swing.JTable();
@@ -936,6 +939,11 @@ public class MainFrame extends javax.swing.JFrame {
         createTaskPage.setBackground(new java.awt.Color(61, 96, 146));
         createTaskPage.setMaximumSize(new java.awt.Dimension(900, 640));
         createTaskPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        createTaskPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                createTaskPageComponentHidden(evt);
+            }
+        });
 
         newTaskLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         newTaskLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -2552,6 +2560,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         createStandardJobPage.setBackground(new java.awt.Color(61, 96, 146));
         createStandardJobPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                createStandardJobPageComponentHidden(evt);
+            }
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 createStandardJobPageComponentShown(evt);
             }
@@ -2586,11 +2597,16 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        taskField.setEditable(false);
-
         removeTaskButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         removeTaskButton.setText("Remove task");
+        removeTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeTaskButtonActionPerformed(evt);
+            }
+        });
 
+        stdJobTotalField.setEditable(false);
+        stdJobTotalField.setText("0");
         stdJobTotalField.setMaximumSize(new java.awt.Dimension(100, 42));
         stdJobTotalField.setMinimumSize(new java.awt.Dimension(100, 42));
         stdJobTotalField.setPreferredSize(new java.awt.Dimension(100, 42));
@@ -2622,6 +2638,21 @@ public class MainFrame extends javax.swing.JFrame {
         totalLabel1.setForeground(new java.awt.Color(255, 255, 255));
         totalLabel1.setText("Total: £");
 
+        standardJobList1.setMaximumSize(new java.awt.Dimension(85, 507));
+        standardJobList1.setMinimumSize(new java.awt.Dimension(85, 507));
+        standardJobList1.setPreferredSize(new java.awt.Dimension(85, 507));
+        standardJobList1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                standardJobList1PropertyChange(evt);
+            }
+        });
+        standardJobList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                standardJobList1ValueChanged(evt);
+            }
+        });
+        materialsjScrollPane2.setViewportView(standardJobList1);
+
         javax.swing.GroupLayout createStandardJobPageLayout = new javax.swing.GroupLayout(createStandardJobPage);
         createStandardJobPage.setLayout(createStandardJobPageLayout);
         createStandardJobPageLayout.setHorizontalGroup(
@@ -2632,17 +2663,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createStandardJobPageLayout.createSequentialGroup()
                 .addGap(168, 168, 168)
-                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createStandardJobPageLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(codeLabel)
-                            .addComponent(descLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descriptionField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createStandardJobPageLayout.createSequentialGroup()
+                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(createStandardJobPageLayout.createSequentialGroup()
                         .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(addButton)
                             .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2650,18 +2672,27 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(createStandardJobPageLayout.createSequentialGroup()
                                 .addComponent(removeTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                                 .addComponent(totalLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(stdJobTotalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                                .addComponent(taskField, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(createStandardJobPageLayout.createSequentialGroup()
+                            .addComponent(materialsjScrollPane2)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createStandardJobPageLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(cancelButton)
                         .addGap(18, 18, 18)
-                        .addComponent(createButton)))
+                        .addComponent(createButton))
+                    .addGroup(createStandardJobPageLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(codeLabel)
+                            .addComponent(descLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(createStandardJobPageLayout.createSequentialGroup()
+                                .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(descriptionField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(189, 189, 189))
         );
         createStandardJobPageLayout.setVerticalGroup(
@@ -2678,12 +2709,12 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(descriptionField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(descLabel))
                 .addGap(25, 25, 25)
-                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(taskField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createStandardJobPageLayout.createSequentialGroup()
+                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(createStandardJobPageLayout.createSequentialGroup()
                         .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(addButton)))
+                        .addComponent(addButton))
+                    .addComponent(materialsjScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(25, 25, 25)
                 .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -3274,10 +3305,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void createNewTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTaskButtonActionPerformed
         // TODO add your handling code here:
 
-        boolean valid = true;
         //Initialise values to get the data from the GUI buttons
         String description = descriptionNewTaskField.getText();
-        double price = Double.parseDouble(priceNewTaskField.getText());
+        String price = priceNewTaskField.getText();
         int duration_min = Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
         int duration_hours = Integer.parseInt((String) durationNewTaskDD.getSelectedItem());
         String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
@@ -3286,17 +3316,12 @@ public class MainFrame extends javax.swing.JFrame {
         duration_min += duration_hours * 60;
 
         //Check fields are not empty in the GUI, then pop up will show if no data is inserted
-        if (description.equals("") || price == 0) {
-            valid = false;
+        if (description.equals("") || !Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", price)) {
             JOptionPane.showMessageDialog(null, "Please insert data");
         } else {
-            valid = true;
-        }
-
-        //Will only execute method in controller if all preconditions are met
-        if (valid) {
-            if (controller.createNewTask(description, duration_min, price, Department_department_code, shelf_slot)) {
+            if (controller.createNewTask(description, duration_min, Double.parseDouble(price), Department_department_code, shelf_slot)) {
                 JOptionPane.showMessageDialog(null, "Task created");
+                homeButton.doClick();
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to create Task");
             }
@@ -3854,6 +3879,21 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
+        int taskIndex = selectATaskBox.getSelectedIndex();
+
+        if (taskIndex != 0) {
+
+            selectedTasks.add(tasks.get(taskIndex - 1));
+
+            list2.addElement(selectedTasks.get(selectedTasks.size() - 1).getDescription());
+            Task newTask = selectedTasks.get(selectedTasks.size() - 1);
+            double total = Double.parseDouble(stdJobTotalField.getText()) + newTask.getPrice();
+            stdJobTotalField.setText(String.format("%.2f", total));
+            standardJobList1.setModel(list2);
+            selectATaskBox.setSelectedIndex(0);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a task to be added.");
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
@@ -3865,17 +3905,18 @@ public class MainFrame extends javax.swing.JFrame {
         //Check fields are not empty
         if (job_description.equals("")) {
             JOptionPane.showMessageDialog(this, "Please insert data");
-        } else if (!Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", price)) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid price");
         } //check code field is not bigger than 6 characters
         else if (!Pattern.matches("\\b[a-zA-Z]{1,3}\\d{2,3}\\b", code)) {
             JOptionPane.showMessageDialog(this, "Code must be no longer than 6 characters. Must consist of letters followed by minimum 2 numbers.");
         } //check description field is not bigger than 45 characters
         else if (descriptionField.getText().length() > 45) {
             JOptionPane.showMessageDialog(this, "Description cannot be longer than 45 characters");
+        } else if (selectedTasks.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select tasks to be added.");
         } else {
-            if (controller.createStandardJob(code, job_description, Double.parseDouble(price))) {
+            if (controller.createStandardJob(code, job_description, Double.parseDouble(price), selectedTasks)) {
                 JOptionPane.showMessageDialog(this, "Standard Job created");
+                homeButton.doClick();
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to create Standard Job");
             }
@@ -4110,6 +4151,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void createStandardJobPageComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createStandardJobPageComponentShown
         // TODO add your handling code here:
+        if (stdJobTotalField.getText().equals("")) {
+            stdJobTotalField.setText("0");
+        }
+
         tasks = controller.getTasks();
 
         String[] taskList = new String[tasks.size() + 1];
@@ -4121,6 +4166,40 @@ public class MainFrame extends javax.swing.JFrame {
 
         selectATaskBox.setModel(new javax.swing.DefaultComboBoxModel<>(taskList));
     }//GEN-LAST:event_createStandardJobPageComponentShown
+
+    private void standardJobList1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_standardJobList1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_standardJobList1PropertyChange
+
+    private void standardJobList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_standardJobList1ValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_standardJobList1ValueChanged
+
+    private void removeTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTaskButtonActionPerformed
+        // TODO add your handling code here:
+        int index = standardJobList1.getSelectedIndex();
+        if (index != -1) {
+            list2.remove(index);
+            standardJobList1.setModel(list2);
+            double total = Double.parseDouble(stdJobTotalField.getText()) - selectedTasks.get(index).getPrice();
+            stdJobTotalField.setText(String.format("%.2f", total));
+            selectedTasks.remove(index);
+        } else {
+            JOptionPane.showMessageDialog(this, "You need to select a task to remove.");
+        }
+    }//GEN-LAST:event_removeTaskButtonActionPerformed
+
+    private void createStandardJobPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createStandardJobPageComponentHidden
+        // TODO add your handling code here:
+        resetComponents(createStandardJobPage);
+        selectedTasks.clear();
+        list2.clear();
+    }//GEN-LAST:event_createStandardJobPageComponentHidden
+
+    private void createTaskPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createTaskPageComponentHidden
+        // TODO add your handling code here:
+        resetComponents(createTaskPage);
+    }//GEN-LAST:event_createTaskPageComponentHidden
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
@@ -4298,6 +4377,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel materialSubmittedLabel;
     private javax.swing.JScrollPane materialsjScrollPane;
     private javax.swing.JScrollPane materialsjScrollPane1;
+    private javax.swing.JScrollPane materialsjScrollPane2;
     private javax.swing.JTextField materialsjTextField;
     private javax.swing.JLabel minutesLabel;
     private javax.swing.JLabel newTaskLabel1;
@@ -4357,6 +4437,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel specialInstructionsLabel;
     private javax.swing.JPanel standardJobHomePage;
     private javax.swing.JList<String> standardJobList;
+    private javax.swing.JList<String> standardJobList1;
     private javax.swing.JButton standardJobsMenuPageButton;
     private javax.swing.JComboBox<String> stdJobDD;
     private javax.swing.JLabel stdJobLabel;
@@ -4370,7 +4451,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel surchargeLabel;
     private javax.swing.JTextField surchargejTextField;
     private javax.swing.JTextField surnameField;
-    private javax.swing.JTextField taskField;
     private javax.swing.JPanel taskHomePage;
     private javax.swing.JButton tasksMenuPageButton;
     private javax.swing.JLabel totalLabel;
