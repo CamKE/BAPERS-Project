@@ -4422,6 +4422,8 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             if (controller.createReport(reportIndex, reportPeriod, customerInfo)) {
                 System.out.println("wooooo");
+            } else {
+                System.out.println("ahhhhhhhhhhh");
             }
         }
     }//GEN-LAST:event_createReportButtonActionPerformed
