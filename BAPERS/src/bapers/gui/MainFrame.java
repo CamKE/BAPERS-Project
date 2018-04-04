@@ -10,6 +10,7 @@ import bapers.customer.CustomerDetails;
 import bapers.job.Invoice;
 import bapers.job.Material;
 import bapers.job.StandardJob;
+import bapers.job.Task;
 import bapers.payment.PaymentCard;
 import bapers.payment.PaymentDetails;
 import bapers.user.UserDetails;
@@ -18,7 +19,6 @@ import java.awt.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +28,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -49,6 +48,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     List<Material> materials;
     List<StandardJob> stdJobs;
+    List<Task> tasks;
     List<Invoice> selectedInvoices;
     List<StandardJob> selectedStdJobs;
     // list models that are used to for the scroll
@@ -155,7 +155,6 @@ public class MainFrame extends javax.swing.JFrame {
         departmentNewTaskLabel = new javax.swing.JLabel();
         shelfSlotNewTaskLabel = new javax.swing.JLabel();
         createNewTaskButton = new javax.swing.JButton();
-        cancelButtonCreateTask = new javax.swing.JButton();
         shelfSlotTaskDD = new javax.swing.JComboBox<>();
         departmentNewTaskDD = new javax.swing.JComboBox<>();
         durationNewTaskMinsDD = new javax.swing.JComboBox<>();
@@ -292,19 +291,19 @@ public class MainFrame extends javax.swing.JFrame {
         selectSelectedInvoicejButton = new javax.swing.JButton();
         cancelInvoiceSeletionjButton = new javax.swing.JButton();
         createStandardJobPage = new javax.swing.JPanel();
-        newStandardJobLabel = new javax.swing.JLabel();
-        codeLabel = new javax.swing.JLabel();
         descriptionField = new javax.swing.JTextField();
-        descriptionLabel1 = new javax.swing.JLabel();
         codeField = new javax.swing.JTextField();
         selectATaskBox = new javax.swing.JComboBox<>();
         addButton = new javax.swing.JButton();
         taskField = new javax.swing.JTextField();
         removeTaskButton = new javax.swing.JButton();
-        totalLabel1 = new javax.swing.JLabel();
         stdJobTotalField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        stdJobLabel = new javax.swing.JLabel();
+        codeLabel = new javax.swing.JLabel();
+        descLabel = new javax.swing.JLabel();
+        totalLabel1 = new javax.swing.JLabel();
         customerResultsPage = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         customerResultsTable = new javax.swing.JTable();
@@ -984,14 +983,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        cancelButtonCreateTask.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        cancelButtonCreateTask.setText("Cancel");
-        cancelButtonCreateTask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonCreateTaskActionPerformed(evt);
-            }
-        });
-
         shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getShelfSlots()));
         shelfSlotTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
         shelfSlotTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
@@ -1068,8 +1059,6 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(newTaskLabel1)
                         .addGap(362, 362, 362))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
-                        .addComponent(cancelButtonCreateTask)
-                        .addGap(35, 35, 35)
                         .addComponent(createNewTaskButton)
                         .addGap(50, 50, 50))))
         );
@@ -1102,9 +1091,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(shelfSlotNewTaskLabel)
                     .addComponent(shelfSlotTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(cancelButtonCreateTask, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createNewTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(createNewTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
 
@@ -2564,25 +2551,24 @@ public class MainFrame extends javax.swing.JFrame {
         cardPanel1.add(searchInvoicePage, "searchInvoice");
 
         createStandardJobPage.setBackground(new java.awt.Color(61, 96, 146));
+        createStandardJobPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                createStandardJobPageComponentShown(evt);
+            }
+        });
 
-        newStandardJobLabel.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
-        newStandardJobLabel.setForeground(new java.awt.Color(255, 255, 255));
-        newStandardJobLabel.setText("New Standard Job");
-
-        codeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        codeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        codeLabel.setText("Code:");
-
+        descriptionField.setMaximumSize(new java.awt.Dimension(250, 42));
+        descriptionField.setMinimumSize(new java.awt.Dimension(250, 42));
+        descriptionField.setPreferredSize(new java.awt.Dimension(250, 42));
         descriptionField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descriptionFieldActionPerformed(evt);
             }
         });
 
-        descriptionLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        descriptionLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        descriptionLabel1.setText("Description");
-
+        codeField.setMaximumSize(new java.awt.Dimension(250, 42));
+        codeField.setMinimumSize(new java.awt.Dimension(250, 42));
+        codeField.setPreferredSize(new java.awt.Dimension(250, 42));
         codeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codeFieldActionPerformed(evt);
@@ -2600,12 +2586,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        taskField.setEditable(false);
+
         removeTaskButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         removeTaskButton.setText("Remove task");
 
-        totalLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        totalLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        totalLabel1.setText("Total:");
+        stdJobTotalField.setMaximumSize(new java.awt.Dimension(100, 42));
+        stdJobTotalField.setMinimumSize(new java.awt.Dimension(100, 42));
+        stdJobTotalField.setPreferredSize(new java.awt.Dimension(100, 42));
 
         createButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         createButton.setText("Create");
@@ -2618,82 +2606,95 @@ public class MainFrame extends javax.swing.JFrame {
         cancelButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cancelButton.setText("Cancel");
 
+        stdJobLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        stdJobLabel.setForeground(new java.awt.Color(255, 255, 255));
+        stdJobLabel.setText("New Standard Job");
+
+        codeLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        codeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        codeLabel.setText("Code:");
+
+        descLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        descLabel.setForeground(new java.awt.Color(255, 255, 255));
+        descLabel.setText("Description:");
+
+        totalLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        totalLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        totalLabel1.setText("Total: £");
+
         javax.swing.GroupLayout createStandardJobPageLayout = new javax.swing.GroupLayout(createStandardJobPage);
         createStandardJobPage.setLayout(createStandardJobPageLayout);
         createStandardJobPageLayout.setHorizontalGroup(
             createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createStandardJobPageLayout.createSequentialGroup()
+                .addGap(283, 283, 283)
+                .addComponent(stdJobLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createStandardJobPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(newStandardJobLabel)
-                .addGap(323, 323, 323))
-            .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                .addGap(167, 167, 167)
+                .addGap(168, 168, 168)
                 .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addButton)
-                    .addComponent(descriptionLabel1)
-                    .addComponent(codeLabel)
-                    .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                        .addComponent(codeField)
-                        .addGap(323, 323, 323))
-                    .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taskField, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                        .addGap(402, 402, 402)
-                        .addComponent(removeTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(totalLabel1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createStandardJobPageLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(codeLabel)
+                            .addComponent(descLabel))
                         .addGap(18, 18, 18)
-                        .addComponent(stdJobTotalField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(descriptionField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createStandardJobPageLayout.createSequentialGroup()
+                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addButton)
+                            .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(createStandardJobPageLayout.createSequentialGroup()
+                                .addComponent(removeTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(totalLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(stdJobTotalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(createStandardJobPageLayout.createSequentialGroup()
+                                .addComponent(taskField, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                        .addGap(528, 528, 528)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(cancelButton)
                         .addGap(18, 18, 18)
                         .addComponent(createButton)))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(189, 189, 189))
         );
         createStandardJobPageLayout.setVerticalGroup(
             createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createStandardJobPageLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(stdJobLabel)
+                .addGap(18, 18, 18)
+                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codeLabel))
+                .addGap(25, 25, 25)
+                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(descriptionField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descLabel))
+                .addGap(25, 25, 25)
                 .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(stdJobTotalField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(taskField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createStandardJobPageLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(newStandardJobLabel)
-                        .addGap(33, 33, 33)
-                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(codeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(codeField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                                .addComponent(descriptionField)
-                                .addGap(1, 1, 1))
-                            .addComponent(descriptionLabel1))
-                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(createStandardJobPageLayout.createSequentialGroup()
-                                .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addButton))
-                            .addComponent(taskField))
-                        .addGap(56, 56, 56)
-                        .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(removeTaskButton)
-                            .addComponent(totalLabel1))))
-                .addGap(48, 48, 48)
+                        .addComponent(selectATaskBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(addButton)))
+                .addGap(25, 25, 25)
+                .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(stdJobTotalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(totalLabel1))
+                    .addComponent(removeTaskButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(createStandardJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
                     .addComponent(cancelButton))
-                .addGap(215, 215, 215))
+                .addGap(240, 240, 240))
         );
 
         cardPanel1.add(createStandardJobPage, "createStandardJob");
@@ -3302,10 +3303,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_createNewTaskButtonActionPerformed
 
-    private void cancelButtonCreateTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonCreateTaskActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelButtonCreateTaskActionPerformed
-
     private void shelfSlotTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shelfSlotTaskDDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_shelfSlotTaskDDActionPerformed
@@ -3860,39 +3857,29 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-
-        boolean valid = true;
         //Initialise values
         String code = codeField.getText();
         String job_description = descriptionField.getText();
-        double price = Double.parseDouble(stdJobTotalField.getText());
+        String price = stdJobTotalField.getText();
 
         //Check fields are not empty
-        if (code.equals("") || job_description.equals("") || price == 0) {
-            valid = false;
-            JOptionPane.showMessageDialog(null, "Please insert data");
+        if (job_description.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please insert data");
+        } else if (!Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", price)) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid price");
         } //check code field is not bigger than 6 characters
-        else if (codeField.getText().length() > 6) {
-            valid = false;
-            JOptionPane.showMessageDialog(null, "The code cannot be longer than 6 characters");
+        else if (!Pattern.matches("\\b[a-zA-Z]{1,3}\\d{2,3}\\b", code)) {
+            JOptionPane.showMessageDialog(this, "Code must be no longer than 6 characters. Must consist of letters followed by minimum 2 numbers.");
         } //check description field is not bigger than 45 characters
         else if (descriptionField.getText().length() > 45) {
-            valid = false;
-            JOptionPane.showMessageDialog(null, "Description cannot be longer than 45 characters");
+            JOptionPane.showMessageDialog(this, "Description cannot be longer than 45 characters");
         } else {
-            valid = true;
-        }
-
-        //Will only execute method in controller if all preconditions are met
-        if (valid) {
-            if (controller.createStandardJob(code, job_description, price)) {
-                JOptionPane.showMessageDialog(null, "Standard Job created");
+            if (controller.createStandardJob(code, job_description, Double.parseDouble(price))) {
+                JOptionPane.showMessageDialog(this, "Standard Job created");
             } else {
-                JOptionPane.showMessageDialog(null, "Failed to create Standard Job");
+                JOptionPane.showMessageDialog(this, "Failed to create Standard Job");
             }
         }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void createSJobPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSJobPageButtonActionPerformed
@@ -4121,6 +4108,20 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_standardJobListPropertyChange
 
+    private void createStandardJobPageComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createStandardJobPageComponentShown
+        // TODO add your handling code here:
+        tasks = controller.getTasks();
+
+        String[] taskList = new String[tasks.size() + 1];
+
+        taskList[0] = "Select a task.";
+        for (int i = 0; i < tasks.size(); i++) {
+            taskList[i + 1] = tasks.get(i).getDescription();
+        }
+
+        selectATaskBox.setModel(new javax.swing.DefaultComboBoxModel<>(taskList));
+    }//GEN-LAST:event_createStandardJobPageComponentShown
+
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
@@ -4201,7 +4202,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton backupSettingsPageButton;
     private javax.swing.JTextField buildingNumberField;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JButton cancelButtonCreateTask;
     private javax.swing.JButton cancelCreationjButton;
     private javax.swing.JButton cancelCustomerFJobjButton;
     private javax.swing.JButton cancelInvoiceSeletionjButton;
@@ -4246,9 +4246,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton deleteButton;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
     private javax.swing.JLabel departmentNewTaskLabel;
+    private javax.swing.JLabel descLabel;
     private javax.swing.JTextField descriptionField;
     private javax.swing.JLabel descriptionLabel;
-    private javax.swing.JLabel descriptionLabel1;
     private javax.swing.JTextField descriptionNewTaskField;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JComboBox<String> durationNewTaskDD;
@@ -4300,7 +4300,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane materialsjScrollPane1;
     private javax.swing.JTextField materialsjTextField;
     private javax.swing.JLabel minutesLabel;
-    private javax.swing.JLabel newStandardJobLabel;
     private javax.swing.JLabel newTaskLabel1;
     private javax.swing.JLabel newUserLabel;
     private javax.swing.JLabel pageLabel;
@@ -4360,6 +4359,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> standardJobList;
     private javax.swing.JButton standardJobsMenuPageButton;
     private javax.swing.JComboBox<String> stdJobDD;
+    private javax.swing.JLabel stdJobLabel;
     private javax.swing.JTextField stdJobTotalField;
     private javax.swing.JPanel stipulatedFields;
     private javax.swing.JTextField streetNameField;

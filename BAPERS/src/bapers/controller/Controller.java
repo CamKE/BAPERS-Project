@@ -10,9 +10,9 @@ import bapers.database.DBImpl;
 import bapers.job.Invoice;
 import bapers.job.Material;
 import bapers.job.StandardJob;
+import bapers.job.Task;
 import bapers.payment.PaymentDetails;
 import bapers.user.UserDetails;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,8 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
 
 /**
  *
@@ -395,11 +393,27 @@ public class Controller {
     //move on to games tech cw
 
     private boolean createInvoice(double totalPayable, int surcharge) {
-        System.out.println("£"+totalPayable);
+        System.out.println("£" + totalPayable);
         System.out.println(surcharge + " surcharge");
 
         String sql = "INSERT INTO invoice(total_payable,invoice_location) VALUES (" + totalPayable + ",'invoice copy for customer to take')";
 
         return database.write(sql, conn) != 0;
+    }
+
+    public List<Task> getTasks() {
+        List<Task> tasks = new ArrayList<>();
+        String sql = "select * from task";
+
+        //close resultset after use
+        try (ResultSet result = database.read(sql, conn)) {
+            while (result.next()) {
+                String shelfslot = result.getString("Department_department_code") + result.getString("shelf_slot");
+                tasks.add(new Task(result.getInt("task_id"), result.getString("description"), result.getInt("duration_min"), shelfslot,result.getDouble("price")));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return tasks;
     }
 }
