@@ -56,7 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
     DefaultListModel list1;
     DefaultListModel list2;
     DefaultTableModel m;
-    String currentPage;
+    String currentPage, previousPage;
 
     /**
      * Creates new form MainFrame
@@ -312,6 +312,19 @@ public class MainFrame extends javax.swing.JFrame {
         customerResultsTable = new javax.swing.JTable();
         searchAgainButton1 = new javax.swing.JButton();
         selectCustomerButton = new javax.swing.JButton();
+        createReportPage = new javax.swing.JPanel();
+        findCustomerPanel = new javax.swing.JPanel();
+        customerInfoField1 = new javax.swing.JTextField();
+        searchCustomerButton1 = new javax.swing.JButton();
+        newUserLabel1 = new javax.swing.JLabel();
+        reportTypeDD = new javax.swing.JComboBox<>();
+        reportTypeLabel = new javax.swing.JLabel();
+        reportPeriodLabel = new javax.swing.JLabel();
+        periodFromLabel = new javax.swing.JLabel();
+        createReportButton = new javax.swing.JButton();
+        reportStartPeriod = new com.toedter.calendar.JDateChooser();
+        reportEndPeroid = new com.toedter.calendar.JDateChooser();
+        periodToLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -795,6 +808,11 @@ public class MainFrame extends javax.swing.JFrame {
         createUserPage.setBackground(new java.awt.Color(61, 96, 146));
         createUserPage.setMaximumSize(new java.awt.Dimension(900, 640));
         createUserPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        createUserPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                createUserPageComponentHidden(evt);
+            }
+        });
 
         newUserLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         newUserLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -836,7 +854,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         userRoleComboBox.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        userRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technician", "Shift Manager", "Office Manager", "Receptionist", " " }));
+        userRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Technician", "Shift Manager", "Office Manager", "Receptionist" }));
         userRoleComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
         userRoleComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
         userRoleComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -1113,6 +1131,11 @@ public class MainFrame extends javax.swing.JFrame {
         manageReportsPageButton.setText("Manage Reports");
 
         createReportPageButton.setText("Create Report");
+        createReportPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createReportPageButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout reportHomePageLayout = new javax.swing.GroupLayout(reportHomePage);
         reportHomePage.setLayout(reportHomePageLayout);
@@ -2819,6 +2842,160 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(customerResultsPage, "customerResults");
 
+        createReportPage.setBackground(new java.awt.Color(61, 96, 146));
+        createReportPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        createReportPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        createReportPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                createReportPageComponentHidden(evt);
+            }
+        });
+
+        findCustomerPanel.setBackground(new java.awt.Color(61, 96, 146));
+        findCustomerPanel.setVisible(false);
+
+        customerInfoField1.setEditable(false);
+        customerInfoField1.setMaximumSize(new java.awt.Dimension(308, 42));
+        customerInfoField1.setMinimumSize(new java.awt.Dimension(308, 42));
+        customerInfoField1.setPreferredSize(new java.awt.Dimension(308, 42));
+
+        searchCustomerButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        searchCustomerButton1.setText("Search Customer");
+        searchCustomerButton1.setMaximumSize(new java.awt.Dimension(230, 37));
+        searchCustomerButton1.setMinimumSize(new java.awt.Dimension(230, 37));
+        searchCustomerButton1.setPreferredSize(new java.awt.Dimension(230, 37));
+        searchCustomerButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomerButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout findCustomerPanelLayout = new javax.swing.GroupLayout(findCustomerPanel);
+        findCustomerPanel.setLayout(findCustomerPanelLayout);
+        findCustomerPanelLayout.setHorizontalGroup(
+            findCustomerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, findCustomerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(searchCustomerButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(customerInfoField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        findCustomerPanelLayout.setVerticalGroup(
+            findCustomerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(findCustomerPanelLayout.createSequentialGroup()
+                .addGroup(findCustomerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customerInfoField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchCustomerButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 15, Short.MAX_VALUE))
+        );
+
+        customerInfoField.setEditable(false);
+
+        newUserLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        newUserLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        newUserLabel1.setText("New Report");
+
+        reportTypeDD.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        reportTypeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a report type.", "Individual performance", "Summary performance", "Customer" }));
+        reportTypeDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        reportTypeDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        reportTypeDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        reportTypeDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportTypeDDActionPerformed(evt);
+            }
+        });
+
+        reportTypeLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        reportTypeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        reportTypeLabel.setText("Report type:");
+
+        reportPeriodLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        reportPeriodLabel.setForeground(new java.awt.Color(255, 255, 255));
+        reportPeriodLabel.setText("Report period");
+
+        periodFromLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        periodFromLabel.setForeground(new java.awt.Color(255, 255, 255));
+        periodFromLabel.setText("From:");
+
+        createReportButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        createReportButton.setText("Create Report");
+        createReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createReportButtonActionPerformed(evt);
+            }
+        });
+
+        reportStartPeriod.setMinimumSize(new java.awt.Dimension(250, 42));
+        reportStartPeriod.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        reportEndPeroid.setMinimumSize(new java.awt.Dimension(250, 42));
+        reportEndPeroid.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        periodToLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        periodToLabel.setForeground(new java.awt.Color(255, 255, 255));
+        periodToLabel.setText("To:");
+
+        javax.swing.GroupLayout createReportPageLayout = new javax.swing.GroupLayout(createReportPage);
+        createReportPage.setLayout(createReportPageLayout);
+        createReportPageLayout.setHorizontalGroup(
+            createReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createReportPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createReportButton)
+                .addGap(88, 88, 88))
+            .addGroup(createReportPageLayout.createSequentialGroup()
+                .addGroup(createReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(findCustomerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(createReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(createReportPageLayout.createSequentialGroup()
+                            .addGap(343, 343, 343)
+                            .addGroup(createReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(newUserLabel1)
+                                .addComponent(reportPeriodLabel)))
+                        .addGroup(createReportPageLayout.createSequentialGroup()
+                            .addGap(278, 278, 278)
+                            .addComponent(reportTypeLabel)
+                            .addGap(18, 18, 18)
+                            .addComponent(reportTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(createReportPageLayout.createSequentialGroup()
+                            .addGap(100, 100, 100)
+                            .addComponent(periodFromLabel)
+                            .addGap(18, 18, 18)
+                            .addComponent(reportStartPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(periodToLabel)
+                            .addGap(18, 18, 18)
+                            .addComponent(reportEndPeroid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(136, Short.MAX_VALUE))
+        );
+        createReportPageLayout.setVerticalGroup(
+            createReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createReportPageLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(newUserLabel1)
+                .addGap(34, 34, 34)
+                .addGroup(createReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reportTypeLabel)
+                    .addComponent(reportTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(reportPeriodLabel)
+                .addGap(25, 25, 25)
+                .addGroup(createReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(periodFromLabel)
+                    .addComponent(reportStartPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(periodToLabel)
+                    .addComponent(reportEndPeroid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addComponent(findCustomerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(createReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
+        );
+
+        cardPanel1.add(createReportPage, "createReport");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -3291,6 +3468,7 @@ public class MainFrame extends javax.swing.JFrame {
             roleID = controller.getRoleID(role);
             if (controller.createUser(firstName, surname, password, roleID)) {
                 JOptionPane.showMessageDialog(this, "User created with id: " + controller.getUserID(password));
+                homeButton.doClick();
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to create user");
             }
@@ -3491,7 +3669,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void cancelCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCustomerFJobjButtonActionPerformed
         // TODO add your handling code here:
-        acceptJobPageButton.doClick();
+        if (previousPage.equals("createReport")) {
+            createReportPageButton.doClick();
+        } else {
+            acceptJobPageButton.doClick();
+        }
     }//GEN-LAST:event_cancelCustomerFJobjButtonActionPerformed
 
     private void cityField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityField1ActionPerformed
@@ -3607,6 +3789,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        previousPage = currentPage;
         currentPage = "searchCustomer";
         card1.show(cardPanel1, currentPage);
         pageLabel.setText("Search Customer page");
@@ -3617,6 +3801,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void createCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomerButtonActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        previousPage = currentPage;
         currentPage = "createCustomer";
         card1.show(cardPanel1, currentPage);
         pageLabel.setText("Create Customer page");
@@ -3859,7 +4045,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void acceptJobPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptJobPageButtonActionPerformed
         // TODO add your handling code here:
         currentPage = "acceptJob";
-        card1.show(cardPanel1, "acceptJob");
+        card1.show(cardPanel1, currentPage);
         pageLabel.setText("Accept Job page");
     }//GEN-LAST:event_acceptJobPageButtonActionPerformed
 
@@ -3939,8 +4125,14 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         int selectedRow = customerResultsTable.getSelectedRow(); // index 0 here
         if (selectedRow != -1) {
-            customerInfoField.setText("Contact name: " + ((String) customerResultsTable.getValueAt(selectedRow, 1)) + ", ID: " + ((int) customerResultsTable.getValueAt(selectedRow, 0)));
-            acceptJobPageButton.doClick();
+            String selectedCustomer = "Contact name: " + ((String) customerResultsTable.getValueAt(selectedRow, 1)) + ", ID: " + ((int) customerResultsTable.getValueAt(selectedRow, 0));
+            if (previousPage.equals("createReport")) {
+                createReportPageButton.doClick();
+                customerInfoField1.setText(selectedCustomer);
+            } else {
+                acceptJobPageButton.doClick();
+                customerInfoField.setText(selectedCustomer);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a customer");
         }
@@ -4201,6 +4393,46 @@ public class MainFrame extends javax.swing.JFrame {
         resetComponents(createTaskPage);
     }//GEN-LAST:event_createTaskPageComponentHidden
 
+    private void createUserPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createUserPageComponentHidden
+        // TODO add your handling code here:
+        resetComponents(createUserPage);
+    }//GEN-LAST:event_createUserPageComponentHidden
+
+    private void reportTypeDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportTypeDDActionPerformed
+        // TODO add your handling code here:
+        if (reportTypeDD.getSelectedIndex() == 3) {
+            findCustomerPanel.setVisible(true);
+        } else {
+            findCustomerPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_reportTypeDDActionPerformed
+
+    private void createReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createReportButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createReportButtonActionPerformed
+
+    private void createReportPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createReportPageComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createReportPageComponentHidden
+
+    private void createReportPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createReportPageButtonActionPerformed
+        // TODO add your handling code here:
+        currentPage = "createReport";
+        card1.show(cardPanel1, currentPage);
+        pageLabel.setText("Create report page");
+    }//GEN-LAST:event_createReportPageButtonActionPerformed
+
+    private void searchCustomerButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButton1ActionPerformed
+        // TODO add your handling code here:
+        previousPage = currentPage;
+        currentPage = "searchCustomer";
+        card1.show(cardPanel1, currentPage);
+        pageLabel.setText("Search Customer page");
+        if (loggedInUser.getRole().equals("Office Manager")) {
+            managerjPanel.setVisible(true);
+        }
+    }//GEN-LAST:event_searchCustomerButton1ActionPerformed
+
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
@@ -4304,6 +4536,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel createCustomerPage;
     private javax.swing.JButton createCustomerjButton;
     private javax.swing.JButton createNewTaskButton;
+    private javax.swing.JButton createReportButton;
+    private javax.swing.JPanel createReportPage;
     private javax.swing.JButton createReportPageButton;
     private javax.swing.JButton createSJobPageButton;
     private javax.swing.JPanel createStandardJobPage;
@@ -4317,6 +4551,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField custFirstnameField;
     private javax.swing.JTextField custLastnameField;
     private javax.swing.JTextField customerInfoField;
+    private javax.swing.JTextField customerInfoField1;
     private com.toedter.calendar.JDateChooser customerRegDateField;
     private javax.swing.JPanel customerResultsPage;
     private javax.swing.JTable customerResultsTable;
@@ -4335,6 +4570,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel expiryDatejLabel;
     private javax.swing.JTextField expiryDatejTextField;
     private javax.swing.JTextField fileChosenField;
+    private javax.swing.JPanel findCustomerPanel;
     private javax.swing.JLabel findUserLabel;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNamejLabel;
@@ -4382,11 +4618,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel minutesLabel;
     private javax.swing.JLabel newTaskLabel1;
     private javax.swing.JLabel newUserLabel;
+    private javax.swing.JLabel newUserLabel1;
     private javax.swing.JLabel pageLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> paymentTypeComboBox;
     private javax.swing.JLabel paymentTypejLabel;
+    private javax.swing.JLabel periodFromLabel;
+    private javax.swing.JLabel periodToLabel;
     private javax.swing.JTextField phoneField1;
     private javax.swing.JTextField phoneNumberField;
     private javax.swing.JLabel phoneNumberjLabel;
@@ -4405,8 +4644,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton removeJobButton;
     private javax.swing.JButton removeMaterialButton;
     private javax.swing.JButton removeTaskButton;
+    private com.toedter.calendar.JDateChooser reportEndPeroid;
     private javax.swing.JPanel reportHomePage;
+    private javax.swing.JLabel reportPeriodLabel;
     private javax.swing.JButton reportSettingsPageButton;
+    private com.toedter.calendar.JDateChooser reportStartPeriod;
+    private javax.swing.JComboBox<String> reportTypeDD;
+    private javax.swing.JLabel reportTypeLabel;
     private javax.swing.JButton reportsMenuPageButton;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
@@ -4418,6 +4662,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel searchContactSurnamejLabel;
     private javax.swing.JLabel searchCustomerAccountNojLabel;
     private javax.swing.JButton searchCustomerButton;
+    private javax.swing.JButton searchCustomerButton1;
     private javax.swing.JButton searchCustomerFJobjButton;
     private javax.swing.JPanel searchCustomerPage;
     private javax.swing.JPanel searchCustomerjPanel;
