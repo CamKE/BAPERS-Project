@@ -4412,7 +4412,7 @@ public class MainFrame extends javax.swing.JFrame {
         int reportIndex = reportTypeDD.getSelectedIndex();
         Date[] reportPeriod = new Date[]{reportStartPeriod.getDate(), reportEndPeriod.getDate()};
         String customerInfo = customerInfoField1.getText();
-        System.out.println(reportPeriod[0]);
+
         if (reportIndex == 0) {
             JOptionPane.showMessageDialog(this, "Please select a report type");
         } else if (reportPeriod[0] == null || reportPeriod[1] == null || !reportPeriod[1].after(reportPeriod[0])) {

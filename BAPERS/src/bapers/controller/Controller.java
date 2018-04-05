@@ -421,9 +421,29 @@ public class Controller {
     }
 
     public boolean createReport(int reportIndex, Date[] reportPeriod, String customerInfo) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String startDate = sdf.format(reportPeriod[0]);
+        String finishDate = sdf.format(reportPeriod[1]);
+        
+        System.out.println(finishDate);
         switch (reportIndex) {
             case 1:
                 System.out.println("Individual performance report");
+                // '2010-01-30 14:15:55'
+                // '2010-09-29 10:15:55'
+                String sql = "SELECT * FROM staff_individual_performance WHERE finish BETWEEN '" + startDate + "' AND '" + finishDate + "';";
+                //close resultset after use
+                try (ResultSet result = database.read(sql, conn)) {
+                    while (result.next()) {
+                        String name = result.getString("firstname") + " " + result.getString("lastname");
+                        int taskId = result.getInt("Task_task_id");
+                        String stdJobCode = result.getString("Job_StandardJobs_StandardJob_code");
+                        String departmentName = result.getString("department_name");
+                        System.out.println(name + " : " + taskId + " : " + departmentName);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
                 break; // optional
             case 2:
                 System.out.println("Summary performance report");
@@ -432,7 +452,7 @@ public class Controller {
                 System.out.println("Customer report");
                 break; // optional
         }
-        
+
         return true;
     }
 }
