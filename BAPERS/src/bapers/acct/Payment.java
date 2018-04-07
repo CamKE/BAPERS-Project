@@ -5,7 +5,6 @@
  */
 package bapers.acct;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -14,21 +13,13 @@ import java.util.Date;
  */
 public class Payment {
     
-//    paymentNo
-//    total
-//    paymentType
-//    paymentDate
-//    invoiceInvoiceNo
-//    cardDetailsLast4digits
-//    cardDetailsExpiryDate
-            
     private final int paymentNo;
     private final double total;
     private final String paymentType;
-    private final String paymentDate;
+    private final Date paymentDate;
     private final int invoiceNumber;
 
-    public Payment(int paymentNo, double total, String paymentType, String paymentDate, int invoiceNumber) {
+    public Payment(int paymentNo, double total, String paymentType, Date paymentDate, int invoiceNumber) {
         this.paymentNo = paymentNo;
         this.total = total;
         this.paymentType = paymentType;
@@ -48,7 +39,7 @@ public class Payment {
         return paymentType;
     }
 
-    public String getPaymentDate() {
+    public Date getPaymentDate() {
         return paymentDate;
     }
 

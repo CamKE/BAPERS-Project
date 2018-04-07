@@ -13,13 +13,13 @@ import java.util.Date;
  */
 public class PaymentCard extends Payment {
     private final String cardType;
-    private final String cardDetailsLast4digits;
+    private final String cardDetailsLast4Digits;
     private final String cardDetailsExpiryDate;
 
-    public PaymentCard(int paymentNo, double total, String paymentType, String paymentDate, int invoiceNumber, String cardType, String cardDetailsLast4digits, String cardDetailsExpiryDate) {
+    public PaymentCard(int paymentNo, double total, String paymentType, Date paymentDate, int invoiceNumber, String cardType, String cardDetailsLast4Digits, String cardDetailsExpiryDate) {
         super(paymentNo, total, paymentType, paymentDate, invoiceNumber);
         this.cardType = cardType;
-        this.cardDetailsLast4digits = cardDetailsLast4digits;
+        this.cardDetailsLast4Digits = cardDetailsLast4Digits;
         this.cardDetailsExpiryDate = cardDetailsExpiryDate;
     }
 
@@ -27,8 +27,8 @@ public class PaymentCard extends Payment {
         return cardType;
     }
 
-    public String getCardDetailsLast4digits() {
-        return cardDetailsLast4digits;
+    public String cardDetailsLast4Digits() {
+        return cardDetailsLast4Digits;
     }
 
     public String getCardDetailsExpiryDate() {
