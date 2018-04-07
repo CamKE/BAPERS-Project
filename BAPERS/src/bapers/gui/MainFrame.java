@@ -16,7 +16,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -31,6 +30,8 @@ import javax.swing.table.TableRowSorter;
  */
 public class MainFrame extends javax.swing.JFrame {
     Calendar date = Calendar.getInstance();
+    Timer time = new Timer();
+    AutoBackupConfig configdata;
     
     int paymentNo = 0;
     
@@ -38,6 +39,7 @@ public class MainFrame extends javax.swing.JFrame {
     List<Material> materials = new ArrayList<>();
     List<StandardJob> stdJobs = new ArrayList<>();
     List<Invoice> selectedInvoices = new ArrayList<>();
+    Invoice invoice;
     
     // list models that are used to for the scroll
     DefaultListModel t = new DefaultListModel();
@@ -50,30 +52,135 @@ public class MainFrame extends javax.swing.JFrame {
     private final CardLayout card1;
     private final CardLayout card2;
     private final Controller controller;
-    AutoBackupConfig test;
-    Timer time = new Timer();
-    Calendar calendar = Calendar.getInstance();
     
-            
     /**
      * Creates new form MainFrame
      * @param controller
      */
     public MainFrame(Controller controller) {
+        
         this.controller = controller;
-        this.test = controller.getAutoBackupConfigData();
-        
-        if (this.test != null) {
-            //calendar.set(WIDTH, WIDTH);
-            time.schedule(new AutoBackup(test), 0, TimeUnit.HOURS.toMillis(8));
-        } else {
-            System.out.println("No auto update");
-        }
-        
         initComponents();
         card1 = (CardLayout) cardPanel1.getLayout();
         card2 = (CardLayout) cardPanel2.getLayout();
+        initAutoBackup();
     }
+    
+    public final void initAutoBackup() {
+        final boolean countAutoConfigData = controller.checkAutoBackupConfigExist();
+        
+        if (countAutoConfigData != false) {
+            this.configdata = controller.getAutoBackupConfigData();
+            autoBackupMode(configdata);
+        } else {
+            System.out.println("No auto update");
+        }
+    }
+    
+    public final void autoBackupMode(AutoBackupConfig configdata) {
+        switch (configdata.getBackupMode()) {
+            case "auto" :
+                System.out.println("Auto");
+                autoBackupFrequency(configdata);
+                break;
+            case "reminder" :
+                System.out.println("Reminder");
+                break;
+            case "manual" :
+                System.out.println("Manual");
+                break;
+            default : break;
+        }
+    }
+    
+    public void autoBackupFrequency(AutoBackupConfig configdata) {
+        switch (configdata.getBackupFrequency()) {
+            case "weekly": 
+                System.out.println("weekly");
+//                actDate.get
+                //time.scheduleAtFixedRate(new AutoBackup(configdata, date), date.getTime(), TimeUnit.DAYS.toMillis(7));
+                break;
+            case "monthly": 
+                System.out.println("monthly");
+                //scheduleEveryMonth();
+                break;
+            default : break;
+        }
+    }
+    
+//    public void scheduleEveryMonth() {
+//        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.FEBRUARY);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.MARCH);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.APRIL);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.MAY);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.JUNE);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.JULY);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.AUGUST);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.OCTOBER);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.NOVEMBER);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));
+//        
+//        calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+//        calendar.set(Calendar.HOUR_OF_DAY, 12);
+//        calendar.set(Calendar.MINUTE, 0);
+//        calendar.set(Calendar.SECOND, 0);
+//        time.scheduleAtFixedRate(new AutoBackup(configdata), calendar.getTime(), TimeUnit.DAYS.toMillis(365));  
+//    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,6 +196,7 @@ public class MainFrame extends javax.swing.JFrame {
         BAPERSLabel = new javax.swing.JLabel();
         homePageR = new javax.swing.JButton();
         autoBackConfig = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         receptionistHomePage = new javax.swing.JPanel();
         receptionHomePage = new javax.swing.JPanel();
         jobReceptionist = new javax.swing.JButton();
@@ -181,10 +289,10 @@ public class MainFrame extends javax.swing.JFrame {
         last4DigitjTextField = new javax.swing.JTextField();
         selectInvoicejButton = new javax.swing.JButton();
         paymentTypejLabel = new javax.swing.JLabel();
-        latePaymentCanceljButton = new javax.swing.JButton();
+        cancelLatePaymentjButton = new javax.swing.JButton();
         expiryDatejTextField = new javax.swing.JTextField();
         paymentTypeComboBox = new javax.swing.JComboBox<>();
-        latePaymentSubmitjButton = new javax.swing.JButton();
+        submitLatePaymentjButton = new javax.swing.JButton();
         TotalLatePayjTextField = new javax.swing.JTextField();
         cardTypejLabel = new javax.swing.JLabel();
         totaljLabel = new javax.swing.JLabel();
@@ -212,6 +320,7 @@ public class MainFrame extends javax.swing.JFrame {
         selectAutoBackupLocationjButton = new javax.swing.JButton();
         cancelAutoBackupConfigjButton = new javax.swing.JButton();
         confirmAutoBackupConfigjButton = new javax.swing.JButton();
+        Backup = new javax.swing.JPanel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar1 = new javax.swing.JPanel();
         welcomeBar2 = new javax.swing.JPanel();
@@ -276,6 +385,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout welcomePageLayout = new javax.swing.GroupLayout(welcomePage);
         welcomePage.setLayout(welcomePageLayout);
         welcomePageLayout.setHorizontalGroup(
@@ -291,13 +407,18 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(homePageR)))
                 .addGap(75, 75, 75))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePageLayout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addGap(95, 95, 95))
         );
         welcomePageLayout.setVerticalGroup(
             welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePageLayout.createSequentialGroup()
                 .addGap(132, 132, 132)
                 .addComponent(BAPERSLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(60, 60, 60)
                 .addGroup(welcomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homePageR)
                     .addComponent(autoBackConfig))
@@ -1332,14 +1453,14 @@ public class MainFrame extends javax.swing.JFrame {
         paymentTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
         paymentTypejLabel.setText("Payment Type:");
 
-        latePaymentCanceljButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        latePaymentCanceljButton.setText("Cancel");
-        latePaymentCanceljButton.setMaximumSize(new java.awt.Dimension(159, 37));
-        latePaymentCanceljButton.setMinimumSize(new java.awt.Dimension(159, 37));
-        latePaymentCanceljButton.setPreferredSize(new java.awt.Dimension(159, 37));
-        latePaymentCanceljButton.addActionListener(new java.awt.event.ActionListener() {
+        cancelLatePaymentjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        cancelLatePaymentjButton.setText("Cancel");
+        cancelLatePaymentjButton.setMaximumSize(new java.awt.Dimension(159, 37));
+        cancelLatePaymentjButton.setMinimumSize(new java.awt.Dimension(159, 37));
+        cancelLatePaymentjButton.setPreferredSize(new java.awt.Dimension(159, 37));
+        cancelLatePaymentjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                latePaymentCanceljButtonActionPerformed(evt);
+                cancelLatePaymentjButtonActionPerformed(evt);
             }
         });
 
@@ -1357,14 +1478,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        latePaymentSubmitjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        latePaymentSubmitjButton.setText("Submit");
-        latePaymentSubmitjButton.setMaximumSize(new java.awt.Dimension(159, 37));
-        latePaymentSubmitjButton.setMinimumSize(new java.awt.Dimension(159, 37));
-        latePaymentSubmitjButton.setPreferredSize(new java.awt.Dimension(159, 37));
-        latePaymentSubmitjButton.addActionListener(new java.awt.event.ActionListener() {
+        submitLatePaymentjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        submitLatePaymentjButton.setText("Submit");
+        submitLatePaymentjButton.setMaximumSize(new java.awt.Dimension(159, 37));
+        submitLatePaymentjButton.setMinimumSize(new java.awt.Dimension(159, 37));
+        submitLatePaymentjButton.setPreferredSize(new java.awt.Dimension(159, 37));
+        submitLatePaymentjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                latePaymentSubmitjButtonActionPerformed(evt);
+                submitLatePaymentjButtonActionPerformed(evt);
             }
         });
 
@@ -1372,6 +1493,11 @@ public class MainFrame extends javax.swing.JFrame {
         TotalLatePayjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
         TotalLatePayjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
         TotalLatePayjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        TotalLatePayjTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TotalLatePayjTextFieldActionPerformed(evt);
+            }
+        });
 
         cardTypejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         cardTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -1413,13 +1539,13 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
                             .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cancelLatePaymentjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(TotalLatePayjTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(paymentTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cardTypejComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(expiryDatejTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(submitLatePaymentjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(invoicejScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
@@ -1453,8 +1579,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(expiryDatejLabel))
                 .addGap(80, 80, 80)
                 .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(submitLatePaymentjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelLatePaymentjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
 
@@ -1529,6 +1655,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         searchInvoiceByInvoiceNojTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchInvoiceByInvoiceNojTextFieldKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchInvoiceByInvoiceNojTextFieldKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchInvoiceByInvoiceNojTextFieldKeyReleased(evt);
             }
@@ -1544,6 +1676,9 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         searchInvoiceByJobNumberjTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchInvoiceByJobNumberjTextFieldKeyTyped(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchInvoiceByJobNumberjTextFieldKeyReleased(evt);
             }
@@ -1740,6 +1875,19 @@ public class MainFrame extends javax.swing.JFrame {
         TotalLatePayjTextField.setEditable(false);
 
         cardPanel1.add(AutoBackupConfigjPanel, "AutoBackupConfig");
+
+        javax.swing.GroupLayout BackupLayout = new javax.swing.GroupLayout(Backup);
+        Backup.setLayout(BackupLayout);
+        BackupLayout.setHorizontalGroup(
+            BackupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        BackupLayout.setVerticalGroup(
+            BackupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 648, Short.MAX_VALUE)
+        );
+
+        cardPanel1.add(Backup, "Backup");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -2337,7 +2485,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_firstNameFieldActionPerformed
 
-    private void latePaymentCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentCanceljButtonActionPerformed
+    private void cancelLatePaymentjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelLatePaymentjButtonActionPerformed
         // TODO add your handling code here:
         // invoice informaiton and total 
         TotalLatePayjTextField.setText("");
@@ -2349,7 +2497,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         card1.show(cardPanel1, "receptionistHomePage");
         card2.show(cardPanel2, "homePageR");
-    }//GEN-LAST:event_latePaymentCanceljButtonActionPerformed
+    }//GEN-LAST:event_cancelLatePaymentjButtonActionPerformed
 
     private void cancelCreationjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCreationjButtonActionPerformed
         // TODO add your handling code here:
@@ -2508,83 +2656,99 @@ public class MainFrame extends javax.swing.JFrame {
             managerjPanel.setVisible(false);
     }//GEN-LAST:event_isManagerjToggleButtonActionPerformed
 
-    private void latePaymentSubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentSubmitjButtonActionPerformed
+    private void submitLatePaymentjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitLatePaymentjButtonActionPerformed
         // TODO add your handling code here:
-        Payment payInfo;
+        
         if (invoicejList.getModel().getSize() != 0) { // first check to see if there is a invoice selected
-            if (paymentTypeComboBox.getSelectedItem().toString().equals("Card")) { // if card is selected for payment type
-                if (
-                    // checks to see if format for the card info is entered correctly
-                    expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}") 
-                    && last4DigitjTextField.getText().matches("[0-9]{4}")
-                ) {
+            switch (paymentTypeComboBox.getSelectedItem().toString()) {
+                case "Card":
+                    System.out.println("card");
+                    // if card is selected for payment type
+                    if (// checks to see if format for the card info is entered correctly
+                            expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
+                            && last4DigitjTextField.getText().matches("[0-9]{4}")
+                            ) {
+                try {
                     // grabs infor for card payment
                     ++paymentNo;
-                    final double total = Double.parseDouble(TotalLatePayjTextField.getText());
+                    String[] paymentToken = TotalLatePayjTextField.getText().split("\\s");
+                    final double total = Double.parseDouble(paymentToken[1]);
                     final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
-                    final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-                    final String paymentDate = dateFormat.format(new Date());
-                    final int invoiceNumber = selectedInvoices.get(0).getInvoiceNo();     
+                    
+                    
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                    String currentDate = new Date().toString();
+                    Date paymentDate = dateFormat.parse(currentDate);
+                    
+                    final int invoiceNumber = invoice.getInvoiceNo();
                     final String cardType = cardTypejComboBox.getSelectedItem().toString();
                     final String cardDetailsLast4digits = last4DigitjTextField.getText();
                     final String cardDetailsExpiryDate = expiryDatejTextField.getText();
                     
-                   Payment paymentRecord = new PaymentCard(
-                           paymentNo, 
-                           total,
-                           paymentType,
-                           paymentDate,
-                           invoiceNumber,
-                           cardType, 
-                           cardDetailsLast4digits, 
-                           cardDetailsExpiryDate
-                   );
-                   
-                   controller.recordPayment(paymentRecord, paymentTypeComboBox.getSelectedItem().toString());
+                    final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
                     
-                    System.out.println("payment info attained");
+                    final Payment paymentRecord = new PaymentCard(
+                            paymentNo,
+                            total,
+                            paymentType,
+                            paymentDate,
+                            invoiceNumber,
+                            card.getCardType(),
+                            card.getLast4Digits(),
+                            card.getExpiryDate()
+                    );
                     
-                    // clears the model and the total 
+                    controller.recordPayment(paymentRecord, paymentTypeComboBox.getSelectedItem().toString(), invoice, card);
+                    
+                    //System.out.println("payment info attained");
+                    
+                    // clears the model and the total
                     TotalLatePayjTextField.setText("");
                     t.clear();
-
+                    
                     // clears the data for card detials
                     expiryDatejTextField.setText("");
                     last4DigitjTextField.setText("");
+                } catch (ParseException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if (paymentTypeComboBox.getSelectedItem().toString().equals("Cash")) { // if card is selected for payment type
-                // grabs info for cash payment
-                ++paymentNo;
-                final double total = Double.parseDouble(TotalLatePayjTextField.getText());
-                final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
-                final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-                final String paymentDate = dateFormat.format(new Date());
-                final int invoiceNumber = selectedInvoices.get(0).getInvoiceNo();
-                
-                Payment paymentRecord = new PaymentCash(
-                           paymentNo, 
-                           total,
-                           paymentType,
-                           paymentDate,
-                           invoiceNumber
-                   );
-                
-                controller.recordPayment(paymentRecord, paymentTypeComboBox.getSelectedItem().toString());
-
-                // clears the model and the total 
-                TotalLatePayjTextField.setText("");
-                t.clear();
-
-                // clears the data for card detials
-                expiryDatejTextField.setText("");
-                last4DigitjTextField.setText("");
-            } else {
-                System.out.println("Have not chosen a payment type");
+                    }   
+                    break;
+                case "Cash":
+                    // if card is selected for payment type
+                    // grabs info for cash payment
+//                    ++paymentNo;
+//                    String[] paymentToken = TotalLatePayjTextField.getText().split("\\s");
+//                    final double total = Double.parseDouble(paymentToken[1]);
+//                    final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
+//                    final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+////                    Date paymentDate = dateFormat.parse(dateFormat.format(new Date()));
+//                    final int invoiceNumber = invoice.getInvoiceNo();
+//                    
+//                    final Payment paymentRecord = new PaymentCash(
+//                            paymentNo,
+//                            total,
+//                            paymentType,
+//                            //paymentDate,
+//                            invoiceNumber
+//                    );
+//                    
+//                    controller.recordPayment(paymentRecord, paymentTypeComboBox.getSelectedItem().toString(), invoice);
+//                    // clears the model and the total 
+//                    TotalLatePayjTextField.setText("");
+//                    t.clear();
+//                    // clears the data for card detials
+//                    expiryDatejTextField.setText("");
+//                    last4DigitjTextField.setText("");
+                    break;
+                default:
+                    System.out.println("Have not chosen a payment type");
+                    break;
             }
         } else {
             System.out.println("Cannot make payment");
         }
-    }//GEN-LAST:event_latePaymentSubmitjButtonActionPerformed
+    }//GEN-LAST:event_submitLatePaymentjButtonActionPerformed
 
     private void selectInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButtonActionPerformed
         // TODO add your handling code here:
@@ -2602,11 +2766,10 @@ public class MainFrame extends javax.swing.JFrame {
                 rowData[1] = invoicesList.get(i).getJobJobNo();
                 rowData[2] = invoicesList.get(i).getTotalPayable();
                 rowData[3] = invoicesList.get(i).getDateIssued();
-                rowData[4] = invoicesList.get(i).getInvoiceStatus();
+                rowData[4] = invoicesList.get(i).getInvoiceStatus().toString().toLowerCase();
                 rowData[5] = invoicesList.get(i).getInvoiceLocation();
                 //adds the array type object to the table by adding it to the model
                 m.addRow(rowData);
-                System.out.println("Table updated");
             }
             
             // change page
@@ -2614,23 +2777,25 @@ public class MainFrame extends javax.swing.JFrame {
             card2.show(cardPanel2, "acceptLatePaymentBar"); 
         } catch (ParseException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Table not updated");
         }
     }//GEN-LAST:event_selectInvoicejButtonActionPerformed
 
     private void cancelInvoiceSeletionjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelInvoiceSeletionjButtonActionPerformed
         // TODO add your handling code here:
+        searchInvoiceByInvoiceNojTextField.setText("");
+        searchInvoiceByJobNumberjTextField.setText("");
+        m.setRowCount(0);
         card1.show(cardPanel1, "acceptLatePayment");
         card2.show(cardPanel2, "acceptLatePaymentBar");
-        m.setRowCount(0);
     }//GEN-LAST:event_cancelInvoiceSeletionjButtonActionPerformed
 
     private void selectSelectedInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSelectedInvoicejButtonActionPerformed
         // TODO add your handling code here:  
         if (invoicejTable.getSelectedRow() >= 0) {
+            t.clear();
             // gets the selected position from the invoice table
-            int row = invoicejTable.getSelectedRow();
-            int columnCount = invoicejTable.getColumnCount();
+            final int row = invoicejTable.getSelectedRow();
+            final int columnCount = invoicejTable.getColumnCount();
 
             Object[] obj = new Object[6];
 
@@ -2638,41 +2803,24 @@ public class MainFrame extends javax.swing.JFrame {
             // and places it in the array 
             for (int i = 0; i < columnCount; ++i)
                 obj[i] = invoicejTable.getValueAt(row, i);
-
-            final SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
-            // variables getting the values and parsing them so that they are at the right type
-            // to create a new invoice
-            int invoiceNo = Integer.parseInt(obj[0].toString());
-            int jobJobNo = Integer.parseInt(obj[1].toString());
+            
+            // variables for invoice
+            final int invoiceNo = Integer.parseInt(obj[0].toString());
+            final int jobJobNo = Integer.parseInt(obj[1].toString());
             double totalPayable = Double.parseDouble(obj[2].toString());
-            Date dateIssued = (Date) obj[3];
-            String invoiceStatus = obj[4].toString();
-            String invoiceLocation = obj[5].toString();
+            final Date dateIssued = (Date) obj[3];
+            final String invoiceStatus = obj[4].toString();
+            final String invoiceLocation = obj[5].toString();
 
-            Invoice invoice = new Invoice(invoiceNo, jobJobNo, totalPayable, dateIssued, invoiceStatus, invoiceLocation);
-
-            int count = 0;
-            final int check = invoice.getInvoiceNo();
-            for (int i = 0; i < selectedInvoices.size(); ++i)
-                if (selectedInvoices.get(i).getInvoiceNo() == check)
-                    ++count;
-            //System.out.println("Count: " + count);
-
-            if (count < 1) {
-                selectedInvoices.add(invoice); // adds the invoice to the arraylist
-
-    //        System.out.println(selectedInvoices.size());
-
-            //grabs all elements from arraylist and adds to a model object
-            for (int i = 0; i < selectedInvoices.size(); ++i)
-                t.addElement(selectedInvoices.get(i).getInvoiceNo());
+            invoice = new Invoice(invoiceNo, jobJobNo, totalPayable, dateIssued, invoiceStatus, invoiceLocation);
+            
+            // sets the informaiton needed in the acceptlatepayment page
+            t.addElement("Invoice number:" + invoice.getInvoiceNo());
+            t.addElement("Job number: " + invoice.getJobJobNo());
             invoicejList.setModel(t); // sets the model from the t typed model object
-            }
-            TotalLatePayjTextField.setText(Double.toString(calculateTotal()));
-
-            m.setRowCount(0); // clears the table since it will take the old values and
-            // re-display when re-entered into the search invoice
-
+            TotalLatePayjTextField.setText("£ " + Double.toString(invoice.getTotalPayable()));
+            m.setRowCount(0);
+            
             card1.show(cardPanel1, "acceptLatePayment");
             card2.show(cardPanel2, "acceptLatePaymentBar");
         } else {
@@ -2690,26 +2838,34 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchInvoiceByInvoiceNojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldKeyReleased
         // TODO add your handling code here:
-        String text = searchInvoiceByInvoiceNojTextField.getText();
-        if (text.length() != 0) {
-            DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
-            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
-            invoicejTable.setRowSorter(tr);
-            tr.setRowFilter(RowFilter.regexFilter(text, 0));
+        final String inputText = searchInvoiceByInvoiceNojTextField.getText();
+        final DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
+        final TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
+        invoicejTable.setRowSorter(tr);
+        if (inputText.length() != 0) {
+            tr.setRowFilter(RowFilter.regexFilter(inputText, 0));
+        } else {
+            tr.removeRowSorterListener(invoicejTable);
         }
     }//GEN-LAST:event_searchInvoiceByInvoiceNojTextFieldKeyReleased
 
     private void searchInvoiceByJobNumberjTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByJobNumberjTextFieldKeyReleased
         // TODO add your handling code here:
-        String text = searchInvoiceByJobNumberjTextField.getText();
-        if (text.length() != 0) {
-            DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
-            TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
-            invoicejTable.setRowSorter(tr);
-            tr.setRowFilter(RowFilter.regexFilter(text, 1));
+        final String inputText = searchInvoiceByJobNumberjTextField.getText();
+        final DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
+        final TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
+        invoicejTable.setRowSorter(tr);
+        if (inputText.length() != 0) {
+            tr.setRowFilter(RowFilter.regexFilter(inputText, 1));
+        } else {
+            tr.removeRowSorterListener(invoicejTable);
         }
     }//GEN-LAST:event_searchInvoiceByJobNumberjTextFieldKeyReleased
 
+    public void filterInvoiceTable(String inputText) {
+        //List<RowFilter<>> filters = new ArrayList<>(2);
+    }
+    
     private void searchInvoiceByJobNumberjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInvoiceByJobNumberjTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchInvoiceByJobNumberjTextFieldActionPerformed
@@ -2745,10 +2901,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void confirmAutoBackupConfigjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAutoBackupConfigjButtonActionPerformed
         // TODO add your handling code here:
         if (!autoBackupLocationjTextField.getText().equals("")) {
-            String mode = backupModejComboBox.getSelectedItem().toString();
-            String frequency = backupFrequencyjComboBox.getSelectedItem().toString();
-            String location = autoBackupLocationjTextField.getText();
-            AutoBackupConfig config = new AutoBackupConfig(mode, frequency, location);
+            final String mode = backupModejComboBox.getSelectedItem().toString();
+            final String frequency = backupFrequencyjComboBox.getSelectedItem().toString();
+            final String location = autoBackupLocationjTextField.getText();
+            
+            final AutoBackupConfig config = new AutoBackupConfig(mode, frequency, location);
 
             controller.setAutoBackupConfig(config);
             autoBackupLocationjTextField.setText("");
@@ -2757,15 +2914,29 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_confirmAutoBackupConfigjButtonActionPerformed
 
-    public double calculateTotal() {
-        //calculates the total amount needed to be paid based on the number and type of
-        //invoices being selected.
-        double totalResult = 0;
-        for (int i = 0; i < selectedInvoices.size(); ++i){
-            totalResult += selectedInvoices.get(i).getTotalPayable();
-        }
-        return totalResult;
-    }
+    private void TotalLatePayjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalLatePayjTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TotalLatePayjTextFieldActionPerformed
+    
+    private void searchInvoiceByInvoiceNojTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInvoiceByInvoiceNojTextFieldKeyTyped
+
+    private void searchInvoiceByJobNumberjTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByJobNumberjTextFieldKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInvoiceByJobNumberjTextFieldKeyTyped
+
+    private void searchInvoiceByInvoiceNojTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInvoiceByInvoiceNojTextFieldKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//        System.out.println(date.get(Calendar.DAY_OF_WEEK));
+//        System.out.println(date.get(Calendar.HOUR));
+//        System.out.println(date.get(Calendar.MINUTE));
+//        System.out.println(date.get(Calendar.SECOND));
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -2805,6 +2976,7 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AutoBackupConfigjPanel;
     private javax.swing.JLabel BAPERSLabel;
+    private javax.swing.JPanel Backup;
     private javax.swing.JTextField TotalLatePayjTextField;
     private javax.swing.JPanel acceptJob;
     private javax.swing.JLabel acceptJobLabel;
@@ -2837,6 +3009,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton cancelCreationjButton;
     private javax.swing.JButton cancelCustomerFJobjButton;
     private javax.swing.JButton cancelInvoiceSeletionjButton;
+    private javax.swing.JButton cancelLatePaymentjButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JComboBox<String> cardTypejComboBox;
@@ -2873,6 +3046,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane invoicejScrollPane;
     private javax.swing.JTable invoicejTable;
     private javax.swing.JToggleButton isManagerjToggleButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList3;
     private javax.swing.JScrollPane jScrollPane2;
@@ -2881,8 +3055,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jobReceptionist;
     private javax.swing.JLabel last4DigitjLabel;
     private javax.swing.JTextField last4DigitjTextField;
-    private javax.swing.JButton latePaymentCanceljButton;
-    private javax.swing.JButton latePaymentSubmitjButton;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton logOutButton1;
     private javax.swing.JButton logOutButton2;
@@ -2951,6 +3123,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel streetNamejLabel;
     private javax.swing.JTextField streetNamejTextField;
     private javax.swing.JButton submitButton;
+    private javax.swing.JButton submitLatePaymentjButton;
     private javax.swing.JLabel surchargeLabel;
     private javax.swing.JTextField surchargejTextField;
     private javax.swing.JTextField surnameField;
