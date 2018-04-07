@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -98,7 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
             case "weekly": 
                 System.out.println("weekly");
 //                actDate.get
-                //time.scheduleAtFixedRate(new AutoBackup(configdata, date), date.getTime(), TimeUnit.DAYS.toMillis(7));
+                time.scheduleAtFixedRate(new AutoBackup(configdata, date), date.getTime(), TimeUnit.DAYS.toMillis(7));
                 break;
             case "monthly": 
                 System.out.println("monthly");
