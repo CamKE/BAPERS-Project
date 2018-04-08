@@ -6,10 +6,9 @@
 package bapers.gui;
 
 import bapers.controller.Controller;
-import bapers.job.JobDetails;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
-import bapers.task.TaskInformation;
+import bapers.job.Task;
 import java.util.*;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -58,6 +57,28 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jobSearchResultsTable = new javax.swing.JTable();
         collectJobButton = new javax.swing.JButton();
+        jobEnquirySearchResultsPage = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jobEnquiryTableResults = new javax.swing.JTable();
+        viewJobEnquiryButton = new javax.swing.JButton();
+        backJobEnquiryButton = new javax.swing.JButton();
+        jobEnquiryPage = new javax.swing.JPanel();
+        jobStatusLabel = new javax.swing.JLabel();
+        jobNumberText = new javax.swing.JTextField();
+        searchJobNumberJobEnquiryButton = new javax.swing.JButton();
+        jobNumberLabel1 = new javax.swing.JLabel();
+        periodLabel = new javax.swing.JLabel();
+        jobPriorityLabel = new javax.swing.JLabel();
+        jobPriorityLabel2 = new javax.swing.JLabel();
+        toLabel = new javax.swing.JLabel();
+        fromLabel1 = new javax.swing.JLabel();
+        cancelJobEnquiryButton = new javax.swing.JButton();
+        searchJobEnquiryButton = new javax.swing.JButton();
+        jobStatusComboBox = new javax.swing.JComboBox<>();
+        jobCollectedComboBox = new javax.swing.JComboBox<>();
+        jobPriorityComboBox = new javax.swing.JComboBox<>();
+        fromDatePicker = new com.github.lgooddatepicker.components.DatePicker();
+        toDatePicker = new com.github.lgooddatepicker.components.DatePicker();
         searchJobPage = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jobNumberTextField = new javax.swing.JTextField();
@@ -65,6 +86,14 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         customerNumberText = new javax.swing.JTextField();
         searchCustomerButton = new javax.swing.JButton();
+        taskSearchResultsJobEnquiryPage = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        standardJobCodeLabel = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        taskResultsTable = new javax.swing.JTable();
+        updateTaskButton = new javax.swing.JButton();
+        taskEnquiryBackButton = new javax.swing.JButton();
+        standardJobIndexLabel = new javax.swing.JLabel();
         manageTasksPage = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -119,6 +148,13 @@ public class MainFrame extends javax.swing.JFrame {
         technicianHomePage = new javax.swing.JPanel();
         technicianPage = new javax.swing.JPanel();
         jobEnquiryTechnician = new javax.swing.JButton();
+        standardJobSearchResultsJobEnquiryPage = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        standardJobResults = new javax.swing.JTable();
+        viewStandardJobButton = new javax.swing.JButton();
+        backJobSearchResultsButton = new javax.swing.JButton();
+        jobNumberLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         receptionistHomePage = new javax.swing.JPanel();
         receptionHomePage = new javax.swing.JPanel();
         jobReceptionist = new javax.swing.JButton();
@@ -311,13 +347,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jobSearchResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Job no", "Issued by", "Deadline", "Status", "Collected"
+                "Job no", "#Standard Jobs", "Issued by", "Deadline", "Status", "Collected"
             }
         ));
         jScrollPane2.setViewportView(jobSearchResultsTable);
@@ -340,8 +373,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(139, 139, 139))
             .addGroup(jobSearchResultsPageLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jobSearchResultsPageLayout.setVerticalGroup(
@@ -357,6 +390,205 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(jobSearchResultsPage, "jobSearchResultsPage");
+
+        jobEnquirySearchResultsPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jobEnquiryTableResults.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Job Number", "# Standard Jobs", "Issued By", "Date recorded", "Deadline", "Status"
+            }
+        ));
+        jScrollPane3.setViewportView(jobEnquiryTableResults);
+
+        viewJobEnquiryButton.setText("View");
+        viewJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJobEnquiryButtonActionPerformed(evt);
+            }
+        });
+
+        backJobEnquiryButton.setText("Back");
+        backJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJobEnquiryButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jobEnquirySearchResultsPageLayout = new javax.swing.GroupLayout(jobEnquirySearchResultsPage);
+        jobEnquirySearchResultsPage.setLayout(jobEnquirySearchResultsPageLayout);
+        jobEnquirySearchResultsPageLayout.setHorizontalGroup(
+            jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobEnquirySearchResultsPageLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jobEnquirySearchResultsPageLayout.createSequentialGroup()
+                        .addComponent(backJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        jobEnquirySearchResultsPageLayout.setVerticalGroup(
+            jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobEnquirySearchResultsPageLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(72, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(jobEnquirySearchResultsPage, "jobEnquirySearchResultsPage");
+
+        jobEnquiryPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jobStatusLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jobStatusLabel.setText("Job Status: ");
+
+        jobNumberText.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        searchJobNumberJobEnquiryButton.setText("Search");
+        searchJobNumberJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchJobNumberJobEnquiryButtonActionPerformed(evt);
+            }
+        });
+
+        jobNumberLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobNumberLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jobNumberLabel1.setText("Job Number:");
+
+        periodLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        periodLabel.setForeground(new java.awt.Color(255, 255, 255));
+        periodLabel.setText("Recieved period:");
+
+        jobPriorityLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobPriorityLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jobPriorityLabel.setText("Job Priority:");
+
+        jobPriorityLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobPriorityLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jobPriorityLabel2.setText("Collected:");
+
+        toLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        toLabel.setForeground(new java.awt.Color(255, 255, 255));
+        toLabel.setText("To:");
+
+        fromLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        fromLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        fromLabel1.setText("From:");
+
+        cancelJobEnquiryButton.setText("Cancel");
+
+        searchJobEnquiryButton.setText("Search");
+        searchJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchJobEnquiryButtonActionPerformed(evt);
+            }
+        });
+
+        jobStatusComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jobStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In progress", "Completed" }));
+
+        jobCollectedComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jobCollectedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Yes" }));
+
+        jobPriorityComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jobPriorityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "regular", "urgent", " " }));
+
+        javax.swing.GroupLayout jobEnquiryPageLayout = new javax.swing.GroupLayout(jobEnquiryPage);
+        jobEnquiryPage.setLayout(jobEnquiryPageLayout);
+        jobEnquiryPageLayout.setHorizontalGroup(
+            jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(jobNumberLabel1)
+                        .addGap(73, 73, 73)
+                        .addComponent(jobNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
+                        .addComponent(searchJobNumberJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                            .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jobPriorityLabel2)
+                                .addComponent(jobPriorityLabel))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jobCollectedComboBox, 0, 183, Short.MAX_VALUE)
+                                .addComponent(jobPriorityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                            .addComponent(jobStatusLabel)
+                            .addGap(47, 47, 47)
+                            .addComponent(jobStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                                .addComponent(fromLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fromDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(periodLabel))
+                        .addGap(73, 73, 73)
+                        .addComponent(toLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(toDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(200, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobEnquiryPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(searchJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
+        );
+        jobEnquiryPageLayout.setVerticalGroup(
+            jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchJobNumberJobEnquiryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jobNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jobNumberLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(52, 52, 52)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobStatusLabel)
+                    .addComponent(jobStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobPriorityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(jobPriorityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(jobPriorityLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(periodLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(23, 23, 23)
+                        .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(toLabel)
+                            .addComponent(fromDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fromLabel1)
+                            .addComponent(toDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cancelJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50))
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(jobCollectedComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+
+        cardPanel1.add(jobEnquiryPage, "jobEnquiryPage");
 
         searchJobPage.setBackground(new java.awt.Color(61, 96, 146));
 
@@ -429,6 +661,87 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(searchJobPage, "searchJobPage");
+
+        taskSearchResultsJobEnquiryPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Standard Job Code: ");
+
+        standardJobCodeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        standardJobCodeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        standardJobCodeLabel.setText("(Code) ");
+
+        taskResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Task ID", "Description", "Location", "Shelf slot", "Status"
+            }
+        ));
+        jScrollPane5.setViewportView(taskResultsTable);
+
+        updateTaskButton.setText("Update");
+        updateTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateTaskButtonActionPerformed(evt);
+            }
+        });
+
+        taskEnquiryBackButton.setText("Back");
+        taskEnquiryBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taskEnquiryBackButtonActionPerformed(evt);
+            }
+        });
+
+        standardJobIndexLabel.setBackground(new java.awt.Color(61, 96, 146));
+        standardJobIndexLabel.setForeground(new java.awt.Color(61, 96, 146));
+        standardJobIndexLabel.setText("Hidden");
+
+        javax.swing.GroupLayout taskSearchResultsJobEnquiryPageLayout = new javax.swing.GroupLayout(taskSearchResultsJobEnquiryPage);
+        taskSearchResultsJobEnquiryPage.setLayout(taskSearchResultsJobEnquiryPageLayout);
+        taskSearchResultsJobEnquiryPageLayout.setHorizontalGroup(
+            taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addGroup(taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(taskSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(standardJobCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(standardJobIndexLabel)))
+                    .addGroup(taskSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(taskEnquiryBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateTaskButton)))
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+        taskSearchResultsJobEnquiryPageLayout.setVerticalGroup(
+            taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standardJobCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standardJobIndexLabel))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addGroup(taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(taskEnquiryBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+
+        jLabel3.getAccessibleContext().setAccessibleName("");
+        standardJobCodeLabel.getAccessibleContext().setAccessibleName("sJCode");
+
+        cardPanel1.add(taskSearchResultsJobEnquiryPage, "taskSearchResultsJobEnquiryPage");
 
         manageTasksPage.setBackground(new java.awt.Color(61, 96, 146));
 
@@ -1004,6 +1317,87 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(technicianHomePage, "technicianHomePage");
+
+        standardJobSearchResultsJobEnquiryPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        standardJobResults.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        standardJobResults.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Code", "Description", "Amount of tasks", "Status"
+            }
+        ));
+        jScrollPane4.setViewportView(standardJobResults);
+
+        viewStandardJobButton.setText("View");
+        viewStandardJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStandardJobButtonActionPerformed(evt);
+            }
+        });
+
+        backJobSearchResultsButton.setText("Back");
+        backJobSearchResultsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJobSearchResultsButtonActionPerformed(evt);
+            }
+        });
+
+        jobNumberLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobNumberLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jobNumberLabel.setText("(JN)");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Job Number: ");
+
+        javax.swing.GroupLayout standardJobSearchResultsJobEnquiryPageLayout = new javax.swing.GroupLayout(standardJobSearchResultsJobEnquiryPage);
+        standardJobSearchResultsJobEnquiryPage.setLayout(standardJobSearchResultsJobEnquiryPageLayout);
+        standardJobSearchResultsJobEnquiryPageLayout.setHorizontalGroup(
+            standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backJobSearchResultsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(viewStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(jobNumberLabel)))
+                .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                    .addGap(45, 45, 45)
+                    .addComponent(jLabel5)
+                    .addContainerGap(639, Short.MAX_VALUE)))
+        );
+        standardJobSearchResultsJobEnquiryPageLayout.setVerticalGroup(
+            standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jobNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backJobSearchResultsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                    .addGap(43, 43, 43)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(554, Short.MAX_VALUE)))
+        );
+
+        cardPanel1.add(standardJobSearchResultsJobEnquiryPage, "standardJobSearchResultsJobEnquiryPage");
 
         receptionHomePage.setBackground(new java.awt.Color(61, 96, 146));
         receptionHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -1817,13 +2211,27 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_acceptPaymentShiftManagerActionPerformed
 
     private void jobEnquiryTechnicianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobEnquiryTechnicianActionPerformed
-        // TODO add your handling code here:
+        card1.show(cardPanel1, "jobEnquiryPage");
     }//GEN-LAST:event_jobEnquiryTechnicianActionPerformed
 
     private void homePageTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homePageTActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "technicianHomePage");
         card2.show(cardPanel2, "homePageT");
+
+        //controller.clearStandardJobTask();
+        //controller.clearStandardJob();
+        //controller.clearJob();
+        //controller.setTasksIntoStandardJob("ABN54");
+        //controller.setTasksIntoStandardJob("ACT35");
+        // controller.setStandardJobIntoJob(1);
+        //controller.test();
+        //controller.setTasksIntoStandardJob("ABN54");
+        //controller.setTasksIntoStandardJob("ACT35");
+        //controller.setTasksIntoStandardJob("ACN54");
+        //controller.setStandardJobIntoJob(1);
+        //controller.setStandardJobIntoJob(2);
+        //controller.test();
     }//GEN-LAST:event_homePageTActionPerformed
 
     private void acceptPaymentReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentReceptionistActionPerformed
@@ -1891,12 +2299,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void logOutButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton3ActionPerformed
         // TODO add your handling code here:
+        this.deleteJobTableInformation();
+        controller.clearJob();
         card1.show(cardPanel1, "welcome");
         card2.show(cardPanel2, "welcomeBar2");
     }//GEN-LAST:event_logOutButton3ActionPerformed
 
     private void logOutButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton2ActionPerformed
         // TODO add your handling code here:
+        this.deleteTaskEnquiryTableInformation();
+        this.deleteTaskEnquiryTableInformation();
+        this.deleteStandardJobTableInformation();
+        controller.clearStandardJobTasks();
         card1.show(cardPanel1, "welcome");
         card2.show(cardPanel2, "welcomeBar2");
     }//GEN-LAST:event_logOutButton2ActionPerformed
@@ -1945,9 +2359,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateTaskTable() {
         //Get task information from controller class
-        ArrayList<TaskInformation> tasks = controller.getTasks();
+        ArrayList<Task> tasks = controller.getTasks();
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
-        taskTableModel.setRowCount((tasks.size() / 2));
+    
         //Set table
         Object[] row = new Object[4];
         for (int i = 0; i < tasks.size(); i++) {
@@ -1955,9 +2369,9 @@ public class MainFrame extends javax.swing.JFrame {
             row[1] = tasks.get(i).getDescription();
             row[2] = tasks.get(i).getDepartmentCode();
             row[3] = tasks.get(i).getShelfSlot();
-            taskTableModel.insertRow(1, row);
+            taskTableModel.addRow(row);
         }
-
+      
     }
 
     private void deleteTaskTableInformation() {
@@ -1970,8 +2384,24 @@ public class MainFrame extends javax.swing.JFrame {
         jobTableModel.setRowCount(0);
     }
 
+    private void deleteJobEnquiryTable() {
+        DefaultTableModel jobTableModel = (DefaultTableModel) jobEnquiryTableResults.getModel();
+        jobTableModel.setRowCount(0);
+    }
+
+    private void deleteStandardJobTableInformation() {
+        DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
+        standardJobTableModel.setRowCount(0);
+    }
+
+    private void deleteTaskEnquiryTableInformation() {
+        DefaultTableModel taskTableModel = (DefaultTableModel) taskResultsTable.getModel();
+        taskTableModel.setRowCount(0);
+    }
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        this.deleteTaskTableInformation();
         card1.show(cardPanel1, "taskPage");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -2091,14 +2521,14 @@ public class MainFrame extends javax.swing.JFrame {
         }
         //Check row has values
         if (jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0) != null
-                && !(jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 3).equals("In progress"))
-                && jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 4) != "true") {
-            
+                && !(jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 4).equals("In progress"))
+                && jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 5) != "true") {
+
             //Get job Number from table
             jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0);
             //Set job number in JobDetails class
             controller.setJobNumber(jobNumber);
-            
+
             //Parse to payment page with invoice number
             System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber());
             //Insert code for job payment here ...
@@ -2109,6 +2539,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_collectJobButtonActionPerformed
 
     private void backButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButonActionPerformed
+        this.deleteJobTableInformation();
         controller.clearJob();
         card1.show(cardPanel1, "searchJobPage");
     }//GEN-LAST:event_backButonActionPerformed
@@ -2124,8 +2555,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         if (valid) {
             if (controller.doesJobExist(jobNumber, true)) {
-                controller.addJob(jobNumber);
+                //Get job information from controller and set it into java classes
+                controller.setStandardJobIntoJob(Integer.parseInt(jobNumber));
+                //Update table
                 updateCollectJobTable();
+                //Show job enquiry results page
                 card1.show(cardPanel1, "jobSearchResultsPage");
             } else {
                 JOptionPane.showMessageDialog(null, "Job number does not exist");
@@ -2157,21 +2591,249 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "searchJobPage");
     }//GEN-LAST:event_jobReceptionistActionPerformed
 
+    private void viewStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStandardJobButtonActionPerformed
+        int selectedRowIndex = -1;
+        boolean inBounds = false;
+        String standardJobCode = "";
+        //Get row index
+        if (standardJobResults.getRowSelectionAllowed()) {
+            selectedRowIndex = standardJobResults.getSelectedRow();
+        }
+        if ((selectedRowIndex >= 0)) {
+            inBounds = true;
+        }
+        if (!inBounds) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+
+        //Check row has values
+        if (standardJobResults.getModel().getValueAt(selectedRowIndex, 0) != null) {
+
+            //Get job Number from table
+            standardJobCode = (String) standardJobResults.getModel().getValueAt(selectedRowIndex, 0);
+            //Set title text
+            standardJobCodeLabel.setText(standardJobCode);
+            //Update standard job table
+            this.updateTaskEnquiryTable(standardJobCode);
+            //Show standard job search results
+            card1.show(cardPanel1, "taskSearchResultsJobEnquiryPage");
+
+            //Set standard Job index
+            int standardJobIndex = selectedRowIndex;
+            standardJobIndexLabel.setText(Integer.toString(standardJobIndex));
+        } else {
+            JOptionPane.showMessageDialog(null, "Job is still in progress");
+        }
+    }//GEN-LAST:event_viewStandardJobButtonActionPerformed
+
+    private void backJobSearchResultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJobSearchResultsButtonActionPerformed
+        this.deleteStandardJobTableInformation();
+        card1.show(cardPanel1, "jobEnquirySearchResultsPage");
+    }//GEN-LAST:event_backJobSearchResultsButtonActionPerformed
+
+    private void searchJobNumberJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobNumberJobEnquiryButtonActionPerformed
+        // TODO add your handling code here:
+        boolean valid = true;
+        String jobNumber = jobNumberText.getText();
+
+        if (jobNumber.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter a job number");
+        }
+        if (valid) {
+            if (controller.doesJobExist(jobNumber, true)) {
+                controller.setStandardJobIntoJob(Integer.parseInt(jobNumber));
+                //update table
+                this.updateJobEnquiryTable();
+                card1.show(cardPanel1, "jobEnquirySearchResultsPage");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Job number does not exist");
+            }
+
+        }
+    }//GEN-LAST:event_searchJobNumberJobEnquiryButtonActionPerformed
+
+    private void backJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJobEnquiryButtonActionPerformed
+        controller.clearJob();
+        controller.clearStandardJobTasks();
+        this.deleteJobEnquiryTable();
+        card1.show(cardPanel1, "jobEnquiryPage");
+    }//GEN-LAST:event_backJobEnquiryButtonActionPerformed
+
+    private void viewJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobEnquiryButtonActionPerformed
+        int selectedRowIndex = -1;
+        boolean inBounds = false;
+        int jobNumber = -1;
+        //Get row index
+        if (jobEnquiryTableResults.getRowSelectionAllowed()) {
+            selectedRowIndex = jobEnquiryTableResults.getSelectedRow();
+        }
+        if ((selectedRowIndex >= 0)) {
+            inBounds = true;
+        }
+        if (!inBounds) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+
+        //Check row has values
+        if (jobEnquiryTableResults.getModel().getValueAt(selectedRowIndex, 0) != null) {
+
+            //Get job Number from table
+            jobNumber = (Integer) jobEnquiryTableResults.getModel().getValueAt(selectedRowIndex, 0);
+            jobNumberLabel.setText(Integer.toString(jobNumber));
+            //Update standard job table
+            this.updateStandardJobTable(jobNumber);
+            //Show standard job search results
+            card1.show(cardPanel1, "standardJobSearchResultsJobEnquiryPage");
+        } else {
+            JOptionPane.showMessageDialog(null, "Job is still in progress");
+        }
+
+    }//GEN-LAST:event_viewJobEnquiryButtonActionPerformed
+
+    private void taskEnquiryBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskEnquiryBackButtonActionPerformed
+        this.deleteTaskEnquiryTableInformation();
+
+        card1.show(cardPanel1, "standardJobSearchResultsJobEnquiryPage");
+    }//GEN-LAST:event_taskEnquiryBackButtonActionPerformed
+
+    private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
+        int selectedRowIndex = -1;
+        boolean inBounds = false;
+        int taskID = -1;
+        //Get row index
+        if (taskResultsTable.getRowSelectionAllowed()) {
+            selectedRowIndex = taskResultsTable.getSelectedRow();
+        }
+        if ((selectedRowIndex >= 0)) {
+            inBounds = true;
+        }
+        if (!inBounds) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+        //Check row has values
+        if (taskResultsTable.getModel().getValueAt(selectedRowIndex, 0) != null) {
+            taskID = (Integer) (taskResultsTable.getModel().getValueAt(selectedRowIndex, 0));
+            Object[] possibilities = {"Completed", "In progress"};
+            String taskStatus = (String) JOptionPane.showInputDialog(null, "Update Task ID: " + taskID, "Task Update", JOptionPane.PLAIN_MESSAGE, null, possibilities, "In progress");
+            controller.updateTaskStatus(standardJobCodeLabel.getText(), selectedRowIndex, taskStatus);
+            controller.updateTaskStatusInDatabase(standardJobCodeLabel.getText(), selectedRowIndex);
+        }
+
+        //Check if all tasks are completed
+        System.out.println(controller.checkIfAllTasksAreCompleted(standardJobCodeLabel.getText()));
+        if (controller.checkIfAllTasksAreCompleted(standardJobCodeLabel.getText())) {
+            //Update standard job status
+            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Completed");
+        } else {
+            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
+        }
+
+        //Check if all standard jobs are completed
+        if (controller.checkIfAllStandardJobsAreCompleted(Integer.parseInt(jobNumberLabel.getText()))) {
+            //Update job status
+            controller.updateJobStatus("Completed");
+        } else {
+            controller.updateJobStatus("In progress");
+        }
+
+        //Update task table
+        this.deleteTaskEnquiryTableInformation();
+        this.updateTaskEnquiryTable(standardJobCodeLabel.getText());
+        //Update standard job table
+        this.deleteStandardJobTableInformation();
+        int jobNumber = Integer.valueOf(jobNumberLabel.getText()).intValue();
+        this.updateStandardJobTable(jobNumber);
+        //Update job table
+        this.deleteJobEnquiryTable();
+        this.updateJobEnquiryTable();
+    }//GEN-LAST:event_updateTaskButtonActionPerformed
+
+    private void searchJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobEnquiryButtonActionPerformed
+        String status = (String)jobStatusComboBox.getSelectedItem();
+        String priority = (String)jobPriorityComboBox.getSelectedItem();
+        String collected = (String)jobCollectedComboBox.getSelectedItem();
+        String fromDate = fromDatePicker.getText();
+        String toDate = toDatePicker.getText();
+        
+        //Check if user wants to search for a collected job in progress
+        if (collected.equals("Yes") && status.equals("In progress")){
+            JOptionPane.showMessageDialog(null, "Invalid search criteria");
+        }
+     
+    }//GEN-LAST:event_searchJobEnquiryButtonActionPerformed
+
+    private void updateTaskEnquiryTable(String standardJobCode) {
+        ArrayList<Task> tasks = controller.getStandardJobTasks(standardJobCode);
+        DefaultTableModel taskTableModel = (DefaultTableModel) taskResultsTable.getModel();
+        //taskTableModel.setRowCount(tasks.size());
+
+        //Insert task information into table
+        Object[] row = new Object[5];
+        for (int i = 0; i < tasks.size(); i++) {
+            row[0] = tasks.get(i).getTaskID();
+            row[1] = tasks.get(i).getDescription();
+            row[2] = tasks.get(i).getDepartmentCode();
+            row[3] = tasks.get(i).getShelfSlot();
+            row[4] = tasks.get(i).getStatus();
+            //taskTableModel.insertRow(0, row);
+            taskTableModel.addRow(row);
+        }
+    }
+
+    private void updateStandardJobTable(int jobNumber) {
+        //ArrayList<StandardJob> standardJobs = controller.getStandardJobList(jobNumber);
+        DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
+        //standardJobTableModel.setRowCount(controller.getStandardJobList(jobNumber).size());
+        //System.out.println(standardJobs.get(0).getCode());
+        //System.out.println(standardJobs.get(1).getCode());
+        //Set table
+        Object[] row = new Object[4];
+        for (int i = 0; i < controller.getStandardJobList(jobNumber).size(); i++) {
+            row[0] = controller.getStandardJobList(jobNumber).get(i).getCode();
+            row[1] = controller.getStandardJobList(jobNumber).get(i).getDescription();
+            row[2] = controller.getStandardJobList(jobNumber).get(i).getAmountOfTasks();
+            row[3] = controller.getStandardJobList(jobNumber).get(i).getStatus();
+            //standardJobTableModel.insertRow(0, row);
+            standardJobTableModel.addRow(row);
+        }
+    }
+
     private void updateCollectJobTable() {
         //Get job information from controller class
 
-        ArrayList<JobDetails> jobs = controller.getJob();
+        //ArrayList<JobDetails> jobs = controller.getJob();
         DefaultTableModel jobTableModel = (DefaultTableModel) jobSearchResultsTable.getModel();
-        jobTableModel.setRowCount(jobs.size());
+        //jobTableModel.setRowCount(controller.getJob().size());
         //Set table
-        Object[] row = new Object[5];
-        for (int i = 0; i < jobs.size(); i++) {
-            row[0] = jobs.get(i).getJobNumber();
-            row[1] = jobs.get(i).getIssuedBy();
-            row[2] = jobs.get(i).getDeadline();
-            row[3] = jobs.get(i).getStatus();
-            row[4] = jobs.get(i).isIsCollected();
-            jobTableModel.insertRow(1, row);
+        Object[] row = new Object[6];
+        for (int i = 0; i < controller.getJob().size(); i++) {
+            row[0] = controller.getJob().get(i).getJobNumber();
+            row[1] = controller.getJob().get(i).getAmountOfStandardJobs();
+            row[2] = controller.getJob().get(i).getIssuedBy();
+            row[3] = controller.getJob().get(i).getDeadline();
+            row[4] = controller.getJob().get(i).getStatus();
+            row[5] = controller.getJob().get(i).isIsCollected();
+
+            jobTableModel.addRow(row);
+        }
+    }
+
+    private void updateJobEnquiryTable() {
+        //ArrayList<JobDetails> jobs = controller.getJob();
+        DefaultTableModel jobEnquiryTableModel = (DefaultTableModel) jobEnquiryTableResults.getModel();
+        //Set table
+        //jobEnquiryTableModel.setRowCount(controller.getJob().size());
+        Object[] row = new Object[6];
+        for (int i = 0; i < controller.getJob().size(); i++) {
+            row[0] = controller.getJob().get(i).getJobNumber();
+            row[1] = controller.getJob().get(i).getAmountOfStandardJobs();
+            row[2] = controller.getJob().get(i).getIssuedBy();
+            row[3] = controller.getJob().get(i).getDateReceived();
+            row[4] = controller.getJob().get(i).getDeadline();
+            row[5] = controller.getJob().get(i).getStatus();
+            jobEnquiryTableModel.addRow(row);
         }
     }
 
@@ -2231,9 +2893,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton acceptPaymentShiftManager;
     private javax.swing.JButton backButon;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton backJobEnquiryButton;
+    private javax.swing.JButton backJobSearchResultsButton;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelButtonCreateTask;
+    private javax.swing.JButton cancelJobEnquiryButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JButton chooseFileButton;
@@ -2261,6 +2926,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel editTaskPage;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel firstnameLabel;
+    private com.github.lgooddatepicker.components.DatePicker fromDatePicker;
+    private javax.swing.JLabel fromLabel1;
     private javax.swing.JLabel homeButtonNewTask;
     private javax.swing.JButton homePageOM;
     private javax.swing.JPanel homePageOMBar;
@@ -2276,15 +2943,32 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JComboBox<String> jobCollectedComboBox;
+    private javax.swing.JPanel jobEnquiryPage;
+    private javax.swing.JPanel jobEnquirySearchResultsPage;
+    private javax.swing.JTable jobEnquiryTableResults;
     private javax.swing.JButton jobEnquiryTechnician;
+    private javax.swing.JLabel jobNumberLabel;
+    private javax.swing.JLabel jobNumberLabel1;
+    private javax.swing.JTextField jobNumberText;
     private javax.swing.JTextField jobNumberTextField;
     private javax.swing.JButton jobOfficeManager;
+    private javax.swing.JComboBox<String> jobPriorityComboBox;
+    private javax.swing.JLabel jobPriorityLabel;
+    private javax.swing.JLabel jobPriorityLabel2;
     private javax.swing.JButton jobReceptionist;
     private javax.swing.JPanel jobSearchResultsPage;
     private javax.swing.JTable jobSearchResultsTable;
     private javax.swing.JButton jobShiftManager;
+    private javax.swing.JComboBox<String> jobStatusComboBox;
+    private javax.swing.JLabel jobStatusLabel;
     private javax.swing.JLabel lastnameLabel;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton logOutButton1;
@@ -2317,6 +3001,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel officeManagerWelcomeText3;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel periodLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField priceNewTaskField;
     private javax.swing.JTextField priceText;
@@ -2329,6 +3014,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton saveButton;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JButton searchJobButton;
+    private javax.swing.JButton searchJobEnquiryButton;
+    private javax.swing.JButton searchJobNumberJobEnquiryButton;
     private javax.swing.JPanel searchJobPage;
     private javax.swing.JButton settingsOfficeManager;
     private javax.swing.JButton settingsShiftManager;
@@ -2337,22 +3024,34 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField shelfSlotText;
     private javax.swing.JPanel shiftManagerHomePage;
     private javax.swing.JPanel shiftManagerPage;
+    private javax.swing.JLabel standardJobCodeLabel;
+    private javax.swing.JLabel standardJobIndexLabel;
+    private javax.swing.JTable standardJobResults;
+    private javax.swing.JPanel standardJobSearchResultsJobEnquiryPage;
     private javax.swing.JButton standardJobsOfficeManager;
     private javax.swing.JButton standardJobsShiftManager;
+    private javax.swing.JButton taskEnquiryBackButton;
     private javax.swing.JLabel taskIDLabel;
     private javax.swing.JTextField taskIDText;
     private javax.swing.JPanel taskPage;
+    private javax.swing.JTable taskResultsTable;
+    private javax.swing.JPanel taskSearchResultsJobEnquiryPage;
     private javax.swing.JTable taskTable;
     private javax.swing.JButton tasksOfficeManager;
     private javax.swing.JButton tasksShiftManager;
     private javax.swing.JPanel technicianHomePage;
     private javax.swing.JPanel technicianPage;
     private javax.swing.JButton tempButton;
+    private com.github.lgooddatepicker.components.DatePicker toDatePicker;
+    private javax.swing.JLabel toLabel;
+    private javax.swing.JButton updateTaskButton;
     private javax.swing.JTextField userFirstNameField;
     private javax.swing.JTextField userIDField;
     private javax.swing.JTextField userLastNameField;
     private javax.swing.JComboBox<String> userRoleDD;
     private javax.swing.JButton usersOfficeManager;
+    private javax.swing.JButton viewJobEnquiryButton;
+    private javax.swing.JButton viewStandardJobButton;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
     private javax.swing.JPanel welcomeBar3;
