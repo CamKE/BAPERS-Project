@@ -206,8 +206,7 @@ public class Controller {
             //Create a new job
             job = new JobDetails(jobNumber, deadline, issuedBy, status, dateReceived, isCollected, statusID);
             //Add job to job list
-            job.setAmountOfStandardJobs(jobStandardJobMap.get(jobNumber).size());
-            // System.out.println(job.getAmountOfStandardJobs());          
+            //job.setAmountOfStandardJobs(jobStandardJobMap.get(jobNumber).size());      
             jobList.add(job);
             job.setStandardJobList(standardJobList);
 
@@ -261,9 +260,9 @@ public class Controller {
         database.write(SQL, conn);
     }
 
-    public void updateJobStatus(String status) {
-        int statusID = this.getJob().get(0).getStatusID();
-        this.getJob().get(0).setStatus(status);
+    public void updateJobStatus(String status, int index) {
+        int statusID = this.getJob().get(index).getStatusID();
+        this.getJob().get(index).setStatus(status);
         String SQL = "Update status\n"
                 + "SET status_type = '" + status + "'\n"
                 + "WHERE status_id = '" + statusID + "';";
@@ -280,7 +279,7 @@ public class Controller {
             while (rs.next()) {
                 if (rs.getString("status_type").equals("In progress")) {
                     allTasksCompleted = false;
-                } 
+                }
             }
         } catch (Exception e) {
             System.out.println("Check If All Tasks Are Completed Error");
@@ -298,7 +297,7 @@ public class Controller {
             while (rs.next()) {
                 if (rs.getString("status_type").equals("In progress")) {
                     allStandardJobsCompleted = false;
-                } 
+                }
             }
         } catch (Exception e) {
             System.out.println("Check If all standard jobs are completed error");
@@ -364,7 +363,7 @@ public class Controller {
         //Read job information from database
         rs = database.read(SQL, conn);
         //Read standard job information from database
-        
+
         int amountOfStandardJobs = 0;
         String issuedBy = "";
         int jobNumber = 0;
@@ -416,10 +415,10 @@ public class Controller {
         standardJobTasksList.clear();
     }
 
-    public Integer getInvoiceNumber() {
+    public Integer getInvoiceNumber(int jobNumber) {
         //Get invoice number from database
-        int jobNumber = job.getJobNumber();
-        String SQL = "SELECT invoice_no  FROM invoice,job WHERE job.job_no = invoice.Job_job_no AND job_no = '" + jobNumber + "';";
+
+        String SQL = "SELECT invoice_no FROM invoice,job WHERE job.job_no = invoice.Job_job_no AND job_no = '" + jobNumber + "';";
         rs = database.read(SQL, conn);
         int invoiceNumber = 0;
         try {
@@ -430,6 +429,24 @@ public class Controller {
             System.out.println("Get Invoice Number Error");
         }
         return invoiceNumber;
+    }
+
+    public boolean isCustomerValued(int jobNumber) {
+        boolean isValued = false;
+        String SQL = "select is_valued from job\n"
+                + "inner join customer on job.Customer_account_no = customer.account_no\n"
+                + "WHERE job_no = '" + jobNumber + "';";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                if (rs.getInt("is_valued") == 1) {
+                    isValued = true;
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return isValued;
     }
 
     public boolean doesJobExist(String userInput, boolean isJobNumberInput) {
@@ -542,23 +559,22 @@ public class Controller {
         job.setJobNumber(jobNumber);
     }
 
-}
-//    public String[] getRoles() {
-//        // ArrayList roles = new ArrayList();
-//        //should there be this much code in a controller????
-//        String[] roles = new String[4];
-//        int i = 0;
-//        String sql = "select role_description from role";
-//
-//        //close resultset after use
-//        try (ResultSet result = database.read(sql, conn)) {
-//            while (result.next()) {
-//                roles[i] = result.getString("role_description");
-//                i++;
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//        }
-//        return roles;
-//    }
+    public void getListOfJobNumbers(String statusType, String priority, int isCollected) {
+        String SQL = "SELECT job_no from job\n"
+                + "inner join status on job.Status_status_id = status.status_id\n"
+                + "inner join deadline on job.Deadline_date_received = deadline.date_received\n"
+                + "inner join completiontime on deadline.CompletionTime_completion_time = completiontime.completion_time\n"
+                + "inner join priority on completiontime.Priority_priority_description = priority.priority_description\n"
+                + "where status_type = '" + statusType + "' AND priority_description = '" + priority + "' AND is_collected = '" + isCollected + "';";
+        rs = database.read(SQL, conn);
 
+        try {
+            while (rs.next()) {
+                int jobNumber = rs.getInt("job_no");
+                this.setStandardJobIntoJob(jobNumber);
+            }
+        } catch (Exception e) {
+            System.out.println("Error getting job details from job enquiry search criteria");
+        }
+    }
+}
