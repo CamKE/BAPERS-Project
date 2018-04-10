@@ -73,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
         list2 = new DefaultListModel();
         durations = new String[]{"Select a time"};
         currentPage = "";
+        previousPage = "";
         // Set the controller 
         this.controller = controller;
         loggedInUser = null;
@@ -115,6 +116,7 @@ public class MainFrame extends javax.swing.JFrame {
         findUserLabel = new javax.swing.JLabel();
         userNumberLabel = new javax.swing.JLabel();
         UserNumberField = new javax.swing.JTextField();
+        cancelSearchButton = new javax.swing.JButton();
         UserFirstnameField = new javax.swing.JTextField();
         userFirstnameLabel = new javax.swing.JLabel();
         UserLastnameField = new javax.swing.JTextField();
@@ -532,6 +534,17 @@ public class MainFrame extends javax.swing.JFrame {
         UserNumberField.setMinimumSize(new java.awt.Dimension(250, 37));
         UserNumberField.setPreferredSize(new java.awt.Dimension(250, 37));
 
+        cancelSearchButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        cancelSearchButton.setText("Cancel");
+        cancelSearchButton.setMaximumSize(new java.awt.Dimension(163, 37));
+        cancelSearchButton.setMinimumSize(new java.awt.Dimension(163, 37));
+        cancelSearchButton.setPreferredSize(new java.awt.Dimension(163, 37));
+        cancelSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelSearchButtonActionPerformed(evt);
+            }
+        });
+
         UserFirstnameField.setMaximumSize(new java.awt.Dimension(250, 37));
         UserFirstnameField.setMinimumSize(new java.awt.Dimension(250, 37));
         UserFirstnameField.setPreferredSize(new java.awt.Dimension(250, 37));
@@ -580,33 +593,37 @@ public class MainFrame extends javax.swing.JFrame {
         userSearchPageLayout.setHorizontalGroup(
             userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userSearchPageLayout.createSequentialGroup()
-                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(userSearchPageLayout.createSequentialGroup()
-                            .addGap(364, 364, 364)
-                            .addComponent(findUserLabel))
-                        .addGroup(userSearchPageLayout.createSequentialGroup()
-                            .addGap(235, 235, 235)
-                            .addComponent(userNumberLabel)
-                            .addGap(18, 18, 18)
-                            .addComponent(UserNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userSearchPageLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(userSearchPageLayout.createSequentialGroup()
+                                    .addGap(364, 364, 364)
+                                    .addComponent(findUserLabel))
+                                .addGroup(userSearchPageLayout.createSequentialGroup()
+                                    .addGap(235, 235, 235)
+                                    .addComponent(userNumberLabel)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(UserNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(userSearchPageLayout.createSequentialGroup()
-                                .addComponent(userFirstnameLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(UserFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(userSearchPageLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(userLastnameLabel)
-                                    .addComponent(userLastnameLabel1))
-                                .addGap(18, 18, 18)
-                                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(UserRoleSearchDrop, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(UserLastnameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addGap(235, 235, 235))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
+                                    .addGroup(userSearchPageLayout.createSequentialGroup()
+                                        .addComponent(userFirstnameLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(UserFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(userSearchPageLayout.createSequentialGroup()
+                                        .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(userLastnameLabel)
+                                            .addComponent(userLastnameLabel1))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(UserRoleSearchDrop, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(UserLastnameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addGap(46, 46, 46))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userSearchPageLayout.createSequentialGroup()
+                        .addComponent(cancelSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(searchUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -632,7 +649,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(UserRoleSearchDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userLastnameLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addComponent(searchUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(userSearchPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65))
         );
 
@@ -4550,6 +4569,15 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_customerResultsTableComponentMoved
 
+    private void cancelSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSearchButtonActionPerformed
+        // TODO add your handling code here:
+        if (previousPage.equals("createReport")) {
+            createReportPageButton.doClick();
+        } else {
+            usersMenuPageButton.doClick();
+        }
+    }//GEN-LAST:event_cancelSearchButtonActionPerformed
+
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
@@ -4633,6 +4661,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton cancelCreationjButton;
     private javax.swing.JButton cancelCustomerFJobjButton;
     private javax.swing.JButton cancelInvoiceSeletionjButton;
+    private javax.swing.JButton cancelSearchButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JComboBox<String> cardTypejComboBox;

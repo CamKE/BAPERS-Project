@@ -432,6 +432,7 @@ public class Controller {
                 System.out.println("Individual performance report");
                 // '2010-01-30 14:15:55'
                 // '2010-09-29 10:15:55'
+                // need to put time on start date and finish date for the different types of shifts!!!!!
                 sql = "SELECT * FROM staff_individual_performance WHERE finish BETWEEN '" + startDate + "' AND '" + finishDate + "'";
                 if (!info.equals("Select user... (optional)")) {
                     String[] parts = info.split("\\:");
@@ -468,6 +469,23 @@ public class Controller {
                 break; // optional
             case 3:
                 System.out.println("Customer report");
+                String[] parts = info.split("\\:");
+                sql = "SELECT * FROM customer_report WHERE finish BETWEEN '" + startDate + "' AND '" + finishDate + "' AND Customer_account_no = " + parts[2];
+
+                //close resultset after use
+                try (ResultSet result = database.read(sql, conn)) {
+                    while (result.next()) {
+                        // PUT ALL DATA HERE FROM THE CUSTOMER REPORT VIEW, TEST IT WORKS WHEN SUBMITTED IN THE APPLICATION. THEN START CREATING PDF REPORTS BASED ON THE QUERIRES.
+                        // ADD MORE DATA TO THE DB TO THOROUGHLY TEST IT WORKS.
+//                        String accountHolderName = result.getString("firstname");
+//                        int taskId = result.getInt("Task_task_id");
+//                        String stdJobCode = result.getString("Job_StandardJobs_StandardJob_code");
+//                        String departmentName = result.getString("department_name");
+//                        System.out.println(name + " : " + taskId + " : " + departmentName);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
                 break; // optional
         }
 
