@@ -420,18 +420,23 @@ public class Controller {
         return tasks;
     }
 
-    public boolean createReport(int reportIndex, Date[] reportPeriod, String customerInfo) {
+    public boolean createReport(int reportIndex, Date[] reportPeriod, String info) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String startDate = sdf.format(reportPeriod[0]);
         String finishDate = sdf.format(reportPeriod[1]);
-        
+        String sql;
+
         System.out.println(finishDate);
         switch (reportIndex) {
             case 1:
                 System.out.println("Individual performance report");
                 // '2010-01-30 14:15:55'
                 // '2010-09-29 10:15:55'
-                String sql = "SELECT * FROM staff_individual_performance WHERE finish BETWEEN '" + startDate + "' AND '" + finishDate + "';";
+                sql = "SELECT * FROM staff_individual_performance WHERE finish BETWEEN '" + startDate + "' AND '" + finishDate + "'";
+                if (!info.equals("Select user... (optional)")) {
+                    String[] parts = info.split("\\:");
+                    sql += "AND account_no = " + parts[2];
+                }
                 //close resultset after use
                 try (ResultSet result = database.read(sql, conn)) {
                     while (result.next()) {
@@ -447,6 +452,19 @@ public class Controller {
                 break; // optional
             case 2:
                 System.out.println("Summary performance report");
+
+                sql = "SELECT * FROM summary_performance WHERE summary_performance.finish BETWEEN '" + startDate + "' AND '" + finishDate + "' ORDER BY summary_performance.finish AND summary_performance.department_name;;";
+                //close resultset after use
+                try (ResultSet result = database.read(sql, conn)) {
+                    while (result.next()) {
+                        String department = result.getString("department_name");
+                        String start = result.getString("start");
+                        String finish = result.getString("finish");
+                        System.out.println(department + " : " + start + " : " + finish);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex);
+                }
                 break; // optional
             case 3:
                 System.out.println("Customer report");
