@@ -9,6 +9,7 @@ import bapers.database.DBImpl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,13 +23,23 @@ public class SummaryReport extends Report {
     }
 
     @Override
-    public Object[][] generate(DBImpl db, Connection conn) {
+    public ArrayList<Object[][]> generate(DBImpl db, Connection conn) {
+        ArrayList<Object[][]> shiftData = new ArrayList<>();
+        String[][] shifts = new String[][]{{"05:00:00", "14:30:00"}, {"14:30:00", "22:00:00"}, {"22:00:00", "05:00:00"}};
+        for (String[] shift : shifts) {
+            System.out.println("BETWEEN '" + reportPeriod[0] + " " + shift[0] + "' AND '" + reportPeriod[1] + " " + shift[1]);
+            String sql = "SELECT (SELECT COUNT(DISTINCT summary_performance.finish) FROM summary_performance) AS numrows, SUM(TIMESTAMPDIFF(MINUTE,summary_performance.start,summary_performance.finish)) AS totalduration, summary_performance.department_code, summary_performance.finish FROM summary_performance WHERE (CAST(summary_performance.finish AS DATE) BETWEEN '" + reportPeriod[0] + "' AND '" + reportPeriod[1] + "') AND (CAST(summary_performance.finish AS TIME) BETWEEN '" + shift[0] + "' AND '" + shift[1] + "') GROUP BY summary_performance.department_name, summary_performance.finish ORDER BY summary_performance.finish;";
+            shiftData.add(getData(db, conn, sql));
+        }
+        return shiftData;
+    }
+
+    private Object[][] getData(DBImpl db, Connection conn, String sql) {
         Object[][] rows = null;
         int count = 0;
         String previousFinishDate = null;
-        String sql = "SELECT (SELECT COUNT(DISTINCT summary_performance.finish) FROM summary_performance) AS numrows, SUM(TIMESTAMPDIFF(MINUTE,summary_performance.start,summary_performance.finish)) AS totalduration, summary_performance.department_code, summary_performance.finish FROM summary_performance WHERE summary_performance.finish BETWEEN '" + reportPeriod[0] + "' AND '" + reportPeriod[1] + "' GROUP BY summary_performance.department_name, summary_performance.finish ORDER BY summary_performance.finish;";
-        //close resultset after use
 
+        //close resultset after use
         try (ResultSet result = db.read(sql, conn)) {
             result.next();
             rows = new Object[result.getInt("numrows")][5];
@@ -36,7 +47,7 @@ public class SummaryReport extends Report {
             String department = result.getString("department_code");
             String finishDate = result.getString("finish");
             int duration = result.getInt("totalduration");
-            
+
             do {
                 System.out.println(department + " : " + finishDate + " : " + duration);
 

@@ -343,6 +343,9 @@ public class MainFrame extends javax.swing.JFrame {
         shift2Label = new javax.swing.JLabel();
         shift3Label = new javax.swing.JLabel();
         periodLabel = new javax.swing.JLabel();
+        summaryReportLabel = new javax.swing.JLabel();
+        reportBackButton = new javax.swing.JButton();
+        searchAgainButton3 = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -3072,6 +3075,11 @@ public class MainFrame extends javax.swing.JFrame {
         summaryReportPage.setMinimumSize(new java.awt.Dimension(900, 640));
         summaryReportPage.setPreferredSize(new java.awt.Dimension(900, 640));
         summaryReportPage.setRequestFocusEnabled(false);
+        summaryReportPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                summaryReportPageComponentHidden(evt);
+            }
+        });
 
         summaryReportPageData.setBackground(new java.awt.Color(61, 96, 146));
         summaryReportPageData.setMaximumSize(new java.awt.Dimension(900, 900));
@@ -3183,6 +3191,31 @@ public class MainFrame extends javax.swing.JFrame {
         periodLabel.setForeground(new java.awt.Color(255, 255, 255));
         periodLabel.setText("For period");
 
+        summaryReportLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        summaryReportLabel.setForeground(new java.awt.Color(255, 255, 255));
+
+        reportBackButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        reportBackButton.setText("Back");
+        reportBackButton.setMaximumSize(new java.awt.Dimension(175, 45));
+        reportBackButton.setMinimumSize(new java.awt.Dimension(175, 45));
+        reportBackButton.setPreferredSize(new java.awt.Dimension(175, 45));
+        reportBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportBackButtonActionPerformed(evt);
+            }
+        });
+
+        searchAgainButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        searchAgainButton3.setText("Print");
+        searchAgainButton3.setMaximumSize(new java.awt.Dimension(175, 45));
+        searchAgainButton3.setMinimumSize(new java.awt.Dimension(175, 45));
+        searchAgainButton3.setPreferredSize(new java.awt.Dimension(175, 45));
+        searchAgainButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchAgainButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout summaryReportPageDataLayout = new javax.swing.GroupLayout(summaryReportPageData);
         summaryReportPageData.setLayout(summaryReportPageDataLayout);
         summaryReportPageDataLayout.setHorizontalGroup(
@@ -3194,17 +3227,28 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(shift1Label)
-                        .addComponent(shift2Label)
-                        .addComponent(shift3Label)
-                        .addComponent(periodLabel)))
+                    .addComponent(shift1Label)
+                    .addComponent(shift2Label)
+                    .addComponent(shift3Label)
+                    .addComponent(periodLabel)
+                    .addComponent(summaryReportLabel))
                 .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, summaryReportPageDataLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(searchAgainButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(reportBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
         summaryReportPageDataLayout.setVerticalGroup(
             summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, summaryReportPageDataLayout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reportBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchAgainButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(summaryReportLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(summaryReportPageDataLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -4658,12 +4702,15 @@ public class MainFrame extends javax.swing.JFrame {
     private void createReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createReportButtonActionPerformed
         // TODO add your handling code here:
         int reportIndex = reportTypeDD.getSelectedIndex();
-        Date[] reportPeriod = new Date[]{reportStartPeriod.getDate(), reportEndPeriod.getDate()};
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String startDate = sdf.format(reportStartPeriod.getDate());
+        String finishDate = sdf.format(reportEndPeriod.getDate());
+        String[] reportPeriod = new String[]{startDate, finishDate};
         String info = infoField.getText();
 
         if (reportIndex == 0) {
             JOptionPane.showMessageDialog(this, "Please select a report type");
-        } else if (reportPeriod[0] == null || reportPeriod[1] == null || !reportPeriod[1].after(reportPeriod[0])) {
+        } else if (reportPeriod[0] == null || reportPeriod[1] == null || !reportEndPeriod.getDate().after(reportStartPeriod.getDate())) {
             JOptionPane.showMessageDialog(this, "Please enter a valid report peroid");
         } else if (reportIndex == 3 && info.equals("Select customer...")) {
             JOptionPane.showMessageDialog(this, "Please select a customer");
@@ -4674,13 +4721,30 @@ public class MainFrame extends javax.swing.JFrame {
                 case 1:
                     break;
                 case 2:
-                    tblModel = (DefaultTableModel) jTable1.getModel();
-                    Object[][] o = objects.get(0);
-                    
-                    for (int i = 0; i < o.length; i++) {
-                        tblModel.insertRow(i, o[i]);
-                    }
+                    Object[][] o;
+                    for (int i = 0; i < objects.size(); i++) {
+                        o = objects.get(i);
+                        if (o != null) {
+                            switch (i) {
+                                case 0:
+                                    tblModel = (DefaultTableModel) jTable1.getModel();
+                                    break;
+                                case 1:
+                                    tblModel = (DefaultTableModel) jTable2.getModel();
+                                    break;
+                                case 2:
+                                    tblModel = (DefaultTableModel) jTable3.getModel();
+                                    break;
+                                default:
+                                    break;
+                            }
 
+                            for (int x = 0; x < o.length; x++) {
+                                tblModel.insertRow(x, o[x]);
+                            }
+                        }
+                    }
+                    summaryReportLabel.setText("Period : " + startDate + " - " + finishDate);
                     currentPage = "summaryReport";
                     break;
                 case 3:
@@ -4690,7 +4754,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
             card1.show(cardPanel1, currentPage);
-            pageLabel.setText("Generated report page");
+            pageLabel.setText("Summary Performance Report");
 
         }
     }//GEN-LAST:event_createReportButtonActionPerformed
@@ -4781,6 +4845,22 @@ public class MainFrame extends javax.swing.JFrame {
     private void summaryReportPageDataComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_summaryReportPageDataComponentHidden
         // TODO add your handling code here:
     }//GEN-LAST:event_summaryReportPageDataComponentHidden
+
+    private void reportBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportBackButtonActionPerformed
+        // TODO add your handling code here:
+        createReportPageButton.doClick();
+    }//GEN-LAST:event_reportBackButtonActionPerformed
+
+    private void searchAgainButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchAgainButton3ActionPerformed
+
+    private void summaryReportPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_summaryReportPageComponentHidden
+        // TODO add your handling code here:
+        if (tblModel != null) {
+            tblModel.setRowCount(0);
+        }
+    }//GEN-LAST:event_summaryReportPageComponentHidden
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
@@ -5003,6 +5083,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton removeJobButton;
     private javax.swing.JButton removeMaterialButton;
     private javax.swing.JButton removeTaskButton;
+    private javax.swing.JButton reportBackButton;
     private com.toedter.calendar.JDateChooser reportEndPeriod;
     private javax.swing.JPanel reportHomePage;
     private javax.swing.JLabel reportPeriodLabel;
@@ -5017,6 +5098,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel searchAccountHolderNamejLabel;
     private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchAgainButton1;
+    private javax.swing.JButton searchAgainButton3;
     private javax.swing.JButton searchButton;
     private javax.swing.JLabel searchContactFirstNamejLabel;
     private javax.swing.JLabel searchContactSurnamejLabel;
@@ -5057,6 +5139,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel streetNameSjLabel;
     private javax.swing.JLabel streetNamejLabel;
     private javax.swing.JButton submitButton;
+    private javax.swing.JLabel summaryReportLabel;
     private javax.swing.JScrollPane summaryReportPage;
     private javax.swing.JPanel summaryReportPageData;
     private javax.swing.JLabel surchargeLabel;

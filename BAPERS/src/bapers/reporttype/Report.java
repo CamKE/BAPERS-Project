@@ -7,6 +7,7 @@ package bapers.reporttype;
 
 import bapers.database.DBImpl;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Report {
         this.reportPeriod = reportPeriod;
     }
     
-    public Object[][] generate(DBImpl db, Connection conn)
+    public ArrayList<Object[][]>  generate(DBImpl db, Connection conn)
     {
         return null;
     }
