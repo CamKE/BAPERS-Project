@@ -454,10 +454,9 @@ public class Controller {
                 break; // optional
             case 2:
                 System.out.println("Summary performance report");
-                
-                SummaryReport sReport = new SummaryReport(new String[] {startDate,finishDate});
-                sReport.getData(database, conn);
-                sReport.generate();
+
+                SummaryReport sReport = new SummaryReport(new String[]{startDate, finishDate});
+                Object o = sReport.generate(database, conn);
                 break; // optional
             case 3:
                 System.out.println("Customer report");

@@ -20,8 +20,8 @@ public class Report {
         this.reportPeriod = reportPeriod;
     }
     
-    void generate()
+    public Object[][] generate(DBImpl db, Connection conn)
     {
-        
+        return null;
     }
 }
