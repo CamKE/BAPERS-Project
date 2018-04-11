@@ -475,13 +475,13 @@ public class Controller {
                 //close resultset after use
                 try (ResultSet result = database.read(sql, conn)) {
                     while (result.next()) {
-                        // PUT ALL DATA HERE FROM THE CUSTOMER REPORT VIEW, TEST IT WORKS WHEN SUBMITTED IN THE APPLICATION. THEN START CREATING PDF REPORTS BASED ON THE QUERIRES.
-                        // ADD MORE DATA TO THE DB TO THOROUGHLY TEST IT WORKS.
-//                        String accountHolderName = result.getString("firstname");
-//                        int taskId = result.getInt("Task_task_id");
-//                        String stdJobCode = result.getString("Job_StandardJobs_StandardJob_code");
-//                        String departmentName = result.getString("department_name");
-//                        System.out.println(name + " : " + taskId + " : " + departmentName);
+//                         PUT ALL DATA HERE FROM THE CUSTOMER REPORT VIEW, TEST IT WORKS WHEN SUBMITTED IN THE APPLICATION. THEN START CREATING PDF REPORTS BASED ON THE QUERIRES.
+//                         ADD MORE DATA TO THE DB TO THOROUGHLY TEST IT WORKS.
+                        String dateReceived = result.getString("Deadline_date_received");
+                        int jobNo = result.getInt("job_no");
+                        double totalPayable = result.getDouble("total_payable");
+                        String invoiceStatus = result.getString("invoice_status");
+                        System.out.println(jobNo + " : " + dateReceived + " : " + totalPayable + " : " + invoiceStatus);
                     }
                 } catch (SQLException ex) {
                     System.out.println(ex);
