@@ -329,8 +329,20 @@ public class MainFrame extends javax.swing.JFrame {
         reportStartPeriod = new com.toedter.calendar.JDateChooser();
         reportEndPeriod = new com.toedter.calendar.JDateChooser();
         periodToLabel = new javax.swing.JLabel();
-        generatedReportPage = new javax.swing.JScrollPane();
-        generatedReportPageData = new javax.swing.JPanel();
+        summaryReportPage = new javax.swing.JScrollPane();
+        summaryReportPageData = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        shift1Label = new javax.swing.JLabel();
+        shift2Label = new javax.swing.JLabel();
+        shift3Label = new javax.swing.JLabel();
+        periodLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -3056,35 +3068,168 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createReportPage, "createReport");
 
-        generatedReportPage.setMaximumSize(new java.awt.Dimension(900, 640));
-        generatedReportPage.setMinimumSize(new java.awt.Dimension(900, 640));
-        generatedReportPage.setPreferredSize(new java.awt.Dimension(900, 640));
-        generatedReportPage.setRequestFocusEnabled(false);
+        summaryReportPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        summaryReportPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        summaryReportPage.setPreferredSize(new java.awt.Dimension(900, 640));
+        summaryReportPage.setRequestFocusEnabled(false);
 
-        generatedReportPageData.setBackground(new java.awt.Color(61, 96, 146));
-        generatedReportPageData.setMaximumSize(new java.awt.Dimension(900, 900));
-        generatedReportPageData.setMinimumSize(new java.awt.Dimension(900, 900));
-        generatedReportPageData.setPreferredSize(new java.awt.Dimension(900, 900));
-        generatedReportPageData.addComponentListener(new java.awt.event.ComponentAdapter() {
+        summaryReportPageData.setBackground(new java.awt.Color(61, 96, 146));
+        summaryReportPageData.setMaximumSize(new java.awt.Dimension(900, 900));
+        summaryReportPageData.setMinimumSize(new java.awt.Dimension(900, 900));
+        summaryReportPageData.setPreferredSize(new java.awt.Dimension(900, 900));
+        summaryReportPageData.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
-                generatedReportPageDataComponentHidden(evt);
+                summaryReportPageDataComponentHidden(evt);
             }
         });
 
-        javax.swing.GroupLayout generatedReportPageDataLayout = new javax.swing.GroupLayout(generatedReportPageData);
-        generatedReportPageData.setLayout(generatedReportPageDataLayout);
-        generatedReportPageDataLayout.setHorizontalGroup(
-            generatedReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Copy Room", "Development", "Finishing", "Packaging"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Copy Room", "Development", "Finishing", "Packaging"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Copy Room", "Development", "Finishing", "Packaging"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jTable3);
+        if (jTable3.getColumnModel().getColumnCount() > 0) {
+            jTable3.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Copy Room", "Development", "Finishing", "Packaging"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(jTable4);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        shift1Label.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        shift1Label.setForeground(new java.awt.Color(255, 255, 255));
+        shift1Label.setText("Day shift 1 (5:00 am – 2:30 pm)");
+
+        shift2Label.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        shift2Label.setForeground(new java.awt.Color(255, 255, 255));
+        shift2Label.setText("Day shift 2 (2:30 pm – 10 pm)");
+
+        shift3Label.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        shift3Label.setForeground(new java.awt.Color(255, 255, 255));
+        shift3Label.setText("Night shift 1 (10 pm – 5 am)");
+
+        periodLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        periodLabel.setForeground(new java.awt.Color(255, 255, 255));
+        periodLabel.setText("For period");
+
+        javax.swing.GroupLayout summaryReportPageDataLayout = new javax.swing.GroupLayout(summaryReportPageData);
+        summaryReportPageData.setLayout(summaryReportPageDataLayout);
+        summaryReportPageDataLayout.setHorizontalGroup(
+            summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(summaryReportPageDataLayout.createSequentialGroup()
+                .addContainerGap(98, Short.MAX_VALUE)
+                .addGroup(summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(shift1Label)
+                        .addComponent(shift2Label)
+                        .addComponent(shift3Label)
+                        .addComponent(periodLabel)))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
-        generatedReportPageDataLayout.setVerticalGroup(
-            generatedReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+        summaryReportPageDataLayout.setVerticalGroup(
+            summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, summaryReportPageDataLayout.createSequentialGroup()
+                .addContainerGap(134, Short.MAX_VALUE)
+                .addGroup(summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(summaryReportPageDataLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, summaryReportPageDataLayout.createSequentialGroup()
+                        .addComponent(shift1Label)
+                        .addGap(153, 153, 153)
+                        .addComponent(shift2Label)
+                        .addGap(153, 153, 153)
+                        .addComponent(shift3Label)
+                        .addGap(153, 153, 153)
+                        .addComponent(periodLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
-        generatedReportPage.setViewportView(generatedReportPageData);
+        summaryReportPage.setViewportView(summaryReportPageData);
 
-        cardPanel1.add(generatedReportPage, "generatedReport");
+        cardPanel1.add(summaryReportPage, "summaryReport");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -4523,14 +4668,30 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (reportIndex == 3 && info.equals("Select customer...")) {
             JOptionPane.showMessageDialog(this, "Please select a customer");
         } else {
-            if (controller.createReport(reportIndex, reportPeriod, info)) {
-                System.out.println("wooooo");
-                card1.show(cardPanel1, "generatedReport");
-                pageLabel.setText("Generated report page");
-                       
-            } else {
-                System.out.println("ahhhhhhhhhhh");
+            ArrayList<Object[][]> objects = controller.createReport(reportIndex, reportPeriod, info);
+
+            switch (reportIndex) {
+                case 1:
+                    break;
+                case 2:
+                    tblModel = (DefaultTableModel) jTable1.getModel();
+                    Object[][] o = objects.get(0);
+                    
+                    for (int i = 0; i < o.length; i++) {
+                        tblModel.insertRow(i, o[i]);
+                    }
+
+                    currentPage = "summaryReport";
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
             }
+
+            card1.show(cardPanel1, currentPage);
+            pageLabel.setText("Generated report page");
+
         }
     }//GEN-LAST:event_createReportButtonActionPerformed
 
@@ -4617,9 +4778,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cancelSearchButtonActionPerformed
 
-    private void generatedReportPageDataComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_generatedReportPageDataComponentHidden
+    private void summaryReportPageDataComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_summaryReportPageDataComponentHidden
         // TODO add your handling code here:
-    }//GEN-LAST:event_generatedReportPageDataComponentHidden
+    }//GEN-LAST:event_summaryReportPageDataComponentHidden
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
@@ -4762,8 +4923,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNamejLabel;
     private javax.swing.JLabel firstnameLabel;
-    private javax.swing.JScrollPane generatedReportPage;
-    private javax.swing.JPanel generatedReportPageData;
     private javax.swing.JPanel homeBar;
     private javax.swing.JButton homeButton;
     private javax.swing.JPanel homePage;
@@ -4778,7 +4937,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JButton jobEnquiryPageButton;
     private javax.swing.JPanel jobHomePage;
     private javax.swing.JButton jobMenuPageButton;
@@ -4816,6 +4983,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> paymentTypeComboBox;
     private javax.swing.JLabel paymentTypejLabel;
     private javax.swing.JLabel periodFromLabel;
+    private javax.swing.JLabel periodLabel;
     private javax.swing.JLabel periodToLabel;
     private javax.swing.JTextField phoneField1;
     private javax.swing.JTextField phoneNumberField;
@@ -4871,6 +5039,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton settingsMenuPageButton;
     private javax.swing.JLabel shelfSlotNewTaskLabel;
     private javax.swing.JComboBox<String> shelfSlotTaskDD;
+    private javax.swing.JLabel shift1Label;
+    private javax.swing.JLabel shift2Label;
+    private javax.swing.JLabel shift3Label;
     private javax.swing.JTextField specialInstructionjTextField;
     private javax.swing.JLabel specialInstructionsLabel;
     private javax.swing.JPanel standardJobHomePage;
@@ -4886,6 +5057,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel streetNameSjLabel;
     private javax.swing.JLabel streetNamejLabel;
     private javax.swing.JButton submitButton;
+    private javax.swing.JScrollPane summaryReportPage;
+    private javax.swing.JPanel summaryReportPageData;
     private javax.swing.JLabel surchargeLabel;
     private javax.swing.JTextField surchargejTextField;
     private javax.swing.JTextField surnameField;

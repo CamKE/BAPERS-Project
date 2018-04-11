@@ -421,12 +421,12 @@ public class Controller {
         return tasks;
     }
 
-    public boolean createReport(int reportIndex, Date[] reportPeriod, String info) {
+    public ArrayList<Object[][]> createReport(int reportIndex, Date[] reportPeriod, String info) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String startDate = sdf.format(reportPeriod[0]);
         String finishDate = sdf.format(reportPeriod[1]);
         String sql;
-
+        ArrayList<Object[][]> objects = new ArrayList<>();
         System.out.println(finishDate);
         switch (reportIndex) {
             case 1:
@@ -456,7 +456,7 @@ public class Controller {
                 System.out.println("Summary performance report");
 
                 SummaryReport sReport = new SummaryReport(new String[]{startDate, finishDate});
-                Object o = sReport.generate(database, conn);
+                objects.add(sReport.generate(database, conn));
                 break; // optional
             case 3:
                 System.out.println("Customer report");
@@ -480,6 +480,6 @@ public class Controller {
                 break; // optional
         }
 
-        return true;
+        return objects;
     }
 }
