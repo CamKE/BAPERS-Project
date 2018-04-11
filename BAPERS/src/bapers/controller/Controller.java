@@ -12,6 +12,7 @@ import bapers.job.Material;
 import bapers.job.StandardJob;
 import bapers.job.Task;
 import bapers.payment.PaymentDetails;
+import bapers.reporttype.SummaryReport;
 import bapers.user.UserDetails;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -453,19 +454,10 @@ public class Controller {
                 break; // optional
             case 2:
                 System.out.println("Summary performance report");
-
-                sql = "SELECT * FROM summary_performance WHERE summary_performance.finish BETWEEN '" + startDate + "' AND '" + finishDate + "' ORDER BY summary_performance.finish AND summary_performance.department_name;;";
-                //close resultset after use
-                try (ResultSet result = database.read(sql, conn)) {
-                    while (result.next()) {
-                        String department = result.getString("department_name");
-                        String start = result.getString("start");
-                        String finish = result.getString("finish");
-                        System.out.println(department + " : " + start + " : " + finish);
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
+                
+                SummaryReport sReport = new SummaryReport(new String[] {startDate,finishDate});
+                sReport.getData(database, conn);
+                sReport.generate();
                 break; // optional
             case 3:
                 System.out.println("Customer report");

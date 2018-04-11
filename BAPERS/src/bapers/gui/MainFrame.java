@@ -97,6 +97,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jComboBox1 = new javax.swing.JComboBox<>();
         cardPanel1 = new javax.swing.JPanel();
         welcomePage = new javax.swing.JPanel();
         BAPERSLabel = new javax.swing.JLabel();
@@ -328,6 +329,8 @@ public class MainFrame extends javax.swing.JFrame {
         reportStartPeriod = new com.toedter.calendar.JDateChooser();
         reportEndPeriod = new com.toedter.calendar.JDateChooser();
         periodToLabel = new javax.swing.JLabel();
+        generatedReportPage = new javax.swing.JScrollPane();
+        generatedReportPageData = new javax.swing.JPanel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -337,12 +340,15 @@ public class MainFrame extends javax.swing.JFrame {
         logOutButton = new javax.swing.JButton();
         pageLabel = new javax.swing.JLabel();
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
         cardPanel1.setMaximumSize(new java.awt.Dimension(900, 640));
+        cardPanel1.setMinimumSize(new java.awt.Dimension(900, 640));
         cardPanel1.setPreferredSize(new java.awt.Dimension(900, 640));
         cardPanel1.setLayout(new java.awt.CardLayout());
 
@@ -3050,6 +3056,36 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createReportPage, "createReport");
 
+        generatedReportPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        generatedReportPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        generatedReportPage.setPreferredSize(new java.awt.Dimension(900, 640));
+        generatedReportPage.setRequestFocusEnabled(false);
+
+        generatedReportPageData.setBackground(new java.awt.Color(61, 96, 146));
+        generatedReportPageData.setMaximumSize(new java.awt.Dimension(900, 900));
+        generatedReportPageData.setMinimumSize(new java.awt.Dimension(900, 900));
+        generatedReportPageData.setPreferredSize(new java.awt.Dimension(900, 900));
+        generatedReportPageData.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                generatedReportPageDataComponentHidden(evt);
+            }
+        });
+
+        javax.swing.GroupLayout generatedReportPageDataLayout = new javax.swing.GroupLayout(generatedReportPageData);
+        generatedReportPageData.setLayout(generatedReportPageDataLayout);
+        generatedReportPageDataLayout.setHorizontalGroup(
+            generatedReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        generatedReportPageDataLayout.setVerticalGroup(
+            generatedReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+
+        generatedReportPage.setViewportView(generatedReportPageData);
+
+        cardPanel1.add(generatedReportPage, "generatedReport");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -4489,6 +4525,9 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             if (controller.createReport(reportIndex, reportPeriod, info)) {
                 System.out.println("wooooo");
+                card1.show(cardPanel1, "generatedReport");
+                pageLabel.setText("Generated report page");
+                       
             } else {
                 System.out.println("ahhhhhhhhhhh");
             }
@@ -4577,6 +4616,10 @@ public class MainFrame extends javax.swing.JFrame {
             usersMenuPageButton.doClick();
         }
     }//GEN-LAST:event_cancelSearchButtonActionPerformed
+
+    private void generatedReportPageDataComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_generatedReportPageDataComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generatedReportPageDataComponentHidden
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
@@ -4719,6 +4762,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNamejLabel;
     private javax.swing.JLabel firstnameLabel;
+    private javax.swing.JScrollPane generatedReportPage;
+    private javax.swing.JPanel generatedReportPageData;
     private javax.swing.JPanel homeBar;
     private javax.swing.JButton homeButton;
     private javax.swing.JPanel homePage;
@@ -4729,6 +4774,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> invoicejList;
     private javax.swing.JScrollPane invoicejScrollPane;
     private javax.swing.JTable invoicejTable;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
