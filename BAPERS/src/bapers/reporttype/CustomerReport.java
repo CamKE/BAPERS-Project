@@ -40,7 +40,7 @@ public class CustomerReport extends Report {
                 rows[count][0] = result.getInt("job_no");
                 rows[count][1] = result.getDate("Deadline_date_received");
                 rows[count][2] = result.getDate("finish");
-                rows[count][3] = result.getInt("total_payable");
+                rows[count][3] = "£" + result.getDouble("total_payable");
                 rows[count][4] = result.getString("invoice_status");
 
                 count++;

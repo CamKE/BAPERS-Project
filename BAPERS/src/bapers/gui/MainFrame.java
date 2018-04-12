@@ -3408,7 +3408,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job number", "Date received", "Date completed", "Total", "Invoice status"
+                "Job number", "Date received", "Date completed", "Total payable", "Invoice status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -4931,81 +4931,91 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             ArrayList<Object[][]> objects = controller.createReport(reportIndex, reportPeriod, info);
             Object[][] o;
+            if (!objects.isEmpty()) {
 
-            switch (reportIndex) {
-                case 1:
-                    tblModel = (DefaultTableModel) jTable5.getModel();
-                    o = objects.get(0);
-                    for (int x = 0; x < o.length; x++) {
-                        tblModel.insertRow(x, o[x]);
-                    }
-                    iPLabel.setText("Period : " + startDate + " - " + finishDate);
-                    currentPage = "individualReport";
-                    pageLabel.setText("Individual Performance Report");
-                    break;
-                case 2:
-                    String shift = "";
-                    int sumCR = 0;
-                    int sumDA = 0;
-                    int sumFR = 0;
-                    int sumPD = 0;
-                    for (int i = 0; i < objects.size(); i++) {
-                        o = objects.get(i);
-                        if (o != null) {
-                            switch (i) {
-                                case 0:
-                                    shift = "Day Shift 1";
-                                    tblModel = (DefaultTableModel) jTable1.getModel();
-                                    break;
-                                case 1:
-                                    shift = "Day Shift 1";
-                                    tblModel = (DefaultTableModel) jTable2.getModel();
-                                    break;
-                                case 2:
-                                    shift = "Night Shift 1";
-                                    tblModel = (DefaultTableModel) jTable3.getModel();
-                                    break;
-                                default:
-                                    break;
-                            }
-                            int totalCR = 0;
-                            int totalDA = 0;
-                            int totalFR = 0;
-                            int totalPD = 0;
-
-                            for (int x = 0; x < o.length; x++) {
-                                tblModel.insertRow(x, o[x]);
-                                totalCR += (Integer) o[x][1];
-                                totalDA += (Integer) o[x][2];
-                                totalFR += (Integer) o[x][3];
-                                totalPD += (Integer) o[x][4];
-                            }
-                            tblModel.addRow(new Object[]{"Total", totalCR, totalDA, totalFR, totalPD});
-                            tblModel = (DefaultTableModel) jTable4.getModel();
-                            tblModel.addRow(new Object[]{shift, totalCR, totalDA, totalFR, totalPD});
-                            sumCR += totalCR;
-                            sumDA += totalDA;
-                            sumFR += totalFR;
-                            sumPD += totalPD;
+                switch (reportIndex) {
+                    case 1:
+                        tblModel = (DefaultTableModel) jTable5.getModel();
+                        o = objects.get(0);
+                        for (int x = 0; x < o.length; x++) {
+                            tblModel.insertRow(x, o[x]);
                         }
-                    }
+                        iPLabel.setText("Period : " + startDate + " - " + finishDate);
+                        currentPage = "individualReport";
+                        pageLabel.setText("Individual Performance Report");
+                        break;
+                    case 2:
+                        String shift = "";
+                        int sumCR = 0;
+                        int sumDA = 0;
+                        int sumFR = 0;
+                        int sumPD = 0;
+                        for (int i = 0; i < objects.size(); i++) {
+                            o = objects.get(i);
+                            if (o != null) {
+                                switch (i) {
+                                    case 0:
+                                        shift = "Day Shift 1";
+                                        tblModel = (DefaultTableModel) jTable1.getModel();
+                                        break;
+                                    case 1:
+                                        shift = "Day Shift 1";
+                                        tblModel = (DefaultTableModel) jTable2.getModel();
+                                        break;
+                                    case 2:
+                                        shift = "Night Shift 1";
+                                        tblModel = (DefaultTableModel) jTable3.getModel();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                int totalCR = 0;
+                                int totalDA = 0;
+                                int totalFR = 0;
+                                int totalPD = 0;
+                                
+                                for (int x = 0; x < o.length; x++) {
+                                    tblModel.insertRow(x, o[x]);
+                                    totalCR += (Integer) o[x][1];
+                                    totalDA += (Integer) o[x][2];
+                                    totalFR += (Integer) o[x][3];
+                                    totalPD += (Integer) o[x][4];
+                                }
+                                tblModel.addRow(new Object[]{"Total", totalCR, totalDA, totalFR, totalPD});
+                                tblModel = (DefaultTableModel) jTable4.getModel();
+                                tblModel.addRow(new Object[]{shift, totalCR, totalDA, totalFR, totalPD});
+                                sumCR += totalCR;
+                                sumDA += totalDA;
+                                sumFR += totalFR;
+                                sumPD += totalPD;
+                            }
+                        }
 
-                    tblModel = (DefaultTableModel) jTable4.getModel();
-                    tblModel.addRow(new Object[]{"Total", sumCR, sumDA, sumFR, sumPD});
-                    periodLabel.setText("For period : (" + startDate + " - " + finishDate + ")");
-                    summaryReportLabel.setText("Period : " + startDate + " - " + finishDate);
-                    pageLabel.setText("Summary Performance Report");
-                    currentPage = "summaryReport";
-                    break;
-                case 3:
-                    currentPage = "customerReport";
-                    break;
-                default:
-                    break;
+                        tblModel = (DefaultTableModel) jTable4.getModel();
+                        tblModel.addRow(new Object[]{"Total", sumCR, sumDA, sumFR, sumPD});
+                        periodLabel.setText("For period : (" + startDate + " - " + finishDate + ")");
+                        summaryReportLabel.setText("Period : " + startDate + " - " + finishDate);
+                        pageLabel.setText("Summary Performance Report");
+                        currentPage = "summaryReport";
+                        break;
+                    case 3:
+                        tblModel = (DefaultTableModel) jTable6.getModel();
+                        o = objects.get(0);
+                        for (int x = 0; x < o.length; x++) {
+                            tblModel.insertRow(x, o[x]);
+                        }
+                        cPLabel.setText("Period : " + startDate + " - " + finishDate);
+                        currentPage = "customerReport";
+                        pageLabel.setText("Customer Report");
+                        break;
+                    default:
+                        break;
+                }
+
+                card1.show(cardPanel1, currentPage);
+            } else {
+                JOptionPane.showMessageDialog(this, "No data found!");
             }
-
-            card1.show(cardPanel1, currentPage);
-
         }
     }//GEN-LAST:event_createReportButtonActionPerformed
 

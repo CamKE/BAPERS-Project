@@ -5675,7 +5675,7 @@
                         <Column editable="false" title="Job number" type="java.lang.Object"/>
                         <Column editable="false" title="Date received" type="java.lang.Object"/>
                         <Column editable="false" title="Date completed" type="java.lang.Object"/>
-                        <Column editable="false" title="Total" type="java.lang.Object"/>
+                        <Column editable="false" title="Total payable" type="java.lang.Object"/>
                         <Column editable="false" title="Invoice status" type="java.lang.Object"/>
                       </Table>
                     </Property>
