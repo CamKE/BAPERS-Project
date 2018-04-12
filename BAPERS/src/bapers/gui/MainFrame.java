@@ -357,13 +357,13 @@ public class MainFrame extends javax.swing.JFrame {
         jTable5 = new javax.swing.JTable();
         iPLabel = new javax.swing.JLabel();
         reportBackButton1 = new javax.swing.JButton();
-        searchAgainButton4 = new javax.swing.JButton();
+        printButton2 = new javax.swing.JButton();
         customerReportPage = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
         cPLabel = new javax.swing.JLabel();
         reportBackButton2 = new javax.swing.JButton();
-        searchAgainButton5 = new javax.swing.JButton();
+        printButton3 = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -3352,14 +3352,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        searchAgainButton4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        searchAgainButton4.setText("Print");
-        searchAgainButton4.setMaximumSize(new java.awt.Dimension(175, 45));
-        searchAgainButton4.setMinimumSize(new java.awt.Dimension(175, 45));
-        searchAgainButton4.setPreferredSize(new java.awt.Dimension(175, 45));
-        searchAgainButton4.addActionListener(new java.awt.event.ActionListener() {
+        printButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        printButton2.setText("Print");
+        printButton2.setMaximumSize(new java.awt.Dimension(175, 45));
+        printButton2.setMinimumSize(new java.awt.Dimension(175, 45));
+        printButton2.setPreferredSize(new java.awt.Dimension(175, 45));
+        printButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchAgainButton4ActionPerformed(evt);
+                printButton2ActionPerformed(evt);
             }
         });
 
@@ -3378,7 +3378,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(individualReportPageLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(searchAgainButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(printButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(reportBackButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(99, 99, 99))
@@ -3389,7 +3389,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(individualReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reportBackButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchAgainButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(printButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(iPLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3448,14 +3448,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        searchAgainButton5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        searchAgainButton5.setText("Print");
-        searchAgainButton5.setMaximumSize(new java.awt.Dimension(175, 45));
-        searchAgainButton5.setMinimumSize(new java.awt.Dimension(175, 45));
-        searchAgainButton5.setPreferredSize(new java.awt.Dimension(175, 45));
-        searchAgainButton5.addActionListener(new java.awt.event.ActionListener() {
+        printButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        printButton3.setText("Print");
+        printButton3.setMaximumSize(new java.awt.Dimension(175, 45));
+        printButton3.setMinimumSize(new java.awt.Dimension(175, 45));
+        printButton3.setPreferredSize(new java.awt.Dimension(175, 45));
+        printButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchAgainButton5ActionPerformed(evt);
+                printButton3ActionPerformed(evt);
             }
         });
 
@@ -3474,7 +3474,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(customerReportPageLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(searchAgainButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(printButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(reportBackButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(99, 99, 99))
@@ -3485,7 +3485,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(customerReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reportBackButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchAgainButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(printButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cPLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5156,9 +5156,10 @@ public class MainFrame extends javax.swing.JFrame {
         createReportPageButton.doClick();
     }//GEN-LAST:event_reportBackButton1ActionPerformed
 
-    private void searchAgainButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton4ActionPerformed
+    private void printButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchAgainButton4ActionPerformed
+        printComponenet(individualReportPage);
+    }//GEN-LAST:event_printButton2ActionPerformed
 
     private void individualReportPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_individualReportPageComponentHidden
         // TODO add your handling code here:
@@ -5172,9 +5173,10 @@ public class MainFrame extends javax.swing.JFrame {
         createReportPageButton.doClick();
     }//GEN-LAST:event_reportBackButton2ActionPerformed
 
-    private void searchAgainButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton5ActionPerformed
+    private void printButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchAgainButton5ActionPerformed
+        printComponenet(customerReportPage);
+    }//GEN-LAST:event_printButton3ActionPerformed
 
     private void customerReportPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_customerReportPageComponentHidden
         // TODO add your handling code here:
@@ -5408,6 +5410,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField priceNewTaskField;
     private javax.swing.JButton printButton1;
+    private javax.swing.JButton printButton2;
+    private javax.swing.JButton printButton3;
     private javax.swing.JPanel receptionistjPanel;
     private javax.swing.JLabel registrationDateSjLabel;
     private javax.swing.JButton removeJobButton;
@@ -5430,8 +5434,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel searchAccountHolderNamejLabel;
     private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchAgainButton1;
-    private javax.swing.JButton searchAgainButton4;
-    private javax.swing.JButton searchAgainButton5;
     private javax.swing.JButton searchButton;
     private javax.swing.JLabel searchContactFirstNamejLabel;
     private javax.swing.JLabel searchContactSurnamejLabel;
