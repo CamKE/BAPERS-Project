@@ -4931,8 +4931,9 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             ArrayList<Object[][]> objects = controller.createReport(reportIndex, reportPeriod, info);
             Object[][] o;
-            if (!objects.isEmpty()) {
-
+            if ((objects.isEmpty()) || (objects.get(0) == null)) {
+                JOptionPane.showMessageDialog(this, "No data found!");
+            } else {
                 switch (reportIndex) {
                     case 1:
                         tblModel = (DefaultTableModel) jTable5.getModel();
@@ -4973,7 +4974,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 int totalDA = 0;
                                 int totalFR = 0;
                                 int totalPD = 0;
-                                
+
                                 for (int x = 0; x < o.length; x++) {
                                     tblModel.insertRow(x, o[x]);
                                     totalCR += (Integer) o[x][1];
@@ -5013,8 +5014,6 @@ public class MainFrame extends javax.swing.JFrame {
                 }
 
                 card1.show(cardPanel1, currentPage);
-            } else {
-                JOptionPane.showMessageDialog(this, "No data found!");
             }
         }
     }//GEN-LAST:event_createReportButtonActionPerformed
