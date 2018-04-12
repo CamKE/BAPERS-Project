@@ -4716,6 +4716,11 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a customer");
         } else {
             ArrayList<Object[][]> objects = controller.createReport(reportIndex, reportPeriod, info);
+            String shift = "";
+            int sumCR = 0;
+            int sumDA = 0;
+            int sumFR = 0;
+            int sumPD = 0;
 
             switch (reportIndex) {
                 case 1:
@@ -4727,23 +4732,45 @@ public class MainFrame extends javax.swing.JFrame {
                         if (o != null) {
                             switch (i) {
                                 case 0:
+                                    shift = "Day Shift 1";
                                     tblModel = (DefaultTableModel) jTable1.getModel();
                                     break;
                                 case 1:
+                                    shift = "Day Shift 1";
                                     tblModel = (DefaultTableModel) jTable2.getModel();
                                     break;
                                 case 2:
+                                    shift = "Night Shift 1";
                                     tblModel = (DefaultTableModel) jTable3.getModel();
                                     break;
                                 default:
                                     break;
                             }
+                            int totalCR = 0;
+                            int totalDA = 0;
+                            int totalFR = 0;
+                            int totalPD = 0;
 
                             for (int x = 0; x < o.length; x++) {
                                 tblModel.insertRow(x, o[x]);
+                                totalCR += (Integer) o[x][1];
+                                totalDA += (Integer) o[x][2];
+                                totalFR += (Integer) o[x][3];
+                                totalPD += (Integer) o[x][4];
                             }
+                            tblModel.addRow(new Object[]{"Total", totalCR, totalDA, totalFR, totalPD});
+                            tblModel = (DefaultTableModel) jTable4.getModel();
+                            tblModel.addRow(new Object[]{shift, totalCR, totalDA, totalFR, totalPD});
+                            sumCR += totalCR;
+                            sumDA += totalDA;
+                            sumFR += totalFR;
+                            sumPD += totalPD;
                         }
                     }
+
+                    tblModel = (DefaultTableModel) jTable4.getModel();
+                    tblModel.addRow(new Object[]{"Total", sumCR, sumDA, sumFR, sumPD});
+                    periodLabel.setText("For period : (" + startDate + " - " + finishDate + ")");
                     summaryReportLabel.setText("Period : " + startDate + " - " + finishDate);
                     currentPage = "summaryReport";
                     break;

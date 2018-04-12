@@ -48,6 +48,11 @@ public class SummaryReport extends Report {
             String finishDate = result.getString("finish");
             int duration = result.getInt("totalduration");
 
+            rows[count][1] = 0;
+            rows[count][2] = 0;
+            rows[count][3] = 0;
+            rows[count][4] = 0;
+
             do {
                 System.out.println(department + " : " + finishDate + " : " + duration);
 
@@ -77,6 +82,10 @@ public class SummaryReport extends Report {
                 duration = result.getInt("totalduration");
                 if (!finishDate.equals(previousFinishDate)) {
                     count++;
+                    rows[count][1] = 0;
+                    rows[count][2] = 0;
+                    rows[count][3] = 0;
+                    rows[count][4] = 0;
                 }
             } while (!result.isAfterLast());
 
