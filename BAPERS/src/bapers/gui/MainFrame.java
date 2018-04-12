@@ -346,6 +346,12 @@ public class MainFrame extends javax.swing.JFrame {
         summaryReportLabel = new javax.swing.JLabel();
         reportBackButton = new javax.swing.JButton();
         searchAgainButton3 = new javax.swing.JButton();
+        individualReportPage = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        shift1Label1 = new javax.swing.JLabel();
+        reportBackButton1 = new javax.swing.JButton();
+        searchAgainButton4 = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -3109,6 +3115,10 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
         }
 
@@ -3274,6 +3284,106 @@ public class MainFrame extends javax.swing.JFrame {
         summaryReportPage.setViewportView(summaryReportPageData);
 
         cardPanel1.add(summaryReportPage, "summaryReport");
+
+        individualReportPage.setBackground(new java.awt.Color(61, 96, 146));
+        individualReportPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        individualReportPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        individualReportPage.setPreferredSize(new java.awt.Dimension(900, 640));
+        individualReportPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                individualReportPageComponentHidden(evt);
+            }
+        });
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Code", "Task IDs", "Department", "Date", "Start time", "Time taken", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(jTable5);
+        if (jTable5.getColumnModel().getColumnCount() > 0) {
+            jTable5.getColumnModel().getColumn(0).setResizable(false);
+            jTable5.getColumnModel().getColumn(1).setResizable(false);
+            jTable5.getColumnModel().getColumn(2).setResizable(false);
+            jTable5.getColumnModel().getColumn(3).setResizable(false);
+            jTable5.getColumnModel().getColumn(4).setResizable(false);
+            jTable5.getColumnModel().getColumn(5).setResizable(false);
+            jTable5.getColumnModel().getColumn(6).setResizable(false);
+            jTable5.getColumnModel().getColumn(7).setResizable(false);
+        }
+
+        shift1Label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        shift1Label1.setForeground(new java.awt.Color(255, 255, 255));
+        shift1Label1.setText("Day shift 1 (5:00 am – 2:30 pm)");
+
+        reportBackButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        reportBackButton1.setText("Back");
+        reportBackButton1.setMaximumSize(new java.awt.Dimension(175, 45));
+        reportBackButton1.setMinimumSize(new java.awt.Dimension(175, 45));
+        reportBackButton1.setPreferredSize(new java.awt.Dimension(175, 45));
+        reportBackButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportBackButton1ActionPerformed(evt);
+            }
+        });
+
+        searchAgainButton4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        searchAgainButton4.setText("Print");
+        searchAgainButton4.setMaximumSize(new java.awt.Dimension(175, 45));
+        searchAgainButton4.setMinimumSize(new java.awt.Dimension(175, 45));
+        searchAgainButton4.setPreferredSize(new java.awt.Dimension(175, 45));
+        searchAgainButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchAgainButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout individualReportPageLayout = new javax.swing.GroupLayout(individualReportPage);
+        individualReportPage.setLayout(individualReportPageLayout);
+        individualReportPageLayout.setHorizontalGroup(
+            individualReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(individualReportPageLayout.createSequentialGroup()
+                .addContainerGap(258, Short.MAX_VALUE)
+                .addComponent(shift1Label1)
+                .addContainerGap(259, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, individualReportPageLayout.createSequentialGroup()
+                .addGroup(individualReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(individualReportPageLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(individualReportPageLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(searchAgainButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(reportBackButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(99, 99, 99))
+        );
+        individualReportPageLayout.setVerticalGroup(
+            individualReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, individualReportPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(individualReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reportBackButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchAgainButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(shift1Label1)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(381, 381, 381))
+        );
+
+        cardPanel1.add(individualReportPage, "individualReport");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -4716,17 +4826,20 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a customer");
         } else {
             ArrayList<Object[][]> objects = controller.createReport(reportIndex, reportPeriod, info);
-            String shift = "";
-            int sumCR = 0;
-            int sumDA = 0;
-            int sumFR = 0;
-            int sumPD = 0;
 
             switch (reportIndex) {
                 case 1:
+                    currentPage = "individualReport";
+                    pageLabel.setText("Individual Performance Report");
+
                     break;
                 case 2:
                     Object[][] o;
+                    String shift = "";
+                    int sumCR = 0;
+                    int sumDA = 0;
+                    int sumFR = 0;
+                    int sumPD = 0;
                     for (int i = 0; i < objects.size(); i++) {
                         o = objects.get(i);
                         if (o != null) {
@@ -4772,6 +4885,7 @@ public class MainFrame extends javax.swing.JFrame {
                     tblModel.addRow(new Object[]{"Total", sumCR, sumDA, sumFR, sumPD});
                     periodLabel.setText("For period : (" + startDate + " - " + finishDate + ")");
                     summaryReportLabel.setText("Period : " + startDate + " - " + finishDate);
+                    pageLabel.setText("Summary Performance Report");
                     currentPage = "summaryReport";
                     break;
                 case 3:
@@ -4781,7 +4895,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
             card1.show(cardPanel1, currentPage);
-            pageLabel.setText("Summary Performance Report");
 
         }
     }//GEN-LAST:event_createReportButtonActionPerformed
@@ -4888,6 +5001,18 @@ public class MainFrame extends javax.swing.JFrame {
             tblModel.setRowCount(0);
         }
     }//GEN-LAST:event_summaryReportPageComponentHidden
+
+    private void reportBackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportBackButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportBackButton1ActionPerformed
+
+    private void searchAgainButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchAgainButton4ActionPerformed
+
+    private void individualReportPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_individualReportPageComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_individualReportPageComponentHidden
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
@@ -5036,6 +5161,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel hoursLabel;
     private javax.swing.JComboBox<String> inDefaultDD;
     private javax.swing.JLabel inDefaultSjLabel;
+    private javax.swing.JPanel individualReportPage;
     private javax.swing.JTextField infoField;
     private javax.swing.JList<String> invoicejList;
     private javax.swing.JScrollPane invoicejScrollPane;
@@ -5049,10 +5175,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
     private javax.swing.JButton jobEnquiryPageButton;
     private javax.swing.JPanel jobHomePage;
     private javax.swing.JButton jobMenuPageButton;
@@ -5111,6 +5239,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton removeMaterialButton;
     private javax.swing.JButton removeTaskButton;
     private javax.swing.JButton reportBackButton;
+    private javax.swing.JButton reportBackButton1;
     private com.toedter.calendar.JDateChooser reportEndPeriod;
     private javax.swing.JPanel reportHomePage;
     private javax.swing.JLabel reportPeriodLabel;
@@ -5126,6 +5255,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchAgainButton1;
     private javax.swing.JButton searchAgainButton3;
+    private javax.swing.JButton searchAgainButton4;
     private javax.swing.JButton searchButton;
     private javax.swing.JLabel searchContactFirstNamejLabel;
     private javax.swing.JLabel searchContactSurnamejLabel;
@@ -5149,6 +5279,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel shelfSlotNewTaskLabel;
     private javax.swing.JComboBox<String> shelfSlotTaskDD;
     private javax.swing.JLabel shift1Label;
+    private javax.swing.JLabel shift1Label1;
     private javax.swing.JLabel shift2Label;
     private javax.swing.JLabel shift3Label;
     private javax.swing.JTextField specialInstructionjTextField;

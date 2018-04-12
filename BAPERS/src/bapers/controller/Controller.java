@@ -433,7 +433,7 @@ public class Controller {
                 // '2010-01-30 14:15:55'
                 // '2010-09-29 10:15:55'
                 // need to put time on start date and finish date for the different types of shifts!!!!!
-                sql = "SELECT * FROM staff_individual_performance WHERE finish BETWEEN '" + startDate + "' AND '" + finishDate + "'";
+                sql = "SELECT * FROM staff_individual_performance WHERE finish BETWEEN '" + startDate + "' AND '" + finishDate + "' ORDER BY staff_individual_performance.account_no, staff_individual_performance.start";
                 if (!info.equals("Select user... (optional)")) {
                     String[] parts = info.split("\\:");
                     sql += "AND account_no = " + parts[2];
@@ -445,7 +445,8 @@ public class Controller {
                         int taskId = result.getInt("Task_task_id");
                         String stdJobCode = result.getString("Job_StandardJobs_StandardJob_code");
                         String departmentName = result.getString("department_name");
-                        System.out.println(name + " : " + taskId + " : " + departmentName);
+                        String start = result.getString("start");
+                        System.out.println(name + " : " + taskId + " : " + departmentName  + " : " + start);
                     }
                 } catch (SQLException ex) {
                     System.out.println(ex);
