@@ -349,7 +349,7 @@ public class MainFrame extends javax.swing.JFrame {
         individualReportPage = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
-        shift1Label1 = new javax.swing.JLabel();
+        iPLabel = new javax.swing.JLabel();
         reportBackButton1 = new javax.swing.JButton();
         searchAgainButton4 = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
@@ -3304,7 +3304,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -3323,9 +3323,8 @@ public class MainFrame extends javax.swing.JFrame {
             jTable5.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        shift1Label1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        shift1Label1.setForeground(new java.awt.Color(255, 255, 255));
-        shift1Label1.setText("Day shift 1 (5:00 am – 2:30 pm)");
+        iPLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        iPLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         reportBackButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         reportBackButton1.setText("Back");
@@ -3354,9 +3353,9 @@ public class MainFrame extends javax.swing.JFrame {
         individualReportPageLayout.setHorizontalGroup(
             individualReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(individualReportPageLayout.createSequentialGroup()
-                .addContainerGap(258, Short.MAX_VALUE)
-                .addComponent(shift1Label1)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addContainerGap(450, Short.MAX_VALUE)
+                .addComponent(iPLabel)
+                .addContainerGap(450, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, individualReportPageLayout.createSequentialGroup()
                 .addGroup(individualReportPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(individualReportPageLayout.createSequentialGroup()
@@ -3377,10 +3376,10 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(reportBackButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchAgainButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(shift1Label1)
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(381, 381, 381))
+                .addComponent(iPLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(144, 144, 144))
         );
 
         cardPanel1.add(individualReportPage, "individualReport");
@@ -4826,15 +4825,20 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a customer");
         } else {
             ArrayList<Object[][]> objects = controller.createReport(reportIndex, reportPeriod, info);
+            Object[][] o;
 
             switch (reportIndex) {
                 case 1:
+                    tblModel = (DefaultTableModel) jTable5.getModel();
+                    o = objects.get(0);
+                    for (int x = 0; x < o.length; x++) {
+                        tblModel.insertRow(x, o[x]);
+                    }
+                    iPLabel.setText("Period : " + startDate + " - " + finishDate);
                     currentPage = "individualReport";
                     pageLabel.setText("Individual Performance Report");
-
                     break;
                 case 2:
-                    Object[][] o;
                     String shift = "";
                     int sumCR = 0;
                     int sumDA = 0;
@@ -5004,6 +5008,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void reportBackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportBackButton1ActionPerformed
         // TODO add your handling code here:
+        createReportPageButton.doClick();
     }//GEN-LAST:event_reportBackButton1ActionPerformed
 
     private void searchAgainButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton4ActionPerformed
@@ -5012,6 +5017,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void individualReportPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_individualReportPageComponentHidden
         // TODO add your handling code here:
+        if (tblModel != null) {
+            tblModel.setRowCount(0);
+        }
     }//GEN-LAST:event_individualReportPageComponentHidden
 
     private void resetComponents(JPanel panel) {
@@ -5159,6 +5167,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton homeButton;
     private javax.swing.JPanel homePage;
     private javax.swing.JLabel hoursLabel;
+    private javax.swing.JLabel iPLabel;
     private javax.swing.JComboBox<String> inDefaultDD;
     private javax.swing.JLabel inDefaultSjLabel;
     private javax.swing.JPanel individualReportPage;
@@ -5279,7 +5288,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel shelfSlotNewTaskLabel;
     private javax.swing.JComboBox<String> shelfSlotTaskDD;
     private javax.swing.JLabel shift1Label;
-    private javax.swing.JLabel shift1Label1;
     private javax.swing.JLabel shift2Label;
     private javax.swing.JLabel shift3Label;
     private javax.swing.JTextField specialInstructionjTextField;

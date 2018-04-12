@@ -5431,9 +5431,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="258" max="32767" attributes="0"/>
-                      <Component id="shift1Label1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="259" max="32767" attributes="0"/>
+                      <EmptySpace pref="450" max="32767" attributes="0"/>
+                      <Component id="iPLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="450" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -5461,10 +5461,10 @@
                           <Component id="searchAgainButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="shift1Label1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="jScrollPane8" min="-2" pref="122" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="381" max="-2" attributes="0"/>
+                      <Component id="iPLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane8" min="-2" pref="395" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -5486,7 +5486,7 @@
                         <Column editable="false" title="Task IDs" type="java.lang.Object"/>
                         <Column editable="false" title="Department" type="java.lang.Object"/>
                         <Column editable="false" title="Date" type="java.lang.Object"/>
-                        <Column editable="true" title="Start time" type="java.lang.Object"/>
+                        <Column editable="false" title="Start time" type="java.lang.Object"/>
                         <Column editable="false" title="Time taken" type="java.lang.Object"/>
                         <Column editable="false" title="Total" type="java.lang.Object"/>
                       </Table>
@@ -5542,7 +5542,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="shift1Label1">
+            <Component class="javax.swing.JLabel" name="iPLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
@@ -5550,7 +5550,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Day shift 1 (5:00 am &#x2013; 2:30 pm)"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="reportBackButton1">
