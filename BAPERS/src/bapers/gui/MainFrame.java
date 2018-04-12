@@ -9,8 +9,18 @@ import bapers.controller.Controller;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import bapers.job.Task;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfPTable;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import javax.swing.ListSelectionModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -89,6 +99,15 @@ public class MainFrame extends javax.swing.JFrame {
         updateTaskButton = new javax.swing.JButton();
         taskEnquiryBackButton = new javax.swing.JButton();
         standardJobIndexLabel = new javax.swing.JLabel();
+        reminderLettersTablePage = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        reminderLettersTable = new javax.swing.JTable();
+        backCustomerPageButton = new javax.swing.JButton();
+        viewReminderLetterButton = new javax.swing.JButton();
+        officeManagerCustomerPage = new javax.swing.JPanel();
+        searchCustomerBtn = new javax.swing.JButton();
+        reminderLettersButton = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         manageTasksPage = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -346,7 +365,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Job no", "#Standard Jobs", "Issued by", "Deadline", "Status", "Collected"
+                "Job no", "Issued by", "Deadline", "Status", "Collected"
             }
         ));
         jScrollPane2.setViewportView(jobSearchResultsTable);
@@ -484,7 +503,7 @@ public class MainFrame extends javax.swing.JFrame {
         jobCollectedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Yes" }));
 
         jobPriorityComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jobPriorityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "regular", "urgent", " " }));
+        jobPriorityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "normal", "urgent", "stipulated", " " }));
 
         javax.swing.GroupLayout jobEnquiryPageLayout = new javax.swing.GroupLayout(jobEnquiryPage);
         jobEnquiryPage.setLayout(jobEnquiryPageLayout);
@@ -707,6 +726,114 @@ public class MainFrame extends javax.swing.JFrame {
         standardJobCodeLabel.getAccessibleContext().setAccessibleName("sJCode");
 
         cardPanel1.add(taskSearchResultsJobEnquiryPage, "taskSearchResultsJobEnquiryPage");
+
+        reminderLettersTablePage.setBackground(new java.awt.Color(61, 96, 146));
+
+        reminderLettersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Customer name", "Invoice number", "Date", "Total amount"
+            }
+        ));
+        jScrollPane6.setViewportView(reminderLettersTable);
+
+        backCustomerPageButton.setText("Back");
+        backCustomerPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backCustomerPageButtonActionPerformed(evt);
+            }
+        });
+
+        viewReminderLetterButton.setText("Create PDF");
+        viewReminderLetterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReminderLetterButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout reminderLettersTablePageLayout = new javax.swing.GroupLayout(reminderLettersTablePage);
+        reminderLettersTablePage.setLayout(reminderLettersTablePageLayout);
+        reminderLettersTablePageLayout.setHorizontalGroup(
+            reminderLettersTablePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reminderLettersTablePageLayout.createSequentialGroup()
+                .addGroup(reminderLettersTablePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(reminderLettersTablePageLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backCustomerPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(viewReminderLetterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, reminderLettersTablePageLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        reminderLettersTablePageLayout.setVerticalGroup(
+            reminderLettersTablePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reminderLettersTablePageLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(reminderLettersTablePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(backCustomerPageButton, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(viewReminderLetterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(reminderLettersTablePage, "reminderLettersTablePage");
+
+        officeManagerCustomerPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        searchCustomerBtn.setText("Search Customer");
+        searchCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomerBtnActionPerformed(evt);
+            }
+        });
+
+        reminderLettersButton.setText("Reminder letters");
+        reminderLettersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reminderLettersButtonActionPerformed(evt);
+            }
+        });
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout officeManagerCustomerPageLayout = new javax.swing.GroupLayout(officeManagerCustomerPage);
+        officeManagerCustomerPage.setLayout(officeManagerCustomerPageLayout);
+        officeManagerCustomerPageLayout.setHorizontalGroup(
+            officeManagerCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, officeManagerCustomerPageLayout.createSequentialGroup()
+                .addContainerGap(215, Short.MAX_VALUE)
+                .addComponent(reminderLettersButton)
+                .addGap(156, 156, 156)
+                .addComponent(searchCustomerBtn)
+                .addGap(227, 227, 227))
+            .addGroup(officeManagerCustomerPageLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        officeManagerCustomerPageLayout.setVerticalGroup(
+            officeManagerCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeManagerCustomerPageLayout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addGroup(officeManagerCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reminderLettersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
+        );
+
+        cardPanel1.add(officeManagerCustomerPage, "officeManagerCustomerPage");
 
         manageTasksPage.setBackground(new java.awt.Color(61, 96, 146));
 
@@ -1102,6 +1229,11 @@ public class MainFrame extends javax.swing.JFrame {
         usersOfficeManager.setText("Users");
 
         manageCustomersOfficeManager.setText("Manage Customers");
+        manageCustomersOfficeManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageCustomersOfficeManagerActionPerformed(evt);
+            }
+        });
 
         settingsOfficeManager.setText("Settings");
 
@@ -1291,7 +1423,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Code", "Description", "Amount of tasks", "Status"
+                "Code", "Description", "Price", "Status"
             }
         ));
         jScrollPane4.setViewportView(standardJobResults);
@@ -2153,10 +2285,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (userFirstNameField.getText().length() > 10) {
             System.out.println("name cannot be longer than 10 characters");
         }
-//        if (controller.createUser(userFirstNameField.getText(),userLastNameField.getText(),userRoleDD.getSelectedIndex(), NewPasswordField.getPassword())) {
-//            card1.show(cardPanel1, "welcome");
-//            card2.show(cardPanel2, "welcomeBar1");
-//        }
+
     }//GEN-LAST:event_createUserButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -2192,19 +2321,6 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "technicianHomePage");
         card2.show(cardPanel2, "homePageT");
 
-        //controller.clearStandardJobTask();
-        //controller.clearStandardJob();
-        //controller.clearJob();
-        //controller.setTasksIntoStandardJob("ABN54");
-        //controller.setTasksIntoStandardJob("ACT35");
-        // controller.setStandardJobIntoJob(1);
-        //controller.test();
-        //controller.setTasksIntoStandardJob("ABN54");
-        //controller.setTasksIntoStandardJob("ACT35");
-        //controller.setTasksIntoStandardJob("ACN54");
-        //controller.setStandardJobIntoJob(1);
-        //controller.setStandardJobIntoJob(2);
-        //controller.test();
     }//GEN-LAST:event_homePageTActionPerformed
 
     private void acceptPaymentReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentReceptionistActionPerformed
@@ -2281,7 +2397,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void logOutButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButton2ActionPerformed
         // TODO add your handling code here:
         this.deleteTaskEnquiryTableInformation();
-        this.deleteTaskEnquiryTableInformation();
+        this.deleteStandardJobTableInformation();
         this.deleteStandardJobTableInformation();
         controller.clearStandardJobTasks();
         card1.show(cardPanel1, "welcome");
@@ -2372,6 +2488,11 @@ public class MainFrame extends javax.swing.JFrame {
         taskTableModel.setRowCount(0);
     }
 
+    private void deleteReminderLettersTableInformation() {
+        DefaultTableModel reminderLettersTableModel = (DefaultTableModel) reminderLettersTable.getModel();
+        reminderLettersTableModel.setRowCount(0);
+    }
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.deleteTaskTableInformation();
@@ -2446,78 +2567,56 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        int selectedRowIndex = -1;
-        boolean inBounds = false;
+
         int taskID = -1;
 
-        //Check if a row has been selected
-        //Get row index
-        if (taskTable.getRowSelectionAllowed()) {
-            selectedRowIndex = taskTable.getSelectedRow();
-        }
-        if ((selectedRowIndex >= 0)) {
-            inBounds = true;
-        }
-        if (!inBounds) {
-            JOptionPane.showMessageDialog(null, "Please select a row");
-        }
-        //Check row has values
-        if (taskTable.getModel().getValueAt(selectedRowIndex, 0) != null) {
+        if ((taskTable.getSelectedRow() >= 0)) {
             //Get task id from table
-            taskID = (Integer) taskTable.getModel().getValueAt(selectedRowIndex, 0);
+            taskID = (Integer) taskTable.getModel().getValueAt(taskTable.getSelectedRow(), 0);
             //Delete task from table
 
             if (!controller.deleteTask(taskID)) {
                 //Update new Task table
                 deleteTaskTableInformation();
                 updateTaskTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a row");
             }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a row");
         }
+
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void collectJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectJobButtonActionPerformed
-        int selectedRowIndex = -1;
-        boolean inBounds = false;
+
         int jobNumber = -1;
         //Get row index
-        if (jobSearchResultsTable.getRowSelectionAllowed()) {
-            selectedRowIndex = jobSearchResultsTable.getSelectedRow();
-        }
-        if ((selectedRowIndex >= 0)) {
-            inBounds = true;
-        }
-        if (!inBounds) {
+        if ((jobSearchResultsTable.getSelectedRow() < 0)) {
             JOptionPane.showMessageDialog(null, "Please select a row");
-        }
-        //Check row has values and job is completed and not collected
-        if (jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0) != null
-                && !(jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 4).equals("In progress"))
-                && jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 5) != "true") {
+        } else {
+            //Check row has values and job is completed and not collected
+            if ((jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 3).equals("Completed"))
+                    && (jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 4).equals("false"))) {
 
-            //Get job Number from table
-            jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(selectedRowIndex, 0);
+                //Get job Number from table
+                jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 0);
 
-            //Optional ...
-            //Set job number in JobDetails class
-            //controller.setJobNumber(jobNumber);
-            //Check if customer is valued
-            if (controller.isCustomerValued(jobNumber)) {
-                int dialogResult = JOptionPane.showConfirmDialog(null, "Would You Like to pay later?");
-                if (dialogResult == JOptionPane.NO_OPTION) {
-                    //Parse to payment page with invoice number
+                //Check if customer is valued
+                if (controller.isCustomerValued(jobNumber)) {
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Would You Like to pay later?");
+                    if (dialogResult == JOptionPane.NO_OPTION) {
+                        //Parse to payment page with invoice number
+                        System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber(jobNumber) + ", job number is: " + jobNumber);
+                        //Insert code for job payment here ...
+                    }
+                } else {
                     System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber(jobNumber) + ", job number is: " + jobNumber);
                     //Insert code for job payment here ...
                 }
             } else {
-                System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber(jobNumber) + ", job number is: " + jobNumber);
-                //Insert code for job payment here ...
+                JOptionPane.showMessageDialog(null, "Job cannot be collected");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Job is still in progress");
         }
+
 
     }//GEN-LAST:event_collectJobButtonActionPerformed
 
@@ -2575,42 +2674,42 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jobReceptionistActionPerformed
 
     private void viewStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStandardJobButtonActionPerformed
-        int selectedRowIndex = -1;
-        boolean inBounds = false;
+
         String standardJobCode = "";
         //Get row index
-        if (standardJobResults.getRowSelectionAllowed()) {
-            selectedRowIndex = standardJobResults.getSelectedRow();
-        }
-        if ((selectedRowIndex >= 0)) {
-            inBounds = true;
-        }
-        if (!inBounds) {
+        if ((standardJobResults.getSelectedRow() >= 0)) {
+            //Check row has values
+            if (standardJobResults.getModel().getValueAt(standardJobResults.getSelectedRow(), 0) != null) {
+
+                //Get job Number from table
+                standardJobCode = (String) standardJobResults.getModel().getValueAt(standardJobResults.getSelectedRow(), 0);
+                //Set title text
+                standardJobCodeLabel.setText(standardJobCode);
+
+//Get task information
+                controller.getTasksFromStandardJobCode(standardJobCode, Integer.parseInt(jobNumberLabel.getText()));
+                //Update standard job table
+                this.updateTaskEnquiryTable(standardJobCode);
+                //Show standard job search results
+                card1.show(cardPanel1, "taskSearchResultsJobEnquiryPage");
+
+                //Set standard Job index
+                int standardJobIndex = standardJobResults.getSelectedRow();
+                standardJobIndexLabel.setText(Integer.toString(standardJobIndex));
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is still in progress");
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
 
-        //Check row has values
-        if (standardJobResults.getModel().getValueAt(selectedRowIndex, 0) != null) {
 
-            //Get job Number from table
-            standardJobCode = (String) standardJobResults.getModel().getValueAt(selectedRowIndex, 0);
-            //Set title text
-            standardJobCodeLabel.setText(standardJobCode);
-            //Update standard job table
-            this.updateTaskEnquiryTable(standardJobCode);
-            //Show standard job search results
-            card1.show(cardPanel1, "taskSearchResultsJobEnquiryPage");
-
-            //Set standard Job index
-            int standardJobIndex = selectedRowIndex;
-            standardJobIndexLabel.setText(Integer.toString(standardJobIndex));
-        } else {
-            JOptionPane.showMessageDialog(null, "Job is still in progress");
-        }
     }//GEN-LAST:event_viewStandardJobButtonActionPerformed
 
     private void backJobSearchResultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJobSearchResultsButtonActionPerformed
         this.deleteStandardJobTableInformation();
+        controller.clearStandardJobList();
         card1.show(cardPanel1, "jobEnquirySearchResultsPage");
     }//GEN-LAST:event_backJobSearchResultsButtonActionPerformed
 
@@ -2645,64 +2744,57 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backJobEnquiryButtonActionPerformed
 
     private void viewJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobEnquiryButtonActionPerformed
-        int selectedRowIndex = -1;
-        boolean inBounds = false;
+
         int jobNumber = -1;
         //Get row index
-        if (jobEnquiryTableResults.getRowSelectionAllowed()) {
-            selectedRowIndex = jobEnquiryTableResults.getSelectedRow();
-        }
-        if ((selectedRowIndex >= 0)) {
-            inBounds = true;
-        }
-        if (!inBounds) {
+        if ((jobEnquiryTableResults.getSelectedRow() >= 0)) {
+            //Check row has values
+            if (jobEnquiryTableResults.getModel().getValueAt(jobEnquiryTableResults.getSelectedRow(), 0) != null) {
+
+                //Get job Number from table
+                jobNumber = (Integer) jobEnquiryTableResults.getModel().getValueAt(jobEnquiryTableResults.getSelectedRow(), 0);
+                jobNumberLabel.setText(Integer.toString(jobNumber));
+                jobIndexLabel.setText(String.valueOf(jobEnquiryTableResults.getSelectedRow()));
+
+                //Get standard jobs from job number
+                controller.getStandardJobsFromJobNumber(jobNumber);
+
+                //Update standard job table
+                this.updateStandardJobTable();
+                //Show standard job search results
+                card1.show(cardPanel1, "standardJobSearchResultsJobEnquiryPage");
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is still in progress");
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
 
-        //Check row has values
-        if (jobEnquiryTableResults.getModel().getValueAt(selectedRowIndex, 0) != null) {
-
-            //Get job Number from table
-            jobNumber = (Integer) jobEnquiryTableResults.getModel().getValueAt(selectedRowIndex, 0);
-            jobNumberLabel.setText(Integer.toString(jobNumber));
-            jobIndexLabel.setText(String.valueOf(selectedRowIndex));
-            //Update standard job table
-            this.updateStandardJobTable(jobNumber);
-            //Show standard job search results
-            card1.show(cardPanel1, "standardJobSearchResultsJobEnquiryPage");
-        } else {
-            JOptionPane.showMessageDialog(null, "Job is still in progress");
-        }
 
     }//GEN-LAST:event_viewJobEnquiryButtonActionPerformed
 
     private void taskEnquiryBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskEnquiryBackButtonActionPerformed
         this.deleteTaskEnquiryTableInformation();
-
+        controller.clearTaskList();
         card1.show(cardPanel1, "standardJobSearchResultsJobEnquiryPage");
     }//GEN-LAST:event_taskEnquiryBackButtonActionPerformed
 
     private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
-        int selectedRowIndex = -1;
-        boolean inBounds = false;
+
         int taskID = -1;
         //Get row index
-        if (taskResultsTable.getRowSelectionAllowed()) {
-            selectedRowIndex = taskResultsTable.getSelectedRow();
-        }
-        if ((selectedRowIndex >= 0)) {
-            inBounds = true;
-        }
-        if (!inBounds) {
+        if ((taskResultsTable.getSelectedRow() >= 0)) {
+            //Check row has values
+            if (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0) != null) {
+                taskID = (Integer) (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0));
+                Object[] possibilities = {"Completed", "In progress"};
+                String taskStatus = (String) JOptionPane.showInputDialog(null, "Update Task ID: " + taskID, "Task Update", JOptionPane.PLAIN_MESSAGE, null, possibilities, "In progress");
+
+                controller.updateTaskStatusInDatabase(taskStatus, taskResultsTable.getSelectedRow());
+
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
-        }
-        //Check row has values
-        if (taskResultsTable.getModel().getValueAt(selectedRowIndex, 0) != null) {
-            taskID = (Integer) (taskResultsTable.getModel().getValueAt(selectedRowIndex, 0));
-            Object[] possibilities = {"Completed", "In progress"};
-            String taskStatus = (String) JOptionPane.showInputDialog(null, "Update Task ID: " + taskID, "Task Update", JOptionPane.PLAIN_MESSAGE, null, possibilities, "In progress");
-            controller.updateTaskStatus(standardJobCodeLabel.getText(), selectedRowIndex, taskStatus);
-            controller.updateTaskStatusInDatabase(standardJobCodeLabel.getText(), selectedRowIndex);
         }
 
         //Check if all tasks are completed
@@ -2727,7 +2819,7 @@ public class MainFrame extends javax.swing.JFrame {
         //Update standard job table
         this.deleteStandardJobTableInformation();
         int jobNumber = Integer.valueOf(jobNumberLabel.getText()).intValue();
-        this.updateStandardJobTable(jobNumber);
+        this.updateStandardJobTable();
         //Update job table
         this.deleteJobEnquiryTable();
         this.updateJobEnquiryTable();
@@ -2752,45 +2844,133 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             collectedValue = 1;
         }
+
         if (valid) {
-            controller.getListOfJobNumbers(status, priority, collectedValue);
-            this.updateJobEnquiryTable();
-            card1.show(cardPanel1, "jobEnquirySearchResultsPage");
+            if (controller.doesJobUnderJobCriteriaExist(status, priority, collectedValue)) {
+                controller.getListOfJobNumbers(status, priority, collectedValue);
+                this.updateJobEnquiryTable();
+                card1.show(cardPanel1, "jobEnquirySearchResultsPage");
+            } else {
+                JOptionPane.showMessageDialog(null, "No jobs exists");
+            }
         }
     }//GEN-LAST:event_searchJobEnquiryButtonActionPerformed
 
+    private void searchCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchCustomerBtnActionPerformed
+
+    private void reminderLettersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reminderLettersButtonActionPerformed
+        this.updateReminderLettersTable();
+        card1.show(cardPanel1, "reminderLettersTablePage");
+        //Update reminder letters table
+
+    }//GEN-LAST:event_reminderLettersButtonActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        card1.show(cardPanel1, "officeManagerHomePage");
+        card2.show(cardPanel2, "homePageOMBar");
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void backCustomerPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backCustomerPageButtonActionPerformed
+        this.deleteReminderLettersTableInformation();
+        card1.show(cardPanel1, "officeManagerCustomerPage");
+    }//GEN-LAST:event_backCustomerPageButtonActionPerformed
+
+    private void manageCustomersOfficeManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomersOfficeManagerActionPerformed
+        card1.show(cardPanel1, "officeManagerCustomerPage");
+    }//GEN-LAST:event_manageCustomersOfficeManagerActionPerformed
+
+    private void viewReminderLetterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReminderLetterButtonActionPerformed
+        // TODO add your handling code here:
+        if (reminderLettersTable.getSelectedRow() >= 0) {
+
+            try {
+                Document document = new Document();
+                try {
+                    PdfWriter.getInstance(document, new FileOutputStream("ReminderLetter.pdf"));
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                document.open();
+                document.add(new Paragraph("Invoice reminder"));
+                document.add(new Paragraph("  "));
+                PdfPTable pdfTable = new PdfPTable(reminderLettersTable.getColumnCount());
+                //adding table headers
+                for (int i = 0; i < reminderLettersTable.getColumnCount(); i++) {
+                    pdfTable.addCell(reminderLettersTable.getColumnName(i));
+                }
+
+                //Convert date to string
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                //Add rows to table
+                String date = dateFormat.format(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getDate());
+                pdfTable.addCell(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getCustomerName());
+                pdfTable.addCell(String.valueOf(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getInvoiceNumber()));
+                pdfTable.addCell(date);
+                pdfTable.addCell(String.valueOf(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getAmountDue()));
+
+                document.add(pdfTable);
+                document.add(new Paragraph("According to our records, "
+                        + "it appears that we have not yet received payment of the above invoice,"
+                        + "for photographic work done in our laboratory. "));
+                document.add(new Paragraph(" "));
+                document.add(new Paragraph("We would appreciate payment at your earliest convenience."));
+                document.add(new Paragraph(" "));
+                document.add(new Paragraph("If you have already sent a payment to us recently, please accept our apologies. "));
+                document.add(new Paragraph(" "));
+                document.add(new Paragraph("Yours sincereley,"));
+                document.add(new Paragraph("   G. Lancaster "));
+                document.close();
+                JOptionPane.showMessageDialog(null, "PDF Sucessfully created");
+            } catch (DocumentException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_viewReminderLetterButtonActionPerformed
+
     private void updateTaskEnquiryTable(String standardJobCode) {
-        ArrayList<Task> tasks = controller.getStandardJobTasks(standardJobCode);
         DefaultTableModel taskTableModel = (DefaultTableModel) taskResultsTable.getModel();
         //taskTableModel.setRowCount(tasks.size());
 
         //Insert task information into table
         Object[] row = new Object[5];
-        for (int i = 0; i < tasks.size(); i++) {
-            row[0] = tasks.get(i).getTaskID();
-            row[1] = tasks.get(i).getDescription();
-            row[2] = tasks.get(i).getDepartmentCode();
-            row[3] = tasks.get(i).getShelfSlot();
-            row[4] = tasks.get(i).getStatus();
+        for (int i = 0; i < controller.getTaskList().size(); i++) {
+            row[0] = controller.getTaskList().get(i).getTaskID();
+            row[1] = controller.getTaskList().get(i).getDescription();
+            row[2] = controller.getTaskList().get(i).getDepartmentCode();
+            row[3] = controller.getTaskList().get(i).getShelfSlot();
+            row[4] = controller.getTaskList().get(i).getStatus();
             //taskTableModel.insertRow(0, row);
             taskTableModel.addRow(row);
         }
     }
 
-    private void updateStandardJobTable(int jobNumber) {
-        //ArrayList<StandardJob> standardJobs = controller.getStandardJobList(jobNumber);
-        DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
-        //standardJobTableModel.setRowCount(controller.getStandardJobList(jobNumber).size());
-        //System.out.println(standardJobs.get(0).getCode());
-        //System.out.println(standardJobs.get(1).getCode());
-        //Set table
+    private void updateReminderLettersTable() {
+        DefaultTableModel reminderLettersTableModel = (DefaultTableModel) reminderLettersTable.getModel();
         Object[] row = new Object[4];
-        for (int i = 0; i < controller.getStandardJobList(jobNumber).size(); i++) {
-            row[0] = controller.getStandardJobList(jobNumber).get(i).getCode();
-            row[1] = controller.getStandardJobList(jobNumber).get(i).getDescription();
-            row[2] = controller.getStandardJobList(jobNumber).get(i).getAmountOfTasks();
-            row[3] = controller.getStandardJobList(jobNumber).get(i).getStatus();
-            //standardJobTableModel.insertRow(0, row);
+        for (int i = 0; i < controller.getInvoices().size(); i++) {
+            row[0] = controller.getInvoices().get(i).getCustomerName();
+            row[1] = controller.getInvoices().get(i).getInvoiceNumber();
+            row[2] = controller.getInvoices().get(i).getDate();
+            row[3] = controller.getInvoices().get(i).getAmountDue();
+            reminderLettersTableModel.addRow(row);
+        }
+    }
+
+    private void updateStandardJobTable() {
+
+        DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
+        Object[] row = new Object[4];
+        for (int i = 0; i < controller.getStandardJobList().size(); i++) {
+            row[0] = controller.getStandardJobList().get(i).getCode();
+            row[1] = controller.getStandardJobList().get(i).getDescription();
+            row[2] = controller.getStandardJobList().get(i).getPrice();
+            row[3] = controller.getStandardJobList().get(i).getStatus();
             standardJobTableModel.addRow(row);
         }
     }
@@ -2802,14 +2982,13 @@ public class MainFrame extends javax.swing.JFrame {
         DefaultTableModel jobTableModel = (DefaultTableModel) jobSearchResultsTable.getModel();
         //jobTableModel.setRowCount(controller.getJob().size());
         //Set table
-        Object[] row = new Object[6];
+        Object[] row = new Object[5];
         for (int i = 0; i < controller.getJob().size(); i++) {
             row[0] = controller.getJob().get(i).getJobNumber();
-            row[1] = controller.getJob().get(i).getAmountOfStandardJobs();
-            row[2] = controller.getJob().get(i).getIssuedBy();
-            row[3] = controller.getJob().get(i).getDeadline();
-            row[4] = controller.getJob().get(i).getStatus();
-            row[5] = controller.getJob().get(i).isIsCollected();
+            row[1] = controller.getJob().get(i).getIssuedBy();
+            row[2] = controller.getJob().get(i).getDeadline();
+            row[3] = controller.getJob().get(i).getStatus();
+            row[4] = controller.getJob().get(i).isIsCollected();
 
             jobTableModel.addRow(row);
         }
@@ -2885,8 +3064,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton acceptPaymentOfficeManager;
     private javax.swing.JButton acceptPaymentReceptionist;
     private javax.swing.JButton acceptPaymentShiftManager;
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton backButon;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton backCustomerPageButton;
     private javax.swing.JButton backJobEnquiryButton;
     private javax.swing.JButton backJobSearchResultsButton;
     private javax.swing.JButton cancelBtn;
@@ -2942,6 +3123,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JComboBox<String> jobCollectedComboBox;
     private javax.swing.JPanel jobEnquiryPage;
     private javax.swing.JPanel jobEnquirySearchResultsPage;
@@ -2982,6 +3164,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel newDescriptionLabel3;
     private javax.swing.JLabel newTaskLabel1;
     private javax.swing.JLabel newUserLabel;
+    private javax.swing.JPanel officeManagerCustomerPage;
     private javax.swing.JPanel officeManagerHomePage;
     private javax.swing.JPanel officeManagerPage;
     private javax.swing.JLabel officeManagerText;
@@ -2999,11 +3182,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField priceText;
     private javax.swing.JPanel receptionHomePage;
     private javax.swing.JPanel receptionistHomePage;
+    private javax.swing.JButton reminderLettersButton;
+    private javax.swing.JTable reminderLettersTable;
+    private javax.swing.JPanel reminderLettersTablePage;
     private javax.swing.JButton reportsOfficeManager;
     private javax.swing.JButton reportsShiftManager;
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton searchCustomerBtn;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JButton searchJobButton;
     private javax.swing.JButton searchJobEnquiryButton;
@@ -3041,6 +3228,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> userRoleDD;
     private javax.swing.JButton usersOfficeManager;
     private javax.swing.JButton viewJobEnquiryButton;
+    private javax.swing.JButton viewReminderLetterButton;
     private javax.swing.JButton viewStandardJobButton;
     private javax.swing.JPanel welcomeBar1;
     private javax.swing.JPanel welcomeBar2;
