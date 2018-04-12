@@ -4937,8 +4937,6 @@ public class MainFrame extends javax.swing.JFrame {
             String[] reportPeriod = new String[]{startDate, finishDate};
             ArrayList<Object[][]> objects = controller.createReport(reportIndex, reportPeriod, info);
             Object[][] o;
-            System.out.println((objects.isEmpty()));
-            System.out.println((objects.get(0) == null));
 
             if ((objects.isEmpty()) || (objects.get(0) == null)) {
                 JOptionPane.showMessageDialog(this, "No data found!");
@@ -4969,7 +4967,7 @@ public class MainFrame extends javax.swing.JFrame {
                                         tblModel = (DefaultTableModel) jTable1.getModel();
                                         break;
                                     case 1:
-                                        shift = "Day Shift 1";
+                                        shift = "Day Shift 2";
                                         tblModel = (DefaultTableModel) jTable2.getModel();
                                         break;
                                     case 2:
@@ -4979,24 +4977,21 @@ public class MainFrame extends javax.swing.JFrame {
                                     default:
                                         break;
                                 }
-                                int totalCR = 0;
-                                int totalDA = 0;
-                                int totalFR = 0;
-                                int totalPD = 0;
 
                                 for (int x = 0; x < o.length; x++) {
                                     tblModel.insertRow(x, o[x]);
-                                    System.out.println(o[x][1]);
-
 
                                 }
 
                                 tblModel = (DefaultTableModel) jTable4.getModel();
-                                tblModel.addRow(new Object[]{shift, o[o.length-1][1], o[o.length-1][2], o[o.length-1][3], o[o.length-1][4]});
-//                                sumCR += (Integer) o[o.length-1][1];
-//                                sumDA += (Integer) o[o.length-1][2];
-//                                sumFR += (Integer) o[o.length-1][3];
-//                                sumPD += (Integer) o[o.length-1][4];
+                                tblModel.addRow(new Object[]{shift, o[o.length - 1][1], o[o.length - 1][2], o[o.length - 1][3], o[o.length - 1][4]});
+                                
+                                if (!((Integer) o[o.length - 1][1] == null)) {
+                                    sumCR += (Integer) o[o.length - 1][1];
+                                    sumDA += (Integer) o[o.length - 1][2];
+                                    sumFR += (Integer) o[o.length - 1][3];
+                                    sumPD += (Integer) o[o.length - 1][4];
+                                }
                             }
                         }
 

@@ -66,6 +66,7 @@ public class SummaryReport extends Report {
                         case "CR":
                             rows[count][1] = duration;
                             totalCR += (Integer) rows[count][1];
+                            System.out.println("TOTAL CR:" + totalCR);
                             break;
                         case "DA":
                             rows[count][2] = duration;
@@ -96,17 +97,16 @@ public class SummaryReport extends Report {
                         rows[count][4] = 0;
                     }
                 } while (!result.isAfterLast());
-                
-                rows[count][0] = "Total";
-                rows[count][1] = (Integer) totalCR;
-                rows[count][2] = (Integer) totalDA;
-                rows[count][3] = (Integer) totalFR;
-                rows[count][4] = (Integer) totalPD;
+
             }
 
         } catch (SQLException ex) {
             System.out.println(ex);
-
+            rows[count][0] = "Total";
+            rows[count][1] = (Integer) totalCR;
+            rows[count][2] = (Integer) totalDA;
+            rows[count][3] = (Integer) totalFR;
+            rows[count][4] = (Integer) totalPD;
         }
 
         return rows;
