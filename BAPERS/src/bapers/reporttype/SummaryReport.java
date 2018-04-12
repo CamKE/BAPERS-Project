@@ -38,59 +38,75 @@ public class SummaryReport extends Report {
         Object[][] rows = null;
         int count = 0;
         String previousFinishDate = null;
-
+        int totalCR = 0;
+        int totalDA = 0;
+        int totalFR = 0;
+        int totalPD = 0;
         //close resultset after use
         try (ResultSet result = db.read(sql, conn)) {
-            result.next();
-            rows = new Object[result.getInt("numrows")][5];
+            if (result.next()) {
+                int numRows = result.getInt("numrows");
+                rows = new Object[numRows][5];
 
-            String department = result.getString("department_code");
-            String finishDate = result.getString("finish");
-            int duration = result.getInt("totalduration");
+                String department = result.getString("department_code");
+                String finishDate = result.getString("finish");
+                int duration = result.getInt("totalduration");
 
-            rows[count][1] = 0;
-            rows[count][2] = 0;
-            rows[count][3] = 0;
-            rows[count][4] = 0;
+                rows[count][1] = 0;
+                rows[count][2] = 0;
+                rows[count][3] = 0;
+                rows[count][4] = 0;
 
-            do {
-                System.out.println(department + " : " + finishDate + " : " + duration);
+                do {
+                    System.out.println(department + " : " + finishDate + " : " + duration);
 
-                rows[count][0] = finishDate;
+                    rows[count][0] = finishDate;
 
-                switch (department) {
-                    case "CR":
-                        rows[count][1] = duration;
-                        break;
-                    case "DA":
-                        rows[count][2] = duration;
-                        break;
-                    case "FR":
-                        rows[count][3] = duration;
-                        break;
-                    case "PD":
-                        rows[count][4] = duration;
-                        break;
-                    default:
-                        break;
-                }
+                    switch (department) {
+                        case "CR":
+                            rows[count][1] = duration;
+                            totalCR += (Integer) rows[count][1];
+                            break;
+                        case "DA":
+                            rows[count][2] = duration;
+                            totalDA += (Integer) rows[count][2];
+                            break;
+                        case "FR":
+                            rows[count][3] = duration;
+                            totalFR += (Integer) rows[count][3];
+                            break;
+                        case "PD":
+                            rows[count][4] = duration;
+                            totalPD += (Integer) rows[count][4];
+                            break;
+                        default:
+                            break;
+                    }
 
-                result.next();
-                previousFinishDate = finishDate;
-                finishDate = result.getString("finish");
-                department = result.getString("department_code");
-                duration = result.getInt("totalduration");
-                if (!finishDate.equals(previousFinishDate)) {
-                    count++;
-                    rows[count][1] = 0;
-                    rows[count][2] = 0;
-                    rows[count][3] = 0;
-                    rows[count][4] = 0;
-                }
-            } while (!result.isAfterLast());
+                    result.next();
+                    previousFinishDate = finishDate;
+                    finishDate = result.getString("finish");
+                    department = result.getString("department_code");
+                    duration = result.getInt("totalduration");
+                    if (!finishDate.equals(previousFinishDate)) {
+                        count++;
+                        rows[count][1] = 0;
+                        rows[count][2] = 0;
+                        rows[count][3] = 0;
+                        rows[count][4] = 0;
+                    }
+                } while (!result.isAfterLast());
+                
+                rows[count][0] = "Total";
+                rows[count][1] = (Integer) totalCR;
+                rows[count][2] = (Integer) totalDA;
+                rows[count][3] = (Integer) totalFR;
+                rows[count][4] = (Integer) totalPD;
+            }
 
         } catch (SQLException ex) {
             System.out.println(ex);
+
         }
 
         return rows;

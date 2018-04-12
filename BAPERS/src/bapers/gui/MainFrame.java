@@ -16,6 +16,12 @@ import bapers.payment.PaymentDetails;
 import bapers.user.UserDetails;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -345,7 +351,7 @@ public class MainFrame extends javax.swing.JFrame {
         periodLabel = new javax.swing.JLabel();
         summaryReportLabel = new javax.swing.JLabel();
         reportBackButton = new javax.swing.JButton();
-        searchAgainButton3 = new javax.swing.JButton();
+        printButton1 = new javax.swing.JButton();
         individualReportPage = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -3221,14 +3227,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        searchAgainButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        searchAgainButton3.setText("Print");
-        searchAgainButton3.setMaximumSize(new java.awt.Dimension(175, 45));
-        searchAgainButton3.setMinimumSize(new java.awt.Dimension(175, 45));
-        searchAgainButton3.setPreferredSize(new java.awt.Dimension(175, 45));
-        searchAgainButton3.addActionListener(new java.awt.event.ActionListener() {
+        printButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        printButton1.setText("Print");
+        printButton1.setMaximumSize(new java.awt.Dimension(175, 45));
+        printButton1.setMinimumSize(new java.awt.Dimension(175, 45));
+        printButton1.setPreferredSize(new java.awt.Dimension(175, 45));
+        printButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchAgainButton3ActionPerformed(evt);
+                printButton1ActionPerformed(evt);
             }
         });
 
@@ -3251,7 +3257,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(99, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, summaryReportPageDataLayout.createSequentialGroup()
                 .addGap(98, 98, 98)
-                .addComponent(searchAgainButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(printButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(reportBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(99, 99, 99))
@@ -3262,7 +3268,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reportBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchAgainButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(printButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(summaryReportLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(summaryReportPageDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4917,20 +4923,23 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         int reportIndex = reportTypeDD.getSelectedIndex();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String startDate = sdf.format(reportStartPeriod.getDate());
-        String finishDate = sdf.format(reportEndPeriod.getDate());
-        String[] reportPeriod = new String[]{startDate, finishDate};
         String info = infoField.getText();
 
         if (reportIndex == 0) {
             JOptionPane.showMessageDialog(this, "Please select a report type");
-        } else if (reportPeriod[0] == null || reportPeriod[1] == null || !reportEndPeriod.getDate().after(reportStartPeriod.getDate())) {
+        } else if (reportStartPeriod.getDate() == null || reportEndPeriod.getDate() == null || !reportEndPeriod.getDate().after(reportStartPeriod.getDate())) {
             JOptionPane.showMessageDialog(this, "Please enter a valid report peroid");
         } else if (reportIndex == 3 && info.equals("Select customer...")) {
             JOptionPane.showMessageDialog(this, "Please select a customer");
         } else {
+            String startDate = sdf.format(reportStartPeriod.getDate());
+            String finishDate = sdf.format(reportEndPeriod.getDate());
+            String[] reportPeriod = new String[]{startDate, finishDate};
             ArrayList<Object[][]> objects = controller.createReport(reportIndex, reportPeriod, info);
             Object[][] o;
+            System.out.println((objects.isEmpty()));
+            System.out.println((objects.get(0) == null));
+
             if ((objects.isEmpty()) || (objects.get(0) == null)) {
                 JOptionPane.showMessageDialog(this, "No data found!");
             } else {
@@ -4977,18 +4986,17 @@ public class MainFrame extends javax.swing.JFrame {
 
                                 for (int x = 0; x < o.length; x++) {
                                     tblModel.insertRow(x, o[x]);
-                                    totalCR += (Integer) o[x][1];
-                                    totalDA += (Integer) o[x][2];
-                                    totalFR += (Integer) o[x][3];
-                                    totalPD += (Integer) o[x][4];
+                                    System.out.println(o[x][1]);
+
+
                                 }
-                                tblModel.addRow(new Object[]{"Total", totalCR, totalDA, totalFR, totalPD});
+
                                 tblModel = (DefaultTableModel) jTable4.getModel();
-                                tblModel.addRow(new Object[]{shift, totalCR, totalDA, totalFR, totalPD});
-                                sumCR += totalCR;
-                                sumDA += totalDA;
-                                sumFR += totalFR;
-                                sumPD += totalPD;
+                                tblModel.addRow(new Object[]{shift, o[o.length-1][1], o[o.length-1][2], o[o.length-1][3], o[o.length-1][4]});
+//                                sumCR += (Integer) o[o.length-1][1];
+//                                sumDA += (Integer) o[o.length-1][2];
+//                                sumFR += (Integer) o[o.length-1][3];
+//                                sumPD += (Integer) o[o.length-1][4];
                             }
                         }
 
@@ -5110,10 +5118,37 @@ public class MainFrame extends javax.swing.JFrame {
         createReportPageButton.doClick();
     }//GEN-LAST:event_reportBackButtonActionPerformed
 
-    private void searchAgainButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAgainButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchAgainButton3ActionPerformed
+    private void printButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButton1ActionPerformed
+        // TODO add your handling code here:       
+        printComponenet(summaryReportPage);
+    }//GEN-LAST:event_printButton1ActionPerformed
 
+    public void printComponenet(Component component) {
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        pj.setJobName(" Print Component ");
+
+        pj.setPrintable(new Printable() {
+            public int print(Graphics pg, PageFormat pf, int pageNum) {
+                if (pageNum > 0) {
+                    return Printable.NO_SUCH_PAGE;
+                }
+
+                Graphics2D g2 = (Graphics2D) pg;
+                g2.translate(pf.getImageableX(), pf.getImageableY());
+                component.paint(g2);
+                return Printable.PAGE_EXISTS;
+            }
+        });
+        if (pj.printDialog() == false) {
+            return;
+        }
+
+        try {
+            pj.print();
+        } catch (PrinterException ex) {
+            // handle exception
+        }
+    }
     private void summaryReportPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_summaryReportPageComponentHidden
         // TODO add your handling code here:
         if (tblModel != null) {
@@ -5377,6 +5412,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel prefixjLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField priceNewTaskField;
+    private javax.swing.JButton printButton1;
     private javax.swing.JPanel receptionistjPanel;
     private javax.swing.JLabel registrationDateSjLabel;
     private javax.swing.JButton removeJobButton;
@@ -5399,7 +5435,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel searchAccountHolderNamejLabel;
     private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchAgainButton1;
-    private javax.swing.JButton searchAgainButton3;
     private javax.swing.JButton searchAgainButton4;
     private javax.swing.JButton searchAgainButton5;
     private javax.swing.JButton searchButton;
