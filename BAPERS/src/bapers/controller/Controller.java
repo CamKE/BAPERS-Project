@@ -12,6 +12,7 @@ import bapers.job.Material;
 import bapers.job.StandardJob;
 import bapers.job.Task;
 import bapers.payment.PaymentDetails;
+import bapers.reporttype.CustomerReport;
 import bapers.reporttype.IndividualReport;
 import bapers.reporttype.SummaryReport;
 import bapers.user.UserDetails;
@@ -425,9 +426,8 @@ public class Controller {
     public ArrayList<Object[][]> createReport(int reportIndex, String[] reportPeriod, String info) {
         String startDate = reportPeriod[0];
         String finishDate = reportPeriod[1];
-        String sql;
         ArrayList<Object[][]> objects = new ArrayList<>();
-        System.out.println(finishDate);
+        
         switch (reportIndex) {
             case 1:
                 System.out.println("Individual performance report");
@@ -443,23 +443,9 @@ public class Controller {
                 break; // optional
             case 3:
                 System.out.println("Customer report");
-                String[] parts = info.split("\\:");
-                sql = "SELECT * FROM customer_report WHERE finish BETWEEN '" + startDate + "' AND '" + finishDate + "' AND Customer_account_no = " + parts[2];
 
-                //close resultset after use
-                try (ResultSet result = database.read(sql, conn)) {
-                    while (result.next()) {
-//                         PUT ALL DATA HERE FROM THE CUSTOMER REPORT VIEW, TEST IT WORKS WHEN SUBMITTED IN THE APPLICATION. THEN START CREATING PDF REPORTS BASED ON THE QUERIRES.
-//                         ADD MORE DATA TO THE DB TO THOROUGHLY TEST IT WORKS.
-                        String dateReceived = result.getString("Deadline_date_received");
-                        int jobNo = result.getInt("job_no");
-                        double totalPayable = result.getDouble("total_payable");
-                        String invoiceStatus = result.getString("invoice_status");
-                        System.out.println(jobNo + " : " + dateReceived + " : " + totalPayable + " : " + invoiceStatus);
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }
+                CustomerReport cReport = new CustomerReport(new String[]{startDate, finishDate}, info);
+                objects = cReport.generate(database, conn);
                 break; // optional
         }
 

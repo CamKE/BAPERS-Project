@@ -27,7 +27,7 @@ public class IndividualReport extends Report {
     @Override
     public ArrayList<Object[][]> generate(DBImpl db, Connection conn) {
         ArrayList<Object[][]> data = new ArrayList<>();
-        Object[][] rows = null;
+        Object[][] rows;
         int count = 0;
 
         String sql = "SELECT *,(SELECT COUNT(staff_individual_performance.account_no) FROM staff_individual_performance) AS numrows,(SELECT SUM(TIMESTAMPDIFF(MINUTE,staff_individual_performance.start,staff_individual_performance.finish)) FROM staff_individual_performance WHERE staff_individual_performance.account_no = s1.account_no) AS totalTime, TIMESTAMPDIFF(MINUTE,s1.start,s1.finish) AS timeTaken FROM staff_individual_performance s1 WHERE s1.finish BETWEEN '" + reportPeriod[0] + "' AND '" + reportPeriod[1] + "'";
