@@ -8,9 +8,13 @@ package bapers.controller;
 import bapers.customer.CustomerDetails;
 import bapers.database.DBImpl;
 import bapers.job.Invoice;
+import bapers.job.Job;
+import bapers.job.JobStandardJob;
+import bapers.job.JobStandardJobTask;
 import bapers.job.Material;
 import bapers.job.StandardJob;
 import bapers.job.Task;
+import bapers.payment.PaymentCard;
 import bapers.payment.PaymentDetails;
 import bapers.reporttype.CustomerReport;
 import bapers.reporttype.IndividualReport;
@@ -24,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.smartcardio.Card;
 
 /**
  *
@@ -469,4 +474,12 @@ public class Controller {
 
         return objects;
     }
+    
+    /*
+    
+    
+    -----kelvin-------
+    
+    
+    */
 }

@@ -366,6 +366,118 @@ public class MainFrame extends javax.swing.JFrame {
         cPLabel = new javax.swing.JLabel();
         reportBackButton2 = new javax.swing.JButton();
         printButton3 = new javax.swing.JButton();
+        acceptLatePayment = new javax.swing.JPanel();
+        acceptLatePaymentjPanel1 = new javax.swing.JPanel();
+        expiryDatejLabel1 = new javax.swing.JLabel();
+        last4DigitjTextField1 = new javax.swing.JTextField();
+        selectInvoicejButton1 = new javax.swing.JButton();
+        paymentTypejLabel1 = new javax.swing.JLabel();
+        expiryDatejTextField1 = new javax.swing.JTextField();
+        paymentTypeComboBox1 = new javax.swing.JComboBox<>();
+        TotalLatePayjTextField1 = new javax.swing.JTextField();
+        cardTypejLabel1 = new javax.swing.JLabel();
+        totaljLabel1 = new javax.swing.JLabel();
+        cardTypejComboBox1 = new javax.swing.JComboBox<>();
+        last4DigitjLabel1 = new javax.swing.JLabel();
+        invoicejScrollPane1 = new javax.swing.JScrollPane();
+        invoicejList1 = new javax.swing.JList<>();
+        latePaymentSubmitjButton1 = new javax.swing.JButton();
+        latePaymentCanceljButton1 = new javax.swing.JButton();
+        searchInvoice = new javax.swing.JPanel();
+        searchInvoicejPanel1 = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        invoicejTable1 = new javax.swing.JTable();
+        selectSelectedInvoicejButton1 = new javax.swing.JButton();
+        cancelInvoiceSeletionjButton1 = new javax.swing.JButton();
+        searchInvoiceByInvoiceNojTextField = new javax.swing.JTextField();
+        searchInvoiceByJobNumberjTextField = new javax.swing.JTextField();
+        searchInvoiceByInvoiceNojLabel = new javax.swing.JLabel();
+        searchInvoiceByJobNumberjLabel = new javax.swing.JLabel();
+        AutoBackupConfigjPanel = new javax.swing.JPanel();
+        currentAutoBackupModeDatajTextField = new javax.swing.JTextField();
+        backupLocationjLabel = new javax.swing.JLabel();
+        backupFrequencyjLabel = new javax.swing.JLabel();
+        currentConfigjLabel = new javax.swing.JLabel();
+        backupModejComboBox = new javax.swing.JComboBox<>();
+        backupFrequencyjComboBox = new javax.swing.JComboBox<>();
+        selectAutoBackupLocationjButton = new javax.swing.JButton();
+        cancelAutoBackupConfigjButton = new javax.swing.JButton();
+        confirmAutoBackupConfigjButton = new javax.swing.JButton();
+        backupModejLabel = new javax.swing.JLabel();
+        currentBackupModejLabel = new javax.swing.JLabel();
+        currentBackupFrequencyjLabel = new javax.swing.JLabel();
+        currentBackupLocationjLabel = new javax.swing.JLabel();
+        currentAutoBackupFrequencyDatajTextField = new javax.swing.JTextField();
+        autoBackupLocationjTextField = new javax.swing.JTextField();
+        currentAutoBackupLocationDatajTextField = new javax.swing.JTextField();
+        changeConfigjLabel = new javax.swing.JLabel();
+        SelectDiscountPlan = new javax.swing.JPanel();
+        discountPlanTypejLabel = new javax.swing.JLabel();
+        discountPlanTypejComboBox = new javax.swing.JComboBox<>();
+        discountCanceljButton = new javax.swing.JButton();
+        applyDiscountjButton = new javax.swing.JButton();
+        DiscountTypeInformation = new javax.swing.JPanel();
+        FixedDiscountType = new javax.swing.JPanel();
+        fixedDiscountRatejLabel = new javax.swing.JLabel();
+        fixedPercentageSymbol = new javax.swing.JLabel();
+        fixedDiscountRatejTextField = new javax.swing.JTextField();
+        VariableDiscountType = new javax.swing.JPanel();
+        JobsjPanel = new javax.swing.JPanel();
+        JobsjScrollPane = new javax.swing.JScrollPane();
+        JobsjTable = new javax.swing.JTable();
+        StandardJobsjPanel = new javax.swing.JPanel();
+        StandardJobsjScrollPane = new javax.swing.JScrollPane();
+        StandardJobsjTable = new javax.swing.JTable();
+        TasksjPanel = new javax.swing.JPanel();
+        TasksjScrollPane = new javax.swing.JScrollPane();
+        TaskjTable = new javax.swing.JTable();
+        FlexiableDiscountType = new javax.swing.JPanel();
+        boundjLabel = new javax.swing.JLabel();
+        upperBoundjLabel = new javax.swing.JLabel();
+        lowerBoundjLabel = new javax.swing.JLabel();
+        flexibleDiscountRatejLabel = new javax.swing.JLabel();
+        flexiablePercentageSymbol = new javax.swing.JLabel();
+        upperBoundjTextField = new javax.swing.JTextField();
+        lowerBoundjTextField = new javax.swing.JTextField();
+        flexibleDiscountRatejTextField = new javax.swing.JTextField();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        boundsjList = new javax.swing.JList<>();
+        removeFlexibleBoundjButton = new javax.swing.JButton();
+        addFlexibleBoundjButton = new javax.swing.JButton();
+        InDefault = new javax.swing.JPanel();
+        CustomerDetailsjScrollPane = new javax.swing.JScrollPane();
+        CustomerDetailsjTable = new javax.swing.JTable();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        SelectCustomer = new javax.swing.JPanel();
+        customersjScrollPane = new javax.swing.JScrollPane();
+        customersjTable = new javax.swing.JTable();
+        selectCustomerjButton = new javax.swing.JButton();
+        cancelSelectCustomerjButton = new javax.swing.JButton();
+        ViewCustomerDetail = new javax.swing.JPanel();
+        CustomerInfo = new javax.swing.JPanel();
+        customerAccHolderNamejLabel = new javax.swing.JLabel();
+        customerPrefixjLabel = new javax.swing.JLabel();
+        customerFirstNamejLabel = new javax.swing.JLabel();
+        customerLastNamejLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        customerStatusjTextField = new javax.swing.JTextField();
+        customerTypejTextField = new javax.swing.JTextField();
+        cutomerInDefaultjTextField = new javax.swing.JTextField();
+        customerDiscountjTextField = new javax.swing.JTextField();
+        customerNumberjLabel = new javax.swing.JLabel();
+        customerRegistationDatejLabel = new javax.swing.JLabel();
+        registrationDatejLabel = new javax.swing.JLabel();
+        CustomerAction = new javax.swing.JPanel();
+        customerActionjLabel = new javax.swing.JLabel();
+        assignDiscountPlanjButton = new javax.swing.JButton();
+        OtherCustomerInfo = new javax.swing.JPanel();
+        customerStreetNamejTextField = new javax.swing.JTextField();
+        customerPostcodejTextField = new javax.swing.JTextField();
+        customerCityjTextField = new javax.swing.JTextField();
+        customerBuildingNojTextField = new javax.swing.JTextField();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -1912,7 +2024,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchAccountHolderNamejLabel)
                     .addComponent(custAccountHNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         searchCustomerFJobjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -2367,7 +2479,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(materialsjTextField)
                             .addComponent(specialInstructionjTextField)
                             .addComponent(materialsjScrollPane1)
-                            .addComponent(stipulatedFields, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)))
+                            .addComponent(stipulatedFields, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)))
                     .addGroup(acceptJobPageLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(acceptJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2529,7 +2641,7 @@ public class MainFrame extends javax.swing.JFrame {
         acceptLatePaymentjPanelLayout.setHorizontalGroup(
             acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(last4DigitjLabel)
                     .addComponent(expiryDatejLabel)
@@ -2550,7 +2662,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(invoicejScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         acceptLatePaymentjPanelLayout.setVerticalGroup(
             acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2669,7 +2781,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(searchInvoicejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelInvoiceSeletionjButton)
                     .addComponent(selectSelectedInvoicejButton))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout searchInvoicePageLayout = new javax.swing.GroupLayout(searchInvoicePage);
@@ -3520,6 +3632,1315 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(customerReportPage, "customerReport");
+
+        acceptLatePayment.setMaximumSize(new java.awt.Dimension(900, 700));
+        acceptLatePayment.setMinimumSize(new java.awt.Dimension(900, 700));
+
+        acceptLatePaymentjPanel1.setBackground(new java.awt.Color(61, 96, 146));
+        acceptLatePaymentjPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
+        acceptLatePaymentjPanel1.setMinimumSize(new java.awt.Dimension(900, 700));
+
+        expiryDatejLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        expiryDatejLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        expiryDatejLabel1.setText("Expiry date:");
+
+        last4DigitjTextField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        last4DigitjTextField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        last4DigitjTextField1.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        selectInvoicejButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        selectInvoicejButton1.setText("Select Invoice(s)");
+        selectInvoicejButton1.setMaximumSize(new java.awt.Dimension(159, 37));
+        selectInvoicejButton1.setMinimumSize(new java.awt.Dimension(159, 37));
+        selectInvoicejButton1.setPreferredSize(new java.awt.Dimension(159, 37));
+        selectInvoicejButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectInvoicejButton1ActionPerformed(evt);
+            }
+        });
+
+        paymentTypejLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        paymentTypejLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        paymentTypejLabel1.setText("Payment Type:");
+
+        expiryDatejTextField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        expiryDatejTextField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        expiryDatejTextField1.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        paymentTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Card", "Cash" }));
+        paymentTypeComboBox1.setMaximumSize(new java.awt.Dimension(250, 42));
+        paymentTypeComboBox1.setMinimumSize(new java.awt.Dimension(250, 42));
+        paymentTypeComboBox1.setPreferredSize(new java.awt.Dimension(250, 42));
+        paymentTypeComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paymentTypeComboBox1ActionPerformed(evt);
+            }
+        });
+
+        TotalLatePayjTextField1.setText("£");
+        TotalLatePayjTextField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        TotalLatePayjTextField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        TotalLatePayjTextField1.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        cardTypejLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        cardTypejLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        cardTypejLabel1.setText("Card type:");
+
+        totaljLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        totaljLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        totaljLabel1.setText("Total:");
+
+        cardTypejComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MasterCard", "Visa", "American Express" }));
+        cardTypejComboBox1.setMaximumSize(new java.awt.Dimension(250, 42));
+        cardTypejComboBox1.setMinimumSize(new java.awt.Dimension(250, 42));
+        cardTypejComboBox1.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        last4DigitjLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        last4DigitjLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        last4DigitjLabel1.setText("Last 4 digits:");
+
+        invoicejScrollPane1.setViewportView(invoicejList1);
+
+        latePaymentSubmitjButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        latePaymentSubmitjButton1.setText("Submit");
+        latePaymentSubmitjButton1.setMaximumSize(new java.awt.Dimension(163, 37));
+        latePaymentSubmitjButton1.setMinimumSize(new java.awt.Dimension(163, 37));
+        latePaymentSubmitjButton1.setPreferredSize(new java.awt.Dimension(163, 37));
+        latePaymentSubmitjButton1.setSize(new java.awt.Dimension(163, 37));
+        latePaymentSubmitjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                latePaymentSubmitjButton1ActionPerformed(evt);
+            }
+        });
+
+        latePaymentCanceljButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        latePaymentCanceljButton1.setText("Cancel");
+        latePaymentCanceljButton1.setMaximumSize(new java.awt.Dimension(163, 37));
+        latePaymentCanceljButton1.setMinimumSize(new java.awt.Dimension(163, 37));
+        latePaymentCanceljButton1.setPreferredSize(new java.awt.Dimension(163, 37));
+        latePaymentCanceljButton1.setSize(new java.awt.Dimension(163, 37));
+        latePaymentCanceljButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                latePaymentCanceljButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout acceptLatePaymentjPanel1Layout = new javax.swing.GroupLayout(acceptLatePaymentjPanel1);
+        acceptLatePaymentjPanel1.setLayout(acceptLatePaymentjPanel1Layout);
+        acceptLatePaymentjPanel1Layout.setHorizontalGroup(
+            acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanel1Layout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(expiryDatejLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(totaljLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(paymentTypejLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cardTypejLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(selectInvoicejButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(last4DigitjLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(acceptLatePaymentjPanel1Layout.createSequentialGroup()
+                        .addComponent(last4DigitjTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(150, 150, 150))
+                    .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(TotalLatePayjTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(paymentTypeComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cardTypejComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(expiryDatejTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(invoicejScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(153, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(latePaymentCanceljButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(latePaymentSubmitjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(203, 203, 203))
+        );
+        acceptLatePaymentjPanel1Layout.setVerticalGroup(
+            acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(acceptLatePaymentjPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(invoicejScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectInvoicejButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanel1Layout.createSequentialGroup()
+                        .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(totaljLabel1)
+                            .addComponent(TotalLatePayjTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(paymentTypejLabel1)
+                            .addComponent(paymentTypeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addComponent(cardTypejLabel1))
+                    .addComponent(cardTypejComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(last4DigitjLabel1)
+                    .addComponent(last4DigitjTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(expiryDatejTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(expiryDatejLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(latePaymentSubmitjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(latePaymentCanceljButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(172, 172, 172))
+        );
+
+        TotalLatePayjTextField.setEditable(false);
+
+        javax.swing.GroupLayout acceptLatePaymentLayout = new javax.swing.GroupLayout(acceptLatePayment);
+        acceptLatePayment.setLayout(acceptLatePaymentLayout);
+        acceptLatePaymentLayout.setHorizontalGroup(
+            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(acceptLatePaymentjPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        acceptLatePaymentLayout.setVerticalGroup(
+            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(acceptLatePaymentjPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        cardPanel1.add(acceptLatePayment, "acceptLatePayment");
+
+        searchInvoice.setMaximumSize(new java.awt.Dimension(900, 700));
+        searchInvoice.setMinimumSize(new java.awt.Dimension(900, 700));
+        searchInvoice.setSize(new java.awt.Dimension(900, 700));
+
+        searchInvoicejPanel1.setBackground(new java.awt.Color(61, 96, 146));
+        searchInvoicejPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
+        searchInvoicejPanel1.setPreferredSize(new java.awt.Dimension(900, 700));
+        searchInvoicejPanel1.setSize(new java.awt.Dimension(900, 700));
+
+        invoicejTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Invoice No.", "Job Job No.", "Total Payable", "Date Issued", "Invoice Status", "Invoice Location"
+            }
+        ));
+        jScrollPane10.setViewportView(invoicejTable1);
+
+        selectSelectedInvoicejButton1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        selectSelectedInvoicejButton1.setText("Select");
+        selectSelectedInvoicejButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectSelectedInvoicejButton1ActionPerformed(evt);
+            }
+        });
+
+        cancelInvoiceSeletionjButton1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        cancelInvoiceSeletionjButton1.setText("Cancel");
+        cancelInvoiceSeletionjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelInvoiceSeletionjButton1ActionPerformed(evt);
+            }
+        });
+
+        searchInvoiceByInvoiceNojTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByInvoiceNojTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByInvoiceNojTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByInvoiceNojTextField.setSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByInvoiceNojTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInvoiceByInvoiceNojTextFieldActionPerformed(evt);
+            }
+        });
+        searchInvoiceByInvoiceNojTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchInvoiceByInvoiceNojTextFieldKeyReleased(evt);
+            }
+        });
+
+        searchInvoiceByJobNumberjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByJobNumberjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByJobNumberjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByJobNumberjTextField.setSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByJobNumberjTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInvoiceByJobNumberjTextFieldActionPerformed(evt);
+            }
+        });
+        searchInvoiceByJobNumberjTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchInvoiceByJobNumberjTextFieldKeyReleased(evt);
+            }
+        });
+
+        searchInvoiceByInvoiceNojLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        searchInvoiceByInvoiceNojLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchInvoiceByInvoiceNojLabel.setText("Invoice Number:");
+        searchInvoiceByInvoiceNojLabel.setMaximumSize(new java.awt.Dimension(124, 29));
+        searchInvoiceByInvoiceNojLabel.setMinimumSize(new java.awt.Dimension(124, 29));
+        searchInvoiceByInvoiceNojLabel.setPreferredSize(new java.awt.Dimension(124, 29));
+        searchInvoiceByInvoiceNojLabel.setSize(new java.awt.Dimension(124, 29));
+
+        searchInvoiceByJobNumberjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        searchInvoiceByJobNumberjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchInvoiceByJobNumberjLabel.setText("Job Number:");
+
+        javax.swing.GroupLayout searchInvoicejPanel1Layout = new javax.swing.GroupLayout(searchInvoicejPanel1);
+        searchInvoicejPanel1.setLayout(searchInvoicejPanel1Layout);
+        searchInvoicejPanel1Layout.setHorizontalGroup(
+            searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cancelInvoiceSeletionjButton1)
+                .addGap(18, 18, 18)
+                .addComponent(selectSelectedInvoicejButton1)
+                .addGap(69, 69, 69))
+            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
+                        .addComponent(searchInvoiceByInvoiceNojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchInvoiceByInvoiceNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchInvoiceByJobNumberjLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchInvoiceByJobNumberjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 50, Short.MAX_VALUE))
+        );
+        searchInvoicejPanel1Layout.setVerticalGroup(
+            searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchInvoiceByInvoiceNojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchInvoiceByInvoiceNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchInvoiceByJobNumberjLabel)
+                    .addComponent(searchInvoiceByJobNumberjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelInvoiceSeletionjButton1)
+                    .addComponent(selectSelectedInvoicejButton1))
+                .addContainerGap(176, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout searchInvoiceLayout = new javax.swing.GroupLayout(searchInvoice);
+        searchInvoice.setLayout(searchInvoiceLayout);
+        searchInvoiceLayout.setHorizontalGroup(
+            searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchInvoiceLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(searchInvoicejPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        searchInvoiceLayout.setVerticalGroup(
+            searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchInvoiceLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(searchInvoicejPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        cardPanel1.add(searchInvoice, "searchInvoicePage");
+
+        AutoBackupConfigjPanel.setBackground(new java.awt.Color(61, 96, 146));
+        AutoBackupConfigjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
+        AutoBackupConfigjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
+        AutoBackupConfigjPanel.setSize(new java.awt.Dimension(900, 700));
+
+        currentAutoBackupModeDatajTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupModeDatajTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupModeDatajTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupModeDatajTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentAutoBackupModeDatajTextFieldActionPerformed(evt);
+            }
+        });
+
+        backupLocationjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        backupLocationjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backupLocationjLabel.setText("Backup Location:");
+
+        backupFrequencyjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        backupFrequencyjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backupFrequencyjLabel.setText("Backup Frequency:");
+
+        currentConfigjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        currentConfigjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        currentConfigjLabel.setText("Current configeration:");
+
+        backupModejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Reminder", "Auto" }));
+        backupModejComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
+        backupModejComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
+        backupModejComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        backupFrequencyjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Weekly", "Monthly" }));
+        backupFrequencyjComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
+        backupFrequencyjComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
+        backupFrequencyjComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        selectAutoBackupLocationjButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        selectAutoBackupLocationjButton.setText("Select Location");
+        selectAutoBackupLocationjButton.setMaximumSize(new java.awt.Dimension(159, 37));
+        selectAutoBackupLocationjButton.setMinimumSize(new java.awt.Dimension(159, 37));
+        selectAutoBackupLocationjButton.setPreferredSize(new java.awt.Dimension(159, 37));
+        selectAutoBackupLocationjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectAutoBackupLocationjButtonActionPerformed(evt);
+            }
+        });
+
+        cancelAutoBackupConfigjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        cancelAutoBackupConfigjButton.setText("Cancel");
+        cancelAutoBackupConfigjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelAutoBackupConfigjButtonActionPerformed(evt);
+            }
+        });
+
+        confirmAutoBackupConfigjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        confirmAutoBackupConfigjButton.setText("Confirm");
+        confirmAutoBackupConfigjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmAutoBackupConfigjButtonActionPerformed(evt);
+            }
+        });
+
+        backupModejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        backupModejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        backupModejLabel.setText("Backup Mode:");
+
+        currentBackupModejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        currentBackupModejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        currentBackupModejLabel.setText("Backup Mode:");
+
+        currentBackupFrequencyjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        currentBackupFrequencyjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        currentBackupFrequencyjLabel.setText("Backup Frequency:");
+
+        currentBackupLocationjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        currentBackupLocationjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        currentBackupLocationjLabel.setText("Backup Location:");
+
+        currentAutoBackupFrequencyDatajTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupFrequencyDatajTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupFrequencyDatajTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupFrequencyDatajTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentAutoBackupFrequencyDatajTextFieldActionPerformed(evt);
+            }
+        });
+
+        autoBackupLocationjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        autoBackupLocationjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        autoBackupLocationjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        autoBackupLocationjTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoBackupLocationjTextFieldActionPerformed(evt);
+            }
+        });
+
+        currentAutoBackupLocationDatajTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupLocationDatajTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupLocationDatajTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        currentAutoBackupLocationDatajTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentAutoBackupLocationDatajTextFieldActionPerformed(evt);
+            }
+        });
+
+        changeConfigjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        changeConfigjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        changeConfigjLabel.setText("Change configeration:");
+
+        javax.swing.GroupLayout AutoBackupConfigjPanelLayout = new javax.swing.GroupLayout(AutoBackupConfigjPanel);
+        AutoBackupConfigjPanel.setLayout(AutoBackupConfigjPanelLayout);
+        AutoBackupConfigjPanelLayout.setHorizontalGroup(
+            AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AutoBackupConfigjPanelLayout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(currentBackupFrequencyjLabel)
+                    .addComponent(currentBackupLocationjLabel)
+                    .addComponent(currentBackupModejLabel)
+                    .addComponent(backupFrequencyjLabel)
+                    .addComponent(backupLocationjLabel)
+                    .addComponent(backupModejLabel))
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AutoBackupConfigjPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(selectAutoBackupLocationjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(AutoBackupConfigjPanelLayout.createSequentialGroup()
+                        .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AutoBackupConfigjPanelLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(currentAutoBackupModeDatajTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                    .addComponent(currentAutoBackupFrequencyDatajTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(currentAutoBackupLocationDatajTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(AutoBackupConfigjPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(backupModejComboBox, 0, 369, Short.MAX_VALUE)
+                                    .addComponent(backupFrequencyjComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(autoBackupLocationjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 90, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AutoBackupConfigjPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AutoBackupConfigjPanelLayout.createSequentialGroup()
+                        .addComponent(cancelAutoBackupConfigjButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(confirmAutoBackupConfigjButton)
+                        .addGap(118, 118, 118))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AutoBackupConfigjPanelLayout.createSequentialGroup()
+                        .addComponent(currentConfigjLabel)
+                        .addGap(317, 317, 317))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AutoBackupConfigjPanelLayout.createSequentialGroup()
+                        .addComponent(changeConfigjLabel)
+                        .addGap(317, 317, 317))))
+        );
+        AutoBackupConfigjPanelLayout.setVerticalGroup(
+            AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AutoBackupConfigjPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(AutoBackupConfigjPanelLayout.createSequentialGroup()
+                        .addComponent(currentConfigjLabel)
+                        .addGap(30, 30, 30)
+                        .addComponent(currentBackupModejLabel))
+                    .addComponent(currentAutoBackupModeDatajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currentBackupFrequencyjLabel)
+                    .addComponent(currentAutoBackupFrequencyDatajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(currentBackupLocationjLabel)
+                    .addComponent(currentAutoBackupLocationDatajTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(changeConfigjLabel)
+                .addGap(50, 50, 50)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backupModejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backupModejLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backupFrequencyjLabel)
+                    .addComponent(backupFrequencyjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backupLocationjLabel)
+                    .addComponent(autoBackupLocationjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectAutoBackupLocationjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelAutoBackupConfigjButton)
+                    .addComponent(confirmAutoBackupConfigjButton))
+                .addGap(157, 157, 157))
+        );
+
+        TotalLatePayjTextField.setEditable(false);
+        TotalLatePayjTextField.setEditable(false);
+        TotalLatePayjTextField.setEditable(false);
+        TotalLatePayjTextField.setEditable(false);
+
+        cardPanel1.add(AutoBackupConfigjPanel, "AutoBackupConfig");
+
+        SelectDiscountPlan.setBackground(new java.awt.Color(61, 96, 146));
+        SelectDiscountPlan.setMaximumSize(new java.awt.Dimension(900, 700));
+        SelectDiscountPlan.setMinimumSize(new java.awt.Dimension(900, 700));
+        SelectDiscountPlan.setSize(new java.awt.Dimension(900, 700));
+
+        discountPlanTypejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        discountPlanTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        discountPlanTypejLabel.setText("Discount plan type:");
+
+        discountPlanTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a discount type", "Fixed", "Variable", "Flexible" }));
+        discountPlanTypejComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
+        discountPlanTypejComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
+        discountPlanTypejComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+        discountPlanTypejComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discountPlanTypejComboBoxActionPerformed(evt);
+            }
+        });
+
+        discountCanceljButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        discountCanceljButton.setText("Cancel");
+        discountCanceljButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discountCanceljButtonActionPerformed(evt);
+            }
+        });
+
+        applyDiscountjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        applyDiscountjButton.setText("Apply");
+        applyDiscountjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyDiscountjButtonActionPerformed(evt);
+            }
+        });
+
+        DiscountTypeInformation.setBackground(new java.awt.Color(34, 54, 81));
+        DiscountTypeInformation.setMaximumSize(new java.awt.Dimension(900, 500));
+        DiscountTypeInformation.setMinimumSize(new java.awt.Dimension(900, 500));
+        DiscountTypeInformation.setSize(new java.awt.Dimension(900, 500));
+
+        FixedDiscountType.setBackground(new java.awt.Color(34, 54, 81));
+        FixedDiscountType.setMaximumSize(new java.awt.Dimension(900, 500));
+        FixedDiscountType.setMinimumSize(new java.awt.Dimension(900, 500));
+        FixedDiscountType.setSize(new java.awt.Dimension(900, 500));
+
+        fixedDiscountRatejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        fixedDiscountRatejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        fixedDiscountRatejLabel.setText("Discount rate:");
+
+        fixedPercentageSymbol.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        fixedPercentageSymbol.setForeground(new java.awt.Color(255, 255, 255));
+        fixedPercentageSymbol.setText("%");
+
+        fixedDiscountRatejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        fixedDiscountRatejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        fixedDiscountRatejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        fixedDiscountRatejTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fixedDiscountRatejTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout FixedDiscountTypeLayout = new javax.swing.GroupLayout(FixedDiscountType);
+        FixedDiscountType.setLayout(FixedDiscountTypeLayout);
+        FixedDiscountTypeLayout.setHorizontalGroup(
+            FixedDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FixedDiscountTypeLayout.createSequentialGroup()
+                .addGap(291, 291, 291)
+                .addComponent(fixedDiscountRatejLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fixedDiscountRatejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fixedPercentageSymbol)
+                .addContainerGap(291, Short.MAX_VALUE))
+        );
+        FixedDiscountTypeLayout.setVerticalGroup(
+            FixedDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FixedDiscountTypeLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(FixedDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fixedDiscountRatejLabel)
+                    .addComponent(fixedPercentageSymbol)
+                    .addComponent(fixedDiscountRatejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(422, Short.MAX_VALUE))
+        );
+
+        TotalLatePayjTextField.setEditable(false);
+
+        VariableDiscountType.setBackground(new java.awt.Color(34, 54, 81));
+        VariableDiscountType.setMaximumSize(new java.awt.Dimension(900, 500));
+        VariableDiscountType.setPreferredSize(new java.awt.Dimension(900, 500));
+        VariableDiscountType.setSize(new java.awt.Dimension(900, 500));
+
+        JobsjPanel.setBackground(new java.awt.Color(34, 54, 81));
+        JobsjPanel.setMaximumSize(new java.awt.Dimension(888, 504));
+        JobsjPanel.setSize(new java.awt.Dimension(888, 504));
+
+        JobsjScrollPane.setMaximumSize(new java.awt.Dimension(700, 404));
+        JobsjScrollPane.setMinimumSize(new java.awt.Dimension(700, 404));
+        JobsjScrollPane.setPreferredSize(new java.awt.Dimension(700, 404));
+        JobsjScrollPane.setSize(new java.awt.Dimension(700, 404));
+
+        JobsjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Job No", "Customer Account No", "Status", "Is Collected"
+            }
+        ));
+        JobsjScrollPane.setViewportView(JobsjTable);
+
+        javax.swing.GroupLayout JobsjPanelLayout = new javax.swing.GroupLayout(JobsjPanel);
+        JobsjPanel.setLayout(JobsjPanelLayout);
+        JobsjPanelLayout.setHorizontalGroup(
+            JobsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 899, Short.MAX_VALUE)
+            .addGroup(JobsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JobsjPanelLayout.createSequentialGroup()
+                    .addGap(78, 78, 78)
+                    .addComponent(JobsjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(102, Short.MAX_VALUE)))
+        );
+        JobsjPanelLayout.setVerticalGroup(
+            JobsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 516, Short.MAX_VALUE)
+            .addGroup(JobsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JobsjPanelLayout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addComponent(JobsjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(64, Short.MAX_VALUE)))
+        );
+
+        StandardJobsjPanel.setBackground(new java.awt.Color(34, 54, 81));
+        StandardJobsjPanel.setMaximumSize(new java.awt.Dimension(888, 504));
+        StandardJobsjPanel.setMinimumSize(new java.awt.Dimension(888, 504));
+        StandardJobsjPanel.setSize(new java.awt.Dimension(888, 504));
+
+        StandardJobsjScrollPane.setMaximumSize(new java.awt.Dimension(700, 404));
+        StandardJobsjScrollPane.setMinimumSize(new java.awt.Dimension(700, 404));
+        StandardJobsjScrollPane.setPreferredSize(new java.awt.Dimension(700, 404));
+        StandardJobsjScrollPane.setSize(new java.awt.Dimension(700, 404));
+
+        StandardJobsjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Standard Job No", "Standard Job Code", "Status"
+            }
+        ));
+        StandardJobsjScrollPane.setViewportView(StandardJobsjTable);
+
+        javax.swing.GroupLayout StandardJobsjPanelLayout = new javax.swing.GroupLayout(StandardJobsjPanel);
+        StandardJobsjPanel.setLayout(StandardJobsjPanelLayout);
+        StandardJobsjPanelLayout.setHorizontalGroup(
+            StandardJobsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StandardJobsjPanelLayout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(StandardJobsjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
+        );
+        StandardJobsjPanelLayout.setVerticalGroup(
+            StandardJobsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StandardJobsjPanelLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(StandardJobsjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+
+        TasksjPanel.setBackground(new java.awt.Color(34, 54, 81));
+        TasksjPanel.setMaximumSize(new java.awt.Dimension(888, 504));
+        TasksjPanel.setPreferredSize(new java.awt.Dimension(888, 504));
+        TasksjPanel.setSize(new java.awt.Dimension(888, 504));
+
+        TasksjScrollPane.setMaximumSize(new java.awt.Dimension(700, 404));
+        TasksjScrollPane.setMinimumSize(new java.awt.Dimension(700, 404));
+        TasksjScrollPane.setPreferredSize(new java.awt.Dimension(700, 404));
+        TasksjScrollPane.setSize(new java.awt.Dimension(700, 404));
+
+        TaskjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Task ID", "Task Description", "Price", "Discount"
+            }
+        ));
+        TasksjScrollPane.setViewportView(TaskjTable);
+
+        javax.swing.GroupLayout TasksjPanelLayout = new javax.swing.GroupLayout(TasksjPanel);
+        TasksjPanel.setLayout(TasksjPanelLayout);
+        TasksjPanelLayout.setHorizontalGroup(
+            TasksjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TasksjPanelLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(TasksjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
+        TasksjPanelLayout.setVerticalGroup(
+            TasksjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TasksjPanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(TasksjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VariableDiscountTypeLayout = new javax.swing.GroupLayout(VariableDiscountType);
+        VariableDiscountType.setLayout(VariableDiscountTypeLayout);
+        VariableDiscountTypeLayout.setHorizontalGroup(
+            VariableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(VariableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VariableDiscountTypeLayout.createSequentialGroup()
+                    .addGap(3, 3, 3)
+                    .addComponent(JobsjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(4, 4, 4)))
+            .addGroup(VariableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VariableDiscountTypeLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(StandardJobsjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(VariableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VariableDiscountTypeLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(TasksjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        VariableDiscountTypeLayout.setVerticalGroup(
+            VariableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(VariableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VariableDiscountTypeLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(JobsjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(VariableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VariableDiscountTypeLayout.createSequentialGroup()
+                    .addGap(12, 12, 12)
+                    .addComponent(StandardJobsjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(12, Short.MAX_VALUE)))
+            .addGroup(VariableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(VariableDiscountTypeLayout.createSequentialGroup()
+                    .addGap(12, 12, 12)
+                    .addComponent(TasksjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(12, Short.MAX_VALUE)))
+        );
+
+        JobsjPanel.setVisible(false);
+        StandardJobsjPanel.setVisible(false);
+
+        FlexiableDiscountType.setBackground(new java.awt.Color(34, 54, 81));
+        FlexiableDiscountType.setMaximumSize(new java.awt.Dimension(900, 500));
+        FlexiableDiscountType.setMinimumSize(new java.awt.Dimension(900, 500));
+        FlexiableDiscountType.setSize(new java.awt.Dimension(900, 500));
+
+        boundjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        boundjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        boundjLabel.setText("Add bound:");
+
+        upperBoundjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        upperBoundjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        upperBoundjLabel.setText("Upper bound:");
+
+        lowerBoundjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lowerBoundjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        lowerBoundjLabel.setText("Lower bound:");
+
+        flexibleDiscountRatejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        flexibleDiscountRatejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        flexibleDiscountRatejLabel.setText("Discount rate:");
+
+        flexiablePercentageSymbol.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        flexiablePercentageSymbol.setForeground(new java.awt.Color(255, 255, 255));
+        flexiablePercentageSymbol.setText("%");
+
+        upperBoundjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        upperBoundjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        upperBoundjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        upperBoundjTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upperBoundjTextFieldActionPerformed(evt);
+            }
+        });
+
+        lowerBoundjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        lowerBoundjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        lowerBoundjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        lowerBoundjTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lowerBoundjTextFieldActionPerformed(evt);
+            }
+        });
+
+        flexibleDiscountRatejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        flexibleDiscountRatejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        flexibleDiscountRatejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        flexibleDiscountRatejTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                flexibleDiscountRatejTextFieldActionPerformed(evt);
+            }
+        });
+
+        jScrollPane11.setViewportView(boundsjList);
+
+        removeFlexibleBoundjButton.setText("Remove");
+        removeFlexibleBoundjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFlexibleBoundjButtonActionPerformed(evt);
+            }
+        });
+
+        addFlexibleBoundjButton.setText("Add");
+        addFlexibleBoundjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addFlexibleBoundjButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout FlexiableDiscountTypeLayout = new javax.swing.GroupLayout(FlexiableDiscountType);
+        FlexiableDiscountType.setLayout(FlexiableDiscountTypeLayout);
+        FlexiableDiscountTypeLayout.setHorizontalGroup(
+            FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FlexiableDiscountTypeLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(boundjLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FlexiableDiscountTypeLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(flexibleDiscountRatejLabel)
+                    .addComponent(lowerBoundjLabel)
+                    .addComponent(upperBoundjLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lowerBoundjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(upperBoundjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(FlexiableDiscountTypeLayout.createSequentialGroup()
+                        .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(addFlexibleBoundjButton)
+                            .addComponent(flexibleDiscountRatejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(flexiablePercentageSymbol)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeFlexibleBoundjButton)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65))
+        );
+        FlexiableDiscountTypeLayout.setVerticalGroup(
+            FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FlexiableDiscountTypeLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(FlexiableDiscountTypeLayout.createSequentialGroup()
+                        .addComponent(boundjLabel)
+                        .addGap(68, 68, 68)
+                        .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(upperBoundjLabel)
+                            .addComponent(upperBoundjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lowerBoundjLabel)
+                            .addComponent(lowerBoundjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(flexibleDiscountRatejLabel)
+                            .addComponent(flexiablePercentageSymbol)
+                            .addComponent(flexibleDiscountRatejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(FlexiableDiscountTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeFlexibleBoundjButton)
+                    .addComponent(addFlexibleBoundjButton))
+                .addContainerGap(150, Short.MAX_VALUE))
+        );
+
+        TotalLatePayjTextField.setEditable(false);
+        TotalLatePayjTextField.setEditable(false);
+        TotalLatePayjTextField.setEditable(false);
+
+        javax.swing.GroupLayout DiscountTypeInformationLayout = new javax.swing.GroupLayout(DiscountTypeInformation);
+        DiscountTypeInformation.setLayout(DiscountTypeInformationLayout);
+        DiscountTypeInformationLayout.setHorizontalGroup(
+            DiscountTypeInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(DiscountTypeInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DiscountTypeInformationLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(FixedDiscountType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(DiscountTypeInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DiscountTypeInformationLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(VariableDiscountType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(DiscountTypeInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DiscountTypeInformationLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(FlexiableDiscountType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        DiscountTypeInformationLayout.setVerticalGroup(
+            DiscountTypeInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(DiscountTypeInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DiscountTypeInformationLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(FixedDiscountType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(DiscountTypeInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DiscountTypeInformationLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(VariableDiscountType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(DiscountTypeInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DiscountTypeInformationLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(FlexiableDiscountType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        FixedDiscountType.setVisible(false);
+        VariableDiscountType.setVisible(false);
+        FlexiableDiscountType.setVisible(false);
+
+        javax.swing.GroupLayout SelectDiscountPlanLayout = new javax.swing.GroupLayout(SelectDiscountPlan);
+        SelectDiscountPlan.setLayout(SelectDiscountPlanLayout);
+        SelectDiscountPlanLayout.setHorizontalGroup(
+            SelectDiscountPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelectDiscountPlanLayout.createSequentialGroup()
+                .addGap(325, 325, 325)
+                .addGroup(SelectDiscountPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(discountPlanTypejComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(discountPlanTypejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectDiscountPlanLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(DiscountTypeInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectDiscountPlanLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(discountCanceljButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(applyDiscountjButton)
+                .addGap(31, 31, 31))
+        );
+        SelectDiscountPlanLayout.setVerticalGroup(
+            SelectDiscountPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelectDiscountPlanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(discountPlanTypejLabel)
+                .addGap(18, 18, 18)
+                .addComponent(discountPlanTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DiscountTypeInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(SelectDiscountPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(discountCanceljButton)
+                    .addComponent(applyDiscountjButton))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        DiscountTypeInformation.setVisible(true);
+
+        cardPanel1.add(SelectDiscountPlan, "DiscountPlan");
+
+        InDefault.setBackground(new java.awt.Color(61, 96, 146));
+        InDefault.setMaximumSize(new java.awt.Dimension(900, 700));
+        InDefault.setMinimumSize(new java.awt.Dimension(900, 700));
+        InDefault.setSize(new java.awt.Dimension(900, 700));
+
+        CustomerDetailsjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Account No", "Account Holder Name", "Prefix", "FirstName", "Lastname", "StreetName", "Postcode", "City", "Phone", "IsSuspended", "InDefault", "IsValued", "RegistrationDate", "BuildingNo", "EmailContact"
+            }
+        ));
+        CustomerDetailsjScrollPane.setViewportView(CustomerDetailsjTable);
+
+        jToggleButton1.setText("Reactivate Account");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout InDefaultLayout = new javax.swing.GroupLayout(InDefault);
+        InDefault.setLayout(InDefaultLayout);
+        InDefaultLayout.setHorizontalGroup(
+            InDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InDefaultLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CustomerDetailsjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InDefaultLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToggleButton1)
+                .addGap(89, 89, 89))
+        );
+        InDefaultLayout.setVerticalGroup(
+            InDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InDefaultLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CustomerDetailsjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jToggleButton1)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(InDefault, "InDefault");
+
+        SelectCustomer.setBackground(new java.awt.Color(61, 96, 146));
+        SelectCustomer.setMaximumSize(new java.awt.Dimension(900, 700));
+        SelectCustomer.setMinimumSize(new java.awt.Dimension(900, 700));
+        SelectCustomer.setSize(new java.awt.Dimension(900, 700));
+
+        customersjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "AccountNo", "Account Holder Name", "FirstName", "LastName"
+            }
+        ));
+        customersjScrollPane.setViewportView(customersjTable);
+
+        selectCustomerjButton.setText("Select");
+        selectCustomerjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectCustomerjButtonActionPerformed(evt);
+            }
+        });
+
+        cancelSelectCustomerjButton.setText("Cancel");
+        cancelSelectCustomerjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelSelectCustomerjButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SelectCustomerLayout = new javax.swing.GroupLayout(SelectCustomer);
+        SelectCustomer.setLayout(SelectCustomerLayout);
+        SelectCustomerLayout.setHorizontalGroup(
+            SelectCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelectCustomerLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(SelectCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(SelectCustomerLayout.createSequentialGroup()
+                        .addComponent(cancelSelectCustomerjButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(selectCustomerjButton))
+                    .addComponent(customersjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        SelectCustomerLayout.setVerticalGroup(
+            SelectCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelectCustomerLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(customersjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(SelectCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selectCustomerjButton)
+                    .addComponent(cancelSelectCustomerjButton))
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(SelectCustomer, "SelectCustomer");
+
+        ViewCustomerDetail.setBackground(new java.awt.Color(61, 96, 146));
+        ViewCustomerDetail.setMaximumSize(new java.awt.Dimension(900, 700));
+        ViewCustomerDetail.setMinimumSize(new java.awt.Dimension(900, 700));
+        ViewCustomerDetail.setSize(new java.awt.Dimension(900, 700));
+
+        CustomerInfo.setBackground(new java.awt.Color(255, 255, 255));
+
+        customerAccHolderNamejLabel.setText("jLabel1");
+
+        customerPrefixjLabel.setText("jLabel2");
+
+        customerFirstNamejLabel.setText("jLabel3");
+
+        customerLastNamejLabel.setText("jLabel4");
+
+        jLabel5.setText("Status");
+
+        jLabel6.setText("Type");
+
+        jLabel7.setText("In Default");
+
+        jLabel8.setText("Discount");
+
+        customerStatusjTextField.setText("Unknown");
+
+        customerTypejTextField.setText("jTextField2");
+
+        cutomerInDefaultjTextField.setText("jTextField3");
+
+        customerDiscountjTextField.setText("jTextField4");
+
+        customerNumberjLabel.setText("jLabel1");
+
+        customerRegistationDatejLabel.setText("jLabel1");
+
+        registrationDatejLabel.setText("Registrated on:");
+
+        javax.swing.GroupLayout CustomerInfoLayout = new javax.swing.GroupLayout(CustomerInfo);
+        CustomerInfo.setLayout(CustomerInfoLayout);
+        CustomerInfoLayout.setHorizontalGroup(
+            CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CustomerInfoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customerAccHolderNamejLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(customerNumberjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CustomerInfoLayout.createSequentialGroup()
+                        .addComponent(registrationDatejLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(customerRegistationDatejLabel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CustomerInfoLayout.createSequentialGroup()
+                        .addComponent(customerPrefixjLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(customerFirstNamejLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(customerLastNamejLabel)))
+                .addGap(50, 50, 50)
+                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customerTypejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerStatusjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cutomerInDefaultjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerDiscountjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(100, 100, 100))
+        );
+        CustomerInfoLayout.setVerticalGroup(
+            CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CustomerInfoLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(customerStatusjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerAccHolderNamejLabel))
+                .addGap(18, 18, 18)
+                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(customerPrefixjLabel)
+                        .addComponent(customerFirstNamejLabel)
+                        .addComponent(customerLastNamejLabel))
+                    .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(customerTypejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cutomerInDefaultjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerNumberjLabel))
+                .addGap(17, 17, 17)
+                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(customerRegistationDatejLabel)
+                        .addComponent(registrationDatejLabel))
+                    .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(customerDiscountjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(120, Short.MAX_VALUE))
+        );
+
+        CustomerAction.setBackground(new java.awt.Color(255, 255, 255));
+
+        customerActionjLabel.setText("Actions");
+
+        assignDiscountPlanjButton.setText("Assign Discount Plan");
+        assignDiscountPlanjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignDiscountPlanjButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CustomerActionLayout = new javax.swing.GroupLayout(CustomerAction);
+        CustomerAction.setLayout(CustomerActionLayout);
+        CustomerActionLayout.setHorizontalGroup(
+            CustomerActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CustomerActionLayout.createSequentialGroup()
+                .addGroup(CustomerActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CustomerActionLayout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(customerActionjLabel))
+                    .addGroup(CustomerActionLayout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(assignDiscountPlanjButton)))
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+        CustomerActionLayout.setVerticalGroup(
+            CustomerActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CustomerActionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customerActionjLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(assignDiscountPlanjButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        OtherCustomerInfo.setBackground(new java.awt.Color(255, 255, 255));
+
+        customerStreetNamejTextField.setText("jTextField1");
+
+        customerPostcodejTextField.setText("jTextField2");
+
+        customerCityjTextField.setText("jTextField3");
+
+        customerBuildingNojTextField.setText("jTextField4");
+
+        javax.swing.GroupLayout OtherCustomerInfoLayout = new javax.swing.GroupLayout(OtherCustomerInfo);
+        OtherCustomerInfo.setLayout(OtherCustomerInfoLayout);
+        OtherCustomerInfoLayout.setHorizontalGroup(
+            OtherCustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OtherCustomerInfoLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(OtherCustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customerBuildingNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerCityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerPostcodejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerStreetNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+        OtherCustomerInfoLayout.setVerticalGroup(
+            OtherCustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OtherCustomerInfoLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(customerStreetNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(customerPostcodejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(customerCityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(customerBuildingNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(132, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout ViewCustomerDetailLayout = new javax.swing.GroupLayout(ViewCustomerDetail);
+        ViewCustomerDetail.setLayout(ViewCustomerDetailLayout);
+        ViewCustomerDetailLayout.setHorizontalGroup(
+            ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewCustomerDetailLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ViewCustomerDetailLayout.createSequentialGroup()
+                        .addComponent(CustomerAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OtherCustomerInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CustomerInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        ViewCustomerDetailLayout.setVerticalGroup(
+            ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ViewCustomerDetailLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(CustomerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CustomerAction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(OtherCustomerInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(ViewCustomerDetail, "ViewCustomerDetail");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -5219,6 +6640,454 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFieldActionPerformed
 
+    private void selectInvoicejButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButton1ActionPerformed
+        // TODO add your handling code here:
+        // updates the tables for selecting invoices
+        invoiceModelTable = (DefaultTableModel) invoicejTable.getModel(); // grabs the current model
+        invoiceModelTable.setRowCount(0);
+        ArrayList<Invoice> invoicesList;
+        try {
+            // initialse invoicesList arraylist with data from controller
+            invoicesList = controller.getInvoices();
+
+            Object rowData[] = new Object[6];
+            for (int i = 0; i < invoicesList.size(); ++i) {
+                rowData[0] = invoicesList.get(i).getInvoiceNo();
+                rowData[1] = invoicesList.get(i).getJobJobNo();
+                rowData[2] = invoicesList.get(i).getTotalPayable();
+                rowData[3] = invoicesList.get(i).getDateIssued();
+                rowData[4] = invoicesList.get(i).getInvoiceStatus().toString().toLowerCase();
+                rowData[5] = invoicesList.get(i).getInvoiceLocation();
+                //adds the array type object to the table by adding it to the model
+                invoiceModelTable.addRow(rowData);
+            }
+
+            // change page
+            card1.show(cardPanel1, "searchInvoicePage");
+            card2.show(cardPanel2, "acceptLatePaymentBar");
+        } catch (ParseException ex) {
+            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_selectInvoicejButton1ActionPerformed
+
+    private void paymentTypeComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentTypeComboBox1ActionPerformed
+        // TODO add your handling code here:
+        // if the field that has been selected is card then the label will display
+        // extra information needed to record card payment. Otherwise the fields
+        // will not show.
+        if (paymentTypeComboBox.getSelectedItem().toString().equals("Card")) {
+            // shows the labels for card payment
+            cardTypejLabel.setVisible(true);
+            expiryDatejLabel.setVisible(true);
+            last4DigitjLabel.setVisible(true);
+
+            // shows the text field for card payment
+            cardTypejComboBox.setVisible(true);
+            expiryDatejTextField.setVisible(true);
+            last4DigitjTextField.setVisible(true);
+        } else {
+            // hides the labels for card payment
+            cardTypejLabel.setVisible(false);
+            expiryDatejLabel.setVisible(false);
+            last4DigitjLabel.setVisible(false);
+
+            // hides the text field for card payment
+            cardTypejComboBox.setVisible(false);
+            expiryDatejTextField.setVisible(false);
+            last4DigitjTextField.setVisible(false);
+        }
+    }//GEN-LAST:event_paymentTypeComboBox1ActionPerformed
+
+    private void latePaymentSubmitjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentSubmitjButton1ActionPerformed
+        // TODO add your handling code here:
+        if (invoicejList.getModel().getSize() != 0) { // first check to see if there is a invoice selected
+
+            final String paymentNo = "null";
+            final String[] paymentToken = TotalLatePayjTextField.getText().split("\\s");
+            final double total = Double.parseDouble(paymentToken[1]);
+            final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            final String paymentDate = dateFormat.format(new Date());
+            final int invoiceNumber = invoice.getInvoiceNo();
+
+            switch (paymentTypeComboBox.getSelectedItem().toString()) {
+                case "Card":
+                if (// checks to see if format for the card info is entered correctly
+                    expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
+                    && last4DigitjTextField.getText().matches("[0-9]{4}")
+                ) {
+                    // card information
+                    final String cardType = cardTypejComboBox.getSelectedItem().toString();
+                    final String cardDetailsLast4digits = last4DigitjTextField.getText();
+                    final String cardDetailsExpiryDate = expiryDatejTextField.getText();
+
+                    final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
+
+                    final Payment paymentRecord = new PaymentCard(
+                        paymentNo,
+                        total,
+                        paymentType,
+                        paymentDate,
+                        invoiceNumber,
+                        card.getCardType(),
+                        card.getLast4Digits(),
+                        card.getExpiryDate()
+                    );
+
+                    controller.recordPayment(paymentRecord, paymentType, invoice, card);
+                    //System.out.println("payment info attained");
+
+                    // clears the model and the total
+                    TotalLatePayjTextField.setText("");
+                    t.clear();
+
+                    // clears the data for card detials
+                    expiryDatejTextField.setText("");
+                    last4DigitjTextField.setText("");
+
+                    JOptionPane.showMessageDialog(this, "Card payment successful");
+                }
+                break;
+                case "Cash":
+                final Payment paymentRecord = new PaymentCash(
+                    paymentNo,
+                    total,
+                    paymentType,
+                    paymentDate,
+                    invoiceNumber
+                );
+
+                controller.recordPayment(paymentRecord, paymentType, invoice);
+
+                // clears the model and the total
+                TotalLatePayjTextField.setText("");
+                t.clear();
+
+                // clears the data for card detials
+                expiryDatejTextField.setText("");
+                last4DigitjTextField.setText("");
+
+                JOptionPane.showMessageDialog(this, "Cash payment successful");
+                break;
+                default:
+                JOptionPane.showMessageDialog(this, "No payment type was selected");
+                break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Cannot make payment");
+        }
+    }//GEN-LAST:event_latePaymentSubmitjButton1ActionPerformed
+
+    private void latePaymentCanceljButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentCanceljButton1ActionPerformed
+        // TODO add your handling code here:
+        // invoice informaiton and total
+        TotalLatePayjTextField.setText("");
+        t.clear();
+
+        // clears the data for card detials
+        expiryDatejTextField.setText("");
+        last4DigitjTextField.setText("");
+
+        card1.show(cardPanel1, "receptionistHomePage");
+        card2.show(cardPanel2, "homePageR");
+    }//GEN-LAST:event_latePaymentCanceljButton1ActionPerformed
+
+    private void selectSelectedInvoicejButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSelectedInvoicejButton1ActionPerformed
+        // TODO add your handling code here:
+        if (invoicejTable.getSelectedRow() >= 0) {
+            t.clear();
+            // gets the selected position from the invoice table
+            final int row = invoicejTable.getSelectedRow();
+            final int columnCount = invoicejTable.getColumnCount();
+
+            Object[] obj = new Object[6];
+
+            // gets all the row information from the selected invoice in the table
+            // and places it in the array
+            for (int i = 0; i < columnCount; ++i)
+            obj[i] = invoicejTable.getValueAt(row, i);
+
+            // variables for invoice
+            final int invoiceNo = Integer.parseInt(obj[0].toString());
+            final int jobJobNo = Integer.parseInt(obj[1].toString());
+            double totalPayable = Double.parseDouble(obj[2].toString());
+            final Date dateIssued = (Date) obj[3];
+            final String invoiceStatus = obj[4].toString();
+            final String invoiceLocation = obj[5].toString();
+
+            invoice = new Invoice(invoiceNo, jobJobNo, totalPayable, dateIssued, invoiceStatus, invoiceLocation);
+
+            // sets the informaiton needed in the acceptlatepayment page
+            t.addElement("Invoice number:" + invoice.getInvoiceNo());
+            t.addElement("Job number: " + invoice.getJobJobNo());
+            invoicejList.setModel(t); // sets the model from the t typed model object
+            TotalLatePayjTextField.setText("£ " + Double.toString(invoice.getTotalPayable()));
+            invoiceModelTable.removeRow(invoicejTable.getSelectedRow());
+
+            card1.show(cardPanel1, "acceptLatePayment");
+            card2.show(cardPanel2, "acceptLatePaymentBar");
+        } else {
+            JOptionPane.showMessageDialog(this, "You need to select a record");
+        }
+    }//GEN-LAST:event_selectSelectedInvoicejButton1ActionPerformed
+
+    private void cancelInvoiceSeletionjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelInvoiceSeletionjButton1ActionPerformed
+        // TODO add your handling code here:
+        searchInvoiceByInvoiceNojTextField.setText("");
+        searchInvoiceByJobNumberjTextField.setText("");
+        invoiceModelTable.setRowCount(0);
+        card1.show(cardPanel1, "acceptLatePayment");
+        card2.show(cardPanel2, "acceptLatePaymentBar");
+    }//GEN-LAST:event_cancelInvoiceSeletionjButton1ActionPerformed
+
+    private void searchInvoiceByInvoiceNojTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInvoiceByInvoiceNojTextFieldActionPerformed
+
+    private void searchInvoiceByInvoiceNojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldKeyReleased
+        // TODO add your handling code here:
+        final String inputText = searchInvoiceByInvoiceNojTextField.getText();
+        final DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
+        final TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
+        invoicejTable.setRowSorter(tr);
+        if (inputText.length() != 0) {
+            tr.setRowFilter(RowFilter.regexFilter(inputText, 0));
+        } else {
+            tr.removeRowSorterListener(invoicejTable);
+        }
+    }//GEN-LAST:event_searchInvoiceByInvoiceNojTextFieldKeyReleased
+
+    private void searchInvoiceByJobNumberjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInvoiceByJobNumberjTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInvoiceByJobNumberjTextFieldActionPerformed
+
+    private void searchInvoiceByJobNumberjTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByJobNumberjTextFieldKeyReleased
+        // TODO add your handling code here:
+        final String inputText = searchInvoiceByJobNumberjTextField.getText();
+        final DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
+        final TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
+        invoicejTable.setRowSorter(tr);
+        if (inputText.length() != 0) {
+            tr.setRowFilter(RowFilter.regexFilter(inputText, 1));
+        } else {
+            tr.removeRowSorterListener(invoicejTable);
+        }
+    }//GEN-LAST:event_searchInvoiceByJobNumberjTextFieldKeyReleased
+
+    private void currentAutoBackupModeDatajTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentAutoBackupModeDatajTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentAutoBackupModeDatajTextFieldActionPerformed
+
+    private void selectAutoBackupLocationjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAutoBackupLocationjButtonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.showOpenDialog(this);
+
+        try {
+            String directory = chooser.getSelectedFile().getPath();
+            directory = directory.replace('\\', '/');
+            autoBackupLocationjTextField.setText(directory);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_selectAutoBackupLocationjButtonActionPerformed
+
+    private void cancelAutoBackupConfigjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAutoBackupConfigjButtonActionPerformed
+        // TODO add your handling code here:
+        currentAutoBackupModeDatajTextField.setText("");
+        card1.show(cardPanel1, "welcome");
+        card2.show(cardPanel2, "welcomeBar1");
+    }//GEN-LAST:event_cancelAutoBackupConfigjButtonActionPerformed
+
+    private void confirmAutoBackupConfigjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAutoBackupConfigjButtonActionPerformed
+        // TODO add your handling code here:
+        if (!currentAutoBackupModeDatajTextField.getText().equals("")) {
+            final String mode = backupModejComboBox.getSelectedItem().toString();
+            final String frequency = backupFrequencyjComboBox.getSelectedItem().toString();
+            final String location = autoBackupLocationjTextField.getText();
+
+            final AutoBackupConfig config = new AutoBackupConfig(mode, frequency, location);
+
+            controller.setAutoBackupConfig(config);
+            autoBackupLocationjTextField.setText("");
+            JOptionPane.showMessageDialog(this, "You have updated the automatic backup configuration");
+            card1.show(cardPanel1, "welcome");
+            card2.show(cardPanel2, "welcomeBar1");
+        } else {
+            JOptionPane.showMessageDialog(this, "You need to pick a location");
+        }
+    }//GEN-LAST:event_confirmAutoBackupConfigjButtonActionPerformed
+
+    private void currentAutoBackupFrequencyDatajTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentAutoBackupFrequencyDatajTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentAutoBackupFrequencyDatajTextFieldActionPerformed
+
+    private void autoBackupLocationjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoBackupLocationjTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autoBackupLocationjTextFieldActionPerformed
+
+    private void currentAutoBackupLocationDatajTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentAutoBackupLocationDatajTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentAutoBackupLocationDatajTextFieldActionPerformed
+
+    private void discountPlanTypejComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountPlanTypejComboBoxActionPerformed
+        // TODO add your handling code here:
+        if (discountPlanTypejComboBox.getSelectedItem().equals("Fixed")) {
+            FixedDiscountType.setVisible(true);
+            VariableDiscountType.setVisible(false);
+            FlexiableDiscountType.setVisible(false);
+        } else if (discountPlanTypejComboBox.getSelectedItem().equals("Variable")) {
+            displayAllTask();
+            VariableDiscountType.setVisible(true);
+            FixedDiscountType.setVisible(false);
+            FlexiableDiscountType.setVisible(false);
+        } else if (discountPlanTypejComboBox.getSelectedItem().equals("Flexible")) {
+            FlexiableDiscountType.setVisible(true);
+            VariableDiscountType.setVisible(false);
+            FixedDiscountType.setVisible(false);
+        } else {
+            FixedDiscountType.setVisible(false);
+            VariableDiscountType.setVisible(false);
+            FlexiableDiscountType.setVisible(false);
+        }
+    }//GEN-LAST:event_discountPlanTypejComboBoxActionPerformed
+
+    private void discountCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountCanceljButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_discountCanceljButtonActionPerformed
+
+    private void applyDiscountjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyDiscountjButtonActionPerformed
+        // TODO add your handling code here:
+        final String discountType = discountPlanTypejComboBox.getSelectedItem().toString();
+        final Customer customer = selectedCustomer;
+
+        final User user = new User("00001", "Manager", "Manager", "Manager", new Date(), "4");
+
+        switch(discountType) {
+            case "Fixed" :
+            System.out.println("Fixed");
+            final int fixedDiscountPercentage = Integer.parseInt(fixedDiscountRatejTextField.getText());
+            controller.applyDiscountPlan(customer, user, discountType);
+            controller.applyFixedDiscountRate(fixedDiscountPercentage, customer);
+            break;
+
+            case "Variable" :
+            System.out.println("Variable");
+
+            break;
+
+            case "Flexible" :
+            System.out.println("Flexible");
+            break;
+            default : break;
+        }
+    }//GEN-LAST:event_applyDiscountjButtonActionPerformed
+
+    private void fixedDiscountRatejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fixedDiscountRatejTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fixedDiscountRatejTextFieldActionPerformed
+
+    private void upperBoundjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperBoundjTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upperBoundjTextFieldActionPerformed
+
+    private void lowerBoundjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowerBoundjTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lowerBoundjTextFieldActionPerformed
+
+    private void flexibleDiscountRatejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flexibleDiscountRatejTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_flexibleDiscountRatejTextFieldActionPerformed
+
+    private void removeFlexibleBoundjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFlexibleBoundjButtonActionPerformed
+        // TODO add your handling code here:
+        boundsjList.remove(boundsjList.getSelectedIndex());
+    }//GEN-LAST:event_removeFlexibleBoundjButtonActionPerformed
+
+    private void addFlexibleBoundjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFlexibleBoundjButtonActionPerformed
+        // TODO add your handling code here:
+        upperBoundjTextField.getText();
+        lowerBoundjTextField.getText();
+        flexibleDiscountRatejTextField.getText();
+
+    }//GEN-LAST:event_addFlexibleBoundjButtonActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        if (CustomerDetailsjTable.getSelectedRow() >= 0) {
+            // gets the selected position from the invoice table
+            final int row = CustomerDetailsjTable.getSelectedRow();
+            final int columnCount = CustomerDetailsjTable.getColumnCount();
+            Object[] obj = new Object[15];
+
+            // gets all the row information from the selected invoice in the table
+            // and places it in the array
+            for (int i = 0; i < columnCount; ++i)
+            obj[i] = CustomerDetailsjTable.getValueAt(row, i);
+
+            defaultCustomerModelTable.removeRow(CustomerDetailsjTable.getSelectedRow());
+            String accountNo = obj[0].toString();
+            controller.reactivateDefaultAccount(accountNo);
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void selectCustomerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerjButtonActionPerformed
+        // TODO add your handling code here:
+        final String customerNo = customersjTable.getValueAt(customersjTable.getSelectedRow(), 0).toString();
+        final Customer[] customerList = controller.getAllCustomers();
+        for (int i = 0; i < customerList.length; ++i)
+        if (customerNo.equals(customerList[i].getAccountNo())) {
+            selectedCustomer = customerList[i];
+            break;
+        }
+
+        if (selectedCustomer != null) {
+            customerAccHolderNamejLabel.setText(selectedCustomer.getAccountHolderName());
+            customerPrefixjLabel.setText(selectedCustomer.getPrefix());
+            customerFirstNamejLabel.setText(selectedCustomer.getFirstName());
+            customerLastNamejLabel.setText(selectedCustomer.getSurName());
+            customerNumberjLabel.setText(selectedCustomer.getPhoneNumber());
+            customerRegistationDatejLabel.setText(selectedCustomer.getRegistrationDate().toString());
+
+            customerStatusjTextField.setText("");
+
+            if (selectedCustomer.isIsValued()== true)
+            customerTypejTextField.setText("Valued");
+            else
+            customerTypejTextField.setText("Standard");
+
+            if (selectedCustomer.isInDefault() == true)
+            cutomerInDefaultjTextField.setText("true");
+            else
+            cutomerInDefaultjTextField.setText("false");
+
+            final String discountType = controller.getCustomerDiscountType(selectedCustomer);
+            if (discountType != null)
+            customerDiscountjTextField.setText(discountType);
+            else
+            customerDiscountjTextField.setText("None");
+
+            customerStreetNamejTextField.setText(selectedCustomer.getStreetName());
+            customerPostcodejTextField.setText(selectedCustomer.getPostCode());
+            customerCityjTextField.setText(selectedCustomer.getCity());
+            customerBuildingNojTextField.setText(selectedCustomer.getBuildingNo());
+        }
+
+        card1.show(cardPanel1, "ViewCustomerDetail");
+        card2.show(cardPanel2, "homePageR");
+    }//GEN-LAST:event_selectCustomerjButtonActionPerformed
+
+    private void cancelSelectCustomerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSelectCustomerjButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelSelectCustomerjButtonActionPerformed
+
+    private void assignDiscountPlanjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignDiscountPlanjButtonActionPerformed
+        // TODO add your handling code here:
+        card1.show(cardPanel1, "DiscountPlan");
+        card2.show(cardPanel2, "homePageR");
+    }//GEN-LAST:event_assignDiscountPlanjButtonActionPerformed
+
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
@@ -5265,23 +7134,49 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AutoBackupConfigjPanel;
     private javax.swing.JLabel BAPERSLabel;
     private javax.swing.JLabel BackupDataLabel;
+    private javax.swing.JPanel CustomerAction;
+    private javax.swing.JScrollPane CustomerDetailsjScrollPane;
+    private javax.swing.JTable CustomerDetailsjTable;
+    private javax.swing.JPanel CustomerInfo;
+    private javax.swing.JPanel DiscountTypeInformation;
+    private javax.swing.JPanel FixedDiscountType;
+    private javax.swing.JPanel FlexiableDiscountType;
+    private javax.swing.JPanel InDefault;
+    private javax.swing.JPanel JobsjPanel;
+    private javax.swing.JScrollPane JobsjScrollPane;
+    private javax.swing.JTable JobsjTable;
     private javax.swing.JLabel LastnamejLabel;
     private javax.swing.JPasswordField NewPasswordField;
     private javax.swing.JPasswordField NewRepeatPasswordField;
+    private javax.swing.JPanel OtherCustomerInfo;
     private javax.swing.JLabel ReenterPasswordLabel;
     private javax.swing.JButton RestoreButton;
     private javax.swing.JButton RestorePageButton;
     private javax.swing.JLabel RoleLabel;
+    private javax.swing.JPanel SelectCustomer;
+    private javax.swing.JPanel SelectDiscountPlan;
+    private javax.swing.JPanel StandardJobsjPanel;
+    private javax.swing.JScrollPane StandardJobsjScrollPane;
+    private javax.swing.JTable StandardJobsjTable;
+    private javax.swing.JTable TaskjTable;
+    private javax.swing.JPanel TasksjPanel;
+    private javax.swing.JScrollPane TasksjScrollPane;
     private javax.swing.JTextField TotalLatePayjTextField;
+    private javax.swing.JTextField TotalLatePayjTextField1;
     private javax.swing.JTextField UserFirstnameField;
     private javax.swing.JTextField UserLastnameField;
     private javax.swing.JTextField UserNumberField;
     private javax.swing.JComboBox<String> UserRoleSearchDrop;
+    private javax.swing.JPanel VariableDiscountType;
+    private javax.swing.JPanel ViewCustomerDetail;
     private javax.swing.JPanel acceptJobPage;
     private javax.swing.JButton acceptJobPageButton;
+    private javax.swing.JPanel acceptLatePayment;
     private javax.swing.JPanel acceptLatePaymentjPanel;
+    private javax.swing.JPanel acceptLatePaymentjPanel1;
     private javax.swing.JPanel acceptPaymentPage;
     private javax.swing.JButton acceptPaymentPageButton;
     private javax.swing.JLabel accountHolderNameLabel;
@@ -5289,25 +7184,42 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> accountStatusDD;
     private javax.swing.JLabel accountStatusjLabel;
     private javax.swing.JButton addButton;
+    private javax.swing.JButton addFlexibleBoundjButton;
     private javax.swing.JButton addJobButton;
     private javax.swing.JButton addMaterialButton;
+    private javax.swing.JButton applyDiscountjButton;
+    private javax.swing.JButton assignDiscountPlanjButton;
+    private javax.swing.JTextField autoBackupLocationjTextField;
     private javax.swing.JButton backButton;
     private javax.swing.JButton backupButton;
     private javax.swing.JLabel backupDestinationLabel;
+    private javax.swing.JComboBox<String> backupFrequencyjComboBox;
+    private javax.swing.JLabel backupFrequencyjLabel;
+    private javax.swing.JLabel backupLocationjLabel;
+    private javax.swing.JComboBox<String> backupModejComboBox;
+    private javax.swing.JLabel backupModejLabel;
     private javax.swing.JPanel backupPage;
     private javax.swing.JButton backupPageButton;
     private javax.swing.JButton backupSettingsPageButton;
+    private javax.swing.JLabel boundjLabel;
+    private javax.swing.JList<String> boundsjList;
     private javax.swing.JTextField buildingNumberField;
     private javax.swing.JLabel cPLabel;
+    private javax.swing.JButton cancelAutoBackupConfigjButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelCreationjButton;
     private javax.swing.JButton cancelCustomerFJobjButton;
     private javax.swing.JButton cancelInvoiceSeletionjButton;
+    private javax.swing.JButton cancelInvoiceSeletionjButton1;
     private javax.swing.JButton cancelSearchButton;
+    private javax.swing.JButton cancelSelectCustomerjButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JComboBox<String> cardTypejComboBox;
+    private javax.swing.JComboBox<String> cardTypejComboBox1;
     private javax.swing.JLabel cardTypejLabel;
+    private javax.swing.JLabel cardTypejLabel1;
+    private javax.swing.JLabel changeConfigjLabel;
     private javax.swing.JButton changeRoleButton;
     private javax.swing.JButton chooseFileButton;
     private javax.swing.JButton chooseLocationButton;
@@ -5319,6 +7231,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel codeLabel;
     private javax.swing.JButton collectJobPageButton;
     private javax.swing.JComboBox<String> completionTimeDD;
+    private javax.swing.JButton confirmAutoBackupConfigjButton;
     private javax.swing.JButton createButton;
     private javax.swing.JButton createCustomerButton;
     private javax.swing.JPanel createCustomerPage;
@@ -5334,17 +7247,41 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton createUserButton;
     private javax.swing.JPanel createUserPage;
     private javax.swing.JButton createUserPageButton;
+    private javax.swing.JTextField currentAutoBackupFrequencyDatajTextField;
+    private javax.swing.JTextField currentAutoBackupLocationDatajTextField;
+    private javax.swing.JTextField currentAutoBackupModeDatajTextField;
+    private javax.swing.JLabel currentBackupFrequencyjLabel;
+    private javax.swing.JLabel currentBackupLocationjLabel;
+    private javax.swing.JLabel currentBackupModejLabel;
+    private javax.swing.JLabel currentConfigjLabel;
     private javax.swing.JTextField custAccountHNameField;
     private javax.swing.JTextField custAccountNoField;
     private javax.swing.JTextField custFirstnameField;
     private javax.swing.JTextField custLastnameField;
+    private javax.swing.JLabel customerAccHolderNamejLabel;
+    private javax.swing.JLabel customerActionjLabel;
+    private javax.swing.JTextField customerBuildingNojTextField;
+    private javax.swing.JTextField customerCityjTextField;
+    private javax.swing.JTextField customerDiscountjTextField;
+    private javax.swing.JLabel customerFirstNamejLabel;
     private javax.swing.JTextField customerInfoField;
+    private javax.swing.JLabel customerLastNamejLabel;
+    private javax.swing.JLabel customerNumberjLabel;
+    private javax.swing.JTextField customerPostcodejTextField;
+    private javax.swing.JLabel customerPrefixjLabel;
     private com.toedter.calendar.JDateChooser customerRegDateField;
+    private javax.swing.JLabel customerRegistationDatejLabel;
     private javax.swing.JPanel customerReportPage;
     private javax.swing.JPanel customerResultsPage;
     private javax.swing.JTable customerResultsTable;
+    private javax.swing.JTextField customerStatusjTextField;
+    private javax.swing.JTextField customerStreetNamejTextField;
     private javax.swing.JComboBox<String> customerTypeDD;
     private javax.swing.JLabel customerTypeSjLabel;
+    private javax.swing.JTextField customerTypejTextField;
+    private javax.swing.JScrollPane customersjScrollPane;
+    private javax.swing.JTable customersjTable;
+    private javax.swing.JTextField cutomerInDefaultjTextField;
     private javax.swing.JButton deleteButton;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
     private javax.swing.JLabel departmentNewTaskLabel;
@@ -5352,16 +7289,27 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField descriptionField;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextField descriptionNewTaskField;
+    private javax.swing.JButton discountCanceljButton;
+    private javax.swing.JComboBox<String> discountPlanTypejComboBox;
+    private javax.swing.JLabel discountPlanTypejLabel;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JComboBox<String> durationNewTaskDD;
     private javax.swing.JComboBox<String> durationNewTaskMinsDD;
     private javax.swing.JLabel expiryDatejLabel;
+    private javax.swing.JLabel expiryDatejLabel1;
     private javax.swing.JTextField expiryDatejTextField;
+    private javax.swing.JTextField expiryDatejTextField1;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNamejLabel;
     private javax.swing.JLabel firstnameLabel;
+    private javax.swing.JLabel fixedDiscountRatejLabel;
+    private javax.swing.JTextField fixedDiscountRatejTextField;
+    private javax.swing.JLabel fixedPercentageSymbol;
+    private javax.swing.JLabel flexiablePercentageSymbol;
+    private javax.swing.JLabel flexibleDiscountRatejLabel;
+    private javax.swing.JTextField flexibleDiscountRatejTextField;
     private javax.swing.JPanel homeBar;
     private javax.swing.JButton homeButton;
     private javax.swing.JPanel homePage;
@@ -5372,11 +7320,20 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel individualReportPage;
     private javax.swing.JTextField infoField;
     private javax.swing.JList<String> invoicejList;
+    private javax.swing.JList<String> invoicejList1;
     private javax.swing.JScrollPane invoicejScrollPane;
+    private javax.swing.JScrollPane invoicejScrollPane1;
     private javax.swing.JTable invoicejTable;
+    private javax.swing.JTable invoicejTable1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -5391,21 +7348,28 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton jobEnquiryPageButton;
     private javax.swing.JPanel jobHomePage;
     private javax.swing.JButton jobMenuPageButton;
     private javax.swing.JTextField jobTotalField;
     private javax.swing.JLabel last4DigitjLabel;
+    private javax.swing.JLabel last4DigitjLabel1;
     private javax.swing.JTextField last4DigitjTextField;
+    private javax.swing.JTextField last4DigitjTextField1;
     private javax.swing.JLabel lastnameLabel;
     private javax.swing.JButton latePaymentCanceljButton;
+    private javax.swing.JButton latePaymentCanceljButton1;
     private javax.swing.JButton latePaymentSubmitjButton;
+    private javax.swing.JButton latePaymentSubmitjButton1;
     private javax.swing.JTextField locationChosenField;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JLabel lowerBoundjLabel;
+    private javax.swing.JTextField lowerBoundjTextField;
     private javax.swing.JButton manageCustomersMenuPageButton;
     private javax.swing.JButton manageReportsPageButton;
     private javax.swing.JButton manageSJobPageButton;
@@ -5426,7 +7390,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> paymentTypeComboBox;
+    private javax.swing.JComboBox<String> paymentTypeComboBox1;
     private javax.swing.JLabel paymentTypejLabel;
+    private javax.swing.JLabel paymentTypejLabel1;
     private javax.swing.JLabel periodFromLabel;
     private javax.swing.JLabel periodLabel;
     private javax.swing.JLabel periodToLabel;
@@ -5448,6 +7414,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton printButton3;
     private javax.swing.JPanel receptionistjPanel;
     private javax.swing.JLabel registrationDateSjLabel;
+    private javax.swing.JLabel registrationDatejLabel;
+    private javax.swing.JButton removeFlexibleBoundjButton;
     private javax.swing.JButton removeJobButton;
     private javax.swing.JButton removeMaterialButton;
     private javax.swing.JButton removeTaskButton;
@@ -5476,15 +7444,25 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton searchCustomerFJobjButton;
     private javax.swing.JPanel searchCustomerPage;
     private javax.swing.JPanel searchCustomerjPanel;
+    private javax.swing.JPanel searchInvoice;
+    private javax.swing.JLabel searchInvoiceByInvoiceNojLabel;
+    private javax.swing.JTextField searchInvoiceByInvoiceNojTextField;
+    private javax.swing.JLabel searchInvoiceByJobNumberjLabel;
+    private javax.swing.JTextField searchInvoiceByJobNumberjTextField;
     private javax.swing.JPanel searchInvoicePage;
     private javax.swing.JPanel searchInvoicejPanel;
+    private javax.swing.JPanel searchInvoicejPanel1;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JButton searchUserButton;
     private javax.swing.JComboBox<String> selectATaskBox;
+    private javax.swing.JButton selectAutoBackupLocationjButton;
     private javax.swing.JButton selectCustomerButton;
+    private javax.swing.JButton selectCustomerjButton;
     private javax.swing.JButton selectInvoicejButton;
+    private javax.swing.JButton selectInvoicejButton1;
     private javax.swing.JComboBox<String> selectPriority;
     private javax.swing.JButton selectSelectedInvoicejButton;
+    private javax.swing.JButton selectSelectedInvoicejButton1;
     private javax.swing.JButton selectUserButton;
     private javax.swing.JPanel settingsHomePage;
     private javax.swing.JButton settingsMenuPageButton;
@@ -5519,6 +7497,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalLabel1;
     private javax.swing.JLabel totaljLabel;
+    private javax.swing.JLabel totaljLabel1;
+    private javax.swing.JLabel upperBoundjLabel;
+    private javax.swing.JTextField upperBoundjTextField;
     private javax.swing.JTextField userFirstNameField;
     private javax.swing.JLabel userFirstnameLabel;
     private javax.swing.JPanel userHomePage;
