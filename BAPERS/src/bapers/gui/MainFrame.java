@@ -6503,9 +6503,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void applyDiscountjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyDiscountjButtonActionPerformed
         // TODO add your handling code here:
         final String discountType = discountPlanTypejComboBox.getSelectedItem().toString();
-        final Customer customer = selectedCustomer;
+        final CustomerDetails customer = selectedCustomer;
 
-        final User user = new User("00001", "Manager", "Manager", "Manager", new Date(), "4");
+        final UserDetails user = new User("00001", "Manager", "Manager", "Manager", new Date(), "4");
 
         switch(discountType) {
             case "Fixed" :
@@ -6578,7 +6578,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void selectCustomerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerjButtonActionPerformed
         // TODO add your handling code here:
         final String customerNo = customersjTable.getValueAt(customersjTable.getSelectedRow(), 0).toString();
-        final Customer[] customerList = controller.getAllCustomers();
+        final CustomerDetails[] customerList = controller.getAllCustomers();
         for (int i = 0; i < customerList.length; ++i)
         if (customerNo.equals(customerList[i].getAccountNo())) {
             selectedCustomer = customerList[i];
@@ -6589,18 +6589,18 @@ public class MainFrame extends javax.swing.JFrame {
             customerAccHolderNamejLabel.setText(selectedCustomer.getAccountHolderName());
             customerPrefixjLabel.setText(selectedCustomer.getPrefix());
             customerFirstNamejLabel.setText(selectedCustomer.getFirstName());
-            customerLastNamejLabel.setText(selectedCustomer.getSurName());
+            customerLastNamejLabel.setText(selectedCustomer.getLastName());
             customerNumberjLabel.setText(selectedCustomer.getPhoneNumber());
-            customerRegistationDatejLabel.setText(selectedCustomer.getRegistrationDate().toString());
+            customerRegistationDatejLabel.setText(selectedCustomer.getRegDate().toString());
 
             customerStatusjTextField.setText("");
 
-            if (selectedCustomer.isIsValued()== true)
+            if (selectedCustomer.getIsValued()== true)
             customerTypejTextField.setText("Valued");
             else
             customerTypejTextField.setText("Standard");
 
-            if (selectedCustomer.isInDefault() == true)
+            if (selectedCustomer.getInDefault()== true)
             cutomerInDefaultjTextField.setText("true");
             else
             cutomerInDefaultjTextField.setText("false");
@@ -6614,7 +6614,7 @@ public class MainFrame extends javax.swing.JFrame {
             customerStreetNamejTextField.setText(selectedCustomer.getStreetName());
             customerPostcodejTextField.setText(selectedCustomer.getPostCode());
             customerCityjTextField.setText(selectedCustomer.getCity());
-            customerBuildingNojTextField.setText(selectedCustomer.getBuildingNo());
+            customerBuildingNojTextField.setText(Integer.parseInt(selectedCustomer.getBuildingNo()));
         }
 
         card1.show(cardPanel1, "ViewCustomerDetail");
