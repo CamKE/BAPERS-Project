@@ -44,7 +44,7 @@ public class Controller {
         // the hash for the password entered is created and stored. (passsword hash field has to not be unique. password hashes will clash otherwise)
         int hashPassword = password.hashCode();
         // Check user details sql query
-        String SQL = "SELECT user.account_no, user.firstname, user.lastname, user.password_hash, user.registration_date, role.role_description FROM role INNER JOIN user ON role.role_id = user.Role_role_id WHERE user.account_no ='" + userID + "' and user.password_hash = cast('" + hashPassword + "' as BINARY(32));";
+        String SQL = "SELECT user.account_no, user.firstname, user.lastname, user.password_hash, user.registration_date, role.role_description FROM role INNER JOIN user ON role.role_id = user.Role_role_id WHERE user.username ='" + userID + "' and user.password_hash = cast('" + hashPassword + "' as BINARY(32));";
 
         // Closes resultset after use
         try (ResultSet rs = database.read(SQL, conn)) {
@@ -59,11 +59,29 @@ public class Controller {
         return null;
     }
 
+    public boolean checkIfUsernameExists(String username) {
+
+        // Check user details sql query
+        String SQL = "SELECT username from user WHERE username = '" + username + "';";
+
+        // Closes resultset after use
+        try (ResultSet rs = database.read(SQL, conn)) {
+            //If user details are valid
+            if (rs.next()) {
+
+                return true;
+            }
+        } catch (Exception ex) {
+            System.out.println("Check username exists Error: " + ex);
+        }
+        return false;
+    }
+
     // Attempts to create a new user in the system, given the details are valid
-    public boolean createUser(String firstname, String lastName, String password, int roleId) {
+    public boolean createUser(String firstname, String lastName, String password, int roleId, String username) {
         int hashPassword = password.hashCode();
         // Write the user details into the database
-        String userSQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id) VALUES ('" + firstname + "','" + lastName + "','" + hashPassword + "','" + roleId + "');";
+        String userSQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id,username) VALUES ('" + firstname + "','" + lastName + "','" + hashPassword + "','" + roleId + "','" + username + "');";
 
         // Return whether or not rows have been affected
         return database.write(userSQL, conn) != 0;
@@ -427,7 +445,7 @@ public class Controller {
         String startDate = reportPeriod[0];
         String finishDate = reportPeriod[1];
         ArrayList<Object[][]> objects = new ArrayList<>();
-        
+
         switch (reportIndex) {
             case 1:
                 System.out.println("Individual performance report");
