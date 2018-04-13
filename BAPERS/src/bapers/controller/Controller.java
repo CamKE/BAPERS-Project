@@ -280,15 +280,16 @@ public class Controller {
         database.write(SQL, conn);
     }
 
-    public boolean checkIfAllTasksAreCompleted(String standardJobCode) {
+    public boolean checkIfAllTasksAreCompleted(String standardJobCode, int jobNumber) {
         boolean allTasksCompleted = true;
-        String SQL = "SELECT * from job_standardjobs_tasks\n"
+        String SQL = "SELECT status_type FROM job_standardjobs_tasks \n"
                 + "inner join status on job_standardjobs_tasks.Status_status_id = status.status_id\n"
-                + "WHERE Job_StandardJobs_StandardJob_code = '" + standardJobCode + "';";
+                + "inner join job on job_standardjobs_tasks.Job_StandardJobs_Job_job_no = job.job_no\n"
+                + "WHERE Job_StandardJobs_StandardJob_code = '" + standardJobCode + "' AND job_no = '" + jobNumber + "';";
         rs = database.read(SQL, conn);
         try {
             while (rs.next()) {
-                if (rs.getString("status_type").equals("In progress")) {
+                if (rs.getString("status_type").equals("In progress") || rs.getString("status_type").equals("Not started")) {
                     allTasksCompleted = false;
                 }
             }
@@ -296,6 +297,47 @@ public class Controller {
             System.out.println("Check If All Tasks Are Completed Error");
         }
         return allTasksCompleted;
+    }
+
+    public boolean checkIfStandardJobIsInProgress(String standardJobCode, int jobNumber) {
+        boolean standardJobIsInProgress = false;
+        String SQL = "SELECT status_type FROM job_standardjobs_tasks \n"
+                + "inner join status on job_standardjobs_tasks.Status_status_id = status.status_id\n"
+                + "inner join job on job_standardjobs_tasks.Job_StandardJobs_Job_job_no = job.job_no\n"
+                + "WHERE Job_StandardJobs_StandardJob_code = '" + standardJobCode + "' AND job_no = '" + jobNumber + "';";
+        rs = database.read(SQL, conn);
+        try {
+            while (rs.next()) {
+                if (rs.getString("status_type").equals("In progress") || rs.getString("status_type").equals("Completed")) {
+                    standardJobIsInProgress = true;
+                } 
+            }
+        } catch (Exception e) {
+            System.out.println("Check If Standard job is in progress Error");
+        }
+
+        return standardJobIsInProgress;
+    }
+
+    public boolean checkIfJobIsInProgress(int jobNumber) {
+        boolean jobIsInProgress = false;
+        String SQL = "SELECT status_type from job_standardjobs\n"
+                + "inner join status on job_standardjobs.Status_status_id = status.status_id\n"
+                + "WHERE job_standardjobs.Job_job_no = '" + jobNumber + "' ;";
+        rs = database.read(SQL, conn);
+
+        try {
+            while (rs.next()) {
+                if (rs.getString("status_type").equals("In progress") || rs.getString("status_type").equals("Completed")) {
+                    jobIsInProgress = true;
+                } 
+            }
+
+        } catch (Exception e) {
+            System.out.println("Check if Job is in progress error");
+        }
+        System.out.println(jobIsInProgress);
+        return jobIsInProgress;
     }
 
     public boolean checkIfAllStandardJobsAreCompleted(int jobNumber) {
@@ -306,7 +348,7 @@ public class Controller {
         rs = database.read(SQL, conn);
         try {
             while (rs.next()) {
-                if (rs.getString("status_type").equals("In progress")) {
+                if (rs.getString("status_type").equals("In progress") || rs.getString("status_type").equals("Not started")) {
                     allStandardJobsCompleted = false;
                 }
             }
@@ -316,9 +358,7 @@ public class Controller {
         return allStandardJobsCompleted;
     }
 
-    // public ArrayList<StandardJob> getStandardJobList(int jobNumber) {
-    //return job.getStandardJobList();
-    //}
+
     /**
      * @param standardJobCode
      * @return the standardJobTasks

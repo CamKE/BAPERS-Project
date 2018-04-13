@@ -497,7 +497,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jobStatusComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jobStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In progress", "Completed" }));
+        jobStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In progress", "Completed", "Not started" }));
 
         jobCollectedComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jobCollectedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Yes" }));
@@ -1423,7 +1423,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Code", "Description", "Price", "Status"
+                "Code", "Description", "Status"
             }
         ));
         jScrollPane4.setViewportView(standardJobResults);
@@ -2787,7 +2787,7 @@ public class MainFrame extends javax.swing.JFrame {
             //Check row has values
             if (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0) != null) {
                 taskID = (Integer) (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0));
-                Object[] possibilities = {"Completed", "In progress"};
+                Object[] possibilities = {"Completed", "In progress", "Not started"};
                 String taskStatus = (String) JOptionPane.showInputDialog(null, "Update Task ID: " + taskID, "Task Update", JOptionPane.PLAIN_MESSAGE, null, possibilities, "In progress");
 
                 controller.updateTaskStatusInDatabase(taskStatus, taskResultsTable.getSelectedRow());
@@ -2797,20 +2797,36 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
 
-        //Check if all tasks are completed
-        if (controller.checkIfAllTasksAreCompleted(standardJobCodeLabel.getText())) {
-            //Update standard job status
-            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Completed");
-        } else {
+        //Check if standard job is in progress
+        if (controller.checkIfStandardJobIsInProgress(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
+            //Mark job and standard job as in progress
             controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
-        }
-
-        //Check if all standard jobs are completed
-        if (controller.checkIfAllStandardJobsAreCompleted(Integer.parseInt(jobNumberLabel.getText()))) {
-            //Update job status
-            controller.updateJobStatus("Completed", Integer.parseInt(jobIndexLabel.getText()));
-        } else {
             controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
+            
+            //Check if all tasks are completed
+            if (controller.checkIfAllTasksAreCompleted(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
+                //Update standard job status
+                controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Completed");
+
+                 //Check if all standard jobs are completed
+                if (controller.checkIfAllStandardJobsAreCompleted(Integer.parseInt(jobNumberLabel.getText()))) {
+                    //Update job status
+                    controller.updateJobStatus("Completed", Integer.parseInt(jobIndexLabel.getText()));
+                } else {
+                    controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
+                }
+            } else {
+                controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
+            }
+
+        } else {
+            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Not started");
+            //Check if job is in progress
+            if (controller.checkIfJobIsInProgress(Integer.parseInt(jobNumberLabel.getText()))) {
+                controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
+            } else {
+                controller.updateJobStatus("Not started", Integer.parseInt(jobIndexLabel.getText()));
+            }
         }
 
         //Update task table
@@ -2818,7 +2834,6 @@ public class MainFrame extends javax.swing.JFrame {
         this.updateTaskEnquiryTable(standardJobCodeLabel.getText());
         //Update standard job table
         this.deleteStandardJobTableInformation();
-        int jobNumber = Integer.valueOf(jobNumberLabel.getText()).intValue();
         this.updateStandardJobTable();
         //Update job table
         this.deleteJobEnquiryTable();
@@ -2965,12 +2980,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void updateStandardJobTable() {
 
         DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
-        Object[] row = new Object[4];
+        Object[] row = new Object[3];
         for (int i = 0; i < controller.getStandardJobList().size(); i++) {
             row[0] = controller.getStandardJobList().get(i).getCode();
             row[1] = controller.getStandardJobList().get(i).getDescription();
-            row[2] = controller.getStandardJobList().get(i).getPrice();
-            row[3] = controller.getStandardJobList().get(i).getStatus();
+            row[2] = controller.getStandardJobList().get(i).getStatus();
             standardJobTableModel.addRow(row);
         }
     }
