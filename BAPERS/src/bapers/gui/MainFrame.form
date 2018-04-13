@@ -3211,10 +3211,6 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="discountCanceljButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="selectStandardJobForApplyDiscountjButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="selectJobForApplyDiscountjButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="applyDiscountjButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
@@ -3233,8 +3229,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="discountCanceljButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="applyDiscountjButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectJobForApplyDiscountjButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="selectStandardJobForApplyDiscountjButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="75" max="32767" attributes="0"/>
                   </Group>
@@ -3291,31 +3285,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="discountCanceljButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="selectJobForApplyDiscountjButton">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Lucida Grande" size="24" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Select Job"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectJobForApplyDiscountjButtonActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="selectStandardJobForApplyDiscountjButton">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Lucida Grande" size="24" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Select Standard Job"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectStandardJobForApplyDiscountjButtonActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="selectStandardJobForApplyDiscountjButton.setVisible(false);"/>
-              </AuxValues>
-            </Component>
             <Component class="javax.swing.JButton" name="applyDiscountjButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -3326,9 +3295,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="applyDiscountjButtonActionPerformed"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="applyDiscountjButton.setVisible(false);"/>
-              </AuxValues>
             </Component>
             <Container class="javax.swing.JPanel" name="DiscountTypeInformation">
               <Properties>
@@ -3588,7 +3554,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="JobsjPanel.setVisible(true);"/>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="JobsjPanel.setVisible(false);"/>
                       </AuxValues>
 
                       <Layout>
@@ -3803,9 +3769,6 @@
                           <Dimension value="[888, 504]"/>
                         </Property>
                       </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="TasksjPanel.setVisible(false);"/>
-                      </AuxValues>
 
                       <Layout>
                         <DimensionLayout dim="0">

@@ -257,8 +257,6 @@ public class MainFrame extends javax.swing.JFrame {
         discountPlanTypejLabel = new javax.swing.JLabel();
         discountPlanTypejComboBox = new javax.swing.JComboBox<>();
         discountCanceljButton = new javax.swing.JButton();
-        selectJobForApplyDiscountjButton = new javax.swing.JButton();
-        selectStandardJobForApplyDiscountjButton = new javax.swing.JButton();
         applyDiscountjButton = new javax.swing.JButton();
         DiscountTypeInformation = new javax.swing.JPanel();
         FixedDiscountType = new javax.swing.JPanel();
@@ -1997,22 +1995,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        selectJobForApplyDiscountjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        selectJobForApplyDiscountjButton.setText("Select Job");
-        selectJobForApplyDiscountjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectJobForApplyDiscountjButtonActionPerformed(evt);
-            }
-        });
-
-        selectStandardJobForApplyDiscountjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        selectStandardJobForApplyDiscountjButton.setText("Select Standard Job");
-        selectStandardJobForApplyDiscountjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectStandardJobForApplyDiscountjButtonActionPerformed(evt);
-            }
-        });
-
         applyDiscountjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         applyDiscountjButton.setText("Apply");
         applyDiscountjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -2237,9 +2219,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addContainerGap(12, Short.MAX_VALUE)))
         );
 
-        JobsjPanel.setVisible(true);
+        JobsjPanel.setVisible(false);
         StandardJobsjPanel.setVisible(false);
-        TasksjPanel.setVisible(false);
 
         FlexiableDiscountType.setBackground(new java.awt.Color(34, 54, 81));
         FlexiableDiscountType.setMaximumSize(new java.awt.Dimension(900, 500));
@@ -2434,10 +2415,6 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(discountCanceljButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectStandardJobForApplyDiscountjButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectJobForApplyDiscountjButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(applyDiscountjButton)
                 .addGap(31, 31, 31))
         );
@@ -2453,14 +2430,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(SelectDiscountPlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(discountCanceljButton)
-                    .addComponent(applyDiscountjButton)
-                    .addComponent(selectJobForApplyDiscountjButton)
-                    .addComponent(selectStandardJobForApplyDiscountjButton))
+                    .addComponent(applyDiscountjButton))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
-        selectStandardJobForApplyDiscountjButton.setVisible(false);
-        applyDiscountjButton.setVisible(false);
         DiscountTypeInformation.setVisible(true);
 
         cardPanel1.add(SelectDiscountPlan, "DiscountPlan");
@@ -3849,7 +3822,7 @@ public class MainFrame extends javax.swing.JFrame {
             VariableDiscountType.setVisible(false);
             FlexiableDiscountType.setVisible(false);
         } else if (discountPlanTypejComboBox.getSelectedItem().equals("Variable")) {
-            displayJobVariablePlanInfo();
+            displayAllTask(); 
             VariableDiscountType.setVisible(true);
             FixedDiscountType.setVisible(false);
             FlexiableDiscountType.setVisible(false);
@@ -3864,22 +3837,39 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_discountPlanTypejComboBoxActionPerformed
     
-    public void displayJobVariablePlanInfo() {
-        jobModelTable = (DefaultTableModel) JobsjTable.getModel();
-        jobModelTable.setRowCount(0);
+    public void displayAllTask() {
+        taskModelTable = (DefaultTableModel) TaskjTable.getModel();
+        taskModelTable.setRowCount(0);
         
-        final ArrayList<Job> jobList = controller.getAllJobsFromCustomer(selectedCustomer);
+        final ArrayList<Task> taskList = controller.getAllTasks();
+        final int SIZE = taskList.size();
         
-        Object rowData[] = new Object[4];
-        for (int i = 0; i < jobList.size(); ++i) {
-            rowData[0] = jobList.get(i).getJobNo();
-            rowData[1] = jobList.get(i).getCustomerAccountNo();
-            rowData[2] = jobList.get(i).getStatus();
-            rowData[3] = jobList.get(i).isIsCollected();
+        Object rowData[] = new Object[3];
+        for (int i = 0; i < SIZE; ++i) {
+            rowData[0] = taskList.get(i).getTaskID();
+            rowData[1] = taskList.get(i).getDescription();
+            rowData[2] = taskList.get(i).getPrice();
             //adds the array type object to the table by adding it to the model
-            jobModelTable.addRow(rowData);
+            taskModelTable.addRow(rowData);
         }
     }
+    
+//    public void displayJobVariablePlanInfo() {
+//        jobModelTable = (DefaultTableModel) JobsjTable.getModel();
+//        jobModelTable.setRowCount(0);
+//        
+//        final ArrayList<Job> jobList = controller.getAllJobsFromCustomer(selectedCustomer);
+//        
+//        Object rowData[] = new Object[4];
+//        for (int i = 0; i < jobList.size(); ++i) {
+//            rowData[0] = jobList.get(i).getJobNo();
+//            rowData[1] = jobList.get(i).getCustomerAccountNo();
+//            rowData[2] = jobList.get(i).getStatus();
+//            rowData[3] = jobList.get(i).isIsCollected();
+//            //adds the array type object to the table by adding it to the model
+//            jobModelTable.addRow(rowData);
+//        }
+//    }
     
     private void discountCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountCanceljButtonActionPerformed
         // TODO add your handling code here:
@@ -3897,11 +3887,12 @@ public class MainFrame extends javax.swing.JFrame {
                 System.out.println("Fixed");
                 final int fixedDiscountPercentage = Integer.parseInt(fixedDiscountRatejTextField.getText());
                 controller.applyDiscountPlan(customer, user, discountType);
-                //controller.applyFixedDiscountRate(fixedDiscountPercentage, customer);
+                controller.applyFixedDiscountRate(fixedDiscountPercentage, customer);
                 break;
                 
             case "Variable" :
                 System.out.println("Variable");
+                
                 break;
                 
             case "Flexible" :
@@ -4069,24 +4060,6 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "DiscountPlan");
         card2.show(cardPanel2, "homePageR");
     }//GEN-LAST:event_assignDiscountPlanjButtonActionPerformed
-
-    private void selectJobForApplyDiscountjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectJobForApplyDiscountjButtonActionPerformed
-        // TODO add your handling code here:
-        selectJobForApplyDiscountjButton.setVisible(false);
-        JobsjPanel.setVisible(false);
-        selectStandardJobForApplyDiscountjButton.setVisible(true);
-        StandardJobsjPanel.setVisible(true);
-        
-        final String jobNo = JobsjTable.getValueAt(JobsjTable.getSelectedRow(), 0).toString();
-        final ArrayList<Job> jobList = controller.getAllJobsFromCustomer(selectedCustomer);
-        for (int i = 0; i < jobList.size(); ++i)
-            if (jobNo.equals(jobList.get(i).getJobNo())) {
-                job = jobList.get(i);
-                break;
-            }
-        
-        displayStandardJobVariablePlanInfo();
-    }//GEN-LAST:event_selectJobForApplyDiscountjButtonActionPerformed
     
     public void displayStandardJobVariablePlanInfo() {
         standardJobModelTable = (DefaultTableModel) StandardJobsjTable.getModel();
@@ -4103,26 +4076,7 @@ public class MainFrame extends javax.swing.JFrame {
             standardJobModelTable.addRow(rowData);
         }
     }
-    
-    private void selectStandardJobForApplyDiscountjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectStandardJobForApplyDiscountjButtonActionPerformed
-        // TODO add your handling code here:
-        selectStandardJobForApplyDiscountjButton.setVisible(false);
-        StandardJobsjPanel.setVisible(false);
-        applyDiscountjButton.setVisible(true);
-        TasksjPanel.setVisible(true);
         
-        final String stdJobNo = StandardJobsjTable.getValueAt(StandardJobsjTable.getSelectedRow(), 0).toString();
-        final ArrayList<JobStandardJob> stdJobList = controller.getAllStandardJobFromJob(job);
-        for (int i = 0; i < stdJobList.size(); ++i)
-            if (stdJobNo.equals(stdJobList.get(i).getJobJobNo())) {
-                jobStandardJob = stdJobList.get(i);
-                break;
-            }
-        
-        ArrayList<JobStandardJobTask> jobStandardJobTask = controller.getAllStandardJobTasksReferenceFromJobStandardJob(jobStandardJob);
-        displayStandardJobTasksVariablePlanInfo(jobStandardJobTask);
-    }//GEN-LAST:event_selectStandardJobForApplyDiscountjButtonActionPerformed
-    
     public void displayStandardJobTasksVariablePlanInfo(ArrayList<JobStandardJobTask> jobStandardJobTask) {
         taskModelTable = (DefaultTableModel) TaskjTable.getModel();
         taskModelTable.setRowCount(0);
@@ -4386,10 +4340,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton selectAutoBackupLocationjButton;
     private javax.swing.JButton selectCustomerjButton;
     private javax.swing.JButton selectInvoicejButton;
-    private javax.swing.JButton selectJobForApplyDiscountjButton;
     private javax.swing.JComboBox<String> selectPriority;
     private javax.swing.JButton selectSelectedInvoicejButton;
-    private javax.swing.JButton selectStandardJobForApplyDiscountjButton;
     private javax.swing.JComboBox<String> selectStdJob;
     private javax.swing.JTextField specialInstructionjTextField;
     private javax.swing.JLabel specialInstructionsLabel;
