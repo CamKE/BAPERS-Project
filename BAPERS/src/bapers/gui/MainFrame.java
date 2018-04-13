@@ -2593,7 +2593,9 @@ public class MainFrame extends javax.swing.JFrame {
         if ((jobSearchResultsTable.getSelectedRow() < 0)) {
             JOptionPane.showMessageDialog(null, "Please select a row");
         } else {
-            //Check row has values and job is completed and not collected
+            
+            
+            //Check row has values and job is completed and not collected     
             if ((jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 3).equals("Completed"))
                     && (jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 4).equals("false"))) {
 
@@ -2724,7 +2726,8 @@ public class MainFrame extends javax.swing.JFrame {
         }
         if (valid) {
             if (controller.doesJobExist(jobNumber, true)) {
-                controller.setStandardJobIntoJob(Integer.parseInt(jobNumber));
+                //controller.setStandardJobIntoJob(Integer.parseInt(jobNumber));
+                controller.searchAllJobsUnderCriteria(Integer.parseInt(jobNumber));
                 //update table
                 this.updateJobEnquiryTable();
                 card1.show(cardPanel1, "jobEnquirySearchResultsPage");

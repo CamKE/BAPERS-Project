@@ -161,9 +161,6 @@ public class Controller {
             System.out.println("Set tasks into standard job error");
         }
 
-        /*        for (int i = 0; i < taskList.size(); i++) {
-            System.out.println("Standard Job Code: " + standardJobCode + " -> Task ID: " + standardJobTaskMap.get(standardJobCode).get(i).getTaskID());
-        }*/
     }
 
     public void setStandardJobIntoJob(int jobNumber) {
@@ -219,25 +216,6 @@ public class Controller {
 
     }
 
-    public void test() {
-        for (int i = 0; i < jobStandardJobMap.size(); i++) {
-            int jobNumber = jobList.get(i).getJobNumber();
-            System.out.println("Job Number: " + jobNumber);
-            //  System.out.println("Amount of standard jobs: " + jobStandardJobMap.get(jobList.get(i).getJobNumber()).size());
-
-            for (int j = 0; j < jobStandardJobMap.get(jobNumber).size(); j++) {
-                String standardJobCode = jobStandardJobMap.get(jobNumber).get(j).getCode();
-                System.out.println("Standard Job Code : " + standardJobCode);
-
-                for (int k = 0; k < standardJobTaskMap.get(jobStandardJobMap.get(jobList.get(i).getJobNumber()).get(j).getCode()).size(); k++) {
-
-                    System.out.println("Task ID : " + standardJobTaskMap.get(jobStandardJobMap.get(jobList.get(i).getJobNumber()).get(j).getCode()).get(k).getTaskID());
-                }
-            }
-            System.out.println("-------------");
-        }
-
-    }
 
     public void updateTaskStatus(String standardJobCode, int taskID, String status) {
         this.getStandardJobTasks(standardJobCode).get(taskID).setStatus(status);
