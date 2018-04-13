@@ -23,9 +23,17 @@ public class StandardJob {
     public String getCode() {
         return code;
     }
-    
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getJobDescription() {
         return jobDescription;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
     }
 
     public double getPrice() {
@@ -35,6 +43,5 @@ public class StandardJob {
     public void setPrice(double price) {
         this.price = price;
     }
-    
     
 }

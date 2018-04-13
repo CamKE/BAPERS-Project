@@ -5,21 +5,19 @@
  */
 package bapers.acct;
 
-import java.util.Date;
-
 /**
  *
  * @author Kelvin
  */
 public class Payment {
     
-    private final int paymentNo;
+    private final String paymentNo;
     private final double total;
     private final String paymentType;
-    private final Date paymentDate;
+    private final String paymentDate;
     private final int invoiceNumber;
 
-    public Payment(int paymentNo, double total, String paymentType, Date paymentDate, int invoiceNumber) {
+    public Payment(String paymentNo, double total, String paymentType, String paymentDate, int invoiceNumber) {
         this.paymentNo = paymentNo;
         this.total = total;
         this.paymentType = paymentType;
@@ -27,7 +25,7 @@ public class Payment {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public int getPaymentNo() {
+    public String getPaymentNo() {
         return paymentNo;
     }
 
@@ -39,7 +37,7 @@ public class Payment {
         return paymentType;
     }
 
-    public Date getPaymentDate() {
+    public String getPaymentDate() {
         return paymentDate;
     }
 

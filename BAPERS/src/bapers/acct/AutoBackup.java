@@ -5,6 +5,7 @@
  */
 package bapers.acct;
 
+import java.awt.Component;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,23 +21,24 @@ import javax.swing.JOptionPane;
 public class AutoBackup extends TimerTask {
 
     AutoBackupConfig configData;
-    Calendar date;
+    Component component;
     
-    public AutoBackup(AutoBackupConfig configData, Calendar date) {
+    public AutoBackup(AutoBackupConfig configData, Component component) {
         this.configData = configData;
-        this.date = date;
+        this.component = component;
     }
     
     @Override
     public void run() {
-        System.out.println(date.get(Calendar.DAY_OF_WEEK));
+        
+        if (configData.getBackupMode().equals("auto")) {
         try {
             Runtime runtime = Runtime.getRuntime();
 
-            String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
-            date = date.replace(' ', '_');
-            date = date.replace(':', '-');
-            final String filename = "BAPERS_" + date + ".sql";
+            String currentDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+            currentDate = currentDate.replace(' ', '_');
+            currentDate = currentDate.replace(':', '-');
+            final String filename = "BAPERS_" + currentDate + ".sql";
                 
             int processComplete = -1;
             Process p;
@@ -60,11 +62,15 @@ public class AutoBackup extends TimerTask {
             }
                 
             if (processComplete == 0)
-                JOptionPane.showMessageDialog(null, "Complete auto backup");
+                JOptionPane.showMessageDialog(component, "Complete auto backup");
             else
                 System.out.println("Failed auto backup");
         } catch (InterruptedException | IOException ex) {
             Logger.getLogger(AutoBackup.class.getName()).log(Level.SEVERE, null, ex);
         }
+        } else if (configData.getBackupMode().equals("reminder")) {
+            JOptionPane.showMessageDialog(component, "Back is needed");
+        }
+        
     }
 }

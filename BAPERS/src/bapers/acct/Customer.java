@@ -26,8 +26,9 @@ public class Customer {
     private boolean isValued;
     private Date registrationDate;
     private String buildingNo;
+    private String email;
 
-    public Customer(String accountNo, String accountHolderName, String prefix, String firstName, String surName, String streetName, String postCode, String city, String phoneNumber, String buildingNo) {
+    public Customer(String accountNo, String accountHolderName, String prefix, String firstName, String surName, String streetName, String postCode, String city, String phoneNumber, boolean isSuspended, boolean inDefault, boolean isValued, Date registrationDate, String buildingNo, String email) {
         this.accountNo = accountNo;
         this.accountHolderName = accountHolderName;
         this.prefix = prefix;
@@ -37,11 +38,12 @@ public class Customer {
         this.postCode = postCode;
         this.city = city;
         this.phoneNumber = phoneNumber;
+        this.isSuspended = isSuspended;
+        this.inDefault = inDefault;
+        this.isValued = isValued;
+        this.registrationDate = registrationDate;
         this.buildingNo = buildingNo;
-        isSuspended = false;
-        inDefault = false;
-        isValued = false;
-        registrationDate = new Date();
+        this.email = email;
     }
 
     public String getAccountNo() {
@@ -155,4 +157,15 @@ public class Customer {
     public void setBuildingNo(String buildingNo) {
         this.buildingNo = buildingNo;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+    
 }
