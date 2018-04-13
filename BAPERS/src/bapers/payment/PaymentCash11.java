@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package bapers.payment;
 
 import java.util.Date;
@@ -11,10 +12,10 @@ import java.util.Date;
  *
  * @author kelvin
  */
-public class PaymentCash extends Payment {
+public class PaymentCash11 extends PaymentDetails {
 
-    public PaymentCash(String paymentNo, double total, String paymentType, String paymentDate, int invoiceNumber) {
-        super(paymentNo, total, paymentType, paymentDate, invoiceNumber);
+    public PaymentCash11(int[] paymentNo, int[] invoiceNumber, double total, String paymentType, Date paymentDate) {
+        super(paymentNo, invoiceNumber, total, paymentType, paymentDate);
     }
-     
+    
 }

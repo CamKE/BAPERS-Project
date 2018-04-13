@@ -5,14 +5,19 @@
  */
 package bapers.gui;
 
+import bapers.AutoBackupConfig;
 import bapers.controller.Controller;
 import bapers.customer.CustomerDetails;
 import bapers.job.Invoice;
+import bapers.job.Job;
+import bapers.job.JobStandardJob;
 import bapers.job.Material;
 import bapers.job.StandardJob;
 import bapers.job.Task;
+import bapers.payment.Card;
+import bapers.payment.Payment;
 import bapers.payment.PaymentCard;
-import bapers.payment.PaymentDetails;
+import bapers.payment.PaymentCash;
 import bapers.user.UserDetails;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -22,12 +27,15 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
@@ -36,8 +44,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -63,6 +73,25 @@ public class MainFrame extends javax.swing.JFrame {
     DefaultListModel list2;
     DefaultTableModel m;
     String currentPage, previousPage;
+    
+    // list models that are used to for the scrollpanel
+    // collect job model
+    DefaultListModel t = new DefaultListModel();
+    DefaultListModel t2 = new DefaultListModel();
+    // other model
+    DefaultTableModel invoiceModelTable;
+    DefaultTableModel defaultCustomerModelTable;
+    DefaultTableModel customerModelTable;
+    // jobs model
+    DefaultTableModel jobModelTable;
+    DefaultTableModel standardJobModelTable;
+    DefaultTableModel taskModelTable;
+    
+    Job job = null;
+    JobStandardJob jobStandardJob = null;
+    CustomerDetails selectedCustomer = null;
+    
+    Invoice invoice;
 
     /**
      * Creates new form MainFrame
@@ -281,23 +310,6 @@ public class MainFrame extends javax.swing.JFrame {
         surchargeLabel = new javax.swing.JLabel();
         surchargejTextField = new javax.swing.JTextField();
         completionTimeDD = new javax.swing.JComboBox<>();
-        acceptPaymentPage = new javax.swing.JPanel();
-        acceptLatePaymentjPanel = new javax.swing.JPanel();
-        expiryDatejLabel = new javax.swing.JLabel();
-        last4DigitjTextField = new javax.swing.JTextField();
-        selectInvoicejButton = new javax.swing.JButton();
-        paymentTypejLabel = new javax.swing.JLabel();
-        latePaymentCanceljButton = new javax.swing.JButton();
-        expiryDatejTextField = new javax.swing.JTextField();
-        paymentTypeComboBox = new javax.swing.JComboBox<>();
-        latePaymentSubmitjButton = new javax.swing.JButton();
-        TotalLatePayjTextField = new javax.swing.JTextField();
-        cardTypejLabel = new javax.swing.JLabel();
-        totaljLabel = new javax.swing.JLabel();
-        cardTypejComboBox = new javax.swing.JComboBox<>();
-        last4DigitjLabel = new javax.swing.JLabel();
-        invoicejScrollPane = new javax.swing.JScrollPane();
-        invoicejList = new javax.swing.JList<>();
         searchInvoicePage = new javax.swing.JPanel();
         searchInvoicejPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -366,23 +378,6 @@ public class MainFrame extends javax.swing.JFrame {
         cPLabel = new javax.swing.JLabel();
         reportBackButton2 = new javax.swing.JButton();
         printButton3 = new javax.swing.JButton();
-        acceptLatePayment = new javax.swing.JPanel();
-        acceptLatePaymentjPanel1 = new javax.swing.JPanel();
-        expiryDatejLabel1 = new javax.swing.JLabel();
-        last4DigitjTextField1 = new javax.swing.JTextField();
-        selectInvoicejButton1 = new javax.swing.JButton();
-        paymentTypejLabel1 = new javax.swing.JLabel();
-        expiryDatejTextField1 = new javax.swing.JTextField();
-        paymentTypeComboBox1 = new javax.swing.JComboBox<>();
-        TotalLatePayjTextField1 = new javax.swing.JTextField();
-        cardTypejLabel1 = new javax.swing.JLabel();
-        totaljLabel1 = new javax.swing.JLabel();
-        cardTypejComboBox1 = new javax.swing.JComboBox<>();
-        last4DigitjLabel1 = new javax.swing.JLabel();
-        invoicejScrollPane1 = new javax.swing.JScrollPane();
-        invoicejList1 = new javax.swing.JList<>();
-        latePaymentSubmitjButton1 = new javax.swing.JButton();
-        latePaymentCanceljButton1 = new javax.swing.JButton();
         searchInvoice = new javax.swing.JPanel();
         searchInvoicejPanel1 = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
@@ -478,6 +473,23 @@ public class MainFrame extends javax.swing.JFrame {
         customerPostcodejTextField = new javax.swing.JTextField();
         customerCityjTextField = new javax.swing.JTextField();
         customerBuildingNojTextField = new javax.swing.JTextField();
+        acceptLatePayment = new javax.swing.JPanel();
+        acceptLatePaymentjPanel = new javax.swing.JPanel();
+        expiryDatejLabel = new javax.swing.JLabel();
+        last4DigitjTextField = new javax.swing.JTextField();
+        selectInvoicejButton = new javax.swing.JButton();
+        paymentTypejLabel = new javax.swing.JLabel();
+        expiryDatejTextField = new javax.swing.JTextField();
+        paymentTypeComboBox = new javax.swing.JComboBox<>();
+        TotalLatePayjTextField = new javax.swing.JTextField();
+        cardTypejLabel = new javax.swing.JLabel();
+        totaljLabel = new javax.swing.JLabel();
+        cardTypejComboBox = new javax.swing.JComboBox<>();
+        last4DigitjLabel = new javax.swing.JLabel();
+        invoicejScrollPane = new javax.swing.JScrollPane();
+        invoicejList = new javax.swing.JList<>();
+        latePaymentSubmitjButton = new javax.swing.JButton();
+        latePaymentCanceljButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -2545,185 +2557,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(acceptJobPage, "acceptJob");
 
-        acceptPaymentPage.setMaximumSize(new java.awt.Dimension(900, 640));
-        acceptPaymentPage.setMinimumSize(new java.awt.Dimension(900, 640));
-        acceptPaymentPage.setPreferredSize(new java.awt.Dimension(900, 640));
-
-        acceptLatePaymentjPanel.setBackground(new java.awt.Color(61, 96, 146));
-        acceptLatePaymentjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
-        acceptLatePaymentjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
-
-        expiryDatejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        expiryDatejLabel.setForeground(new java.awt.Color(255, 255, 255));
-        expiryDatejLabel.setText("Expiry date:");
-
-        last4DigitjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        last4DigitjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        last4DigitjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        selectInvoicejButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        selectInvoicejButton.setText("Select Invoice(s)");
-        selectInvoicejButton.setMaximumSize(new java.awt.Dimension(159, 37));
-        selectInvoicejButton.setMinimumSize(new java.awt.Dimension(159, 37));
-        selectInvoicejButton.setPreferredSize(new java.awt.Dimension(159, 37));
-        selectInvoicejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectInvoicejButtonActionPerformed(evt);
-            }
-        });
-
-        paymentTypejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        paymentTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
-        paymentTypejLabel.setText("Payment Type:");
-
-        latePaymentCanceljButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        latePaymentCanceljButton.setText("Cancel");
-        latePaymentCanceljButton.setMaximumSize(new java.awt.Dimension(159, 37));
-        latePaymentCanceljButton.setMinimumSize(new java.awt.Dimension(159, 37));
-        latePaymentCanceljButton.setPreferredSize(new java.awt.Dimension(159, 37));
-        latePaymentCanceljButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                latePaymentCanceljButtonActionPerformed(evt);
-            }
-        });
-
-        expiryDatejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        expiryDatejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        expiryDatejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        paymentTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Card", "Cash" }));
-        paymentTypeComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
-        paymentTypeComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
-        paymentTypeComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
-        paymentTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paymentTypeComboBoxActionPerformed(evt);
-            }
-        });
-
-        latePaymentSubmitjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        latePaymentSubmitjButton.setText("Submit");
-        latePaymentSubmitjButton.setMaximumSize(new java.awt.Dimension(159, 37));
-        latePaymentSubmitjButton.setMinimumSize(new java.awt.Dimension(159, 37));
-        latePaymentSubmitjButton.setPreferredSize(new java.awt.Dimension(159, 37));
-        latePaymentSubmitjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                latePaymentSubmitjButtonActionPerformed(evt);
-            }
-        });
-
-        TotalLatePayjTextField.setText("£");
-        TotalLatePayjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        TotalLatePayjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        TotalLatePayjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        cardTypejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        cardTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
-        cardTypejLabel.setText("Card type:");
-
-        totaljLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        totaljLabel.setForeground(new java.awt.Color(255, 255, 255));
-        totaljLabel.setText("Total:");
-
-        cardTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MasterCard", "Visa", "American Express" }));
-        cardTypejComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
-        cardTypejComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
-        cardTypejComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        last4DigitjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        last4DigitjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        last4DigitjLabel.setText("Last 4 digits:");
-
-        invoicejScrollPane.setViewportView(invoicejList);
-
-        javax.swing.GroupLayout acceptLatePaymentjPanelLayout = new javax.swing.GroupLayout(acceptLatePaymentjPanel);
-        acceptLatePaymentjPanel.setLayout(acceptLatePaymentjPanelLayout);
-        acceptLatePaymentjPanelLayout.setHorizontalGroup(
-            acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(last4DigitjLabel)
-                    .addComponent(expiryDatejLabel)
-                    .addComponent(totaljLabel)
-                    .addComponent(paymentTypejLabel)
-                    .addComponent(cardTypejLabel)
-                    .addComponent(selectInvoicejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
-                        .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TotalLatePayjTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(last4DigitjTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(paymentTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cardTypejComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(expiryDatejTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(invoicejScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        acceptLatePaymentjPanelLayout.setVerticalGroup(
-            acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(invoicejScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectInvoicejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
-                        .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(totaljLabel)
-                            .addComponent(TotalLatePayjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(paymentTypejLabel)
-                            .addComponent(paymentTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addComponent(cardTypejLabel))
-                    .addComponent(cardTypejComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(expiryDatejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(expiryDatejLabel))
-                .addGap(26, 26, 26)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(last4DigitjLabel)
-                    .addComponent(last4DigitjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(177, Short.MAX_VALUE))
-        );
-
-        TotalLatePayjTextField.setEditable(false);
-
-        javax.swing.GroupLayout acceptPaymentPageLayout = new javax.swing.GroupLayout(acceptPaymentPage);
-        acceptPaymentPage.setLayout(acceptPaymentPageLayout);
-        acceptPaymentPageLayout.setHorizontalGroup(
-            acceptPaymentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(acceptPaymentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(acceptPaymentPageLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(acceptLatePaymentjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        acceptPaymentPageLayout.setVerticalGroup(
-            acceptPaymentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(acceptPaymentPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(acceptPaymentPageLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(acceptLatePaymentjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        cardPanel1.add(acceptPaymentPage, "acceptPayment");
-
         searchInvoicePage.setMaximumSize(new java.awt.Dimension(900, 700));
         searchInvoicePage.setMinimumSize(new java.awt.Dimension(900, 700));
 
@@ -3632,191 +3465,6 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(customerReportPage, "customerReport");
-
-        acceptLatePayment.setMaximumSize(new java.awt.Dimension(900, 700));
-        acceptLatePayment.setMinimumSize(new java.awt.Dimension(900, 700));
-
-        acceptLatePaymentjPanel1.setBackground(new java.awt.Color(61, 96, 146));
-        acceptLatePaymentjPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
-        acceptLatePaymentjPanel1.setMinimumSize(new java.awt.Dimension(900, 700));
-
-        expiryDatejLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        expiryDatejLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        expiryDatejLabel1.setText("Expiry date:");
-
-        last4DigitjTextField1.setMaximumSize(new java.awt.Dimension(250, 42));
-        last4DigitjTextField1.setMinimumSize(new java.awt.Dimension(250, 42));
-        last4DigitjTextField1.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        selectInvoicejButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        selectInvoicejButton1.setText("Select Invoice(s)");
-        selectInvoicejButton1.setMaximumSize(new java.awt.Dimension(159, 37));
-        selectInvoicejButton1.setMinimumSize(new java.awt.Dimension(159, 37));
-        selectInvoicejButton1.setPreferredSize(new java.awt.Dimension(159, 37));
-        selectInvoicejButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectInvoicejButton1ActionPerformed(evt);
-            }
-        });
-
-        paymentTypejLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        paymentTypejLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        paymentTypejLabel1.setText("Payment Type:");
-
-        expiryDatejTextField1.setMaximumSize(new java.awt.Dimension(250, 42));
-        expiryDatejTextField1.setMinimumSize(new java.awt.Dimension(250, 42));
-        expiryDatejTextField1.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        paymentTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Card", "Cash" }));
-        paymentTypeComboBox1.setMaximumSize(new java.awt.Dimension(250, 42));
-        paymentTypeComboBox1.setMinimumSize(new java.awt.Dimension(250, 42));
-        paymentTypeComboBox1.setPreferredSize(new java.awt.Dimension(250, 42));
-        paymentTypeComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paymentTypeComboBox1ActionPerformed(evt);
-            }
-        });
-
-        TotalLatePayjTextField1.setText("£");
-        TotalLatePayjTextField1.setMaximumSize(new java.awt.Dimension(250, 42));
-        TotalLatePayjTextField1.setMinimumSize(new java.awt.Dimension(250, 42));
-        TotalLatePayjTextField1.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        cardTypejLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        cardTypejLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        cardTypejLabel1.setText("Card type:");
-
-        totaljLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        totaljLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        totaljLabel1.setText("Total:");
-
-        cardTypejComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MasterCard", "Visa", "American Express" }));
-        cardTypejComboBox1.setMaximumSize(new java.awt.Dimension(250, 42));
-        cardTypejComboBox1.setMinimumSize(new java.awt.Dimension(250, 42));
-        cardTypejComboBox1.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        last4DigitjLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        last4DigitjLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        last4DigitjLabel1.setText("Last 4 digits:");
-
-        invoicejScrollPane1.setViewportView(invoicejList1);
-
-        latePaymentSubmitjButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        latePaymentSubmitjButton1.setText("Submit");
-        latePaymentSubmitjButton1.setMaximumSize(new java.awt.Dimension(163, 37));
-        latePaymentSubmitjButton1.setMinimumSize(new java.awt.Dimension(163, 37));
-        latePaymentSubmitjButton1.setPreferredSize(new java.awt.Dimension(163, 37));
-        latePaymentSubmitjButton1.setSize(new java.awt.Dimension(163, 37));
-        latePaymentSubmitjButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                latePaymentSubmitjButton1ActionPerformed(evt);
-            }
-        });
-
-        latePaymentCanceljButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        latePaymentCanceljButton1.setText("Cancel");
-        latePaymentCanceljButton1.setMaximumSize(new java.awt.Dimension(163, 37));
-        latePaymentCanceljButton1.setMinimumSize(new java.awt.Dimension(163, 37));
-        latePaymentCanceljButton1.setPreferredSize(new java.awt.Dimension(163, 37));
-        latePaymentCanceljButton1.setSize(new java.awt.Dimension(163, 37));
-        latePaymentCanceljButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                latePaymentCanceljButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout acceptLatePaymentjPanel1Layout = new javax.swing.GroupLayout(acceptLatePaymentjPanel1);
-        acceptLatePaymentjPanel1.setLayout(acceptLatePaymentjPanel1Layout);
-        acceptLatePaymentjPanel1Layout.setHorizontalGroup(
-            acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanel1Layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
-                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(expiryDatejLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(totaljLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(paymentTypejLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cardTypejLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(selectInvoicejButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(last4DigitjLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(acceptLatePaymentjPanel1Layout.createSequentialGroup()
-                        .addComponent(last4DigitjTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(150, 150, 150))
-                    .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(TotalLatePayjTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(paymentTypeComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cardTypejComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(expiryDatejTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(invoicejScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(latePaymentCanceljButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(latePaymentSubmitjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203))
-        );
-        acceptLatePaymentjPanel1Layout.setVerticalGroup(
-            acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(acceptLatePaymentjPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(invoicejScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectInvoicejButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanel1Layout.createSequentialGroup()
-                        .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(totaljLabel1)
-                            .addComponent(TotalLatePayjTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(paymentTypejLabel1)
-                            .addComponent(paymentTypeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addComponent(cardTypejLabel1))
-                    .addComponent(cardTypejComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(last4DigitjLabel1)
-                    .addComponent(last4DigitjTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(expiryDatejTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(expiryDatejLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addGroup(acceptLatePaymentjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(latePaymentSubmitjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(latePaymentCanceljButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(172, 172, 172))
-        );
-
-        TotalLatePayjTextField.setEditable(false);
-
-        javax.swing.GroupLayout acceptLatePaymentLayout = new javax.swing.GroupLayout(acceptLatePayment);
-        acceptLatePayment.setLayout(acceptLatePaymentLayout);
-        acceptLatePaymentLayout.setHorizontalGroup(
-            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(acceptLatePaymentjPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        acceptLatePaymentLayout.setVerticalGroup(
-            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(acceptLatePaymentjPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        cardPanel1.add(acceptLatePayment, "acceptLatePayment");
 
         searchInvoice.setMaximumSize(new java.awt.Dimension(900, 700));
         searchInvoice.setMinimumSize(new java.awt.Dimension(900, 700));
@@ -4942,6 +4590,191 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(ViewCustomerDetail, "ViewCustomerDetail");
 
+        acceptLatePayment.setMaximumSize(new java.awt.Dimension(900, 700));
+        acceptLatePayment.setMinimumSize(new java.awt.Dimension(900, 700));
+
+        acceptLatePaymentjPanel.setBackground(new java.awt.Color(61, 96, 146));
+        acceptLatePaymentjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
+        acceptLatePaymentjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
+
+        expiryDatejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        expiryDatejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        expiryDatejLabel.setText("Expiry date:");
+
+        last4DigitjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        last4DigitjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        last4DigitjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        selectInvoicejButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        selectInvoicejButton.setText("Select Invoice(s)");
+        selectInvoicejButton.setMaximumSize(new java.awt.Dimension(159, 37));
+        selectInvoicejButton.setMinimumSize(new java.awt.Dimension(159, 37));
+        selectInvoicejButton.setPreferredSize(new java.awt.Dimension(159, 37));
+        selectInvoicejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectInvoicejButtonActionPerformed(evt);
+            }
+        });
+
+        paymentTypejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        paymentTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        paymentTypejLabel.setText("Payment Type:");
+
+        expiryDatejTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        expiryDatejTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        expiryDatejTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        paymentTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Card", "Cash" }));
+        paymentTypeComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
+        paymentTypeComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
+        paymentTypeComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+        paymentTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paymentTypeComboBoxActionPerformed(evt);
+            }
+        });
+
+        TotalLatePayjTextField.setText("£");
+        TotalLatePayjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        TotalLatePayjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        TotalLatePayjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        cardTypejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        cardTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        cardTypejLabel.setText("Card type:");
+
+        totaljLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        totaljLabel.setForeground(new java.awt.Color(255, 255, 255));
+        totaljLabel.setText("Total:");
+
+        cardTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MasterCard", "Visa", "American Express" }));
+        cardTypejComboBox.setMaximumSize(new java.awt.Dimension(250, 42));
+        cardTypejComboBox.setMinimumSize(new java.awt.Dimension(250, 42));
+        cardTypejComboBox.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        last4DigitjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        last4DigitjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        last4DigitjLabel.setText("Last 4 digits:");
+
+        invoicejScrollPane.setViewportView(invoicejList);
+
+        latePaymentSubmitjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        latePaymentSubmitjButton.setText("Submit");
+        latePaymentSubmitjButton.setMaximumSize(new java.awt.Dimension(163, 37));
+        latePaymentSubmitjButton.setMinimumSize(new java.awt.Dimension(163, 37));
+        latePaymentSubmitjButton.setPreferredSize(new java.awt.Dimension(163, 37));
+        latePaymentSubmitjButton.setSize(new java.awt.Dimension(163, 37));
+        latePaymentSubmitjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                latePaymentSubmitjButtonActionPerformed(evt);
+            }
+        });
+
+        latePaymentCanceljButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        latePaymentCanceljButton.setText("Cancel");
+        latePaymentCanceljButton.setMaximumSize(new java.awt.Dimension(163, 37));
+        latePaymentCanceljButton.setMinimumSize(new java.awt.Dimension(163, 37));
+        latePaymentCanceljButton.setPreferredSize(new java.awt.Dimension(163, 37));
+        latePaymentCanceljButton.setSize(new java.awt.Dimension(163, 37));
+        latePaymentCanceljButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                latePaymentCanceljButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout acceptLatePaymentjPanelLayout = new javax.swing.GroupLayout(acceptLatePaymentjPanel);
+        acceptLatePaymentjPanel.setLayout(acceptLatePaymentjPanelLayout);
+        acceptLatePaymentjPanelLayout.setHorizontalGroup(
+            acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
+                .addContainerGap(131, Short.MAX_VALUE)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(expiryDatejLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(totaljLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(paymentTypejLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cardTypejLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(selectInvoicejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(last4DigitjLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
+                        .addComponent(last4DigitjTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(150, 150, 150))
+                    .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(TotalLatePayjTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(paymentTypeComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cardTypejComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(expiryDatejTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(invoicejScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(153, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(203, 203, 203))
+        );
+        acceptLatePaymentjPanelLayout.setVerticalGroup(
+            acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(acceptLatePaymentjPanelLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(invoicejScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectInvoicejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
+                        .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(totaljLabel)
+                            .addComponent(TotalLatePayjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(paymentTypejLabel)
+                            .addComponent(paymentTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addComponent(cardTypejLabel))
+                    .addComponent(cardTypejComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(last4DigitjLabel)
+                    .addComponent(last4DigitjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(expiryDatejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(expiryDatejLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(172, 172, 172))
+        );
+
+        TotalLatePayjTextField.setEditable(false);
+
+        javax.swing.GroupLayout acceptLatePaymentLayout = new javax.swing.GroupLayout(acceptLatePayment);
+        acceptLatePayment.setLayout(acceptLatePaymentLayout);
+        acceptLatePaymentLayout.setHorizontalGroup(
+            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(acceptLatePaymentjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        acceptLatePaymentLayout.setVerticalGroup(
+            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(acceptLatePaymentjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        cardPanel1.add(acceptLatePayment, "acceptLatePayment");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -5798,144 +5631,6 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_materialsjTextFieldActionPerformed
 
-    private void selectInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButtonActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "searchInvoice");
-        pageLabel.setText("Search Invoice page");
-
-        // updates the tables for selecting invoices
-        m = (DefaultTableModel) invoicejTable.getModel(); // grabs the current model
-        ArrayList<Invoice> invoicesList;
-        try {
-            invoicesList = controller.getInvoices();
-            Object rowData[] = new Object[6];
-            // grabs data from ("database")
-            for (int i = 0; i < invoicesList.size(); ++i) {
-                rowData[0] = invoicesList.get(i).getInvoiceNo();
-                rowData[1] = invoicesList.get(i).getJobJobNo();
-                rowData[2] = invoicesList.get(i).getTotalPayable();
-                rowData[3] = invoicesList.get(i).getDateIssued();
-                rowData[4] = invoicesList.get(i).getInvoiceStatus();
-                rowData[5] = invoicesList.get(i).getInvoiceLocation();
-                //adds the array type object to the table by adding it to the model
-                m.addRow(rowData);
-                System.out.println("Table updated");
-            }
-        } catch (ParseException ex) {
-            System.out.println(ex);
-            System.out.println("Table not updated");
-        }
-    }//GEN-LAST:event_selectInvoicejButtonActionPerformed
-
-    private void latePaymentCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentCanceljButtonActionPerformed
-        // TODO add your handling code here:
-        // invoice informaiton and total
-        TotalLatePayjTextField.setText("");
-        list1.clear();
-
-        // clears the data for card detials
-        expiryDatejTextField.setText("");
-        last4DigitjTextField.setText("");
-
-        card1.show(cardPanel1, "receptionistHomePage");
-        card2.show(cardPanel2, "homePageR");
-    }//GEN-LAST:event_latePaymentCanceljButtonActionPerformed
-
-    private void paymentTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentTypeComboBoxActionPerformed
-        // TODO add your handling code here:
-        // if the field that has been selected is card then the label will display
-        // extra information needed to record card payment. Otherwise the fields
-        // will not show.
-        if (paymentTypeComboBox.getSelectedItem().toString().equals("Card")) {
-            // shows the labels for card payment
-            cardTypejLabel.setVisible(true);
-            expiryDatejLabel.setVisible(true);
-            last4DigitjLabel.setVisible(true);
-
-            // shows the text field for card payment
-            cardTypejComboBox.setVisible(true);
-            expiryDatejTextField.setVisible(true);
-            last4DigitjTextField.setVisible(true);
-        } else {
-            // hides the labels for card payment
-            cardTypejLabel.setVisible(false);
-            expiryDatejLabel.setVisible(false);
-            last4DigitjLabel.setVisible(false);
-
-            // hides the text field for card payment
-            cardTypejComboBox.setVisible(false);
-            expiryDatejTextField.setVisible(false);
-            last4DigitjTextField.setVisible(false);
-        }
-    }//GEN-LAST:event_paymentTypeComboBoxActionPerformed
-
-    private void latePaymentSubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentSubmitjButtonActionPerformed
-        // TODO add your handling code here:
-        PaymentDetails payInfo;
-        if (invoicejList.getModel().getSize() != 0) { // first check to see if there is a invoice selected
-            if (paymentTypeComboBox.getSelectedItem().toString().equals("Card")) { // if card is selected for payment type
-                if ( // checks to see if format for the card info is entered correctly
-                        expiryDatejTextField.getText().matches("[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
-                        && last4DigitjTextField.getText().matches("[0-9]{4}")) {
-                    // grabs infor for card payment
-                    int[] paymentNo = new int[selectedInvoices.size()];
-                    int[] invoiceNumber = new int[selectedInvoices.size()];
-                    final double total = Double.parseDouble(TotalLatePayjTextField.getText());
-                    final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
-                    final Date paymentDate = new Date();
-
-                    for (int i = 0; i < selectedInvoices.size(); ++i) {
-                        paymentNo[i] = selectedInvoices.get(i).getJobJobNo();
-                        invoiceNumber[i] = selectedInvoices.get(i).getInvoiceNo();
-                    }
-
-                    final String cardType = cardTypejComboBox.getSelectedItem().toString();
-                    final String cardDetailsLast4digits = last4DigitjTextField.getText();
-                    final String cardDetailsExpiryDate = expiryDatejTextField.getText();
-
-                    PaymentDetails paymentR = new PaymentCard(
-                            paymentNo,
-                            invoiceNumber,
-                            total,
-                            paymentType,
-                            paymentDate,
-                            cardType,
-                            cardDetailsLast4digits,
-                            cardDetailsExpiryDate
-                    );
-
-                    controller.recordPayment(paymentR);
-
-                    System.out.println("payment info attained");
-
-                    // clears the model and the total
-                    TotalLatePayjTextField.setText("");
-                    list1.clear();
-
-                    // clears the data for card detials
-                    expiryDatejTextField.setText("");
-                    last4DigitjTextField.setText("");
-                }
-            }
-
-            if (paymentTypeComboBox.getSelectedItem().toString().equals("Cash")) { // if card is selected for payment type
-                // grabs info for cash payment
-                TotalLatePayjTextField.getText();
-                paymentTypeComboBox.getSelectedItem().toString();
-
-                // clears the model and the total
-                TotalLatePayjTextField.setText("");
-                list1.clear();
-
-                // clears the data for card detials
-                expiryDatejTextField.setText("");
-                last4DigitjTextField.setText("");
-            }
-        } else {
-            System.out.println("Cannot make payment");
-        }
-    }//GEN-LAST:event_latePaymentSubmitjButtonActionPerformed
-
     private void selectSelectedInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSelectedInvoicejButtonActionPerformed
         // TODO add your handling code here:
         // gets the selected position from the invoice table
@@ -6640,158 +6335,6 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFieldActionPerformed
 
-    private void selectInvoicejButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButton1ActionPerformed
-        // TODO add your handling code here:
-        // updates the tables for selecting invoices
-        invoiceModelTable = (DefaultTableModel) invoicejTable.getModel(); // grabs the current model
-        invoiceModelTable.setRowCount(0);
-        ArrayList<Invoice> invoicesList;
-        try {
-            // initialse invoicesList arraylist with data from controller
-            invoicesList = controller.getInvoices();
-
-            Object rowData[] = new Object[6];
-            for (int i = 0; i < invoicesList.size(); ++i) {
-                rowData[0] = invoicesList.get(i).getInvoiceNo();
-                rowData[1] = invoicesList.get(i).getJobJobNo();
-                rowData[2] = invoicesList.get(i).getTotalPayable();
-                rowData[3] = invoicesList.get(i).getDateIssued();
-                rowData[4] = invoicesList.get(i).getInvoiceStatus().toString().toLowerCase();
-                rowData[5] = invoicesList.get(i).getInvoiceLocation();
-                //adds the array type object to the table by adding it to the model
-                invoiceModelTable.addRow(rowData);
-            }
-
-            // change page
-            card1.show(cardPanel1, "searchInvoicePage");
-            card2.show(cardPanel2, "acceptLatePaymentBar");
-        } catch (ParseException ex) {
-            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_selectInvoicejButton1ActionPerformed
-
-    private void paymentTypeComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentTypeComboBox1ActionPerformed
-        // TODO add your handling code here:
-        // if the field that has been selected is card then the label will display
-        // extra information needed to record card payment. Otherwise the fields
-        // will not show.
-        if (paymentTypeComboBox.getSelectedItem().toString().equals("Card")) {
-            // shows the labels for card payment
-            cardTypejLabel.setVisible(true);
-            expiryDatejLabel.setVisible(true);
-            last4DigitjLabel.setVisible(true);
-
-            // shows the text field for card payment
-            cardTypejComboBox.setVisible(true);
-            expiryDatejTextField.setVisible(true);
-            last4DigitjTextField.setVisible(true);
-        } else {
-            // hides the labels for card payment
-            cardTypejLabel.setVisible(false);
-            expiryDatejLabel.setVisible(false);
-            last4DigitjLabel.setVisible(false);
-
-            // hides the text field for card payment
-            cardTypejComboBox.setVisible(false);
-            expiryDatejTextField.setVisible(false);
-            last4DigitjTextField.setVisible(false);
-        }
-    }//GEN-LAST:event_paymentTypeComboBox1ActionPerformed
-
-    private void latePaymentSubmitjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentSubmitjButton1ActionPerformed
-        // TODO add your handling code here:
-        if (invoicejList.getModel().getSize() != 0) { // first check to see if there is a invoice selected
-
-            final String paymentNo = "null";
-            final String[] paymentToken = TotalLatePayjTextField.getText().split("\\s");
-            final double total = Double.parseDouble(paymentToken[1]);
-            final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
-            final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            final String paymentDate = dateFormat.format(new Date());
-            final int invoiceNumber = invoice.getInvoiceNo();
-
-            switch (paymentTypeComboBox.getSelectedItem().toString()) {
-                case "Card":
-                if (// checks to see if format for the card info is entered correctly
-                    expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
-                    && last4DigitjTextField.getText().matches("[0-9]{4}")
-                ) {
-                    // card information
-                    final String cardType = cardTypejComboBox.getSelectedItem().toString();
-                    final String cardDetailsLast4digits = last4DigitjTextField.getText();
-                    final String cardDetailsExpiryDate = expiryDatejTextField.getText();
-
-                    final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
-
-                    final Payment paymentRecord = new PaymentCard(
-                        paymentNo,
-                        total,
-                        paymentType,
-                        paymentDate,
-                        invoiceNumber,
-                        card.getCardType(),
-                        card.getLast4Digits(),
-                        card.getExpiryDate()
-                    );
-
-                    controller.recordPayment(paymentRecord, paymentType, invoice, card);
-                    //System.out.println("payment info attained");
-
-                    // clears the model and the total
-                    TotalLatePayjTextField.setText("");
-                    t.clear();
-
-                    // clears the data for card detials
-                    expiryDatejTextField.setText("");
-                    last4DigitjTextField.setText("");
-
-                    JOptionPane.showMessageDialog(this, "Card payment successful");
-                }
-                break;
-                case "Cash":
-                final Payment paymentRecord = new PaymentCash(
-                    paymentNo,
-                    total,
-                    paymentType,
-                    paymentDate,
-                    invoiceNumber
-                );
-
-                controller.recordPayment(paymentRecord, paymentType, invoice);
-
-                // clears the model and the total
-                TotalLatePayjTextField.setText("");
-                t.clear();
-
-                // clears the data for card detials
-                expiryDatejTextField.setText("");
-                last4DigitjTextField.setText("");
-
-                JOptionPane.showMessageDialog(this, "Cash payment successful");
-                break;
-                default:
-                JOptionPane.showMessageDialog(this, "No payment type was selected");
-                break;
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Cannot make payment");
-        }
-    }//GEN-LAST:event_latePaymentSubmitjButton1ActionPerformed
-
-    private void latePaymentCanceljButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentCanceljButton1ActionPerformed
-        // TODO add your handling code here:
-        // invoice informaiton and total
-        TotalLatePayjTextField.setText("");
-        t.clear();
-
-        // clears the data for card detials
-        expiryDatejTextField.setText("");
-        last4DigitjTextField.setText("");
-
-        card1.show(cardPanel1, "receptionistHomePage");
-        card2.show(cardPanel2, "homePageR");
-    }//GEN-LAST:event_latePaymentCanceljButton1ActionPerformed
-
     private void selectSelectedInvoicejButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectSelectedInvoicejButton1ActionPerformed
         // TODO add your handling code here:
         if (invoicejTable.getSelectedRow() >= 0) {
@@ -7088,6 +6631,158 @@ public class MainFrame extends javax.swing.JFrame {
         card2.show(cardPanel2, "homePageR");
     }//GEN-LAST:event_assignDiscountPlanjButtonActionPerformed
 
+    private void selectInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButtonActionPerformed
+        // TODO add your handling code here:
+        // updates the tables for selecting invoices
+        invoiceModelTable = (DefaultTableModel) invoicejTable.getModel(); // grabs the current model
+        invoiceModelTable.setRowCount(0);
+        ArrayList<Invoice> invoicesList;
+        try {
+            // initialse invoicesList arraylist with data from controller
+            invoicesList = controller.getInvoices();
+
+            Object rowData[] = new Object[6];
+            for (int i = 0; i < invoicesList.size(); ++i) {
+                rowData[0] = invoicesList.get(i).getInvoiceNo();
+                rowData[1] = invoicesList.get(i).getJobJobNo();
+                rowData[2] = invoicesList.get(i).getTotalPayable();
+                rowData[3] = invoicesList.get(i).getDateIssued();
+                rowData[4] = invoicesList.get(i).getInvoiceStatus().toString().toLowerCase();
+                rowData[5] = invoicesList.get(i).getInvoiceLocation();
+                //adds the array type object to the table by adding it to the model
+                invoiceModelTable.addRow(rowData);
+            }
+
+            // change page
+            card1.show(cardPanel1, "searchInvoicePage");
+            card2.show(cardPanel2, "acceptLatePaymentBar");
+        } catch (ParseException ex) {
+            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_selectInvoicejButtonActionPerformed
+
+    private void paymentTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentTypeComboBoxActionPerformed
+        // TODO add your handling code here:
+        // if the field that has been selected is card then the label will display
+        // extra information needed to record card payment. Otherwise the fields
+        // will not show.
+        if (paymentTypeComboBox.getSelectedItem().toString().equals("Card")) {
+            // shows the labels for card payment
+            cardTypejLabel.setVisible(true);
+            expiryDatejLabel.setVisible(true);
+            last4DigitjLabel.setVisible(true);
+
+            // shows the text field for card payment
+            cardTypejComboBox.setVisible(true);
+            expiryDatejTextField.setVisible(true);
+            last4DigitjTextField.setVisible(true);
+        } else {
+            // hides the labels for card payment
+            cardTypejLabel.setVisible(false);
+            expiryDatejLabel.setVisible(false);
+            last4DigitjLabel.setVisible(false);
+
+            // hides the text field for card payment
+            cardTypejComboBox.setVisible(false);
+            expiryDatejTextField.setVisible(false);
+            last4DigitjTextField.setVisible(false);
+        }
+    }//GEN-LAST:event_paymentTypeComboBoxActionPerformed
+
+    private void latePaymentSubmitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentSubmitjButtonActionPerformed
+        // TODO add your handling code here:
+        if (invoicejList.getModel().getSize() != 0) { // first check to see if there is a invoice selected
+
+            final String paymentNo = "null";
+            final String[] paymentToken = TotalLatePayjTextField.getText().split("\\s");
+            final double total = Double.parseDouble(paymentToken[1]);
+            final String paymentType = paymentTypeComboBox.getSelectedItem().toString();
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            final String paymentDate = dateFormat.format(new Date());
+            final int invoiceNumber = invoice.getInvoiceNo();
+
+            switch (paymentTypeComboBox.getSelectedItem().toString()) {
+                case "Card":
+                if (// checks to see if format for the card info is entered correctly
+                    expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
+                    && last4DigitjTextField.getText().matches("[0-9]{4}")
+                ) {
+                    // card information
+                    final String cardType = cardTypejComboBox.getSelectedItem().toString();
+                    final String cardDetailsLast4digits = last4DigitjTextField.getText();
+                    final String cardDetailsExpiryDate = expiryDatejTextField.getText();
+
+                    final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
+
+                    final Payment paymentRecord = new PaymentCard(
+                        paymentNo,
+                        total,
+                        paymentType,
+                        paymentDate,
+                        invoiceNumber,
+                        card.getCardType(),
+                        card.getLast4Digits(),
+                        card.getExpiryDate()
+                    );
+
+                    controller.recordPayment(paymentRecord, paymentType, invoice, card);
+                    //System.out.println("payment info attained");
+
+                    // clears the model and the total
+                    TotalLatePayjTextField.setText("");
+                    t.clear();
+
+                    // clears the data for card detials
+                    expiryDatejTextField.setText("");
+                    last4DigitjTextField.setText("");
+
+                    JOptionPane.showMessageDialog(this, "Card payment successful");
+                }
+                break;
+                case "Cash":
+                final Payment paymentRecord = new PaymentCash(
+                    paymentNo,
+                    total,
+                    paymentType,
+                    paymentDate,
+                    invoiceNumber
+                );
+
+                controller.recordPayment(paymentRecord, paymentType, invoice);
+
+                // clears the model and the total
+                TotalLatePayjTextField.setText("");
+                t.clear();
+
+                // clears the data for card detials
+                expiryDatejTextField.setText("");
+                last4DigitjTextField.setText("");
+
+                JOptionPane.showMessageDialog(this, "Cash payment successful");
+                break;
+                default:
+                JOptionPane.showMessageDialog(this, "No payment type was selected");
+                break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Cannot make payment");
+        }
+    }//GEN-LAST:event_latePaymentSubmitjButtonActionPerformed
+
+    private void latePaymentCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentCanceljButtonActionPerformed
+        // TODO add your handling code here:
+        // invoice informaiton and total
+        TotalLatePayjTextField.setText("");
+        t.clear();
+
+        // clears the data for card detials
+        expiryDatejTextField.setText("");
+        last4DigitjTextField.setText("");
+
+        card1.show(cardPanel1, "receptionistHomePage");
+        card2.show(cardPanel2, "homePageR");
+    }//GEN-LAST:event_latePaymentCanceljButtonActionPerformed
+
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
@@ -7165,7 +6860,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel TasksjPanel;
     private javax.swing.JScrollPane TasksjScrollPane;
     private javax.swing.JTextField TotalLatePayjTextField;
-    private javax.swing.JTextField TotalLatePayjTextField1;
     private javax.swing.JTextField UserFirstnameField;
     private javax.swing.JTextField UserLastnameField;
     private javax.swing.JTextField UserNumberField;
@@ -7176,8 +6870,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton acceptJobPageButton;
     private javax.swing.JPanel acceptLatePayment;
     private javax.swing.JPanel acceptLatePaymentjPanel;
-    private javax.swing.JPanel acceptLatePaymentjPanel1;
-    private javax.swing.JPanel acceptPaymentPage;
     private javax.swing.JButton acceptPaymentPageButton;
     private javax.swing.JLabel accountHolderNameLabel;
     private javax.swing.JTextField accountHolderNamejTextField;
@@ -7216,9 +6908,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JComboBox<String> cardTypejComboBox;
-    private javax.swing.JComboBox<String> cardTypejComboBox1;
     private javax.swing.JLabel cardTypejLabel;
-    private javax.swing.JLabel cardTypejLabel1;
     private javax.swing.JLabel changeConfigjLabel;
     private javax.swing.JButton changeRoleButton;
     private javax.swing.JButton chooseFileButton;
@@ -7296,9 +6986,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> durationNewTaskDD;
     private javax.swing.JComboBox<String> durationNewTaskMinsDD;
     private javax.swing.JLabel expiryDatejLabel;
-    private javax.swing.JLabel expiryDatejLabel1;
     private javax.swing.JTextField expiryDatejTextField;
-    private javax.swing.JTextField expiryDatejTextField1;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
     private javax.swing.JTextField firstNameField;
@@ -7320,9 +7008,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel individualReportPage;
     private javax.swing.JTextField infoField;
     private javax.swing.JList<String> invoicejList;
-    private javax.swing.JList<String> invoicejList1;
     private javax.swing.JScrollPane invoicejScrollPane;
-    private javax.swing.JScrollPane invoicejScrollPane1;
     private javax.swing.JTable invoicejTable;
     private javax.swing.JTable invoicejTable1;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -7354,14 +7040,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jobMenuPageButton;
     private javax.swing.JTextField jobTotalField;
     private javax.swing.JLabel last4DigitjLabel;
-    private javax.swing.JLabel last4DigitjLabel1;
     private javax.swing.JTextField last4DigitjTextField;
-    private javax.swing.JTextField last4DigitjTextField1;
     private javax.swing.JLabel lastnameLabel;
     private javax.swing.JButton latePaymentCanceljButton;
-    private javax.swing.JButton latePaymentCanceljButton1;
     private javax.swing.JButton latePaymentSubmitjButton;
-    private javax.swing.JButton latePaymentSubmitjButton1;
     private javax.swing.JTextField locationChosenField;
     private javax.swing.JButton logOutButton;
     private javax.swing.JButton loginButton;
@@ -7390,9 +7072,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> paymentTypeComboBox;
-    private javax.swing.JComboBox<String> paymentTypeComboBox1;
     private javax.swing.JLabel paymentTypejLabel;
-    private javax.swing.JLabel paymentTypejLabel1;
     private javax.swing.JLabel periodFromLabel;
     private javax.swing.JLabel periodLabel;
     private javax.swing.JLabel periodToLabel;
@@ -7459,7 +7139,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton selectCustomerButton;
     private javax.swing.JButton selectCustomerjButton;
     private javax.swing.JButton selectInvoicejButton;
-    private javax.swing.JButton selectInvoicejButton1;
     private javax.swing.JComboBox<String> selectPriority;
     private javax.swing.JButton selectSelectedInvoicejButton;
     private javax.swing.JButton selectSelectedInvoicejButton1;
@@ -7497,7 +7176,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalLabel1;
     private javax.swing.JLabel totaljLabel;
-    private javax.swing.JLabel totaljLabel1;
     private javax.swing.JLabel upperBoundjLabel;
     private javax.swing.JTextField upperBoundjTextField;
     private javax.swing.JTextField userFirstNameField;

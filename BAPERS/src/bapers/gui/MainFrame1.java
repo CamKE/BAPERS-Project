@@ -56,11 +56,11 @@ public class MainFrame1 extends javax.swing.JFrame {
     
     Job job = null;
     JobStandardJob jobStandardJob = null;
-    
+    Customer selectedCustomer = null;
     //materials counter
     int mCount = 0;
     
-    Customer selectedCustomer = null;
+    
     
     private final CardLayout card1;
     private final CardLayout card2;

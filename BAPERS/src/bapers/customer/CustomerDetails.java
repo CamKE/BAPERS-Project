@@ -27,8 +27,9 @@ public class CustomerDetails {
     Boolean isValued;
     Timestamp regDate;
     int buildingNo;
+    String email;
 
-    public CustomerDetails(int accountNo, String accountHolderName, String prefix, String firstName, String lastName, String streetName, String postCode, String city, String phoneNumber, Boolean isSuspended, Boolean inDefault, Boolean isValued, Timestamp regDate, int buildingNo) {
+    public CustomerDetails(int accountNo, String accountHolderName, String prefix, String firstName, String lastName, String streetName, String postCode, String city, String phoneNumber, Boolean isSuspended, Boolean inDefault, Boolean isValued, Timestamp regDate, int buildingNo, String email) {
         this.accountNo = accountNo;
         this.accountHolderName = accountHolderName;
         this.prefix = prefix;
@@ -43,6 +44,7 @@ public class CustomerDetails {
         this.isValued = isValued;
         this.regDate = regDate;
         this.buildingNo = buildingNo;
+        this.email = email;
     }
 
     public int getAccountNo() {
