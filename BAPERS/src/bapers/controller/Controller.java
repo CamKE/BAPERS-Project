@@ -27,18 +27,13 @@ public class Controller {
     private ResultSet rs;
 
     //Create array list of JobDetails to store into table
-    ArrayList<JobDetails> jobList = new ArrayList<>();
-    JobDetails job;
+    private ArrayList<JobDetails> jobList = new ArrayList<>();
     //Create array list of tasks to store into standard job
     private ArrayList<Task> standardJobTasksList = new ArrayList<>();
     private ArrayList<Task> taskList = new ArrayList<>();
-    Task task;
     //Create array list of standardJobs to store into job
     private ArrayList<StandardJob> standardJobList = new ArrayList<>();
-    StandardJob standardJob;
 
-    Map<String, ArrayList<Task>> standardJobTaskMap = new HashMap<>();
-    Map<Integer, ArrayList<StandardJob>> jobStandardJobMap = new HashMap<>();
 
     public Controller() {
         database = new DBImpl();
@@ -104,132 +99,11 @@ public class Controller {
         return taskInfo;
     }
 
-    public void setTasksIntoStandardJob(String standardJobCode) {
-        String SQL = "SELECT * FROM job_standardjobs_tasks \n"
-                + "inner join task on job_standardjobs_tasks.Task_task_id = task.task_id\n"
-                + "inner join standardjob on job_standardjobs_tasks.Job_StandardJobs_StandardJob_code = standardjob.code\n"
-                + "inner join status on job_standardjobs_tasks.Status_status_id = status.status_id\n"
-                + "where Job_StandardJobs_StandardJob_code = '" + standardJobCode + "';";
-
-        String standardJobSQL = "SELECT * From job_standardjobs\n"
-                + "inner join status on job_standardjobs.Status_status_id = status.status_id\n"
-                + "inner join standardjob on job_standardjobs.StandardJob_code = standardjob.code\n"
-                + "where job_standardjobs.StandardJob_code= '" + standardJobCode + "';";
-
-        ResultSet standardJobResultSet = database.read(standardJobSQL, conn);
-        rs = database.read(SQL, conn);
-
-        ArrayList<Task> taskList = new ArrayList<>();
-        String standardJobDescription = "";
-        double price = 0;
-        String status = "";
-        int statusID = 0;
-        try {
-
-            //Create Task class from database
-            while (rs.next()) {
-                //Create task array list
-
-                //Convert department code to department name
-                String departmentName = this.getDepartmentName(rs.getString("Department_department_code"));
-                //Create new task   
-                task = new Task(rs.getInt("task_id"), rs.getString("description"), rs.getInt("duration_min"), rs.getInt("shelf_slot"), rs.getDouble("price"),
-                        departmentName, rs.getString("status_type"), rs.getInt("status_id"));
-                //Add task to task array list
-                taskList.add(task);
-                //Get price from task and add it to standard job price total
-                price = price + rs.getDouble("price");
-
-            }
-
-            //Create standard job class from database
-            if (standardJobResultSet.next()) {
-                //Get status of standard job
-                status = standardJobResultSet.getString("status_type");
-                //Get standardJobDescription
-                standardJobDescription = standardJobResultSet.getString("job_description");
-                statusID = standardJobResultSet.getInt("status_id");
-            }
-
-            //Add array list task to map
-            standardJobTaskMap.put(standardJobCode, taskList);
-            //Create new standard job
-            standardJob = new StandardJob(standardJobCode, standardJobDescription, price, status, statusID);
-            standardJob.setStandardJobTasks(taskList);
-            standardJob.setAmountOfTasks(standardJobTaskMap.get(standardJobCode).size());
-        } catch (Exception e) {
-            System.out.println("Set tasks into standard job error");
-        }
-
-    }
-
-    public void setStandardJobIntoJob(int jobNumber) {
-        String SQL = "SELECT * from job\n"
-                + "inner join job_standardjobs on job.job_no = job_standardjobs.Job_job_no\n"
-                + "inner join status on job.Status_status_id = status.status_id\n"
-                + "inner join user on job.User_account_no = user.account_no\n"
-                + "WHERE job_no = '" + jobNumber + "';";
-        ResultSet rSet = database.read(SQL, conn);
-
-        ArrayList<StandardJob> standardJobList = new ArrayList<>();
-        String status = "";
-        String issuedBy = "";
-        boolean isCollected = false;
-        Time deadline = null;
-        Date dateReceived = null;
-        int statusID = 0;
-        try {
-
-            while (rSet.next()) {
-                //Get standard job code from database and call method to set tasks into standard job
-                this.setTasksIntoStandardJob(rSet.getString("StandardJob_code"));
-                //Add standard job to array list
-                standardJobList.add(standardJob);
-                status = rSet.getString("status_type");
-
-                //Combine first name and last name
-                issuedBy = rSet.getString("firstname") + " " + rSet.getString("lastname");
-                deadline = rSet.getTime("Deadline_CompletionTime_completion_time");
-                int collectedValue = rSet.getInt("is_collected");
-                dateReceived = rSet.getDate("Deadline_date_received");
-                statusID = rSet.getInt("Status_status_id");
-                if (collectedValue == 0) {
-                    isCollected = false;
-                } else {
-                    isCollected = true;
-                }
-            }
-
-            //Add array list standard job to map
-            jobStandardJobMap.put(jobNumber, standardJobList);
-
-            //Create a new job
-            job = new JobDetails(jobNumber, deadline, issuedBy, status, dateReceived, isCollected, statusID);
-            //Add job to job list
-            //job.setAmountOfStandardJobs(jobStandardJobMap.get(jobNumber).size());      
-            jobList.add(job);
-            job.setStandardJobList(standardJobList);
-
-        } catch (Exception e) {
-            System.out.println("Set Standard Job into Job Error");
-        }
-
-    }
-
-
     public void updateTaskStatus(String standardJobCode, int taskID, String status) {
         this.getStandardJobTasks(standardJobCode).get(taskID).setStatus(status);
     }
 
     public void updateTaskStatusInDatabase(String statusType, int taskID) {
-        /* int statusID = this.getStandardJobTasks(standardJobCode).get(taskID).getStatusID();
-        String statusType = this.getStandardJobTasks(standardJobCode).get(taskID).getStatus();
-        String SQL = "Update status\n"
-                + "SET status_type = '" + statusType + "'\n"
-                + "WHERE status_id = '" + statusID + "';";
-        database.write(SQL, conn);*/
-
-        //System.out.println("Status ID is : " + this.getTaskList().get(taskID).getStatusID());
         int statusID = this.getTaskList().get(taskID).getStatusID();
         this.getTaskList().get(taskID).setStatus(statusType);
         String SQL = "Update status\n"
@@ -239,7 +113,6 @@ public class Controller {
     }
 
     public void updateStandardJobStatus(int jobNumber, int standardJobIndex, String status) {
-
         this.getStandardJobList().get(standardJobIndex).setStatus(status);
         int statusID = (this.getStandardJobList().get(standardJobIndex).getStatusID());
 
@@ -288,7 +161,7 @@ public class Controller {
             while (rs.next()) {
                 if (rs.getString("status_type").equals("In progress") || rs.getString("status_type").equals("Completed")) {
                     standardJobIsInProgress = true;
-                } 
+                }
             }
         } catch (Exception e) {
             System.out.println("Check If Standard job is in progress Error");
@@ -308,7 +181,7 @@ public class Controller {
             while (rs.next()) {
                 if (rs.getString("status_type").equals("In progress") || rs.getString("status_type").equals("Completed")) {
                     jobIsInProgress = true;
-                } 
+                }
             }
 
         } catch (Exception e) {
@@ -336,13 +209,12 @@ public class Controller {
         return allStandardJobsCompleted;
     }
 
-
     /**
      * @param standardJobCode
      * @return the standardJobTasks
      */
     public ArrayList<Task> getStandardJobTasks(String standardJobCode) {
-        return standardJobTaskMap.get(standardJobCode);
+        return standardJobTasksList;
         //return standardJob.getStandardJobTasks();
     }
 
@@ -419,7 +291,7 @@ public class Controller {
                 completionTime = rs.getTime("Deadline_CompletionTime_completion_time");
                 statusType = rs.getString("status_type");
 
-                job = new JobDetails(jobNumber, completionTime,
+                JobDetails job = new JobDetails(jobNumber, completionTime,
                         issuedBy, statusType, dateReceived, isCollected,
                         statusID);
                 jobList.add(job);
@@ -583,9 +455,9 @@ public class Controller {
         return success;
     }
 
-    public void setJobNumber(int jobNumber) {
+   /* public void setJobNumber(int jobNumber) {
         job.setJobNumber(jobNumber);
-    }
+    }*/
 
     public void getListOfJobNumbers(String statusType, String priority, int isCollected) {
         String SQL = "SELECT job_no from job\n"
@@ -662,7 +534,7 @@ public class Controller {
             }
 
             //Create a new job
-            job = new JobDetails(jobNumber, deadline, issuedBy, status, dateReceived, isCollected, statusID);
+            JobDetails job = new JobDetails(jobNumber, deadline, issuedBy, status, dateReceived, isCollected, statusID);
             //Add job to job list  
             jobList.add(job);
             //job.setStandardJobList(standardJobList);
@@ -695,7 +567,7 @@ public class Controller {
                 statusID = rs.getInt("status_id");
 
                 //Create a new standard job and add it to array list
-                standardJob = new StandardJob(code, description, price, status, statusID);
+                StandardJob standardJob = new StandardJob(code, description, price, status, statusID);
                 getStandardJobList().add(standardJob);
             }
 
@@ -720,7 +592,7 @@ public class Controller {
                 //Convert department code to department name
                 String departmentName = this.getDepartmentName(rs.getString("Department_department_code"));
                 //Create new task   
-                task = new Task(rs.getInt("task_id"), rs.getString("description"), rs.getInt("duration_min"), rs.getInt("shelf_slot"), rs.getDouble("price"),
+                Task task = new Task(rs.getInt("task_id"), rs.getString("description"), rs.getInt("duration_min"), rs.getInt("shelf_slot"), rs.getDouble("price"),
                         departmentName, rs.getString("status_type"), rs.getInt("status_id"));
                 //Add task to task array list
                 getTaskList().add(task);

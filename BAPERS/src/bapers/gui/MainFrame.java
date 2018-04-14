@@ -91,6 +91,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         customerNumberText = new javax.swing.JTextField();
         searchCustomerButton = new javax.swing.JButton();
+        backRecpHPButton = new javax.swing.JButton();
         taskSearchResultsJobEnquiryPage = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         standardJobCodeLabel = new javax.swing.JLabel();
@@ -367,7 +368,15 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Job no", "Issued by", "Deadline", "Status", "Collected"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jobSearchResultsTable);
 
         collectJobButton.setText("Collect");
@@ -382,22 +391,22 @@ public class MainFrame extends javax.swing.JFrame {
         jobSearchResultsPageLayout.setHorizontalGroup(
             jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
-                .addContainerGap(447, Short.MAX_VALUE)
+                .addContainerGap(553, Short.MAX_VALUE)
                 .addComponent(collectJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(75, 75, 75)
                 .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(139, 139, 139))
+                .addGap(32, 32, 32))
             .addGroup(jobSearchResultsPageLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(31, 31, 31)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jobSearchResultsPageLayout.setVerticalGroup(
             jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(backButon, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                     .addComponent(collectJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -437,14 +446,14 @@ public class MainFrame extends javax.swing.JFrame {
         jobEnquirySearchResultsPageLayout.setHorizontalGroup(
             jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jobEnquirySearchResultsPageLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(59, 59, 59)
                 .addGroup(jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jobEnquirySearchResultsPageLayout.createSequentialGroup()
                         .addComponent(backJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(40, 40, 40)
                         .addComponent(viewJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jobEnquirySearchResultsPageLayout.setVerticalGroup(
             jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,67 +518,71 @@ public class MainFrame extends javax.swing.JFrame {
         jobEnquiryPage.setLayout(jobEnquiryPageLayout);
         jobEnquiryPageLayout.setHorizontalGroup(
             jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
-                        .addComponent(jobNumberLabel1)
-                        .addGap(73, 73, 73)
-                        .addComponent(jobNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
-                        .addComponent(searchJobNumberJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jobEnquiryPageLayout.createSequentialGroup()
-                            .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jobPriorityLabel2)
-                                .addComponent(jobPriorityLabel))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jobCollectedComboBox, 0, 183, Short.MAX_VALUE)
-                                .addComponent(jobPriorityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jobEnquiryPageLayout.createSequentialGroup()
-                            .addComponent(jobStatusLabel)
-                            .addGap(47, 47, 47)
-                            .addComponent(jobStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(200, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobEnquiryPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jobPriorityLabel2)
+                                    .addComponent(jobPriorityLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jobCollectedComboBox, 0, 183, Short.MAX_VALUE)
+                                    .addComponent(jobPriorityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                                        .addComponent(jobNumberLabel1)
+                                        .addGap(40, 40, 40))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jobEnquiryPageLayout.createSequentialGroup()
+                                        .addComponent(jobStatusLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jobNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jobStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(searchJobNumberJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
                 .addComponent(searchJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
         jobEnquiryPageLayout.setVerticalGroup(
             jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jobEnquiryPageLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(searchJobNumberJobEnquiryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jobNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jobNumberLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(52, 52, 52)
+                .addGap(137, 137, 137)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jobNumberLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jobNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(searchJobNumberJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
+                .addGap(64, 64, 64)
                 .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jobStatusLabel)
                     .addComponent(jobStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jobPriorityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(jobPriorityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addGroup(jobEnquiryPageLayout.createSequentialGroup()
                         .addComponent(jobPriorityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
-                        .addComponent(jobPriorityLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(164, 164, 164)
-                        .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(searchJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50))
+                    .addComponent(jobPriorityLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addGroup(jobEnquiryPageLayout.createSequentialGroup()
                         .addComponent(jobCollectedComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(4, 4, 4)))
+                .addGap(115, 115, 115)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
 
         cardPanel1.add(jobEnquiryPage, "jobEnquiryPage");
@@ -598,50 +611,55 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        backRecpHPButton.setText("Back");
+        backRecpHPButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backRecpHPButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout searchJobPageLayout = new javax.swing.GroupLayout(searchJobPage);
         searchJobPage.setLayout(searchJobPageLayout);
         searchJobPageLayout.setHorizontalGroup(
             searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchJobPageLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jobNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchJobPageLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46)
-                        .addComponent(customerNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52)
-                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(searchJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jobNumberTextField)
+                            .addComponent(customerNumberText, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                        .addGap(52, 52, 52)
+                        .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(backRecpHPButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(77, Short.MAX_VALUE))
-            .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchJobPageLayout.createSequentialGroup()
-                    .addGap(55, 55, 55)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(629, Short.MAX_VALUE)))
         );
         searchJobPageLayout.setVerticalGroup(
             searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchJobPageLayout.createSequentialGroup()
                 .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(searchJobPageLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(searchJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchJobPageLayout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jobNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jobNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(searchJobPageLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(searchJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(57, 57, 57)
                 .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                     .addComponent(customerNumberText)
                     .addComponent(searchCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(324, Short.MAX_VALUE))
-            .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchJobPageLayout.createSequentialGroup()
-                    .addGap(183, 183, 183)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(418, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addComponent(backRecpHPButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
 
         cardPanel1.add(searchJobPage, "searchJobPage");
@@ -851,7 +869,15 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Task ID", "Description", "Location", "Shelf Slot"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(taskTable);
 
         editButton.setText("Edit");
@@ -872,30 +898,29 @@ public class MainFrame extends javax.swing.JFrame {
         manageTasksPage.setLayout(manageTasksPageLayout);
         manageTasksPageLayout.setHorizontalGroup(
             manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageTasksPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
             .addGroup(manageTasksPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+                .addGroup(manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+                    .addGroup(manageTasksPageLayout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         manageTasksPageLayout.setVerticalGroup(
             manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageTasksPageLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addGroup(manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                     .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(89, 89, 89))
+                .addGap(79, 79, 79))
         );
 
         cardPanel1.add(manageTasksPage, "manageTasksPage");
@@ -921,11 +946,11 @@ public class MainFrame extends javax.swing.JFrame {
         taskPageLayout.setHorizontalGroup(
             taskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(taskPageLayout.createSequentialGroup()
-                .addGap(199, 199, 199)
+                .addGap(252, 252, 252)
                 .addComponent(manageTasksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(152, 152, 152)
-                .addComponent(createTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(110, 110, 110)
+                .addComponent(createTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         taskPageLayout.setVerticalGroup(
             taskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1050,7 +1075,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(fileChosenField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(RestoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
 
         cardPanel1.add(restorePage, "restore");
@@ -1458,22 +1483,21 @@ public class MainFrame extends javax.swing.JFrame {
         standardJobSearchResultsJobEnquiryPage.setLayout(standardJobSearchResultsJobEnquiryPageLayout);
         standardJobSearchResultsJobEnquiryPageLayout.setHorizontalGroup(
             standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backJobSearchResultsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(viewStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
             .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
                 .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
                         .addGap(273, 273, 273)
                         .addComponent(jobNumberLabel)
                         .addGap(134, 134, 134)
-                        .addComponent(jobIndexLabel)))
+                        .addComponent(jobIndexLabel))
+                    .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                                .addComponent(backJobSearchResultsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(viewStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
@@ -1527,11 +1551,11 @@ public class MainFrame extends javax.swing.JFrame {
         receptionHomePageLayout.setHorizontalGroup(
             receptionHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(receptionHomePageLayout.createSequentialGroup()
-                .addGap(177, 177, 177)
+                .addGap(195, 195, 195)
                 .addComponent(jobReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(125, 125, 125)
                 .addComponent(acceptPaymentReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         receptionHomePageLayout.setVerticalGroup(
             receptionHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1790,9 +1814,9 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(editTaskPageLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(shelfSlotText, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(shelfSlotText, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                    .addComponent(priceText)))
                             .addGroup(editTaskPageLayout.createSequentialGroup()
                                 .addGap(71, 71, 71)
                                 .addComponent(departmentComboBox, 0, 0, Short.MAX_VALUE))))
@@ -2500,6 +2524,14 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+
+        //Get row index
+        if ((taskTable.getSelectedRow() < 0)) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        } else {
+            //Set task id 
+            taskIDText.setText(String.valueOf(taskTable.getModel().getValueAt(taskTable.getSelectedRow(), 0)));
+        }
         card1.show(cardPanel1, "editTaskPage");
 
 
@@ -2593,11 +2625,9 @@ public class MainFrame extends javax.swing.JFrame {
         if ((jobSearchResultsTable.getSelectedRow() < 0)) {
             JOptionPane.showMessageDialog(null, "Please select a row");
         } else {
-            
-            
             //Check row has values and job is completed and not collected     
             if ((jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 3).equals("Completed"))
-                    && (jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 4).equals("false"))) {
+                    && (jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 4).toString().equals("false"))) {
 
                 //Get job Number from table
                 jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 0);
@@ -2639,8 +2669,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         if (valid) {
             if (controller.doesJobExist(jobNumber, true)) {
-                //Get job information from controller and set it into java classes
-                controller.setStandardJobIntoJob(Integer.parseInt(jobNumber));
+                //Get job information from controller 
+                controller.searchAllJobsUnderCriteria(Integer.parseInt(jobNumber));
                 //Update table
                 updateCollectJobTable();
                 //Show job enquiry results page
@@ -2716,7 +2746,6 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backJobSearchResultsButtonActionPerformed
 
     private void searchJobNumberJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobNumberJobEnquiryButtonActionPerformed
-        // TODO add your handling code here:
         boolean valid = true;
         String jobNumber = jobNumberText.getText();
 
@@ -2726,7 +2755,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
         if (valid) {
             if (controller.doesJobExist(jobNumber, true)) {
-                //controller.setStandardJobIntoJob(Integer.parseInt(jobNumber));
                 controller.searchAllJobsUnderCriteria(Integer.parseInt(jobNumber));
                 //update table
                 this.updateJobEnquiryTable();
@@ -2805,13 +2833,13 @@ public class MainFrame extends javax.swing.JFrame {
             //Mark job and standard job as in progress
             controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
             controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
-            
+
             //Check if all tasks are completed
             if (controller.checkIfAllTasksAreCompleted(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
                 //Update standard job status
                 controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Completed");
 
-                 //Check if all standard jobs are completed
+                //Check if all standard jobs are completed
                 if (controller.checkIfAllStandardJobsAreCompleted(Integer.parseInt(jobNumberLabel.getText()))) {
                     //Update job status
                     controller.updateJobStatus("Completed", Integer.parseInt(jobIndexLabel.getText()));
@@ -2951,6 +2979,10 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_viewReminderLetterButtonActionPerformed
 
+    private void backRecpHPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backRecpHPButtonActionPerformed
+        card1.show(cardPanel1, "receptionistHomePage");
+    }//GEN-LAST:event_backRecpHPButtonActionPerformed
+
     private void updateTaskEnquiryTable(String standardJobCode) {
         DefaultTableModel taskTableModel = (DefaultTableModel) taskResultsTable.getModel();
         //taskTableModel.setRowCount(tasks.size());
@@ -3087,6 +3119,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton backCustomerPageButton;
     private javax.swing.JButton backJobEnquiryButton;
     private javax.swing.JButton backJobSearchResultsButton;
+    private javax.swing.JButton backRecpHPButton;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelButtonCreateTask;

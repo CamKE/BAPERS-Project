@@ -14,6 +14,20 @@ import java.util.ArrayList;
 public class StandardJob {
 
     /**
+     * @return the standardJobList
+     */
+    public ArrayList<StandardJob> getStandardJobList() {
+        return standardJobList;
+    }
+
+    /**
+     * @param standardJobList the standardJobList to set
+     */
+    public void setStandardJobList(ArrayList<StandardJob> standardJobList) {
+        this.standardJobList = standardJobList;
+    }
+
+    /**
      * @return the statusID
      */
     public int getStatusID() {
@@ -55,19 +69,6 @@ public class StandardJob {
         this.amountOfTasks = amountOfTasks;
     }
 
-    /**
-     * @return the standardJobTasks
-     */
-    public ArrayList<Task> getStandardJobTasks() {
-        return standardJobTasks;
-    }
-
-    /**
-     * @param standardJobTasks the standardJobTasks to set
-     */
-    public void setStandardJobTasks(ArrayList<Task> standardJobTasks) {
-        this.standardJobTasks = standardJobTasks;
-    }
 
     /**
      * @return the code
@@ -113,7 +114,7 @@ public class StandardJob {
     private String code;
     private String description;
     private double price;
-    private ArrayList<Task> standardJobTasks;
+    private ArrayList<StandardJob> standardJobList;
     private String status;
     private int amountOfTasks;
 private int statusID;
@@ -126,23 +127,6 @@ private int statusID;
         this.statusID = statusID; 
     }
 
-    public StandardJob(ArrayList<Task> standardJobTasks, String code, String description) {
 
-        //Add all tasks prices into price for standard job
-        for (int i = 0; i < standardJobTasks.size(); i++) {
-            this.price = price + standardJobTasks.get(i).getPrice();
-        }
-        this.standardJobTasks = new ArrayList<>();
-        this.code = code;
-        this.description = description;
-
-        System.out.println("Standard Job : " + code);
-        for (int i = 0; i < standardJobTasks.size(); i++) {
-            System.out.println("Task ID: " + standardJobTasks.get(i).getTaskID());
-            System.out.println("Task description: " + standardJobTasks.get(i).getDescription());
-        }
-        System.out.println("");
-
-    }
 
 }
