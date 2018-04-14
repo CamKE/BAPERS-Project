@@ -526,6 +526,90 @@ public class MainFrame extends javax.swing.JFrame {
         invoicejScrollPane = new javax.swing.JScrollPane();
         invoicejList = new javax.swing.JList<>();
         latePaymentSubmitjButton = new javax.swing.JButton();
+        technicianHomePage = new javax.swing.JPanel();
+        technicianPage = new javax.swing.JPanel();
+        jobEnquiryTechnician = new javax.swing.JButton();
+        taskPage = new javax.swing.JPanel();
+        manageTasksButton = new javax.swing.JButton();
+        createTaskButton = new javax.swing.JButton();
+        receptionistHomePage = new javax.swing.JPanel();
+        receptionHomePage = new javax.swing.JPanel();
+        jobReceptionist = new javax.swing.JButton();
+        acceptPaymentReceptionist = new javax.swing.JButton();
+        editTaskPage = new javax.swing.JPanel();
+        newDescriptionLabel = new javax.swing.JLabel();
+        newDescriptionLabel1 = new javax.swing.JLabel();
+        newDescriptionLabel2 = new javax.swing.JLabel();
+        newDescriptionLabel3 = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
+        descriptionText = new javax.swing.JTextField();
+        shelfSlotText = new javax.swing.JTextField();
+        priceText = new javax.swing.JTextField();
+        departmentComboBox = new javax.swing.JComboBox<>();
+        taskIDLabel = new javax.swing.JLabel();
+        taskIDText = new javax.swing.JTextField();
+        manageTasksPage = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        taskTable = new javax.swing.JTable();
+        editButton = new javax.swing.JButton();
+        deleteButton1 = new javax.swing.JButton();
+        officeManagerCustomerPage = new javax.swing.JPanel();
+        searchCustomerBtn = new javax.swing.JButton();
+        reminderLettersButton = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
+        reminderLettersTablePage = new javax.swing.JPanel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        reminderLettersTable = new javax.swing.JTable();
+        backCustomerPageButton = new javax.swing.JButton();
+        viewReminderLetterButton = new javax.swing.JButton();
+        taskSearchResultsJobEnquiryPage = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        standardJobCodeLabel = new javax.swing.JLabel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        taskResultsTable = new javax.swing.JTable();
+        updateTaskButton = new javax.swing.JButton();
+        taskEnquiryBackButton = new javax.swing.JButton();
+        standardJobIndexLabel = new javax.swing.JLabel();
+        searchJobPage = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jobNumberTextField = new javax.swing.JTextField();
+        searchJobButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        customerNumberText = new javax.swing.JTextField();
+        searchCustomerButton1 = new javax.swing.JButton();
+        backRecpHPButton = new javax.swing.JButton();
+        jobEnquiryPage = new javax.swing.JPanel();
+        jobStatusLabel = new javax.swing.JLabel();
+        jobNumberText = new javax.swing.JTextField();
+        searchJobNumberJobEnquiryButton = new javax.swing.JButton();
+        jobNumberLabel1 = new javax.swing.JLabel();
+        jobPriorityLabel = new javax.swing.JLabel();
+        jobPriorityLabel2 = new javax.swing.JLabel();
+        cancelJobEnquiryButton = new javax.swing.JButton();
+        searchJobEnquiryButton = new javax.swing.JButton();
+        jobStatusComboBox = new javax.swing.JComboBox<>();
+        jobCollectedComboBox = new javax.swing.JComboBox<>();
+        jobPriorityComboBox = new javax.swing.JComboBox<>();
+        jobEnquirySearchResultsPage = new javax.swing.JPanel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jobEnquiryTableResults = new javax.swing.JTable();
+        viewJobEnquiryButton = new javax.swing.JButton();
+        backJobEnquiryButton = new javax.swing.JButton();
+        jobSearchResultsPage = new javax.swing.JPanel();
+        backButon = new javax.swing.JButton();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        jobSearchResultsTable = new javax.swing.JTable();
+        collectJobButton = new javax.swing.JButton();
+        standardJobSearchResultsJobEnquiryPage = new javax.swing.JPanel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        standardJobResults = new javax.swing.JTable();
+        viewStandardJobButton = new javax.swing.JButton();
+        backJobSearchResultsButton = new javax.swing.JButton();
+        jobNumberLabel = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jobIndexLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -2537,7 +2621,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(materialsjTextField)
                             .addComponent(specialInstructionjTextField)
                             .addComponent(materialsjScrollPane1)
-                            .addComponent(stipulatedFields, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)))
+                            .addComponent(stipulatedFields, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)))
                     .addGroup(acceptJobPageLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(acceptJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2660,7 +2744,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(searchInvoicejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelInvoiceSeletionjButton)
                     .addComponent(selectSelectedInvoicejButton))
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout searchInvoicePageLayout = new javax.swing.GroupLayout(searchInvoicePage);
@@ -3514,12 +3598,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         searchInvoice.setMaximumSize(new java.awt.Dimension(900, 700));
         searchInvoice.setMinimumSize(new java.awt.Dimension(900, 700));
-        searchInvoice.setSize(new java.awt.Dimension(900, 700));
 
         searchInvoicejPanel1.setBackground(new java.awt.Color(61, 96, 146));
         searchInvoicejPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
         searchInvoicejPanel1.setPreferredSize(new java.awt.Dimension(900, 700));
-        searchInvoicejPanel1.setSize(new java.awt.Dimension(900, 700));
 
         invoicejTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -3550,7 +3632,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoiceByInvoiceNojTextField.setMaximumSize(new java.awt.Dimension(250, 42));
         searchInvoiceByInvoiceNojTextField.setMinimumSize(new java.awt.Dimension(250, 42));
         searchInvoiceByInvoiceNojTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByInvoiceNojTextField.setSize(new java.awt.Dimension(250, 42));
         searchInvoiceByInvoiceNojTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchInvoiceByInvoiceNojTextFieldActionPerformed(evt);
@@ -3565,7 +3646,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoiceByJobNumberjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
         searchInvoiceByJobNumberjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
         searchInvoiceByJobNumberjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByJobNumberjTextField.setSize(new java.awt.Dimension(250, 42));
         searchInvoiceByJobNumberjTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchInvoiceByJobNumberjTextFieldActionPerformed(evt);
@@ -3583,7 +3663,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoiceByInvoiceNojLabel.setMaximumSize(new java.awt.Dimension(124, 29));
         searchInvoiceByInvoiceNojLabel.setMinimumSize(new java.awt.Dimension(124, 29));
         searchInvoiceByInvoiceNojLabel.setPreferredSize(new java.awt.Dimension(124, 29));
-        searchInvoiceByInvoiceNojLabel.setSize(new java.awt.Dimension(124, 29));
 
         searchInvoiceByJobNumberjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         searchInvoiceByJobNumberjLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -3628,7 +3707,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelInvoiceSeletionjButton1)
                     .addComponent(selectSelectedInvoicejButton1))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout searchInvoiceLayout = new javax.swing.GroupLayout(searchInvoice);
@@ -3657,7 +3736,6 @@ public class MainFrame extends javax.swing.JFrame {
         AutoBackupConfigjPanel.setBackground(new java.awt.Color(61, 96, 146));
         AutoBackupConfigjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
         AutoBackupConfigjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
-        AutoBackupConfigjPanel.setSize(new java.awt.Dimension(900, 700));
 
         currentAutoBackupModeDatajTextField.setMaximumSize(new java.awt.Dimension(250, 42));
         currentAutoBackupModeDatajTextField.setMinimumSize(new java.awt.Dimension(250, 42));
@@ -3851,7 +3929,6 @@ public class MainFrame extends javax.swing.JFrame {
         SelectDiscountPlan.setBackground(new java.awt.Color(61, 96, 146));
         SelectDiscountPlan.setMaximumSize(new java.awt.Dimension(900, 700));
         SelectDiscountPlan.setMinimumSize(new java.awt.Dimension(900, 700));
-        SelectDiscountPlan.setSize(new java.awt.Dimension(900, 700));
 
         discountPlanTypejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         discountPlanTypejLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -3886,12 +3963,10 @@ public class MainFrame extends javax.swing.JFrame {
         DiscountTypeInformation.setBackground(new java.awt.Color(34, 54, 81));
         DiscountTypeInformation.setMaximumSize(new java.awt.Dimension(900, 500));
         DiscountTypeInformation.setMinimumSize(new java.awt.Dimension(900, 500));
-        DiscountTypeInformation.setSize(new java.awt.Dimension(900, 500));
 
         FixedDiscountType.setBackground(new java.awt.Color(34, 54, 81));
         FixedDiscountType.setMaximumSize(new java.awt.Dimension(900, 500));
         FixedDiscountType.setMinimumSize(new java.awt.Dimension(900, 500));
-        FixedDiscountType.setSize(new java.awt.Dimension(900, 500));
 
         fixedDiscountRatejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         fixedDiscountRatejLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -3939,16 +4014,13 @@ public class MainFrame extends javax.swing.JFrame {
         VariableDiscountType.setBackground(new java.awt.Color(34, 54, 81));
         VariableDiscountType.setMaximumSize(new java.awt.Dimension(900, 500));
         VariableDiscountType.setPreferredSize(new java.awt.Dimension(900, 500));
-        VariableDiscountType.setSize(new java.awt.Dimension(900, 500));
 
         JobsjPanel.setBackground(new java.awt.Color(34, 54, 81));
         JobsjPanel.setMaximumSize(new java.awt.Dimension(888, 504));
-        JobsjPanel.setSize(new java.awt.Dimension(888, 504));
 
         JobsjScrollPane.setMaximumSize(new java.awt.Dimension(700, 404));
         JobsjScrollPane.setMinimumSize(new java.awt.Dimension(700, 404));
         JobsjScrollPane.setPreferredSize(new java.awt.Dimension(700, 404));
-        JobsjScrollPane.setSize(new java.awt.Dimension(700, 404));
 
         JobsjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -3984,12 +4056,10 @@ public class MainFrame extends javax.swing.JFrame {
         StandardJobsjPanel.setBackground(new java.awt.Color(34, 54, 81));
         StandardJobsjPanel.setMaximumSize(new java.awt.Dimension(888, 504));
         StandardJobsjPanel.setMinimumSize(new java.awt.Dimension(888, 504));
-        StandardJobsjPanel.setSize(new java.awt.Dimension(888, 504));
 
         StandardJobsjScrollPane.setMaximumSize(new java.awt.Dimension(700, 404));
         StandardJobsjScrollPane.setMinimumSize(new java.awt.Dimension(700, 404));
         StandardJobsjScrollPane.setPreferredSize(new java.awt.Dimension(700, 404));
-        StandardJobsjScrollPane.setSize(new java.awt.Dimension(700, 404));
 
         StandardJobsjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -4021,12 +4091,10 @@ public class MainFrame extends javax.swing.JFrame {
         TasksjPanel.setBackground(new java.awt.Color(34, 54, 81));
         TasksjPanel.setMaximumSize(new java.awt.Dimension(888, 504));
         TasksjPanel.setPreferredSize(new java.awt.Dimension(888, 504));
-        TasksjPanel.setSize(new java.awt.Dimension(888, 504));
 
         TasksjScrollPane.setMaximumSize(new java.awt.Dimension(700, 404));
         TasksjScrollPane.setMinimumSize(new java.awt.Dimension(700, 404));
         TasksjScrollPane.setPreferredSize(new java.awt.Dimension(700, 404));
-        TasksjScrollPane.setSize(new java.awt.Dimension(700, 404));
 
         TaskjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -4102,7 +4170,6 @@ public class MainFrame extends javax.swing.JFrame {
         FlexiableDiscountType.setBackground(new java.awt.Color(34, 54, 81));
         FlexiableDiscountType.setMaximumSize(new java.awt.Dimension(900, 500));
         FlexiableDiscountType.setMinimumSize(new java.awt.Dimension(900, 500));
-        FlexiableDiscountType.setSize(new java.awt.Dimension(900, 500));
 
         boundjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         boundjLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -4317,7 +4384,6 @@ public class MainFrame extends javax.swing.JFrame {
         SelectCustomer.setBackground(new java.awt.Color(61, 96, 146));
         SelectCustomer.setMaximumSize(new java.awt.Dimension(900, 700));
         SelectCustomer.setMinimumSize(new java.awt.Dimension(900, 700));
-        SelectCustomer.setSize(new java.awt.Dimension(900, 700));
 
         customersjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -4365,7 +4431,6 @@ public class MainFrame extends javax.swing.JFrame {
         ViewCustomerDetail.setBackground(new java.awt.Color(61, 96, 146));
         ViewCustomerDetail.setMaximumSize(new java.awt.Dimension(900, 700));
         ViewCustomerDetail.setMinimumSize(new java.awt.Dimension(900, 700));
-        ViewCustomerDetail.setSize(new java.awt.Dimension(900, 700));
 
         CustomerInfo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -4672,7 +4737,6 @@ public class MainFrame extends javax.swing.JFrame {
         latePaymentSubmitjButton.setMaximumSize(new java.awt.Dimension(163, 37));
         latePaymentSubmitjButton.setMinimumSize(new java.awt.Dimension(163, 37));
         latePaymentSubmitjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        latePaymentSubmitjButton.setSize(new java.awt.Dimension(163, 37));
         latePaymentSubmitjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 latePaymentSubmitjButtonActionPerformed(evt);
@@ -4767,6 +4831,912 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(acceptPayment, "acceptPayment");
+
+        technicianPage.setBackground(new java.awt.Color(61, 96, 146));
+        technicianPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        technicianPage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        jobEnquiryTechnician.setText("Job Enquiry");
+        jobEnquiryTechnician.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobEnquiryTechnicianActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout technicianPageLayout = new javax.swing.GroupLayout(technicianPage);
+        technicianPage.setLayout(technicianPageLayout);
+        technicianPageLayout.setHorizontalGroup(
+            technicianPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(technicianPageLayout.createSequentialGroup()
+                .addGap(343, 343, 343)
+                .addComponent(jobEnquiryTechnician, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(361, Short.MAX_VALUE))
+        );
+        technicianPageLayout.setVerticalGroup(
+            technicianPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(technicianPageLayout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(jobEnquiryTechnician, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(299, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout technicianHomePageLayout = new javax.swing.GroupLayout(technicianHomePage);
+        technicianHomePage.setLayout(technicianHomePageLayout);
+        technicianHomePageLayout.setHorizontalGroup(
+            technicianHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, technicianHomePageLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(technicianPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        technicianHomePageLayout.setVerticalGroup(
+            technicianHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(technicianHomePageLayout.createSequentialGroup()
+                .addComponent(technicianPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(technicianHomePage, "technicianHomePage");
+
+        taskPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        manageTasksButton.setText("Manage Tasks");
+        manageTasksButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageTasksButtonActionPerformed(evt);
+            }
+        });
+
+        createTaskButton.setText("Create Task");
+        createTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createTaskButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout taskPageLayout = new javax.swing.GroupLayout(taskPage);
+        taskPage.setLayout(taskPageLayout);
+        taskPageLayout.setHorizontalGroup(
+            taskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskPageLayout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(manageTasksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
+                .addComponent(createTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(252, Short.MAX_VALUE))
+        );
+        taskPageLayout.setVerticalGroup(
+            taskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskPageLayout.createSequentialGroup()
+                .addGap(267, 267, 267)
+                .addGroup(taskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manageTasksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(284, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(taskPage, "taskPage");
+
+        receptionHomePage.setBackground(new java.awt.Color(61, 96, 146));
+        receptionHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
+        receptionHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
+
+        jobReceptionist.setText("Job");
+        jobReceptionist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobReceptionistActionPerformed(evt);
+            }
+        });
+
+        acceptPaymentReceptionist.setText("Accept Payment");
+        acceptPaymentReceptionist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptPaymentReceptionistActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout receptionHomePageLayout = new javax.swing.GroupLayout(receptionHomePage);
+        receptionHomePage.setLayout(receptionHomePageLayout);
+        receptionHomePageLayout.setHorizontalGroup(
+            receptionHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receptionHomePageLayout.createSequentialGroup()
+                .addGap(195, 195, 195)
+                .addComponent(jobReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addComponent(acceptPaymentReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(206, Short.MAX_VALUE))
+        );
+        receptionHomePageLayout.setVerticalGroup(
+            receptionHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receptionHomePageLayout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addGroup(receptionHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jobReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(acceptPaymentReceptionist, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(283, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout receptionistHomePageLayout = new javax.swing.GroupLayout(receptionistHomePage);
+        receptionistHomePage.setLayout(receptionistHomePageLayout);
+        receptionistHomePageLayout.setHorizontalGroup(
+            receptionistHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, receptionistHomePageLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(receptionHomePage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        receptionistHomePageLayout.setVerticalGroup(
+            receptionistHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receptionistHomePageLayout.createSequentialGroup()
+                .addComponent(receptionHomePage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(receptionistHomePage, "receptionistHomePage");
+
+        editTaskPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        newDescriptionLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        newDescriptionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        newDescriptionLabel.setText("New Description");
+
+        newDescriptionLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        newDescriptionLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        newDescriptionLabel1.setText("New Department");
+
+        newDescriptionLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        newDescriptionLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        newDescriptionLabel2.setText("New Price");
+
+        newDescriptionLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        newDescriptionLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        newDescriptionLabel3.setText("New Shelf Slot");
+
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        departmentComboBox.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        departmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Copy Room", "Development Area", "Dark Room", "Finishing Room", "Packaging Department", "Printing Room", " " }));
+
+        taskIDLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        taskIDLabel.setForeground(new java.awt.Color(255, 255, 255));
+        taskIDLabel.setText("Task ID");
+
+        javax.swing.GroupLayout editTaskPageLayout = new javax.swing.GroupLayout(editTaskPage);
+        editTaskPage.setLayout(editTaskPageLayout);
+        editTaskPageLayout.setHorizontalGroup(
+            editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editTaskPageLayout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTaskPageLayout.createSequentialGroup()
+                        .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newDescriptionLabel3)
+                            .addComponent(newDescriptionLabel1)
+                            .addComponent(newDescriptionLabel2))
+                        .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editTaskPageLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(shelfSlotText, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                                    .addComponent(priceText)))
+                            .addGroup(editTaskPageLayout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(departmentComboBox, 0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTaskPageLayout.createSequentialGroup()
+                        .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(taskIDLabel)
+                            .addComponent(newDescriptionLabel))
+                        .addGap(82, 82, 82)
+                        .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(descriptionText, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                            .addComponent(taskIDText))))
+                .addContainerGap(193, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTaskPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(121, 121, 121))
+        );
+        editTaskPageLayout.setVerticalGroup(
+            editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editTaskPageLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(taskIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(taskIDText))
+                .addGap(18, 18, 18)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(descriptionText)
+                    .addComponent(newDescriptionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newDescriptionLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(departmentComboBox))
+                .addGap(27, 27, 27)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(shelfSlotText)
+                    .addComponent(newDescriptionLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newDescriptionLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(priceText))
+                .addGap(86, 86, 86)
+                .addGroup(editTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91))
+        );
+
+        cardPanel1.add(editTaskPage, "editTaskPage");
+
+        manageTasksPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        taskTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Task ID", "Description", "Location", "Shelf Slot"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane12.setViewportView(taskTable);
+
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton1.setText("Delete");
+        deleteButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout manageTasksPageLayout = new javax.swing.GroupLayout(manageTasksPage);
+        manageTasksPage.setLayout(manageTasksPageLayout);
+        manageTasksPageLayout.setHorizontalGroup(
+            manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageTasksPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+                    .addGroup(manageTasksPageLayout.createSequentialGroup()
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        manageTasksPageLayout.setVerticalGroup(
+            manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageTasksPageLayout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(manageTasksPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(79, 79, 79))
+        );
+
+        cardPanel1.add(manageTasksPage, "manageTasksPage");
+
+        officeManagerCustomerPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        searchCustomerBtn.setText("Search Customer");
+        searchCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomerBtnActionPerformed(evt);
+            }
+        });
+
+        reminderLettersButton.setText("Reminder letters");
+        reminderLettersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reminderLettersButtonActionPerformed(evt);
+            }
+        });
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout officeManagerCustomerPageLayout = new javax.swing.GroupLayout(officeManagerCustomerPage);
+        officeManagerCustomerPage.setLayout(officeManagerCustomerPageLayout);
+        officeManagerCustomerPageLayout.setHorizontalGroup(
+            officeManagerCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, officeManagerCustomerPageLayout.createSequentialGroup()
+                .addContainerGap(215, Short.MAX_VALUE)
+                .addComponent(reminderLettersButton)
+                .addGap(156, 156, 156)
+                .addComponent(searchCustomerBtn)
+                .addGap(227, 227, 227))
+            .addGroup(officeManagerCustomerPageLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        officeManagerCustomerPageLayout.setVerticalGroup(
+            officeManagerCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeManagerCustomerPageLayout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addGroup(officeManagerCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reminderLettersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
+        );
+
+        cardPanel1.add(officeManagerCustomerPage, "officeManagerCustomerPage");
+
+        reminderLettersTablePage.setBackground(new java.awt.Color(61, 96, 146));
+
+        reminderLettersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Customer name", "Invoice number", "Date", "Total amount"
+            }
+        ));
+        jScrollPane13.setViewportView(reminderLettersTable);
+
+        backCustomerPageButton.setText("Back");
+        backCustomerPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backCustomerPageButtonActionPerformed(evt);
+            }
+        });
+
+        viewReminderLetterButton.setText("Create PDF");
+        viewReminderLetterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReminderLetterButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout reminderLettersTablePageLayout = new javax.swing.GroupLayout(reminderLettersTablePage);
+        reminderLettersTablePage.setLayout(reminderLettersTablePageLayout);
+        reminderLettersTablePageLayout.setHorizontalGroup(
+            reminderLettersTablePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reminderLettersTablePageLayout.createSequentialGroup()
+                .addGroup(reminderLettersTablePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(reminderLettersTablePageLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backCustomerPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(viewReminderLetterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, reminderLettersTablePageLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        reminderLettersTablePageLayout.setVerticalGroup(
+            reminderLettersTablePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reminderLettersTablePageLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(reminderLettersTablePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(backCustomerPageButton, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(viewReminderLetterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(reminderLettersTablePage, "reminderLettersTablePage");
+
+        taskSearchResultsJobEnquiryPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Standard Job Code: ");
+
+        standardJobCodeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        standardJobCodeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        standardJobCodeLabel.setText("(Code) ");
+
+        taskResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Task ID", "Description", "Location", "Shelf slot", "Status"
+            }
+        ));
+        jScrollPane14.setViewportView(taskResultsTable);
+
+        updateTaskButton.setText("Update");
+        updateTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateTaskButtonActionPerformed(evt);
+            }
+        });
+
+        taskEnquiryBackButton.setText("Back");
+        taskEnquiryBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taskEnquiryBackButtonActionPerformed(evt);
+            }
+        });
+
+        standardJobIndexLabel.setBackground(new java.awt.Color(61, 96, 146));
+        standardJobIndexLabel.setForeground(new java.awt.Color(61, 96, 146));
+        standardJobIndexLabel.setText("Hidden");
+
+        javax.swing.GroupLayout taskSearchResultsJobEnquiryPageLayout = new javax.swing.GroupLayout(taskSearchResultsJobEnquiryPage);
+        taskSearchResultsJobEnquiryPage.setLayout(taskSearchResultsJobEnquiryPageLayout);
+        taskSearchResultsJobEnquiryPageLayout.setHorizontalGroup(
+            taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addGroup(taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(taskSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(standardJobCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(standardJobIndexLabel)))
+                    .addGroup(taskSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(taskEnquiryBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateTaskButton)))
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+        taskSearchResultsJobEnquiryPageLayout.setVerticalGroup(
+            taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taskSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standardJobCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standardJobIndexLabel))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addGroup(taskSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(taskEnquiryBackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(taskSearchResultsJobEnquiryPage, "taskSearchResultsJobEnquiryPage");
+
+        searchJobPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Customer Number:");
+
+        searchJobButton.setText("Search Job");
+        searchJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchJobButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Job Number:");
+
+        searchCustomerButton1.setText("Search Customer");
+        searchCustomerButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomerButton1ActionPerformed(evt);
+            }
+        });
+
+        backRecpHPButton.setText("Back");
+        backRecpHPButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backRecpHPButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchJobPageLayout = new javax.swing.GroupLayout(searchJobPage);
+        searchJobPage.setLayout(searchJobPageLayout);
+        searchJobPageLayout.setHorizontalGroup(
+            searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchJobPageLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchJobPageLayout.createSequentialGroup()
+                        .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jobNumberTextField)
+                            .addComponent(customerNumberText, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                        .addGap(52, 52, 52)
+                        .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(searchJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchCustomerButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(backRecpHPButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+        searchJobPageLayout.setVerticalGroup(
+            searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchJobPageLayout.createSequentialGroup()
+                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchJobPageLayout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jobNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(searchJobPageLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(searchJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(57, 57, 57)
+                .addGroup(searchJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(customerNumberText)
+                    .addComponent(searchCustomerButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addComponent(backRecpHPButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
+        );
+
+        cardPanel1.add(searchJobPage, "searchJobPage");
+
+        jobEnquiryPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jobStatusLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jobStatusLabel.setText("Job Status: ");
+
+        jobNumberText.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        searchJobNumberJobEnquiryButton.setText("Search");
+        searchJobNumberJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchJobNumberJobEnquiryButtonActionPerformed(evt);
+            }
+        });
+
+        jobNumberLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobNumberLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jobNumberLabel1.setText("Job Number:");
+
+        jobPriorityLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobPriorityLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jobPriorityLabel.setText("Job Priority:");
+
+        jobPriorityLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobPriorityLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jobPriorityLabel2.setText("Collected:");
+
+        cancelJobEnquiryButton.setText("Cancel");
+
+        searchJobEnquiryButton.setText("Search");
+        searchJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchJobEnquiryButtonActionPerformed(evt);
+            }
+        });
+
+        jobStatusComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jobStatusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In progress", "Completed", "Not started" }));
+
+        jobCollectedComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jobCollectedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Yes" }));
+
+        jobPriorityComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jobPriorityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "normal", "urgent", "stipulated", " " }));
+
+        javax.swing.GroupLayout jobEnquiryPageLayout = new javax.swing.GroupLayout(jobEnquiryPage);
+        jobEnquiryPage.setLayout(jobEnquiryPageLayout);
+        jobEnquiryPageLayout.setHorizontalGroup(
+            jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobEnquiryPageLayout.createSequentialGroup()
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jobPriorityLabel2)
+                                    .addComponent(jobPriorityLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jobCollectedComboBox, 0, 183, Short.MAX_VALUE)
+                                    .addComponent(jobPriorityComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                                        .addComponent(jobNumberLabel1)
+                                        .addGap(40, 40, 40))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jobEnquiryPageLayout.createSequentialGroup()
+                                        .addComponent(jobStatusLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jobNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jobStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(searchJobNumberJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addComponent(searchJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
+        );
+        jobEnquiryPageLayout.setVerticalGroup(
+            jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jobNumberLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jobNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(searchJobNumberJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
+                .addGap(64, 64, 64)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobStatusLabel)
+                    .addComponent(jobStatusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobPriorityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(jobPriorityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobPriorityLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jobEnquiryPageLayout.createSequentialGroup()
+                        .addComponent(jobCollectedComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
+                .addGap(115, 115, 115)
+                .addGroup(jobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+        );
+
+        cardPanel1.add(jobEnquiryPage, "jobEnquiryPage");
+
+        jobEnquirySearchResultsPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        jobEnquiryTableResults.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Job Number", "Issued By", "Date recorded", "Deadline", "Status"
+            }
+        ));
+        jScrollPane15.setViewportView(jobEnquiryTableResults);
+
+        viewJobEnquiryButton.setText("View");
+        viewJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJobEnquiryButtonActionPerformed(evt);
+            }
+        });
+
+        backJobEnquiryButton.setText("Back");
+        backJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJobEnquiryButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jobEnquirySearchResultsPageLayout = new javax.swing.GroupLayout(jobEnquirySearchResultsPage);
+        jobEnquirySearchResultsPage.setLayout(jobEnquirySearchResultsPageLayout);
+        jobEnquirySearchResultsPageLayout.setHorizontalGroup(
+            jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobEnquirySearchResultsPageLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jobEnquirySearchResultsPageLayout.createSequentialGroup()
+                        .addComponent(backJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(viewJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        jobEnquirySearchResultsPageLayout.setVerticalGroup(
+            jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jobEnquirySearchResultsPageLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jobEnquirySearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backJobEnquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(jobEnquirySearchResultsPage, "jobEnquirySearchResultsPage");
+
+        jobSearchResultsPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        backButon.setText("Back");
+        backButon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButonActionPerformed(evt);
+            }
+        });
+
+        jobSearchResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Job no", "Issued by", "Deadline", "Status", "Collected"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane16.setViewportView(jobSearchResultsTable);
+
+        collectJobButton.setText("Collect");
+        collectJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collectJobButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jobSearchResultsPageLayout = new javax.swing.GroupLayout(jobSearchResultsPage);
+        jobSearchResultsPage.setLayout(jobSearchResultsPageLayout);
+        jobSearchResultsPageLayout.setHorizontalGroup(
+            jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
+                .addContainerGap(553, Short.MAX_VALUE)
+                .addComponent(collectJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addComponent(backButon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+            .addGroup(jobSearchResultsPageLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jobSearchResultsPageLayout.setVerticalGroup(
+            jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jobSearchResultsPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(jobSearchResultsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(backButon, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                    .addComponent(collectJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(90, 90, 90))
+        );
+
+        cardPanel1.add(jobSearchResultsPage, "jobSearchResultsPage");
+
+        standardJobSearchResultsJobEnquiryPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        standardJobResults.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        standardJobResults.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Code", "Description", "Status"
+            }
+        ));
+        jScrollPane17.setViewportView(standardJobResults);
+
+        viewStandardJobButton.setText("View");
+        viewStandardJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStandardJobButtonActionPerformed(evt);
+            }
+        });
+
+        backJobSearchResultsButton.setText("Back");
+        backJobSearchResultsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJobSearchResultsButtonActionPerformed(evt);
+            }
+        });
+
+        jobNumberLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jobNumberLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jobNumberLabel.setText("(JN)");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Job Number: ");
+
+        jobIndexLabel.setBackground(new java.awt.Color(61, 96, 146));
+        jobIndexLabel.setForeground(new java.awt.Color(61, 96, 146));
+        jobIndexLabel.setText("jLabel4");
+
+        javax.swing.GroupLayout standardJobSearchResultsJobEnquiryPageLayout = new javax.swing.GroupLayout(standardJobSearchResultsJobEnquiryPage);
+        standardJobSearchResultsJobEnquiryPage.setLayout(standardJobSearchResultsJobEnquiryPageLayout);
+        standardJobSearchResultsJobEnquiryPageLayout.setHorizontalGroup(
+            standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(jobNumberLabel)
+                        .addGap(134, 134, 134)
+                        .addComponent(jobIndexLabel))
+                    .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                                .addComponent(backJobSearchResultsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(viewStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                    .addGap(45, 45, 45)
+                    .addComponent(jLabel9)
+                    .addContainerGap(639, Short.MAX_VALUE)))
+        );
+        standardJobSearchResultsJobEnquiryPageLayout.setVerticalGroup(
+            standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jobNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jobIndexLabel))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backJobSearchResultsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(standardJobSearchResultsJobEnquiryPageLayout.createSequentialGroup()
+                    .addGap(43, 43, 43)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(554, Short.MAX_VALUE)))
+        );
+
+        cardPanel1.add(standardJobSearchResultsJobEnquiryPage, "standardJobSearchResultsJobEnquiryPage");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -6838,6 +7808,487 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /*
+    
+    Joseph
+    
+    */
+    
+    
+    private void jobEnquiryTechnicianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobEnquiryTechnicianActionPerformed
+        card1.show(cardPanel1, "jobEnquiryPage");
+    }//GEN-LAST:event_jobEnquiryTechnicianActionPerformed
+
+    private void manageTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTasksButtonActionPerformed
+        //Get task information from controller class
+        updateTaskTable();
+        card1.show(cardPanel1, "manageTasksPage");
+
+    }//GEN-LAST:event_manageTasksButtonActionPerformed
+
+    private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
+        card1.show(cardPanel1, "createNewTask");
+    }//GEN-LAST:event_createTaskButtonActionPerformed
+
+    private void jobReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobReceptionistActionPerformed
+        card1.show(cardPanel1, "searchJobPage");
+    }//GEN-LAST:event_jobReceptionistActionPerformed
+
+    private void acceptPaymentReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentReceptionistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptPaymentReceptionistActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        card1.show(cardPanel1, "manageTasksPage");
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        //Initialise values:
+        boolean valid = true;
+        String taskID = taskIDText.getText();
+        String description = descriptionText.getText();
+        String department = (String) departmentComboBox.getSelectedItem();
+        String shelfSlot = (shelfSlotText.getText());
+        String price = (priceText.getText());
+        //String is used for price and shelfSlot but will be converted to int/double when checking values below
+
+        //Preconditions:
+        if (description.equals("") || department.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Please insert data");
+        }
+        //Check shelf slot value is numeric
+        try {
+            Integer.parseInt(shelfSlot);
+        } catch (NumberFormatException e) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter numeric values for shelfSlot");
+        }
+        //Check if price value is numeric
+        try {
+            Double.parseDouble(price);
+        } catch (NumberFormatException e) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter numeric values for price");
+        }
+        //Check if task is numeric
+        try {
+            Integer.parseInt(price);
+        } catch (NumberFormatException e) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter numeric values for Task ID");
+        }
+
+        //Save new values for task
+        if (valid) {
+
+            if (controller.doesTaskExist(taskID)) {
+                if (controller.updateTask(Integer.parseInt(taskID), description, Integer.parseInt(shelfSlot), Double.parseDouble(price), department)) {
+                    JOptionPane.showMessageDialog(null, "Failed to update task");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Task Updated");
+                    //Update Task table
+                    deleteTaskTableInformation();
+                    updateTaskTable();
+                    card1.show(cardPanel1, "manageTasksPage");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Task does not exist");
+            }
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.deleteTaskTableInformation();
+        card1.show(cardPanel1, "taskPage");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+
+        //Get row index
+        if ((taskTable.getSelectedRow() < 0)) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        } else {
+            //Set task id
+            taskIDText.setText(String.valueOf(taskTable.getModel().getValueAt(taskTable.getSelectedRow(), 0)));
+        }
+        card1.show(cardPanel1, "editTaskPage");
+
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void deleteButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButton1ActionPerformed
+
+        int taskID = -1;
+
+        if ((taskTable.getSelectedRow() >= 0)) {
+            //Get task id from table
+            taskID = (Integer) taskTable.getModel().getValueAt(taskTable.getSelectedRow(), 0);
+            //Delete task from table
+
+            if (!controller.deleteTask(taskID)) {
+                //Update new Task table
+                deleteTaskTableInformation();
+                updateTaskTable();
+            } else {
+                JOptionPane.showMessageDialog(null, "Please select a row");
+            }
+        }
+    }//GEN-LAST:event_deleteButton1ActionPerformed
+
+    private void searchCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchCustomerBtnActionPerformed
+
+    private void reminderLettersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reminderLettersButtonActionPerformed
+        this.updateReminderLettersTable();
+        card1.show(cardPanel1, "reminderLettersTablePage");
+        //Update reminder letters table
+    }//GEN-LAST:event_reminderLettersButtonActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        card1.show(cardPanel1, "officeManagerHomePage");
+        card2.show(cardPanel2, "homePageOMBar");
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void backCustomerPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backCustomerPageButtonActionPerformed
+        this.deleteReminderLettersTableInformation();
+        card1.show(cardPanel1, "officeManagerCustomerPage");
+    }//GEN-LAST:event_backCustomerPageButtonActionPerformed
+
+    private void viewReminderLetterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReminderLetterButtonActionPerformed
+        // TODO add your handling code here:
+        /*  if (reminderLettersTable.getSelectedRow() >= 0) {
+
+            try {
+                Document document = new Document();
+                try {
+                    PdfWriter.getInstance(document, new FileOutputStream("ReminderLetter.pdf"));
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(MainFrameJr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                document.open();
+                document.add(new Paragraph("Invoice reminder"));
+                document.add(new Paragraph("  "));
+                PdfPTable pdfTable = new PdfPTable(reminderLettersTable.getColumnCount());
+                //adding table headers
+                for (int i = 0; i < reminderLettersTable.getColumnCount(); i++) {
+                    pdfTable.addCell(reminderLettersTable.getColumnName(i));
+                }
+
+                //Convert date to string
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+                //Add rows to table
+                String date = dateFormat.format(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getDate());
+                pdfTable.addCell(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getCustomerName());
+                pdfTable.addCell(String.valueOf(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getInvoiceNumber()));
+                pdfTable.addCell(date);
+                pdfTable.addCell(String.valueOf(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getAmountDue()));
+
+                document.add(pdfTable);
+                document.add(new Paragraph("According to our records, "
+                    + "it appears that we have not yet received payment of the above invoice,"
+                    + "for photographic work done in our laboratory. "));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("We would appreciate payment at your earliest convenience."));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("If you have already sent a payment to us recently, please accept our apologies. "));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Yours sincereley,"));
+            document.add(new Paragraph("   G. Lancaster "));
+            document.close();
+            JOptionPane.showMessageDialog(null, "PDF Sucessfully created");
+        } catch (DocumentException ex) {
+            Logger.getLogger(MainFrameJr.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }*/
+    }//GEN-LAST:event_viewReminderLetterButtonActionPerformed
+
+    private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
+
+        int taskID = -1;
+        //Get row index
+        if ((taskResultsTable.getSelectedRow() >= 0)) {
+            //Check row has values
+            if (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0) != null) {
+                taskID = (Integer) (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0));
+                Object[] possibilities = {"Completed", "In progress", "Not started"};
+                String taskStatus = (String) JOptionPane.showInputDialog(null, "Update Task ID: " + taskID, "Task Update", JOptionPane.PLAIN_MESSAGE, null, possibilities, "In progress");
+
+                controller.updateTaskStatusInDatabase(taskStatus, taskResultsTable.getSelectedRow());
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+
+        //Check if standard job is in progress
+        if (controller.checkIfStandardJobIsInProgress(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
+            //Mark job and standard job as in progress
+            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
+            controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
+
+            //Check if all tasks are completed
+            if (controller.checkIfAllTasksAreCompleted(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
+                //Update standard job status
+                controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Completed");
+
+                //Check if all standard jobs are completed
+                if (controller.checkIfAllStandardJobsAreCompleted(Integer.parseInt(jobNumberLabel.getText()))) {
+                    //Update job status
+                    controller.updateJobStatus("Completed", Integer.parseInt(jobIndexLabel.getText()));
+                } else {
+                    controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
+                }
+            } else {
+                controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
+            }
+
+        } else {
+            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Not started");
+            //Check if job is in progress
+            if (controller.checkIfJobIsInProgress(Integer.parseInt(jobNumberLabel.getText()))) {
+                controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
+            } else {
+                controller.updateJobStatus("Not started", Integer.parseInt(jobIndexLabel.getText()));
+            }
+        }
+
+        //Update task table
+        this.deleteTaskEnquiryTableInformation();
+        this.updateTaskEnquiryTable(standardJobCodeLabel.getText());
+        //Update standard job table
+        this.deleteStandardJobTableInformation();
+        this.updateStandardJobTable();
+        //Update job table
+        this.deleteJobEnquiryTable();
+        this.updateJobEnquiryTable();
+    }//GEN-LAST:event_updateTaskButtonActionPerformed
+
+    private void taskEnquiryBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskEnquiryBackButtonActionPerformed
+        this.deleteTaskEnquiryTableInformation();
+        controller.clearTaskList();
+        card1.show(cardPanel1, "standardJobSearchResultsJobEnquiryPage");
+    }//GEN-LAST:event_taskEnquiryBackButtonActionPerformed
+
+    private void searchJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobButtonActionPerformed
+        boolean valid = true;
+        String jobNumber = jobNumberTextField.getText();
+
+        if (jobNumber.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter a job number");
+        }
+
+        if (valid) {
+            if (controller.doesJobExist(jobNumber, true)) {
+                //Get job information from controller
+                controller.searchAllJobsUnderCriteria(Integer.parseInt(jobNumber));
+                //Update table
+                updateCollectJobTable();
+                //Show job enquiry results page
+                card1.show(cardPanel1, "jobSearchResultsPage");
+            } else {
+                JOptionPane.showMessageDialog(null, "Job number does not exist");
+            }
+        }
+    }//GEN-LAST:event_searchJobButtonActionPerformed
+
+    private void searchCustomerButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButton1ActionPerformed
+        boolean valid = true;
+        String customerNumber = customerNumberText.getText();
+
+        if (customerNumber.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter a customer number");
+        }
+        if (valid) {
+            if (controller.doesJobExist(customerNumber, false)) {
+                controller.addJob(customerNumber);
+                updateCollectJobTable();
+                card1.show(cardPanel1, "jobSearchResultsPage");
+            } else {
+                JOptionPane.showMessageDialog(null, "Customer number does not exist");
+            }
+
+        }
+    }//GEN-LAST:event_searchCustomerButton1ActionPerformed
+
+    private void backRecpHPButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backRecpHPButtonActionPerformed
+        card1.show(cardPanel1, "receptionistHomePage");
+    }//GEN-LAST:event_backRecpHPButtonActionPerformed
+
+    private void searchJobNumberJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobNumberJobEnquiryButtonActionPerformed
+        boolean valid = true;
+        String jobNumber = jobNumberText.getText();
+
+        if (jobNumber.equals("")) {
+            valid = false;
+            JOptionPane.showMessageDialog(null, "Enter a job number");
+        }
+        if (valid) {
+            if (controller.doesJobExist(jobNumber, true)) {
+                controller.searchAllJobsUnderCriteria(Integer.parseInt(jobNumber));
+                //update table
+                this.updateJobEnquiryTable();
+                card1.show(cardPanel1, "jobEnquirySearchResultsPage");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Job number does not exist");
+            }
+
+        }
+    }//GEN-LAST:event_searchJobNumberJobEnquiryButtonActionPerformed
+
+    private void searchJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchJobEnquiryButtonActionPerformed
+        String status = (String) jobStatusComboBox.getSelectedItem();
+        String priority = (String) jobPriorityComboBox.getSelectedItem();
+        String collected = (String) jobCollectedComboBox.getSelectedItem();
+
+        boolean valid = true;
+
+        //Check if user wants to search for a collected job in progress
+        if (collected.equals("Yes") && status.equals("In progress")) {
+            JOptionPane.showMessageDialog(null, "Invalid search criteria");
+            valid = false;
+        }
+
+        int collectedValue;
+        if (collected.equals("No")) {
+            collectedValue = 0;
+        } else {
+            collectedValue = 1;
+        }
+
+        if (valid) {
+            if (controller.doesJobUnderJobCriteriaExist(status, priority, collectedValue)) {
+                controller.getListOfJobNumbers(status, priority, collectedValue);
+                this.updateJobEnquiryTable();
+                card1.show(cardPanel1, "jobEnquirySearchResultsPage");
+            } else {
+                JOptionPane.showMessageDialog(null, "No jobs exists");
+            }
+        }
+    }//GEN-LAST:event_searchJobEnquiryButtonActionPerformed
+
+    private void viewJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJobEnquiryButtonActionPerformed
+
+        int jobNumber = -1;
+        //Get row index
+        if ((jobEnquiryTableResults.getSelectedRow() >= 0)) {
+            //Check row has values
+            if (jobEnquiryTableResults.getModel().getValueAt(jobEnquiryTableResults.getSelectedRow(), 0) != null) {
+
+                //Get job Number from table
+                jobNumber = (Integer) jobEnquiryTableResults.getModel().getValueAt(jobEnquiryTableResults.getSelectedRow(), 0);
+                jobNumberLabel.setText(Integer.toString(jobNumber));
+                jobIndexLabel.setText(String.valueOf(jobEnquiryTableResults.getSelectedRow()));
+
+                //Get standard jobs from job number
+                controller.getStandardJobsFromJobNumber(jobNumber);
+
+                //Update standard job table
+                this.updateStandardJobTable();
+                //Show standard job search results
+                card1.show(cardPanel1, "standardJobSearchResultsJobEnquiryPage");
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is still in progress");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+
+    }//GEN-LAST:event_viewJobEnquiryButtonActionPerformed
+
+    private void backJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJobEnquiryButtonActionPerformed
+        controller.clearJob();
+        controller.clearStandardJobTasks();
+        this.deleteJobEnquiryTable();
+        card1.show(cardPanel1, "jobEnquiryPage");
+    }//GEN-LAST:event_backJobEnquiryButtonActionPerformed
+
+    private void backButonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButonActionPerformed
+        this.deleteJobTableInformation();
+        controller.clearJob();
+        card1.show(cardPanel1, "searchJobPage");
+    }//GEN-LAST:event_backButonActionPerformed
+
+    private void collectJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectJobButtonActionPerformed
+
+        int jobNumber = -1;
+        //Get row index
+        if ((jobSearchResultsTable.getSelectedRow() < 0)) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        } else {
+            //Check row has values and job is completed and not collected
+            if ((jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 3).equals("Completed"))
+                && (jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 4).toString().equals("false"))) {
+
+                //Get job Number from table
+                jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 0);
+
+                //Check if customer is valued
+                if (controller.isCustomerValued(jobNumber)) {
+                    int dialogResult = JOptionPane.showConfirmDialog(null, "Would You Like to pay later?");
+                    if (dialogResult == JOptionPane.NO_OPTION) {
+                        //Parse to payment page with invoice number
+                        System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber(jobNumber) + ", job number is: " + jobNumber);
+                        //Insert code for job payment here ...
+                    }
+                } else {
+                    System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber(jobNumber) + ", job number is: " + jobNumber);
+                    //Insert code for job payment here ...
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Job cannot be collected");
+            }
+        }
+
+    }//GEN-LAST:event_collectJobButtonActionPerformed
+
+    private void viewStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStandardJobButtonActionPerformed
+
+        String standardJobCode = "";
+        //Get row index
+        if ((standardJobResults.getSelectedRow() >= 0)) {
+            //Check row has values
+            if (standardJobResults.getModel().getValueAt(standardJobResults.getSelectedRow(), 0) != null) {
+
+                //Get job Number from table
+                standardJobCode = (String) standardJobResults.getModel().getValueAt(standardJobResults.getSelectedRow(), 0);
+                //Set title text
+                standardJobCodeLabel.setText(standardJobCode);
+
+                //Get task information
+                controller.getTasksFromStandardJobCode(standardJobCode, Integer.parseInt(jobNumberLabel.getText()));
+                //Update standard job table
+                this.updateTaskEnquiryTable(standardJobCode);
+                //Show standard job search results
+                card1.show(cardPanel1, "taskSearchResultsJobEnquiryPage");
+
+                //Set standard Job index
+                int standardJobIndex = standardJobResults.getSelectedRow();
+                standardJobIndexLabel.setText(Integer.toString(standardJobIndex));
+            } else {
+                JOptionPane.showMessageDialog(null, "Job is still in progress");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+
+    }//GEN-LAST:event_viewStandardJobButtonActionPerformed
+
+    private void backJobSearchResultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJobSearchResultsButtonActionPerformed
+        this.deleteStandardJobTableInformation();
+        controller.clearStandardJobList();
+        card1.show(cardPanel1, "jobEnquirySearchResultsPage");
+    }//GEN-LAST:event_backJobSearchResultsButtonActionPerformed
+
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
             if (c instanceof JTextField) {
@@ -6846,6 +8297,129 @@ public class MainFrame extends javax.swing.JFrame {
                 ((JComboBox) c).setSelectedIndex(0);
             }
         }
+    }
+    
+    
+    private void deleteTaskTableInformation() {
+        DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
+        taskTableModel.setRowCount(0);
+    }
+
+    private void deleteJobTableInformation() {
+        DefaultTableModel jobTableModel = (DefaultTableModel) jobSearchResultsTable.getModel();
+        jobTableModel.setRowCount(0);
+    }
+
+    private void deleteJobEnquiryTable() {
+        DefaultTableModel jobTableModel = (DefaultTableModel) jobEnquiryTableResults.getModel();
+        jobTableModel.setRowCount(0);
+    }
+
+    private void deleteStandardJobTableInformation() {
+        DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
+        standardJobTableModel.setRowCount(0);
+    }
+
+    private void deleteTaskEnquiryTableInformation() {
+        DefaultTableModel taskTableModel = (DefaultTableModel) taskResultsTable.getModel();
+        taskTableModel.setRowCount(0);
+    }
+
+    private void deleteReminderLettersTableInformation() {
+        DefaultTableModel reminderLettersTableModel = (DefaultTableModel) reminderLettersTable.getModel();
+        reminderLettersTableModel.setRowCount(0);
+    }
+ private void updateTaskEnquiryTable(String standardJobCode) {
+        DefaultTableModel taskTableModel = (DefaultTableModel) taskResultsTable.getModel();
+        //taskTableModel.setRowCount(tasks.size());
+
+        //Insert task information into table
+        Object[] row = new Object[5];
+        for (int i = 0; i < controller.getTaskList().size(); i++) {
+            row[0] = controller.getTaskList().get(i).getTaskID();
+            row[1] = controller.getTaskList().get(i).getDescription();
+            row[2] = controller.getTaskList().get(i).getDepartmentCode();
+            row[3] = controller.getTaskList().get(i).getShelfSlot();
+            row[4] = controller.getTaskList().get(i).getStatus();
+            //taskTableModel.insertRow(0, row);
+            taskTableModel.addRow(row);
+        }
+    }
+
+    private void updateReminderLettersTable() {
+        DefaultTableModel reminderLettersTableModel = (DefaultTableModel) reminderLettersTable.getModel();
+        Object[] row = new Object[4];
+        for (int i = 0; i < controller.getInvoices().size(); i++) {
+            row[0] = controller.getInvoices().get(i).getCustomerName();
+            row[1] = controller.getInvoices().get(i).getInvoiceNumber();
+            row[2] = controller.getInvoices().get(i).getDate();
+            row[3] = controller.getInvoices().get(i).getAmountDue();
+            reminderLettersTableModel.addRow(row);
+        }
+    }
+
+    private void updateStandardJobTable() {
+
+        DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
+        Object[] row = new Object[3];
+        for (int i = 0; i < controller.getStandardJobList().size(); i++) {
+            row[0] = controller.getStandardJobList().get(i).getCode();
+            row[1] = controller.getStandardJobList().get(i).getDescription();
+            row[2] = controller.getStandardJobList().get(i).getStatus();
+            standardJobTableModel.addRow(row);
+        }
+    }
+
+    private void updateCollectJobTable() {
+        //Get job information from controller class
+
+        //ArrayList<JobDetails> jobs = controller.getJob();
+        DefaultTableModel jobTableModel = (DefaultTableModel) jobSearchResultsTable.getModel();
+        //jobTableModel.setRowCount(controller.getJob().size());
+        //Set table
+        Object[] row = new Object[5];
+        for (int i = 0; i < controller.getJob().size(); i++) {
+            row[0] = controller.getJob().get(i).getJobNumber();
+            row[1] = controller.getJob().get(i).getIssuedBy();
+            row[2] = controller.getJob().get(i).getDeadline();
+            row[3] = controller.getJob().get(i).getStatus();
+            row[4] = controller.getJob().get(i).isIsCollected();
+
+            jobTableModel.addRow(row);
+        }
+    }
+
+    private void updateJobEnquiryTable() {
+        //ArrayList<JobDetails> jobs = controller.getJob();
+        DefaultTableModel jobEnquiryTableModel = (DefaultTableModel) jobEnquiryTableResults.getModel();
+        //Set table
+        //jobEnquiryTableModel.setRowCount(controller.getJob().size());
+        Object[] row = new Object[5];
+        for (int i = 0; i < controller.getJob().size(); i++) {
+            row[0] = controller.getJob().get(i).getJobNumber();
+            row[1] = controller.getJob().get(i).getIssuedBy();
+            row[2] = controller.getJob().get(i).getDateReceived();
+            row[3] = controller.getJob().get(i).getDeadline();
+            row[4] = controller.getJob().get(i).getStatus();
+            jobEnquiryTableModel.addRow(row);
+        }
+    }
+
+        private void updateTaskTable() {
+        //Get task information from controller class
+        ArrayList<Task> tasks = controller.getTasks();
+        DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
+
+        //Set table
+        Object[] row = new Object[4];
+        for (int i = 0; i < tasks.size(); i++) {
+            row[0] = tasks.get(i).getTaskID();
+            row[1] = tasks.get(i).getDescription();
+            row[2] = tasks.get(i).getDepartmentCode();
+            row[3] = tasks.get(i).getShelfSlot();
+            taskTableModel.addRow(row);
+        }
+
     }
 
     /**
@@ -6923,6 +8497,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel acceptLatePaymentjPanel;
     private javax.swing.JPanel acceptPayment;
     private javax.swing.JButton acceptPaymentPageButton;
+    private javax.swing.JButton acceptPaymentReceptionist;
     private javax.swing.JLabel accountHolderNameLabel;
     private javax.swing.JTextField accountHolderNamejTextField;
     private javax.swing.JComboBox<String> accountStatusDD;
@@ -6934,7 +8509,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton applyDiscountjButton;
     private javax.swing.JButton assignDiscountPlanjButton;
     private javax.swing.JTextField autoBackupLocationjTextField;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton backButon;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton backCustomerPageButton;
+    private javax.swing.JButton backJobEnquiryButton;
+    private javax.swing.JButton backJobSearchResultsButton;
+    private javax.swing.JButton backRecpHPButton;
     private javax.swing.JButton backupButton;
     private javax.swing.JLabel backupDestinationLabel;
     private javax.swing.JComboBox<String> backupFrequencyjComboBox;
@@ -6949,11 +8530,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> boundsjList;
     private javax.swing.JTextField buildingNumberField;
     private javax.swing.JLabel cPLabel;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelCreationjButton;
     private javax.swing.JButton cancelCustomerFJobjButton;
     private javax.swing.JButton cancelInvoiceSeletionjButton;
     private javax.swing.JButton cancelInvoiceSeletionjButton1;
+    private javax.swing.JButton cancelJobEnquiryButton;
     private javax.swing.JButton cancelSearchButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
@@ -6969,6 +8552,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel cityjLabel;
     private javax.swing.JTextField codeField;
     private javax.swing.JLabel codeLabel;
+    private javax.swing.JButton collectJobButton;
     private javax.swing.JButton collectJobPageButton;
     private javax.swing.JComboBox<String> completionTimeDD;
     private javax.swing.JButton confirmAutoBackupConfigjButton;
@@ -6982,6 +8566,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton createReportPageButton;
     private javax.swing.JButton createSJobPageButton;
     private javax.swing.JPanel createStandardJobPage;
+    private javax.swing.JButton createTaskButton;
     private javax.swing.JPanel createTaskPage;
     private javax.swing.JButton createTaskPageButton;
     private javax.swing.JButton createUserButton;
@@ -7006,6 +8591,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel customerFirstNamejLabel;
     private javax.swing.JTextField customerInfoField;
     private javax.swing.JLabel customerLastNamejLabel;
+    private javax.swing.JTextField customerNumberText;
     private javax.swing.JLabel customerNumberjLabel;
     private javax.swing.JTextField customerPostcodejTextField;
     private javax.swing.JLabel customerPrefixjLabel;
@@ -7023,18 +8609,23 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable customersjTable;
     private javax.swing.JTextField cutomerInDefaultjTextField;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteButton1;
+    private javax.swing.JComboBox<String> departmentComboBox;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
     private javax.swing.JLabel departmentNewTaskLabel;
     private javax.swing.JLabel descLabel;
     private javax.swing.JTextField descriptionField;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextField descriptionNewTaskField;
+    private javax.swing.JTextField descriptionText;
     private javax.swing.JButton discountCanceljButton;
     private javax.swing.JComboBox<String> discountPlanTypejComboBox;
     private javax.swing.JLabel discountPlanTypejLabel;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JComboBox<String> durationNewTaskDD;
     private javax.swing.JComboBox<String> durationNewTaskMinsDD;
+    private javax.swing.JButton editButton;
+    private javax.swing.JPanel editTaskPage;
     private javax.swing.JLabel expiryDatejLabel;
     private javax.swing.JTextField expiryDatejTextField;
     private javax.swing.JTextField fileChosenField;
@@ -7064,15 +8655,26 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -7087,9 +8689,27 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JComboBox<String> jobCollectedComboBox;
+    private javax.swing.JPanel jobEnquiryPage;
     private javax.swing.JButton jobEnquiryPageButton;
+    private javax.swing.JPanel jobEnquirySearchResultsPage;
+    private javax.swing.JTable jobEnquiryTableResults;
+    private javax.swing.JButton jobEnquiryTechnician;
     private javax.swing.JPanel jobHomePage;
+    private javax.swing.JLabel jobIndexLabel;
     private javax.swing.JButton jobMenuPageButton;
+    private javax.swing.JLabel jobNumberLabel;
+    private javax.swing.JLabel jobNumberLabel1;
+    private javax.swing.JTextField jobNumberText;
+    private javax.swing.JTextField jobNumberTextField;
+    private javax.swing.JComboBox<String> jobPriorityComboBox;
+    private javax.swing.JLabel jobPriorityLabel;
+    private javax.swing.JLabel jobPriorityLabel2;
+    private javax.swing.JButton jobReceptionist;
+    private javax.swing.JPanel jobSearchResultsPage;
+    private javax.swing.JTable jobSearchResultsTable;
+    private javax.swing.JComboBox<String> jobStatusComboBox;
+    private javax.swing.JLabel jobStatusLabel;
     private javax.swing.JTextField jobTotalField;
     private javax.swing.JLabel last4DigitjLabel;
     private javax.swing.JTextField last4DigitjTextField;
@@ -7106,6 +8726,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton manageCustomersMenuPageButton;
     private javax.swing.JButton manageReportsPageButton;
     private javax.swing.JButton manageSJobPageButton;
+    private javax.swing.JButton manageTasksButton;
+    private javax.swing.JPanel manageTasksPage;
     private javax.swing.JButton manageTasksPageButton;
     private javax.swing.JButton manageUsersPageButton;
     private javax.swing.JPanel managerjPanel;
@@ -7116,9 +8738,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane materialsjScrollPane2;
     private javax.swing.JTextField materialsjTextField;
     private javax.swing.JLabel minutesLabel;
+    private javax.swing.JLabel newDescriptionLabel;
+    private javax.swing.JLabel newDescriptionLabel1;
+    private javax.swing.JLabel newDescriptionLabel2;
+    private javax.swing.JLabel newDescriptionLabel3;
     private javax.swing.JLabel newTaskLabel1;
     private javax.swing.JLabel newUserLabel;
     private javax.swing.JLabel newUserLabel1;
+    private javax.swing.JPanel officeManagerCustomerPage;
     private javax.swing.JLabel pageLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
@@ -7140,12 +8767,18 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel prefixjLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JTextField priceNewTaskField;
+    private javax.swing.JTextField priceText;
     private javax.swing.JButton printButton1;
     private javax.swing.JButton printButton2;
     private javax.swing.JButton printButton3;
+    private javax.swing.JPanel receptionHomePage;
+    private javax.swing.JPanel receptionistHomePage;
     private javax.swing.JPanel receptionistjPanel;
     private javax.swing.JLabel registrationDateSjLabel;
     private javax.swing.JLabel registrationDatejLabel;
+    private javax.swing.JButton reminderLettersButton;
+    private javax.swing.JTable reminderLettersTable;
+    private javax.swing.JPanel reminderLettersTablePage;
     private javax.swing.JButton removeFlexibleBoundjButton;
     private javax.swing.JButton removeJobButton;
     private javax.swing.JButton removeMaterialButton;
@@ -7164,6 +8797,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel restoreLabel;
     private javax.swing.JPanel restorePage;
     private javax.swing.JButton restoreSettingsPageButton;
+    private javax.swing.JButton saveButton;
     private javax.swing.JLabel searchAccountHolderNamejLabel;
     private javax.swing.JButton searchAgainButton;
     private javax.swing.JButton searchAgainButton1;
@@ -7171,7 +8805,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel searchContactFirstNamejLabel;
     private javax.swing.JLabel searchContactSurnamejLabel;
     private javax.swing.JLabel searchCustomerAccountNojLabel;
+    private javax.swing.JButton searchCustomerBtn;
     private javax.swing.JButton searchCustomerButton;
+    private javax.swing.JButton searchCustomerButton1;
     private javax.swing.JButton searchCustomerFJobjButton;
     private javax.swing.JPanel searchCustomerPage;
     private javax.swing.JPanel searchCustomerjPanel;
@@ -7183,6 +8819,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel searchInvoicePage;
     private javax.swing.JPanel searchInvoicejPanel;
     private javax.swing.JPanel searchInvoicejPanel1;
+    private javax.swing.JButton searchJobButton;
+    private javax.swing.JButton searchJobEnquiryButton;
+    private javax.swing.JButton searchJobNumberJobEnquiryButton;
+    private javax.swing.JPanel searchJobPage;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JButton searchUserButton;
     private javax.swing.JComboBox<String> selectATaskBox;
@@ -7198,14 +8838,19 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton settingsMenuPageButton;
     private javax.swing.JLabel shelfSlotNewTaskLabel;
     private javax.swing.JComboBox<String> shelfSlotTaskDD;
+    private javax.swing.JTextField shelfSlotText;
     private javax.swing.JLabel shift1Label;
     private javax.swing.JLabel shift2Label;
     private javax.swing.JLabel shift3Label;
     private javax.swing.JTextField specialInstructionjTextField;
     private javax.swing.JLabel specialInstructionsLabel;
+    private javax.swing.JLabel standardJobCodeLabel;
     private javax.swing.JPanel standardJobHomePage;
+    private javax.swing.JLabel standardJobIndexLabel;
     private javax.swing.JList<String> standardJobList;
     private javax.swing.JList<String> standardJobList1;
+    private javax.swing.JTable standardJobResults;
+    private javax.swing.JPanel standardJobSearchResultsJobEnquiryPage;
     private javax.swing.JButton standardJobsMenuPageButton;
     private javax.swing.JComboBox<String> stdJobDD;
     private javax.swing.JLabel stdJobLabel;
@@ -7222,11 +8867,21 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel surchargeLabel;
     private javax.swing.JTextField surchargejTextField;
     private javax.swing.JTextField surnameField;
+    private javax.swing.JButton taskEnquiryBackButton;
     private javax.swing.JPanel taskHomePage;
+    private javax.swing.JLabel taskIDLabel;
+    private javax.swing.JTextField taskIDText;
+    private javax.swing.JPanel taskPage;
+    private javax.swing.JTable taskResultsTable;
+    private javax.swing.JPanel taskSearchResultsJobEnquiryPage;
+    private javax.swing.JTable taskTable;
     private javax.swing.JButton tasksMenuPageButton;
+    private javax.swing.JPanel technicianHomePage;
+    private javax.swing.JPanel technicianPage;
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalLabel1;
     private javax.swing.JLabel totaljLabel;
+    private javax.swing.JButton updateTaskButton;
     private javax.swing.JLabel upperBoundjLabel;
     private javax.swing.JTextField upperBoundjTextField;
     private javax.swing.JTextField userFirstNameField;
@@ -7244,6 +8899,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField usernameField;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JButton usersMenuPageButton;
+    private javax.swing.JButton viewJobEnquiryButton;
+    private javax.swing.JButton viewReminderLetterButton;
+    private javax.swing.JButton viewStandardJobButton;
     private javax.swing.JPanel welcomeBar;
     private javax.swing.JPanel welcomePage;
     private javax.swing.JLabel welcomePageLabel;
