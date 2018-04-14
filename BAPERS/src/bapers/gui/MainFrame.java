@@ -62,15 +62,15 @@ public class MainFrame extends javax.swing.JFrame {
     private final CardLayout card1;
     private final CardLayout card2;
     private final Controller controller;
-    
+
     private UserDetails loggedInUser;
     CustomerDetails selectedCustomer = null;
-    
+
     DefaultTableModel tblModel;
     String[] durations;
-    
+
     Invoice invoice;
-    
+
     // Lists
     List<Material> materials;
     List<StandardJob> stdJobs;
@@ -78,31 +78,31 @@ public class MainFrame extends javax.swing.JFrame {
     List<Invoice> selectedInvoices;
     List<StandardJob> selectedStdJobs;
     List<Task> selectedTasks;
-    
+
     // list models that are used to for the scroll
     DefaultListModel list1;
     DefaultListModel list2;
     DefaultTableModel m;
-    
+
     // collect job model for table
     DefaultListModel t = new DefaultListModel();
     DefaultListModel t2 = new DefaultListModel();
-    
+
     // jobs model for table
     DefaultTableModel jobModelTable;
     DefaultTableModel standardJobModelTable;
     DefaultTableModel taskModelTable;
-    
+
     // other model for table
     DefaultTableModel invoiceModelTable;
     DefaultTableModel defaultCustomerModelTable;
     DefaultTableModel customerModelTable;
-    
+
     Job job = null;
     JobStandardJob jobStandardJob = null;
-    
+
     AutoBackupConfig configData;
-    
+
     String currentPage, previousPage;
 
     /**
@@ -134,10 +134,10 @@ public class MainFrame extends javax.swing.JFrame {
         homeButton.setVisible(false);
         initAutoBackup();
     }
-    
+
     public final void initAutoBackup() {
         final boolean countAutoConfigData = controller.checkAutoBackupConfigExist();
-        
+
         if (countAutoConfigData != false) {
             this.configData = controller.getAutoBackupConfigData();
             autoBackupFrequency(configData);
@@ -145,7 +145,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No auto update");
         }
     }
-    
+
     public void autoBackupFrequency(AutoBackupConfig configData) {
         switch (configData.getBackupFrequency()) {
             case "weekly":
@@ -153,12 +153,13 @@ public class MainFrame extends javax.swing.JFrame {
                 //Timer timer = new Timer();
                 //timer.scheduleAtFixedRate(new AutoBackup(configData, this), TimeUnit.DAYS.toMillis(1), TimeUnit.DAYS.toMillis(1));
                 break;
-                
+
             case "monthly":
                 System.out.println("monthly");
                 break;
-                
-            default : break;
+
+            default:
+                break;
         }
     }
 
@@ -1583,11 +1584,11 @@ public class MainFrame extends javax.swing.JFrame {
         homePageLayout.setHorizontalGroup(
             homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePageLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(homePageLayout.createSequentialGroup()
                         .addComponent(jobMenuPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(reportsMenuPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tasksMenuPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1601,7 +1602,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(settingsMenuPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(manageCustomersMenuPageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         homePageLayout.setVerticalGroup(
             homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1635,8 +1636,18 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         collectJobPageButton.setText("Collect Job");
+        collectJobPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collectJobPageButtonActionPerformed(evt);
+            }
+        });
 
         jobEnquiryPageButton.setText("Job Enquiry");
+        jobEnquiryPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobEnquiryPageButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jobHomePageLayout = new javax.swing.GroupLayout(jobHomePage);
         jobHomePage.setLayout(jobHomePageLayout);
@@ -1669,6 +1680,11 @@ public class MainFrame extends javax.swing.JFrame {
         taskHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
 
         manageTasksPageButton.setText("Manage Tasks");
+        manageTasksPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageTasksPageButtonActionPerformed(evt);
+            }
+        });
 
         createTaskPageButton.setText("Create Task");
         createTaskPageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -7311,8 +7327,9 @@ public class MainFrame extends javax.swing.JFrame {
 
             // gets all the row information from the selected invoice in the table
             // and places it in the array
-            for (int i = 0; i < columnCount; ++i)
-            obj[i] = invoicejTable.getValueAt(row, i);
+            for (int i = 0; i < columnCount; ++i) {
+                obj[i] = invoicejTable.getValueAt(row, i);
+            }
 
             // variables for invoice
             final int invoiceNo = Integer.parseInt(obj[0].toString());
@@ -7342,11 +7359,11 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         previousPage = currentPage;
         currentPage = "acceptPayment";
-        
+
         searchInvoiceByInvoiceNojTextField.setText("");
         searchInvoiceByJobNumberjTextField.setText("");
         invoiceModelTable.setRowCount(0);
-        
+
         card1.show(cardPanel1, "acceptPayment");
         pageLabel.setText("Accept payment page");
     }//GEN-LAST:event_cancelInvoiceSeletionjButton1ActionPerformed
@@ -7460,10 +7477,10 @@ public class MainFrame extends javax.swing.JFrame {
     public void displayAllTask() {
         taskModelTable = (DefaultTableModel) TaskjTable.getModel();
         taskModelTable.setRowCount(0);
-        
+
         final ArrayList<Task> taskList = controller.getAllTasks();
         final int SIZE = taskList.size();
-        
+
         Object rowData[] = new Object[3];
         for (int i = 0; i < SIZE; ++i) {
             rowData[0] = taskList.get(i).getTaskId();
@@ -7473,7 +7490,7 @@ public class MainFrame extends javax.swing.JFrame {
             taskModelTable.addRow(rowData);
         }
     }
-    
+
     private void discountCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountCanceljButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_discountCanceljButtonActionPerformed
@@ -7483,23 +7500,24 @@ public class MainFrame extends javax.swing.JFrame {
         final String discountType = discountPlanTypejComboBox.getSelectedItem().toString();
         final CustomerDetails customer = selectedCustomer;
 
-        switch(discountType) {
-            case "Fixed" :
-            System.out.println("Fixed");
-            final int fixedDiscountPercentage = Integer.parseInt(fixedDiscountRatejTextField.getText());
-            controller.applyDiscountPlan(customer, loggedInUser, discountType);
-            controller.applyFixedDiscountRate(fixedDiscountPercentage, customer);
-            break;
+        switch (discountType) {
+            case "Fixed":
+                System.out.println("Fixed");
+                final int fixedDiscountPercentage = Integer.parseInt(fixedDiscountRatejTextField.getText());
+                controller.applyDiscountPlan(customer, loggedInUser, discountType);
+                controller.applyFixedDiscountRate(fixedDiscountPercentage, customer);
+                break;
 
-            case "Variable" :
-            System.out.println("Variable");
+            case "Variable":
+                System.out.println("Variable");
 
-            break;
+                break;
 
-            case "Flexible" :
-            System.out.println("Flexible");
-            break;
-            default : break;
+            case "Flexible":
+                System.out.println("Flexible");
+                break;
+            default:
+                break;
         }
     }//GEN-LAST:event_applyDiscountjButtonActionPerformed
 
@@ -7564,36 +7582,39 @@ public class MainFrame extends javax.swing.JFrame {
             customerNumberjLabel.setText(refreshedCustomerDetailList.getPhoneNumber());
             customerRegistationDatejLabel.setText(refreshedCustomerDetailList.getRegDate().toString());
 
-            if (refreshedCustomerDetailList.getIsSuspended() == true)
+            if (refreshedCustomerDetailList.getIsSuspended() == true) {
                 customerStatusjTextField.setText("Suspended");
-            else 
+            } else {
                 customerStatusjTextField.setText("Not Suspended");
+            }
 
-            if (refreshedCustomerDetailList.getIsValued() == true)
+            if (refreshedCustomerDetailList.getIsValued() == true) {
                 customerTypejTextField.setText("Valued");
-            else
+            } else {
                 customerTypejTextField.setText("Standard");
+            }
 
-            if (refreshedCustomerDetailList.getInDefault() == true)
+            if (refreshedCustomerDetailList.getInDefault() == true) {
                 cutomerInDefaultjTextField.setText("true");
-            else
+            } else {
                 cutomerInDefaultjTextField.setText("false");
+            }
 
             final boolean hasDiscount = controller.checkCustomerHasDiscountPlan(refreshedCustomerDetailList);
             if (hasDiscount) {
                 final String discountType = controller.getCustomerDiscountType(refreshedCustomerDetailList);
-                customerDiscountjTextField.setText(discountType);    
+                customerDiscountjTextField.setText(discountType);
             } else {
                 customerDiscountjTextField.setText("None");
             }
-            
+
             customerStreetNamejTextField.setText(refreshedCustomerDetailList.getStreetName());
             customerPostcodejTextField.setText(refreshedCustomerDetailList.getPostCode());
             customerCityjTextField.setText(refreshedCustomerDetailList.getCity());
             customerBuildingNojTextField.setText(Integer.toString(refreshedCustomerDetailList.getBuildingNo()));
         }
     }
-    
+
     private void assignDiscountPlanjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignDiscountPlanjButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "DiscountPlan");
@@ -7604,7 +7625,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         previousPage = currentPage;
         currentPage = "searchInvoicePage";
-        
+
         // updates the tables for selecting invoices
         invoiceModelTable = (DefaultTableModel) invoicejTable.getModel(); // grabs the current model
         invoiceModelTable.setRowCount(0);
@@ -7675,30 +7696,51 @@ public class MainFrame extends javax.swing.JFrame {
 
             switch (paymentTypeComboBox.getSelectedItem().toString()) {
                 case "Card":
-                if (// checks to see if format for the card info is entered correctly
-                    expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
-                    && last4DigitjTextField.getText().matches("[0-9]{4}")
-                ) {
-                    // card information
-                    final String cardType = cardTypejComboBox.getSelectedItem().toString();
-                    final String cardDetailsLast4digits = last4DigitjTextField.getText();
-                    final String cardDetailsExpiryDate = expiryDatejTextField.getText();
+                    if (// checks to see if format for the card info is entered correctly
+                            expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
+                            && last4DigitjTextField.getText().matches("[0-9]{4}")) {
+                        // card information
+                        final String cardType = cardTypejComboBox.getSelectedItem().toString();
+                        final String cardDetailsLast4digits = last4DigitjTextField.getText();
+                        final String cardDetailsExpiryDate = expiryDatejTextField.getText();
 
-                    final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
+                        final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
 
-                    final Payment paymentRecord = new PaymentCard(
-                        paymentNo,
-                        total,
-                        paymentType,
-                        paymentDate,
-                        invoiceNumber,
-                        card.getCardType(),
-                        card.getLast4Digits(),
-                        card.getExpiryDate()
+                        final Payment paymentRecord = new PaymentCard(
+                                paymentNo,
+                                total,
+                                paymentType,
+                                paymentDate,
+                                invoiceNumber,
+                                card.getCardType(),
+                                card.getLast4Digits(),
+                                card.getExpiryDate()
+                        );
+
+                        controller.recordPayment(paymentRecord, paymentType, invoice, card);
+                        //System.out.println("payment info attained");
+
+                        // clears the model and the total
+                        TotalLatePayjTextField.setText("");
+                        t.clear();
+
+                        // clears the data for card detials
+                        expiryDatejTextField.setText("");
+                        last4DigitjTextField.setText("");
+
+                        JOptionPane.showMessageDialog(this, "Card payment successful");
+                    }
+                    break;
+                case "Cash":
+                    final Payment paymentRecord = new PaymentCash(
+                            paymentNo,
+                            total,
+                            paymentType,
+                            paymentDate,
+                            invoiceNumber
                     );
 
-                    controller.recordPayment(paymentRecord, paymentType, invoice, card);
-                    //System.out.println("payment info attained");
+                    controller.recordPayment(paymentRecord, paymentType, invoice);
 
                     // clears the model and the total
                     TotalLatePayjTextField.setText("");
@@ -7708,33 +7750,11 @@ public class MainFrame extends javax.swing.JFrame {
                     expiryDatejTextField.setText("");
                     last4DigitjTextField.setText("");
 
-                    JOptionPane.showMessageDialog(this, "Card payment successful");
-                }
-                break;
-                case "Cash":
-                final Payment paymentRecord = new PaymentCash(
-                    paymentNo,
-                    total,
-                    paymentType,
-                    paymentDate,
-                    invoiceNumber
-                );
-
-                controller.recordPayment(paymentRecord, paymentType, invoice);
-
-                // clears the model and the total
-                TotalLatePayjTextField.setText("");
-                t.clear();
-
-                // clears the data for card detials
-                expiryDatejTextField.setText("");
-                last4DigitjTextField.setText("");
-
-                JOptionPane.showMessageDialog(this, "Cash payment successful");
-                break;
+                    JOptionPane.showMessageDialog(this, "Cash payment successful");
+                    break;
                 default:
-                JOptionPane.showMessageDialog(this, "No payment type was selected");
-                break;
+                    JOptionPane.showMessageDialog(this, "No payment type was selected");
+                    break;
             }
         } else {
             JOptionPane.showMessageDialog(this, "Cannot make payment");
@@ -7762,7 +7782,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         customerModelTable = (DefaultTableModel) customersjTable.getModel();
         customerModelTable.setRowCount(0);
-        
+
         final CustomerDetails[] customerList = controller.getAllCustomers();
 
         Object rowData[] = new Object[4];
@@ -7781,7 +7801,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void acceptPaymentComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_acceptPaymentComponentHidden
         // TODO add your handling code here:
-        
+
         if (!currentPage.equals("searchInvoicePage")) {
             resetComponents(acceptPayment);
             t.clear();
@@ -7790,8 +7810,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (selectedCustomer.getInDefault() && selectedCustomer.getIsSuspended()) 
+        if (selectedCustomer.getInDefault() && selectedCustomer.getIsSuspended()) {
             controller.reactivateDefaultAccount(selectedCustomer, 0);
+        }
         try {
             updateCustomerInfo(selectedCustomer);
         } catch (SQLException ex) {
@@ -7811,10 +7832,8 @@ public class MainFrame extends javax.swing.JFrame {
     /*
     
     Joseph
-    
-    */
-    
-    
+     */
+
     private void jobEnquiryTechnicianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobEnquiryTechnicianActionPerformed
         card1.show(cardPanel1, "jobEnquiryPage");
     }//GEN-LAST:event_jobEnquiryTechnicianActionPerformed
@@ -7912,8 +7931,9 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             //Set task id
             taskIDText.setText(String.valueOf(taskTable.getModel().getValueAt(taskTable.getSelectedRow(), 0)));
+            card1.show(cardPanel1, "editTaskPage");
         }
-        card1.show(cardPanel1, "editTaskPage");
+
 
     }//GEN-LAST:event_editButtonActionPerformed
 
@@ -7941,7 +7961,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_searchCustomerBtnActionPerformed
 
     private void reminderLettersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reminderLettersButtonActionPerformed
-        this.updateReminderLettersTable();
+        //  this.updateReminderLettersTable();
         card1.show(cardPanel1, "reminderLettersTablePage");
         //Update reminder letters table
     }//GEN-LAST:event_reminderLettersButtonActionPerformed
@@ -8007,6 +8027,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }*/
     }//GEN-LAST:event_viewReminderLetterButtonActionPerformed
+
 
     private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
 
@@ -8226,7 +8247,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             //Check row has values and job is completed and not collected
             if ((jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 3).equals("Completed"))
-                && (jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 4).toString().equals("false"))) {
+                    && (jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 4).toString().equals("false"))) {
 
                 //Get job Number from table
                 jobNumber = (Integer) jobSearchResultsTable.getModel().getValueAt(jobSearchResultsTable.getSelectedRow(), 0);
@@ -8289,17 +8310,20 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "jobEnquirySearchResultsPage");
     }//GEN-LAST:event_backJobSearchResultsButtonActionPerformed
 
-    private void resetComponents(JPanel panel) {
-        for (Component c : panel.getComponents()) {
-            if (c instanceof JTextField) {
-                ((JTextField) c).setText("");
-            } else if (c instanceof JComboBox) {
-                ((JComboBox) c).setSelectedIndex(0);
-            }
-        }
-    }
-    
-    
+    private void manageTasksPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTasksPageButtonActionPerformed
+        updateTaskTable();
+        card1.show(cardPanel1, "manageTasksPage");
+    }//GEN-LAST:event_manageTasksPageButtonActionPerformed
+
+    private void collectJobPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collectJobPageButtonActionPerformed
+        updateCollectJobTable();
+        card1.show(cardPanel1, "searchJobPage");
+    }//GEN-LAST:event_collectJobPageButtonActionPerformed
+
+    private void jobEnquiryPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobEnquiryPageButtonActionPerformed
+        card1.show(cardPanel1, "jobEnquiryPage");
+    }//GEN-LAST:event_jobEnquiryPageButtonActionPerformed
+
     private void deleteTaskTableInformation() {
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
         taskTableModel.setRowCount(0);
@@ -8329,7 +8353,8 @@ public class MainFrame extends javax.swing.JFrame {
         DefaultTableModel reminderLettersTableModel = (DefaultTableModel) reminderLettersTable.getModel();
         reminderLettersTableModel.setRowCount(0);
     }
- private void updateTaskEnquiryTable(String standardJobCode) {
+
+    private void updateTaskEnquiryTable(String standardJobCode) {
         DefaultTableModel taskTableModel = (DefaultTableModel) taskResultsTable.getModel();
         //taskTableModel.setRowCount(tasks.size());
 
@@ -8346,7 +8371,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
-    private void updateReminderLettersTable() {
+    /*private void updateReminderLettersTable() {
         DefaultTableModel reminderLettersTableModel = (DefaultTableModel) reminderLettersTable.getModel();
         Object[] row = new Object[4];
         for (int i = 0; i < controller.getInvoices().size(); i++) {
@@ -8356,8 +8381,7 @@ public class MainFrame extends javax.swing.JFrame {
             row[3] = controller.getInvoices().get(i).getAmountDue();
             reminderLettersTableModel.addRow(row);
         }
-    }
-
+    }*/
     private void updateStandardJobTable() {
 
         DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
@@ -8405,9 +8429,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
-        private void updateTaskTable() {
+    private void updateTaskTable() {
         //Get task information from controller class
-        ArrayList<Task> tasks = controller.getTasks();
+        ArrayList<Task> tasks = controller.getTasksArrayList();
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
 
         //Set table
@@ -8420,6 +8444,16 @@ public class MainFrame extends javax.swing.JFrame {
             taskTableModel.addRow(row);
         }
 
+    }
+
+    private void resetComponents(JPanel panel) {
+        for (Component c : panel.getComponents()) {
+            if (c instanceof JTextField) {
+                ((JTextField) c).setText("");
+            } else if (c instanceof JComboBox) {
+                ((JComboBox) c).setSelectedIndex(0);
+            }
+        }
     }
 
     /**

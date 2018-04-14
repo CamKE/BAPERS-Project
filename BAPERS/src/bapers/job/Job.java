@@ -5,6 +5,8 @@
  */
 package bapers.job;
 
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -96,5 +98,128 @@ public class Job {
         this.specialInstruction = specialInstruction;
     }
     
+    /*Joseph*/
     
+        /**
+     * @return the statusID
+     */
+    public int getStatusID() {
+        return statusID;
+    }
+
+    /**
+     * @param statusID the statusID to set
+     */
+    public void setStatusID(int statusID) {
+        this.statusID = statusID;
+    }
+
+    /**
+     * @return the dateReceived
+     */
+    public Date getDateReceived() {
+        return dateReceived;
+    }
+
+    /**
+     * @param dateReceived the dateReceived to set
+     */
+    public void setDateReceived(Date dateReceived) {
+        this.dateReceived = dateReceived;
+    }
+
+    /**
+     * @return the standardJobList
+     */
+    public ArrayList<StandardJob> getStandardJobList() {
+        return standardJobList;
+    }
+
+    /**
+     * @param standardJobList the standardJobList to set
+     */
+    public void setStandardJobList(ArrayList<StandardJob> standardJobList) {
+        this.standardJobList = standardJobList;
+    }
+
+    /**
+     * @return the amountOfStandardJobs
+     */
+    public int getAmountOfStandardJobs() {
+        return amountOfStandardJobs;
+    }
+
+    /**
+     * @param amountOfStandardJobs the amountOfStandardJobs to set
+     */
+    public void setAmountOfStandardJobs(int amountOfStandardJobs) {
+        this.amountOfStandardJobs = amountOfStandardJobs;
+    }
+
+    /**
+     * @return the jobNumber
+     */
+    public int getJobNumber() {
+        return jobNumber;
+    }
+
+    /**
+     * @param jobNumber the jobNumber to set
+     */
+    public void setJobNumber(int jobNumber) {
+        this.jobNumber = jobNumber;
+    }
+
+
+    /**
+     * @return the issuedBy
+     */
+    public String getIssuedBy() {
+        return issuedBy;
+    }
+
+    /**
+     * @param issuedBy the issuedBy to set
+     */
+    public void setIssuedBy(String issuedBy) {
+        this.issuedBy = issuedBy;
+    }
+
+
+    /**
+     * @return the deadline
+     */
+    public Time getDeadline() {
+        return deadline;
+    }
+
+    /**
+     * @param deadline the deadline to set
+     */
+    public void setDeadline(Time deadline) {
+        this.deadline = deadline;
+    }
+    private int jobNumber;
+    private String issuedBy;
+    private Time deadline;
+    private int amountOfStandardJobs;
+    private ArrayList<StandardJob> standardJobList;
+    private Date dateReceived;
+    private int statusID;
+
+    public Job(int jobNumber, Time deadline, String issuedBy, String status, Date dateReceived, boolean isCollected,int statusID) {
+        this.jobNumber = jobNumber;
+        this.deadline = deadline;
+        this.issuedBy = issuedBy;
+        this.status = status;
+        this.isCollected = isCollected;
+        this.dateReceived = dateReceived;
+        this.statusID = statusID;
+    }
+
+    public Job(ArrayList<StandardJob> standardJobList) {
+        this.standardJobList = new ArrayList<>();
+    }
 }
+
+

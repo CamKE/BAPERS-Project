@@ -1700,11 +1700,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Group type="102" alignment="2" attributes="0">
                               <Component id="jobMenuPageButton" min="-2" pref="196" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="reportsMenuPageButton" min="-2" pref="196" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="tasksMenuPageButton" min="-2" pref="196" max="-2" attributes="0"/>
@@ -1721,7 +1721,7 @@
                               <Component id="manageCustomersMenuPageButton" min="-2" pref="196" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1873,11 +1873,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Collect Job"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="collectJobPageButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jobEnquiryPageButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Job Enquiry"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jobEnquiryPageButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1929,6 +1935,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Tasks"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageTasksPageButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="createTaskPageButton">
               <Properties>
