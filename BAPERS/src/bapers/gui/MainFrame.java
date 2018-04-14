@@ -5,6 +5,7 @@
  */
 package bapers.gui;
 
+import bapers.AutoBackup;
 import bapers.AutoBackupConfig;
 import bapers.controller.Controller;
 import bapers.customer.CustomerDetails;
@@ -27,6 +28,7 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -58,40 +62,48 @@ public class MainFrame extends javax.swing.JFrame {
     private final CardLayout card1;
     private final CardLayout card2;
     private final Controller controller;
+    
     private UserDetails loggedInUser;
+    CustomerDetails selectedCustomer = null;
+    
     DefaultTableModel tblModel;
     String[] durations;
-
+    
+    Invoice invoice;
+    
+    // Lists
     List<Material> materials;
     List<StandardJob> stdJobs;
     List<Task> tasks;
     List<Invoice> selectedInvoices;
     List<StandardJob> selectedStdJobs;
     List<Task> selectedTasks;
+    
     // list models that are used to for the scroll
     DefaultListModel list1;
     DefaultListModel list2;
     DefaultTableModel m;
-    String currentPage, previousPage;
     
-    // list models that are used to for the scrollpanel
-    // collect job model
+    // collect job model for table
     DefaultListModel t = new DefaultListModel();
     DefaultListModel t2 = new DefaultListModel();
-    // other model
-    DefaultTableModel invoiceModelTable;
-    DefaultTableModel defaultCustomerModelTable;
-    DefaultTableModel customerModelTable;
-    // jobs model
+    
+    // jobs model for table
     DefaultTableModel jobModelTable;
     DefaultTableModel standardJobModelTable;
     DefaultTableModel taskModelTable;
     
+    // other model for table
+    DefaultTableModel invoiceModelTable;
+    DefaultTableModel defaultCustomerModelTable;
+    DefaultTableModel customerModelTable;
+    
     Job job = null;
     JobStandardJob jobStandardJob = null;
-    CustomerDetails selectedCustomer = null;
     
-    Invoice invoice;
+    AutoBackupConfig configData;
+    
+    String currentPage, previousPage;
 
     /**
      * Creates new form MainFrame
@@ -120,6 +132,34 @@ public class MainFrame extends javax.swing.JFrame {
         // hide the button on the welcome bar
         backButton.setVisible(false);
         homeButton.setVisible(false);
+        initAutoBackup();
+    }
+    
+    public final void initAutoBackup() {
+        final boolean countAutoConfigData = controller.checkAutoBackupConfigExist();
+        
+        if (countAutoConfigData != false) {
+            this.configData = controller.getAutoBackupConfigData();
+            autoBackupFrequency(configData);
+        } else {
+            JOptionPane.showMessageDialog(this, "No auto update");
+        }
+    }
+    
+    public void autoBackupFrequency(AutoBackupConfig configData) {
+        switch (configData.getBackupFrequency()) {
+            case "weekly":
+                System.out.println("weekly");
+                //Timer timer = new Timer();
+                //timer.scheduleAtFixedRate(new AutoBackup(configData, this), TimeUnit.DAYS.toMillis(1), TimeUnit.DAYS.toMillis(1));
+                break;
+                
+            case "monthly":
+                System.out.println("monthly");
+                break;
+                
+            default : break;
+        }
     }
 
     /**
@@ -396,7 +436,6 @@ public class MainFrame extends javax.swing.JFrame {
         backupModejComboBox = new javax.swing.JComboBox<>();
         backupFrequencyjComboBox = new javax.swing.JComboBox<>();
         selectAutoBackupLocationjButton = new javax.swing.JButton();
-        cancelAutoBackupConfigjButton = new javax.swing.JButton();
         confirmAutoBackupConfigjButton = new javax.swing.JButton();
         backupModejLabel = new javax.swing.JLabel();
         currentBackupModejLabel = new javax.swing.JLabel();
@@ -439,15 +478,10 @@ public class MainFrame extends javax.swing.JFrame {
         boundsjList = new javax.swing.JList<>();
         removeFlexibleBoundjButton = new javax.swing.JButton();
         addFlexibleBoundjButton = new javax.swing.JButton();
-        InDefault = new javax.swing.JPanel();
-        CustomerDetailsjScrollPane = new javax.swing.JScrollPane();
-        CustomerDetailsjTable = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
         SelectCustomer = new javax.swing.JPanel();
         customersjScrollPane = new javax.swing.JScrollPane();
         customersjTable = new javax.swing.JTable();
         selectCustomerjButton = new javax.swing.JButton();
-        cancelSelectCustomerjButton = new javax.swing.JButton();
         ViewCustomerDetail = new javax.swing.JPanel();
         CustomerInfo = new javax.swing.JPanel();
         customerAccHolderNamejLabel = new javax.swing.JLabel();
@@ -468,12 +502,15 @@ public class MainFrame extends javax.swing.JFrame {
         CustomerAction = new javax.swing.JPanel();
         customerActionjLabel = new javax.swing.JLabel();
         assignDiscountPlanjButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         OtherCustomerInfo = new javax.swing.JPanel();
         customerStreetNamejTextField = new javax.swing.JTextField();
         customerPostcodejTextField = new javax.swing.JTextField();
         customerCityjTextField = new javax.swing.JTextField();
         customerBuildingNojTextField = new javax.swing.JTextField();
-        acceptLatePayment = new javax.swing.JPanel();
+        acceptPayment = new javax.swing.JPanel();
         acceptLatePaymentjPanel = new javax.swing.JPanel();
         expiryDatejLabel = new javax.swing.JLabel();
         last4DigitjTextField = new javax.swing.JTextField();
@@ -489,7 +526,6 @@ public class MainFrame extends javax.swing.JFrame {
         invoicejScrollPane = new javax.swing.JScrollPane();
         invoicejList = new javax.swing.JList<>();
         latePaymentSubmitjButton = new javax.swing.JButton();
-        latePaymentCanceljButton = new javax.swing.JButton();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -1431,6 +1467,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         manageCustomersMenuPageButton.setText("Manage Customers");
+        manageCustomersMenuPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageCustomersMenuPageButtonActionPerformed(evt);
+            }
+        });
 
         settingsMenuPageButton.setText("Settings");
         settingsMenuPageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1664,6 +1705,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         backupSettingsPageButton.setText("Backup Settings");
+        backupSettingsPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backupSettingsPageButtonActionPerformed(evt);
+            }
+        });
 
         reportSettingsPageButton.setText("Report Settings");
 
@@ -3655,14 +3701,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        cancelAutoBackupConfigjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        cancelAutoBackupConfigjButton.setText("Cancel");
-        cancelAutoBackupConfigjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelAutoBackupConfigjButtonActionPerformed(evt);
-            }
-        });
-
         confirmAutoBackupConfigjButton.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         confirmAutoBackupConfigjButton.setText("Confirm");
         confirmAutoBackupConfigjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -3755,8 +3793,6 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AutoBackupConfigjPanelLayout.createSequentialGroup()
-                        .addComponent(cancelAutoBackupConfigjButton)
-                        .addGap(18, 18, 18)
                         .addComponent(confirmAutoBackupConfigjButton)
                         .addGap(118, 118, 118))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AutoBackupConfigjPanelLayout.createSequentialGroup()
@@ -3801,10 +3837,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(selectAutoBackupLocationjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
-                .addGroup(AutoBackupConfigjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelAutoBackupConfigjButton)
-                    .addComponent(confirmAutoBackupConfigjButton))
-                .addGap(157, 157, 157))
+                .addComponent(confirmAutoBackupConfigjButton)
+                .addContainerGap())
         );
 
         TotalLatePayjTextField.setEditable(false);
@@ -4280,53 +4314,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(SelectDiscountPlan, "DiscountPlan");
 
-        InDefault.setBackground(new java.awt.Color(61, 96, 146));
-        InDefault.setMaximumSize(new java.awt.Dimension(900, 700));
-        InDefault.setMinimumSize(new java.awt.Dimension(900, 700));
-        InDefault.setSize(new java.awt.Dimension(900, 700));
-
-        CustomerDetailsjTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Account No", "Account Holder Name", "Prefix", "FirstName", "Lastname", "StreetName", "Postcode", "City", "Phone", "IsSuspended", "InDefault", "IsValued", "RegistrationDate", "BuildingNo", "EmailContact"
-            }
-        ));
-        CustomerDetailsjScrollPane.setViewportView(CustomerDetailsjTable);
-
-        jToggleButton1.setText("Reactivate Account");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout InDefaultLayout = new javax.swing.GroupLayout(InDefault);
-        InDefault.setLayout(InDefaultLayout);
-        InDefaultLayout.setHorizontalGroup(
-            InDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InDefaultLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CustomerDetailsjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InDefaultLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
-                .addGap(89, 89, 89))
-        );
-        InDefaultLayout.setVerticalGroup(
-            InDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InDefaultLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CustomerDetailsjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton1)
-                .addContainerGap(158, Short.MAX_VALUE))
-        );
-
-        cardPanel1.add(InDefault, "InDefault");
-
         SelectCustomer.setBackground(new java.awt.Color(61, 96, 146));
         SelectCustomer.setMaximumSize(new java.awt.Dimension(900, 700));
         SelectCustomer.setMinimumSize(new java.awt.Dimension(900, 700));
@@ -4352,13 +4339,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        cancelSelectCustomerjButton.setText("Cancel");
-        cancelSelectCustomerjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelSelectCustomerjButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout SelectCustomerLayout = new javax.swing.GroupLayout(SelectCustomer);
         SelectCustomer.setLayout(SelectCustomerLayout);
         SelectCustomerLayout.setHorizontalGroup(
@@ -4366,10 +4346,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(SelectCustomerLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(SelectCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(SelectCustomerLayout.createSequentialGroup()
-                        .addComponent(cancelSelectCustomerjButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectCustomerjButton))
+                    .addComponent(selectCustomerjButton)
                     .addComponent(customersjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -4379,9 +4356,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(customersjScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(SelectCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectCustomerjButton)
-                    .addComponent(cancelSelectCustomerjButton))
+                .addComponent(selectCustomerjButton)
                 .addContainerGap(144, Short.MAX_VALUE))
         );
 
@@ -4402,13 +4377,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         customerLastNamejLabel.setText("jLabel4");
 
-        jLabel5.setText("Status");
+        jLabel5.setText("Status:");
 
-        jLabel6.setText("Type");
+        jLabel6.setText("Type:");
 
-        jLabel7.setText("In Default");
+        jLabel7.setText("In Default:");
 
-        jLabel8.setText("Discount");
+        jLabel8.setText("Discount:");
 
         customerStatusjTextField.setText("Unknown");
 
@@ -4429,7 +4404,7 @@ public class MainFrame extends javax.swing.JFrame {
         CustomerInfoLayout.setHorizontalGroup(
             CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CustomerInfoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(customerAccHolderNamejLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(customerNumberjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -4445,17 +4420,17 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(customerLastNamejLabel)))
                 .addGap(50, 50, 50)
                 .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(customerTypejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customerStatusjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cutomerInDefaultjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customerDiscountjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100))
+                .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(customerTypejTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(customerDiscountjTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cutomerInDefaultjTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customerStatusjTextField))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         CustomerInfoLayout.setVerticalGroup(
             CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4487,7 +4462,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel8)
                         .addComponent(customerDiscountjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         CustomerAction.setBackground(new java.awt.Color(255, 255, 255));
@@ -4501,6 +4476,22 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Update account status");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Delete Account");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("View Invoices");
+
         javax.swing.GroupLayout CustomerActionLayout = new javax.swing.GroupLayout(CustomerAction);
         CustomerAction.setLayout(CustomerActionLayout);
         CustomerActionLayout.setHorizontalGroup(
@@ -4512,8 +4503,15 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(customerActionjLabel))
                     .addGroup(CustomerActionLayout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addComponent(assignDiscountPlanjButton)))
-                .addContainerGap(202, Short.MAX_VALUE))
+                        .addGroup(CustomerActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(assignDiscountPlanjButton)))
+                    .addGroup(CustomerActionLayout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addGroup(CustomerActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3)
+                            .addComponent(jButton2))))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         CustomerActionLayout.setVerticalGroup(
             CustomerActionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4522,6 +4520,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(customerActionjLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(assignDiscountPlanjButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -4546,7 +4550,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(customerCityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(customerPostcodejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(customerStreetNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         OtherCustomerInfoLayout.setVerticalGroup(
             OtherCustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4559,7 +4563,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(customerCityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(customerBuildingNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout ViewCustomerDetailLayout = new javax.swing.GroupLayout(ViewCustomerDetail);
@@ -4567,31 +4571,36 @@ public class MainFrame extends javax.swing.JFrame {
         ViewCustomerDetailLayout.setHorizontalGroup(
             ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewCustomerDetailLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(68, 68, 68)
+                .addGroup(ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CustomerInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ViewCustomerDetailLayout.createSequentialGroup()
                         .addComponent(CustomerAction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(OtherCustomerInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(CustomerInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(OtherCustomerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         ViewCustomerDetailLayout.setVerticalGroup(
             ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ViewCustomerDetailLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(CustomerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(ViewCustomerDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CustomerAction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(OtherCustomerInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(OtherCustomerInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CustomerAction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         cardPanel1.add(ViewCustomerDetail, "ViewCustomerDetail");
 
-        acceptLatePayment.setMaximumSize(new java.awt.Dimension(900, 700));
-        acceptLatePayment.setMinimumSize(new java.awt.Dimension(900, 700));
+        acceptPayment.setMaximumSize(new java.awt.Dimension(900, 700));
+        acceptPayment.setMinimumSize(new java.awt.Dimension(900, 700));
+        acceptPayment.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                acceptPaymentComponentHidden(evt);
+            }
+        });
 
         acceptLatePaymentjPanel.setBackground(new java.awt.Color(61, 96, 146));
         acceptLatePaymentjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
@@ -4670,18 +4679,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        latePaymentCanceljButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        latePaymentCanceljButton.setText("Cancel");
-        latePaymentCanceljButton.setMaximumSize(new java.awt.Dimension(163, 37));
-        latePaymentCanceljButton.setMinimumSize(new java.awt.Dimension(163, 37));
-        latePaymentCanceljButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        latePaymentCanceljButton.setSize(new java.awt.Dimension(163, 37));
-        latePaymentCanceljButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                latePaymentCanceljButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout acceptLatePaymentjPanelLayout = new javax.swing.GroupLayout(acceptLatePaymentjPanel);
         acceptLatePaymentjPanel.setLayout(acceptLatePaymentjPanelLayout);
         acceptLatePaymentjPanelLayout.setHorizontalGroup(
@@ -4710,8 +4707,6 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(153, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, acceptLatePaymentjPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(203, 203, 203))
         );
@@ -4744,36 +4739,34 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(expiryDatejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(expiryDatejLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addGroup(acceptLatePaymentjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(latePaymentCanceljButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(latePaymentSubmitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(172, 172, 172))
         );
 
         TotalLatePayjTextField.setEditable(false);
 
-        javax.swing.GroupLayout acceptLatePaymentLayout = new javax.swing.GroupLayout(acceptLatePayment);
-        acceptLatePayment.setLayout(acceptLatePaymentLayout);
-        acceptLatePaymentLayout.setHorizontalGroup(
-            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout acceptPaymentLayout = new javax.swing.GroupLayout(acceptPayment);
+        acceptPayment.setLayout(acceptPaymentLayout);
+        acceptPaymentLayout.setHorizontalGroup(
+            acceptPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
+            .addGroup(acceptPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptPaymentLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(acceptLatePaymentjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-        acceptLatePaymentLayout.setVerticalGroup(
-            acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        acceptPaymentLayout.setVerticalGroup(
+            acceptPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(acceptLatePaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(acceptLatePaymentLayout.createSequentialGroup()
+            .addGroup(acceptPaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(acceptPaymentLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(acceptLatePaymentjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        cardPanel1.add(acceptLatePayment, "acceptLatePayment");
+        cardPanel1.add(acceptPayment, "acceptPayment");
 
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
@@ -5309,6 +5302,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void acceptPaymentPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptPaymentPageButtonActionPerformed
         // TODO add your handling code here:
+        currentPage = "acceptPayment";
         card1.show(cardPanel1, "acceptPayment");
         homeButton.setVisible(true);
         pageLabel.setText("Accept payment page");
@@ -6367,8 +6361,8 @@ public class MainFrame extends javax.swing.JFrame {
             TotalLatePayjTextField.setText("£ " + Double.toString(invoice.getTotalPayable()));
             invoiceModelTable.removeRow(invoicejTable.getSelectedRow());
 
-            card1.show(cardPanel1, "acceptLatePayment");
-            card2.show(cardPanel2, "acceptLatePaymentBar");
+            card1.show(cardPanel1, "acceptPayment");
+            pageLabel.setText("Accept payment page");
         } else {
             JOptionPane.showMessageDialog(this, "You need to select a record");
         }
@@ -6376,11 +6370,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void cancelInvoiceSeletionjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelInvoiceSeletionjButton1ActionPerformed
         // TODO add your handling code here:
+        previousPage = currentPage;
+        currentPage = "acceptPayment";
+        
         searchInvoiceByInvoiceNojTextField.setText("");
         searchInvoiceByJobNumberjTextField.setText("");
         invoiceModelTable.setRowCount(0);
-        card1.show(cardPanel1, "acceptLatePayment");
-        card2.show(cardPanel2, "acceptLatePaymentBar");
+        
+        card1.show(cardPanel1, "acceptPayment");
+        pageLabel.setText("Accept payment page");
     }//GEN-LAST:event_cancelInvoiceSeletionjButton1ActionPerformed
 
     private void searchInvoiceByInvoiceNojTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldActionPerformed
@@ -6436,16 +6434,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_selectAutoBackupLocationjButtonActionPerformed
 
-    private void cancelAutoBackupConfigjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelAutoBackupConfigjButtonActionPerformed
-        // TODO add your handling code here:
-        currentAutoBackupModeDatajTextField.setText("");
-        card1.show(cardPanel1, "welcome");
-        card2.show(cardPanel2, "welcomeBar1");
-    }//GEN-LAST:event_cancelAutoBackupConfigjButtonActionPerformed
-
     private void confirmAutoBackupConfigjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAutoBackupConfigjButtonActionPerformed
         // TODO add your handling code here:
-        if (!currentAutoBackupModeDatajTextField.getText().equals("")) {
+        if (!autoBackupLocationjTextField.getText().equals("")) {
             final String mode = backupModejComboBox.getSelectedItem().toString();
             final String frequency = backupFrequencyjComboBox.getSelectedItem().toString();
             final String location = autoBackupLocationjTextField.getText();
@@ -6455,8 +6446,8 @@ public class MainFrame extends javax.swing.JFrame {
             controller.setAutoBackupConfig(config);
             autoBackupLocationjTextField.setText("");
             JOptionPane.showMessageDialog(this, "You have updated the automatic backup configuration");
-            card1.show(cardPanel1, "welcome");
-            card2.show(cardPanel2, "welcomeBar1");
+            card1.show(cardPanel1, "homePage");
+            pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
         } else {
             JOptionPane.showMessageDialog(this, "You need to pick a location");
         }
@@ -6496,6 +6487,23 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_discountPlanTypejComboBoxActionPerformed
 
+    public void displayAllTask() {
+        taskModelTable = (DefaultTableModel) TaskjTable.getModel();
+        taskModelTable.setRowCount(0);
+        
+        final ArrayList<Task> taskList = controller.getAllTasks();
+        final int SIZE = taskList.size();
+        
+        Object rowData[] = new Object[3];
+        for (int i = 0; i < SIZE; ++i) {
+            rowData[0] = taskList.get(i).getTaskId();
+            rowData[1] = taskList.get(i).getDescription();
+            rowData[2] = taskList.get(i).getPrice();
+            //adds the array type object to the table by adding it to the model
+            taskModelTable.addRow(rowData);
+        }
+    }
+    
     private void discountCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountCanceljButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_discountCanceljButtonActionPerformed
@@ -6505,13 +6513,11 @@ public class MainFrame extends javax.swing.JFrame {
         final String discountType = discountPlanTypejComboBox.getSelectedItem().toString();
         final CustomerDetails customer = selectedCustomer;
 
-        final UserDetails user = new User("00001", "Manager", "Manager", "Manager", new Date(), "4");
-
         switch(discountType) {
             case "Fixed" :
             System.out.println("Fixed");
             final int fixedDiscountPercentage = Integer.parseInt(fixedDiscountRatejTextField.getText());
-            controller.applyDiscountPlan(customer, user, discountType);
+            controller.applyDiscountPlan(customer, loggedInUser, discountType);
             controller.applyFixedDiscountRate(fixedDiscountPercentage, customer);
             break;
 
@@ -6556,75 +6562,68 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addFlexibleBoundjButtonActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        if (CustomerDetailsjTable.getSelectedRow() >= 0) {
-            // gets the selected position from the invoice table
-            final int row = CustomerDetailsjTable.getSelectedRow();
-            final int columnCount = CustomerDetailsjTable.getColumnCount();
-            Object[] obj = new Object[15];
-
-            // gets all the row information from the selected invoice in the table
-            // and places it in the array
-            for (int i = 0; i < columnCount; ++i)
-            obj[i] = CustomerDetailsjTable.getValueAt(row, i);
-
-            defaultCustomerModelTable.removeRow(CustomerDetailsjTable.getSelectedRow());
-            String accountNo = obj[0].toString();
-            controller.reactivateDefaultAccount(accountNo);
-        }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     private void selectCustomerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectCustomerjButtonActionPerformed
         // TODO add your handling code here:
-        final String customerNo = customersjTable.getValueAt(customersjTable.getSelectedRow(), 0).toString();
+        final String getCustomerNo = customersjTable.getValueAt(customersjTable.getSelectedRow(), 0).toString();
+        final int customerNo = Integer.parseInt(getCustomerNo);
         final CustomerDetails[] customerList = controller.getAllCustomers();
-        for (int i = 0; i < customerList.length; ++i)
-        if (customerNo.equals(customerList[i].getAccountNo())) {
-            selectedCustomer = customerList[i];
-            break;
+        for (int i = 0; i < customerList.length; ++i) {
+            if (customerNo == customerList[i].getAccountNo()) {
+                selectedCustomer = customerList[i];
+                break;
+            }
         }
 
-        if (selectedCustomer != null) {
-            customerAccHolderNamejLabel.setText(selectedCustomer.getAccountHolderName());
-            customerPrefixjLabel.setText(selectedCustomer.getPrefix());
-            customerFirstNamejLabel.setText(selectedCustomer.getFirstName());
-            customerLastNamejLabel.setText(selectedCustomer.getLastName());
-            customerNumberjLabel.setText(selectedCustomer.getPhoneNumber());
-            customerRegistationDatejLabel.setText(selectedCustomer.getRegDate().toString());
-
-            customerStatusjTextField.setText("");
-
-            if (selectedCustomer.getIsValued()== true)
-            customerTypejTextField.setText("Valued");
-            else
-            customerTypejTextField.setText("Standard");
-
-            if (selectedCustomer.getInDefault()== true)
-            cutomerInDefaultjTextField.setText("true");
-            else
-            cutomerInDefaultjTextField.setText("false");
-
-            final String discountType = controller.getCustomerDiscountType(selectedCustomer);
-            if (discountType != null)
-            customerDiscountjTextField.setText(discountType);
-            else
-            customerDiscountjTextField.setText("None");
-
-            customerStreetNamejTextField.setText(selectedCustomer.getStreetName());
-            customerPostcodejTextField.setText(selectedCustomer.getPostCode());
-            customerCityjTextField.setText(selectedCustomer.getCity());
-            customerBuildingNojTextField.setText(Integer.parseInt(selectedCustomer.getBuildingNo()));
+        try {
+            updateCustomerInfo(selectedCustomer);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         card1.show(cardPanel1, "ViewCustomerDetail");
-        card2.show(cardPanel2, "homePageR");
+        pageLabel.setText("Customer: " + selectedCustomer.getAccountHolderName());
     }//GEN-LAST:event_selectCustomerjButtonActionPerformed
 
-    private void cancelSelectCustomerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelSelectCustomerjButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelSelectCustomerjButtonActionPerformed
+    public void updateCustomerInfo(CustomerDetails selectedCustomer) throws SQLException {
+        CustomerDetails refreshedCustomerDetailList = controller.getSpecificCustomer(selectedCustomer);
+        if (refreshedCustomerDetailList != null) {
+            customerAccHolderNamejLabel.setText(refreshedCustomerDetailList.getAccountHolderName());
+            customerPrefixjLabel.setText(refreshedCustomerDetailList.getPrefix());
+            customerFirstNamejLabel.setText(refreshedCustomerDetailList.getFirstName());
+            customerLastNamejLabel.setText(refreshedCustomerDetailList.getLastName());
+            customerNumberjLabel.setText(refreshedCustomerDetailList.getPhoneNumber());
+            customerRegistationDatejLabel.setText(refreshedCustomerDetailList.getRegDate().toString());
 
+            if (refreshedCustomerDetailList.getIsSuspended() == true)
+                customerStatusjTextField.setText("Suspended");
+            else 
+                customerStatusjTextField.setText("Not Suspended");
+
+            if (refreshedCustomerDetailList.getIsValued() == true)
+                customerTypejTextField.setText("Valued");
+            else
+                customerTypejTextField.setText("Standard");
+
+            if (refreshedCustomerDetailList.getInDefault() == true)
+                cutomerInDefaultjTextField.setText("true");
+            else
+                cutomerInDefaultjTextField.setText("false");
+
+            final boolean hasDiscount = controller.checkCustomerHasDiscountPlan(refreshedCustomerDetailList);
+            if (hasDiscount) {
+                final String discountType = controller.getCustomerDiscountType(refreshedCustomerDetailList);
+                customerDiscountjTextField.setText(discountType);    
+            } else {
+                customerDiscountjTextField.setText("None");
+            }
+            
+            customerStreetNamejTextField.setText(refreshedCustomerDetailList.getStreetName());
+            customerPostcodejTextField.setText(refreshedCustomerDetailList.getPostCode());
+            customerCityjTextField.setText(refreshedCustomerDetailList.getCity());
+            customerBuildingNojTextField.setText(Integer.toString(refreshedCustomerDetailList.getBuildingNo()));
+        }
+    }
+    
     private void assignDiscountPlanjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignDiscountPlanjButtonActionPerformed
         // TODO add your handling code here:
         card1.show(cardPanel1, "DiscountPlan");
@@ -6633,6 +6632,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void selectInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButtonActionPerformed
         // TODO add your handling code here:
+        previousPage = currentPage;
+        currentPage = "searchInvoicePage";
+        
         // updates the tables for selecting invoices
         invoiceModelTable = (DefaultTableModel) invoicejTable.getModel(); // grabs the current model
         invoiceModelTable.setRowCount(0);
@@ -6655,9 +6657,9 @@ public class MainFrame extends javax.swing.JFrame {
 
             // change page
             card1.show(cardPanel1, "searchInvoicePage");
-            card2.show(cardPanel2, "acceptLatePaymentBar");
+            pageLabel.setText("Search Invoice page");
         } catch (ParseException ex) {
-            Logger.getLogger(MainFrame1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_selectInvoicejButtonActionPerformed
 
@@ -6769,19 +6771,72 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_latePaymentSubmitjButtonActionPerformed
 
-    private void latePaymentCanceljButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latePaymentCanceljButtonActionPerformed
+    private void backupSettingsPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupSettingsPageButtonActionPerformed
         // TODO add your handling code here:
-        // invoice informaiton and total
-        TotalLatePayjTextField.setText("");
-        t.clear();
+        if (controller.checkAutoBackupConfigExist() == true) {
+            currentAutoBackupModeDatajTextField.setText(controller.getAutoBackupConfigData().getBackupMode());
+            currentAutoBackupFrequencyDatajTextField.setText(controller.getAutoBackupConfigData().getBackupFrequency());
+            currentAutoBackupLocationDatajTextField.setText(controller.getAutoBackupConfigData().getBackupLocation());
 
-        // clears the data for card detials
-        expiryDatejTextField.setText("");
-        last4DigitjTextField.setText("");
+            autoBackupLocationjTextField.setText(configData.getBackupLocation());
+        } else {
+            currentAutoBackupModeDatajTextField.setText("None");
+            currentAutoBackupFrequencyDatajTextField.setText("None");
+            currentAutoBackupLocationDatajTextField.setText("None");
+        }
+        card1.show(cardPanel1, "AutoBackupConfig");
+        pageLabel.setText("Backup settings page");
+    }//GEN-LAST:event_backupSettingsPageButtonActionPerformed
 
-        card1.show(cardPanel1, "receptionistHomePage");
-        card2.show(cardPanel2, "homePageR");
-    }//GEN-LAST:event_latePaymentCanceljButtonActionPerformed
+    private void manageCustomersMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomersMenuPageButtonActionPerformed
+        // TODO add your handling code here:
+        customerModelTable = (DefaultTableModel) customersjTable.getModel();
+        customerModelTable.setRowCount(0);
+        
+        final CustomerDetails[] customerList = controller.getAllCustomers();
+
+        Object rowData[] = new Object[4];
+        for (int i = 0; i < customerList.length; ++i) {
+            rowData[0] = customerList[i].getAccountNo();
+            rowData[1] = customerList[i].getAccountHolderName();
+            rowData[2] = customerList[i].getFirstName();
+            rowData[3] = customerList[i].getLastName();
+            //adds the array type object to the table by adding it to the model
+            customerModelTable.addRow(rowData);
+        }
+        card1.show(cardPanel1, "SelectCustomer");
+        homeButton.setVisible(true);
+        pageLabel.setText("Manage customer page");
+    }//GEN-LAST:event_manageCustomersMenuPageButtonActionPerformed
+
+    private void acceptPaymentComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_acceptPaymentComponentHidden
+        // TODO add your handling code here:
+        
+        if (!currentPage.equals("searchInvoicePage")) {
+            resetComponents(acceptPayment);
+            t.clear();
+        }
+    }//GEN-LAST:event_acceptPaymentComponentHidden
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (selectedCustomer.getInDefault() && selectedCustomer.getIsSuspended()) 
+            controller.reactivateDefaultAccount(selectedCustomer, 0);
+        try {
+            updateCustomerInfo(selectedCustomer);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        controller.deleteAccount(selectedCustomer);
+        selectedCustomer = null;
+        JOptionPane.showMessageDialog(this, "You have deleted customer account");
+        card1.show(cardPanel1, "homePage");
+        pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
@@ -6833,13 +6888,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel BAPERSLabel;
     private javax.swing.JLabel BackupDataLabel;
     private javax.swing.JPanel CustomerAction;
-    private javax.swing.JScrollPane CustomerDetailsjScrollPane;
-    private javax.swing.JTable CustomerDetailsjTable;
     private javax.swing.JPanel CustomerInfo;
     private javax.swing.JPanel DiscountTypeInformation;
     private javax.swing.JPanel FixedDiscountType;
     private javax.swing.JPanel FlexiableDiscountType;
-    private javax.swing.JPanel InDefault;
     private javax.swing.JPanel JobsjPanel;
     private javax.swing.JScrollPane JobsjScrollPane;
     private javax.swing.JTable JobsjTable;
@@ -6868,8 +6920,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ViewCustomerDetail;
     private javax.swing.JPanel acceptJobPage;
     private javax.swing.JButton acceptJobPageButton;
-    private javax.swing.JPanel acceptLatePayment;
     private javax.swing.JPanel acceptLatePaymentjPanel;
+    private javax.swing.JPanel acceptPayment;
     private javax.swing.JButton acceptPaymentPageButton;
     private javax.swing.JLabel accountHolderNameLabel;
     private javax.swing.JTextField accountHolderNamejTextField;
@@ -6897,14 +6949,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> boundsjList;
     private javax.swing.JTextField buildingNumberField;
     private javax.swing.JLabel cPLabel;
-    private javax.swing.JButton cancelAutoBackupConfigjButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton cancelCreationjButton;
     private javax.swing.JButton cancelCustomerFJobjButton;
     private javax.swing.JButton cancelInvoiceSeletionjButton;
     private javax.swing.JButton cancelInvoiceSeletionjButton1;
     private javax.swing.JButton cancelSearchButton;
-    private javax.swing.JButton cancelSelectCustomerjButton;
     private javax.swing.JPanel cardPanel1;
     private javax.swing.JPanel cardPanel2;
     private javax.swing.JComboBox<String> cardTypejComboBox;
@@ -7011,6 +7061,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane invoicejScrollPane;
     private javax.swing.JTable invoicejTable;
     private javax.swing.JTable invoicejTable1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel5;
@@ -7034,7 +7087,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton jobEnquiryPageButton;
     private javax.swing.JPanel jobHomePage;
     private javax.swing.JButton jobMenuPageButton;
@@ -7042,7 +7094,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel last4DigitjLabel;
     private javax.swing.JTextField last4DigitjTextField;
     private javax.swing.JLabel lastnameLabel;
-    private javax.swing.JButton latePaymentCanceljButton;
     private javax.swing.JButton latePaymentSubmitjButton;
     private javax.swing.JTextField locationChosenField;
     private javax.swing.JButton logOutButton;

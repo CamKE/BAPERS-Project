@@ -778,9 +778,13 @@ public class Controller {
         return defaultCustomers;
     }
     
-    public void reactivateDefaultAccount(String customer) {
-        final String customerNo = customer;
-        final String sql = "UPDATE `bapers_data`.`Customer` SET `in_default`='0' WHERE `account_no`=\'" + customerNo + "';" ;
+    public void reactivateDefaultAccount(CustomerDetails customer, int status) {
+        final int customerNo = customer.getAccountNo();
+        final String sql = "UPDATE `bapers_data`.`Customer` SET `in_default`=\'"
+                + status + "\', "
+                + "`is_suspended`=\'"
+                + status + "\' "
+                + "WHERE `account_no`=\'" + customerNo + "';" ;
         
         try {
             database.write(sql, conn);
@@ -855,6 +859,37 @@ public class Controller {
         return customers;
     }
     
+    public CustomerDetails getSpecificCustomer(CustomerDetails customer) throws SQLException {
+        CustomerDetails foundCustomer = null;
+        final String sql = "select * from customer where account_no =\'"
+                + customer.getAccountNo() + "\'"
+                + ";";
+        
+        try (ResultSet result = database.read(sql, conn)) {
+            result.next();
+            foundCustomer = new CustomerDetails(
+                    result.getInt("account_no"),
+                    result.getString("account_holder_name"),
+                    result.getString("prefix"),
+                    result.getString("firstname"),
+                    result.getString("lastname"),
+                    result.getString("street_name"),
+                    result.getString("postcode"),
+                    result.getString("city"),
+                    result.getString("phone"),
+                    result.getBoolean("is_suspended"),
+                    result.getBoolean("in_default"),
+                    result.getBoolean("is_valued"),
+                    result.getTimestamp("registration_date"),
+                    result.getInt("building_no"),
+                    result.getString("email_contact")
+                ); 
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return foundCustomer;
+    }
+    
     public String getCustomerDiscountType(final CustomerDetails customer) {
         String type = null;
         final String sql = "select * from DiscountPlan where DiscountPlan.Customer_account_no =\'" 
@@ -868,6 +903,23 @@ public class Controller {
         }
         
         return type;
+    }
+    
+    public void deleteAccount(CustomerDetails customer){
+        final String sql = "delete from`customer` where `account_no`=\'"
+                + customer.getAccountNo()
+                + "\';";
+        try {
+            database.write(sql, conn);
+        } catch (Exception e) {
+            System.out.println("Exception error: " + e);
+        }
+    }
+    
+    public ArrayList<Invoice> viewAllCustomerInvoce(CustomerDetails customer) {
+        ArrayList<Invoice> customerInvoice = new ArrayList<>();
+//        final String sql = select * from Invoice where 
+        return customerInvoice;
     }
     
     

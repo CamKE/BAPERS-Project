@@ -63,7 +63,7 @@ public class DBImpl implements MyDBConnectivity {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/bapers_data?autoReconnect=true&useSSL=false", "root", "password");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/bapers_data?autoReconnect=true&useSSL=false", "root", "Password");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Error: " + ex);
         }
