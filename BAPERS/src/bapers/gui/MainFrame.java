@@ -8048,11 +8048,11 @@ public class MainFrame extends javax.swing.JFrame {
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
                 //Add rows to table
-                String date = dateFormat.format(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getDate());
-                pdfTable.addCell(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getCustomerName());
-                pdfTable.addCell(String.valueOf(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getInvoiceNumber()));
+                String date = dateFormat.format(controller.getLatePaymentInvoices().get(reminderLettersTable.getSelectedRow()).getDate());
+                pdfTable.addCell(controller.getLatePaymentInvoices().get(reminderLettersTable.getSelectedRow()).getCustomerName());
+                pdfTable.addCell(String.valueOf(controller.getLatePaymentInvoices().get(reminderLettersTable.getSelectedRow()).getInvoiceNumber()));
                 pdfTable.addCell(date);
-                pdfTable.addCell(String.valueOf(controller.getInvoices().get(reminderLettersTable.getSelectedRow()).getAmountDue()));
+                pdfTable.addCell(String.valueOf(controller.getLatePaymentInvoices().get(reminderLettersTable.getSelectedRow()).getAmountDue()));
 
                 document.add(pdfTable);
                 document.add(new Paragraph("According to our records, "

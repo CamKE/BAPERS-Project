@@ -39,7 +39,6 @@ import java.io.FileOutputStream;
 import java.sql.Time;
 import java.sql.Date;
 
-
 /**
  *
  * @author CameronE
@@ -1210,7 +1209,6 @@ public class Controller {
                 + "WHERE Job_StandardJobs_StandardJob_code = '" + standardJobCode + "' AND Task_task_id = '" + taskID + "' AND Job_StandardJobs_Job_job_no = '" + jobNumber + "';";
         database.write(SQL, conn);
     }
-   
 
     /**
      * @return the taskList
@@ -1508,7 +1506,7 @@ public class Controller {
             case "Finishing Room":
                 departmentCode = "FR";
                 break; // optional
-    
+
         }
         return departmentCode;
     }
@@ -1732,8 +1730,29 @@ public class Controller {
         String SQL = "INSERT INTO technician_room (Department_code,Account_no) VALUES ('" + departmentCode + "','" + accountNumber + "');";
         database.write(SQL, conn);
     }
-    
-    public void generateFirstReminderLetter(){
-       
+
+    public void generateFirstReminderLetter() {
+
+    }
+
+    public ArrayList<Invoice> getLatePaymentInvoices() {
+        ArrayList<Invoice> invoiceList = new ArrayList<>();
+
+        String SQL = "SELECT * FROM invoice\n"
+                + "inner join job on invoice.Job_job_no = job.job_no\n"
+                + "inner join customer on job.Customer_account_no = customer.account_no ;";
+        rs = database.read(SQL, conn);
+
+        try {
+            while (rs.next()) {
+                String customerName = rs.getString("firstname") + " " + rs.getString("lastname");
+                Invoice invoice = new Invoice(rs.getInt("Invoice_no"), customerName, rs.getInt("total_payable"), rs.getDate("date_issued"));
+                invoiceList.add(invoice);
+            }
+        } catch (Exception e) {
+            System.out.println("Get invoices error");
+        }
+
+        return invoiceList;
     }
 }
