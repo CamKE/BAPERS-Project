@@ -52,6 +52,7 @@ import javax.swing.RowFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.sql.Time;
 
 /**
  *
@@ -6021,6 +6022,9 @@ public class MainFrame extends javax.swing.JFrame {
         backButton.setVisible(false);
         managerjPanel.setVisible(false);
         welcomePageLabel.setVisible(false);
+
+        this.resetJobEnquiryTables();
+
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void backupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backupButtonActionPerformed
@@ -6201,6 +6205,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void createUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserButtonActionPerformed
         //Initialise values
+        boolean valid = true;
         String firstName = userFirstNameField.getText();
         String surname = userLastNameField.getText();
         String password = NewPasswordField.getText();
@@ -6212,23 +6217,44 @@ public class MainFrame extends javax.swing.JFrame {
         //Check first name field
         if (userFirstNameField.getText().length() > 10) {
             JOptionPane.showMessageDialog(this, "Name cannot be longer than 10 characters");
-
+            valid = false;
             //Check fields are not empty
-        } else if (firstName.equals("") || surname.equals("") || password.equals("") || username.equals("")) {
+        }
+        if (firstName.equals("") || surname.equals("") || password.equals("") || username.equals("")) {
             JOptionPane.showMessageDialog(this, "Please insert data");
-
+            valid = false;
             //Check passwords match
-        } else if (!NewPasswordField.getText().equals(NewRepeatPasswordField.getText())) {
+        }
+        if (!NewPasswordField.getText().equals(NewRepeatPasswordField.getText())) {
             JOptionPane.showMessageDialog(this, "Passwords do not match");
             //Insert pop up error
-
+            valid = false;
             //Will only execute method in controller if all preconditions are met
-        } else if (controller.checkIfUsernameExists(username)) {
+        }
+        if (controller.checkIfUsernameExists(username)) {
             JOptionPane.showMessageDialog(this, "Username already exists");
-        } else {
-            //Get RoleID
-            roleID = controller.getRoleID(role);
+            valid = false;
+        }
+        //Get RoleID
+        roleID = controller.getRoleID(role);
+
+        //Create technician
+        if (role.equals("Technician") && valid) {
+            Object[] possibilities = {"Copy Room", "Development area", "Packing Departments", "Finishing Room"};
+            String technicianRoom = (String) JOptionPane.showInputDialog(null, "Select room", "Select Room", JOptionPane.PLAIN_MESSAGE, null, possibilities, "Copy Room");
+
             if (controller.createUser(firstName, surname, password, roleID, username)) {
+                controller.createTechnician(controller.getUserID(password), controller.getDepartmentCode(technicianRoom));
+                JOptionPane.showMessageDialog(this, "User created with id: " + controller.getUserID(password));
+                homeButton.doClick();
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to create technician");
+            }
+        }
+
+        //Create user other than technician
+        if (!(role.equals("Technician"))) {
+            if (controller.createUser(firstName, surname, password, roleID, username) && valid) {
                 JOptionPane.showMessageDialog(this, "User created with id: " + controller.getUserID(password));
                 homeButton.doClick();
             } else {
@@ -7564,8 +7590,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         try {
             updateCustomerInfo(selectedCustomer);
+
         } catch (SQLException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFrame.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         card1.show(cardPanel1, "ViewCustomerDetail");
@@ -7649,8 +7677,10 @@ public class MainFrame extends javax.swing.JFrame {
             // change page
             card1.show(cardPanel1, "searchInvoicePage");
             pageLabel.setText("Search Invoice page");
+
         } catch (ParseException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFrame.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_selectInvoicejButtonActionPerformed
 
@@ -7815,8 +7845,10 @@ public class MainFrame extends javax.swing.JFrame {
         }
         try {
             updateCustomerInfo(selectedCustomer);
+
         } catch (SQLException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFrame.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -8028,57 +8060,7 @@ public class MainFrame extends javax.swing.JFrame {
         }*/
     }//GEN-LAST:event_viewReminderLetterButtonActionPerformed
 
-
-    private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
-
-        int taskID = -1;
-        //Get row index
-        if ((taskResultsTable.getSelectedRow() >= 0)) {
-            //Check row has values
-            if (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0) != null) {
-                taskID = (Integer) (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0));
-                Object[] possibilities = {"Completed", "In progress", "Not started"};
-                String taskStatus = (String) JOptionPane.showInputDialog(null, "Update Task ID: " + taskID, "Task Update", JOptionPane.PLAIN_MESSAGE, null, possibilities, "In progress");
-
-                controller.updateTaskStatusInDatabase(taskStatus, taskResultsTable.getSelectedRow());
-
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a row");
-        }
-
-        //Check if standard job is in progress
-        if (controller.checkIfStandardJobIsInProgress(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
-            //Mark job and standard job as in progress
-            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
-            controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
-
-            //Check if all tasks are completed
-            if (controller.checkIfAllTasksAreCompleted(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
-                //Update standard job status
-                controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Completed");
-
-                //Check if all standard jobs are completed
-                if (controller.checkIfAllStandardJobsAreCompleted(Integer.parseInt(jobNumberLabel.getText()))) {
-                    //Update job status
-                    controller.updateJobStatus("Completed", Integer.parseInt(jobIndexLabel.getText()));
-                } else {
-                    controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
-                }
-            } else {
-                controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
-            }
-
-        } else {
-            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Not started");
-            //Check if job is in progress
-            if (controller.checkIfJobIsInProgress(Integer.parseInt(jobNumberLabel.getText()))) {
-                controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
-            } else {
-                controller.updateJobStatus("Not started", Integer.parseInt(jobIndexLabel.getText()));
-            }
-        }
-
+    private void resetJobEnquiryTables() {
         //Update task table
         this.deleteTaskEnquiryTableInformation();
         this.updateTaskEnquiryTable(standardJobCodeLabel.getText());
@@ -8088,6 +8070,99 @@ public class MainFrame extends javax.swing.JFrame {
         //Update job table
         this.deleteJobEnquiryTable();
         this.updateJobEnquiryTable();
+    }
+    private void updateTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateTaskButtonActionPerformed
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        String currentTime = sdf.format(d);
+
+        int taskID = -1;
+        String standardJobStatusBeforeUpdatingTask = String.valueOf(standardJobResults.getModel().getValueAt(Integer.parseInt(standardJobIndexLabel.getText()), 2));
+        String jobStatusBeforeUpdatingStandardJob = String.valueOf(jobEnquiryTableResults.getModel().getValueAt(Integer.parseInt(jobIndexLabel.getText()), 4));
+
+        //Get row index and check row has values
+        if ((taskResultsTable.getSelectedRow() >= 0) && taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0) != null) {
+            taskID = (Integer) (taskResultsTable.getModel().getValueAt(taskResultsTable.getSelectedRow(), 0));
+            if (controller.doesTechnicianHaveAccess(loggedInUser.getAccount_no(), standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()), taskID)) {
+
+                Object[] possibilities = {"Completed", "In progress", "Not started"};
+                String taskStatus = (String) JOptionPane.showInputDialog(null, "Update Task ID: " + taskID, "Task Update", JOptionPane.PLAIN_MESSAGE, null, possibilities, "In progress");
+
+                controller.updateTaskStatusInDatabase(taskStatus, taskResultsTable.getSelectedRow(), currentTime);
+                controller.setTechnicianWhoCompletedTask(loggedInUser.getAccount_no(), standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()), taskID);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "You do not have access to change this task");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+
+   
+        //If standard job has been changed from not started to in progress then update the start time of that standard job
+        if (controller.checkIfStandardJobIsInProgress(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))
+                && standardJobStatusBeforeUpdatingTask.equals("Not started")) {
+
+            //Mark standard job as in progress and record the time it started
+            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress", currentTime);
+            JOptionPane.showMessageDialog(null, "Standard job is now in progress, the start time for " + standardJobCodeLabel.getText() + " is " + currentTime);
+            //If job has been changed from not started to in progress then update the start time of that job
+            if (controller.checkIfJobIsInProgress(Integer.parseInt(jobNumberLabel.getText())) && jobStatusBeforeUpdatingStandardJob.equals("Not started")) {
+                //Mark job as in progress and record the time it started
+                controller.updateJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()), currentTime);
+                JOptionPane.showMessageDialog(null, "Job is now in progress, the start time for " + jobNumberLabel.getText() + " is " + currentTime);
+            }
+
+        }
+
+        //Check if all tasks have been completed
+        if (controller.checkIfAllTasksAreCompleted(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
+            //Update standard job finish time and status
+            controller.updateStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Completed", currentTime);
+            //Set technician who completed standardjob
+            JOptionPane.showMessageDialog(null, "All tasks have been completed, the finish time for " + standardJobCodeLabel.getText() + " is " + currentTime);
+
+            //Check if all standard jobs have been completed
+            if (controller.checkIfAllStandardJobsAreCompleted(Integer.parseInt(jobNumberLabel.getText()))) {
+                //Update job status
+                controller.updateJobStatus("Completed", Integer.parseInt(jobIndexLabel.getText()), currentTime);
+                JOptionPane.showMessageDialog(null, "Job has now been completed, the finish time for " + jobNumberLabel.getText() + " is " + currentTime);
+            }
+        } else {
+            //If standard job is in progress and all tasks are not completed then mark standard job as in progress 
+            if (controller.checkIfStandardJobIsInProgress(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))) {
+                controller.overrideStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "In progress");
+                //Mark job as in progress
+                controller.overrideJobStatus("In progress", Integer.parseInt(jobIndexLabel.getText()));
+            }
+        }
+
+        //Change standard job from in progress to not started if all tasks are listed as not started
+        if (standardJobStatusBeforeUpdatingTask.equals("In progress")
+                && !(controller.checkIfStandardJobIsInProgress(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText())))) {
+            controller.overrideStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Not started");
+        }
+        //Change standard job from completed to not started if all tasks are listed as not started
+        if (standardJobStatusBeforeUpdatingTask.equals("Completed")
+                && !(controller.checkIfStandardJobIsInProgress(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText())))) {
+            controller.overrideStandardJobStatus(Integer.parseInt(jobNumberLabel.getText()), Integer.parseInt(standardJobIndexLabel.getText()), "Not started");
+        }
+
+        //Change standard job from completed to not started if all tasks are listed as not started
+        if (jobStatusBeforeUpdatingStandardJob.equals("Completed")
+                && !(controller.checkIfJobIsInProgress(Integer.parseInt(jobNumberLabel.getText())))) {
+            controller.overrideJobStatus("Not started", Integer.parseInt(jobIndexLabel.getText()));
+        }
+        //Change standard job from completed to not started if all tasks are listed as not started
+        if (jobStatusBeforeUpdatingStandardJob.equals("In progress")
+                && !(controller.checkIfJobIsInProgress(Integer.parseInt(jobNumberLabel.getText())))) {
+            controller.overrideJobStatus("Not started", Integer.parseInt(jobIndexLabel.getText()));
+        }
+        
+        //Reset task/standardjob/job tables
+        this.resetJobEnquiryTables();
+
     }//GEN-LAST:event_updateTaskButtonActionPerformed
 
     private void taskEnquiryBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskEnquiryBackButtonActionPerformed
@@ -8470,16 +8545,24 @@ public class MainFrame extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

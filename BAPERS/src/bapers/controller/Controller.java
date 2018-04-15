@@ -268,11 +268,8 @@ public class Controller {
             case "Copy room":
                 departmentCode = "CR";
                 break; // optional
-            case "Dark room":
-                departmentCode = "DR";
-                break; // optional
             case "Development area":
-                departmentCode = "DA";
+                departmentCode = "DR";
                 break; // optional
             case "Printing room":
                 departmentCode = "PR";
@@ -281,7 +278,7 @@ public class Controller {
                 departmentCode = "FR";
                 break; // optional
             case "Packaging department":
-                departmentCode = "PD";
+                departmentCode = "PR";
                 break; // optional
         }
         //gets the data from the SQL database  
@@ -1149,11 +1146,9 @@ public class Controller {
                 departmentName = "Copy Room";
                 break; // optional
             case "DR":
-                departmentName = "Dark Room";
-                break; // optional
-            case "DA":
                 departmentName = "Development Area";
                 break; // optional
+
             case "PR":
                 departmentName = "Printing Room";
                 break; // optional
@@ -1187,14 +1182,37 @@ public class Controller {
         this.standardJobTasksList = standardJobTasks;
     }
 
-    public void updateTaskStatusInDatabase(String statusType, int taskID) {
+    public void updateTaskStatusInDatabase(String statusType, int taskID, String time) {
         int statusID = this.getTaskList().get(taskID).getStatusID();
         this.getTaskList().get(taskID).setStatus(statusType);
-        String SQL = "Update status\n"
-                + "SET status_type = '" + statusType + "'\n"
-                + "WHERE status_id = '" + statusID + "';";
+        String SQL = "";
+        switch (statusType) {
+            case ("Completed"):
+                SQL = "Update status\n"
+                        + "SET  finish_time = '" + time + "', status_type = '" + statusType + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+            case ("In progress"):
+                SQL = "Update status\n"
+                        + "SET  start_time = '" + time + "', status_type = '" + statusType + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+            case ("Not started"):
+                SQL = "Update status\n"
+                        + "SET status_type = '" + statusType + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+        }
         database.write(SQL, conn);
     }
+
+    public void setTechnicianWhoCompletedTask(int accountNumber, String standardJobCode, int jobNumber, int taskID) {
+        String SQL = "Update job_standardjobs_tasks\n"
+                + "SET User_account_no = '" + accountNumber + "'\n"
+                + "WHERE Job_StandardJobs_StandardJob_code = '" + standardJobCode + "' AND Task_task_id = '" + taskID + "' AND Job_StandardJobs_Job_job_no = '" + jobNumber + "';";
+        database.write(SQL, conn);
+    }
+   
 
     /**
      * @return the taskList
@@ -1203,10 +1221,42 @@ public class Controller {
         return taskList;
     }
 
-    public void updateStandardJobStatus(int jobNumber, int standardJobIndex, String status) {
+    public void updateStandardJobStatus(int jobNumber, int standardJobIndex, String status, String time) {
         this.getStandardJobList().get(standardJobIndex).setStatus(status);
         int statusID = (this.getStandardJobList().get(standardJobIndex).getStatusID());
+        String SQL = "";
+        switch (status) {
+            case ("Completed"):
+                SQL = "Update status\n"
+                        + "SET  finish_time = '" + time + "', status_type = '" + status + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+            case ("In progress"):
+                SQL = "Update status\n"
+                        + "SET  start_time = '" + time + "', status_type = '" + status + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+            case ("Not started"):
+                SQL = "Update status\n"
+                        + "SET status_type = '" + status + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+        }
+        database.write(SQL, conn);
+    }
 
+    public void overrideStandardJobStatus(int jobNumber, int standardJobIndex, String status) {
+        this.getStandardJobList().get(standardJobIndex).setStatus(status);
+        int statusID = (this.getStandardJobList().get(standardJobIndex).getStatusID());
+        String SQL = "Update status\n"
+                + "SET status_type = '" + status + "'\n"
+                + "WHERE status_id = '" + statusID + "';";
+        database.write(SQL, conn);
+    }
+
+    public void overrideJobStatus(String status, int index) {
+        int statusID = this.getJob().get(index).getStatusID();
+        this.getJob().get(index).setStatus(status);
         String SQL = "Update status\n"
                 + "SET status_type = '" + status + "'\n"
                 + "WHERE status_id = '" + statusID + "';";
@@ -1224,12 +1274,27 @@ public class Controller {
         standardJobList.clear();
     }
 
-    public void updateJobStatus(String status, int index) {
+    public void updateJobStatus(String status, int index, String time) {
         int statusID = this.getJob().get(index).getStatusID();
         this.getJob().get(index).setStatus(status);
-        String SQL = "Update status\n"
-                + "SET status_type = '" + status + "'\n"
-                + "WHERE status_id = '" + statusID + "';";
+        String SQL = "";
+        switch (status) {
+            case ("Completed"):
+                SQL = "Update status\n"
+                        + "SET  finish_time = '" + time + "', status_type = '" + status + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+            case ("In progress"):
+                SQL = "Update status\n"
+                        + "SET  start_time = '" + time + "', status_type = '" + status + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+            case ("Not started"):
+                SQL = "Update status\n"
+                        + "SET status_type = '" + status + "'\n"
+                        + "WHERE status_id = '" + statusID + "';";
+                break;
+        }
         database.write(SQL, conn);
     }
 
@@ -1297,7 +1362,6 @@ public class Controller {
         } catch (Exception e) {
             System.out.println("Check if Job is in progress error");
         }
-        System.out.println(jobIsInProgress);
         return jobIsInProgress;
     }
 
@@ -1437,11 +1501,8 @@ public class Controller {
             case "Copy Room":
                 departmentCode = "CR";
                 break; // optional
-            case "Dark Room":
-                departmentCode = "DR";
-                break; // optional
             case "Development Area":
-                departmentCode = "DA";
+                departmentCode = "DR";
                 break; // optional
             case "Printing Room":
                 departmentCode = "PR";
@@ -1631,9 +1692,10 @@ public class Controller {
         }
     }
 
-        public void clearTaskList() {
+    public void clearTaskList() {
         taskList.clear();
     }
+
     public Integer getInvoiceNumber(int jobNumber) {
         //Get invoice number from database
 
@@ -1650,5 +1712,28 @@ public class Controller {
         return invoiceNumber;
     }
 
-    
+    public boolean doesTechnicianHaveAccess(int accountNumber, String standardJobCode, int jobNumber, int taskID) {
+        boolean access = false;
+        String SQL = "SELECT * FROM department\n"
+                + "inner join technician_room on department.department_code = technician_room.Department_code\n"
+                + "inner join task on department.department_code = task.Department_department_code\n"
+                + "inner join job_standardjobs_tasks on task.task_id = job_standardjobs_tasks.Task_task_id\n"
+                + "inner join job_standardjobs on job_standardjobs_tasks.Job_StandardJobs_StandardJob_code = job_standardjobs.StandardJob_code\n"
+                + "WHERE Account_no = '" + accountNumber + "' AND Job_StandardJobs_StandardJob_code = '" + standardJobCode + "' "
+                + "AND Job_job_no = '" + jobNumber + "' AND Job_StandardJobs_Job_job_no = '" + jobNumber + "' AND task_id = '" + taskID + "';";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                access = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Does technician have access error");
+        }
+        return access;
+    }
+
+    public void createTechnician(int accountNumber, String departmentCode) {
+        String SQL = "INSERT INTO technician_room (Department_code,Account_no) VALUES ('" + departmentCode + "','" + accountNumber + "');";
+        database.write(SQL, conn);
+    }
 }
