@@ -8768,6 +8768,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancel"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelJobEnquiryButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="searchJobEnquiryButton">
               <Properties>

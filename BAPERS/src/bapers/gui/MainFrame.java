@@ -5,7 +5,6 @@
  */
 package bapers.gui;
 
-import bapers.AutoBackup;
 import bapers.AutoBackupConfig;
 import bapers.controller.Controller;
 import bapers.customer.CustomerDetails;
@@ -20,6 +19,11 @@ import bapers.payment.Payment;
 import bapers.payment.PaymentCard;
 import bapers.payment.PaymentCash;
 import bapers.user.UserDetails;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -28,6 +32,8 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -36,8 +42,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -52,7 +56,6 @@ import javax.swing.RowFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.sql.Time;
 
 /**
  *
@@ -5460,6 +5463,11 @@ public class MainFrame extends javax.swing.JFrame {
         jobPriorityLabel2.setText("Collected:");
 
         cancelJobEnquiryButton.setText("Cancel");
+        cancelJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelJobEnquiryButtonActionPerformed(evt);
+            }
+        });
 
         searchJobEnquiryButton.setText("Search");
         searchJobEnquiryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -6023,7 +6031,15 @@ public class MainFrame extends javax.swing.JFrame {
         managerjPanel.setVisible(false);
         welcomePageLabel.setVisible(false);
 
+        
+        this.deleteJobTableInformation();
+        controller.clearJob();
+        this.deleteStandardJobTableInformation();
+        controller.clearStandardJobList();
+        this.deleteTaskEnquiryTableInformation();
+        controller.clearTaskList();
         this.resetJobEnquiryTables();
+        System.out.println("Logging out");
 
     }//GEN-LAST:event_logOutButtonActionPerformed
 
@@ -8010,14 +8026,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void viewReminderLetterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReminderLetterButtonActionPerformed
         // TODO add your handling code here:
-        /*  if (reminderLettersTable.getSelectedRow() >= 0) {
+          if (reminderLettersTable.getSelectedRow() >= 0) {
 
             try {
                 Document document = new Document();
                 try {
                     PdfWriter.getInstance(document, new FileOutputStream("ReminderLetter.pdf"));
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(MainFrameJr.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 document.open();
                 document.add(new Paragraph("Invoice reminder"));
@@ -8052,12 +8068,12 @@ public class MainFrame extends javax.swing.JFrame {
             document.close();
             JOptionPane.showMessageDialog(null, "PDF Sucessfully created");
         } catch (DocumentException ex) {
-            Logger.getLogger(MainFrameJr.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select a row");
-        }*/
+        }
     }//GEN-LAST:event_viewReminderLetterButtonActionPerformed
 
     private void resetJobEnquiryTables() {
@@ -8099,7 +8115,6 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please select a row");
         }
 
-   
         //If standard job has been changed from not started to in progress then update the start time of that standard job
         if (controller.checkIfStandardJobIsInProgress(standardJobCodeLabel.getText(), Integer.parseInt(jobNumberLabel.getText()))
                 && standardJobStatusBeforeUpdatingTask.equals("Not started")) {
@@ -8159,7 +8174,7 @@ public class MainFrame extends javax.swing.JFrame {
                 && !(controller.checkIfJobIsInProgress(Integer.parseInt(jobNumberLabel.getText())))) {
             controller.overrideJobStatus("Not started", Integer.parseInt(jobIndexLabel.getText()));
         }
-        
+
         //Reset task/standardjob/job tables
         this.resetJobEnquiryTables();
 
@@ -8399,6 +8414,10 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "jobEnquiryPage");
     }//GEN-LAST:event_jobEnquiryPageButtonActionPerformed
 
+    private void cancelJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelJobEnquiryButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelJobEnquiryButtonActionPerformed
+
     private void deleteTaskTableInformation() {
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
         taskTableModel.setRowCount(0);
@@ -8489,7 +8508,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void updateJobEnquiryTable() {
-        //ArrayList<JobDetails> jobs = controller.getJob();
+
         DefaultTableModel jobEnquiryTableModel = (DefaultTableModel) jobEnquiryTableResults.getModel();
         //Set table
         //jobEnquiryTableModel.setRowCount(controller.getJob().size());

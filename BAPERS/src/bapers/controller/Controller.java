@@ -31,11 +31,14 @@ import java.util.List;
 
 import bapers.payment.Card;
 import bapers.payment.PaymentCard;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 
 /*Joseph imports*/
 import java.sql.Time;
-import java.util.*;
 import java.sql.Date;
+
 
 /**
  *
@@ -270,9 +273,6 @@ public class Controller {
                 break; // optional
             case "Development area":
                 departmentCode = "DR";
-                break; // optional
-            case "Printing room":
-                departmentCode = "PR";
                 break; // optional
             case "Finshing room":
                 departmentCode = "FR";
@@ -1150,14 +1150,12 @@ public class Controller {
                 break; // optional
 
             case "PR":
-                departmentName = "Printing Room";
+                departmentName = "Packaging Department";
                 break; // optional
             case "FR":
                 departmentName = "Finishing Room";
                 break; // optional
-            case "PD":
-                departmentName = "Packaging Department";
-                break; // optional
+
         }
         return departmentName;
     }
@@ -1504,15 +1502,13 @@ public class Controller {
             case "Development Area":
                 departmentCode = "DR";
                 break; // optional
-            case "Printing Room":
+            case "Packaging Department":
                 departmentCode = "PR";
                 break; // optional
             case "Finishing Room":
                 departmentCode = "FR";
                 break; // optional
-            case "Packaging Department":
-                departmentCode = "PD";
-                break; // optional
+    
         }
         return departmentCode;
     }
@@ -1735,5 +1731,9 @@ public class Controller {
     public void createTechnician(int accountNumber, String departmentCode) {
         String SQL = "INSERT INTO technician_room (Department_code,Account_no) VALUES ('" + departmentCode + "','" + accountNumber + "');";
         database.write(SQL, conn);
+    }
+    
+    public void generateFirstReminderLetter(){
+       
     }
 }
