@@ -31,13 +31,13 @@ import java.util.List;
 
 import bapers.payment.Card;
 import bapers.payment.PaymentCard;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileOutputStream;
 
 /*Joseph imports*/
 import java.sql.Time;
 import java.sql.Date;
+import bapers.payment.LatePaymentInvoice;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -686,7 +686,7 @@ public class Controller {
         return cardRecorded;
     }
 
-    /* public void changeInvoiceStatus(final boolean paymentRecorded, final Payment p, final Invoice i) {
+    /* public void changeInvoiceStatus(final boolean paymentRecorded, final Payment p, final LatePaymentInvoice i) {
         if (paymentRecorded == true) {
             final String status = paidOnTIme(p, i);
             //System.out.println(status);
@@ -704,7 +704,7 @@ public class Controller {
         }
     }*/
 
- /*public String paidOnTIme(final Payment p, final Invoice i) {
+ /*public String paidOnTIme(final Payment p, final LatePaymentInvoice i) {
         String invoiceStatus;
        final Date paymentDate = new Date(p.getPaymentDate());
         final Date invoiceDate = i.getDateIssued();
@@ -896,7 +896,7 @@ public class Controller {
 
     public ArrayList<Invoice> viewAllCustomerInvoce(CustomerDetails customer) {
         ArrayList<Invoice> customerInvoice = new ArrayList<>();
-//        final String sql = select * from Invoice where 
+//        final String sql = select * from LatePaymentInvoice where 
         return customerInvoice;
     }
 
@@ -1731,28 +1731,114 @@ public class Controller {
         database.write(SQL, conn);
     }
 
-    public void generateFirstReminderLetter() {
+    public ArrayList<LatePaymentInvoice> getLatePaymentInvoices(String monthIssued) {
 
-    }
-
-    public ArrayList<Invoice> getLatePaymentInvoices() {
-        ArrayList<Invoice> invoiceList = new ArrayList<>();
+        ArrayList<LatePaymentInvoice> invoiceList = new ArrayList<>();
+        DateFormat monthFormat = new SimpleDateFormat("MM");
 
         String SQL = "SELECT * FROM invoice\n"
                 + "inner join job on invoice.Job_job_no = job.job_no\n"
-                + "inner join customer on job.Customer_account_no = customer.account_no ;";
+                + "inner join customer on job.Customer_account_no = customer.account_no\n"
+                + "WHERE invoice_status = 'Awaiting payment';";
         rs = database.read(SQL, conn);
 
         try {
             while (rs.next()) {
-                String customerName = rs.getString("firstname") + " " + rs.getString("lastname");
-                Invoice invoice = new Invoice(rs.getInt("Invoice_no"), customerName, rs.getInt("total_payable"), rs.getDate("date_issued"));
-                invoiceList.add(invoice);
+
+                //Convert invoice date issued format to month and compare with monthIssued
+                String invoiceMonth = monthFormat.format(rs.getDate("date_issued"));
+                //If the invoice awaiting payment does not equal the current month then generate reminder letter
+                if (!(monthIssued.equals(invoiceMonth))) {
+                    String customerName = rs.getString("firstname") + " " + rs.getString("lastname");
+
+                    LatePaymentInvoice invoice = new LatePaymentInvoice(rs.getInt("Invoice_no"), customerName, rs.getInt("total_payable"), rs.getDate("date_issued"),
+                            rs.getString("street_name"), rs.getString("city"), rs.getString("postcode"), rs.getString("lastname"));
+
+                    invoiceList.add(invoice);
+                }
             }
         } catch (Exception e) {
-            System.out.println("Get invoices error");
+            System.out.println("Get late payment invoices error");
         }
 
         return invoiceList;
     }
+
+    public boolean hasFirstReminderLetterBeenGenerated(int invoiceNumber) {
+
+        String SQL = "SELECT * from reminderletter WHERE Invoice_invoice_no = '" + invoiceNumber + "';";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error checking if first reminder letter has been generated");
+        }
+        return false;
+    }
+
+    public void insertFirstReminderLetterInformationInDatabase(int invoiceNumber, String todayDate) {
+
+        String SQL = "INSERT INTO reminderletter (Invoice_invoice_no,date_issued,letter_location)\n"
+                + "VALUES ('" + invoiceNumber + "','" + todayDate + "','Test');";
+        database.write(SQL, conn);
+    }
+
+    public boolean reminderLettersAlreadyGenerated(String month) {
+        boolean generated = false;
+        String SQL = "SELECT Date from reminderletterdate WHERE Date = '" + month + "';";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                generated = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Check if reminder letters have been generated for this month error");
+        }
+        return generated;
+    }
+
+    public void setReminderLetterDate(String date) {
+        String SQL = "INSERT INTO reminderletterdate (Date) VALUES('" + date + "');";
+        database.write(SQL, conn);
+
+    }
+
+    public void setCustomerToInDefault(int invoiceNumber) {
+        String SQL = "Update customer\n"
+                + "Inner join job on customer.account_no = job.Customer_account_no\n"
+                + "inner join invoice on job.job_no = invoice.Job_job_no\n"
+                + "SET in_default = '1'\n"
+                + "WHERE Invoice_no = '" + invoiceNumber + "';";
+        database.write(SQL, conn);
+    }
+
+    public boolean isCustomerInDefault(int invoiceNumber) {
+        boolean inDefault = false;
+        String SQL = "SELECT * FROM customer\n"
+                + "Inner join job on customer.account_no = job.Customer_account_no\n"
+                + "inner join invoice on job.job_no = invoice.Job_job_no\n"
+                + "WHERE Invoice_no = '" + invoiceNumber + "';";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                inDefault = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Is customer in default error");
+        }
+        return inDefault;
+    }
+
+    public void setCustomerToSuspended(int invoiceNumber) {
+        String SQL = "Update customer\n"
+                + "Inner join job on customer.account_no = job.Customer_account_no\n"
+                + "inner join invoice on job.job_no = invoice.Job_job_no\n"
+                + "SET is_suspended = '1'\n"
+                + "WHERE Invoice_no = '" + invoiceNumber + "';";
+        database.write(SQL, conn);
+    }
+    
+
 }

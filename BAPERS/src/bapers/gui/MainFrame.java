@@ -21,7 +21,10 @@ import bapers.payment.PaymentCash;
 import bapers.user.UserDetails;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.CardLayout;
@@ -5231,7 +5234,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Customer name", "Invoice number", "Date", "Total amount"
+                "Customer name", "Invoice number", "Date Issued", "Total amount"
             }
         ));
         jScrollPane13.setViewportView(reminderLettersTable);
@@ -5891,7 +5894,11 @@ public class MainFrame extends javax.swing.JFrame {
         String role = null;
         String userID = userIDField.getText();
         String password = passwordField.getText();
-
+        Date date = new Date();
+        DateFormat day = new SimpleDateFormat("dd");
+        DateFormat today = new SimpleDateFormat("yyyy/MM/dd");
+        String s = day.format(date);
+        String todayDate = today.format(date);
         //Check fields are not empty
         if (userID.equals("") || password.equals("")) {
             JOptionPane.showMessageDialog(null, "Please insert data");
@@ -5933,12 +5940,25 @@ public class MainFrame extends javax.swing.JFrame {
                 card1.show(cardPanel1, "homePage");
                 card2.show(cardPanel2, "homeBar");
                 pageLabel.setText("Welcome, " + role + "!");
+
+                //If it is the 23rd and reminder letters have not been generated for this month then generate reminder letters
+                //&& !(controller.hasReminderLettersBeenGeneratedForThisMonth(todayDate))
+                if (s.equals("23") && !controller.reminderLettersAlreadyGenerated(todayDate)) {
+                    //Generate reminder letters...
+                    this.generateReminderLettersForTheMonth();
+                    this.deleteReminderLettersTableInformation();
+                    //Store in databse that reminder letters have been generated for this month
+                    controller.setReminderLetterDate(todayDate);
+
+                }
+
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid User details");
             }
 
         }
-        System.out.println(role);
+        //System.out.println("hi" + role);
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void loginPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPageButtonActionPerformed
@@ -6031,7 +6051,6 @@ public class MainFrame extends javax.swing.JFrame {
         managerjPanel.setVisible(false);
         welcomePageLabel.setVisible(false);
 
-        
         this.deleteJobTableInformation();
         controller.clearJob();
         this.deleteStandardJobTableInformation();
@@ -7826,23 +7845,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void manageCustomersMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomersMenuPageButtonActionPerformed
         // TODO add your handling code here:
-        customerModelTable = (DefaultTableModel) customersjTable.getModel();
-        customerModelTable.setRowCount(0);
 
-        final CustomerDetails[] customerList = controller.getAllCustomers();
-
-        Object rowData[] = new Object[4];
-        for (int i = 0; i < customerList.length; ++i) {
-            rowData[0] = customerList[i].getAccountNo();
-            rowData[1] = customerList[i].getAccountHolderName();
-            rowData[2] = customerList[i].getFirstName();
-            rowData[3] = customerList[i].getLastName();
-            //adds the array type object to the table by adding it to the model
-            customerModelTable.addRow(rowData);
-        }
-        card1.show(cardPanel1, "SelectCustomer");
-        homeButton.setVisible(true);
-        pageLabel.setText("Manage customer page");
+        card1.show(cardPanel1, "officeManagerCustomerPage");
     }//GEN-LAST:event_manageCustomersMenuPageButtonActionPerformed
 
     private void acceptPaymentComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_acceptPaymentComponentHidden
@@ -8005,13 +8009,30 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButton1ActionPerformed
 
     private void searchCustomerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerBtnActionPerformed
-        // TODO add your handling code here:
+        customerModelTable = (DefaultTableModel) customersjTable.getModel();
+        customerModelTable.setRowCount(0);
+
+        final CustomerDetails[] customerList = controller.getAllCustomers();
+
+        Object rowData[] = new Object[4];
+        for (int i = 0; i < customerList.length; ++i) {
+            rowData[0] = customerList[i].getAccountNo();
+            rowData[1] = customerList[i].getAccountHolderName();
+            rowData[2] = customerList[i].getFirstName();
+            rowData[3] = customerList[i].getLastName();
+            //adds the array type object to the table by adding it to the model
+            customerModelTable.addRow(rowData);
+        }
+        card1.show(cardPanel1, "SelectCustomer");
+        homeButton.setVisible(true);
+        pageLabel.setText("Manage customer page");
     }//GEN-LAST:event_searchCustomerBtnActionPerformed
 
     private void reminderLettersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reminderLettersButtonActionPerformed
-        //  this.updateReminderLettersTable();
+//Update reminder letters table
+        this.updateReminderLettersTable();
         card1.show(cardPanel1, "reminderLettersTablePage");
-        //Update reminder letters table
+
     }//GEN-LAST:event_reminderLettersButtonActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -8026,36 +8047,69 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void viewReminderLetterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReminderLetterButtonActionPerformed
         // TODO add your handling code here:
-          if (reminderLettersTable.getSelectedRow() >= 0) {
+        if (reminderLettersTable.getSelectedRow() >= 0) {
+            //this.generateFirstReminderLetter(String.valueOf(reminderLettersTable.getModel().getValueAt(reminderLettersTable.getSelectedRow(), 0)));
+            //System.out.println(reminderLettersTable.getModel().getValueAt(reminderLettersTable.getSelectedRow(), 0));
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+    }//GEN-LAST:event_viewReminderLetterButtonActionPerformed
 
+    private void generateFirstReminderLetter(String customerName, int z) {
+        Date currentDate = new Date();
+        DateFormat monthFormat = new SimpleDateFormat("MM");
+        String month = monthFormat.format(currentDate);
+        Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+        try {
+            Document document = new Document();
             try {
-                Document document = new Document();
-                try {
-                    PdfWriter.getInstance(document, new FileOutputStream("ReminderLetter.pdf"));
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                document.open();
-                document.add(new Paragraph("Invoice reminder"));
-                document.add(new Paragraph("  "));
-                PdfPTable pdfTable = new PdfPTable(reminderLettersTable.getColumnCount());
-                //adding table headers
-                for (int i = 0; i < reminderLettersTable.getColumnCount(); i++) {
-                    pdfTable.addCell(reminderLettersTable.getColumnName(i));
-                }
+                PdfWriter.getInstance(document, new FileOutputStream(customerName + " ReminderLetter.pdf"));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            document.open();
+            //Title
+            Paragraph title = new Paragraph("Invoice Reminder", boldFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
 
-                //Convert date to string
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            document.add(new Paragraph("  "));
 
-                //Add rows to table
-                String date = dateFormat.format(controller.getLatePaymentInvoices().get(reminderLettersTable.getSelectedRow()).getDate());
-                pdfTable.addCell(controller.getLatePaymentInvoices().get(reminderLettersTable.getSelectedRow()).getCustomerName());
-                pdfTable.addCell(String.valueOf(controller.getLatePaymentInvoices().get(reminderLettersTable.getSelectedRow()).getInvoiceNumber()));
-                pdfTable.addCell(date);
-                pdfTable.addCell(String.valueOf(controller.getLatePaymentInvoices().get(reminderLettersTable.getSelectedRow()).getAmountDue()));
+            //BAPERS details
+            document.add(new Paragraph("The Lab"));
+            document.add(new Paragraph("Bloomsbury’s Image Processing Laboratory "));
+            document.add(new Paragraph("2, Wynyatt Street, London, EC1V 7HU"));
+            document.add(new Paragraph("Phone: 0207 235 7534"));
+            document.add(new Paragraph("  "));
 
-                document.add(pdfTable);
-                document.add(new Paragraph("According to our records, "
+            //Customer details
+            document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getCustomerName()));
+            document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getStreetName()));
+            document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getCity()));
+            document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getPostCode()));
+            document.add(new Paragraph("  "));
+
+            document.add(new Paragraph("Dear Ms " + controller.getLatePaymentInvoices(month).get(z).getLastName() + ", "));
+            document.add(new Paragraph("  "));
+            //Invoice table
+            PdfPTable pdfTable = new PdfPTable(reminderLettersTable.getColumnCount());
+            //adding table headers
+            for (int i = 0; i < reminderLettersTable.getColumnCount(); i++) {
+                pdfTable.addCell(reminderLettersTable.getColumnName(i));
+            }
+
+            //Convert date to string
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            //Add rows to table
+            String date = dateFormat.format(controller.getLatePaymentInvoices(month).get(z).getDate());
+            pdfTable.addCell(controller.getLatePaymentInvoices(month).get(z).getCustomerName());
+            pdfTable.addCell(String.valueOf(controller.getLatePaymentInvoices(month).get(z).getInvoiceNumber()));
+            pdfTable.addCell(date);
+            pdfTable.addCell(String.valueOf(controller.getLatePaymentInvoices(month).get(z).getAmountDue()));
+
+            document.add(pdfTable);
+            document.add(new Paragraph("  "));
+            document.add(new Paragraph("According to our records, "
                     + "it appears that we have not yet received payment of the above invoice,"
                     + "for photographic work done in our laboratory. "));
             document.add(new Paragraph(" "));
@@ -8066,15 +8120,79 @@ public class MainFrame extends javax.swing.JFrame {
             document.add(new Paragraph("Yours sincereley,"));
             document.add(new Paragraph("   G. Lancaster "));
             document.close();
-            JOptionPane.showMessageDialog(null, "PDF Sucessfully created");
+            JOptionPane.showMessageDialog(null, "Reminder letters have been created for this month");
         } catch (DocumentException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select a row");
+    private void generateSecondReminderLetter(String customerName, int z) {
+        Date currentDate = new Date();
+        DateFormat monthFormat = new SimpleDateFormat("MM");
+        String month = monthFormat.format(currentDate);
+        Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+        try {
+            Document document = new Document();
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream(customerName + " ReminderLetter2.pdf"));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            document.open();
+            //Title
+            Paragraph title = new Paragraph("Invoice Reminder 2", boldFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            document.add(new Paragraph("  "));
+
+            //BAPERS details
+            document.add(new Paragraph("The Lab"));
+            document.add(new Paragraph("Bloomsbury’s Image Processing Laboratory "));
+            document.add(new Paragraph("2, Wynyatt Street, London, EC1V 7HU"));
+            document.add(new Paragraph("Phone: 0207 235 7534"));
+            document.add(new Paragraph("  "));
+
+            //Customer details
+            document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getCustomerName()));
+            document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getStreetName()));
+            document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getCity()));
+            document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getPostCode()));
+            document.add(new Paragraph("  "));
+
+            document.add(new Paragraph("Dear Ms " + controller.getLatePaymentInvoices(month).get(z).getLastName() + ", "));
+            document.add(new Paragraph("  "));
+            //Invoice table
+            PdfPTable pdfTable = new PdfPTable(reminderLettersTable.getColumnCount());
+            //adding table headers
+            for (int i = 0; i < reminderLettersTable.getColumnCount(); i++) {
+                pdfTable.addCell(reminderLettersTable.getColumnName(i));
+            }
+
+            //Convert date to string
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            //Add rows to table
+            String date = dateFormat.format(controller.getLatePaymentInvoices(month).get(z).getDate());
+            pdfTable.addCell(controller.getLatePaymentInvoices(month).get(z).getCustomerName());
+            pdfTable.addCell(String.valueOf(controller.getLatePaymentInvoices(month).get(z).getInvoiceNumber()));
+            pdfTable.addCell(date);
+            pdfTable.addCell(String.valueOf(controller.getLatePaymentInvoices(month).get(z).getAmountDue()));
+
+            document.add(pdfTable);
+            document.add(new Paragraph("  "));
+            document.add(new Paragraph("According to our records, we have not received payment of the above invoice for two months."
+                    + " If you do not pay by the 10th, legal action will be taken."
+                    + "We would appreciate payment at your earliest convenience."
+                    + "If you have already sent a payment to us recently, please accept our apologies. "));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Yours sincereley,"));
+            document.add(new Paragraph("   G. Lancaster "));
+            document.close();
+            JOptionPane.showMessageDialog(null, "Reminder letters have been created for this month");
+        } catch (DocumentException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_viewReminderLetterButtonActionPerformed
+    }
 
     private void resetJobEnquiryTables() {
         //Update task table
@@ -8418,6 +8536,49 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelJobEnquiryButtonActionPerformed
 
+    private void generateReminderLettersForTheMonth() {
+        this.updateReminderLettersTable();
+        Date date = new Date();
+        DateFormat monthFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String todayDate = monthFormat.format(date);
+
+        //Determine if first,second or third reminder letter needs to be generated...
+        for (int i = 0; i < reminderLettersTable.getRowCount(); i++) {
+            //
+            int invoiceNumber = Integer.parseInt(String.valueOf(reminderLettersTable.getModel().getValueAt(i, 1)));
+            if (controller.hasFirstReminderLetterBeenGenerated(invoiceNumber)) {
+                if (controller.isCustomerInDefault(invoiceNumber)) {
+                    //Generate third reminder letter
+                    //Change customer status to suspended
+controller.setCustomerToInDefault(invoiceNumber);
+                    //Alert office manager
+                    System.out.println("Third reminder letter generated...");
+
+                } else {
+                    System.out.println("Second reminder letter");
+                    //Generate second reminder letter 
+                    this.generateSecondReminderLetter(String.valueOf(reminderLettersTable.getModel().getValueAt(i, 0)), i);
+//Set reminder letter information in database
+                    controller.insertFirstReminderLetterInformationInDatabase(invoiceNumber, todayDate);
+//Change customer to in default
+                    controller.setCustomerToInDefault(invoiceNumber);
+//Send alert to office manager
+                    System.out.println("Alert office manager of customer status");
+                }
+            } else {
+                //Generate first reminder letter
+                System.out.println("First reminder letter");
+                this.generateFirstReminderLetter(String.valueOf(reminderLettersTable.getModel().getValueAt(i, 0)), i);
+                //Set reminder late information in database
+                controller.insertFirstReminderLetterInformationInDatabase(invoiceNumber, todayDate);
+                //Send alert to office manager
+                System.out.println("Alert office manager of late payment...");
+            }
+
+            //If third reminder letter needs to be generated send alert to office manager legal action needs to be taken
+        }
+    }
+
     private void deleteTaskTableInformation() {
         DefaultTableModel taskTableModel = (DefaultTableModel) taskTable.getModel();
         taskTableModel.setRowCount(0);
@@ -8465,17 +8626,22 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
-    /*private void updateReminderLettersTable() {
+    private void updateReminderLettersTable() {
+        Date date = new Date();
+        DateFormat monthFormat = new SimpleDateFormat("MM");
+        String month = monthFormat.format(date);
         DefaultTableModel reminderLettersTableModel = (DefaultTableModel) reminderLettersTable.getModel();
         Object[] row = new Object[4];
-        for (int i = 0; i < controller.getInvoices().size(); i++) {
-            row[0] = controller.getInvoices().get(i).getCustomerName();
-            row[1] = controller.getInvoices().get(i).getInvoiceNumber();
-            row[2] = controller.getInvoices().get(i).getDate();
-            row[3] = controller.getInvoices().get(i).getAmountDue();
+        for (int i = 0; i < controller.getLatePaymentInvoices(month).size(); i++) {
+            row[0] = controller.getLatePaymentInvoices(month).get(i).getCustomerName();
+            row[1] = controller.getLatePaymentInvoices(month).get(i).getInvoiceNumber();
+            row[2] = controller.getLatePaymentInvoices(month).get(i).getDate();
+            row[3] = controller.getLatePaymentInvoices(month).get(i).getAmountDue();
             reminderLettersTableModel.addRow(row);
         }
-    }*/
+
+    }
+
     private void updateStandardJobTable() {
 
         DefaultTableModel standardJobTableModel = (DefaultTableModel) standardJobResults.getModel();
