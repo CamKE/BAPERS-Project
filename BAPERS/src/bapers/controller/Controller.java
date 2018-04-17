@@ -1896,11 +1896,15 @@ public class Controller {
                 + "inner join department on task.Department_department_code = department.department_code\n"
                 + "WHERE StandardJob_code = '" + standardJobCode + "';";
         rs = database.read(SQL, conn);
+
         try {
             while (rs.next()) {
+
                 Task task = new Task(rs.getInt("task_id"), rs.getString("description"),
-                        rs.getInt("duration"), rs.getInt("shelf_slot"), rs.getDouble("price"), rs.getString("department_code"));
+                        rs.getInt("duration_min"), rs.getInt("shelf_slot"), rs.getDouble("price"), rs.getString("Department_department_code"));
+
                 taskListFromStandardJob.add(task);
+
             }
         } catch (Exception e) {
             System.out.println("Get task list from standard job error");
@@ -1911,7 +1915,7 @@ public class Controller {
     public Integer getTotalFromInvoice(int invoiceNumber) {
         int total = 0;
         String SQL = "SELECT total_payable FROM invoice\n"
-                + "WHERE Invoice_no = '"+invoiceNumber+"';";
+                + "WHERE Invoice_no = '" + invoiceNumber + "';";
         rs = database.read(SQL, conn);
         try {
             if (rs.next()) {
@@ -1921,5 +1925,56 @@ public class Controller {
             System.out.println("Get total from invoice error");
         }
         return total;
+    }
+
+    public boolean doesTaskExistInStandardJob(String standardJobCode, int taskID) {
+        boolean exists = false;
+        String SQL = "SELECT * FROM standardjob_tasks\n"
+                + "WHERE StandardJob_code = '" + standardJobCode + "' AND Task_task_id = '" + taskID + "';";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                exists = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Does task exist in standard job error");
+        }
+        return exists;
+    }
+
+    public void addTaskToStandardJob(int taskID, String standardJobCode) {
+        String SQL = "INSERT INTO standardjob_tasks  (StandardJob_code,Task_task_id) VALUES ('" + standardJobCode + "','" + taskID + "');";
+        database.write(SQL, conn);
+    }
+
+    public float getPriceOfStandardJob(String standardJobCode) {
+        String SQL = "SELECT * FROM standardjob_tasks \n"
+                + "inner join task on standardjob_tasks.Task_task_id = task.task_id\n"
+                + "WHERE StandardJob_code = '" + standardJobCode + "';";
+        rs = database.read(SQL, conn);
+        System.out.println("read");
+        float price = 0;
+        try {
+            while(rs.next()){
+
+            price = price + rs.getFloat("price");
+   
+            }
+        } catch (Exception e) {
+            System.out.println("Get Price of standard job error");
+        }
+        return price;
+    }
+
+    public void updatePrice(String standardJobCode, float price) {
+        String SQL = "Update standardjob\n"
+                + "SET price = '"+price+"'\n"
+                + "WHERE code = '"+standardJobCode+"';";
+        database.write(SQL,conn);
+    }
+    
+    public void removeTaskFromStandardJob(String standardJobCode,int taskID){
+        String SQL = "DELETE FROM standardjob_tasks WHERE StandardJob_code = '"+standardJobCode+"' AND Task_task_id = '"+taskID+"';";
+        database.write(SQL,conn);
     }
 }

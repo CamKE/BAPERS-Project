@@ -285,13 +285,14 @@ public class MainFrame extends javax.swing.JFrame {
         allStandardJobsPage = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
         allStandardJobsTable = new javax.swing.JTable();
-        jScrollPane19 = new javax.swing.JScrollPane();
-        taskList = new javax.swing.JList<>();
         viewTasksInStandardJobButton = new javax.swing.JButton();
-        deleteStandardJobButton = new javax.swing.JButton();
-        viewTasksInStandardJobButton1 = new javax.swing.JButton();
+        removeTaskFromSJ = new javax.swing.JButton();
         addTaskToStandardJobButton = new javax.swing.JButton();
         taskComboBox = new javax.swing.JComboBox<>();
+        jScrollPane20 = new javax.swing.JScrollPane();
+        taskListTable = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        standardJobCodeLabel2 = new javax.swing.JLabel();
         createCustomerPage = new javax.swing.JPanel();
         prefixjLabel = new javax.swing.JLabel();
         firstNamejLabel = new javax.swing.JLabel();
@@ -1893,8 +1894,6 @@ public class MainFrame extends javax.swing.JFrame {
             allStandardJobsTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jScrollPane19.setViewportView(taskList);
-
         viewTasksInStandardJobButton.setText("View");
         viewTasksInStandardJobButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1902,11 +1901,40 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        deleteStandardJobButton.setText("Delete");
-
-        viewTasksInStandardJobButton1.setText("Remove");
+        removeTaskFromSJ.setText("Remove");
+        removeTaskFromSJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeTaskFromSJActionPerformed(evt);
+            }
+        });
 
         addTaskToStandardJobButton.setText("Add");
+        addTaskToStandardJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTaskToStandardJobButtonActionPerformed(evt);
+            }
+        });
+
+        taskComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        taskComboBox.setToolTipText("");
+
+        taskListTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Task ID", "Description", "Price", "Department"
+            }
+        ));
+        jScrollPane20.setViewportView(taskListTable);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Standard Job Code:");
+
+        standardJobCodeLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        standardJobCodeLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        standardJobCodeLabel2.setText("---");
 
         javax.swing.GroupLayout allStandardJobsPageLayout = new javax.swing.GroupLayout(allStandardJobsPage);
         allStandardJobsPage.setLayout(allStandardJobsPageLayout);
@@ -1914,41 +1942,46 @@ public class MainFrame extends javax.swing.JFrame {
             allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allStandardJobsPageLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane18)
-                    .addComponent(jScrollPane19))
-                .addGap(39, 39, 39)
-                .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(deleteStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewTasksInStandardJobButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewTasksInStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(allStandardJobsPageLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(standardJobCodeLabel2))
+                    .addGroup(allStandardJobsPageLayout.createSequentialGroup()
+                        .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane20, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                            .addComponent(jScrollPane18)
+                            .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(viewTasksInStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(removeTaskFromSJ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(taskComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         allStandardJobsPageLayout.setVerticalGroup(
             allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allStandardJobsPageLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewTasksInStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(allStandardJobsPageLayout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(standardJobCodeLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allStandardJobsPageLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(viewTasksInStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(75, 75, 75)
-                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(allStandardJobsPageLayout.createSequentialGroup()
-                        .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(taskComboBox)
-                            .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(viewTasksInStandardJobButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(215, Short.MAX_VALUE))
+                        .addGap(184, 184, 184)
+                        .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeTaskFromSJ, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         cardPanel1.add(allStandardJobsPage, "allStandardJobsPage");
@@ -8662,8 +8695,65 @@ public class MainFrame extends javax.swing.JFrame {
     private void viewTasksInStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTasksInStandardJobButtonActionPerformed
         // TODO add your handling code here:
         //Get lists of tasks in that standard job
-        //Populate list 
+        if (allStandardJobsTable.getSelectedRow() >= 0) {
+            String standardJobCode = String.valueOf(allStandardJobsTable.getValueAt(allStandardJobsTable.getSelectedRow(), 0));
+            standardJobCodeLabel2.setText(standardJobCode);
+            this.updateTaskFromStandardJobTable(standardJobCode);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from the standard job table");
+        }
+
     }//GEN-LAST:event_viewTasksInStandardJobButtonActionPerformed
+
+    private void addTaskToStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTaskToStandardJobButtonActionPerformed
+        // TODO add your handling code here:
+        //Check if task already exists within standard job
+        String standardJobCode = standardJobCodeLabel2.getText();
+        int taskID = Integer.parseInt(String.valueOf(taskComboBox.getSelectedItem()));
+        if (controller.doesTaskExistInStandardJob(standardJobCode, taskID)) {
+            JOptionPane.showMessageDialog(null, "Task already exists in standard job");
+        } else {
+//Add task to standard job...
+            controller.addTaskToStandardJob(taskID, standardJobCode);
+//Update price of standard job
+            float newPrice = controller.getPriceOfStandardJob(standardJobCode);
+            controller.updatePrice(standardJobCode, newPrice);
+//Delete standard job table information
+            this.deleteAllStandardJobTableInformation();
+//Update standard job table information
+            this.updateAllStandardJobTable();
+            //Delete task list table
+            this.deleteStandardJobTaskListTable();
+            //Update task list table
+            this.updateTaskFromStandardJobTable(standardJobCode);
+        }
+
+    }//GEN-LAST:event_addTaskToStandardJobButtonActionPerformed
+
+    private void removeTaskFromSJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTaskFromSJActionPerformed
+        // TODO add your handling code here:
+          String standardJobCode = standardJobCodeLabel2.getText();
+        if (taskListTable.getSelectedRow() >= 0) {
+            Object taskObj = taskListTable.getValueAt(taskListTable.getSelectedRow(), 0);
+            int taskID = (Integer) taskObj;
+            controller.removeTaskFromStandardJob(standardJobCodeLabel2.getText(), taskID);
+            //Update tables
+            //Update price of standard job
+            float newPrice = controller.getPriceOfStandardJob(standardJobCode);
+            controller.updatePrice(standardJobCode, newPrice);
+//Delete standard job table information
+            this.deleteAllStandardJobTableInformation();
+//Update standard job table information
+            this.updateAllStandardJobTable();
+            //Delete task list table
+            this.deleteStandardJobTaskListTable();
+            //Update task list table
+            this.updateTaskFromStandardJobTable(standardJobCode);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a task to remove");
+        }
+
+    }//GEN-LAST:event_removeTaskFromSJActionPerformed
 
     private void generateReminderLettersForTheMonth() {
         this.updateReminderLettersTable();
@@ -8713,6 +8803,16 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
         }
+    }
+
+    private void deleteAllStandardJobTableInformation() {
+        DefaultTableModel sJTableModel = (DefaultTableModel) allStandardJobsTable.getModel();
+        sJTableModel.setRowCount(0);
+    }
+
+    private void deleteStandardJobTaskListTable() {
+        DefaultTableModel tTableModel = (DefaultTableModel) taskListTable.getModel();
+        tTableModel.setRowCount(0);
     }
 
     private void deleteTaskTableInformation() {
@@ -8816,7 +8916,7 @@ public class MainFrame extends javax.swing.JFrame {
         Object[] row = new Object[3];
         for (int i = 0; i < controller.getAllStandardJobs().size(); i++) {
             row[0] = controller.getAllStandardJobs().get(i).getCode();
-            row[1] = controller.getAllStandardJobs().get(i).getDescription();
+            row[1] = controller.getAllStandardJobs().get(i).getJobDescription();
             row[2] = controller.getAllStandardJobs().get(i).getPrice();
             standardJobTableModel.addRow(row);
         }
@@ -8838,6 +8938,21 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
+    private void updateTaskFromStandardJobTable(String standardJobCode) {
+        DefaultTableModel taskListTableModel = (DefaultTableModel) taskListTable.getModel();
+        //Set table
+        //jobEnquiryTableModel.setRowCount(controller.getJob().size());
+        Object[] row = new Object[4];
+        for (int i = 0; i < controller.getTasksFromStandardJob(standardJobCode).size(); i++) {
+            row[0] = controller.getTasksFromStandardJob(standardJobCode).get(i).getTaskID();
+            row[1] = controller.getTasksFromStandardJob(standardJobCode).get(i).getDescription();
+            row[2] = controller.getTasksFromStandardJob(standardJobCode).get(i).getPrice();
+            String department = controller.getDepartmentName(controller.getTasksFromStandardJob(standardJobCode).get(i).getDepartmentCode());
+            row[3] = department;
+            taskListTableModel.addRow(row);
+        }
+    }
+
     private void updateTaskTable() {
         //Get task information from controller class
         ArrayList<Task> tasks = controller.getTasksArrayList();
@@ -8854,18 +8969,16 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
     }
-    
-    private void updateSetPaymentPage(int invoiceNumber, int jobNumber){
+
+    private void updateSetPaymentPage(int invoiceNumber, int jobNumber) {
         //Get invoice details from controller and set it into GUI
         //Get total amount
         int total = controller.getTotalFromInvoice(invoiceNumber);
         TotalLatePayjTextField.setText("£ " + String.valueOf(total));
-        t.addElement("Invoice number: "+ invoiceNumber);
-        t.addElement("Job number: "+ jobNumber);
+        t.addElement("Invoice number: " + invoiceNumber);
+        t.addElement("Job number: " + jobNumber);
         invoicejList.setModel(t);
     }
-    
-    
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
@@ -9076,7 +9189,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField cutomerInDefaultjTextField;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton deleteButton1;
-    private javax.swing.JButton deleteStandardJobButton;
     private javax.swing.JComboBox<String> departmentComboBox;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
     private javax.swing.JLabel departmentNewTaskLabel;
@@ -9128,6 +9240,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -9143,8 +9256,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane18;
-    private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -9252,6 +9365,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton removeJobButton;
     private javax.swing.JButton removeMaterialButton;
     private javax.swing.JButton removeTaskButton;
+    private javax.swing.JButton removeTaskFromSJ;
     private javax.swing.JButton reportBackButton;
     private javax.swing.JButton reportBackButton1;
     private javax.swing.JButton reportBackButton2;
@@ -9314,6 +9428,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField specialInstructionjTextField;
     private javax.swing.JLabel specialInstructionsLabel;
     private javax.swing.JLabel standardJobCodeLabel;
+    private javax.swing.JLabel standardJobCodeLabel2;
     private javax.swing.JPanel standardJobHomePage;
     private javax.swing.JLabel standardJobIndexLabel;
     private javax.swing.JList<String> standardJobList;
@@ -9341,7 +9456,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel taskHomePage;
     private javax.swing.JLabel taskIDLabel;
     private javax.swing.JTextField taskIDText;
-    private javax.swing.JList<String> taskList;
+    private javax.swing.JTable taskListTable;
     private javax.swing.JPanel taskPage;
     private javax.swing.JTable taskResultsTable;
     private javax.swing.JPanel taskSearchResultsJobEnquiryPage;
@@ -9374,7 +9489,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton viewReminderLetterButton;
     private javax.swing.JButton viewStandardJobButton;
     private javax.swing.JButton viewTasksInStandardJobButton;
-    private javax.swing.JButton viewTasksInStandardJobButton1;
     private javax.swing.JPanel welcomeBar;
     private javax.swing.JPanel welcomePage;
     private javax.swing.JLabel welcomePageLabel;
