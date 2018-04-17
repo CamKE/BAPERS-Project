@@ -5961,7 +5961,7 @@ public class MainFrame extends javax.swing.JFrame {
                     this.deleteReminderLettersTableInformation();
                     //Store in databse that reminder letters have been generated for this month
                     controller.setReminderLetterDate(todayDate);
-                    JOptionPane.showMessageDialog(null, "Reminder letters have been created for this month");
+                    
                 }
 
             } else {
@@ -5969,7 +5969,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
         }
-        //System.out.println("hi" + role);
+        
 
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -8556,30 +8556,35 @@ public class MainFrame extends javax.swing.JFrame {
         DateFormat monthFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String todayDate = monthFormat.format(date);
 
+        if (reminderLettersTable.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "No reminder letters have been generated for this month");
+        } else {
+            JOptionPane.showMessageDialog(null, "Reminder letters have been created for this month");
+        }
         //Determine if first,second or third reminder letter needs to be generated...
         for (int i = 0; i < reminderLettersTable.getRowCount(); i++) {
             //
             int invoiceNumber = Integer.parseInt(String.valueOf(reminderLettersTable.getModel().getValueAt(i, 1)));
             if (controller.hasFirstReminderLetterBeenGenerated(invoiceNumber)) {
                 // System.out.println(controller.isCustomerInDefault(invoiceNumber));
-                if (controller.isCustomerInDefault(invoiceNumber) == true) {
+                if (controller.isCustomerSuspended(invoiceNumber) == true) {
                     //Generate third reminder letter
-                    //Change customer status to suspended
-                    controller.setCustomerToSuspended(invoiceNumber);
+                    //Change customer status to in default
+                    controller.setCustomerToInDefault(invoiceNumber);
                     //Alert office manager
                     System.out.println("Third reminder letter generated...");
-                    controller.sendAlert(1, reminderLettersTable.getModel().getValueAt(i, 0) + "has been suspended", "Late Payment");
+                    controller.sendAlert(1, reminderLettersTable.getModel().getValueAt(i, 0) + "has been set to in default", "Late Payment");
                 } else {
-                    System.out.println("Second reminder letter");
+                
                     //Generate second reminder letter 
                     this.generateSecondReminderLetter(String.valueOf(reminderLettersTable.getModel().getValueAt(i, 0)), i);
 //Set reminder letter information in database
                     controller.insertFirstReminderLetterInformationInDatabase(invoiceNumber, todayDate);
-//Change customer to in default
-                    controller.setCustomerToInDefault(invoiceNumber);
+//Suspend customer account
+                    controller.setCustomerToSuspended(invoiceNumber);
 //Send alert to office manager
                     System.out.println("Alert office manager of customer status");
-                    controller.sendAlert(1, reminderLettersTable.getModel().getValueAt(i, 0) + "has been set to in default", "Late Payment");
+                    controller.sendAlert(1, reminderLettersTable.getModel().getValueAt(i, 0) + "has been suspended", "Late Payment");
                 }
             } else {
                 //Generate first reminder letter

@@ -1747,8 +1747,13 @@ public class Controller {
 
                 //Convert invoice date issued format to month and compare with monthIssued
                 String invoiceMonth = monthFormat.format(rs.getDate("date_issued"));
+                //Conver month format to numbers
+                int invoiceMonthNumber = Integer.parseInt(invoiceMonth);
+                int currentMonthNumber = Integer.parseInt(monthIssued);
+                
+                //If current month is ahead of the month of the invoice generated then create late payment invoice
                 //If the invoice awaiting payment does not equal the current month then generate reminder letter
-                if (!(monthIssued.equals(invoiceMonth))) {
+                if (currentMonthNumber > invoiceMonthNumber) {
                     String customerName = rs.getString("firstname") + " " + rs.getString("lastname");
 
                     LatePaymentInvoice invoice = new LatePaymentInvoice(rs.getInt("Invoice_no"), customerName, rs.getInt("total_payable"), rs.getDate("date_issued"),
@@ -1814,22 +1819,22 @@ public class Controller {
         database.write(SQL, conn);
     }
 
-    public boolean isCustomerInDefault(int invoiceNumber) {
-        boolean inDefault = false;
+    public boolean isCustomerSuspended(int invoiceNumber) {
+        boolean suspended = false;
         String SQL = "SELECT * FROM customer\n"
                 + "Inner join job on customer.account_no = job.Customer_account_no\n"
                 + "inner join invoice on job.job_no = invoice.Job_job_no\n"
-                + "WHERE Invoice_no = '" + invoiceNumber + "' AND in_default = '1';";
+                + "WHERE Invoice_no = '" + invoiceNumber + "' AND is_suspended = '1';";
         rs = database.read(SQL, conn);
         try {
             if (rs.next()) {
-                inDefault = true;
+                suspended = true;
 
             }
         } catch (Exception e) {
             System.out.println("Is customer in default error");
         }
-        return inDefault;
+        return suspended;
     }
 
     public void setCustomerToSuspended(int invoiceNumber) {
