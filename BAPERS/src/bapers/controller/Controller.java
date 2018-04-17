@@ -26,7 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-//import java.util.Date;
+import java.util.Date;
 import java.util.List;
 
 import bapers.payment.Card;
@@ -34,7 +34,7 @@ import bapers.payment.PaymentCard;
 
 /*Joseph imports*/
 import java.sql.Time;
-import java.sql.Date;
+//import java.sql.Date;
 import bapers.payment.LatePaymentInvoice;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -1752,7 +1752,7 @@ public class Controller {
                     String customerName = rs.getString("firstname") + " " + rs.getString("lastname");
 
                     LatePaymentInvoice invoice = new LatePaymentInvoice(rs.getInt("Invoice_no"), customerName, rs.getInt("total_payable"), rs.getDate("date_issued"),
-                            rs.getString("street_name"), rs.getString("city"), rs.getString("postcode"), rs.getString("lastname"),rs.getString("prefix"));
+                            rs.getString("street_name"), rs.getString("city"), rs.getString("postcode"), rs.getString("lastname"), rs.getString("prefix"));
 
                     invoiceList.add(invoice);
                 }
@@ -1825,7 +1825,7 @@ public class Controller {
             if (rs.next()) {
                 inDefault = true;
 
-            } 
+            }
         } catch (Exception e) {
             System.out.println("Is customer in default error");
         }
@@ -1838,6 +1838,34 @@ public class Controller {
                 + "inner join invoice on job.job_no = invoice.Job_job_no\n"
                 + "SET is_suspended = '1'\n"
                 + "WHERE Invoice_no = '" + invoiceNumber + "';";
+        database.write(SQL, conn);
+    }
+
+    public void sendAlert(int roleID, String message, String alertType) {
+        String SQL = "INSERT INTO alert (alert_type,role,message)\n"
+                + "VALUES ('" + alertType + "','" + roleID + "','" + message + "');";
+        database.write(SQL, conn);
+    }
+
+    public ArrayList<String> viewAlert(int roleID) {
+        ArrayList<String> alerts = new ArrayList<>();
+        String message = "";
+        String SQL = "SELECT * FROM alert WHERE role = '" + roleID + "';";
+        rs = database.read(SQL, conn);
+        try {
+            while (rs.next()) {
+
+                message = rs.getString("message");
+                alerts.add(message);
+            }
+        } catch (Exception e) {
+            System.out.println("View Alert error");
+        }
+        return alerts;
+    }
+
+    public void deleteAlerts(int roleID) {
+        String SQL = "DELETE FROM alert WHERE role = '" + roleID + "';";
         database.write(SQL, conn);
     }
 

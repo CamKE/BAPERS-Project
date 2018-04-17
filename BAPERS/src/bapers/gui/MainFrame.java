@@ -5941,8 +5941,20 @@ public class MainFrame extends javax.swing.JFrame {
                 card2.show(cardPanel2, "homeBar");
                 pageLabel.setText("Welcome, " + role + "!");
 
+                //View alerts
+                int roleID = controller.getRoleID(role);
+                if (controller.viewAlert(roleID).size() > 0) {
+                    for (int i = 0; i < controller.viewAlert(roleID).size(); i++) {
+                        JOptionPane.showMessageDialog(null, controller.viewAlert(roleID).get(i));
+
+                    }
+
+                }
+                //Delete alerts once read
+
+                controller.deleteAlerts(controller.getRoleID(role));
+
                 //If it is the 23rd and reminder letters have not been generated for this month then generate reminder letters
-                //&& !(controller.hasReminderLettersBeenGeneratedForThisMonth(todayDate))
                 if (s.equals("23") && !controller.reminderLettersAlreadyGenerated(todayDate)) {
                     //Generate reminder letters...
                     this.generateReminderLettersForTheMonth();
@@ -8161,7 +8173,8 @@ public class MainFrame extends javax.swing.JFrame {
             document.add(new Paragraph(controller.getLatePaymentInvoices(month).get(z).getPostCode()));
             document.add(new Paragraph("  "));
 
-            document.add(new Paragraph("Dear Ms " + controller.getLatePaymentInvoices(month).get(z).getLastName() + ", "));
+            document.add(new Paragraph("Dear " + controller.getLatePaymentInvoices(month).get(z).getPrefix()
+                    + " " + controller.getLatePaymentInvoices(month).get(z).getLastName() + ", "));
             document.add(new Paragraph("  "));
             //Invoice table
             PdfPTable pdfTable = new PdfPTable(reminderLettersTable.getColumnCount());
@@ -8189,7 +8202,7 @@ public class MainFrame extends javax.swing.JFrame {
             document.add(new Paragraph("Yours sincereley,"));
             document.add(new Paragraph("   G. Lancaster "));
             document.close();
-            
+
         } catch (DocumentException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -8555,7 +8568,7 @@ public class MainFrame extends javax.swing.JFrame {
                     controller.setCustomerToSuspended(invoiceNumber);
                     //Alert office manager
                     System.out.println("Third reminder letter generated...");
-
+                    controller.sendAlert(1, reminderLettersTable.getModel().getValueAt(i, 0) + "has been suspended", "Late Payment");
                 } else {
                     System.out.println("Second reminder letter");
                     //Generate second reminder letter 
@@ -8566,6 +8579,7 @@ public class MainFrame extends javax.swing.JFrame {
                     controller.setCustomerToInDefault(invoiceNumber);
 //Send alert to office manager
                     System.out.println("Alert office manager of customer status");
+                    controller.sendAlert(1, reminderLettersTable.getModel().getValueAt(i, 0) + "has been set to in default", "Late Payment");
                 }
             } else {
                 //Generate first reminder letter
@@ -8575,6 +8589,7 @@ public class MainFrame extends javax.swing.JFrame {
                 controller.insertFirstReminderLetterInformationInDatabase(invoiceNumber, todayDate);
                 //Send alert to office manager
                 System.out.println("Alert office manager of late payment...");
+                controller.sendAlert(1, reminderLettersTable.getModel().getValueAt(i, 0) + " has made no payments", "Late Payment");
             }
 
         }
