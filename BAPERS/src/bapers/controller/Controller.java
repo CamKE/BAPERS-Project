@@ -1750,7 +1750,7 @@ public class Controller {
                 //Conver month format to numbers
                 int invoiceMonthNumber = Integer.parseInt(invoiceMonth);
                 int currentMonthNumber = Integer.parseInt(monthIssued);
-                
+
                 //If current month is ahead of the month of the invoice generated then create late payment invoice
                 //If the invoice awaiting payment does not equal the current month then generate reminder letter
                 if (currentMonthNumber > invoiceMonthNumber) {
@@ -1874,4 +1874,52 @@ public class Controller {
         database.write(SQL, conn);
     }
 
+    public ArrayList<StandardJob> getAllStandardJobs() {
+        ArrayList<StandardJob> allStandardJobList = new ArrayList<>();
+        String SQL = "SELECT * FROM standardjob;";
+        rs = database.read(SQL, conn);
+        try {
+            while (rs.next()) {
+                StandardJob standardJob = new StandardJob(rs.getString("code"), rs.getString("job_description"), rs.getDouble("price"));
+                allStandardJobList.add(standardJob);
+            }
+        } catch (Exception e) {
+            System.out.println("Get All standard jobs error (Manage Standard Job)");
+        }
+        return allStandardJobList;
+    }
+
+    public ArrayList<Task> getTasksFromStandardJob(String standardJobCode) {
+        ArrayList<Task> taskListFromStandardJob = new ArrayList<>();
+        String SQL = "SELECT * FROM standardjob_tasks \n"
+                + "inner join task on standardjob_tasks.Task_task_id = task.task_id\n"
+                + "inner join department on task.Department_department_code = department.department_code\n"
+                + "WHERE StandardJob_code = '" + standardJobCode + "';";
+        rs = database.read(SQL, conn);
+        try {
+            while (rs.next()) {
+                Task task = new Task(rs.getInt("task_id"), rs.getString("description"),
+                        rs.getInt("duration"), rs.getInt("shelf_slot"), rs.getDouble("price"), rs.getString("department_code"));
+                taskListFromStandardJob.add(task);
+            }
+        } catch (Exception e) {
+            System.out.println("Get task list from standard job error");
+        }
+        return taskListFromStandardJob;
+    }
+
+    public Integer getTotalFromInvoice(int invoiceNumber) {
+        int total = 0;
+        String SQL = "SELECT total_payable FROM invoice\n"
+                + "WHERE Invoice_no = '"+invoiceNumber+"';";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                total = rs.getInt("total_payable");
+            }
+        } catch (Exception e) {
+            System.out.println("Get total from invoice error");
+        }
+        return total;
+    }
 }

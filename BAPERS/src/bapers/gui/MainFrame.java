@@ -282,6 +282,16 @@ public class MainFrame extends javax.swing.JFrame {
         backupSettingsPageButton = new javax.swing.JButton();
         reportSettingsPageButton = new javax.swing.JButton();
         restoreSettingsPageButton = new javax.swing.JButton();
+        allStandardJobsPage = new javax.swing.JPanel();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        allStandardJobsTable = new javax.swing.JTable();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        taskList = new javax.swing.JList<>();
+        viewTasksInStandardJobButton = new javax.swing.JButton();
+        deleteStandardJobButton = new javax.swing.JButton();
+        viewTasksInStandardJobButton1 = new javax.swing.JButton();
+        addTaskToStandardJobButton = new javax.swing.JButton();
+        taskComboBox = new javax.swing.JComboBox<>();
         createCustomerPage = new javax.swing.JPanel();
         prefixjLabel = new javax.swing.JLabel();
         firstNamejLabel = new javax.swing.JLabel();
@@ -1769,6 +1779,11 @@ public class MainFrame extends javax.swing.JFrame {
         standardJobHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
 
         manageSJobPageButton.setText("Manage Standard Jobs");
+        manageSJobPageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageSJobPageButtonActionPerformed(evt);
+            }
+        });
 
         createSJobPageButton.setText("Create Standard Job");
         createSJobPageButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1854,6 +1869,89 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         cardPanel1.add(settingsHomePage, "settingsHomePage");
+
+        allStandardJobsPage.setBackground(new java.awt.Color(61, 96, 146));
+
+        allStandardJobsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Code", "Description", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Float.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane18.setViewportView(allStandardJobsTable);
+        if (allStandardJobsTable.getColumnModel().getColumnCount() > 0) {
+            allStandardJobsTable.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        jScrollPane19.setViewportView(taskList);
+
+        viewTasksInStandardJobButton.setText("View");
+        viewTasksInStandardJobButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewTasksInStandardJobButtonActionPerformed(evt);
+            }
+        });
+
+        deleteStandardJobButton.setText("Delete");
+
+        viewTasksInStandardJobButton1.setText("Remove");
+
+        addTaskToStandardJobButton.setText("Add");
+
+        javax.swing.GroupLayout allStandardJobsPageLayout = new javax.swing.GroupLayout(allStandardJobsPage);
+        allStandardJobsPage.setLayout(allStandardJobsPageLayout);
+        allStandardJobsPageLayout.setHorizontalGroup(
+            allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(allStandardJobsPageLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane18)
+                    .addComponent(jScrollPane19))
+                .addGap(39, 39, 39)
+                .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(deleteStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewTasksInStandardJobButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewTasksInStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
+        );
+        allStandardJobsPageLayout.setVerticalGroup(
+            allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(allStandardJobsPageLayout.createSequentialGroup()
+                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(allStandardJobsPageLayout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allStandardJobsPageLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(viewTasksInStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(75, 75, 75)
+                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(allStandardJobsPageLayout.createSequentialGroup()
+                        .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(taskComboBox)
+                            .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewTasksInStandardJobButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(215, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(allStandardJobsPage, "allStandardJobsPage");
 
         createCustomerPage.setBackground(new java.awt.Color(61, 96, 146));
         createCustomerPage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -5951,7 +6049,6 @@ public class MainFrame extends javax.swing.JFrame {
 
                 }
                 //Delete alerts once read
-
                 controller.deleteAlerts(controller.getRoleID(role));
 
                 //If it is the 23rd and reminder letters have not been generated for this month then generate reminder letters
@@ -5961,7 +6058,7 @@ public class MainFrame extends javax.swing.JFrame {
                     this.deleteReminderLettersTableInformation();
                     //Store in databse that reminder letters have been generated for this month
                     controller.setReminderLetterDate(todayDate);
-                    
+
                 }
 
             } else {
@@ -5969,7 +6066,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
         }
-        
+
 
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -8481,10 +8578,14 @@ public class MainFrame extends javax.swing.JFrame {
                         //Parse to payment page with invoice number
                         System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber(jobNumber) + ", job number is: " + jobNumber);
                         //Insert code for job payment here ...
+                        card1.show(cardPanel1, "acceptPayment");
+                        this.updateSetPaymentPage(controller.getInvoiceNumber(jobNumber), jobNumber);
                     }
                 } else {
                     System.out.println("Payment page... invoice number is " + controller.getInvoiceNumber(jobNumber) + ", job number is: " + jobNumber);
                     //Insert code for job payment here ...
+                    card1.show(cardPanel1, "acceptPayment");
+                    this.updateSetPaymentPage(controller.getInvoiceNumber(jobNumber), jobNumber);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Job cannot be collected");
@@ -8550,13 +8651,27 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelJobEnquiryButtonActionPerformed
 
+    private void manageSJobPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageSJobPageButtonActionPerformed
+        // TODO add your handling code here:
+        //Update standard job table...
+        this.updateAllStandardJobTable();
+        //Show page
+        card1.show(cardPanel1, "allStandardJobsPage");
+    }//GEN-LAST:event_manageSJobPageButtonActionPerformed
+
+    private void viewTasksInStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTasksInStandardJobButtonActionPerformed
+        // TODO add your handling code here:
+        //Get lists of tasks in that standard job
+        //Populate list 
+    }//GEN-LAST:event_viewTasksInStandardJobButtonActionPerformed
+
     private void generateReminderLettersForTheMonth() {
         this.updateReminderLettersTable();
         Date date = new Date();
         DateFormat monthFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String todayDate = monthFormat.format(date);
 
-        if (reminderLettersTable.getRowCount() == 0){
+        if (reminderLettersTable.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "No reminder letters have been generated for this month");
         } else {
             JOptionPane.showMessageDialog(null, "Reminder letters have been created for this month");
@@ -8575,7 +8690,7 @@ public class MainFrame extends javax.swing.JFrame {
                     System.out.println("Third reminder letter generated...");
                     controller.sendAlert(1, reminderLettersTable.getModel().getValueAt(i, 0) + "has been set to in default", "Late Payment");
                 } else {
-                
+
                     //Generate second reminder letter 
                     this.generateSecondReminderLetter(String.valueOf(reminderLettersTable.getModel().getValueAt(i, 0)), i);
 //Set reminder letter information in database
@@ -8694,6 +8809,19 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
 
+    private void updateAllStandardJobTable() {
+        DefaultTableModel standardJobTableModel = (DefaultTableModel) allStandardJobsTable.getModel();
+
+        //Set table
+        Object[] row = new Object[3];
+        for (int i = 0; i < controller.getAllStandardJobs().size(); i++) {
+            row[0] = controller.getAllStandardJobs().get(i).getCode();
+            row[1] = controller.getAllStandardJobs().get(i).getDescription();
+            row[2] = controller.getAllStandardJobs().get(i).getPrice();
+            standardJobTableModel.addRow(row);
+        }
+    }
+
     private void updateJobEnquiryTable() {
 
         DefaultTableModel jobEnquiryTableModel = (DefaultTableModel) jobEnquiryTableResults.getModel();
@@ -8726,6 +8854,18 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
     }
+    
+    private void updateSetPaymentPage(int invoiceNumber, int jobNumber){
+        //Get invoice details from controller and set it into GUI
+        //Get total amount
+        int total = controller.getTotalFromInvoice(invoiceNumber);
+        TotalLatePayjTextField.setText("£ " + String.valueOf(total));
+        t.addElement("Invoice number: "+ invoiceNumber);
+        t.addElement("Job number: "+ jobNumber);
+        invoicejList.setModel(t);
+    }
+    
+    
 
     private void resetComponents(JPanel panel) {
         for (Component c : panel.getComponents()) {
@@ -8829,6 +8969,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton addFlexibleBoundjButton;
     private javax.swing.JButton addJobButton;
     private javax.swing.JButton addMaterialButton;
+    private javax.swing.JButton addTaskToStandardJobButton;
+    private javax.swing.JPanel allStandardJobsPage;
+    private javax.swing.JTable allStandardJobsTable;
     private javax.swing.JButton applyDiscountjButton;
     private javax.swing.JButton assignDiscountPlanjButton;
     private javax.swing.JTextField autoBackupLocationjTextField;
@@ -8933,6 +9076,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField cutomerInDefaultjTextField;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton deleteButton1;
+    private javax.swing.JButton deleteStandardJobButton;
     private javax.swing.JComboBox<String> departmentComboBox;
     private javax.swing.JComboBox<String> departmentNewTaskDD;
     private javax.swing.JLabel departmentNewTaskLabel;
@@ -8998,6 +9142,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -9190,10 +9336,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel surchargeLabel;
     private javax.swing.JTextField surchargejTextField;
     private javax.swing.JTextField surnameField;
+    private javax.swing.JComboBox<String> taskComboBox;
     private javax.swing.JButton taskEnquiryBackButton;
     private javax.swing.JPanel taskHomePage;
     private javax.swing.JLabel taskIDLabel;
     private javax.swing.JTextField taskIDText;
+    private javax.swing.JList<String> taskList;
     private javax.swing.JPanel taskPage;
     private javax.swing.JTable taskResultsTable;
     private javax.swing.JPanel taskSearchResultsJobEnquiryPage;
@@ -9225,6 +9373,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton viewJobEnquiryButton;
     private javax.swing.JButton viewReminderLetterButton;
     private javax.swing.JButton viewStandardJobButton;
+    private javax.swing.JButton viewTasksInStandardJobButton;
+    private javax.swing.JButton viewTasksInStandardJobButton1;
     private javax.swing.JPanel welcomeBar;
     private javax.swing.JPanel welcomePage;
     private javax.swing.JLabel welcomePageLabel;

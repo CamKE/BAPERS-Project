@@ -25,6 +25,13 @@ public class StandardJob {
         this.durationMin = durationMin;
     }
 
+     public StandardJob(String code, String jobDescription, double price) {
+        this.code = code;
+        this.jobDescription = jobDescription;
+        this.price = price;
+    
+    }
+    
     public int getDurationMin() {
         return durationMin;
     }
