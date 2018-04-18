@@ -7162,8 +7162,8 @@ public class MainFrame extends javax.swing.JFrame {
                 stipulatedFields.setVisible(true);
                 completionTimeDD.setEnabled(false);
                 completionTimeDD.setEditable(true);
-                surchargejTextField.setText(100 + " %");
-                completionTimeDD.setSelectedItem("3 hours 0 mins");
+                surchargejTextField.setText(0 + " %");
+                completionTimeDD.setSelectedItem("6 hours 0 mins");
 
                 break;
             default:
@@ -7380,14 +7380,20 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         int selectedRow = customerResultsTable.getSelectedRow(); // index 0 here
         if (selectedRow != -1) {
-            String selectedCustomer = "Contact name: " + ((String) customerResultsTable.getValueAt(selectedRow, 1)) + ", ID: " + ((int) customerResultsTable.getValueAt(selectedRow, 0));
-            if (previousPage.equals("createReport")) {
-                createReportPageButton.doClick();
-                infoField.setText(selectedCustomer);
+
+            if (!customerResultsTable.getValueAt(selectedRow, 4).equals("Suspended")) {
+                String selectedCustomer = "Account holder name: " + ((String) customerResultsTable.getValueAt(selectedRow, 1)) + ", ID: " + ((int) customerResultsTable.getValueAt(selectedRow, 0));
+                if (previousPage.equals("createReport")) {
+                    createReportPageButton.doClick();
+                    infoField.setText(selectedCustomer);
+                } else {
+                    acceptJobPageButton.doClick();
+                    customerInfoField.setText(selectedCustomer);
+                }
             } else {
-                acceptJobPageButton.doClick();
-                customerInfoField.setText(selectedCustomer);
+                JOptionPane.showMessageDialog(null, "This customer is suspended. Please choose another customer.");
             }
+
         } else {
             JOptionPane.showMessageDialog(this, "Please select a customer");
         }
@@ -9454,23 +9460,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         switch (selection) {
             case 0:
-            department = "CR";
-            break;
+                department = "CR";
+                break;
             case 1:
-            department = "DR";
-            break;
+                department = "DR";
+                break;
             case 2:
-            department = "DA";
-            break;
+                department = "DA";
+                break;
             case 3:
-            department = "PR";
-            break;
+                department = "PR";
+                break;
             case 4:
-            department = "FR";
-            break;
+                department = "FR";
+                break;
             case 5:
-            department = "PD";
-            break;
+                department = "PD";
+                break;
         }
 
         shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getShelfSlots(department)));
