@@ -2492,4 +2492,8 @@ public class Controller {
                 + "WHERE username = '" + username + "';";
         database.write(SQL, conn);
     }
+    
+    public void updateCompletionTimeWhenJobIsCompleted(){
+        
+    }
 }

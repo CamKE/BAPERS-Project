@@ -8670,6 +8670,7 @@ public class MainFrame extends javax.swing.JFrame {
             if (controller.checkIfAllStandardJobsAreCompleted(Integer.parseInt(jobNumberLabel.getText()))) {
                 //Update job status
                 controller.updateJobStatus("Completed", Integer.parseInt(jobIndexLabel.getText()), currentTime);
+                //Update completion time
                 JOptionPane.showMessageDialog(null, "Job has now been completed, the finish time for " + jobNumberLabel.getText() + " is " + currentTime);
             }
         } else {
