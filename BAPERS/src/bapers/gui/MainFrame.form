@@ -2186,13 +2186,16 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jScrollPane20" pref="616" max="32767" attributes="0"/>
                                   <Component id="jScrollPane18" max="32767" attributes="0"/>
-                                  <Component id="addTaskToStandardJobButton" alignment="1" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="taskComboBox" min="-2" pref="307" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="addTaskToStandardJobButton" min="-2" pref="89" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="viewTasksInStandardJobButton" max="32767" attributes="0"/>
                                   <Component id="removeTaskFromSJ" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="taskComboBox" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -2208,25 +2211,18 @@
                           <Component id="jScrollPane18" min="-2" pref="102" max="-2" attributes="0"/>
                           <Component id="viewTasksInStandardJobButton" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel4" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                                  <Component id="standardJobCodeLabel2" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="jScrollPane20" min="-2" pref="100" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
-                              <Component id="taskComboBox" min="-2" pref="41" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="standardJobCodeLabel2" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="jScrollPane20" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="addTaskToStandardJobButton" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="removeTaskFromSJ" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="taskComboBox" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="156" max="32767" attributes="0"/>
                   </Group>
@@ -2304,13 +2300,13 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="7">
-                    <StringItem index="0" value="1"/>
-                    <StringItem index="1" value="2"/>
-                    <StringItem index="2" value="3"/>
-                    <StringItem index="3" value="4"/>
-                    <StringItem index="4" value="5"/>
-                    <StringItem index="5" value="6"/>
-                    <StringItem index="6" value="7"/>
+                    <StringItem index="0" value="1, Use of large copy camera"/>
+                    <StringItem index="1" value="2, Black and white film processing"/>
+                    <StringItem index="2" value="3, Bag up"/>
+                    <StringItem index="3" value="4, Colour film processing"/>
+                    <StringItem index="4" value="5, Colour transparency processing"/>
+                    <StringItem index="5" value="6, Use of small copy camera"/>
+                    <StringItem index="6" value="7, Mount transparencies"/>
                   </StringArray>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -7894,78 +7890,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="latePaymentSubmitjButtonActionPerformed"/>
-                  </Events>
-                </Component>
-              </SubComponents>
-            </Container>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="technicianHomePage">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-              <CardConstraints cardName="technicianHomePage"/>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="technicianPage" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="technicianPage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JPanel" name="technicianPage">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="92" green="60" red="3d" type="rgb"/>
-                </Property>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[900, 640]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[900, 640]"/>
-                </Property>
-              </Properties>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="343" max="-2" attributes="0"/>
-                          <Component id="jobEnquiryTechnician" min="-2" pref="196" max="-2" attributes="0"/>
-                          <EmptySpace pref="361" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="215" max="-2" attributes="0"/>
-                          <Component id="jobEnquiryTechnician" min="-2" pref="132" max="-2" attributes="0"/>
-                          <EmptySpace pref="299" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JButton" name="jobEnquiryTechnician">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Job Enquiry"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jobEnquiryTechnicianActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

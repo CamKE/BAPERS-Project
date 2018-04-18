@@ -24,7 +24,6 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.CardLayout;
@@ -45,6 +44,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -545,9 +546,6 @@ public class MainFrame extends javax.swing.JFrame {
         invoicejScrollPane = new javax.swing.JScrollPane();
         invoicejList = new javax.swing.JList<>();
         latePaymentSubmitjButton = new javax.swing.JButton();
-        technicianHomePage = new javax.swing.JPanel();
-        technicianPage = new javax.swing.JPanel();
-        jobEnquiryTechnician = new javax.swing.JButton();
         taskPage = new javax.swing.JPanel();
         manageTasksButton = new javax.swing.JButton();
         createTaskButton = new javax.swing.JButton();
@@ -1915,7 +1913,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        taskComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        taskComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1, Use of large copy camera", "2, Black and white film processing", "3, Bag up", "4, Colour film processing", "5, Colour transparency processing", "6, Use of small copy camera", "7, Mount transparencies" }));
         taskComboBox.setToolTipText("");
 
         taskListTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -1951,12 +1949,14 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane20, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
                             .addComponent(jScrollPane18)
-                            .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allStandardJobsPageLayout.createSequentialGroup()
+                                .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(56, 56, 56)
                         .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(viewTasksInStandardJobButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(removeTaskFromSJ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(taskComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(removeTaskFromSJ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
         allStandardJobsPageLayout.setVerticalGroup(
@@ -1966,21 +1966,17 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewTasksInStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(allStandardJobsPageLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(standardJobCodeLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allStandardJobsPageLayout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
+                .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(standardJobCodeLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(allStandardJobsPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addTaskToStandardJobButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removeTaskFromSJ, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(removeTaskFromSJ, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
@@ -4986,51 +4982,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(acceptPayment, "acceptPayment");
 
-        technicianPage.setBackground(new java.awt.Color(61, 96, 146));
-        technicianPage.setMaximumSize(new java.awt.Dimension(900, 640));
-        technicianPage.setMinimumSize(new java.awt.Dimension(900, 640));
-
-        jobEnquiryTechnician.setText("Job Enquiry");
-        jobEnquiryTechnician.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jobEnquiryTechnicianActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout technicianPageLayout = new javax.swing.GroupLayout(technicianPage);
-        technicianPage.setLayout(technicianPageLayout);
-        technicianPageLayout.setHorizontalGroup(
-            technicianPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(technicianPageLayout.createSequentialGroup()
-                .addGap(343, 343, 343)
-                .addComponent(jobEnquiryTechnician, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(361, Short.MAX_VALUE))
-        );
-        technicianPageLayout.setVerticalGroup(
-            technicianPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(technicianPageLayout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(jobEnquiryTechnician, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout technicianHomePageLayout = new javax.swing.GroupLayout(technicianHomePage);
-        technicianHomePage.setLayout(technicianHomePageLayout);
-        technicianHomePageLayout.setHorizontalGroup(
-            technicianHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, technicianHomePageLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(technicianPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        technicianHomePageLayout.setVerticalGroup(
-            technicianHomePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(technicianHomePageLayout.createSequentialGroup()
-                .addComponent(technicianPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        cardPanel1.add(technicianHomePage, "technicianHomePage");
-
         taskPage.setBackground(new java.awt.Color(61, 96, 146));
 
         manageTasksButton.setText("Manage Tasks");
@@ -6030,6 +5981,8 @@ public class MainFrame extends javax.swing.JFrame {
         DateFormat today = new SimpleDateFormat("yyyy/MM/dd");
         String s = day.format(date);
         String todayDate = today.format(date);
+
+        String page = "";
         //Check fields are not empty
         if (userID.equals("") || password.equals("")) {
             JOptionPane.showMessageDialog(null, "Please insert data");
@@ -6044,6 +5997,7 @@ public class MainFrame extends javax.swing.JFrame {
                         System.out.println("Shift Manager");
                         usersMenuPageButton.setVisible(false);
                         manageCustomersMenuPageButton.setVisible(false);
+                        //page = "homePage";
                         break;
                     case "Technician":
                         System.out.println("Technician");
@@ -6056,6 +6010,9 @@ public class MainFrame extends javax.swing.JFrame {
                         acceptPaymentPageButton.setVisible(false);
                         collectJobPageButton.setVisible(false);
                         acceptJobPageButton.setVisible(false);
+                        cancelJobEnquiryButton.setVisible(false);
+                        //page = "jobEnquiryPage";
+                        //card1.show(cardPanel1, "jobEnquiryPage");
                         break;
                     case "Receptionist":
                         System.out.println("Receptionist");
@@ -6065,6 +6022,7 @@ public class MainFrame extends javax.swing.JFrame {
                         settingsMenuPageButton.setVisible(false);
                         standardJobsMenuPageButton.setVisible(false);
                         reportsMenuPageButton.setVisible(false);
+                        //page = "homePage";
                         break;
                 }
 
@@ -6102,6 +6060,7 @@ public class MainFrame extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_loginButtonActionPerformed
+
 
     private void loginPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPageButtonActionPerformed
         // TODO add your handling code here:
@@ -6499,8 +6458,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jobMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobMenuPageButtonActionPerformed
         // TODO add your handling code here:
-        card1.show(cardPanel1, "jobHomePage");
-        homeButton.setVisible(true);
+        if (loggedInUser.getRole().equals("Technician")) {
+            card1.show(cardPanel1, "jobEnquiryPage");
+        } else {
+            card1.show(cardPanel1, "jobHomePage");
+            homeButton.setVisible(true);
+        }
     }//GEN-LAST:event_jobMenuPageButtonActionPerformed
 
     private void reportsMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsMenuPageButtonActionPerformed
@@ -8023,15 +7986,6 @@ public class MainFrame extends javax.swing.JFrame {
         pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /*
-    
-    Joseph
-     */
-
-    private void jobEnquiryTechnicianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobEnquiryTechnicianActionPerformed
-        card1.show(cardPanel1, "jobEnquiryPage");
-    }//GEN-LAST:event_jobEnquiryTechnicianActionPerformed
-
     private void manageTasksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageTasksButtonActionPerformed
         //Get task information from controller class
         updateTaskTable();
@@ -8682,6 +8636,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void cancelJobEnquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelJobEnquiryButtonActionPerformed
         // TODO add your handling code here:
+        card1.show(cardPanel1, "jobHomePage");
     }//GEN-LAST:event_cancelJobEnquiryButtonActionPerformed
 
     private void manageSJobPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageSJobPageButtonActionPerformed
@@ -8690,6 +8645,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.updateAllStandardJobTable();
         //Show page
         card1.show(cardPanel1, "allStandardJobsPage");
+      
     }//GEN-LAST:event_manageSJobPageButtonActionPerformed
 
     private void viewTasksInStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTasksInStandardJobButtonActionPerformed
@@ -8709,30 +8665,35 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Check if task already exists within standard job
         String standardJobCode = standardJobCodeLabel2.getText();
-        int taskID = Integer.parseInt(String.valueOf(taskComboBox.getSelectedItem()));
-        if (controller.doesTaskExistInStandardJob(standardJobCode, taskID)) {
-            JOptionPane.showMessageDialog(null, "Task already exists in standard job");
-        } else {
-//Add task to standard job...
-            controller.addTaskToStandardJob(taskID, standardJobCode);
-//Update price of standard job
-            float newPrice = controller.getPriceOfStandardJob(standardJobCode);
-            controller.updatePrice(standardJobCode, newPrice);
-//Delete standard job table information
-            this.deleteAllStandardJobTableInformation();
-//Update standard job table information
-            this.updateAllStandardJobTable();
-            //Delete task list table
-            this.deleteStandardJobTaskListTable();
-            //Update task list table
-            this.updateTaskFromStandardJobTable(standardJobCode);
-        }
 
+        String taskId[] = String.valueOf(taskComboBox.getSelectedItem()).split(",");
+        if (!(standardJobCodeLabel2.getText().equals("---"))) {
+//        int[] taskID = Arrays.stream(taskId).mapToInt(Integer::parseInt).toArray();
+            if (controller.doesTaskExistInStandardJob(standardJobCode, taskId[0])) {
+                JOptionPane.showMessageDialog(null, "Task already exists in standard job");
+            } else {
+//Add task to standard job...
+                controller.addTaskToStandardJob(taskId[0], standardJobCode);
+//Update price of standard job
+                float newPrice = controller.getPriceOfStandardJob(standardJobCode);
+                controller.updatePrice(standardJobCode, newPrice);
+//Delete standard job table information
+                this.deleteAllStandardJobTableInformation();
+//Update standard job table information
+                this.updateAllStandardJobTable();
+                //Delete task list table
+                this.deleteStandardJobTaskListTable();
+                //Update task list table
+                this.updateTaskFromStandardJobTable(standardJobCode);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No standard job selected");
+        }
     }//GEN-LAST:event_addTaskToStandardJobButtonActionPerformed
 
     private void removeTaskFromSJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTaskFromSJActionPerformed
         // TODO add your handling code here:
-          String standardJobCode = standardJobCodeLabel2.getText();
+        String standardJobCode = standardJobCodeLabel2.getText();
         if (taskListTable.getSelectedRow() >= 0) {
             Object taskObj = taskListTable.getValueAt(taskListTable.getSelectedRow(), 0);
             int taskID = (Integer) taskObj;
@@ -8771,7 +8732,7 @@ public class MainFrame extends javax.swing.JFrame {
             //
             int invoiceNumber = Integer.parseInt(String.valueOf(reminderLettersTable.getModel().getValueAt(i, 1)));
             if (controller.hasFirstReminderLetterBeenGenerated(invoiceNumber)) {
-                // System.out.println(controller.isCustomerInDefault(invoiceNumber));
+
                 if (controller.isCustomerSuspended(invoiceNumber) == true) {
                     //Generate third reminder letter
                     //Change customer status to in default
@@ -9276,7 +9237,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jobEnquiryPageButton;
     private javax.swing.JPanel jobEnquirySearchResultsPage;
     private javax.swing.JTable jobEnquiryTableResults;
-    private javax.swing.JButton jobEnquiryTechnician;
     private javax.swing.JPanel jobHomePage;
     private javax.swing.JLabel jobIndexLabel;
     private javax.swing.JButton jobMenuPageButton;
@@ -9462,8 +9422,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel taskSearchResultsJobEnquiryPage;
     private javax.swing.JTable taskTable;
     private javax.swing.JButton tasksMenuPageButton;
-    private javax.swing.JPanel technicianHomePage;
-    private javax.swing.JPanel technicianPage;
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalLabel1;
     private javax.swing.JLabel totaljLabel;

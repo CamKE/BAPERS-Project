@@ -43,7 +43,7 @@ import java.text.SimpleDateFormat;
  *
  * @author CameronE
  */
-public class Controller {
+public class Controller  {
 
     final private DBImpl database;
     final private Connection conn;
@@ -1927,7 +1927,7 @@ public class Controller {
         return total;
     }
 
-    public boolean doesTaskExistInStandardJob(String standardJobCode, int taskID) {
+    public boolean doesTaskExistInStandardJob(String standardJobCode, String taskID) {
         boolean exists = false;
         String SQL = "SELECT * FROM standardjob_tasks\n"
                 + "WHERE StandardJob_code = '" + standardJobCode + "' AND Task_task_id = '" + taskID + "';";
@@ -1942,7 +1942,7 @@ public class Controller {
         return exists;
     }
 
-    public void addTaskToStandardJob(int taskID, String standardJobCode) {
+    public void addTaskToStandardJob(String taskID, String standardJobCode) {
         String SQL = "INSERT INTO standardjob_tasks  (StandardJob_code,Task_task_id) VALUES ('" + standardJobCode + "','" + taskID + "');";
         database.write(SQL, conn);
     }
