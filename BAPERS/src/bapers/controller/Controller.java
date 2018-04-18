@@ -43,7 +43,7 @@ import java.text.SimpleDateFormat;
  *
  * @author CameronE
  */
-public class Controller  {
+public class Controller {
 
     final private DBImpl database;
     final private Connection conn;
@@ -102,10 +102,11 @@ public class Controller  {
     }
 
     // Attempts to create a new user in the system, given the details are valid
-    public boolean createUser(String firstname, String lastName, String password, int roleId, String username) {
+    public boolean createUser(String firstname, String lastName, String password, int roleId, String username, String securityAnswer) {
         int hashPassword = password.hashCode();
         // Write the user details into the database
-        String userSQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id,username) VALUES ('" + firstname + "','" + lastName + "','" + hashPassword + "','" + roleId + "','" + username + "');";
+        String userSQL = "INSERT INTO USER (firstname,lastname,password_hash,Role_role_id,username,security_answer) \n"
+                + "VALUES ('" + firstname + "','" + lastName + "','" + hashPassword + "','" + roleId + "','" + username + "','" + securityAnswer + "' );";
 
         // Return whether or not rows have been affected
         return database.write(userSQL, conn) != 0;
@@ -1955,10 +1956,10 @@ public class Controller  {
         System.out.println("read");
         float price = 0;
         try {
-            while(rs.next()){
+            while (rs.next()) {
 
-            price = price + rs.getFloat("price");
-   
+                price = price + rs.getFloat("price");
+
             }
         } catch (Exception e) {
             System.out.println("Get Price of standard job error");
@@ -1968,13 +1969,47 @@ public class Controller  {
 
     public void updatePrice(String standardJobCode, float price) {
         String SQL = "Update standardjob\n"
-                + "SET price = '"+price+"'\n"
-                + "WHERE code = '"+standardJobCode+"';";
-        database.write(SQL,conn);
+                + "SET price = '" + price + "'\n"
+                + "WHERE code = '" + standardJobCode + "';";
+        database.write(SQL, conn);
     }
-    
-    public void removeTaskFromStandardJob(String standardJobCode,int taskID){
-        String SQL = "DELETE FROM standardjob_tasks WHERE StandardJob_code = '"+standardJobCode+"' AND Task_task_id = '"+taskID+"';";
-        database.write(SQL,conn);
+
+    public void removeTaskFromStandardJob(String standardJobCode, int taskID) {
+        String SQL = "DELETE FROM standardjob_tasks WHERE StandardJob_code = '" + standardJobCode + "' AND Task_task_id = '" + taskID + "';";
+        database.write(SQL, conn);
+    }
+
+    public boolean doesUserExist(String username) {
+        String SQL = "SELECT * FROM user WHERE username = '" + username + "';";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Does user exist error");
+        }
+        return false;
+    }
+
+    public String securityAnswer(String username) {
+        String SQL = "SELECT security_answer FROM user WHERE username = '" + username + "';";
+        String answer = "";
+        rs = database.read(SQL, conn);
+        try {
+            if (rs.next()) {
+                answer = rs.getString("security_answer");
+            }
+        } catch (Exception e) {
+            System.out.println("Security answer error");
+        }
+        return answer;
+    }
+
+    public void updatePassword(String username, int password) {
+        String SQL = "UPDATE user\n"
+                + "SET password_hash = '" + password + "'\n"
+                + "WHERE username = '" + username + "';";
+        database.write(SQL, conn);
     }
 }
