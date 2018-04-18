@@ -5,7 +5,7 @@
  */
 package bapers.controller;
 
-import bapers.AutoBackupConfig;
+import bapers.AutoBackupConfigData;
 import bapers.customer.CustomerDetails;
 import bapers.database.DBImpl;
 import bapers.discountplan.Discount;
@@ -774,110 +774,146 @@ public class Controller {
     
     
      */
+            
     // auto backup code
     public boolean checkAutoBackupConfigExist() {
-        final String sql = "select * from BackupSettings;";
+        final String sql = "select * from backupsettings;";
         int size = 0;
-
+        
+        
         try (ResultSet result = database.read(sql, conn)) {
-            while (result.next()) {
-                ++size;
-            }
-            //result.close();
+            while (result.next()) ++size;
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return size > 0;
     }
-
-    public AutoBackupConfig getAutoBackupConfigData() {
-        final String sql = "select * from BackupSettings;";
-        AutoBackupConfig autoData = null;
-
+    
+    //Get auto back up config data from database and set it into class
+    public AutoBackupConfigData getAutoBackupConfigData() {
+        final String sql = "select * from backupsettings;";
+        AutoBackupConfigData autoData = null;
+        
         try (ResultSet result = database.read(sql, conn)) {
             result.next(); // gets only the first row in the table
-            autoData = new AutoBackupConfig(
-                    result.getString("backup_mode"),
-                    result.getString("backup_frequency"),
-                    result.getString("backup_location")
+            autoData = new AutoBackupConfigData(
+                    result.getString("backup_mode"), 
+                    result.getString("backup_frequency"), 
+                    result.getString("backup_location"),
+                    result.getDate("date_performed"),
+                    result.getDate("target_date")
             );
-            //result.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return autoData;
     }
-
-    public void setAutoBackupConfig(final AutoBackupConfig config) {
+    
+    //Record back up config data
+    public boolean setAutoBackupConfig(final AutoBackupConfigData config) {
+        boolean complete = false;
+        final String datePerformed = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(config.getDatePerformed());
+        
+        //If nothing exists then record new data
         if (checkAutoBackupConfigExist() == false) {
-            final String sql = "insert into `bapers_data`.`BackupSettings` (`backup_mode`, `backup_frequency`, `backup_location`) values ("
-                    + "\'" + config.getBackupMode().toLowerCase() + "\', "
-                    + "\'" + config.getBackupFrequency().toLowerCase() + "\', "
-                    + "\'" + config.getBackupLocation() + "\'" + ");";
+            final String sql = "INSERT INTO `bapers_data`.`backupsettings` "
+                    + "(`backup_mode`, `backup_frequency`, `backup_location`, `date_performed`, `target_date`) "
+                    + "VALUES (\'"
+                    + config.getBackupMode().toLowerCase() + "\', \'"
+                    + config.getBackupFrequency().toLowerCase() + "\', \'"
+                    + config.getBackupLocation() + "\', \'"
+                    + datePerformed + "\', '"
+                    + datePerformed + "\');";
 
             try {
                 database.write(sql, conn);
+                complete = true;
             } catch (Exception e) {
                 System.out.println("Exception error: " + e);
             }
         } else {
-            final AutoBackupConfig oldConfigData = getAutoBackupConfigData();
-            final String sql = "UPDATE `BAPERS_data`.`BackupSettings` SET"
-                    + "`backup_mode`=" + "\'" + config.getBackupMode() + "\', "
-                    + "`backup_frequency`=" + "\'" + config.getBackupFrequency() + "\', "
-                    + "`backup_location`=" + "\'" + config.getBackupLocation() + "\'"
-                    + "WHERE `backup_mode`=" + "\'" + oldConfigData.getBackupMode() + "\'"
+            //update current data
+            final AutoBackupConfigData oldConfigData = getAutoBackupConfigData();
+            final String sql = "update `BAPERS_data`.`backupsettings` set"
+                    + "`backup_mode`=" + "\'" + config.getBackupMode() + "\', " 
+                    + "`backup_frequency`=" + "\'" + config.getBackupFrequency() + "\', " 
+                    + "`backup_location`=" + "\'" + config.getBackupLocation() + "\', "
+                    + "`date_performed`= " + "\'" + datePerformed + "\', " 
+                    + "`target_date`= " + "\'" + datePerformed + "\'"
+                    + "where `backup_mode`=" + "\'" + oldConfigData.getBackupMode() + "\'"
                     + ";";
 
             try {
                 database.write(sql, conn);
+                complete = true;
             } catch (Exception e) {
                 System.out.println("Exception error: " + e);
             }
         }
+        return complete;
     }
-
-    //late payment code
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // payment code
     public ArrayList<Invoice> getInvoices() throws ParseException {
-        final String sql = "select * from Invoice";
-
+        // sql select statemnet to get invoice
+        final String sql = "select * from bapers_data.invoice;";
+        
         // putting data into array list
         final ArrayList<Invoice> invoices = new ArrayList<>();
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
                 Invoice invoice = new Invoice(
-                        result.getInt("Invoice_no"),
-                        result.getInt("Job_job_no"),
-                        result.getInt("total_payable"),
-                        result.getDate("date_issued"),
+                        result.getInt("Invoice_no"), 
+                        result.getInt("Job_job_no"), 
+                        result.getInt("total_payable"), 
+                        result.getDate("date_issued"), 
                         result.getString("invoice_status"),
                         result.getString("invoice_location")
                 );
-                if (invoice.getInvoiceStatus().equals(Invoice.Status.AWAITINGPAYMENT)) {
+                // only adds if the status of the invoice is AWAITINGPAYMENT.
+                if(invoice.getInvoiceStatus().equals(Invoice.Status.AWAITINGPAYMENT))
                     invoices.add(invoice);
-                }
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return invoices;
     }
-
-    public void recordPayment(final Payment p, final String type, final Invoice i, final Card card) {
-        boolean paymentRecorded;
-
+    
+    public boolean recordPayment(final Payment p, final String type, final Invoice i, final Card card) {
+        boolean completed = false;
+        // boolean variable too check if payment is recorded before changed the status of its invoice
+        boolean paymentRecorded = false;
+        
+        // checks to see if payment type is card
         if (type.equals("Card")) {
+            
+            // records card details if needed.
             recordCardDetails(p, i, card);
 
+            // standard payment information
             final String paymentNo = p.getPaymentNo();
             final double total = p.getTotal();
             final String paymentType = p.getPaymentType();
-            final String paymentDate = p.getPaymentDate();
+            final String paymentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(p.getPaymentDate());
             final int invoiceNumber = p.getInvoiceNumber();
+
+            // card information
             final String cardDetailsLast4digits = ((PaymentCard) p).getCardDetailsLast4Digits();
             final String cardDetailsExpiryDate = ((PaymentCard) p).getCardDetailsExpiryDate();
 
-            final String sql = "insert into PaymentRecord values ("
+            // sql insert statement for card payment
+            final String sql = "insert into paymentrecord values ("
                     + paymentNo + ","
                     + total + ", \'"
                     + paymentType + "\', \'"
@@ -885,61 +921,77 @@ public class Controller {
                     + invoiceNumber + "\', \'"
                     + cardDetailsLast4digits + "\', \'"
                     + cardDetailsExpiryDate + "\');";
-
+            
             try {
                 database.write(sql, conn);
+                // set payment to recorded to true & changes invoice status
+                paymentRecorded = true;
             } catch (Exception e) {
                 System.out.println("Exception error: " + e);
             }
-
-            paymentRecorded = true;
+            
             //System.out.println(paymentRecorded);
-            //  changeInvoiceStatus(paymentRecorded, p, i);
+            if (changeInvoiceStatus(paymentRecorded, p, i))
+                completed = true;
         }
+        
+        return completed;
     }
-
-    public void recordPayment(final Payment p, final String type, final Invoice i) {
-        String sql;
-        boolean paymentRecorded;
-
+    
+    public boolean recordPayment(final Payment p, final String type, final Invoice i) {
+        boolean completed = false;
+        // boolean variable too check if payment is recorded before changed the status of its invoice
+        boolean paymentRecorded = false;
+        
+        // checks to see if payment type is cash 
         if (type.equals("Cash")) {
+            // standard payment information
             final String paymentNo = p.getPaymentNo();
             final double total = p.getTotal();
             final String paymentType = p.getPaymentType();
-            final String paymentDate = p.getPaymentDate();
+            final String paymentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(p.getPaymentDate());
             final int invoiceNumber = p.getInvoiceNumber();
-
-            sql = "insert into PaymentRecord values ("
-                    + paymentNo + ","
-                    + total + ", \'"
-                    + paymentType + "\', \'"
-                    + paymentDate + "\', \'"
+            
+            // sql insert statement for cash payment
+            final String sql = "insert into paymentrecord values (" 
+                    + paymentNo + "," 
+                    + total + ", \'" 
+                    + paymentType + "\', \'" 
+                    + paymentDate + "\', \'" 
                     + invoiceNumber + "\', "
-                    + null + ", "
-                    + null + ");";
-
+                    + null + ", "  
+                    + null + ");"
+                    ;
+            
             try {
                 database.write(sql, conn);
+                // set payment to recorded to true & changes invoice status
+                paymentRecorded = true;
             } catch (Exception e) {
                 System.out.println("Exception error: " + e);
             }
-
-            paymentRecorded = true;
+            
             //System.out.println(paymentRecorded);
-            //       changeInvoiceStatus(paymentRecorded, p, i);
+            if (changeInvoiceStatus(paymentRecorded, p, i))
+                completed = true;
         }
+        
+        return completed;
     }
-
+    
     public void recordCardDetails(final Payment p, final Invoice invoice, final Card card) {
+        // returns boolean value to check if card details exist in database
         final boolean cardRecorded = checkCardAlreadyRecorded(card);
-
+        
         if (cardRecorded == false) {
-            String sql = "insert into CardDetails values(" + "\'"
-                    + ((PaymentCard) p).getCardDetailsLast4Digits() + "\', \'"
+            // sql insert statement to record card details
+            final String sql = "insert into carddetails values(" + "\'"
+                    + ((PaymentCard) p).getCardDetailsLast4Digits()+ "\', \'"
                     + ((PaymentCard) p).getCardType() + "\', \'"
-                    + ((PaymentCard) p).getCardDetailsExpiryDate() + "\', \'"
+                    + ((PaymentCard) p).getCardDetailsExpiryDate() + "\', \'" 
                     + findAssociatedCustomerFromInvoce(invoice) + "\'"
-                    + ");";
+                    + ");"
+                    ;
 
             try {
                 database.write(sql, conn);
@@ -948,29 +1000,34 @@ public class Controller {
             }
         }
     }
-
+    
     public String findAssociatedCustomerFromInvoce(final Invoice invoice) {
         String customerNo = "";
-        final String sql = "select * from Job where job_no = " + invoice.getJobJobNo();
-
+        // sql select statement to get job based on invoice
+        final String sql = "select * from job where job_no = " + invoice.getJobJobNo();
+        
+        // gets customer based on the job of the invoice 
         try (ResultSet result = database.read(sql, conn)) {
             result.next();
             customerNo = result.getString("Customer_account_no");
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+        
         //System.out.println(customerNo);
         return customerNo;
     }
-
+    
     public boolean checkCardAlreadyRecorded(final Card card) {
         boolean cardRecorded = false;
-        final String sql = "select count(*) from CardDetails where last4digits = \'"
+        // sql select statement to check if there is exist a card detail with information provided by card arg
+        final String sql = "select count(*) from carddetails where last4digits = \'" 
                 + card.getLast4Digits() + "\' and card_type = \'"
                 + card.getCardType() + "\' and expiry_date = \'"
-                + card.getExpiryDate() + "\';";
-
+                + card.getExpiryDate() + "\';"
+                ;
+        
+        // sets cardRecorded variable to true or false based on count result (0 = false and 1||> = true)
         try (ResultSet result = database.read(sql, conn)) {
             result.next();
             cardRecorded = result.getBoolean("count(*)");
@@ -978,62 +1035,121 @@ public class Controller {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+        
         return cardRecorded;
     }
-
-    /* public void changeInvoiceStatus(final boolean paymentRecorded, final Payment p, final LatePaymentInvoice i) {
+    
+    public boolean changeInvoiceStatus(final boolean paymentRecorded, final Payment p, final Invoice i) {
+        boolean completed = false;
+        // checks to see if payment is recorded
         if (paymentRecorded == true) {
             final String status = paidOnTIme(p, i);
             //System.out.println(status);
-
+            
+            // sql update statement to change the selected invoice with new status
             final String sql = "update bapers_data.invoice set invoice_status = \'"
                     + status
-                    + "\' where `Invoice_no` = " + '\''
-                    + p.getInvoiceNumber() + '\'' + ";" // here is the problem, no number to reference.
+                    + "\' where `Invoice_no` = " + '\'' 
+                    + p.getInvoiceNumber()+ '\'' + ";" // here is the problem, no number to reference.
                     ;
             try {
                 database.write(sql, conn);
+                completed = true;
             } catch (Exception e) {
                 System.out.println("Exception error: " + e);
             }
         }
-    }*/
-
- /*public String paidOnTIme(final Payment p, final LatePaymentInvoice i) {
+        
+        return completed;
+    }
+    
+    public String paidOnTIme(final Payment p, final Invoice i) {
+        // string variable used to determine the value of the status in the invoice table
         String invoiceStatus;
-       final Date paymentDate = new Date(p.getPaymentDate());
-        final Date invoiceDate = i.getDateIssued();
-
-        if (paymentDate.compareTo(invoiceDate) > 0) {
+        
+        // gets the current date based on the time payment 
+        final Date paymentDate = p.getPaymentDate();
+        
+        // gets and sets the invoice date to be used to check late payment
+        final Date invoiceDate = (Date) i.getDateIssued();
+        final DateFormat invoiceDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        final String newInvoiceDate = invoiceDateFormat.format(invoiceDate);
+        
+        // splits the date to tokens based on "-".
+        // Month is already increase by 1 which allows late payment to be checked
+        String[] token = newInvoiceDate.split("-");
+        final int year = Integer.parseInt(token[0]);
+        final int month = Integer.parseInt(token[1]);
+        final int hour = Integer.parseInt(token[3]);
+        final int min = Integer.parseInt(token[4]);
+        final int sec = Integer.parseInt(token[5]);
+        
+        
+        // sets new Date variable to next month of the invoice date, 
+        // used to compare with payment date.
+        Calendar tenthNxtInvoceMonth = Calendar.getInstance();
+        // date
+        tenthNxtInvoceMonth.set(Calendar.DATE, 10);
+        tenthNxtInvoceMonth.set(Calendar.MONTH, month);
+        tenthNxtInvoceMonth.set(Calendar.YEAR, year);
+        // time
+        tenthNxtInvoceMonth.set(Calendar.HOUR, hour);
+        tenthNxtInvoceMonth.set(Calendar.MINUTE, min);
+        tenthNxtInvoceMonth.set(Calendar.SECOND, sec);
+        
+        // compares if current payment date(today) and next 10th month,
+        // to see if the payment date exceeds the next 10th month date
+        // if that is true, sets invoiceStatus variable to Paid late and
+        // if false sets the invoiceStatus variable to Paid on time.
+        if ( paymentDate.compareTo(tenthNxtInvoceMonth.getTime()) > 0 )
             invoiceStatus = "Paid late";
-        } else {
+        else 
             invoiceStatus = "Paid on time";
-        }
         return invoiceStatus;
-    }*/
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // re-activate customer
     public int getInDefaultSize() {
+        // int variable used to determine size of customers who are in default.
         int size = 0;
-
-        final String sql = "select count(*) as size from Customer where in_default = 1;";
-
+                
+        // sql select statement used to count number of customers in default.
+        final String sql = "select count(*) as size from customer where in_default = 1;";
+        
+        // reads first result and assigns size variable with value attained from sql statement
         try (ResultSet result = database.read(sql, conn)) {
             result.next();
             size = result.getInt("size");
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+        
         return size;
     }
-
+    
     public CustomerDetails[] getAllInDefault() {
+        // CustomerDetails variable used to store all default customers.
+        // Size is given from the getInDefaultSize() method/function.
         CustomerDetails[] defaultCustomers = new CustomerDetails[getInDefaultSize()];
-
-        int i = 0;
-        final String sql = "select * from Customer where in_default = 1;";
-
+        
+        int i = 0; // int variable to index current location in the array
+        
+        // sql select statement to get all customers that are in default
+        final String sql = "select * from customer where in_default = 1;";
+        
+        // loops through each row to find all results of customers that are in default
+        // gets the column values based on the name of the column from the table based on the row
+        // and passes that as an arguement for the CustomerDetails class.
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
                 CustomerDetails customerInfo = new CustomerDetails(
@@ -1053,55 +1169,64 @@ public class Controller {
                         result.getInt("building_no"),
                         result.getString("email_contact")
                 );
+                
+                // adds the created customer details to the array on the based index
                 defaultCustomers[i] = customerInfo;
-
-                ++i;
+                
+                ++i; // increase the index
                 //15
-            }
+            }   
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+        
         return defaultCustomers;
     }
-
-    public void reactivateDefaultAccount(CustomerDetails customer, int status) {
-        final int customerNo = customer.getAccountNo();
-        final String sql = "UPDATE `bapers_data`.`Customer` SET `in_default`=\'"
-                + status + "\', "
-                + "`is_suspended`=\'"
-                + status + "\' "
-                + "WHERE `account_no`=\'" + customerNo + "';";
-
-        try {
-            database.write(sql, conn);
-        } catch (Exception e) {
-            System.out.println("Exception error: " + e);
-        }
-    }
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // view all customers
     public int getCustomerListSize() {
+        // int variable to determine amount of customers in customer table.
         int size = 0;
-
-        final String sql = "select count(*) as size from Customer;";
-
+        
+        // sql select statement used to count the amount of customers.
+        final String sql = "select count(*) as size from customer;";
+        
+        // gets the result and passes it on to the size variable.
         try (ResultSet result = database.read(sql, conn)) {
             result.next();
             size = result.getInt("size");
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+        
         return size;
     }
-
+    
     public CustomerDetails[] getAllCustomers() {
+        // CustomerDetails variable used to store all customers.
+        // Size is given from the getCustomerListSize() method/function.
         CustomerDetails[] customers = new CustomerDetails[getCustomerListSize()];
-
-        int i = 0;
-        final String sql = "select * from Customer";
-
+        
+        int i = 0; // int variable to index current location in the array.
+        
+        // sql select statement to get all customers.
+        final String sql = "select * from customer";
+        
+        // loops through each row to find all results of customers and gets the 
+        // column values based on the name of the column from the table based on the row
+        // and passes that as an arguement for the CustomerDetails class.
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
                 CustomerDetails customerInfo = new CustomerDetails(
@@ -1121,24 +1246,30 @@ public class Controller {
                         result.getInt("building_no"),
                         result.getString("email_contact")
                 );
+                // adds the created customer details to the array on the based index.
                 customers[i] = customerInfo;
-
-                ++i;
+                
+                ++i; // increase the index.
                 //15
-            }
+            }   
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+        
         return customers;
     }
-
+    
     public CustomerDetails getSpecificCustomer(CustomerDetails customer) throws SQLException {
+        // customer variable used to return the specific found in the database.
         CustomerDetails foundCustomer = null;
+        
+        // sql select statement to get the customer based on the customer No from
+        // the customer given in the method/function arg.
         final String sql = "select * from customer where account_no =\'"
                 + customer.getAccountNo() + "\'"
                 + ";";
-
+        
+        // records the found customer to a CustomerDetail class and returns the customer.
         try (ResultSet result = database.read(sql, conn)) {
             result.next();
             foundCustomer = new CustomerDetails(
@@ -1157,50 +1288,114 @@ public class Controller {
                     result.getTimestamp("registration_date"),
                     result.getInt("building_no"),
                     result.getString("email_contact")
-            );
+                ); 
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return foundCustomer;
     }
-
+    
     public String getCustomerDiscountType(final CustomerDetails customer) {
         String type = null;
-        final String sql = "select * from DiscountPlan where DiscountPlan.Customer_account_no =\'"
+        final String sql = "select * from discountplan where discountplan.customer_account_no =\'" 
                 + customer.getAccountNo() + "\';";
-
+        
         try (ResultSet result = database.read(sql, conn)) {
             result.next();
             type = result.getString("discount_type");
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
+        
         return type;
     }
-
-    public void deleteAccount(CustomerDetails customer) {
-        final String sql = "delete from`customer` where `account_no`=\'"
+    
+    
+    public boolean foreignKeyCheckZero() {
+        boolean completed = false;
+        final String sql = "SET FOREIGN_KEY_CHECKS = 0;";
+        
+        try {
+            database.write(sql, conn);
+            completed = true;
+        } catch (Exception e) {
+            System.out.println("Exception error: " + e);
+        }
+        
+        return completed;
+    }
+    
+    public boolean foreignKeyCheckOne() {
+        boolean completed = false;
+        final String sql = "SET FOREIGN_KEY_CHECKS = 1;";
+        
+        try {
+            database.write(sql, conn);
+            completed = true;
+        } catch (Exception e) {
+            System.out.println("Exception error: " + e);
+        }
+        
+        return completed;
+    }
+    
+    public boolean deleteAccount(CustomerDetails customer){
+        boolean completed = false;
+        if (foreignKeyCheckZero()) {
+            final String sql = "DELETE FROM customer WHERE account_no = "
+                    + customer.getAccountNo() + ";";
+            try {
+                database.write(sql, conn);
+            } catch (Exception e) {
+                System.out.println("Exception error: " + e);
+            }
+            if (foreignKeyCheckOne())
+                completed = true;
+        }
+        return completed;
+    }
+    
+    public void updateCustomerStatus(final CustomerDetails customer, int suspendedvalue, int defaultValue) {
+        final String sql = "update `bapers_data`.`customer` set `is_suspended`=\'"
+                + suspendedvalue
+                + "\', `in_default`=\'"
+                + defaultValue
+                + "\' where `account_no`=\'"
                 + customer.getAccountNo()
                 + "\';";
+        
         try {
             database.write(sql, conn);
         } catch (Exception e) {
             System.out.println("Exception error: " + e);
         }
     }
-
-    public ArrayList<Invoice> viewAllCustomerInvoce(CustomerDetails customer) {
-        ArrayList<Invoice> customerInvoice = new ArrayList<>();
-//        final String sql = select * from LatePaymentInvoice where 
-        return customerInvoice;
+    
+    public void updateCustomerType(final CustomerDetails customer, int value) {
+        final String sql = "update `bapers_data`.`customer` set `is_valued`=\'"
+                + value
+                + "\' where `account_no`=\'"
+                + customer.getAccountNo()
+                + "\';";
+        
+        try {
+            database.write(sql, conn);
+        } catch (Exception e) {
+            System.out.println("Exception error: " + e);
+        }
     }
-
+    
+    
+    
+    
+    
+    
+    
     // apply discount 
     public boolean checkCustomerHasDiscountPlan(final CustomerDetails customer) {
-        final String sql = "select count(*) as 'Has Discount' from DiscountPlan where DiscountPlan.Customer_account_no ="
+        final String sql = "select count(*) as 'Has discount' from discountplan where discountplan.customer_account_no =" 
                 + customer.getAccountNo() + ";";
-
+        
         try (ResultSet result = database.read(sql, conn)) {
             result.next();
             return result.getBoolean("Has Discount");
@@ -1209,79 +1404,51 @@ public class Controller {
         }
         return false;
     }
-
-    public void clearExistingRowBasedOn() {
-        final String sql = "DELETE FROM `bapers_data`.`FixedDiscount` WHERE `DiscountPlan_Customer_account_no`='00001';";
-    }
-
+    
     public void applyDiscountPlan(final CustomerDetails customer, final UserDetails user, final String discountPlan) {
         final boolean hasDiscountPlan = checkCustomerHasDiscountPlan(customer);
         String sql;
-
+        
         // update or insert discount plan
-        if (hasDiscountPlan == true) {
-            sql = "update `bapers_data`.`DiscountPlan` set `discount_type`=\'"
-                    + discountPlan + "\' where `Customer_account_no`=\'"
+        if (hasDiscountPlan == true) 
+            sql = "update `bapers_data`.`discountplan` set `discount_type`=\'" 
+                    + discountPlan + "\' where `customer_account_no`=\'" 
                     + customer.getAccountNo() + "\';";
-        } else {
-            sql = "insert into DiscountPlan values (\'"
+        else 
+            sql = "insert into DiscountPlan values (\'" 
                     + customer.getAccountNo() + "\', \'"
-                    + user.getAccount_no() + "\', \'"
-                    + discountPlan + "\');";
-        }
-
+                    + user.getAccount_no()+ "\', \'"
+                    + discountPlan + "\');" ;
+            
         try {
             database.write(sql, conn);
         } catch (Exception e) {
             System.out.println("Exception error: " + e);
         }
-
-//        switch (discountPlan) {
-//            case "Fixed" :
-//                applyFixedDiscountRate();
-//                break;
-//            case "Variable" : 
-//                applyVariableDiscountRate();
-//                break;
-//            case "Flexible" : 
-//                applyFlexibleDiscountRate();
-//                break;
-//            default : break;
-//        }
     }
-
+    
     public void applyFixedDiscountRate(final int fixedDiscountPercentage, final CustomerDetails customer) {
-        final String sql = "insert into bapers_data.FixedDiscount values( \'"
+        final String sql = "insert into bapers_data.fixeddiscount values( \'" 
                 + fixedDiscountPercentage + "\', \'"
                 + customer.getAccountNo() + "\'"
                 + ");";
-
+        
         try {
             database.write(sql, conn);
         } catch (Exception e) {
             System.out.println("Exception error: " + e);
         }
     }
-
-    public void applyVariableDiscountRate() {
-        final String sql = "insert into Task_DiscountPlans values("
-                + ");";
-
-        try {
-            database.write(sql, conn);
-        } catch (Exception e) {
-            System.out.println("Exception error: " + e);
-        }
-    }
-
+    
     public ArrayList<Job> getAllJobsFromCustomer(final CustomerDetails customer) {
         ArrayList<Job> jobs = new ArrayList<>();
-        final String sql = "select * from bapers_data.Job\n"
-                + "inner join Status\n"
-                + "where  Status.status_id = Job.Status_status_id\n"
-                + "and Job.Customer_account_no =\'"
-                + customer.getAccountNo() + "\';";
-
+        final String sql = "select * from bapers_data.job\n" 
+                + "inner join status\n" 
+                + "where status.status_id = job.Status_status_id\n" 
+                + "and job.Customer_account_no =\'"
+                + customer.getAccountNo()
+                + "\';";
+        
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
                 Job job = new Job(
@@ -1294,23 +1461,55 @@ public class Controller {
                         result.getDate("Deadline_CompletionTime_completion_time"),
                         result.getString("special_instructions")
                 );
-
+                
                 jobs.add(job);
-            }
+            }   
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return jobs;
     }
+    
+    public ArrayList<Invoice> getAllInvoiceRelatedToJob(final ArrayList<Job> j) {
+        ArrayList<Invoice> customerInvoices = new ArrayList<>();
+        String[] sqlQ = new String[j.size()];
+        for(int i = 0; i < j.size(); ++i)
+            sqlQ[i] = "select * from invoice where Job_job_no =\'" + j.get(i).getJobNo() + "\';";
+        
+        
+        String sql;
+        
+        for(int i = 0; i < j.size(); ++i) {
+            sql = sqlQ[i];
+            try (ResultSet result = database.read(sql, conn)) {
+                while (result.next()) {
+                    Invoice invoice = new Invoice(
+                        result.getInt("Invoice_no"), 
+                        result.getInt("Job_job_no"), 
+                        result.getInt("total_payable"), 
+                        result.getDate("date_issued"), 
+                        result.getString("invoice_status"),
+                        result.getString("invoice_location")
+                    );
 
+                    customerInvoices.add(invoice);
+                }   
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        
+        return customerInvoices;
+    }
+    
     public ArrayList<JobStandardJob> getAllStandardJobFromJob(final Job jobNo) {
         ArrayList<JobStandardJob> stdJobs = new ArrayList<>();
-        final String sql = "select * from Job_StandardJobs "
-                + "inner join Status "
-                + "where Job_StandardJobs.Status_status_id = Status.status_id "
-                + "and Job_StandardJobs.Job_job_no =\'"
-                + jobNo.getJobNo() + "\';";
-
+        final String sql = "select * from job_standardJobs " 
+                + "inner join status " 
+                + "where job_standardjobs.status_status_id = status.status_id " 
+                + "and job_standardJobs.job_job_no =\'" 
+                + jobNo.getJobNo()+ "\';";
+        
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
                 JobStandardJob jobStandardJob = new JobStandardJob(
@@ -1318,20 +1517,20 @@ public class Controller {
                         result.getString("StandardJob_code"),
                         result.getString("status_type")
                 );
-
+                
                 stdJobs.add(jobStandardJob);
-            }
+            }   
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return stdJobs;
     }
-
+    
     public ArrayList<JobStandardJobTask> getAllStandardJobTasksReferenceFromJobStandardJob(final JobStandardJob jobStandardJob) {
         ArrayList<JobStandardJobTask> jobStdJobTasks = new ArrayList<>();
-        final String sql = "select * from Job_StandardJobs_Tasks where Job_StandardJobs_StandardJob_code =\'"
+        final String sql = "select * from job_standardjobs_tasks where job_standardjobs_standardJob_code =\'" 
                 + jobStandardJob.getStandardJobCode() + "\';";
-
+        
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
                 JobStandardJobTask jobStandardJobTask = new JobStandardJobTask(
@@ -1341,29 +1540,29 @@ public class Controller {
                         result.getString("Status_status_id"),
                         result.getString("User_account_no")
                 );
-
+                
                 jobStdJobTasks.add(jobStandardJobTask);
-            }
+            }   
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return jobStdJobTasks;
     }
-
+    
     public ArrayList<Task> getAllTasksFromStandardJobTasks(ArrayList<JobStandardJobTask> tasksRef) {
         ArrayList<Task> tasks = new ArrayList<>();
         final int TASKSREFSIZE = tasksRef.size();
         for (int i = 0; i < TASKSREFSIZE; ++i) {
-            final String sql = "select * from Task where task_id = \'"
-                    + tasksRef.get(i).getTaskID() + "\';";
+                final String sql = "select * from task where task_id = \'"
+                        + tasksRef.get(i).getTaskID() + "\';";
 
-            try (ResultSet result = database.read(sql, conn)) {
+                try (ResultSet result = database.read(sql, conn)) {
                 result.next();
                 Task task = new Task(
                         result.getInt("task_id"),
                         result.getString("description"),
                         result.getInt("duration_min"),
-                        result.getString("Department_department_code") + result.getString("shelf_slot"),
+                        result.getString("Department_department_code")+result.getString("shelf_slot"),
                         result.getDouble("price")
                 );
                 tasks.add(task);
@@ -1371,14 +1570,14 @@ public class Controller {
                 System.out.println(ex);
             }
         }
-
+        
         return tasks;
     }
-
+    
     public ArrayList<Task> getAllTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
-        final String sql = "select * from Task";
-
+        final String sql = "select * from task";
+        
         try (ResultSet result = database.read(sql, conn)) {
             while (result.next()) {
                 Task task = new Task(
@@ -1395,10 +1594,7 @@ public class Controller {
         }
         return tasks;
     }
-
-    public void applyFlexibleDiscountRate() {
-
-    }
+    
 
     /*
     

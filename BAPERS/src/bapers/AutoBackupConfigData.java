@@ -5,19 +5,25 @@
  */
 package bapers;
 
+import java.util.Date;
+
 /**
  *
  * @author kelvin
  */
-public class AutoBackupConfig {
+public class AutoBackupConfigData {
     private final String backupMode;
     private final String backupFrequency;
     private final String backupLocation;
+    private final Date datePerformed;
+    private final Date targetDate;
 
-    public AutoBackupConfig(String backupMode, String backupFrequency, String backupLocation) {
+    public AutoBackupConfigData(String backupMode, String backupFrequency, String backupLocation, Date datePerformed, Date targetDate) {
         this.backupMode = backupMode;
         this.backupFrequency = backupFrequency;
         this.backupLocation = backupLocation;
+        this.datePerformed = datePerformed;
+        this.targetDate = targetDate;
     }
 
     public String getBackupMode() {
@@ -31,5 +37,15 @@ public class AutoBackupConfig {
     public String getBackupLocation() {
         return backupLocation;
     }
+
+    public Date getDatePerformed() {
+        return datePerformed;
+    }
+
+    public Date getTargetDate() {
+        return targetDate;
+    }
+    
+    
     
 }

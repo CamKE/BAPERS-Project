@@ -5,6 +5,8 @@
  */
 package bapers.payment;
 
+import java.util.Date;
+
 /**
  *
  * @author Kelvin
@@ -14,10 +16,10 @@ public class Payment {
     private final String paymentNo;
     private final double total;
     private final String paymentType;
-    private final String paymentDate;
+    private final Date paymentDate;
     private final int invoiceNumber;
 
-    public Payment(String paymentNo, double total, String paymentType, String paymentDate, int invoiceNumber) {
+    public Payment(String paymentNo, double total, String paymentType, Date paymentDate, int invoiceNumber) {
         this.paymentNo = paymentNo;
         this.total = total;
         this.paymentType = paymentType;
@@ -37,7 +39,7 @@ public class Payment {
         return paymentType;
     }
 
-    public String getPaymentDate() {
+    public Date getPaymentDate() {
         return paymentDate;
     }
 

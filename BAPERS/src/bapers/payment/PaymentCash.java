@@ -13,8 +13,7 @@ import java.util.Date;
  */
 public class PaymentCash extends Payment {
 
-    public PaymentCash(String paymentNo, double total, String paymentType, String paymentDate, int invoiceNumber) {
+    public PaymentCash(String paymentNo, double total, String paymentType, Date paymentDate, int invoiceNumber) {
         super(paymentNo, total, paymentType, paymentDate, invoiceNumber);
     }
-     
 }
