@@ -16,6 +16,7 @@ public class Task {
     int durationMin;
     String shelfslot;
     double price;
+    float discountRate;
 
     public Task(int taskId, String description, int durationMin, String shelfslot, double price) {
         this.taskId = taskId;
@@ -23,6 +24,15 @@ public class Task {
         this.durationMin = durationMin;
         this.shelfslot = shelfslot;
         this.price = price;
+        discountRate = 0;
+    }
+
+    public float getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(float discountRate) {
+        this.discountRate = discountRate;
     }
 
     public double getPrice() {

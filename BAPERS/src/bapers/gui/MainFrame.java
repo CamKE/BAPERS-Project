@@ -9,6 +9,7 @@ import bapers.AutoBackupConfig;
 import bapers.TimeUpdate;
 import bapers.controller.Controller;
 import bapers.customer.CustomerDetails;
+import bapers.discountplan.DiscountBand;
 import bapers.job.Invoice;
 import bapers.job.Job;
 import bapers.job.JobStandardJob;
@@ -70,6 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private final CardLayout card1;
     private final CardLayout card2;
+    private final CardLayout card3;
     private final Controller controller;
 
     private UserDetails loggedInUser;
@@ -87,6 +89,7 @@ public class MainFrame extends javax.swing.JFrame {
     List<Invoice> selectedInvoices;
     List<StandardJob> selectedStdJobs;
     List<Task> selectedTasks;
+    List<DiscountBand> bands;
 
     // list models that are used to for the scroll
     DefaultListModel list1;
@@ -113,7 +116,7 @@ public class MainFrame extends javax.swing.JFrame {
     AutoBackupConfig configData;
 
     String currentPage, previousPage;
-    
+
     //Reminder letters test
     Timer timer = new Timer();
 
@@ -127,6 +130,7 @@ public class MainFrame extends javax.swing.JFrame {
         selectedTasks = new ArrayList<>();
         selectedStdJobs = new ArrayList<>();
         stdJobs = new ArrayList<>();
+        bands = new ArrayList<>();
         materials = new ArrayList<>();
         list1 = new DefaultListModel();
         list2 = new DefaultListModel();
@@ -141,12 +145,13 @@ public class MainFrame extends javax.swing.JFrame {
         card1 = (CardLayout) cardPanel1.getLayout();
         // set the card layout for the top section of the screen
         card2 = (CardLayout) cardPanel2.getLayout();
+        card3 = (CardLayout) discountTypePanel.getLayout();
         // hide the button on the welcome bar
         backButton.setVisible(false);
         homeButton.setVisible(false);
         initAutoBackup();
-        
-        timer.schedule(new TimeUpdate(controller,this), 0, TimeUnit.SECONDS.toMillis(5));
+
+        timer.schedule(new TimeUpdate(controller, this), 0, TimeUnit.SECONDS.toMillis(5));
     }
 
     public final void initAutoBackup() {
@@ -258,22 +263,6 @@ public class MainFrame extends javax.swing.JFrame {
         usernameLabel = new javax.swing.JLabel();
         ReenterPasswordLabel1 = new javax.swing.JLabel();
         securityAnswerTextField = new javax.swing.JPasswordField();
-        createTaskPage = new javax.swing.JPanel();
-        newTaskLabel1 = new javax.swing.JLabel();
-        descriptionNewTaskField = new javax.swing.JTextField();
-        durationNewTaskDD = new javax.swing.JComboBox<>();
-        descriptionLabel = new javax.swing.JLabel();
-        durationLabel = new javax.swing.JLabel();
-        priceLabel = new javax.swing.JLabel();
-        departmentNewTaskLabel = new javax.swing.JLabel();
-        shelfSlotNewTaskLabel = new javax.swing.JLabel();
-        createNewTaskButton = new javax.swing.JButton();
-        shelfSlotTaskDD = new javax.swing.JComboBox<>();
-        departmentNewTaskDD = new javax.swing.JComboBox<>();
-        durationNewTaskMinsDD = new javax.swing.JComboBox<>();
-        priceNewTaskField = new javax.swing.JTextField();
-        hoursLabel = new javax.swing.JLabel();
-        minutesLabel = new javax.swing.JLabel();
         reportHomePage = new javax.swing.JPanel();
         manageReportsPageButton = new javax.swing.JButton();
         createReportPageButton = new javax.swing.JButton();
@@ -315,6 +304,22 @@ public class MainFrame extends javax.swing.JFrame {
         taskListTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         standardJobCodeLabel2 = new javax.swing.JLabel();
+        createTaskPage = new javax.swing.JPanel();
+        newTaskLabel1 = new javax.swing.JLabel();
+        descriptionNewTaskField = new javax.swing.JTextField();
+        durationNewTaskDD = new javax.swing.JComboBox<>();
+        descriptionLabel = new javax.swing.JLabel();
+        durationLabel = new javax.swing.JLabel();
+        priceLabel = new javax.swing.JLabel();
+        departmentNewTaskLabel = new javax.swing.JLabel();
+        shelfSlotNewTaskLabel = new javax.swing.JLabel();
+        createNewTaskButton = new javax.swing.JButton();
+        shelfSlotTaskDD = new javax.swing.JComboBox<>();
+        departmentNewTaskDD = new javax.swing.JComboBox<>();
+        durationNewTaskMinsDD = new javax.swing.JComboBox<>();
+        priceNewTaskField = new javax.swing.JTextField();
+        hoursLabel = new javax.swing.JLabel();
+        minutesLabel = new javax.swing.JLabel();
         createCustomerPage = new javax.swing.JPanel();
         prefixjLabel = new javax.swing.JLabel();
         firstNamejLabel = new javax.swing.JLabel();
@@ -336,6 +341,31 @@ public class MainFrame extends javax.swing.JFrame {
         accountHolderNamejTextField = new javax.swing.JTextField();
         accountHolderNameLabel = new javax.swing.JLabel();
         phoneNumberjLabel1 = new javax.swing.JLabel();
+        acceptJobPage = new javax.swing.JPanel();
+        jobTotalField = new javax.swing.JTextField();
+        addMaterialButton = new javax.swing.JButton();
+        addJobButton = new javax.swing.JButton();
+        totalLabel = new javax.swing.JLabel();
+        stdJobDD = new javax.swing.JComboBox<>();
+        selectPriority = new javax.swing.JComboBox<>();
+        searchCustomerButton = new javax.swing.JButton();
+        createCustomerButton = new javax.swing.JButton();
+        specialInstructionsLabel = new javax.swing.JLabel();
+        materialsjScrollPane = new javax.swing.JScrollPane();
+        materialList = new javax.swing.JList<>();
+        customerInfoField = new javax.swing.JTextField();
+        materialSubmittedLabel = new javax.swing.JLabel();
+        submitButton = new javax.swing.JButton();
+        materialsjTextField = new javax.swing.JTextField();
+        specialInstructionjTextField = new javax.swing.JTextField();
+        materialsjScrollPane1 = new javax.swing.JScrollPane();
+        standardJobList = new javax.swing.JList<>();
+        removeJobButton = new javax.swing.JButton();
+        removeMaterialButton = new javax.swing.JButton();
+        stipulatedFields = new javax.swing.JPanel();
+        surchargeLabel = new javax.swing.JLabel();
+        surchargejTextField = new javax.swing.JTextField();
+        completionTimeDD = new javax.swing.JComboBox<>();
         searchCustomerPage = new javax.swing.JPanel();
         searchCustomerjPanel = new javax.swing.JPanel();
         receptionistjPanel = new javax.swing.JPanel();
@@ -366,31 +396,6 @@ public class MainFrame extends javax.swing.JFrame {
         accountStatusDD = new javax.swing.JComboBox<>();
         inDefaultDD = new javax.swing.JComboBox<>();
         customerRegDateField = new com.toedter.calendar.JDateChooser();
-        acceptJobPage = new javax.swing.JPanel();
-        jobTotalField = new javax.swing.JTextField();
-        addMaterialButton = new javax.swing.JButton();
-        addJobButton = new javax.swing.JButton();
-        totalLabel = new javax.swing.JLabel();
-        stdJobDD = new javax.swing.JComboBox<>();
-        selectPriority = new javax.swing.JComboBox<>();
-        searchCustomerButton = new javax.swing.JButton();
-        createCustomerButton = new javax.swing.JButton();
-        specialInstructionsLabel = new javax.swing.JLabel();
-        materialsjScrollPane = new javax.swing.JScrollPane();
-        materialList = new javax.swing.JList<>();
-        customerInfoField = new javax.swing.JTextField();
-        materialSubmittedLabel = new javax.swing.JLabel();
-        submitButton = new javax.swing.JButton();
-        materialsjTextField = new javax.swing.JTextField();
-        specialInstructionjTextField = new javax.swing.JTextField();
-        materialsjScrollPane1 = new javax.swing.JScrollPane();
-        standardJobList = new javax.swing.JList<>();
-        removeJobButton = new javax.swing.JButton();
-        removeMaterialButton = new javax.swing.JButton();
-        stipulatedFields = new javax.swing.JPanel();
-        surchargeLabel = new javax.swing.JLabel();
-        surchargejTextField = new javax.swing.JTextField();
-        completionTimeDD = new javax.swing.JComboBox<>();
         searchInvoicePage = new javax.swing.JPanel();
         searchInvoicejPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -648,6 +653,33 @@ public class MainFrame extends javax.swing.JFrame {
         jobNumberLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jobIndexLabel = new javax.swing.JLabel();
+        applyDiscountPage = new javax.swing.JPanel();
+        discountTypeLabel = new javax.swing.JLabel();
+        discountTypeDD = new javax.swing.JComboBox<>();
+        discountTypePanel = new javax.swing.JPanel();
+        fixedDiscountPanel = new javax.swing.JPanel();
+        fixedDiscountRateLabel = new javax.swing.JLabel();
+        discountRateField = new javax.swing.JTextField();
+        discountPercentageLabel = new javax.swing.JLabel();
+        flexibleDiscountPanel = new javax.swing.JPanel();
+        fixedDiscountRateLabel1 = new javax.swing.JLabel();
+        fixedDiscountRateLabel2 = new javax.swing.JLabel();
+        fixedDiscountRateLabel3 = new javax.swing.JLabel();
+        bandDiscountRateField = new javax.swing.JTextField();
+        lowerBandField = new javax.swing.JTextField();
+        upperBoundField = new javax.swing.JTextField();
+        addBandButton = new javax.swing.JButton();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        bandList = new javax.swing.JList<>();
+        findUserLabel1 = new javax.swing.JLabel();
+        removeBandButton = new javax.swing.JButton();
+        discountPercentageLabel1 = new javax.swing.JLabel();
+        variableDiscountPanel = new javax.swing.JPanel();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        taskDiscountsTable = new javax.swing.JTable();
+        variableDiscountInstructionLabel = new javax.swing.JLabel();
+        createDiscountButton = new javax.swing.JButton();
+        customerLabel = new javax.swing.JLabel();
         cardPanel2 = new javax.swing.JPanel();
         welcomeBar = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
@@ -1500,175 +1532,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(createUserPage, "createUser");
 
-        createTaskPage.setBackground(new java.awt.Color(61, 96, 146));
-        createTaskPage.setMaximumSize(new java.awt.Dimension(900, 640));
-        createTaskPage.setMinimumSize(new java.awt.Dimension(900, 640));
-        createTaskPage.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentHidden(java.awt.event.ComponentEvent evt) {
-                createTaskPageComponentHidden(evt);
-            }
-        });
-
-        newTaskLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        newTaskLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        newTaskLabel1.setText("New Task");
-
-        descriptionNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
-        descriptionNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
-        descriptionNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        durationNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"}));
-        durationNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
-        durationNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
-        durationNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
-        durationNewTaskDD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                durationNewTaskDDActionPerformed(evt);
-            }
-        });
-
-        descriptionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        descriptionLabel.setForeground(new java.awt.Color(255, 255, 255));
-        descriptionLabel.setText("Description:");
-
-        durationLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        durationLabel.setForeground(new java.awt.Color(255, 255, 255));
-        durationLabel.setText("Duration:");
-
-        priceLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        priceLabel.setForeground(new java.awt.Color(255, 255, 255));
-        priceLabel.setText("Price:");
-
-        departmentNewTaskLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        departmentNewTaskLabel.setForeground(new java.awt.Color(255, 255, 255));
-        departmentNewTaskLabel.setText("Department:");
-
-        shelfSlotNewTaskLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        shelfSlotNewTaskLabel.setForeground(new java.awt.Color(255, 255, 255));
-        shelfSlotNewTaskLabel.setText("Shelf slot:");
-
-        createNewTaskButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        createNewTaskButton.setText("Create ");
-        createNewTaskButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createNewTaskButtonActionPerformed(evt);
-            }
-        });
-
-        shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getShelfSlots()));
-        shelfSlotTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
-        shelfSlotTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
-        shelfSlotTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
-        shelfSlotTaskDD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shelfSlotTaskDDActionPerformed(evt);
-            }
-        });
-
-        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy room","Dark room","Development area", "Printing room", "Finishing room", "Packaging department"}));
-        departmentNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
-        departmentNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
-        departmentNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
-        departmentNewTaskDD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                departmentNewTaskDDActionPerformed(evt);
-            }
-        });
-
-        durationNewTaskMinsDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0","15","30","45"}));
-        durationNewTaskMinsDD.setMaximumSize(new java.awt.Dimension(250, 42));
-        durationNewTaskMinsDD.setMinimumSize(new java.awt.Dimension(250, 42));
-        durationNewTaskMinsDD.setPreferredSize(new java.awt.Dimension(250, 42));
-        durationNewTaskMinsDD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                durationNewTaskMinsDDActionPerformed(evt);
-            }
-        });
-
-        priceNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
-        priceNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
-        priceNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        hoursLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        hoursLabel.setForeground(new java.awt.Color(255, 255, 255));
-        hoursLabel.setText("hrs");
-
-        minutesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        minutesLabel.setForeground(new java.awt.Color(255, 255, 255));
-        minutesLabel.setText("mins");
-
-        javax.swing.GroupLayout createTaskPageLayout = new javax.swing.GroupLayout(createTaskPage);
-        createTaskPage.setLayout(createTaskPageLayout);
-        createTaskPageLayout.setHorizontalGroup(
-            createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(createTaskPageLayout.createSequentialGroup()
-                .addGap(204, 204, 204)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(durationLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(priceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(departmentNewTaskLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(shelfSlotNewTaskLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(shelfSlotTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(departmentNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(createTaskPageLayout.createSequentialGroup()
-                        .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(hoursLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(minutesLabel))
-                    .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(134, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
-                .addContainerGap(361, Short.MAX_VALUE)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
-                        .addComponent(newTaskLabel1)
-                        .addGap(362, 362, 362))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
-                        .addComponent(createNewTaskButton)
-                        .addGap(50, 50, 50))))
-        );
-        createTaskPageLayout.setVerticalGroup(
-            createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(createTaskPageLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
-                .addComponent(newTaskLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(descriptionNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(descriptionLabel))
-                .addGap(26, 26, 26)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(durationLabel)
-                    .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hoursLabel)
-                    .addComponent(minutesLabel))
-                .addGap(23, 23, 23)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(priceLabel)
-                    .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(departmentNewTaskLabel)
-                    .addComponent(departmentNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(shelfSlotNewTaskLabel)
-                    .addComponent(shelfSlotTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addComponent(createNewTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80))
-        );
-
-        cardPanel1.add(createTaskPage, "createTask");
-
         reportHomePage.setBackground(new java.awt.Color(61, 96, 146));
         reportHomePage.setMaximumSize(new java.awt.Dimension(900, 640));
         reportHomePage.setMinimumSize(new java.awt.Dimension(900, 640));
@@ -2153,6 +2016,183 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(allStandardJobsPage, "allStandardJobsPage");
 
+        createTaskPage.setBackground(new java.awt.Color(61, 96, 146));
+        createTaskPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        createTaskPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        createTaskPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                createTaskPageComponentHidden(evt);
+            }
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                createTaskPageComponentShown(evt);
+            }
+        });
+
+        newTaskLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        newTaskLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        newTaskLabel1.setText("New Task");
+
+        descriptionNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
+        descriptionNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
+        descriptionNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        durationNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"}));
+        durationNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        durationNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        durationNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        durationNewTaskDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                durationNewTaskDDActionPerformed(evt);
+            }
+        });
+
+        descriptionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        descriptionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        descriptionLabel.setText("Description:");
+
+        durationLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        durationLabel.setForeground(new java.awt.Color(255, 255, 255));
+        durationLabel.setText("Duration:");
+
+        priceLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        priceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        priceLabel.setText("Price:");
+
+        departmentNewTaskLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        departmentNewTaskLabel.setForeground(new java.awt.Color(255, 255, 255));
+        departmentNewTaskLabel.setText("Department:");
+
+        shelfSlotNewTaskLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        shelfSlotNewTaskLabel.setForeground(new java.awt.Color(255, 255, 255));
+        shelfSlotNewTaskLabel.setText("Shelf slot:");
+
+        createNewTaskButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        createNewTaskButton.setText("Create ");
+        createNewTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewTaskButtonActionPerformed(evt);
+            }
+        });
+
+        shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getShelfSlots("CR")));
+        shelfSlotTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        shelfSlotTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        shelfSlotTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        shelfSlotTaskDD.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                shelfSlotTaskDDComponentShown(evt);
+            }
+        });
+        shelfSlotTaskDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shelfSlotTaskDDActionPerformed(evt);
+            }
+        });
+
+        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy room","Dark room","Development area", "Printing room", "Finishing room", "Packaging department"}));
+        departmentNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        departmentNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        departmentNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        departmentNewTaskDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departmentNewTaskDDActionPerformed(evt);
+            }
+        });
+
+        durationNewTaskMinsDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"0","15","30","45"}));
+        durationNewTaskMinsDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        durationNewTaskMinsDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        durationNewTaskMinsDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        durationNewTaskMinsDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                durationNewTaskMinsDDActionPerformed(evt);
+            }
+        });
+
+        priceNewTaskField.setMaximumSize(new java.awt.Dimension(250, 42));
+        priceNewTaskField.setMinimumSize(new java.awt.Dimension(250, 42));
+        priceNewTaskField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        hoursLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        hoursLabel.setForeground(new java.awt.Color(255, 255, 255));
+        hoursLabel.setText("hrs");
+
+        minutesLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        minutesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        minutesLabel.setText("mins");
+
+        javax.swing.GroupLayout createTaskPageLayout = new javax.swing.GroupLayout(createTaskPage);
+        createTaskPage.setLayout(createTaskPageLayout);
+        createTaskPageLayout.setHorizontalGroup(
+            createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createTaskPageLayout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(descriptionLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(durationLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(priceLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(departmentNewTaskLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(shelfSlotNewTaskLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(descriptionNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shelfSlotTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(departmentNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(createTaskPageLayout.createSequentialGroup()
+                        .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(hoursLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(minutesLabel))
+                    .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(134, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
+                .addContainerGap(361, Short.MAX_VALUE)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
+                        .addComponent(newTaskLabel1)
+                        .addGap(362, 362, 362))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createTaskPageLayout.createSequentialGroup()
+                        .addComponent(createNewTaskButton)
+                        .addGap(50, 50, 50))))
+        );
+        createTaskPageLayout.setVerticalGroup(
+            createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createTaskPageLayout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(newTaskLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(descriptionNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descriptionLabel))
+                .addGap(26, 26, 26)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(durationLabel)
+                    .addComponent(durationNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(durationNewTaskMinsDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hoursLabel)
+                    .addComponent(minutesLabel))
+                .addGap(23, 23, 23)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(priceLabel)
+                    .addComponent(priceNewTaskField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(departmentNewTaskLabel)
+                    .addComponent(departmentNewTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(createTaskPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(shelfSlotNewTaskLabel)
+                    .addComponent(shelfSlotTaskDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addComponent(createNewTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+        );
+
+        cardPanel1.add(createTaskPage, "createTask");
+
         createCustomerPage.setBackground(new java.awt.Color(61, 96, 146));
         createCustomerPage.setMaximumSize(new java.awt.Dimension(900, 640));
         createCustomerPage.setMinimumSize(new java.awt.Dimension(900, 640));
@@ -2398,325 +2438,6 @@ public class MainFrame extends javax.swing.JFrame {
         accountHolderNamejTextField.getAccessibleContext().setAccessibleName("");
 
         cardPanel1.add(createCustomerPage, "createCustomer");
-
-        searchCustomerPage.setMaximumSize(new java.awt.Dimension(900, 640));
-        searchCustomerPage.setMinimumSize(new java.awt.Dimension(900, 640));
-        searchCustomerPage.setPreferredSize(new java.awt.Dimension(900, 640));
-        searchCustomerPage.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentHidden(java.awt.event.ComponentEvent evt) {
-                searchCustomerPageComponentHidden(evt);
-            }
-        });
-
-        searchCustomerjPanel.setBackground(new java.awt.Color(61, 96, 146));
-        searchCustomerjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
-        searchCustomerjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
-        searchCustomerjPanel.setPreferredSize(new java.awt.Dimension(900, 640));
-
-        receptionistjPanel.setBackground(new java.awt.Color(34, 54, 81));
-        receptionistjPanel.setMaximumSize(new java.awt.Dimension(900, 250));
-        receptionistjPanel.setMinimumSize(new java.awt.Dimension(900, 250));
-
-        searchCustomerAccountNojLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        searchCustomerAccountNojLabel.setForeground(new java.awt.Color(255, 255, 255));
-        searchCustomerAccountNojLabel.setText("Customer account number:");
-
-        searchContactFirstNamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        searchContactFirstNamejLabel.setForeground(new java.awt.Color(255, 255, 255));
-        searchContactFirstNamejLabel.setText("Contact firstname:");
-
-        searchContactSurnamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        searchContactSurnamejLabel.setForeground(new java.awt.Color(255, 255, 255));
-        searchContactSurnamejLabel.setText("Contact lastname:");
-
-        searchAccountHolderNamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        searchAccountHolderNamejLabel.setForeground(new java.awt.Color(255, 255, 255));
-        searchAccountHolderNamejLabel.setText("Account Holder Name:");
-
-        custAccountNoField.setMaximumSize(new java.awt.Dimension(250, 42));
-        custAccountNoField.setMinimumSize(new java.awt.Dimension(250, 42));
-        custAccountNoField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        custFirstnameField.setMaximumSize(new java.awt.Dimension(250, 42));
-        custFirstnameField.setMinimumSize(new java.awt.Dimension(250, 42));
-        custFirstnameField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        custLastnameField.setMaximumSize(new java.awt.Dimension(250, 42));
-        custLastnameField.setMinimumSize(new java.awt.Dimension(250, 42));
-        custLastnameField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        custAccountHNameField.setMaximumSize(new java.awt.Dimension(250, 42));
-        custAccountHNameField.setMinimumSize(new java.awt.Dimension(250, 42));
-        custAccountHNameField.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        javax.swing.GroupLayout receptionistjPanelLayout = new javax.swing.GroupLayout(receptionistjPanel);
-        receptionistjPanel.setLayout(receptionistjPanelLayout);
-        receptionistjPanelLayout.setHorizontalGroup(
-            receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receptionistjPanelLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(searchAccountHolderNamejLabel)
-                    .addComponent(searchContactSurnamejLabel)
-                    .addComponent(searchContactFirstNamejLabel)
-                    .addComponent(searchCustomerAccountNojLabel))
-                .addGap(10, 10, 10)
-                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(custAccountNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(custFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(custLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(custAccountHNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        receptionistjPanelLayout.setVerticalGroup(
-            receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(receptionistjPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchCustomerAccountNojLabel)
-                    .addComponent(custAccountNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchContactFirstNamejLabel)
-                    .addComponent(custFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchContactSurnamejLabel)
-                    .addComponent(custLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchAccountHolderNamejLabel)
-                    .addComponent(custAccountHNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        searchCustomerFJobjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        searchCustomerFJobjButton.setText("Search");
-        searchCustomerFJobjButton.setMaximumSize(new java.awt.Dimension(163, 37));
-        searchCustomerFJobjButton.setMinimumSize(new java.awt.Dimension(163, 37));
-        searchCustomerFJobjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        searchCustomerFJobjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchCustomerFJobjButtonActionPerformed(evt);
-            }
-        });
-
-        cancelCustomerFJobjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        cancelCustomerFJobjButton.setText("Cancel");
-        cancelCustomerFJobjButton.setMaximumSize(new java.awt.Dimension(163, 37));
-        cancelCustomerFJobjButton.setMinimumSize(new java.awt.Dimension(163, 37));
-        cancelCustomerFJobjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        cancelCustomerFJobjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelCustomerFJobjButtonActionPerformed(evt);
-            }
-        });
-
-        managerjPanel.setBackground(new java.awt.Color(34, 54, 81));
-        managerjPanel.setMaximumSize(new java.awt.Dimension(900, 250));
-        managerjPanel.setMinimumSize(new java.awt.Dimension(900, 250));
-        managerjPanel.setVisible(false);
-
-        streetNameSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        streetNameSjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        streetNameSjLabel.setText("Street name:");
-
-        postcodeSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        postcodeSjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        postcodeSjLabel.setText("Postcode:");
-
-        citySjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        citySjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        citySjLabel.setText("City:");
-
-        phoneSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        phoneSjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        phoneSjLabel.setText("Phone:");
-
-        customerTypeSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        customerTypeSjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        customerTypeSjLabel.setText("Customer type:");
-
-        accountStatusjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        accountStatusjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        accountStatusjLabel.setText("Account status:");
-
-        inDefaultSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        inDefaultSjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        inDefaultSjLabel.setText("In Default:");
-
-        registrationDateSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        registrationDateSjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        registrationDateSjLabel.setText("Registration date:");
-
-        streetNameField1.setMaximumSize(new java.awt.Dimension(250, 42));
-        streetNameField1.setMinimumSize(new java.awt.Dimension(250, 42));
-        streetNameField1.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        postCodeField1.setMaximumSize(new java.awt.Dimension(250, 42));
-        postCodeField1.setMinimumSize(new java.awt.Dimension(250, 42));
-        postCodeField1.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        cityField1.setMaximumSize(new java.awt.Dimension(250, 42));
-        cityField1.setMinimumSize(new java.awt.Dimension(250, 42));
-        cityField1.setPreferredSize(new java.awt.Dimension(250, 42));
-        cityField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cityField1ActionPerformed(evt);
-            }
-        });
-
-        phoneField1.setMaximumSize(new java.awt.Dimension(250, 42));
-        phoneField1.setMinimumSize(new java.awt.Dimension(250, 42));
-        phoneField1.setPreferredSize(new java.awt.Dimension(250, 42));
-
-        customerTypeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Valued", "Normal" }));
-        customerTypeDD.setMaximumSize(new java.awt.Dimension(200, 42));
-        customerTypeDD.setMinimumSize(new java.awt.Dimension(200, 42));
-        customerTypeDD.setPreferredSize(new java.awt.Dimension(200, 42));
-
-        accountStatusDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Active", "Suspended" }));
-        accountStatusDD.setMaximumSize(new java.awt.Dimension(200, 42));
-        accountStatusDD.setMinimumSize(new java.awt.Dimension(200, 42));
-        accountStatusDD.setPreferredSize(new java.awt.Dimension(200, 42));
-
-        inDefaultDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "True", "False" }));
-        inDefaultDD.setMaximumSize(new java.awt.Dimension(200, 42));
-        inDefaultDD.setMinimumSize(new java.awt.Dimension(200, 42));
-        inDefaultDD.setPreferredSize(new java.awt.Dimension(200, 42));
-
-        javax.swing.GroupLayout managerjPanelLayout = new javax.swing.GroupLayout(managerjPanel);
-        managerjPanel.setLayout(managerjPanelLayout);
-        managerjPanelLayout.setHorizontalGroup(
-            managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(managerjPanelLayout.createSequentialGroup()
-                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(managerjPanelLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(citySjLabel)
-                            .addComponent(phoneSjLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cityField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
-                                .addComponent(streetNameSjLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(streetNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
-                                .addComponent(postcodeSjLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(postCodeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(20, 20, 20)
-                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(customerTypeSjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(accountStatusjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(inDefaultSjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(registrationDateSjLabel, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(customerTypeDD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(accountStatusDD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inDefaultDD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(customerRegDateField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(91, 91, 91))
-        );
-        managerjPanelLayout.setVerticalGroup(
-            managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(managerjPanelLayout.createSequentialGroup()
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(customerTypeSjLabel)
-                            .addComponent(customerTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(streetNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(streetNameSjLabel)
-                        .addGap(17, 17, 17)))
-                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(managerjPanelLayout.createSequentialGroup()
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(postCodeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(postcodeSjLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cityField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(citySjLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(phoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phoneSjLabel)))
-                    .addGroup(managerjPanelLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(accountStatusDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(accountStatusjLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(inDefaultSjLabel)
-                            .addComponent(inDefaultDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(registrationDateSjLabel)
-                            .addComponent(customerRegDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
-
-        javax.swing.GroupLayout searchCustomerjPanelLayout = new javax.swing.GroupLayout(searchCustomerjPanel);
-        searchCustomerjPanel.setLayout(searchCustomerjPanelLayout);
-        searchCustomerjPanelLayout.setHorizontalGroup(
-            searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(receptionistjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchCustomerjPanelLayout.createSequentialGroup()
-                .addComponent(managerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchCustomerjPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
-        );
-        searchCustomerjPanelLayout.setVerticalGroup(
-            searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchCustomerjPanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(receptionistjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(managerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout searchCustomerPageLayout = new javax.swing.GroupLayout(searchCustomerPage);
-        searchCustomerPage.setLayout(searchCustomerPageLayout);
-        searchCustomerPageLayout.setHorizontalGroup(
-            searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchCustomerPageLayout.createSequentialGroup()
-                    .addComponent(searchCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        searchCustomerPageLayout.setVerticalGroup(
-            searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
-            .addGroup(searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchCustomerPageLayout.createSequentialGroup()
-                    .addComponent(searchCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        cardPanel1.add(searchCustomerPage, "searchCustomer");
 
         acceptJobPage.setBackground(new java.awt.Color(61, 96, 146));
         acceptJobPage.setMaximumSize(new java.awt.Dimension(900, 640));
@@ -3007,6 +2728,324 @@ public class MainFrame extends javax.swing.JFrame {
         customerInfoField.setEditable(false);
 
         cardPanel1.add(acceptJobPage, "acceptJob");
+
+        searchCustomerPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        searchCustomerPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        searchCustomerPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                searchCustomerPageComponentHidden(evt);
+            }
+        });
+
+        searchCustomerjPanel.setBackground(new java.awt.Color(61, 96, 146));
+        searchCustomerjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
+        searchCustomerjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
+        searchCustomerjPanel.setPreferredSize(new java.awt.Dimension(900, 640));
+
+        receptionistjPanel.setBackground(new java.awt.Color(34, 54, 81));
+        receptionistjPanel.setMaximumSize(new java.awt.Dimension(900, 250));
+        receptionistjPanel.setMinimumSize(new java.awt.Dimension(900, 250));
+
+        searchCustomerAccountNojLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        searchCustomerAccountNojLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchCustomerAccountNojLabel.setText("Customer account number:");
+
+        searchContactFirstNamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        searchContactFirstNamejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchContactFirstNamejLabel.setText("Contact firstname:");
+
+        searchContactSurnamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        searchContactSurnamejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchContactSurnamejLabel.setText("Contact lastname:");
+
+        searchAccountHolderNamejLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        searchAccountHolderNamejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchAccountHolderNamejLabel.setText("Account Holder Name:");
+
+        custAccountNoField.setMaximumSize(new java.awt.Dimension(250, 42));
+        custAccountNoField.setMinimumSize(new java.awt.Dimension(250, 42));
+        custAccountNoField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        custFirstnameField.setMaximumSize(new java.awt.Dimension(250, 42));
+        custFirstnameField.setMinimumSize(new java.awt.Dimension(250, 42));
+        custFirstnameField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        custLastnameField.setMaximumSize(new java.awt.Dimension(250, 42));
+        custLastnameField.setMinimumSize(new java.awt.Dimension(250, 42));
+        custLastnameField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        custAccountHNameField.setMaximumSize(new java.awt.Dimension(250, 42));
+        custAccountHNameField.setMinimumSize(new java.awt.Dimension(250, 42));
+        custAccountHNameField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        javax.swing.GroupLayout receptionistjPanelLayout = new javax.swing.GroupLayout(receptionistjPanel);
+        receptionistjPanel.setLayout(receptionistjPanelLayout);
+        receptionistjPanelLayout.setHorizontalGroup(
+            receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receptionistjPanelLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(searchAccountHolderNamejLabel)
+                    .addComponent(searchContactSurnamejLabel)
+                    .addComponent(searchContactFirstNamejLabel)
+                    .addComponent(searchCustomerAccountNojLabel))
+                .addGap(10, 10, 10)
+                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(custAccountNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custAccountHNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        receptionistjPanelLayout.setVerticalGroup(
+            receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(receptionistjPanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchCustomerAccountNojLabel)
+                    .addComponent(custAccountNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchContactFirstNamejLabel)
+                    .addComponent(custFirstnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchContactSurnamejLabel)
+                    .addComponent(custLastnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(receptionistjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchAccountHolderNamejLabel)
+                    .addComponent(custAccountHNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        searchCustomerFJobjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        searchCustomerFJobjButton.setText("Search");
+        searchCustomerFJobjButton.setMaximumSize(new java.awt.Dimension(163, 37));
+        searchCustomerFJobjButton.setMinimumSize(new java.awt.Dimension(163, 37));
+        searchCustomerFJobjButton.setPreferredSize(new java.awt.Dimension(163, 37));
+        searchCustomerFJobjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomerFJobjButtonActionPerformed(evt);
+            }
+        });
+
+        cancelCustomerFJobjButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        cancelCustomerFJobjButton.setText("Cancel");
+        cancelCustomerFJobjButton.setMaximumSize(new java.awt.Dimension(163, 37));
+        cancelCustomerFJobjButton.setMinimumSize(new java.awt.Dimension(163, 37));
+        cancelCustomerFJobjButton.setPreferredSize(new java.awt.Dimension(163, 37));
+        cancelCustomerFJobjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelCustomerFJobjButtonActionPerformed(evt);
+            }
+        });
+
+        managerjPanel.setBackground(new java.awt.Color(34, 54, 81));
+        managerjPanel.setMaximumSize(new java.awt.Dimension(900, 250));
+        managerjPanel.setMinimumSize(new java.awt.Dimension(900, 250));
+        managerjPanel.setVisible(false);
+
+        streetNameSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        streetNameSjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        streetNameSjLabel.setText("Street name:");
+
+        postcodeSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        postcodeSjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        postcodeSjLabel.setText("Postcode:");
+
+        citySjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        citySjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        citySjLabel.setText("City:");
+
+        phoneSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        phoneSjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        phoneSjLabel.setText("Phone:");
+
+        customerTypeSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        customerTypeSjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        customerTypeSjLabel.setText("Customer type:");
+
+        accountStatusjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        accountStatusjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        accountStatusjLabel.setText("Account status:");
+
+        inDefaultSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        inDefaultSjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        inDefaultSjLabel.setText("In Default:");
+
+        registrationDateSjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        registrationDateSjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        registrationDateSjLabel.setText("Registration date:");
+
+        streetNameField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        streetNameField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        streetNameField1.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        postCodeField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        postCodeField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        postCodeField1.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        cityField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        cityField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        cityField1.setPreferredSize(new java.awt.Dimension(250, 42));
+        cityField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityField1ActionPerformed(evt);
+            }
+        });
+
+        phoneField1.setMaximumSize(new java.awt.Dimension(250, 42));
+        phoneField1.setMinimumSize(new java.awt.Dimension(250, 42));
+        phoneField1.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        customerTypeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Valued", "Normal" }));
+        customerTypeDD.setMaximumSize(new java.awt.Dimension(200, 42));
+        customerTypeDD.setMinimumSize(new java.awt.Dimension(200, 42));
+        customerTypeDD.setPreferredSize(new java.awt.Dimension(200, 42));
+
+        accountStatusDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Active", "Suspended" }));
+        accountStatusDD.setMaximumSize(new java.awt.Dimension(200, 42));
+        accountStatusDD.setMinimumSize(new java.awt.Dimension(200, 42));
+        accountStatusDD.setPreferredSize(new java.awt.Dimension(200, 42));
+
+        inDefaultDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "True", "False" }));
+        inDefaultDD.setMaximumSize(new java.awt.Dimension(200, 42));
+        inDefaultDD.setMinimumSize(new java.awt.Dimension(200, 42));
+        inDefaultDD.setPreferredSize(new java.awt.Dimension(200, 42));
+
+        javax.swing.GroupLayout managerjPanelLayout = new javax.swing.GroupLayout(managerjPanel);
+        managerjPanel.setLayout(managerjPanelLayout);
+        managerjPanelLayout.setHorizontalGroup(
+            managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(managerjPanelLayout.createSequentialGroup()
+                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(managerjPanelLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(citySjLabel)
+                            .addComponent(phoneSjLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cityField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
+                                .addComponent(streetNameSjLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(streetNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
+                                .addComponent(postcodeSjLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(postCodeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(20, 20, 20)
+                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customerTypeSjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(accountStatusjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(inDefaultSjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(registrationDateSjLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(customerTypeDD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(accountStatusDD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inDefaultDD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customerRegDateField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(91, 91, 91))
+        );
+        managerjPanelLayout.setVerticalGroup(
+            managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(managerjPanelLayout.createSequentialGroup()
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(customerTypeSjLabel)
+                            .addComponent(customerTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(streetNameField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, managerjPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(streetNameSjLabel)
+                        .addGap(17, 17, 17)))
+                .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(managerjPanelLayout.createSequentialGroup()
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(postCodeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(postcodeSjLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cityField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(citySjLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(phoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneSjLabel)))
+                    .addGroup(managerjPanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(accountStatusDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(accountStatusjLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inDefaultSjLabel)
+                            .addComponent(inDefaultDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(managerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registrationDateSjLabel)
+                            .addComponent(customerRegDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        );
+
+        javax.swing.GroupLayout searchCustomerjPanelLayout = new javax.swing.GroupLayout(searchCustomerjPanel);
+        searchCustomerjPanel.setLayout(searchCustomerjPanelLayout);
+        searchCustomerjPanelLayout.setHorizontalGroup(
+            searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(receptionistjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchCustomerjPanelLayout.createSequentialGroup()
+                .addComponent(managerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchCustomerjPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109))
+        );
+        searchCustomerjPanelLayout.setVerticalGroup(
+            searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCustomerjPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(receptionistjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(managerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(searchCustomerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelCustomerFJobjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout searchCustomerPageLayout = new javax.swing.GroupLayout(searchCustomerPage);
+        searchCustomerPage.setLayout(searchCustomerPageLayout);
+        searchCustomerPageLayout.setHorizontalGroup(
+            searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchCustomerPageLayout.createSequentialGroup()
+                    .addComponent(searchCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        searchCustomerPageLayout.setVerticalGroup(
+            searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(searchCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchCustomerPageLayout.createSequentialGroup()
+                    .addComponent(searchCustomerjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        cardPanel1.add(searchCustomerPage, "searchCustomer");
 
         searchInvoicePage.setMaximumSize(new java.awt.Dimension(900, 700));
         searchInvoicePage.setMinimumSize(new java.awt.Dimension(900, 700));
@@ -6019,6 +6058,317 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(standardJobSearchResultsJobEnquiryPage, "standardJobSearchResultsJobEnquiryPage");
 
+        applyDiscountPage.setBackground(new java.awt.Color(61, 96, 146));
+        applyDiscountPage.setMaximumSize(new java.awt.Dimension(900, 640));
+        applyDiscountPage.setMinimumSize(new java.awt.Dimension(900, 640));
+        applyDiscountPage.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                applyDiscountPageComponentHidden(evt);
+            }
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                applyDiscountPageComponentShown(evt);
+            }
+        });
+
+        discountTypeLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        discountTypeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        discountTypeLabel.setText("Discount type:");
+
+        discountTypeDD.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        discountTypeDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Fixed", "Flexible","Variable"}));
+        discountTypeDD.setMaximumSize(new java.awt.Dimension(250, 42));
+        discountTypeDD.setMinimumSize(new java.awt.Dimension(250, 42));
+        discountTypeDD.setPreferredSize(new java.awt.Dimension(250, 42));
+        discountTypeDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discountTypeDDActionPerformed(evt);
+            }
+        });
+
+        discountTypePanel.setMaximumSize(new java.awt.Dimension(880, 400));
+        discountTypePanel.setMinimumSize(new java.awt.Dimension(880, 400));
+        discountTypePanel.setPreferredSize(new java.awt.Dimension(880, 400));
+        discountTypePanel.setLayout(new java.awt.CardLayout());
+
+        fixedDiscountPanel.setBackground(new java.awt.Color(61, 96, 146));
+
+        fixedDiscountRateLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        fixedDiscountRateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        fixedDiscountRateLabel.setText("Discount rate:");
+
+        discountRateField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        discountRateField.setMaximumSize(new java.awt.Dimension(250, 42));
+        discountRateField.setMinimumSize(new java.awt.Dimension(250, 42));
+        discountRateField.setPreferredSize(new java.awt.Dimension(250, 42));
+        discountRateField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discountRateFieldActionPerformed(evt);
+            }
+        });
+
+        discountPercentageLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        discountPercentageLabel.setForeground(new java.awt.Color(255, 255, 255));
+        discountPercentageLabel.setText("%");
+
+        javax.swing.GroupLayout fixedDiscountPanelLayout = new javax.swing.GroupLayout(fixedDiscountPanel);
+        fixedDiscountPanel.setLayout(fixedDiscountPanelLayout);
+        fixedDiscountPanelLayout.setHorizontalGroup(
+            fixedDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fixedDiscountPanelLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(fixedDiscountRateLabel)
+                .addGap(18, 18, 18)
+                .addComponent(discountRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(discountPercentageLabel)
+                .addContainerGap(519, Short.MAX_VALUE))
+        );
+        fixedDiscountPanelLayout.setVerticalGroup(
+            fixedDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fixedDiscountPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(fixedDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fixedDiscountRateLabel)
+                    .addComponent(discountRateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(discountPercentageLabel))
+                .addContainerGap(327, Short.MAX_VALUE))
+        );
+
+        discountTypePanel.add(fixedDiscountPanel, "fixedDiscount");
+
+        flexibleDiscountPanel.setBackground(new java.awt.Color(61, 96, 146));
+
+        fixedDiscountRateLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        fixedDiscountRateLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        fixedDiscountRateLabel1.setText("Upper bound:");
+
+        fixedDiscountRateLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        fixedDiscountRateLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        fixedDiscountRateLabel2.setText("Lower bound:");
+
+        fixedDiscountRateLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        fixedDiscountRateLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        fixedDiscountRateLabel3.setText("Discount rate:");
+
+        bandDiscountRateField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bandDiscountRateField.setMaximumSize(new java.awt.Dimension(250, 42));
+        bandDiscountRateField.setMinimumSize(new java.awt.Dimension(250, 42));
+        bandDiscountRateField.setPreferredSize(new java.awt.Dimension(250, 42));
+        bandDiscountRateField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bandDiscountRateFieldActionPerformed(evt);
+            }
+        });
+
+        lowerBandField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lowerBandField.setMaximumSize(new java.awt.Dimension(250, 42));
+        lowerBandField.setMinimumSize(new java.awt.Dimension(250, 42));
+        lowerBandField.setPreferredSize(new java.awt.Dimension(250, 42));
+        lowerBandField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lowerBandFieldActionPerformed(evt);
+            }
+        });
+
+        upperBoundField.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        upperBoundField.setMaximumSize(new java.awt.Dimension(250, 42));
+        upperBoundField.setMinimumSize(new java.awt.Dimension(250, 42));
+        upperBoundField.setPreferredSize(new java.awt.Dimension(250, 42));
+        upperBoundField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upperBoundFieldActionPerformed(evt);
+            }
+        });
+
+        addBandButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        addBandButton.setText("Add band");
+        addBandButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBandButtonActionPerformed(evt);
+            }
+        });
+
+        jScrollPane19.setViewportView(bandList);
+
+        findUserLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        findUserLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        findUserLabel1.setText("Add band:");
+
+        removeBandButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        removeBandButton.setText("Remove band");
+        removeBandButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBandButtonActionPerformed(evt);
+            }
+        });
+
+        discountPercentageLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        discountPercentageLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        discountPercentageLabel1.setText("%");
+
+        javax.swing.GroupLayout flexibleDiscountPanelLayout = new javax.swing.GroupLayout(flexibleDiscountPanel);
+        flexibleDiscountPanel.setLayout(flexibleDiscountPanelLayout);
+        flexibleDiscountPanelLayout.setHorizontalGroup(
+            flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(flexibleDiscountPanelLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(findUserLabel1)
+                    .addGroup(flexibleDiscountPanelLayout.createSequentialGroup()
+                        .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fixedDiscountRateLabel3)
+                            .addComponent(fixedDiscountRateLabel2)
+                            .addComponent(fixedDiscountRateLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(flexibleDiscountPanelLayout.createSequentialGroup()
+                                    .addComponent(bandDiscountRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(discountPercentageLabel1))
+                                .addComponent(upperBoundField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lowerBandField, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                            .addComponent(addBandButton))
+                        .addGap(18, 18, 18)
+                        .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(removeBandButton)
+                            .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        flexibleDiscountPanelLayout.setVerticalGroup(
+            flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, flexibleDiscountPanelLayout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addComponent(findUserLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(flexibleDiscountPanelLayout.createSequentialGroup()
+                        .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fixedDiscountRateLabel1)
+                            .addComponent(upperBoundField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fixedDiscountRateLabel2)
+                            .addComponent(lowerBandField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fixedDiscountRateLabel3)
+                            .addComponent(bandDiscountRateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(discountPercentageLabel1)))
+                    .addComponent(jScrollPane19))
+                .addGap(18, 18, 18)
+                .addGroup(flexibleDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addBandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeBandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57))
+        );
+
+        discountTypePanel.add(flexibleDiscountPanel, "flexibleDiscount");
+
+        variableDiscountPanel.setBackground(new java.awt.Color(61, 96, 146));
+
+        jScrollPane21.setMaximumSize(new java.awt.Dimension(500, 250));
+        jScrollPane21.setMinimumSize(new java.awt.Dimension(500, 250));
+        jScrollPane21.setPreferredSize(new java.awt.Dimension(500, 250));
+
+        taskDiscountsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Task id", "Task description", "Task price", "Discount rate"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        taskDiscountsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane21.setViewportView(taskDiscountsTable);
+
+        variableDiscountInstructionLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        variableDiscountInstructionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        variableDiscountInstructionLabel.setText("Please enter a discount rate for each task:");
+
+        javax.swing.GroupLayout variableDiscountPanelLayout = new javax.swing.GroupLayout(variableDiscountPanel);
+        variableDiscountPanel.setLayout(variableDiscountPanelLayout);
+        variableDiscountPanelLayout.setHorizontalGroup(
+            variableDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(variableDiscountPanelLayout.createSequentialGroup()
+                .addGroup(variableDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(variableDiscountPanelLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(variableDiscountInstructionLabel))
+                    .addGroup(variableDiscountPanelLayout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(166, Short.MAX_VALUE))
+        );
+        variableDiscountPanelLayout.setVerticalGroup(
+            variableDiscountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, variableDiscountPanelLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(variableDiscountInstructionLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
+        );
+
+        discountTypePanel.add(variableDiscountPanel, "variableDiscount");
+
+        createDiscountButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        createDiscountButton.setText("Create Discount");
+        createDiscountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createDiscountButtonActionPerformed(evt);
+            }
+        });
+
+        customerLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        customerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        customerLabel.setText("Customer ID: ");
+
+        javax.swing.GroupLayout applyDiscountPageLayout = new javax.swing.GroupLayout(applyDiscountPage);
+        applyDiscountPage.setLayout(applyDiscountPageLayout);
+        applyDiscountPageLayout.setHorizontalGroup(
+            applyDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(applyDiscountPageLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(discountTypeLabel)
+                .addGap(18, 18, 18)
+                .addComponent(discountTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(customerLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(applyDiscountPageLayout.createSequentialGroup()
+                .addComponent(discountTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, applyDiscountPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createDiscountButton)
+                .addGap(60, 60, 60))
+        );
+        applyDiscountPageLayout.setVerticalGroup(
+            applyDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(applyDiscountPageLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(applyDiscountPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(discountTypeLabel)
+                    .addComponent(discountTypeDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerLabel))
+                .addGap(31, 31, 31)
+                .addComponent(discountTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(createDiscountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+
+        cardPanel1.add(applyDiscountPage, "applyDiscount");
+
         cardPanel2.setBackground(new java.awt.Color(204, 255, 204));
         cardPanel2.setMaximumSize(new java.awt.Dimension(900, 60));
         cardPanel2.setPreferredSize(new java.awt.Dimension(900, 60));
@@ -6203,17 +6553,17 @@ public class MainFrame extends javax.swing.JFrame {
 
                 //View alerts
                 int roleID = controller.getRoleID(role);
-                if (controller.viewAlert(roleID).size() > 0) {
-                    for (int i = 0; i < controller.viewAlert(roleID).size(); i++) {
-                        JOptionPane.showMessageDialog(null, controller.viewAlert(roleID).get(i));
+                String[] alertTypes = new String[]{"New job alert", "Job deadline alert", "Late Payment"};
 
+                for (String alertType : alertTypes) {
+                    String alerts = controller.getAlerts(roleID, alertType);
+                    if (alerts != null) {
+                        JOptionPane.showMessageDialog(null, alerts);
                     }
-
                 }
                 //Delete alerts once read
                 controller.deleteAlerts(controller.getRoleID(role));
 
-    
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid User details");
             }
@@ -6542,7 +6892,7 @@ public class MainFrame extends javax.swing.JFrame {
             Object[] possibilities = {"Copy Room", "Development area", "Packing Departments", "Finishing Room"};
             String technicianRoom = (String) JOptionPane.showInputDialog(null, "Select room", "Select Room", JOptionPane.PLAIN_MESSAGE, null, possibilities, "Copy Room");
 
-            if (controller.createUser(firstName, surname, password, roleID, username,securityAnswer)) {
+            if (controller.createUser(firstName, surname, password, roleID, username, securityAnswer)) {
                 controller.createTechnician(controller.getUserID(password), controller.getDepartmentCode(technicianRoom));
                 JOptionPane.showMessageDialog(this, "User created with id: " + controller.getUserID(password));
                 homeButton.doClick();
@@ -6553,7 +6903,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Create user other than technician
         if (!(role.equals("Technician"))) {
-            if (controller.createUser(firstName, surname, password, roleID, username,securityAnswer) && valid) {
+            if (controller.createUser(firstName, surname, password, roleID, username, securityAnswer) && valid) {
                 JOptionPane.showMessageDialog(this, "User created with id: " + controller.getUserID(password));
                 homeButton.doClick();
             } else {
@@ -6562,48 +6912,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_createUserButtonActionPerformed
-
-    private void durationNewTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationNewTaskDDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_durationNewTaskDDActionPerformed
-
-    private void createNewTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTaskButtonActionPerformed
-        // TODO add your handling code here:
-
-        //Initialise values to get the data from the GUI buttons
-        String description = descriptionNewTaskField.getText();
-        String price = priceNewTaskField.getText();
-        int duration_min = Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
-        int duration_hours = Integer.parseInt((String) durationNewTaskDD.getSelectedItem());
-        String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
-        int shelf_slot = Integer.parseInt((String) shelfSlotTaskDD.getSelectedItem());
-
-        duration_min += duration_hours * 60;
-
-        //Check fields are not empty in the GUI, then pop up will show if no data is inserted
-        if (description.equals("") || !Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", price)) {
-            JOptionPane.showMessageDialog(null, "Please insert data");
-        } else {
-            if (controller.createNewTask(description, duration_min, Double.parseDouble(price), Department_department_code, shelf_slot)) {
-                JOptionPane.showMessageDialog(null, "Task created");
-                homeButton.doClick();
-            } else {
-                JOptionPane.showMessageDialog(null, "Failed to create Task");
-            }
-        }
-    }//GEN-LAST:event_createNewTaskButtonActionPerformed
-
-    private void shelfSlotTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shelfSlotTaskDDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_shelfSlotTaskDDActionPerformed
-
-    private void departmentNewTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentNewTaskDDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_departmentNewTaskDDActionPerformed
-
-    private void durationNewTaskMinsDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationNewTaskMinsDDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_durationNewTaskMinsDDActionPerformed
 
     private void tasksMenuPageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasksMenuPageButtonActionPerformed
         // TODO add your handling code here:
@@ -6762,19 +7070,6 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buildingNumberFieldActionPerformed
 
-    private void cancelCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCustomerFJobjButtonActionPerformed
-        // TODO add your handling code here:
-        if (previousPage.equals("createReport")) {
-            createReportPageButton.doClick();
-        } else {
-            acceptJobPageButton.doClick();
-        }
-    }//GEN-LAST:event_cancelCustomerFJobjButtonActionPerformed
-
-    private void cityField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cityField1ActionPerformed
-
     private void addMaterialButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaterialButtonActionPerformed
         // TODO add your handling code here:
         // checks to see if the user has entereds the correct format for materials
@@ -6821,9 +7116,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateCompletionTimeSelection() {
         int totalDuration = 0;
-
-        for (StandardJob s : selectedStdJobs) {
-            totalDuration += s.getDurationMin();
+        if (!selectedStdJobs.isEmpty()) {
+            totalDuration = controller.getTotalJobTime(selectedStdJobs);
         }
 
         System.out.println(totalDuration);
@@ -6831,7 +7125,7 @@ public class MainFrame extends javax.swing.JFrame {
         List<String> duration = new ArrayList<>();
         duration.add("Select a time");
 
-        for (int i = 165; i > totalDuration; i -= 15) {
+        for (int i = 180; i > totalDuration; i -= 15) {
             int hours = i / 60;
             int mins = i - (hours * 60);
             duration.add(hours + " hours " + mins + " mins");
@@ -6923,14 +7217,18 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a completion time");
         } else {
             String surcharge = (String) surchargejTextField.getText().replaceAll("[\\D]", "");
-            double total = Double.parseDouble(jobTotalField.getText()) * ((Integer.parseInt(surcharge) / 100.0) + 1);
-            int response = JOptionPane.showConfirmDialog(this, "Total : £" + String.format("%.2f", total) + " (including surcharge and VAT). Is the customer happy to proceed?");
-            if (response == 0) {
-                String[] parts = customerInfoField.getText().split("\\:");
-                if (controller.acceptJob(parts[2], materials, selectedStdJobs, total, loggedInUser, specialInstructionjTextField.getText(), (String) completionTimeDD.getSelectedItem(), surcharge, (String) selectPriority.getSelectedItem())) {
-                    JOptionPane.showMessageDialog(this, "Job created");
-                    homeButton.doClick();
+            //double total = Double.parseDouble(jobTotalField.getText()) * ((Integer.parseInt(surcharge) / 100.0) + 1 + 0.2);
+            String customerId = customerInfoField.getText().split("\\:")[2];
+            String accountHolderName = customerInfoField.getText().split("\\:")[1].split("\\,")[0];
+
+            if (controller.acceptJob(customerId, materials, selectedStdJobs, loggedInUser, specialInstructionjTextField.getText(), (String) completionTimeDD.getSelectedItem(), surcharge, (String) selectPriority.getSelectedItem())) {
+                JOptionPane.showMessageDialog(this, "Job created");
+                if (!loggedInUser.getRole().equals("Shift Manager")) {
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+                    Date date = new Date();
+                    controller.sendAlert(2, customerId + ", " + accountHolderName + " (" + dateFormat.format(date) + ")", "New job alert");
                 }
+                homeButton.doClick();
             }
 
         }
@@ -7095,112 +7393,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_selectCustomerButtonActionPerformed
 
-    private void searchCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerFJobjButtonActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        String customerNumber = custAccountNoField.getText();
-        String cFirstName = custFirstnameField.getText();
-        String cLastName = custLastnameField.getText();
-        String accountHName = custAccountHNameField.getText();
-        String streetName = streetNameField1.getText();
-        String postCode = postCodeField1.getText();
-        String city = cityField1.getText();
-        String phone = phoneField1.getText();
-        String isValued = (String) customerTypeDD.getSelectedItem();
-        String isSuspended = (String) accountStatusDD.getSelectedItem();
-        String inDefault = (String) inDefaultDD.getSelectedItem();
-        String regDate = customerRegDateField.getDateFormatString();
-        boolean valid = true;
-
-        //regex needs to be recapped
-        if (!customerNumber.isEmpty()) {
-            if (!Pattern.matches("(\\d)+", customerNumber)) {
-                JOptionPane.showMessageDialog(this, "Customer number: Numbers only");
-                valid = false;
-            } else if (customerNumber.length() > 5) {
-                JOptionPane.showMessageDialog(this, "Customer number: Cannot be longer than five digits");
-                valid = false;
-            }
-        }
-        if (!cFirstName.isEmpty()) {
-            if (!Pattern.matches("(\\D)+", cFirstName)) {
-                JOptionPane.showMessageDialog(this, "Customer contact firstname: letters only");
-                valid = false;
-            } else if (cFirstName.length() > 35) {
-                JOptionPane.showMessageDialog(this, "Customer contact firstname: Cannot be longer than 35 characters");
-                valid = false;
-            }
-        }
-        if (!cLastName.isEmpty()) {
-            if (!Pattern.matches("(\\D)+", cLastName)) {
-                JOptionPane.showMessageDialog(this, "Customer contact lastname: letters only");
-                valid = false;
-            } else if (cLastName.length() > 35) {
-                JOptionPane.showMessageDialog(this, "User contact lastname: Cannot be longer than 35 characters");
-                valid = false;
-            }
-        }
-        if (!accountHName.isEmpty() && accountHName.length() > 80) {
-            JOptionPane.showMessageDialog(this, "Account holders name: Cannot be longer than 80 characters");
-            valid = false;
-        }
-        if (!streetName.isEmpty()) {
-            if (!Pattern.matches("(\\D)+", streetName)) {
-                JOptionPane.showMessageDialog(this, "Customer contact lastname: letters only");
-                valid = false;
-            } else if (streetName.length() > 80) {
-                JOptionPane.showMessageDialog(this, "Street name: Cannot be longer than 80 characters");
-                valid = false;
-            }
-        }
-        if (!postCode.isEmpty()) {
-            if (!Pattern.matches("([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\\s?[0-9][A-Za-z]{2})", postCode)) {
-                JOptionPane.showMessageDialog(this, "Poscode: Invalid format");
-                valid = false;
-            }
-        }
-
-        if (!city.isEmpty()) {
-            if (!Pattern.matches("(\\D)+", city)) {
-                JOptionPane.showMessageDialog(this, "City: letters only");
-                valid = false;
-            } else if (city.length() > 60) {
-                JOptionPane.showMessageDialog(this, "City: Cannot be longer than 60 characters");
-                valid = false;
-            }
-        }
-
-        if (!phone.isEmpty()) {
-            if (!Pattern.matches("^(((\\+44\\s?\\d{4}|\\(?0\\d{4}\\)?)\\s?\\d{3}\\s?\\d{3})|((\\+44\\s?\\d{3}|\\(?0\\d{3}\\)?)\\s?\\d{3}\\s?\\d{4})|((\\+44\\s?\\d{2}|\\(?0\\d{2}\\)?)\\s?\\d{4}\\s?\\d{4}))(\\s?\\#(\\d{4}|\\d{3}))?$", phone)) {
-                JOptionPane.showMessageDialog(this, "Phone: Invalid format");
-                valid = false;
-            }
-        }
-        if (valid) {
-            ArrayList<CustomerDetails> customers = controller.findCustomer(customerNumber, cFirstName, cLastName, accountHName, streetName, postCode, city, phone, isValued, isSuspended, inDefault, regDate);
-
-            tblModel = (DefaultTableModel) customerResultsTable.getModel();
-            Object[] row = new Object[5];
-            for (int i = 0; i < customers.size(); i++) {
-                row[0] = customers.get(i).getAccountNo();
-                row[1] = customers.get(i).getAccountHolderName();
-                System.out.println(row[1]);
-                row[2] = customers.get(i).getPrefix() + " " + customers.get(i).getFirstName() + " " + customers.get(i).getLastName();
-                row[3] = customers.get(i).getCustomerType();
-                row[4] = customers.get(i).getCustomerStatus();
-                tblModel.insertRow(i, row);
-            }
-            card1.show(cardPanel1, "customerResults");
-            //card2.show(cardPanel2, "homeBar");
-            pageLabel.setText("Customer results page");
-
-            customerResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-            //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
-        }
-
-    }//GEN-LAST:event_searchCustomerFJobjButtonActionPerformed
-
     private void loginPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_loginPageComponentHidden
         // TODO add your handling code here:
         resetComponents(loginPage);
@@ -7282,12 +7474,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_acceptJobPageComponentHidden
 
-    private void searchCustomerPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_searchCustomerPageComponentHidden
-        // TODO add your handling code here:
-        resetComponents(receptionistjPanel);
-        resetComponents(managerjPanel);
-    }//GEN-LAST:event_searchCustomerPageComponentHidden
-
     private void createCustomerPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createCustomerPageComponentHidden
         // TODO add your handling code here:
         resetComponents(createCustomerPage);
@@ -7344,11 +7530,6 @@ public class MainFrame extends javax.swing.JFrame {
         selectedTasks.clear();
         list2.clear();
     }//GEN-LAST:event_createStandardJobPageComponentHidden
-
-    private void createTaskPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createTaskPageComponentHidden
-        // TODO add your handling code here:
-        resetComponents(createTaskPage);
-    }//GEN-LAST:event_createTaskPageComponentHidden
 
     private void createUserPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createUserPageComponentHidden
         // TODO add your handling code here:
@@ -8901,10 +9082,10 @@ public class MainFrame extends javax.swing.JFrame {
         String newPassword1 = newPasswordTextField.getText();
         String newPassword2 = newPasswordTextField2.getText();
         boolean valid = true;
-        
+
         //Are text fields empty
-        if (usernameTextField.getText().equals("") || mothersTextField.getText().equals("") 
-                || newPasswordTextField.getText().equals("") || newPasswordTextField2.getText().equals("")){
+        if (usernameTextField.getText().equals("") || mothersTextField.getText().equals("")
+                || newPasswordTextField.getText().equals("") || newPasswordTextField2.getText().equals("")) {
             valid = false;
             JOptionPane.showMessageDialog(null, "Please insert data");
         }
@@ -8947,6 +9128,366 @@ public class MainFrame extends javax.swing.JFrame {
     private void securityAnswerTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_securityAnswerTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_securityAnswerTextFieldActionPerformed
+
+    private void discountTypeDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountTypeDDActionPerformed
+        // TODO add your handling code here:
+        int selection = discountTypeDD.getSelectedIndex();
+        String discountPanel = "";
+
+        switch (selection) {
+            case 0:
+                discountPanel = "fixedDiscount";
+                break;
+            case 1:
+                discountPanel = "flexibleDiscount";
+                break;
+            case 2:
+                discountPanel = "variableDiscount";
+                break;
+            default:
+                break;
+        }
+        card3.show(discountTypePanel, discountPanel);
+    }//GEN-LAST:event_discountTypeDDActionPerformed
+
+    private void discountRateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountRateFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_discountRateFieldActionPerformed
+
+    private void bandDiscountRateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bandDiscountRateFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bandDiscountRateFieldActionPerformed
+
+    private void lowerBandFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lowerBandFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lowerBandFieldActionPerformed
+
+    private void upperBoundFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upperBoundFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upperBoundFieldActionPerformed
+
+    private void addBandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBandButtonActionPerformed
+        // TODO add your handling code here:
+        String uBound = upperBoundField.getText();
+        String lBound = lowerBandField.getText();
+        String bandDiscount = bandDiscountRateField.getText();
+
+        if (uBound.isEmpty() && lBound.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please specify a bound");
+        } else if (bandDiscount.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please specify a discount rate for the band");
+        } else if (!Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", uBound) || !Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", lBound)) {
+            JOptionPane.showMessageDialog(this, "Invalid bounds. Please enter numbers to 2 d.p.");
+        } else if ((!uBound.isEmpty() && !lBound.isEmpty()) && (Double.parseDouble(lBound) >= Double.parseDouble(uBound))) {
+            JOptionPane.showMessageDialog(this, "Lower bound cannot be greater than or equal to the upper bound.");
+        } else if (!Pattern.matches("[+-]?([0-9]*[.])?[0-9]+", bandDiscount)) {
+            JOptionPane.showMessageDialog(this, "Invalid discount rate");
+        } else {
+            String element;
+            if (uBound.isEmpty()) {
+                bands.add(new DiscountBand(Double.parseDouble(lBound), Float.parseFloat(bandDiscount), false));
+                element = "Lower bound: £" + lBound + ", Discount rate: " + bandDiscount + "%";
+            } else if (lBound.isEmpty()) {
+                bands.add(new DiscountBand(Double.parseDouble(uBound), Float.parseFloat(bandDiscount), true));
+                element = "Upper bound: £" + uBound + ", Discount rate: " + bandDiscount + "%";
+            } else {
+                bands.add(new DiscountBand(Double.parseDouble(lBound), Double.parseDouble(uBound), Float.parseFloat(bandDiscount)));
+                element = "Lower bound: £" + lBound + ", Upper bound: £" + uBound + ", Discount rate: " + bandDiscount + "%";
+            }
+            list1.addElement(element);
+            bandList.setModel(list1);
+            resetComponents(flexibleDiscountPanel);
+        }
+    }//GEN-LAST:event_addBandButtonActionPerformed
+
+    private void removeBandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBandButtonActionPerformed
+        // TODO add your handling code here:
+
+        int index = bandList.getSelectedIndex();
+        if (index != -1) {
+            list1.remove(index);
+            bandList.setModel(list1);
+            bands.remove(index);
+        } else {
+            JOptionPane.showMessageDialog(this, "You need to select a band to remove.");
+        }
+    }//GEN-LAST:event_removeBandButtonActionPerformed
+
+    private void createDiscountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createDiscountButtonActionPerformed
+        // TODO add your handling code here:
+        int selection = discountTypeDD.getSelectedIndex();
+        String accountNo = customerLabel.getText().split("\\:")[1];
+        accountNo = accountNo.replaceAll("\\s+", "");
+        String fixedDiscount = discountRateField.getText();
+        Boolean isCreated = false;
+        String warningMessage = "";
+        //tblModel
+        //tasks
+        switch (selection) {
+            case 0:
+                if (!Pattern.matches("[+-]?([0-9]*[.])?[0-9]+", fixedDiscount)) {
+                    warningMessage = "Please enter a discount rate for the plan";
+                } else {
+                    isCreated = controller.createFixedDiscount(Integer.parseInt(accountNo), Float.parseFloat(fixedDiscount), loggedInUser.getAccount_no());
+                }
+                break;
+            case 1:
+                if (bands.isEmpty()) {
+                    warningMessage = "Please add bands to the discount plan";
+                } else {
+                    isCreated = controller.createFlexibleDiscount(Integer.parseInt(accountNo), bands, loggedInUser.getAccount_no());
+                }
+                break;
+            case 2:
+                Boolean validValues = true;
+                for (int i = 0; i < taskDiscountsTable.getRowCount(); i++) {
+                    Object o = taskDiscountsTable.getValueAt(i, 3);
+                    System.out.println(o);
+                    if (o == null || o.equals("")) {
+                        tasks.get(i).setDiscountRate(0);
+                    } else if (!Pattern.matches("[+-]?([0-9]*[.])?[0-9]+", (String) o)) {
+                        validValues = false;
+                        warningMessage = "Please enter valid discount rates";
+                        break;
+                    } else {
+                        tasks.get(i).setDiscountRate(Float.parseFloat((String) o));
+                    }
+                }
+                if (validValues) {
+                    isCreated = controller.createVariableDiscount(Integer.parseInt(accountNo), tasks, loggedInUser.getAccount_no());
+                }
+                break;
+        }
+
+        if (isCreated) {
+            JOptionPane.showMessageDialog(this, "Discount plan created successfully");
+            //
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to create discount plan: " + warningMessage);
+        }
+    }//GEN-LAST:event_createDiscountButtonActionPerformed
+
+    private void applyDiscountPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_applyDiscountPageComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_applyDiscountPageComponentHidden
+
+    private void applyDiscountPageComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_applyDiscountPageComponentShown
+        // TODO add your handling code here:
+        tasks = controller.getTasks();
+        tblModel = (DefaultTableModel) taskDiscountsTable.getModel();
+        Object[] row = new Object[3];
+        for (int i = 0; i < tasks.size(); i++) {
+            row[0] = tasks.get(i).getTaskId();
+            row[1] = tasks.get(i).getDescription();
+            row[2] = tasks.get(i).getPrice();
+            tblModel.insertRow(i, row);
+        }
+    }//GEN-LAST:event_applyDiscountPageComponentShown
+
+    private void searchCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerFJobjButtonActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        String customerNumber = custAccountNoField.getText();
+        String cFirstName = custFirstnameField.getText();
+        String cLastName = custLastnameField.getText();
+        String accountHName = custAccountHNameField.getText();
+        String streetName = streetNameField1.getText();
+        String postCode = postCodeField1.getText();
+        String city = cityField1.getText();
+        String phone = phoneField1.getText();
+        String isValued = (String) customerTypeDD.getSelectedItem();
+        String isSuspended = (String) accountStatusDD.getSelectedItem();
+        String inDefault = (String) inDefaultDD.getSelectedItem();
+        Date regDate = customerRegDateField.getDate();
+        boolean valid = true;
+
+        //regex needs to be recapped
+        if (!customerNumber.isEmpty()) {
+            if (!Pattern.matches("(\\d)+", customerNumber)) {
+                JOptionPane.showMessageDialog(this, "Customer number: Numbers only");
+                valid = false;
+            } else if (customerNumber.length() > 5) {
+                JOptionPane.showMessageDialog(this, "Customer number: Cannot be longer than five digits");
+                valid = false;
+            }
+        }
+        if (!cFirstName.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", cFirstName)) {
+                JOptionPane.showMessageDialog(this, "Customer contact firstname: letters only");
+                valid = false;
+            } else if (cFirstName.length() > 35) {
+                JOptionPane.showMessageDialog(this, "Customer contact firstname: Cannot be longer than 35 characters");
+                valid = false;
+            }
+        }
+        if (!cLastName.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", cLastName)) {
+                JOptionPane.showMessageDialog(this, "Customer contact lastname: letters only");
+                valid = false;
+            } else if (cLastName.length() > 35) {
+                JOptionPane.showMessageDialog(this, "User contact lastname: Cannot be longer than 35 characters");
+                valid = false;
+            }
+        }
+        if (!accountHName.isEmpty() && accountHName.length() > 80) {
+            JOptionPane.showMessageDialog(this, "Account holders name: Cannot be longer than 80 characters");
+            valid = false;
+        }
+        if (!streetName.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", streetName)) {
+                JOptionPane.showMessageDialog(this, "Customer contact lastname: letters only");
+                valid = false;
+            } else if (streetName.length() > 80) {
+                JOptionPane.showMessageDialog(this, "Street name: Cannot be longer than 80 characters");
+                valid = false;
+            }
+        }
+        if (!postCode.isEmpty()) {
+            if (!Pattern.matches("([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\\s?[0-9][A-Za-z]{2})", postCode)) {
+                JOptionPane.showMessageDialog(this, "Poscode: Invalid format");
+                valid = false;
+            }
+        }
+
+        if (!city.isEmpty()) {
+            if (!Pattern.matches("(\\D)+", city)) {
+                JOptionPane.showMessageDialog(this, "City: letters only");
+                valid = false;
+            } else if (city.length() > 60) {
+                JOptionPane.showMessageDialog(this, "City: Cannot be longer than 60 characters");
+                valid = false;
+            }
+        }
+
+        if (!phone.isEmpty()) {
+            if (!Pattern.matches("^(((\\+44\\s?\\d{4}|\\(?0\\d{4}\\)?)\\s?\\d{3}\\s?\\d{3})|((\\+44\\s?\\d{3}|\\(?0\\d{3}\\)?)\\s?\\d{3}\\s?\\d{4})|((\\+44\\s?\\d{2}|\\(?0\\d{2}\\)?)\\s?\\d{4}\\s?\\d{4}))(\\s?\\#(\\d{4}|\\d{3}))?$", phone)) {
+                JOptionPane.showMessageDialog(this, "Phone: Invalid format");
+                valid = false;
+            }
+        }
+        if (valid) {
+            ArrayList<CustomerDetails> customers = controller.findCustomer(customerNumber, cFirstName, cLastName, accountHName, streetName, postCode, city, phone, isValued, isSuspended, inDefault, regDate);
+
+            tblModel = (DefaultTableModel) customerResultsTable.getModel();
+            Object[] row = new Object[5];
+            for (int i = 0; i < customers.size(); i++) {
+                row[0] = customers.get(i).getAccountNo();
+                row[1] = customers.get(i).getAccountHolderName();
+                System.out.println(row[1]);
+                row[2] = customers.get(i).getPrefix() + " " + customers.get(i).getFirstName() + " " + customers.get(i).getLastName();
+                row[3] = customers.get(i).getCustomerType();
+                row[4] = customers.get(i).getCustomerStatus();
+                tblModel.insertRow(i, row);
+            }
+            card1.show(cardPanel1, "customerResults");
+            //card2.show(cardPanel2, "homeBar");
+            pageLabel.setText("Customer results page");
+
+            customerResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            //WORK FROM HERE. MAKE RESULTS PAGE, AND POPULATE IT WITH THE ARRAYLIST ABOVE
+        }
+    }//GEN-LAST:event_searchCustomerFJobjButtonActionPerformed
+
+    private void cancelCustomerFJobjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelCustomerFJobjButtonActionPerformed
+        // TODO add your handling code here:
+        if (previousPage.equals("createReport")) {
+            createReportPageButton.doClick();
+        } else {
+            acceptJobPageButton.doClick();
+        }
+    }//GEN-LAST:event_cancelCustomerFJobjButtonActionPerformed
+
+    private void cityField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityField1ActionPerformed
+
+    private void searchCustomerPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_searchCustomerPageComponentHidden
+        // TODO add your handling code here:
+        resetComponents(receptionistjPanel);
+        resetComponents(managerjPanel);
+    }//GEN-LAST:event_searchCustomerPageComponentHidden
+
+    private void durationNewTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationNewTaskDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_durationNewTaskDDActionPerformed
+
+    private void createNewTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTaskButtonActionPerformed
+        // TODO add your handling code here:
+
+        //Initialise values to get the data from the GUI buttons
+        String description = descriptionNewTaskField.getText();
+        String price = priceNewTaskField.getText();
+        int duration_min = Integer.parseInt((String) durationNewTaskMinsDD.getSelectedItem());
+        int duration_hours = Integer.parseInt((String) durationNewTaskDD.getSelectedItem());
+        String Department_department_code = (String) departmentNewTaskDD.getSelectedItem();
+        int shelf_slot = Integer.parseInt((String) shelfSlotTaskDD.getSelectedItem());
+
+        duration_min += duration_hours * 60;
+
+        //Check fields are not empty in the GUI, then pop up will show if no data is inserted
+        if (description.equals("") || !Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", price)) {
+            JOptionPane.showMessageDialog(null, "Please insert data");
+        } else {
+            if (controller.createNewTask(description, duration_min, Double.parseDouble(price), Department_department_code, shelf_slot)) {
+                JOptionPane.showMessageDialog(null, "Task created");
+                homeButton.doClick();
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to create Task");
+            }
+        }
+    }//GEN-LAST:event_createNewTaskButtonActionPerformed
+
+    private void shelfSlotTaskDDComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_shelfSlotTaskDDComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_shelfSlotTaskDDComponentShown
+
+    private void shelfSlotTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shelfSlotTaskDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_shelfSlotTaskDDActionPerformed
+
+    private void departmentNewTaskDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentNewTaskDDActionPerformed
+        // TODO add your handling code here:
+        int selection = departmentNewTaskDD.getSelectedIndex();
+
+        String department = "";
+
+        switch (selection) {
+            case 0:
+            department = "CR";
+            break;
+            case 1:
+            department = "DR";
+            break;
+            case 2:
+            department = "DA";
+            break;
+            case 3:
+            department = "PR";
+            break;
+            case 4:
+            department = "FR";
+            break;
+            case 5:
+            department = "PD";
+            break;
+        }
+
+        shelfSlotTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(controller.getShelfSlots(department)));
+    }//GEN-LAST:event_departmentNewTaskDDActionPerformed
+
+    private void durationNewTaskMinsDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationNewTaskMinsDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_durationNewTaskMinsDDActionPerformed
+
+    private void createTaskPageComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createTaskPageComponentHidden
+        // TODO add your handling code here:
+        resetComponents(createTaskPage);
+    }//GEN-LAST:event_createTaskPageComponentHidden
+
+    private void createTaskPageComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_createTaskPageComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createTaskPageComponentShown
 
     public void generateReminderLettersForTheMonth() {
         this.updateReminderLettersTable();
@@ -9272,6 +9813,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField accountHolderNamejTextField;
     private javax.swing.JComboBox<String> accountStatusDD;
     private javax.swing.JLabel accountStatusjLabel;
+    private javax.swing.JButton addBandButton;
     private javax.swing.JButton addButton;
     private javax.swing.JButton addFlexibleBoundjButton;
     private javax.swing.JButton addJobButton;
@@ -9279,6 +9821,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton addTaskToStandardJobButton;
     private javax.swing.JPanel allStandardJobsPage;
     private javax.swing.JTable allStandardJobsTable;
+    private javax.swing.JPanel applyDiscountPage;
     private javax.swing.JButton applyDiscountjButton;
     private javax.swing.JButton assignDiscountPlanjButton;
     private javax.swing.JTextField autoBackupLocationjTextField;
@@ -9299,6 +9842,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel backupPage;
     private javax.swing.JButton backupPageButton;
     private javax.swing.JButton backupSettingsPageButton;
+    private javax.swing.JTextField bandDiscountRateField;
+    private javax.swing.JList<String> bandList;
     private javax.swing.JLabel boundjLabel;
     private javax.swing.JList<String> boundsjList;
     private javax.swing.JTextField buildingNumberField;
@@ -9333,6 +9878,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton createCustomerButton;
     private javax.swing.JPanel createCustomerPage;
     private javax.swing.JButton createCustomerjButton;
+    private javax.swing.JButton createDiscountButton;
     private javax.swing.JButton createNewTaskButton;
     private javax.swing.JButton createReportButton;
     private javax.swing.JPanel createReportPage;
@@ -9363,6 +9909,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField customerDiscountjTextField;
     private javax.swing.JLabel customerFirstNamejLabel;
     private javax.swing.JTextField customerInfoField;
+    private javax.swing.JLabel customerLabel;
     private javax.swing.JLabel customerLastNamejLabel;
     private javax.swing.JTextField customerNumberText;
     private javax.swing.JLabel customerNumberjLabel;
@@ -9392,8 +9939,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField descriptionNewTaskField;
     private javax.swing.JTextField descriptionText;
     private javax.swing.JButton discountCanceljButton;
+    private javax.swing.JLabel discountPercentageLabel;
+    private javax.swing.JLabel discountPercentageLabel1;
     private javax.swing.JComboBox<String> discountPlanTypejComboBox;
     private javax.swing.JLabel discountPlanTypejLabel;
+    private javax.swing.JTextField discountRateField;
+    private javax.swing.JComboBox<String> discountTypeDD;
+    private javax.swing.JLabel discountTypeLabel;
+    private javax.swing.JPanel discountTypePanel;
     private javax.swing.JLabel durationLabel;
     private javax.swing.JComboBox<String> durationNewTaskDD;
     private javax.swing.JComboBox<String> durationNewTaskMinsDD;
@@ -9403,13 +9956,20 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField expiryDatejTextField;
     private javax.swing.JTextField fileChosenField;
     private javax.swing.JLabel findUserLabel;
+    private javax.swing.JLabel findUserLabel1;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNamejLabel;
     private javax.swing.JLabel firstnameLabel;
+    private javax.swing.JPanel fixedDiscountPanel;
+    private javax.swing.JLabel fixedDiscountRateLabel;
+    private javax.swing.JLabel fixedDiscountRateLabel1;
+    private javax.swing.JLabel fixedDiscountRateLabel2;
+    private javax.swing.JLabel fixedDiscountRateLabel3;
     private javax.swing.JLabel fixedDiscountRatejLabel;
     private javax.swing.JTextField fixedDiscountRatejTextField;
     private javax.swing.JLabel fixedPercentageSymbol;
     private javax.swing.JLabel flexiablePercentageSymbol;
+    private javax.swing.JPanel flexibleDiscountPanel;
     private javax.swing.JLabel flexibleDiscountRatejLabel;
     private javax.swing.JTextField flexibleDiscountRatejTextField;
     private javax.swing.JPanel forgotPasswordPage;
@@ -9459,8 +10019,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -9505,6 +10067,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel loginPage;
     private javax.swing.JButton loginPageButton;
+    private javax.swing.JTextField lowerBandField;
     private javax.swing.JLabel lowerBoundjLabel;
     private javax.swing.JTextField lowerBoundjTextField;
     private javax.swing.JButton manageCustomersMenuPageButton;
@@ -9566,6 +10129,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton reminderLettersButton;
     private javax.swing.JTable reminderLettersTable;
     private javax.swing.JPanel reminderLettersTablePage;
+    private javax.swing.JButton removeBandButton;
     private javax.swing.JButton removeFlexibleBoundjButton;
     private javax.swing.JButton removeJobButton;
     private javax.swing.JButton removeMaterialButton;
@@ -9658,6 +10222,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField surchargejTextField;
     private javax.swing.JTextField surnameField;
     private javax.swing.JComboBox<String> taskComboBox;
+    private javax.swing.JTable taskDiscountsTable;
     private javax.swing.JButton taskEnquiryBackButton;
     private javax.swing.JPanel taskHomePage;
     private javax.swing.JLabel taskIDLabel;
@@ -9672,6 +10237,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel totalLabel1;
     private javax.swing.JLabel totaljLabel;
     private javax.swing.JButton updateTaskButton;
+    private javax.swing.JTextField upperBoundField;
     private javax.swing.JLabel upperBoundjLabel;
     private javax.swing.JTextField upperBoundjTextField;
     private javax.swing.JTextField userFirstNameField;
@@ -9690,6 +10256,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
     private javax.swing.JButton usersMenuPageButton;
+    private javax.swing.JLabel variableDiscountInstructionLabel;
+    private javax.swing.JPanel variableDiscountPanel;
     private javax.swing.JButton viewJobEnquiryButton;
     private javax.swing.JButton viewReminderLetterButton;
     private javax.swing.JButton viewStandardJobButton;

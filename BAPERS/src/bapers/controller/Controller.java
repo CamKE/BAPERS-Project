@@ -8,6 +8,11 @@ package bapers.controller;
 import bapers.AutoBackupConfig;
 import bapers.customer.CustomerDetails;
 import bapers.database.DBImpl;
+import bapers.discountplan.Discount;
+import bapers.discountplan.DiscountBand;
+import bapers.discountplan.FixedDiscount;
+import bapers.discountplan.FlexibleDiscount;
+import bapers.discountplan.VariableDiscount;
 import bapers.job.Invoice;
 import bapers.job.Job;
 import bapers.job.JobStandardJob;
@@ -24,10 +29,16 @@ import bapers.user.UserDetails;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
 
 import bapers.payment.Card;
 import bapers.payment.PaymentCard;
@@ -142,8 +153,9 @@ public class Controller {
         return roleID;
     }
 
-    public ArrayList<CustomerDetails> findCustomer(String customerNumber, String cFirstName, String cLastName, String accountHName, String streetName, String postCode, String city, String phone, String customerType, String customerStatus, String inDefault, String regDate) {
+    public ArrayList<CustomerDetails> findCustomer(String customerNumber, String cFirstName, String cLastName, String accountHName, String streetName, String postCode, String city, String phone, String customerType, String customerStatus, String inDefault, Date regDate) {
         StringBuilder sb = new StringBuilder();
+        customerNumber = customerNumber.replaceAll("\\s+", "");
         // 1=1 is ignored by sql. it allows for ease of adding conditions to the statement (AND)
         sb.append("SELECT * from customer WHERE 1=1 ");
 
@@ -152,22 +164,22 @@ public class Controller {
             sb.append("AND account_no = ").append(Integer.parseInt(customerNumber));
         } else {
             if (!cFirstName.isEmpty()) {
-                sb.append(" AND firstname = '").append(cFirstName).append("'");
+                sb.append(" AND firstname LIKE '%").append(cFirstName).append("%'");
             }
             if (!cLastName.isEmpty()) {
-                sb.append(" AND lastname = '").append(cLastName).append("'");
+                sb.append(" AND lastname LIKE '%").append(cLastName).append("%'");
             }
             if (!accountHName.isEmpty()) {
-                sb.append(" AND account_holder_name = '").append(accountHName).append("'");
+                sb.append(" AND account_holder_name LIKE '%").append(accountHName).append("%'");
             }
             if (!streetName.isEmpty()) {
-                sb.append(" AND street_name = '").append(streetName).append("'");
+                sb.append(" AND street_name LIKE '%").append(streetName).append("%'");
             }
             if (!postCode.isEmpty()) {
                 sb.append(" AND postcode = '").append(postCode).append("'");
             }
             if (!city.isEmpty()) {
-                sb.append(" AND city = '").append(city).append("'");
+                sb.append(" AND city LIKE '%").append(city).append("%'");
             }
             if (!phone.isEmpty()) {
                 sb.append(" AND phone = '").append(phone).append("'");
@@ -182,8 +194,10 @@ public class Controller {
                 sb.append(" AND in_default = ").append(inDefault.equals("True"));
             }
             //probably doesnt work atm
-            if (!regDate.equals("dd-MMM-yyyy")) {
-                sb.append(" AND registration_date = '").append(regDate).append("'");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            if (regDate != null) {
+                String regdate = sdf.format(regDate);
+                sb.append(" AND DATE(registration_date) = '").append(regdate).append("'");
             }
         }
         System.out.println(sb.toString());
@@ -218,10 +232,10 @@ public class Controller {
             sb.append("AND account_no = ").append(Integer.parseInt(userNumber));
         } else {
             if (!firstName.isEmpty()) {
-                sb.append(" AND firstname = '").append(firstName).append("'");
+                sb.append(" AND firstname LIKE '%").append(firstName).append("%'");
             }
             if (!lastName.isEmpty()) {
-                sb.append(" AND lastname = '").append(lastName).append("'");
+                sb.append(" AND lastname LIKE '%").append(lastName).append("%'");
             }
             if (!role.equals("Any")) {
                 int role_id = getRoleID(role);
@@ -271,14 +285,20 @@ public class Controller {
             case "Copy room":
                 departmentCode = "CR";
                 break; // optional
-            case "Development area":
+            case "Dark room":
                 departmentCode = "DR";
+                break; // optional
+            case "Development area":
+                departmentCode = "DA";
+                break; // optional
+            case "Printing room":
+                departmentCode = "PR";
                 break; // optional
             case "Finshing room":
                 departmentCode = "FR";
                 break; // optional
             case "Packaging department":
-                departmentCode = "PR";
+                departmentCode = "PD";
                 break; // optional
         }
         //gets the data from the SQL database  
@@ -293,14 +313,33 @@ public class Controller {
     }
 
     // A loop that allows for 100 different shelf slots
-    public String[] getShelfSlots() {
-        String[] shelfSlots = new String[100];
+    public String[] getShelfSlots(String department) {
+        List<String> shelfSlots = new ArrayList<>();
 
         for (int i = 0; i < 100; i++) {
-            shelfSlots[i] = String.valueOf(i + 1);
+            shelfSlots.add(String.valueOf(i + 1));
         }
 
-        return shelfSlots;
+        List<String> takenSlots = new ArrayList<>();
+
+        String sql = "SELECT shelf_slot FROM task WHERE Department_department_code = '" + department + "';";
+
+        try (ResultSet rs = database.read(sql, conn)) {
+            while (rs.next()) {
+                takenSlots.add(rs.getString("shelf_slot"));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        for (String takenSlot : takenSlots) {
+            shelfSlots.remove(takenSlot);
+        }
+
+        String[] slotsArr = new String[shelfSlots.size()];
+        slotsArr = shelfSlots.toArray(slotsArr);
+
+        return slotsArr;
     }
 
     public int numStandardJobs() {
@@ -317,16 +356,37 @@ public class Controller {
 
     public List<StandardJob> getStandardJobs() {
         List<StandardJob> stdJobs = new ArrayList<>();
-        String sql = "select * from standardjob";
+        List<Task> tasks = new ArrayList<>();
+        String sql = "select * from standardjobs";
 
         //close resultset after use
         try (ResultSet result = database.read(sql, conn)) {
+            result.next();
+            String stdJobCode = result.getString("code");
+            String jobDescription = result.getString("job_description");
+            double price = result.getDouble("total_price");
+            int durationMin = result.getInt("total_duration");
+            tasks.add(new Task(result.getInt("task_id"), result.getString("description"), result.getInt("duration_min"), result.getString("Department_department_code") + result.getString("shelf_slot"), result.getDouble("price")));
+
             while (result.next()) {
-                stdJobs.add(new StandardJob(result.getString("code"), result.getString("job_description"), result.getDouble("price"), result.getInt("duration_min")));
+                if (stdJobCode.equals(result.getString("code"))) {
+                    tasks.add(new Task(result.getInt("task_id"), result.getString("description"), result.getInt("duration_min"), result.getString("Department_department_code") + result.getString("shelf_slot"), result.getDouble("price")));
+                } else {
+                    stdJobs.add(new StandardJob(stdJobCode, jobDescription, price, durationMin, tasks));
+                    stdJobCode = result.getString("code");
+                    jobDescription = result.getString("job_description");
+                    durationMin = result.getInt("duration_min");
+                    price = result.getDouble("total_price");
+                    tasks = new ArrayList<>();
+                    tasks.add(new Task(result.getInt("task_id"), result.getString("description"), result.getInt("duration_min"), result.getString("Department_department_code") + result.getString("shelf_slot"), result.getDouble("price")));
+                }
             }
+            stdJobs.add(new StandardJob(stdJobCode, jobDescription, price, durationMin, tasks));
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+
         return stdJobs;
     }
 
@@ -373,42 +433,17 @@ public class Controller {
         return false;
     }
 
-    public boolean acceptJob(String customerId, List<Material> materials, List<StandardJob> stdJobs, double total, UserDetails user, String specialInstructions, String completionTime, String surchargeText, String priority) {
+    public boolean acceptJob(String customerId, List<Material> materials, List<StandardJob> stdJobs, UserDetails user, String specialInstructions, String completionTime, String surchargeText, String priority) {
         //get user id user account
         int userId = user.getAccount_no();
-        // initialise a statusid variable to store the status id from the results
-        String sql;
-
         int surcharge = Integer.parseInt(surchargeText);
         String[] completiontime = completionTime.split("[\\s]");
-        System.out.println(completiontime[0] + completiontime[2] + "00");
-        if (priority.equals("Stipulated")) {
-            sql = "INSERT INTO completiontime(completion_time, surcharge, Priority_priority_description) VALUES ('" + completiontime[0] + ":" + completiontime[2] + "','" + surcharge + "','" + priority + "');";
-            database.write(sql, conn);
-        }
-
-        sql = "INSERT INTO job(User_account_no, Customer_account_no,Deadline_CompletionTime_completion_time,special_instructions) VALUES ('" + userId + "','" + customerId + "','" + completiontime[0] + ":" + completiontime[2] + "','" + specialInstructions + "');";
-
-        if (database.write(sql, conn) != 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO job_standardjobs(StandardJob_code) VALUES");
-            for (StandardJob j : stdJobs) {
-                sb.append("('").append(j.getCode()).append("'),");
-            }
-            sb.deleteCharAt(sb.length() - 1);
-            database.write(sb.toString(), conn);
-
-            sb = new StringBuilder();
-            sb.append("INSERT INTO material(material_description) VALUES");
-            for (Material j : materials) {
-                sb.append("('").append(j.getMaterialDescription()).append("'),");
-            }
-            sb.deleteCharAt(sb.length() - 1);
-            database.write(sb.toString(), conn);
-
-            System.out.println(sb.toString());
-
-            return createInvoice(total, surcharge);
+        Job job = new Job(materials, stdJobs, customerId, userId, specialInstructions, completiontime, surcharge, priority);
+        double total = applyDiscount(job);
+        int response = JOptionPane.showConfirmDialog(null, "Total : £" + String.format("%.2f", total) + " (including surcharge " + surcharge + "% , VAT (20%) and applicable discount). Is the customer happy to proceed?");
+        if (response == 0) {
+            // initialise a statusid variable to store the status id from the results
+            return job.create(database, conn, total);
         }
         return false;
     }
@@ -417,15 +452,6 @@ public class Controller {
     //after this, just implement lukas' branch code and fix it up
     //do report gen stuff tomorrow
     //move on to games tech cw
-
-    private boolean createInvoice(double totalPayable, int surcharge) {
-        System.out.println("£" + totalPayable);
-        System.out.println(surcharge + " surcharge");
-
-        String sql = "INSERT INTO invoice(total_payable,invoice_location) VALUES (" + totalPayable + ",'invoice copy for customer to take')";
-
-        return database.write(sql, conn) != 0;
-    }
 
     public List<Task> getTasks() {
         List<Task> tasks = new ArrayList<>();
@@ -472,6 +498,275 @@ public class Controller {
         return objects;
     }
 
+	    public boolean createFixedDiscount(int accountNo, float fixedDiscount, int userAccountNo) {
+        FixedDiscount discount = new FixedDiscount(accountNo, fixedDiscount);
+        return discount.create(database, conn, userAccountNo);
+    }
+	
+	    public boolean createFlexibleDiscount(int accountNo, List<DiscountBand> bands, int userAccountNo) {
+        FlexibleDiscount discount = new FlexibleDiscount(accountNo, bands);
+        return discount.create(database, conn, userAccountNo);
+			
+    }
+	
+	    public boolean createVariableDiscount(int accountNo, List<Task> tasks, int userAccountNo) {
+        VariableDiscount discount = new VariableDiscount(accountNo, tasks);
+        return discount.create(database, conn, userAccountNo);
+				
+    }
+	
+	    public double applyDiscount(Job job) {
+        CustomerDetails selectedCustomer = findCustomer(job.getCustomerAccountNo(), null, null, null, null, null, null, null, null, null, null, null).get(0);
+
+        if (selectedCustomer.getIsValued()) {
+            Discount custDiscountPlan = findDiscountPlan(selectedCustomer.getAccountNo());
+										 
+
+            if (custDiscountPlan != null) {
+                return custDiscountPlan.applyDiscount(job);												
+            }
+        }
+        return job.calculateTotal();
+    }
+	
+	    public Discount findDiscountPlan(int accountNo) {
+        String sql = "select * from discountplan where Customer_account_no =" + accountNo;
+        Discount d = null;
+        //close resultset after use
+										  
+        try (ResultSet result = database.read(sql, conn)) {
+            if (result.next()) {
+                switch (result.getString("discount_type")) {
+                    case "Fixed":
+                        d = getFixedDiscount(accountNo);
+                        break;
+                    case "Flexible":
+                        String currentBand = result.getString("current_band");
+                        int input = 0;
+                        if (currentBand == null) {
+                            input = JOptionPane.showConfirmDialog(null, "The current applicable discount band has not been set. Would you like it to be calculated?");
+                            if (input == 0) {
+                                calculateBand(accountNo);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No discount has been applied.");
+                            }
+                        }
+                        if (currentBand != null || input == 0) {
+                            d = getFlexibleDiscount(accountNo);
+                        }
+                        break;
+                    case "Variable":
+                        d = getVariableDiscount(accountNo);
+                        break;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+						
+	 
+
+        return d; 
+    }
+	
+	    private void calculateBand(int accountNo) {
+        String sql = "SELECT SUM(total_payable) AS total FROM invoice INNER JOIN job ON job.job_no = invoice.Job_job_no WHERE job.Customer_account_no = " + accountNo + " AND invoice.date_issued BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE()";
+        double total = 0;
+
+        try (ResultSet result = database.read(sql, conn)) {
+            if (result.next()) {
+                total = result.getDouble("total");
+
+            }
+								 
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        System.out.println(total);
+        sql = "UPDATE discountplan SET current_band = (SELECT band.band_no FROM band WHERE DiscountPlan_Customer_account_no = " + accountNo + " AND ((band.lower_bound < " + total + " AND band.upper_bound > " + total + ") OR (band.lower_bound < " + total + " AND band.upper_bound is NULL) OR (band.lower_bound is NULL AND band.upper_bound > " + total + ")) ORDER BY band.discount_rate DESC LIMIT 1) WHERE discountplan.Customer_account_no = " + accountNo + ";";
+
+        database.write(sql, conn);
+    }
+	
+	    public FixedDiscount getFixedDiscount(int accountNo) {
+        FixedDiscount fd = null;
+        String sql = "select * from fixeddiscount where DiscountPlan_Customer_account_no =" + accountNo;
+        //close resultset after use
+																		  
+
+        try (ResultSet result = database.read(sql, conn)) {
+            if (result.next()) {
+                fd = new FixedDiscount(accountNo, result.getFloat("discount_rate"));	
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return fd;
+    }
+	
+	    public FlexibleDiscount getFlexibleDiscount(int accountNo) {
+        FlexibleDiscount fd = null;
+        String sql = "select * from band INNER JOIN discountplan ON discountplan.Customer_account_no = band.DiscountPlan_Customer_account_no where band.DiscountPlan_Customer_account_no =" + accountNo;
+        List<DiscountBand> bands = new ArrayList<>();
+							  
+        int currentBand = 0;
+        //close resultset after use
+																	
+
+        try (ResultSet result = database.read(sql, conn)) {
+											   
+            while (result.next()) {
+																   
+                currentBand = result.getInt("current_band");
+                bands.add(new DiscountBand(result.getDouble("lower_bound"), result.getDouble("upper_bound"), result.getFloat("discount_rate")));
+                bands.get(bands.size() - 1).setBandNo(result.getInt("band_no"));
+	
+            }
+
+            //these two lines arent executed due to end of result set, and it will no execute in the catch. figure it out, and make sure this discount works. then do stuff from notepad++
+            fd = new FlexibleDiscount(accountNo, bands);
+            fd.setCurrentBand(currentBand);
+            System.out.println("DONE");
+
+        } catch (SQLException ex) {
+            System.out.println(ex);					   
+        }
+
+        return fd;
+    }
+	
+	    public VariableDiscount getVariableDiscount(int accountNo) {
+        VariableDiscount vd = null;
+        String sql = "select * from discountplan_tasks where DiscountPlan_Customer_account_no =" + accountNo;
+        List<Task> tasks = getTasks();
+
+        //close resultset after use
+															  
+        try (ResultSet result = database.read(sql, conn)) {
+            int i = 0;
+            while (result.next()) {
+                tasks.get(i).setDiscountRate(result.getFloat("discount_rate"));
+                i++;
+ 
+            }
+            vd = new VariableDiscount(accountNo, tasks);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return vd;
+ 
+    }
+	
+	    public void sendAlert(int roleID, String message, String alertType) {
+        String SQL = "INSERT IGNORE INTO alert (alert_type,role,message)\n"
+                + "VALUES ('" + alertType + "','" + roleID + "','" + message + "');";
+        database.write(SQL, conn);
+    }
+	
+	    public String getAlerts(int roleID, String alertType) {
+        StringBuilder messages = new StringBuilder();
+        String message = "";
+        switch (alertType) {
+            case "New job alert":
+                message = "The following customers have had jobs accepted: ";
+                messages.append(message).append("\n");
+                break;
+            case "Job deadline alert":
+                message = "The following job are likely to exceed their deadlines: ";
+                messages.append(message).append("\n");
+                break;
+            case "Late Payment":
+                message = "Updates: ";
+                messages.append(message).append("\n");
+                break;
+        }
+
+        String SQL = "SELECT * FROM alert WHERE role = '" + roleID + "' AND alert_type = '" + alertType + "';";
+        int alertCount = 0;
+        try (ResultSet rs = database.read(SQL, conn)) {
+            while (rs.next()) {
+                message = rs.getString("message");
+                messages.append(message).append("\n");
+                alertCount++;
+            }
+        } catch (Exception e) {
+            System.out.println("View Alert error");
+        }
+
+        if (alertCount == 0) {
+            return null;
+        } else {
+            return messages.toString();
+        }
+    }
+	
+	    public void deleteAlerts(int roleID) {
+        String SQL = "DELETE FROM alert WHERE role = '" + roleID + "';";
+        database.write(SQL, conn);
+    }
+	
+	    public void checkDeadlineApproaching() {
+        String sql = "SELECT job_no, deadline.deadline FROM job INNER JOIN status ON status.status_id = job.Status_status_id INNER JOIN deadline ON deadline.date_received = job.Deadline_date_received WHERE status.status_type <> 'Completed'";
+        Map<Integer, Timestamp> jobs = new HashMap<>();
+
+        try (ResultSet rs = database.read(sql, conn)) {
+            while (rs.next()) {
+                jobs.put(rs.getInt("job_no"), rs.getTimestamp("deadline"));
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        for (Map.Entry<Integer, Timestamp> entry : jobs.entrySet()) {
+            System.out.printf("Key : %s and Value: %s %n", entry.getKey(), entry.getValue());
+            int remainingDuration = 0;
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            Calendar c = Calendar.getInstance();
+
+            sql = "SELECT SUM(duration_min) as totaljobtime FROM job_standardjobs_tasks INNER JOIN status ON status.status_id = job_standardjobs_tasks.Status_status_id INNER JOIN task ON task.task_id = job_standardjobs_tasks.Task_task_id WHERE status.status_type <> 'Completed' AND Job_StandardJobs_Job_job_no = " + entry.getKey() + " GROUP BY task.Department_department_code ORDER BY totaljobtime DESC LIMIT 1";
+
+            try (ResultSet rs = database.read(sql, conn)) {
+                if (rs.next()) {
+                    remainingDuration = rs.getInt("totaljobtime");
+                }
+            } catch (Exception e) {
+                System.out.println("View Alert error");
+            }
+
+            c.add(Calendar.MINUTE, remainingDuration);
+            Timestamp estimatedDuration = new Timestamp(c.getTimeInMillis());
+            if (estimatedDuration.after(entry.getValue())) {
+                sendAlert(1, "Job no : " + entry.getKey() + ", Deadline: " + dateFormat.format(entry.getValue()), "Job deadline alert");
+                sendAlert(2, "Job no : " + entry.getKey() + ", Deadline: " + dateFormat.format(entry.getValue()), "Job deadline alert");
+            }
+        }
+
+    }
+	
+	    public int getTotalJobTime(List<StandardJob> stdJobs) {
+        StringBuilder sb = new StringBuilder();
+        int jobTime = 0;
+
+        sb.append("SELECT SUM(duration_min) AS totaljobtime FROM task INNER JOIN standardjob_tasks ON Task.task_id = standardjob_tasks.Task_task_id WHERE StandardJob_code IN(");
+        for (StandardJob s : stdJobs) {
+            sb.append("'").append(s.getCode()).append("',");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(") GROUP BY task.Department_department_code ORDER BY totaljobtime DESC LIMIT 1;");
+
+        try (ResultSet rs = database.read(sb.toString(), conn)) {
+            if (rs.next()) {
+                jobTime = rs.getInt("totaljobtime");
+            }
+        } catch (Exception e) {
+            System.out.println("View Alert error");
+        }
+
+        return jobTime;
+    }
     /*
     
     
@@ -1847,12 +2142,6 @@ public class Controller {
         database.write(SQL, conn);
     }
 
-    public void sendAlert(int roleID, String message, String alertType) {
-        String SQL = "INSERT INTO alert (alert_type,role,message)\n"
-                + "VALUES ('" + alertType + "','" + roleID + "','" + message + "');";
-        database.write(SQL, conn);
-    }
-
     public ArrayList<String> viewAlert(int roleID) {
         ArrayList<String> alerts = new ArrayList<>();
         String message = "";
@@ -1868,11 +2157,6 @@ public class Controller {
             System.out.println("View Alert error");
         }
         return alerts;
-    }
-
-    public void deleteAlerts(int roleID) {
-        String SQL = "DELETE FROM alert WHERE role = '" + roleID + "';";
-        database.write(SQL, conn);
     }
 
     public ArrayList<StandardJob> getAllStandardJobs() {

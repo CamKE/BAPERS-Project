@@ -6,6 +6,7 @@
 package bapers.job;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +18,15 @@ public class StandardJob {
     String jobDescription;
     double price;
     int durationMin;
+    List<Task> tasks;
+
+    public StandardJob(String code, String jobDescription, double price, int durationMin, List<Task> tasks) {
+        this.code = code;
+        this.jobDescription = jobDescription;
+        this.price = price;
+        this.durationMin = durationMin;
+        this.tasks = tasks;
+    }
 
     public StandardJob(String code, String jobDescription, double price, int durationMin) {
         this.code = code;
@@ -25,13 +35,21 @@ public class StandardJob {
         this.durationMin = durationMin;
     }
 
-     public StandardJob(String code, String jobDescription, double price) {
+    public StandardJob(String code, String jobDescription, double price) {
         this.code = code;
         this.jobDescription = jobDescription;
         this.price = price;
-    
+
     }
-    
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     public int getDurationMin() {
         return durationMin;
     }
@@ -71,8 +89,8 @@ public class StandardJob {
         this.status = status;
         this.statusID = statusID;
     }
-    
-       /**
+
+    /**
      * @return the description
      */
     public String getDescription() {
@@ -143,5 +161,3 @@ public class StandardJob {
     }
 
 }
-
-
