@@ -8737,7 +8737,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Reset task/standardjob/job tables
         this.resetJobEnquiryTables();
-
+        controller.checkDeadlineApproaching();
     }//GEN-LAST:event_updateTaskButtonActionPerformed
 
     private void taskEnquiryBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskEnquiryBackButtonActionPerformed
