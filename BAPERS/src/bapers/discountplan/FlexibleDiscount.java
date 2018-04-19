@@ -35,7 +35,7 @@ public class FlexibleDiscount extends Discount {
 
     @Override
     protected void buildQuery() {
-        sb.append("INSERT INTO band VALUES");
+        sb.append("INSERT INTO band(upper_bound, lower_bound, discount_rate, DiscountPlan_Customer_account_no) VALUES");
         for (DiscountBand b : bands) {
             sb.append("(");
             checkBound(b.upperBound);

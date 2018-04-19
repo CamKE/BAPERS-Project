@@ -285,20 +285,14 @@ public class Controller {
             case "Copy room":
                 departmentCode = "CR";
                 break; // optional
-            case "Dark room":
+            case "Development area":
                 departmentCode = "DR";
                 break; // optional
-            case "Development area":
-                departmentCode = "DA";
-                break; // optional
-            case "Printing room":
-                departmentCode = "PR";
-                break; // optional
-            case "Finshing room":
+            case "Finishing room":
                 departmentCode = "FR";
                 break; // optional
             case "Packaging department":
-                departmentCode = "PD";
+                departmentCode = "PR";
                 break; // optional
         }
         //gets the data from the SQL database  
@@ -583,7 +577,7 @@ public class Controller {
             System.out.println(ex);
         }
         System.out.println(total);
-        sql = "UPDATE discountplan SET current_band = (SELECT band.band_no FROM band WHERE DiscountPlan_Customer_account_no = " + accountNo + " AND ((band.lower_bound < " + total + " AND band.upper_bound > " + total + ") OR (band.lower_bound < " + total + " AND band.upper_bound is NULL) OR (band.lower_bound is NULL AND band.upper_bound > " + total + ")) ORDER BY band.discount_rate DESC LIMIT 1) WHERE discountplan.Customer_account_no = " + accountNo + ";";
+        sql = "UPDATE discountplan SET current_band = (SELECT band.band_no FROM band WHERE DiscountPlan_Customer_account_no = " + accountNo + " AND ((band.lower_bound < " + total + " AND band.upper_bound >= " + total + ") OR (band.lower_bound < " + total + " AND band.upper_bound is NULL) OR (band.lower_bound is NULL AND band.upper_bound >= " + total + ")) ORDER BY band.discount_rate DESC LIMIT 1) WHERE discountplan.Customer_account_no = " + accountNo + ";";
 
         database.write(sql, conn);
     }

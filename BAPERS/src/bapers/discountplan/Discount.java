@@ -27,7 +27,7 @@ public abstract class Discount {
     }
 
     public boolean create(DBImpl db, Connection conn, int userAccountNo) {
-        String sql = "INSERT INTO discountplan VALUES(" + accountNo + "," + userAccountNo + ",'" + discountType + "')";
+        String sql = "INSERT INTO discountplan(Customer_account_no, User_account_no, discount_type) VALUES(" + accountNo + "," + userAccountNo + ",'" + discountType + "')";
 
         if (db.write(sql, conn) != 0) {
             buildQuery();

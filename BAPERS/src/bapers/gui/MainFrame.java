@@ -2129,7 +2129,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy room","Dark room","Development area", "Printing room", "Finishing room", "Packaging department"}));
+        departmentNewTaskDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Copy room","Development area","Finishing room", "Packaging department"}));
         departmentNewTaskDD.setMaximumSize(new java.awt.Dimension(250, 42));
         departmentNewTaskDD.setMinimumSize(new java.awt.Dimension(250, 42));
         departmentNewTaskDD.setPreferredSize(new java.awt.Dimension(250, 42));
@@ -9166,7 +9166,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please specify a bound");
         } else if (bandDiscount.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please specify a discount rate for the band");
-        } else if (!Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", uBound) || !Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", lBound)) {
+        } else if ((!uBound.isEmpty() && !Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", uBound)) || (!lBound.isEmpty() && !Pattern.matches("(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$", lBound))) {
             JOptionPane.showMessageDialog(this, "Invalid bounds. Please enter numbers to 2 d.p.");
         } else if ((!uBound.isEmpty() && !lBound.isEmpty()) && (Double.parseDouble(lBound) >= Double.parseDouble(uBound))) {
             JOptionPane.showMessageDialog(this, "Lower bound cannot be greater than or equal to the upper bound.");
@@ -9251,7 +9251,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         if (isCreated) {
             JOptionPane.showMessageDialog(this, "Discount plan created successfully");
-            //
+            showCustomerProfile();
         } else {
             JOptionPane.showMessageDialog(this, "Failed to create discount plan: " + warningMessage);
         }
@@ -9450,16 +9450,10 @@ public class MainFrame extends javax.swing.JFrame {
                 department = "DR";
                 break;
             case 2:
-                department = "DA";
+                department = "FR";
                 break;
             case 3:
                 department = "PR";
-                break;
-            case 4:
-                department = "FR";
-                break;
-            case 5:
-                department = "PD";
                 break;
         }
 
@@ -9568,9 +9562,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_searchInvoiceByJobNumberjTextFieldKeyReleased
 
     private void assignDiscountPlanjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignDiscountPlanjButtonActionPerformed
-        // TODO add your handling code here:
-        card1.show(cardPanel1, "DiscountPlan");
-        card2.show(cardPanel2, "homePageR");
+        // TODO add your handling code here: 
+        int customerId = selectedCustomer.getAccountNo();
+        card1.show(cardPanel1, "applyDiscount");
+        pageLabel.setText("Apply discount page");
+        customerLabel.setText("Customer ID: " + customerId);
     }//GEN-LAST:event_assignDiscountPlanjButtonActionPerformed
 
     private void updateAccountStatusjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAccountStatusjButtonActionPerformed
@@ -9796,6 +9792,11 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        showCustomerProfile();
+    }//GEN-LAST:event_selectCustomerjButtonActionPerformed
+
+    private void showCustomerProfile() {
         if (customerDiscountjTextField.getText().equals("None") && customerTypejTextField.getText().equals("Valued")) {
             assignDiscountPlanjButton.setVisible(true);
         } else {
@@ -9803,8 +9804,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
         card1.show(cardPanel1, "ViewCustomerDetail");
         pageLabel.setText("Customer: " + selectedCustomer.getAccountHolderName());
-    }//GEN-LAST:event_selectCustomerjButtonActionPerformed
-
+    }
     private void selectInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButtonActionPerformed
         // TODO add your handling code here:
         // updates the tables for selecting invoices
