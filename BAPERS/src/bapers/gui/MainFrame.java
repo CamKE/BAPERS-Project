@@ -76,8 +76,9 @@ import javax.swing.table.TableRowSorter;
  * @author CameronE
  */
 public class MainFrame extends javax.swing.JFrame {
+
     Timer timer;
-    
+
     private final CardLayout card1;
     private final CardLayout card2;
     private final CardLayout card3;
@@ -113,11 +114,11 @@ public class MainFrame extends javax.swing.JFrame {
     DefaultTableModel jobModelTable;
     DefaultTableModel standardJobModelTable;
     DefaultTableModel taskModelTable;
-    
+
     // invoice model for table
     DefaultTableModel customerInvoiceModelTable;
     DefaultTableModel invoiceModelTable;
-    
+
     // customer model for table
     DefaultTableModel defaultCustomerModelTable;
     DefaultTableModel customerModelTable;
@@ -170,7 +171,7 @@ public class MainFrame extends javax.swing.JFrame {
     public final void initAuto() {
         // checks to see if config data exist
         final boolean countAutoConfigData = controller.checkAutoBackupConfigExist();
-        
+
         if (countAutoConfigData != false) {
             timer = new Timer();
             this.configData = controller.getAutoBackupConfigData();
@@ -187,18 +188,19 @@ public class MainFrame extends javax.swing.JFrame {
             targetDate.set(Calendar.MONTH, month);
             targetDate.set(Calendar.YEAR, year);
             //System.out.println("test month: " + targetDate.get(Calendar.MONTH));
-            
+
             Automatic auto;
             switch (configData.getBackupMode()) {
-                case "auto" : 
+                case "auto":
                     auto = new AutomaticBackup(Calendar.getInstance(), targetDate, configData, this, timer);
                     auto.run();
                     break;
-                case "reminder" :
+                case "reminder":
                     auto = new AutomaticReminder(Calendar.getInstance(), targetDate, configData, this, timer);
                     auto.run();
                     break;
-                default : break;
+                default:
+                    break;
             }
         }
     }
@@ -8242,36 +8244,39 @@ public class MainFrame extends javax.swing.JFrame {
         CustomerDetails refreshedCustomerDetailList = controller.getSpecificCustomer(selectedCustomer);
         if (refreshedCustomerDetailList != null) {
             customerAccHolderNamejTextField.setText(refreshedCustomerDetailList.getAccountHolderName());
-            final String fullName = refreshedCustomerDetailList.getPrefix() + " " 
-                    + refreshedCustomerDetailList.getFirstName() + " " 
+            final String fullName = refreshedCustomerDetailList.getPrefix() + " "
+                    + refreshedCustomerDetailList.getFirstName() + " "
                     + refreshedCustomerDetailList.getLastName();
             customerFullNamejTextField.setText(fullName);
             customerNumberjTextField.setText(refreshedCustomerDetailList.getPhoneNumber());
             customerRegistationDatejTextField.setText(refreshedCustomerDetailList.getRegDate().toString());
 
-            if (refreshedCustomerDetailList.getIsSuspended() == true)
+            if (refreshedCustomerDetailList.getIsSuspended() == true) {
                 customerStatusjTextField.setText("Suspended");
-            else 
+            } else {
                 customerStatusjTextField.setText("Not Suspended");
+            }
 
-            if (refreshedCustomerDetailList.getIsValued() == true)
+            if (refreshedCustomerDetailList.getIsValued() == true) {
                 customerTypejTextField.setText("Valued");
-            else
+            } else {
                 customerTypejTextField.setText("Standard");
+            }
 
-            if (refreshedCustomerDetailList.getInDefault() == true)
+            if (refreshedCustomerDetailList.getInDefault() == true) {
                 cutomerInDefaultjTextField.setText("true");
-            else
+            } else {
                 cutomerInDefaultjTextField.setText("false");
+            }
 
             final boolean hasDiscount = controller.checkCustomerHasDiscountPlan(refreshedCustomerDetailList);
             if (hasDiscount) {
                 final String discountType = controller.getCustomerDiscountType(refreshedCustomerDetailList);
-                customerDiscountjTextField.setText(discountType);    
+                customerDiscountjTextField.setText(discountType);
             } else {
                 customerDiscountjTextField.setText("None");
             }
-            
+
             customerStreetNamejTextField.setText(refreshedCustomerDetailList.getStreetName());
             customerPostcodejTextField.setText(refreshedCustomerDetailList.getPostCode());
             customerCityjTextField.setText(refreshedCustomerDetailList.getCity());
@@ -8290,7 +8295,7 @@ public class MainFrame extends javax.swing.JFrame {
             currentAutoBackupFrequencyDatajTextField.setText("None");
             currentAutoBackupLocationDatajTextField.setText("None");
         }
-        
+
         switch (backupModejComboBox.getSelectedItem().toString()) {
             case "Manual":
                 backupFrequencyjComboBox.setVisible(false);
@@ -8319,7 +8324,7 @@ public class MainFrame extends javax.swing.JFrame {
             default:
                 break;
         }
-        
+
         card1.show(cardPanel1, "AutoBackupConfig");
         pageLabel.setText("Backup settings page");
     }//GEN-LAST:event_backupSettingsPageButtonActionPerformed
@@ -8329,7 +8334,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         customerModelTable = (DefaultTableModel) customersjTable.getModel();
         customerModelTable.setRowCount(0);
-        
+
         final CustomerDetails[] customerList = controller.getAllCustomers();
 
         Object rowData[] = new Object[4];
@@ -9486,8 +9491,9 @@ public class MainFrame extends javax.swing.JFrame {
 
             // gets all the row information from the selected invoice in the table
             // and places it in the array
-            for (int i = 0; i < columnCount; ++i)
+            for (int i = 0; i < columnCount; ++i) {
                 obj[i] = invoicejTable1.getValueAt(row, i);
+            }
 
             // variables for invoice
             final int invoiceNo = Integer.parseInt(obj[0].toString());
@@ -9504,7 +9510,7 @@ public class MainFrame extends javax.swing.JFrame {
             invoiceListModel.addElement("Job number: " + invoice.getJobJobNo());
             invoicejList.setModel(invoiceListModel); // sets the model from the t typed model object
             TotalLatePayjTextField.setText("£ " + Double.toString(invoice.getTotalPayable()));
-            
+
             // removes the selected invoice from the invoice table.
             invoiceModelTable.removeRow(invoicejTable1.getSelectedRow());
 
@@ -9520,7 +9526,7 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoiceByInvoiceNojTextField.setText("");
         searchInvoiceByJobNumberjTextField.setText("");
         invoiceModelTable.setRowCount(0);
-        
+
         card1.show(cardPanel1, "acceptPayment");
         pageLabel.setText("Accept payment page");
     }//GEN-LAST:event_cancelInvoiceSeletionjButton1ActionPerformed
@@ -9574,19 +9580,19 @@ public class MainFrame extends javax.swing.JFrame {
         String[] accountDefaultOptions = {"true", "false"};
         JComboBox accountStatusOptionsJComboBox = new JComboBox(accountStatusOptions);
         JComboBox accountDefaultOptionsJComboBox = new JComboBox(accountDefaultOptions);
-        
+
         JPanel panel = new JPanel(new FlowLayout());
-        
+
         JButton applyButton = new JButton("Apply");
         JButton cancelAccountStatusUpdateButton = new JButton("Cancel");
-        
+
         panel.add(new JLabel("Status Options:"));
         panel.add(accountStatusOptionsJComboBox);
         panel.add(new JLabel("Default Options:"));
         panel.add(accountDefaultOptionsJComboBox);
         panel.add(applyButton);
         panel.add(cancelAccountStatusUpdateButton);
-        
+
         JDialog dialog = new JDialog(this, "Update account status");
         dialog.getContentPane().add(panel, "Center");
         dialog.pack();
@@ -9602,24 +9608,26 @@ public class MainFrame extends javax.swing.JFrame {
 
             int statusResult = 1;
             int defaultResult = 1;
-            switch(selectedStatusOption) {
-                case "Suspended" :
-                statusResult = 1;
-                break;
-                case "Not Suspended" :
-                statusResult = 0;
-                break;
-                default : break;
+            switch (selectedStatusOption) {
+                case "Suspended":
+                    statusResult = 1;
+                    break;
+                case "Not Suspended":
+                    statusResult = 0;
+                    break;
+                default:
+                    break;
             }
 
-            switch(selectedDefaultOption) {
-                case "true" :
-                defaultResult = 1;
-                break;
-                case "false" :
-                defaultResult = 0;
-                break;
-                default : break;
+            switch (selectedDefaultOption) {
+                case "true":
+                    defaultResult = 1;
+                    break;
+                case "false":
+                    defaultResult = 0;
+                    break;
+                default:
+                    break;
             }
 
             controller.updateCustomerStatus(selectedCustomer, statusResult, defaultResult);
@@ -9641,11 +9649,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void deleteAcccountjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAcccountjButtonActionPerformed
         // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(
-            this,
-            "Do you want to continue?",
-            "Confirm",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE
+                this,
+                "Do you want to continue?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
         );
 
         if (response == JOptionPane.YES_OPTION) {
@@ -9691,7 +9699,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         final String[] typeOptions = {"Valued", "Standard"};
         JComboBox accountTypeOptionsJComboBox = new JComboBox(typeOptions);
-        
+
         JButton applyButton = new JButton("Apply");
         JButton cancelAccountTypeButton = new JButton("Cancel");
 
@@ -9701,7 +9709,6 @@ public class MainFrame extends javax.swing.JFrame {
         panel.add(applyButton);
         panel.add(cancelAccountTypeButton);
 
-        
         JDialog dialog = new JDialog(this, "Update account type");
         dialog.getContentPane().add(panel);
         dialog.pack();
@@ -9715,16 +9722,17 @@ public class MainFrame extends javax.swing.JFrame {
             final String selectedType = accountTypeOptionsJComboBox.getSelectedItem().toString();
 
             int result;
-            switch(selectedType) {
-                case "Valued" :
-                result = 1;
-                controller.updateCustomerType(selectedCustomer, result);
-                break;
-                case "Standard" :
-                result = 0;
-                controller.updateCustomerType(selectedCustomer, result);
-                break;
-                default : break;
+            switch (selectedType) {
+                case "Valued":
+                    result = 1;
+                    controller.updateCustomerType(selectedCustomer, result);
+                    break;
+                case "Standard":
+                    result = 0;
+                    controller.updateCustomerType(selectedCustomer, result);
+                    break;
+                default:
+                    break;
             }
 
             try {
@@ -9788,7 +9796,11 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        if (customerDiscountjTextField.getText().equals("None") && customerTypejTextField.getText().equals("Valued")) {
+            assignDiscountPlanjButton.setVisible(true);
+        } else {
+            assignDiscountPlanjButton.setVisible(false);
+        }
         card1.show(cardPanel1, "ViewCustomerDetail");
         pageLabel.setText("Customer: " + selectedCustomer.getAccountHolderName());
     }//GEN-LAST:event_selectCustomerjButtonActionPerformed
@@ -9798,7 +9810,7 @@ public class MainFrame extends javax.swing.JFrame {
         // updates the tables for selecting invoices
         invoiceModelTable = (DefaultTableModel) invoicejTable1.getModel(); // grabs the current model
         invoiceModelTable.setRowCount(0);
-        
+
         ArrayList<Invoice> invoicesList;
         try {
             // initialse invoicesList arraylist with data from controller
@@ -9839,7 +9851,6 @@ public class MainFrame extends javax.swing.JFrame {
 //            cardTypejComboBox.setVisible(true);
 //            expiryDatejTextField.setVisible(true);
 //            last4DigitjTextField.setVisible(true);
-
             jPanel2.setVisible(true);
         } else {
             // hides the labels for card payment
@@ -9870,11 +9881,9 @@ public class MainFrame extends javax.swing.JFrame {
             // switch statement used to check if payment card is card or cash based on the paymentTypeComboBox.
             switch (paymentTypeComboBox.getSelectedItem().toString()) {
                 case "Card":
-                    if (
-                        // checks to see if format for the card info is entered correctly
-                        expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
-                        && last4DigitjTextField.getText().matches("[0-9]{4}")
-                    ) {
+                    if ( // checks to see if format for the card info is entered correctly
+                            expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
+                            && last4DigitjTextField.getText().matches("[0-9]{4}")) {
                         // card information
                         final String cardType = cardTypejComboBox.getSelectedItem().toString();
                         final String cardDetailsLast4digits = last4DigitjTextField.getText();
@@ -9883,22 +9892,23 @@ public class MainFrame extends javax.swing.JFrame {
                         final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
 
                         final Payment paymentRecord = new PaymentCard(
-                            paymentNo,
-                            total,
-                            paymentType, 
-                            paymentDate,
-                            invoiceNumber,
-                            card.getCardType(),
-                            card.getLast4Digits(),
-                            card.getExpiryDate()
+                                paymentNo,
+                                total,
+                                paymentType,
+                                paymentDate,
+                                invoiceNumber,
+                                card.getCardType(),
+                                card.getLast4Digits(),
+                                card.getExpiryDate()
                         );
 
                         // records payment informaiton to database.
-                        if (controller.recordPayment(paymentRecord, paymentType, invoice, card)) 
-                            // displays message to inform user that payment for card has not been made.
+                        if (controller.recordPayment(paymentRecord, paymentType, invoice, card)) // displays message to inform user that payment for card has not been made.
+                        {
                             JOptionPane.showMessageDialog(this, "Card payment successful");
-                        else 
+                        } else {
                             JOptionPane.showMessageDialog(this, "Card payment unsuccessful");
+                        }
 
                         // clears the model and the total
                         TotalLatePayjTextField.setText("");
@@ -9910,24 +9920,25 @@ public class MainFrame extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(this, "Incorrect details inputted");
                     }
-                break;
-                
+                    break;
+
                 case "Cash":
                     final Payment paymentRecord = new PaymentCash(
-                        paymentNo,
-                        total,
-                        paymentType, 
-                        paymentDate,
-                        invoiceNumber
+                            paymentNo,
+                            total,
+                            paymentType,
+                            paymentDate,
+                            invoiceNumber
                     );
 
                     // records payment informaiton to database.
-                    if (controller.recordPayment(paymentRecord, paymentType, invoice))
-                        // displays message to inform user that payment for cash has been made.
+                    if (controller.recordPayment(paymentRecord, paymentType, invoice)) // displays message to inform user that payment for cash has been made.
+                    {
                         JOptionPane.showMessageDialog(this, "Cash payment successful");
-                    else 
-                        // displays message to inform user that payment for cash has not been made.
+                    } else // displays message to inform user that payment for cash has not been made.
+                    {
                         JOptionPane.showMessageDialog(this, "Cash payment unsuccessful");
+                    }
 
                     // clears the model and the total
                     TotalLatePayjTextField.setText("");
@@ -9936,13 +9947,13 @@ public class MainFrame extends javax.swing.JFrame {
                     // clears the data for card detials
                     expiryDatejTextField.setText("");
                     last4DigitjTextField.setText("");
-                break;
-                
+                    break;
+
                 default:
                     // displays message to inform user that payment cannot be made due to payment type
                     // not being chosen.
                     JOptionPane.showMessageDialog(this, "No payment type was selected");
-                break;
+                    break;
             }
         } else {
             // displays message to inform user that payment cannot be made.
@@ -9966,31 +9977,31 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (backupModejComboBox.getSelectedItem().toString()) {
             case "Manual":
-            backupFrequencyjComboBox.setVisible(false);
-            backupFrequencyjLabel.setVisible(false);
-            autoBackupLocationjTextField.setVisible(false);
-            backupLocationjLabel.setVisible(false);
-            useCurrentLocationjButton.setVisible(false);
-            selectAutoBackupLocationjButton.setVisible(false);
-            break;
+                backupFrequencyjComboBox.setVisible(false);
+                backupFrequencyjLabel.setVisible(false);
+                autoBackupLocationjTextField.setVisible(false);
+                backupLocationjLabel.setVisible(false);
+                useCurrentLocationjButton.setVisible(false);
+                selectAutoBackupLocationjButton.setVisible(false);
+                break;
             case "Reminder":
-            backupFrequencyjComboBox.setVisible(true);
-            backupFrequencyjLabel.setVisible(true);
-            autoBackupLocationjTextField.setVisible(false);
-            backupLocationjLabel.setVisible(false);
-            useCurrentLocationjButton.setVisible(false);
-            selectAutoBackupLocationjButton.setVisible(false);
-            break;
+                backupFrequencyjComboBox.setVisible(true);
+                backupFrequencyjLabel.setVisible(true);
+                autoBackupLocationjTextField.setVisible(false);
+                backupLocationjLabel.setVisible(false);
+                useCurrentLocationjButton.setVisible(false);
+                selectAutoBackupLocationjButton.setVisible(false);
+                break;
             case "Auto":
-            backupFrequencyjComboBox.setVisible(true);
-            backupFrequencyjLabel.setVisible(true);
-            autoBackupLocationjTextField.setVisible(true);
-            backupLocationjLabel.setVisible(true);
-            useCurrentLocationjButton.setVisible(true);
-            selectAutoBackupLocationjButton.setVisible(true);
-            break;
+                backupFrequencyjComboBox.setVisible(true);
+                backupFrequencyjLabel.setVisible(true);
+                autoBackupLocationjTextField.setVisible(true);
+                backupLocationjLabel.setVisible(true);
+                useCurrentLocationjButton.setVisible(true);
+                selectAutoBackupLocationjButton.setVisible(true);
+                break;
             default:
-            break;
+                break;
         }
     }//GEN-LAST:event_backupModejComboBoxActionPerformed
 
@@ -10022,25 +10033,25 @@ public class MainFrame extends javax.swing.JFrame {
 
         switch (backupModejComboBox.getSelectedItem().toString()) {
             case "Auto":
-            if (!autoBackupLocationjTextField.getText().equals("")) {
-                if (autoBackupLocationjTextField.getText().matches("^(.+)/([^/]+)$")) {
-                    final AutoBackupConfigData config = new AutoBackupConfigData(mode, frequency, location, datePerformed, datePerformed);
-                    if (controller.setAutoBackupConfig(config)) {
-                        JOptionPane.showMessageDialog(this, "You have updated the automatic backup configuration");
-                        timer.cancel();
-                        initAuto();
+                if (!autoBackupLocationjTextField.getText().equals("")) {
+                    if (autoBackupLocationjTextField.getText().matches("^(.+)/([^/]+)$")) {
+                        final AutoBackupConfigData config = new AutoBackupConfigData(mode, frequency, location, datePerformed, datePerformed);
+                        if (controller.setAutoBackupConfig(config)) {
+                            JOptionPane.showMessageDialog(this, "You have updated the automatic backup configuration");
+                            timer.cancel();
+                            initAuto();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Automatic backup configuration has not been updated");
+                        }
+                        returnAfterBackupComplete();
                     } else {
-                        JOptionPane.showMessageDialog(this, "Automatic backup configuration has not been updated");
+                        JOptionPane.showMessageDialog(this, "Inccorrect location");
                     }
-                    returnAfterBackupComplete();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Inccorrect location");
+                    JOptionPane.showMessageDialog(this, "You need to pick a location");
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "You need to pick a location");
-            }   break;
-            case "Reminder":
-            {
+                break;
+            case "Reminder": {
                 location = "none";
                 final AutoBackupConfigData config = new AutoBackupConfigData(mode, frequency, location, datePerformed, datePerformed);
                 if (controller.setAutoBackupConfig(config)) {
@@ -10053,15 +10064,15 @@ public class MainFrame extends javax.swing.JFrame {
                 returnAfterBackupComplete();
                 break;
             }
-            default:
-            {
+            default: {
                 frequency = "none";
                 location = "none";
                 final AutoBackupConfigData config = new AutoBackupConfigData(mode, frequency, location, datePerformed, datePerformed);
-                if (controller.setAutoBackupConfig(config))
-                JOptionPane.showMessageDialog(this, "You have updated the automatic backup configuration");
-                else
-                JOptionPane.showMessageDialog(this, "Automatic backup configuration has not been updated");
+                if (controller.setAutoBackupConfig(config)) {
+                    JOptionPane.showMessageDialog(this, "You have updated the automatic backup configuration");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Automatic backup configuration has not been updated");
+                }
                 returnAfterBackupComplete();
                 break;
             }
@@ -10073,7 +10084,7 @@ public class MainFrame extends javax.swing.JFrame {
         card1.show(cardPanel1, "homePage");
         pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
     }
-    
+
     private void currentAutoBackupFrequencyDatajTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentAutoBackupFrequencyDatajTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_currentAutoBackupFrequencyDatajTextFieldActionPerformed
