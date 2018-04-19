@@ -6963,6 +6963,7 @@ public class MainFrame extends javax.swing.JFrame {
             tblModel.setRowCount(0);
         }
         pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
+        this.deleteAllStandardJobTableInformation();
         this.deleteTaskTableInformation();
         this.deleteTaskEnquiryTableInformation();
         this.deleteStandardJobTaskListTable();
@@ -8993,6 +8994,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void viewTasksInStandardJobButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTasksInStandardJobButtonActionPerformed
         // TODO add your handling code here:
         //Get lists of tasks in that standard job
+        this.deleteStandardJobTaskListTable();
         if (allStandardJobsTable.getSelectedRow() >= 0) {
             String standardJobCode = String.valueOf(allStandardJobsTable.getValueAt(allStandardJobsTable.getSelectedRow(), 0));
             standardJobCodeLabel2.setText(standardJobCode);
