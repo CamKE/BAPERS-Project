@@ -5,6 +5,7 @@
  */
 package bapers;
 
+import bapers.controller.Controller;
 import java.awt.Component;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -23,15 +24,15 @@ public class TimerChecker extends TimerTask {
     private final Calendar targetDate;
     private final Component component;
     final AutoBackupConfigData configData;
+    private Controller controller;
 
-    public TimerChecker(Calendar todaysDate, Calendar targetDate, Component component, AutoBackupConfigData configData) {
+    public TimerChecker(Calendar todaysDate, Calendar targetDate, Component component, AutoBackupConfigData configData, Controller controller) {
         this.todaysDate = todaysDate;
         this.targetDate = targetDate;
         this.component = component;
         this.configData = configData;
+        this.controller = controller;
     }
-
-    
 
     @Override
     public void run() {
@@ -101,7 +102,7 @@ public class TimerChecker extends TimerTask {
         try {
             Runtime runtime = Runtime.getRuntime();
 
-            String currentDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+            String currentDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
             currentDate = currentDate.replace(' ', '_');
             currentDate = currentDate.replace(':', '-');
             final String filename = "BAPERS_" + currentDate + ".sql";
@@ -127,10 +128,12 @@ public class TimerChecker extends TimerTask {
                 break;
             }
 	                
-            if (processComplete == 0)
+            if (processComplete == 0) {
+                controller.recordBackup(currentDate,filename, configData.getBackupLocation());
                 JOptionPane.showMessageDialog(component, "Complete auto backup");
-            else
+            } else {
                 System.out.println("Failed auto backup");
+            }
         } catch (InterruptedException | IOException ex) {
             Logger.getLogger(AutomaticBackup.class.getName()).log(Level.SEVERE, null, ex);
         }

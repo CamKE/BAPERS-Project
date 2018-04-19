@@ -192,11 +192,11 @@ public class MainFrame extends javax.swing.JFrame {
             Automatic auto;
             switch (configData.getBackupMode()) {
                 case "auto":
-                    auto = new AutomaticBackup(Calendar.getInstance(), targetDate, configData, this, timer);
+                    auto = new AutomaticBackup(Calendar.getInstance(), targetDate, configData, this, timer, controller);
                     auto.run();
                     break;
                 case "reminder":
-                    auto = new AutomaticReminder(Calendar.getInstance(), targetDate, configData, this, timer);
+                    auto = new AutomaticReminder(Calendar.getInstance(), targetDate, configData, this, timer, controller);
                     auto.run();
                     break;
                 default:
@@ -6963,6 +6963,13 @@ public class MainFrame extends javax.swing.JFrame {
             tblModel.setRowCount(0);
         }
         pageLabel.setText("Welcome, " + loggedInUser.getRole() + "!");
+        this.deleteTaskTableInformation();
+        this.deleteTaskEnquiryTableInformation();
+        this.deleteStandardJobTaskListTable();
+        this.deleteStandardJobTableInformation();
+        this.deleteReminderLettersTableInformation();
+        this.deleteJobTableInformation();
+        this.deleteJobEnquiryTable();
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
@@ -6996,7 +7003,7 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             try {
                 Runtime runtime = Runtime.getRuntime();
-                String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+                String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
                 date = date.replace(' ', '_');
                 date = date.replace(':', '-');
                 String filename = "BAPERS_" + date + ".sql";
@@ -7004,6 +7011,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 int processComplete = p.waitFor();
                 if (processComplete == 0) {
+                    controller.recordBackup(date,filename,locationChosenField.getText());
                     JOptionPane.showMessageDialog(this, "Backup '" + filename + "' created");
                     locationChosenField.setText(null);
                     logOutButton.doClick();
@@ -8433,7 +8441,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.deleteTaskTableInformation();
-        card1.show(cardPanel1, "taskPage");
+        card1.show(cardPanel1, "taskHomePage");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed

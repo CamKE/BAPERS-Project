@@ -496,6 +496,13 @@ public class Controller {
         FixedDiscount discount = new FixedDiscount(accountNo, fixedDiscount);
         return discount.create(database, conn, userAccountNo);
     }
+            
+    public void recordBackup(String date,String filename,String location)
+    {
+        String sql = "INSERT INTO backup values('"+date+"','"+filename+"','"+location+"');";
+        
+        database.write(sql, conn);
+    }
 	
 	    public boolean createFlexibleDiscount(int accountNo, List<DiscountBand> bands, int userAccountNo) {
         FlexibleDiscount discount = new FlexibleDiscount(accountNo, bands);
@@ -860,7 +867,7 @@ public class Controller {
     // payment code
     public ArrayList<Invoice> getInvoices() throws ParseException {
         // sql select statemnet to get invoice
-        final String sql = "select * from bapers_data.invoice;";
+        final String sql = "select * from bapers_data.invoice where invoice_status = \'Awaiting payment\';";
         
         // putting data into array list
         final ArrayList<Invoice> invoices = new ArrayList<>();

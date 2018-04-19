@@ -5,6 +5,7 @@
  */
 package bapers;
 
+import bapers.controller.Controller;
 import java.awt.Component;
 import java.util.Calendar;
 import java.util.Timer;
@@ -17,9 +18,10 @@ import javax.swing.JOptionPane;
  */
 public class AutomaticReminder extends Automatic{
 
-    public AutomaticReminder(Calendar todaysDate, Calendar targetDate, AutoBackupConfigData configData, Component component, Timer timer) {
-        super(todaysDate, targetDate, configData, component, timer);
+    public AutomaticReminder(Calendar todaysDate, Calendar targetDate, AutoBackupConfigData configData, Component component, Timer timer, Controller controller) {
+        super(todaysDate, targetDate, configData, component, timer, controller);
     }
+    
 
     @Override
     public void run() {
@@ -27,12 +29,12 @@ public class AutomaticReminder extends Automatic{
             case "weekly" :
                 //System.out.println("this is working (week)");
                 setInitTargetNextWeek();
-                timer.schedule(new TimerChecker(todaysDate, targetDate, component, configData), 0, TimeUnit.SECONDS.toMillis(5));
+                timer.schedule(new TimerChecker(todaysDate, targetDate, component, configData, controller), 0, TimeUnit.SECONDS.toMillis(5));
                 break;
             
             case "monthly" :
                 //System.out.println("this is working (month)");
-                timer.schedule(new TimerChecker(todaysDate, targetDate, component, configData), 0, TimeUnit.SECONDS.toMillis(5));
+                timer.schedule(new TimerChecker(todaysDate, targetDate, component, configData, controller), 0, TimeUnit.SECONDS.toMillis(5));
                 break;
             
             default :

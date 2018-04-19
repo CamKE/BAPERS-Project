@@ -5,6 +5,7 @@
  */
 package bapers;
 
+import bapers.controller.Controller;
 import java.awt.Component;
 import java.util.Calendar;
 import java.util.Timer;
@@ -17,20 +18,22 @@ import javax.swing.JOptionPane;
  */
 public class AutomaticBackup extends Automatic {
 
-    public AutomaticBackup(Calendar todaysDate, Calendar targetDate, AutoBackupConfigData configData, Component component, Timer timer) {
-        super(todaysDate, targetDate, configData, component, timer);
+   public AutomaticBackup(Calendar todaysDate, Calendar targetDate, AutoBackupConfigData configData, Component component, Timer timer, Controller controller) {
+        super(todaysDate, targetDate, configData, component, timer, controller);
     }
+
+    
     
     @Override
     public void run() {
         switch(configData.getBackupFrequency()) {
             case "weekly" :
                 setInitTargetNextWeek();
-                timer.schedule(new TimerChecker(todaysDate, targetDate, component, configData), 0, TimeUnit.SECONDS.toMillis(5));
+                timer.schedule(new TimerChecker(todaysDate, targetDate, component, configData, controller), 0, TimeUnit.SECONDS.toMillis(5));
                 break;
             
             case "monthly" :
-                timer.schedule(new TimerChecker(todaysDate, targetDate, component, configData), 0, TimeUnit.SECONDS.toMillis(5));
+                timer.schedule(new TimerChecker(todaysDate, targetDate, component, configData, controller), 0, TimeUnit.SECONDS.toMillis(5));
                 break;
             
             default :

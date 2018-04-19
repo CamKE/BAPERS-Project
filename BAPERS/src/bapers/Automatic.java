@@ -5,6 +5,7 @@
  */
 package bapers;
 
+import bapers.controller.Controller;
 import java.awt.Component;
 import java.util.Calendar;
 import java.util.Timer;
@@ -15,17 +16,19 @@ import java.util.Timer;
  */
 public abstract class Automatic {
     final Calendar todaysDate;
-    Calendar targetDate = null;
-    AutoBackupConfigData configData = null;
+    Calendar targetDate;
+    AutoBackupConfigData configData;
     final Component component;
     final Timer timer;
+    final Controller controller;
 
-    public Automatic(Calendar todaysDate, Calendar targetDate, AutoBackupConfigData configData, Component component, Timer timer) {
+    public Automatic(Calendar todaysDate, Calendar targetDate, AutoBackupConfigData configData, Component component, Timer timer, Controller controller) {
         this.todaysDate = todaysDate;
         this.targetDate = targetDate;
         this.configData = configData;
         this.component = component;
         this.timer = timer;
+        this.controller = controller;
     }
     
     public abstract void run();

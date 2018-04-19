@@ -3216,7 +3216,7 @@
                                   <Component id="materialsjTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="specialInstructionjTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="materialsjScrollPane1" max="32767" attributes="0"/>
-                                  <Component id="stipulatedFields" alignment="0" pref="538" max="32767" attributes="0"/>
+                                  <Component id="stipulatedFields" alignment="0" pref="516" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -4383,7 +4383,7 @@
                               <Component id="cancelInvoiceSeletionjButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="selectSelectedInvoicejButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="178" max="32767" attributes="0"/>
+                          <EmptySpace pref="192" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -8798,7 +8798,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -8884,7 +8884,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="61" max="32767" attributes="0"/>
+                          <EmptySpace pref="62" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -9275,7 +9275,7 @@
                                   <Component id="customerActionjLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="41" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -10019,7 +10019,7 @@
                               <Component id="cancelInvoiceSeletionjButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="selectSelectedInvoicejButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="153" max="32767" attributes="0"/>
+                          <EmptySpace pref="176" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
