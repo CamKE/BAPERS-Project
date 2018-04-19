@@ -7692,17 +7692,17 @@ public class MainFrame extends javax.swing.JFrame {
         int selectedRow = customerResultsTable.getSelectedRow(); // index 0 here
         if (selectedRow != -1) {
 
-            if (!customerResultsTable.getValueAt(selectedRow, 4).equals("Suspended")) {
-                String selectedCustomer = "Account holder name: " + ((String) customerResultsTable.getValueAt(selectedRow, 1)) + ", ID: " + ((int) customerResultsTable.getValueAt(selectedRow, 0));
-                if (previousPage.equals("createReport")) {
-                    createReportPageButton.doClick();
-                    infoField.setText(selectedCustomer);
-                } else {
-                    acceptJobPageButton.doClick();
-                    customerInfoField.setText(selectedCustomer);
-                }
+            String selectedCust = "Account holder name: " + ((String) customerResultsTable.getValueAt(selectedRow, 1)) + ", ID: " + ((int) customerResultsTable.getValueAt(selectedRow, 0));
+            if (previousPage.equals("createReport")) {
+                createReportPageButton.doClick();
+                infoField.setText(selectedCust);
             } else {
-                JOptionPane.showMessageDialog(null, "This customer is suspended. Please choose another customer.");
+                if (!customerResultsTable.getValueAt(selectedRow, 4).equals("Suspended")) {
+                    acceptJobPageButton.doClick();
+                    customerInfoField.setText(selectedCust);
+                } else {
+                    JOptionPane.showMessageDialog(null, "This customer is suspended. Please choose another customer.");
+                }
             }
 
         } else {

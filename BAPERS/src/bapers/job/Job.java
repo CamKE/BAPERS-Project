@@ -6,11 +6,26 @@
 package bapers.job;
 
 import bapers.database.DBImpl;
+import bapers.gui.MainFrame;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -85,9 +100,24 @@ public class Job {
 
             System.out.println(sb.toString());
 
+            jobNo = getJobNumber(db, conn);
+            printReceipt();
             return createInvoice(db, conn, total);
         }
         return false;
+    }
+
+    private String getJobNumber(DBImpl db, Connection conn) {
+        String sql = "SELECT job_no FROM job ORDER BY job_no DESC LIMIT 1";
+
+        try (ResultSet result = db.read(sql, conn)) {
+            if (result.next()) {
+                return result.getString("job_no");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return "0";
     }
 
     public double calculateTotal() {
@@ -101,6 +131,88 @@ public class Job {
         total *= ((surcharge / 100.0) + 1 + VAT);
 
         return total;
+    }
+
+    private void printReceipt() {
+        Date currentDate = new Date();
+        Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+        try {
+            Document document = new Document();
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream("Job no " + jobNo + " Receipt.pdf"));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            document.open();
+            //Title
+            Paragraph title = new Paragraph("Bloomsbury Image Processing Laboratory", boldFont);
+            document.add(title);
+
+            document.add(new Paragraph(Chunk.NEWLINE));
+            String seperator = "--------------------------------------------------------------------------------";
+            Paragraph p1 = new Paragraph(seperator);
+            document.add(p1);
+            /*
+            --------------------------------------------------------------------------------
+                            Job no: 00000018 Receipt (19-04-2018 00:39:19)
+            --------------------------------------------------------------------------------
+                                          Material submitted
+            --------------------------------------------------------------------------------
+            lncljcxnlvjxnv
+            --------------------------------------------------------------------------------
+            Standard Job                                                               Price
+             */
+            Paragraph receiptTitle = new Paragraph("       Job no: " + jobNo + " Receipt (" + dateFormat.format(currentDate) + ")");
+            document.add(receiptTitle);
+
+            document.add(p1);
+
+            Paragraph materialHeader = new Paragraph("                             Material submitted");
+            document.add(materialHeader);
+
+            document.add(p1);
+
+            Paragraph list = new Paragraph();
+
+            StringBuilder sb = new StringBuilder();
+
+            for (Material material : materials) {
+                sb.append(material.getMaterialDescription()).append("\n");
+            }
+
+            list.add(sb.toString());
+            document.add(list);
+
+            list = new Paragraph();
+            sb.setLength(0);
+
+            document.add(p1);
+
+            document.add(new Paragraph("Standard Job                                                               Price"));
+
+            document.add(p1);
+
+            for (StandardJob standardJob : standardJobs) {
+                String desc = "(" + standardJob.getCode() + ") " + standardJob.getJobDescription();
+                int length = (seperator.length() / 2) - desc.length();
+                sb.append(desc);
+                for (int i = length; i > 0; i--) {
+                    sb.append("-");
+                }
+                sb.append("£").append(standardJob.getPrice());
+                sb.append("\n");
+            }
+
+            list.add(sb.toString());
+            document.add(list);
+
+            document.close();
+
+        } catch (DocumentException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private boolean createInvoice(DBImpl db, Connection conn, double total) {
