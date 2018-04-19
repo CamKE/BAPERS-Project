@@ -27,13 +27,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[900, 700]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[900, 700]"/>
-    </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[900, 700]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
@@ -2654,51 +2648,60 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace pref="118" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="470" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="cancelCreationjButton" min="-2" pref="112" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="createCustomerjButton" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                      <Component id="accountHolderNameLabel" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
-                                      <Component id="prefixjLabel" alignment="1" min="-2" pref="85" max="-2" attributes="0"/>
-                                      <Component id="firstNamejLabel" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
-                                      <Component id="phoneNumberjLabel1" alignment="1" min="-2" pref="218" max="-2" attributes="0"/>
-                                      <Component id="postCodejLabel" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
-                                      <Component id="streetNamejLabel" alignment="1" min="-2" pref="163" max="-2" attributes="0"/>
-                                      <Component id="cityjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LastnamejLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="emailLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="emailField" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="phoneNumberjLabel" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                              <Component id="accountHolderNameLabel" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
+                                              <Component id="prefixjLabel" alignment="1" min="-2" pref="85" max="-2" attributes="0"/>
+                                              <Component id="firstNamejLabel" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
+                                              <Component id="phoneNumberjLabel1" alignment="1" min="-2" pref="218" max="-2" attributes="0"/>
+                                              <Component id="postCodejLabel" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
+                                              <Component id="streetNamejLabel" alignment="1" min="-2" pref="163" max="-2" attributes="0"/>
+                                              <Component id="cityjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="LastnamejLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="phoneNumberjLabel" alignment="1" min="-2" pref="192" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="accountHolderNamejTextField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="firstNameField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="surnameField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="phoneNumberField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="postCodeField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="streetNameField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cityField" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="buildingNumberField" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                          <Component id="prefixjComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="accountHolderNamejTextField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="firstNameField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="surnameField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="phoneNumberField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="postCodeField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="streetNameField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cityField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="buildingNumberField" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
-                                  <Component id="prefixjComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="accountHolderNamejTextField" min="-2" max="-2" attributes="0"/>
                           <Component id="accountHolderNameLabel" min="-2" max="-2" attributes="0"/>
@@ -2743,12 +2746,17 @@
                           <Component id="cityField" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="cityjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="emailField" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="emailLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="createCustomerjButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cancelCreationjButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3124,6 +3132,34 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JTextField" name="emailField">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[250, 42]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[250, 42]"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="City" noResource="true"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[250, 42]"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="emailLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="24" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Email:"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="acceptJobPage">
@@ -3180,7 +3216,7 @@
                                   <Component id="materialsjTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="specialInstructionjTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="materialsjScrollPane1" max="32767" attributes="0"/>
-                                  <Component id="stipulatedFields" alignment="0" pref="516" max="32767" attributes="0"/>
+                                  <Component id="stipulatedFields" alignment="0" pref="538" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -4347,7 +4383,7 @@
                               <Component id="cancelInvoiceSeletionjButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="selectSelectedInvoicejButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="192" max="32767" attributes="0"/>
+                          <EmptySpace pref="178" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -8754,9 +8790,6 @@
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[796, 230]"/>
                 </Property>
-                <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[796, 230]"/>
-                </Property>
               </Properties>
 
               <Layout>
@@ -8851,7 +8884,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="62" max="32767" attributes="0"/>
+                          <EmptySpace pref="61" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -8879,33 +8912,21 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="statusjLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Status:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="typejLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Type:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="inDefaultjLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="In Default:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="discountjLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Discount:"/>
                   </Properties>
                 </Component>
@@ -8918,9 +8939,6 @@
                       <Dimension value="[110, 26]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[110, 26]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[110, 26]"/>
                     </Property>
                   </Properties>
@@ -8939,9 +8957,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[110, 26]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[110, 26]"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customerTypejTextField.setEditable(false);"/>
@@ -8956,9 +8971,6 @@
                       <Dimension value="[110, 26]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[110, 26]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[110, 26]"/>
                     </Property>
                   </Properties>
@@ -8977,9 +8989,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[110, 26]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[110, 26]"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customerDiscountjTextField.setEditable(false);"/>
@@ -8987,9 +8996,6 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="registrationDatejLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Registrated on:"/>
                   </Properties>
                 </Component>
@@ -9002,9 +9008,6 @@
                       <Dimension value="[110, 26]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[110, 26]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[110, 26]"/>
                     </Property>
                   </Properties>
@@ -9023,9 +9026,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[110, 26]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[110, 26]"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customerNumberjTextField.setEditable(false);"/>
@@ -9040,9 +9040,6 @@
                       <Dimension value="[110, 26]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[110, 26]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[110, 26]"/>
                     </Property>
                   </Properties>
@@ -9061,9 +9058,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[110, 26]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[110, 26]"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customerFullNamejTextField.setEditable(false);"/>
@@ -9071,25 +9065,16 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="accHolderNamejLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Account Holder Name:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="fullNamejLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Full Name:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="phoneNojLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Phone Number:"/>
                   </Properties>
                 </Component>
@@ -9104,9 +9089,6 @@
                   <Dimension value="[539, 320]"/>
                 </Property>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[539, 320]"/>
-                </Property>
-                <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[539, 320]"/>
                 </Property>
               </Properties>
@@ -9176,9 +9158,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[180, 26]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[180, 26]"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customerStreetNamejTextField.setEditable(false);"/>
@@ -9193,9 +9172,6 @@
                       <Dimension value="[180, 26]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[180, 26]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[180, 26]"/>
                     </Property>
                   </Properties>
@@ -9214,9 +9190,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[180, 26]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[180, 26]"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customerCityjTextField.setEditable(false);"/>
@@ -9233,9 +9206,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[180, 26]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[180, 26]"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customerBuildingNojTextField.setEditable(false);"/>
@@ -9243,33 +9213,21 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="customerInfoStreetNamejLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Street Name"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="customerInfoPostCodejLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Post Code"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="customerInfoCityjLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="City"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="customerInfoBuildingNojLabel">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="13" style="0"/>
-                    </Property>
                     <Property name="text" type="java.lang.String" value="Building No"/>
                   </Properties>
                 </Component>
@@ -9292,9 +9250,6 @@
                   <Dimension value="[239, 320]"/>
                 </Property>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[239, 320]"/>
-                </Property>
-                <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[239, 320]"/>
                 </Property>
               </Properties>
@@ -9370,9 +9325,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[163, 37]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[163, 37]"/>
-                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignDiscountPlanjButtonActionPerformed"/>
@@ -9391,9 +9343,6 @@
                       <Dimension value="[163, 37]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[163, 37]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[163, 37]"/>
                     </Property>
                   </Properties>
@@ -9416,9 +9365,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[163, 37]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[163, 37]"/>
-                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteAcccountjButtonActionPerformed"/>
@@ -9437,9 +9383,6 @@
                       <Dimension value="[163, 37]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[163, 37]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[163, 37]"/>
                     </Property>
                   </Properties>
@@ -9462,9 +9405,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[163, 37]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[163, 37]"/>
-                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateAccountTypejButtonActionPerformed"/>
@@ -9483,9 +9423,6 @@
                       <Dimension value="[163, 37]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[163, 37]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[163, 37]"/>
                     </Property>
                   </Properties>
@@ -9577,9 +9514,6 @@
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[159, 37]"/>
                 </Property>
-                <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[159, 37]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectCustomerjButtonActionPerformed"/>
@@ -9641,9 +9575,6 @@
                   <Dimension value="[900, 700]"/>
                 </Property>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[900, 700]"/>
-                </Property>
-                <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[900, 700]"/>
                 </Property>
               </Properties>
@@ -9836,9 +9767,6 @@
                       <Dimension value="[163, 37]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[163, 37]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[163, 37]"/>
                     </Property>
                   </Properties>
@@ -10044,9 +9972,6 @@
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[900, 700]"/>
                 </Property>
-                <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[900, 700]"/>
-                </Property>
               </Properties>
 
               <Layout>
@@ -10094,7 +10019,7 @@
                               <Component id="cancelInvoiceSeletionjButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="selectSelectedInvoicejButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="176" max="32767" attributes="0"/>
+                          <EmptySpace pref="153" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -10159,9 +10084,6 @@
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[250, 42]"/>
                     </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[250, 42]"/>
-                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchInvoiceByInvoiceNojTextFieldActionPerformed"/>
@@ -10177,9 +10099,6 @@
                       <Dimension value="[250, 42]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[250, 42]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[250, 42]"/>
                     </Property>
                   </Properties>
@@ -10204,9 +10123,6 @@
                       <Dimension value="[124, 29]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[124, 29]"/>
-                    </Property>
-                    <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[124, 29]"/>
                     </Property>
                   </Properties>
@@ -10711,9 +10627,6 @@
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[159, 37]"/>
                 </Property>
-                <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[159, 37]"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allCustomerJobBackjButtonActionPerformed"/>
@@ -10807,9 +10720,6 @@
                   <Dimension value="[159, 37]"/>
                 </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[159, 37]"/>
-                </Property>
-                <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[159, 37]"/>
                 </Property>
               </Properties>

@@ -362,6 +362,8 @@ public class MainFrame extends javax.swing.JFrame {
         accountHolderNamejTextField = new javax.swing.JTextField();
         accountHolderNameLabel = new javax.swing.JLabel();
         phoneNumberjLabel1 = new javax.swing.JLabel();
+        emailField = new javax.swing.JTextField();
+        emailLabel = new javax.swing.JLabel();
         acceptJobPage = new javax.swing.JPanel();
         jobTotalField = new javax.swing.JTextField();
         addMaterialButton = new javax.swing.JButton();
@@ -730,9 +732,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel12.setText("jLabel12");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 700));
         setMinimumSize(new java.awt.Dimension(900, 700));
-        setPreferredSize(new java.awt.Dimension(900, 700));
         setResizable(false);
 
         cardPanel1.setBackground(new java.awt.Color(255, 204, 204));
@@ -2390,47 +2390,63 @@ public class MainFrame extends javax.swing.JFrame {
         phoneNumberjLabel1.setMinimumSize(new java.awt.Dimension(128, 29));
         phoneNumberjLabel1.setPreferredSize(new java.awt.Dimension(128, 29));
 
+        emailField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        emailField.setMaximumSize(new java.awt.Dimension(250, 42));
+        emailField.setMinimumSize(new java.awt.Dimension(250, 42));
+        emailField.setName("City"); // NOI18N
+        emailField.setPreferredSize(new java.awt.Dimension(250, 42));
+
+        emailLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(255, 255, 255));
+        emailLabel.setText("Email:");
+
         javax.swing.GroupLayout createCustomerPageLayout = new javax.swing.GroupLayout(createCustomerPage);
         createCustomerPage.setLayout(createCustomerPageLayout);
         createCustomerPageLayout.setHorizontalGroup(
             createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createCustomerPageLayout.createSequentialGroup()
+            .addGroup(createCustomerPageLayout.createSequentialGroup()
                 .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(createCustomerPageLayout.createSequentialGroup()
-                        .addGap(470, 470, 470)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createCustomerPageLayout.createSequentialGroup()
                         .addComponent(cancelCreationjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(createCustomerjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(createCustomerPageLayout.createSequentialGroup()
-                        .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(accountHolderNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(prefixjLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(firstNamejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(phoneNumberjLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(postCodejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(streetNamejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cityjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(LastnamejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(phoneNumberjLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(accountHolderNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(postCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(streetNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buildingNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(prefixjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(72, 72, 72))
+                        .addComponent(createCustomerjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createCustomerPageLayout.createSequentialGroup()
+                        .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(createCustomerPageLayout.createSequentialGroup()
+                                .addComponent(emailLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(createCustomerPageLayout.createSequentialGroup()
+                                .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(accountHolderNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(prefixjLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(firstNamejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(phoneNumberjLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(postCodejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(streetNamejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cityjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(LastnamejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(phoneNumberjLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(accountHolderNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(surnameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(postCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(streetNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buildingNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(prefixjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(256, 256, 256))))
         );
         createCustomerPageLayout.setVerticalGroup(
             createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(createCustomerPageLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(20, 20, 20)
                 .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(accountHolderNamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(accountHolderNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2466,11 +2482,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cityjLabel))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailLabel))
+                .addGap(23, 23, 23)
                 .addGroup(createCustomerPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createCustomerjButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelCreationjButton))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(70, 70, 70))
         );
 
         accountHolderNamejTextField.getAccessibleContext().setAccessibleName("");
@@ -2701,7 +2721,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(materialsjTextField)
                             .addComponent(specialInstructionjTextField)
                             .addComponent(materialsjScrollPane1)
-                            .addComponent(stipulatedFields, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)))
+                            .addComponent(stipulatedFields, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)))
                     .addGroup(acceptJobPageLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(acceptJobPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -3142,7 +3162,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(searchInvoicejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelInvoiceSeletionjButton)
                     .addComponent(selectSelectedInvoicejButton))
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout searchInvoicePageLayout = new javax.swing.GroupLayout(searchInvoicePage);
@@ -5581,7 +5601,6 @@ public class MainFrame extends javax.swing.JFrame {
         CustomerInfo.setBackground(new java.awt.Color(255, 255, 255));
         CustomerInfo.setMaximumSize(new java.awt.Dimension(796, 230));
         CustomerInfo.setPreferredSize(new java.awt.Dimension(796, 230));
-        CustomerInfo.setSize(new java.awt.Dimension(796, 230));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -5594,68 +5613,52 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        statusjLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         statusjLabel.setText("Status:");
 
-        typejLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         typejLabel.setText("Type:");
 
-        inDefaultjLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         inDefaultjLabel.setText("In Default:");
 
-        discountjLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         discountjLabel.setText("Discount:");
 
         customerStatusjTextField.setMaximumSize(new java.awt.Dimension(110, 26));
         customerStatusjTextField.setMinimumSize(new java.awt.Dimension(110, 26));
         customerStatusjTextField.setPreferredSize(new java.awt.Dimension(110, 26));
-        customerStatusjTextField.setSize(new java.awt.Dimension(110, 26));
 
         customerTypejTextField.setMaximumSize(new java.awt.Dimension(110, 26));
         customerTypejTextField.setMinimumSize(new java.awt.Dimension(110, 26));
         customerTypejTextField.setPreferredSize(new java.awt.Dimension(110, 26));
-        customerTypejTextField.setSize(new java.awt.Dimension(110, 26));
 
         cutomerInDefaultjTextField.setMaximumSize(new java.awt.Dimension(110, 26));
         cutomerInDefaultjTextField.setMinimumSize(new java.awt.Dimension(110, 26));
         cutomerInDefaultjTextField.setPreferredSize(new java.awt.Dimension(110, 26));
-        cutomerInDefaultjTextField.setSize(new java.awt.Dimension(110, 26));
 
         customerDiscountjTextField.setMaximumSize(new java.awt.Dimension(110, 26));
         customerDiscountjTextField.setMinimumSize(new java.awt.Dimension(110, 26));
         customerDiscountjTextField.setPreferredSize(new java.awt.Dimension(110, 26));
-        customerDiscountjTextField.setSize(new java.awt.Dimension(110, 26));
 
-        registrationDatejLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         registrationDatejLabel.setText("Registrated on:");
 
         customerRegistationDatejTextField.setMaximumSize(new java.awt.Dimension(110, 26));
         customerRegistationDatejTextField.setMinimumSize(new java.awt.Dimension(110, 26));
         customerRegistationDatejTextField.setPreferredSize(new java.awt.Dimension(110, 26));
-        customerRegistationDatejTextField.setSize(new java.awt.Dimension(110, 26));
 
         customerNumberjTextField.setMaximumSize(new java.awt.Dimension(110, 26));
         customerNumberjTextField.setMinimumSize(new java.awt.Dimension(110, 26));
         customerNumberjTextField.setPreferredSize(new java.awt.Dimension(110, 26));
-        customerNumberjTextField.setSize(new java.awt.Dimension(110, 26));
 
         customerAccHolderNamejTextField.setMaximumSize(new java.awt.Dimension(110, 26));
         customerAccHolderNamejTextField.setMinimumSize(new java.awt.Dimension(110, 26));
         customerAccHolderNamejTextField.setPreferredSize(new java.awt.Dimension(110, 26));
-        customerAccHolderNamejTextField.setSize(new java.awt.Dimension(110, 26));
 
         customerFullNamejTextField.setMaximumSize(new java.awt.Dimension(110, 26));
         customerFullNamejTextField.setMinimumSize(new java.awt.Dimension(110, 26));
         customerFullNamejTextField.setPreferredSize(new java.awt.Dimension(110, 26));
-        customerFullNamejTextField.setSize(new java.awt.Dimension(110, 26));
 
-        accHolderNamejLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         accHolderNamejLabel.setText("Account Holder Name:");
 
-        fullNamejLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         fullNamejLabel.setText("Full Name:");
 
-        phoneNojLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         phoneNojLabel.setText("Phone Number:");
 
         javax.swing.GroupLayout CustomerInfoLayout = new javax.swing.GroupLayout(CustomerInfo);
@@ -5731,7 +5734,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(CustomerInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(customerDiscountjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(discountjLabel))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(CustomerInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -5750,38 +5753,29 @@ public class MainFrame extends javax.swing.JFrame {
         OtherCustomerInfo.setBackground(new java.awt.Color(255, 255, 255));
         OtherCustomerInfo.setMaximumSize(new java.awt.Dimension(539, 320));
         OtherCustomerInfo.setMinimumSize(new java.awt.Dimension(539, 320));
-        OtherCustomerInfo.setSize(new java.awt.Dimension(539, 320));
 
         customerStreetNamejTextField.setMaximumSize(new java.awt.Dimension(180, 26));
         customerStreetNamejTextField.setMinimumSize(new java.awt.Dimension(180, 26));
         customerStreetNamejTextField.setPreferredSize(new java.awt.Dimension(180, 26));
-        customerStreetNamejTextField.setSize(new java.awt.Dimension(180, 26));
 
         customerPostcodejTextField.setMaximumSize(new java.awt.Dimension(180, 26));
         customerPostcodejTextField.setMinimumSize(new java.awt.Dimension(180, 26));
         customerPostcodejTextField.setPreferredSize(new java.awt.Dimension(180, 26));
-        customerPostcodejTextField.setSize(new java.awt.Dimension(180, 26));
 
         customerCityjTextField.setMaximumSize(new java.awt.Dimension(180, 26));
         customerCityjTextField.setMinimumSize(new java.awt.Dimension(180, 26));
         customerCityjTextField.setPreferredSize(new java.awt.Dimension(180, 26));
-        customerCityjTextField.setSize(new java.awt.Dimension(180, 26));
 
         customerBuildingNojTextField.setMaximumSize(new java.awt.Dimension(180, 26));
         customerBuildingNojTextField.setMinimumSize(new java.awt.Dimension(180, 26));
         customerBuildingNojTextField.setPreferredSize(new java.awt.Dimension(180, 26));
-        customerBuildingNojTextField.setSize(new java.awt.Dimension(180, 26));
 
-        customerInfoStreetNamejLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         customerInfoStreetNamejLabel.setText("Street Name");
 
-        customerInfoPostCodejLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         customerInfoPostCodejLabel.setText("Post Code");
 
-        customerInfoCityjLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         customerInfoCityjLabel.setText("City");
 
-        customerInfoBuildingNojLabel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         customerInfoBuildingNojLabel.setText("Building No");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -5839,7 +5833,6 @@ public class MainFrame extends javax.swing.JFrame {
         CustomerAction.setBackground(new java.awt.Color(255, 255, 255));
         CustomerAction.setMaximumSize(new java.awt.Dimension(239, 320));
         CustomerAction.setMinimumSize(new java.awt.Dimension(239, 320));
-        CustomerAction.setSize(new java.awt.Dimension(239, 320));
 
         customerActionjLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         customerActionjLabel.setText("Actions");
@@ -5849,7 +5842,6 @@ public class MainFrame extends javax.swing.JFrame {
         assignDiscountPlanjButton.setMaximumSize(new java.awt.Dimension(163, 37));
         assignDiscountPlanjButton.setMinimumSize(new java.awt.Dimension(163, 37));
         assignDiscountPlanjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        assignDiscountPlanjButton.setSize(new java.awt.Dimension(163, 37));
         assignDiscountPlanjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignDiscountPlanjButtonActionPerformed(evt);
@@ -5861,7 +5853,6 @@ public class MainFrame extends javax.swing.JFrame {
         updateAccountStatusjButton.setMaximumSize(new java.awt.Dimension(163, 37));
         updateAccountStatusjButton.setMinimumSize(new java.awt.Dimension(163, 37));
         updateAccountStatusjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        updateAccountStatusjButton.setSize(new java.awt.Dimension(163, 37));
         updateAccountStatusjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateAccountStatusjButtonActionPerformed(evt);
@@ -5873,7 +5864,6 @@ public class MainFrame extends javax.swing.JFrame {
         deleteAcccountjButton.setMaximumSize(new java.awt.Dimension(163, 37));
         deleteAcccountjButton.setMinimumSize(new java.awt.Dimension(163, 37));
         deleteAcccountjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        deleteAcccountjButton.setSize(new java.awt.Dimension(163, 37));
         deleteAcccountjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteAcccountjButtonActionPerformed(evt);
@@ -5885,7 +5875,6 @@ public class MainFrame extends javax.swing.JFrame {
         viewAllInvoicesjButton.setMaximumSize(new java.awt.Dimension(163, 37));
         viewAllInvoicesjButton.setMinimumSize(new java.awt.Dimension(163, 37));
         viewAllInvoicesjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        viewAllInvoicesjButton.setSize(new java.awt.Dimension(163, 37));
         viewAllInvoicesjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewAllInvoicesjButtonActionPerformed(evt);
@@ -5897,7 +5886,6 @@ public class MainFrame extends javax.swing.JFrame {
         updateAccountTypejButton.setMaximumSize(new java.awt.Dimension(163, 37));
         updateAccountTypejButton.setMinimumSize(new java.awt.Dimension(163, 37));
         updateAccountTypejButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        updateAccountTypejButton.setSize(new java.awt.Dimension(163, 37));
         updateAccountTypejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateAccountTypejButtonActionPerformed(evt);
@@ -5909,7 +5897,6 @@ public class MainFrame extends javax.swing.JFrame {
         viewAllJobsjButton.setMaximumSize(new java.awt.Dimension(163, 37));
         viewAllJobsjButton.setMinimumSize(new java.awt.Dimension(163, 37));
         viewAllJobsjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        viewAllJobsjButton.setSize(new java.awt.Dimension(163, 37));
         viewAllJobsjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewAllJobsjButtonActionPerformed(evt);
@@ -6006,7 +5993,6 @@ public class MainFrame extends javax.swing.JFrame {
         selectCustomerjButton.setMaximumSize(new java.awt.Dimension(159, 37));
         selectCustomerjButton.setMinimumSize(new java.awt.Dimension(159, 37));
         selectCustomerjButton.setPreferredSize(new java.awt.Dimension(159, 37));
-        selectCustomerjButton.setSize(new java.awt.Dimension(159, 37));
         selectCustomerjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectCustomerjButtonActionPerformed(evt);
@@ -6047,7 +6033,6 @@ public class MainFrame extends javax.swing.JFrame {
         acceptPaymentjPanel.setBackground(new java.awt.Color(61, 96, 146));
         acceptPaymentjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
         acceptPaymentjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
-        acceptPaymentjPanel.setSize(new java.awt.Dimension(900, 700));
 
         selectInvoicejButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         selectInvoicejButton.setText("Select Invoice(s)");
@@ -6090,7 +6075,6 @@ public class MainFrame extends javax.swing.JFrame {
         paymentSubmitjButton.setMaximumSize(new java.awt.Dimension(163, 37));
         paymentSubmitjButton.setMinimumSize(new java.awt.Dimension(163, 37));
         paymentSubmitjButton.setPreferredSize(new java.awt.Dimension(163, 37));
-        paymentSubmitjButton.setSize(new java.awt.Dimension(163, 37));
         paymentSubmitjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paymentSubmitjButtonActionPerformed(evt);
@@ -6249,7 +6233,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoicejPanel1.setBackground(new java.awt.Color(61, 96, 146));
         searchInvoicejPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
         searchInvoicejPanel1.setPreferredSize(new java.awt.Dimension(900, 700));
-        searchInvoicejPanel1.setSize(new java.awt.Dimension(900, 700));
 
         invoicejTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -6280,7 +6263,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoiceByInvoiceNojTextField.setMaximumSize(new java.awt.Dimension(250, 42));
         searchInvoiceByInvoiceNojTextField.setMinimumSize(new java.awt.Dimension(250, 42));
         searchInvoiceByInvoiceNojTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByInvoiceNojTextField.setSize(new java.awt.Dimension(250, 42));
         searchInvoiceByInvoiceNojTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchInvoiceByInvoiceNojTextFieldActionPerformed(evt);
@@ -6295,7 +6277,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoiceByJobNumberjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
         searchInvoiceByJobNumberjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
         searchInvoiceByJobNumberjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByJobNumberjTextField.setSize(new java.awt.Dimension(250, 42));
         searchInvoiceByJobNumberjTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchInvoiceByJobNumberjTextFieldActionPerformed(evt);
@@ -6313,7 +6294,6 @@ public class MainFrame extends javax.swing.JFrame {
         searchInvoiceByInvoiceNojLabel.setMaximumSize(new java.awt.Dimension(124, 29));
         searchInvoiceByInvoiceNojLabel.setMinimumSize(new java.awt.Dimension(124, 29));
         searchInvoiceByInvoiceNojLabel.setPreferredSize(new java.awt.Dimension(124, 29));
-        searchInvoiceByInvoiceNojLabel.setSize(new java.awt.Dimension(124, 29));
 
         searchInvoiceByJobNumberjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         searchInvoiceByJobNumberjLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -6358,7 +6338,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelInvoiceSeletionjButton1)
                     .addComponent(selectSelectedInvoicejButton1))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout searchInvoiceLayout = new javax.swing.GroupLayout(searchInvoice);
@@ -6620,7 +6600,6 @@ public class MainFrame extends javax.swing.JFrame {
         allCustomerJobBackjButton.setMaximumSize(new java.awt.Dimension(159, 37));
         allCustomerJobBackjButton.setMinimumSize(new java.awt.Dimension(159, 37));
         allCustomerJobBackjButton.setPreferredSize(new java.awt.Dimension(159, 37));
-        allCustomerJobBackjButton.setSize(new java.awt.Dimension(159, 37));
         allCustomerJobBackjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allCustomerJobBackjButtonActionPerformed(evt);
@@ -6671,7 +6650,6 @@ public class MainFrame extends javax.swing.JFrame {
         allCustomerInvoiceBackjButton.setMaximumSize(new java.awt.Dimension(159, 37));
         allCustomerInvoiceBackjButton.setMinimumSize(new java.awt.Dimension(159, 37));
         allCustomerInvoiceBackjButton.setPreferredSize(new java.awt.Dimension(159, 37));
-        allCustomerInvoiceBackjButton.setSize(new java.awt.Dimension(159, 37));
         allCustomerInvoiceBackjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 allCustomerInvoiceBackjButtonActionPerformed(evt);
@@ -7324,12 +7302,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void createCustomerjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCustomerjButtonActionPerformed
         // TODO add your handling code here:
         //NEED TO VALIDATE INPUT SIZE, AND POST CODE, PHONE NUMBER, ETC.  SEE CUSTOMER SEARCH FOR REGEX
-//        for (Component c : createCustomerPage.getComponents()) {
-//            if (emptyCheck(c))
-//            {
-//                break;
-//            }
-//        }
 
         // TODO add your handling code here:
         String cFirstName = firstNameField.getText();
@@ -7338,6 +7310,7 @@ public class MainFrame extends javax.swing.JFrame {
         String streetName = streetNameField.getText();
         String postCode = postCodeField.getText();
         String city = cityField.getText();
+        String email = emailField.getText();
         String phone = phoneNumberField.getText();
         int prefixSelected = prefixjComboBox.getSelectedIndex();
         String buildingNo = buildingNumberField.getText();
@@ -7361,8 +7334,10 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a name prefix");
         } else if (!Pattern.matches("(\\d){0,4}$", buildingNo)) {
             JOptionPane.showMessageDialog(this, "Please enter a valid building number");
+        } else if (!Pattern.matches("[^\\s]*@[a-z0-9.-]*", email)) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid email");
         } else {
-            if (controller.createCustomerAccount(cFirstName, cLastName, accountHName, streetName, postCode, city, phone, (String) prefixjComboBox.getSelectedItem(), buildingNo)) {
+            if (controller.createCustomerAccount(cFirstName, cLastName, accountHName, streetName, postCode, city, phone, (String) prefixjComboBox.getSelectedItem(), buildingNo, email)) {
                 CustomerDetails customer = controller.getLastCustomer();
                 customerInfoField.setText("Contact name: " + customer.getAccountHolderName() + ", ID: " + customer.getAccountNo());
                 acceptJobPageButton.doClick();
@@ -10602,6 +10577,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> durationNewTaskMinsDD;
     private javax.swing.JButton editButton;
     private javax.swing.JPanel editTaskPage;
+    private javax.swing.JTextField emailField;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel expiryDatejLabel;
     private javax.swing.JTextField expiryDatejTextField;
     private javax.swing.JTextField fileChosenField;
