@@ -1986,7 +1986,7 @@ public class Controller {
             case "Development Area":
                 departmentCode = "DR";
                 break; // optional
-            case "Packaging Department":
+            case "Packaging Departments":
                 departmentCode = "PR";
                 break; // optional
             case "Finishing Room":

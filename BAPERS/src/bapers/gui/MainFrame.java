@@ -7203,7 +7203,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         //Create technician
         if (role.equals("Technician") && valid) {
-            Object[] possibilities = {"Copy Room", "Development area", "Packing Departments", "Finishing Room"};
+            Object[] possibilities = {"Copy Room", "Development Area", "Packing Departments", "Finishing Room"};
             String technicianRoom = (String) JOptionPane.showInputDialog(null, "Select room", "Select Room", JOptionPane.PLAIN_MESSAGE, null, possibilities, "Copy Room");
 
             if (controller.createUser(firstName, surname, password, roleID, username, securityAnswer)) {
