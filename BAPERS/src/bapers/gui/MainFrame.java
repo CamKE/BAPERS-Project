@@ -33,6 +33,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -112,10 +113,12 @@ public class MainFrame extends javax.swing.JFrame {
     DefaultTableModel jobModelTable;
     DefaultTableModel standardJobModelTable;
     DefaultTableModel taskModelTable;
-    DefaultTableModel customerInvoiceModelTable;
     
-    // other model for table
+    // invoice model for table
+    DefaultTableModel customerInvoiceModelTable;
     DefaultTableModel invoiceModelTable;
+    
+    // customer model for table
     DefaultTableModel defaultCustomerModelTable;
     DefaultTableModel customerModelTable;
 
@@ -158,6 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
         // hide the button on the welcome bar
         backButton.setVisible(false);
         homeButton.setVisible(false);
+        timer = new Timer();
         initAuto();
 
         timerj.schedule(new TimeUpdate(controller, this), 0, TimeUnit.SECONDS.toMillis(5));
@@ -618,16 +622,6 @@ public class MainFrame extends javax.swing.JFrame {
         variableDiscountInstructionLabel = new javax.swing.JLabel();
         createDiscountButton = new javax.swing.JButton();
         customerLabel = new javax.swing.JLabel();
-        searchInvoice = new javax.swing.JPanel();
-        searchInvoicejPanel1 = new javax.swing.JPanel();
-        allInvoicejScrollPane = new javax.swing.JScrollPane();
-        invoicejTable1 = new javax.swing.JTable();
-        selectSelectedInvoicejButton1 = new javax.swing.JButton();
-        cancelInvoiceSeletionjButton1 = new javax.swing.JButton();
-        searchInvoiceByInvoiceNojTextField = new javax.swing.JTextField();
-        searchInvoiceByJobNumberjTextField = new javax.swing.JTextField();
-        searchInvoiceByInvoiceNojLabel = new javax.swing.JLabel();
-        searchInvoiceByJobNumberjLabel = new javax.swing.JLabel();
         ViewCustomerDetail = new javax.swing.JPanel();
         CustomerInfo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -686,6 +680,16 @@ public class MainFrame extends javax.swing.JFrame {
         cardTypejLabel = new javax.swing.JLabel();
         expiryDatejTextField = new javax.swing.JTextField();
         expiryDatejLabel = new javax.swing.JLabel();
+        searchInvoice = new javax.swing.JPanel();
+        searchInvoicejPanel1 = new javax.swing.JPanel();
+        allInvoicejScrollPane = new javax.swing.JScrollPane();
+        invoicejTable1 = new javax.swing.JTable();
+        selectSelectedInvoicejButton1 = new javax.swing.JButton();
+        cancelInvoiceSeletionjButton1 = new javax.swing.JButton();
+        searchInvoiceByInvoiceNojTextField = new javax.swing.JTextField();
+        searchInvoiceByJobNumberjTextField = new javax.swing.JTextField();
+        searchInvoiceByInvoiceNojLabel = new javax.swing.JLabel();
+        searchInvoiceByJobNumberjLabel = new javax.swing.JLabel();
         AutoBackupConfigjPanel = new javax.swing.JPanel();
         currentAutoBackupModeDatajTextField = new javax.swing.JTextField();
         backupLocationjLabel = new javax.swing.JLabel();
@@ -5570,148 +5574,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(applyDiscountPage, "applyDiscount");
 
-        searchInvoice.setMaximumSize(new java.awt.Dimension(900, 700));
-        searchInvoice.setMinimumSize(new java.awt.Dimension(900, 700));
-        searchInvoice.setSize(new java.awt.Dimension(900, 700));
-
-        searchInvoicejPanel1.setBackground(new java.awt.Color(61, 96, 146));
-        searchInvoicejPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
-        searchInvoicejPanel1.setPreferredSize(new java.awt.Dimension(900, 700));
-        searchInvoicejPanel1.setSize(new java.awt.Dimension(900, 700));
-
-        invoicejTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Invoice No.", "Job No.", "Total Payable", "Date Issued", "Invoice Status", "Invoice Location"
-            }
-        ));
-        allInvoicejScrollPane.setViewportView(invoicejTable1);
-
-        selectSelectedInvoicejButton1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        selectSelectedInvoicejButton1.setText("Select");
-        selectSelectedInvoicejButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectSelectedInvoicejButton1ActionPerformed(evt);
-            }
-        });
-
-        cancelInvoiceSeletionjButton1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        cancelInvoiceSeletionjButton1.setText("Cancel");
-        cancelInvoiceSeletionjButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelInvoiceSeletionjButton1ActionPerformed(evt);
-            }
-        });
-
-        searchInvoiceByInvoiceNojTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByInvoiceNojTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByInvoiceNojTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByInvoiceNojTextField.setSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByInvoiceNojTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchInvoiceByInvoiceNojTextFieldActionPerformed(evt);
-            }
-        });
-        searchInvoiceByInvoiceNojTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchInvoiceByInvoiceNojTextFieldKeyReleased(evt);
-            }
-        });
-
-        searchInvoiceByJobNumberjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByJobNumberjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByJobNumberjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByJobNumberjTextField.setSize(new java.awt.Dimension(250, 42));
-        searchInvoiceByJobNumberjTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchInvoiceByJobNumberjTextFieldActionPerformed(evt);
-            }
-        });
-        searchInvoiceByJobNumberjTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchInvoiceByJobNumberjTextFieldKeyReleased(evt);
-            }
-        });
-
-        searchInvoiceByInvoiceNojLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        searchInvoiceByInvoiceNojLabel.setForeground(new java.awt.Color(255, 255, 255));
-        searchInvoiceByInvoiceNojLabel.setText("Invoice Number:");
-        searchInvoiceByInvoiceNojLabel.setMaximumSize(new java.awt.Dimension(124, 29));
-        searchInvoiceByInvoiceNojLabel.setMinimumSize(new java.awt.Dimension(124, 29));
-        searchInvoiceByInvoiceNojLabel.setPreferredSize(new java.awt.Dimension(124, 29));
-        searchInvoiceByInvoiceNojLabel.setSize(new java.awt.Dimension(124, 29));
-
-        searchInvoiceByJobNumberjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        searchInvoiceByJobNumberjLabel.setForeground(new java.awt.Color(255, 255, 255));
-        searchInvoiceByJobNumberjLabel.setText("Job Number:");
-
-        javax.swing.GroupLayout searchInvoicejPanel1Layout = new javax.swing.GroupLayout(searchInvoicejPanel1);
-        searchInvoicejPanel1.setLayout(searchInvoicejPanel1Layout);
-        searchInvoicejPanel1Layout.setHorizontalGroup(
-            searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(cancelInvoiceSeletionjButton1)
-                .addGap(18, 18, 18)
-                .addComponent(selectSelectedInvoicejButton1)
-                .addGap(69, 69, 69))
-            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(allInvoicejScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
-                        .addComponent(searchInvoiceByInvoiceNojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchInvoiceByInvoiceNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchInvoiceByJobNumberjLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchInvoiceByJobNumberjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 50, Short.MAX_VALUE))
-        );
-        searchInvoicejPanel1Layout.setVerticalGroup(
-            searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchInvoiceByInvoiceNojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchInvoiceByInvoiceNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchInvoiceByJobNumberjLabel)
-                    .addComponent(searchInvoiceByJobNumberjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(allInvoicejScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelInvoiceSeletionjButton1)
-                    .addComponent(selectSelectedInvoicejButton1))
-                .addContainerGap(176, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout searchInvoiceLayout = new javax.swing.GroupLayout(searchInvoice);
-        searchInvoice.setLayout(searchInvoiceLayout);
-        searchInvoiceLayout.setHorizontalGroup(
-            searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-            .addGroup(searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchInvoiceLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(searchInvoicejPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        searchInvoiceLayout.setVerticalGroup(
-            searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-            .addGroup(searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(searchInvoiceLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(searchInvoicejPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        cardPanel1.add(searchInvoice, "searchInvoicePage");
-
         ViewCustomerDetail.setBackground(new java.awt.Color(61, 96, 146));
         ViewCustomerDetail.setMaximumSize(new java.awt.Dimension(900, 700));
         ViewCustomerDetail.setMinimumSize(new java.awt.Dimension(900, 700));
@@ -5876,6 +5738,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        customerStatusjTextField.setEditable(false);
+        customerTypejTextField.setEditable(false);
+        cutomerInDefaultjTextField.setEditable(false);
+        customerDiscountjTextField.setEditable(false);
+        customerRegistationDatejTextField.setEditable(false);
+        customerNumberjTextField.setEditable(false);
+        customerAccHolderNamejTextField.setEditable(false);
+        customerFullNamejTextField.setEditable(false);
+
         OtherCustomerInfo.setBackground(new java.awt.Color(255, 255, 255));
         OtherCustomerInfo.setMaximumSize(new java.awt.Dimension(539, 320));
         OtherCustomerInfo.setMinimumSize(new java.awt.Dimension(539, 320));
@@ -5959,6 +5830,11 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(customerInfoBuildingNojLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        customerStreetNamejTextField.setEditable(false);
+        customerPostcodejTextField.setEditable(false);
+        customerCityjTextField.setEditable(false);
+        customerBuildingNojTextField.setEditable(false);
 
         CustomerAction.setBackground(new java.awt.Color(255, 255, 255));
         CustomerAction.setMaximumSize(new java.awt.Dimension(239, 320));
@@ -6111,7 +5987,6 @@ public class MainFrame extends javax.swing.JFrame {
         SelectCustomer.setBackground(new java.awt.Color(61, 96, 146));
         SelectCustomer.setMaximumSize(new java.awt.Dimension(900, 700));
         SelectCustomer.setMinimumSize(new java.awt.Dimension(900, 700));
-        SelectCustomer.setSize(new java.awt.Dimension(900, 700));
 
         customersjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -6253,7 +6128,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 422, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -6270,7 +6145,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 210, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -6368,10 +6243,150 @@ public class MainFrame extends javax.swing.JFrame {
 
         cardPanel1.add(acceptPayment, "acceptPayment");
 
+        searchInvoice.setMaximumSize(new java.awt.Dimension(900, 700));
+        searchInvoice.setMinimumSize(new java.awt.Dimension(900, 700));
+
+        searchInvoicejPanel1.setBackground(new java.awt.Color(61, 96, 146));
+        searchInvoicejPanel1.setMaximumSize(new java.awt.Dimension(900, 700));
+        searchInvoicejPanel1.setPreferredSize(new java.awt.Dimension(900, 700));
+        searchInvoicejPanel1.setSize(new java.awt.Dimension(900, 700));
+
+        invoicejTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Invoice No.", "Job No.", "Total Payable", "Date Issued", "Invoice Status", "Invoice Location"
+            }
+        ));
+        allInvoicejScrollPane.setViewportView(invoicejTable1);
+
+        selectSelectedInvoicejButton1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        selectSelectedInvoicejButton1.setText("Select");
+        selectSelectedInvoicejButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectSelectedInvoicejButton1ActionPerformed(evt);
+            }
+        });
+
+        cancelInvoiceSeletionjButton1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        cancelInvoiceSeletionjButton1.setText("Cancel");
+        cancelInvoiceSeletionjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelInvoiceSeletionjButton1ActionPerformed(evt);
+            }
+        });
+
+        searchInvoiceByInvoiceNojTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByInvoiceNojTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByInvoiceNojTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByInvoiceNojTextField.setSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByInvoiceNojTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInvoiceByInvoiceNojTextFieldActionPerformed(evt);
+            }
+        });
+        searchInvoiceByInvoiceNojTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchInvoiceByInvoiceNojTextFieldKeyReleased(evt);
+            }
+        });
+
+        searchInvoiceByJobNumberjTextField.setMaximumSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByJobNumberjTextField.setMinimumSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByJobNumberjTextField.setPreferredSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByJobNumberjTextField.setSize(new java.awt.Dimension(250, 42));
+        searchInvoiceByJobNumberjTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInvoiceByJobNumberjTextFieldActionPerformed(evt);
+            }
+        });
+        searchInvoiceByJobNumberjTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchInvoiceByJobNumberjTextFieldKeyReleased(evt);
+            }
+        });
+
+        searchInvoiceByInvoiceNojLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        searchInvoiceByInvoiceNojLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchInvoiceByInvoiceNojLabel.setText("Invoice Number:");
+        searchInvoiceByInvoiceNojLabel.setMaximumSize(new java.awt.Dimension(124, 29));
+        searchInvoiceByInvoiceNojLabel.setMinimumSize(new java.awt.Dimension(124, 29));
+        searchInvoiceByInvoiceNojLabel.setPreferredSize(new java.awt.Dimension(124, 29));
+        searchInvoiceByInvoiceNojLabel.setSize(new java.awt.Dimension(124, 29));
+
+        searchInvoiceByJobNumberjLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        searchInvoiceByJobNumberjLabel.setForeground(new java.awt.Color(255, 255, 255));
+        searchInvoiceByJobNumberjLabel.setText("Job Number:");
+
+        javax.swing.GroupLayout searchInvoicejPanel1Layout = new javax.swing.GroupLayout(searchInvoicejPanel1);
+        searchInvoicejPanel1.setLayout(searchInvoicejPanel1Layout);
+        searchInvoicejPanel1Layout.setHorizontalGroup(
+            searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cancelInvoiceSeletionjButton1)
+                .addGap(18, 18, 18)
+                .addComponent(selectSelectedInvoicejButton1)
+                .addGap(69, 69, 69))
+            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(allInvoicejScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
+                        .addComponent(searchInvoiceByInvoiceNojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchInvoiceByInvoiceNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchInvoiceByJobNumberjLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchInvoiceByJobNumberjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 50, Short.MAX_VALUE))
+        );
+        searchInvoicejPanel1Layout.setVerticalGroup(
+            searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchInvoicejPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchInvoiceByInvoiceNojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchInvoiceByInvoiceNojTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchInvoiceByJobNumberjLabel)
+                    .addComponent(searchInvoiceByJobNumberjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(allInvoicejScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchInvoicejPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelInvoiceSeletionjButton1)
+                    .addComponent(selectSelectedInvoicejButton1))
+                .addContainerGap(176, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout searchInvoiceLayout = new javax.swing.GroupLayout(searchInvoice);
+        searchInvoice.setLayout(searchInvoiceLayout);
+        searchInvoiceLayout.setHorizontalGroup(
+            searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchInvoiceLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(searchInvoicejPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        searchInvoiceLayout.setVerticalGroup(
+            searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(searchInvoiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchInvoiceLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(searchInvoicejPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        cardPanel1.add(searchInvoice, "searchInvoicePage");
+
         AutoBackupConfigjPanel.setBackground(new java.awt.Color(61, 96, 146));
         AutoBackupConfigjPanel.setMaximumSize(new java.awt.Dimension(900, 700));
         AutoBackupConfigjPanel.setMinimumSize(new java.awt.Dimension(900, 700));
-        AutoBackupConfigjPanel.setSize(new java.awt.Dimension(900, 700));
 
         currentAutoBackupModeDatajTextField.setMaximumSize(new java.awt.Dimension(250, 42));
         currentAutoBackupModeDatajTextField.setMinimumSize(new java.awt.Dimension(250, 42));
@@ -6589,7 +6604,6 @@ public class MainFrame extends javax.swing.JFrame {
         AllCustomerJobs.setBackground(new java.awt.Color(61, 96, 146));
         AllCustomerJobs.setMaximumSize(new java.awt.Dimension(900, 700));
         AllCustomerJobs.setMinimumSize(new java.awt.Dimension(900, 700));
-        AllCustomerJobs.setSize(new java.awt.Dimension(900, 700));
 
         jobsjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -6641,7 +6655,6 @@ public class MainFrame extends javax.swing.JFrame {
         AllCustomerInvoices.setBackground(new java.awt.Color(61, 96, 146));
         AllCustomerInvoices.setMaximumSize(new java.awt.Dimension(900, 700));
         AllCustomerInvoices.setPreferredSize(new java.awt.Dimension(900, 700));
-        AllCustomerInvoices.setSize(new java.awt.Dimension(900, 700));
 
         customerInvoicesjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -8297,13 +8310,41 @@ public class MainFrame extends javax.swing.JFrame {
             currentAutoBackupModeDatajTextField.setText(controller.getAutoBackupConfigData().getBackupMode());
             currentAutoBackupFrequencyDatajTextField.setText(controller.getAutoBackupConfigData().getBackupFrequency());
             currentAutoBackupLocationDatajTextField.setText(controller.getAutoBackupConfigData().getBackupLocation());
-
-            autoBackupLocationjTextField.setText(configData.getBackupLocation());
         } else {
             currentAutoBackupModeDatajTextField.setText("None");
             currentAutoBackupFrequencyDatajTextField.setText("None");
             currentAutoBackupLocationDatajTextField.setText("None");
         }
+        
+        switch (backupModejComboBox.getSelectedItem().toString()) {
+            case "Manual":
+                backupFrequencyjComboBox.setVisible(false);
+                backupFrequencyjLabel.setVisible(false);
+                autoBackupLocationjTextField.setVisible(false);
+                backupLocationjLabel.setVisible(false);
+                useCurrentLocationjButton.setVisible(false);
+                selectAutoBackupLocationjButton.setVisible(false);
+                break;
+            case "Reminder":
+                backupFrequencyjComboBox.setVisible(true);
+                backupFrequencyjLabel.setVisible(true);
+                autoBackupLocationjTextField.setVisible(false);
+                backupLocationjLabel.setVisible(false);
+                useCurrentLocationjButton.setVisible(false);
+                selectAutoBackupLocationjButton.setVisible(false);
+                break;
+            case "Auto":
+                backupFrequencyjComboBox.setVisible(true);
+                backupFrequencyjLabel.setVisible(true);
+                autoBackupLocationjTextField.setVisible(true);
+                backupLocationjLabel.setVisible(true);
+                useCurrentLocationjButton.setVisible(true);
+                selectAutoBackupLocationjButton.setVisible(true);
+                break;
+            default:
+                break;
+        }
+        
         card1.show(cardPanel1, "AutoBackupConfig");
         pageLabel.setText("Backup settings page");
     }//GEN-LAST:event_backupSettingsPageButtonActionPerformed
@@ -9471,7 +9512,7 @@ public class MainFrame extends javax.swing.JFrame {
             // gets all the row information from the selected invoice in the table
             // and places it in the array
             for (int i = 0; i < columnCount; ++i)
-            obj[i] = invoicejTable1.getValueAt(row, i);
+                obj[i] = invoicejTable1.getValueAt(row, i);
 
             // variables for invoice
             final int invoiceNo = Integer.parseInt(obj[0].toString());
@@ -9488,7 +9529,7 @@ public class MainFrame extends javax.swing.JFrame {
             invoiceListModel.addElement("Job number: " + invoice.getJobJobNo());
             invoicejList.setModel(invoiceListModel); // sets the model from the t typed model object
             TotalLatePayjTextField.setText("£ " + Double.toString(invoice.getTotalPayable()));
-
+            
             // removes the selected invoice from the invoice table.
             invoiceModelTable.removeRow(invoicejTable1.getSelectedRow());
 
@@ -9501,13 +9542,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void cancelInvoiceSeletionjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelInvoiceSeletionjButton1ActionPerformed
         // TODO add your handling code here:
-        previousPage = currentPage;
-        currentPage = "acceptPayment";
-
         searchInvoiceByInvoiceNojTextField.setText("");
         searchInvoiceByJobNumberjTextField.setText("");
         invoiceModelTable.setRowCount(0);
-
+        
         card1.show(cardPanel1, "acceptPayment");
         pageLabel.setText("Accept payment page");
     }//GEN-LAST:event_cancelInvoiceSeletionjButton1ActionPerformed
@@ -9518,14 +9556,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchInvoiceByInvoiceNojTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByInvoiceNojTextFieldKeyReleased
         // TODO add your handling code here:
+        searchInvoiceByJobNumberjTextField.setText("");
         final String inputText = searchInvoiceByInvoiceNojTextField.getText();
-        final DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
+        final DefaultTableModel table = (DefaultTableModel) invoicejTable1.getModel();
         final TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
-        invoicejTable.setRowSorter(tr);
+        invoicejTable1.setRowSorter(tr);
         if (inputText.length() != 0) {
             tr.setRowFilter(RowFilter.regexFilter(inputText, 0));
         } else {
-            tr.removeRowSorterListener(invoicejTable);
+            tr.removeRowSorterListener(invoicejTable1);
         }
     }//GEN-LAST:event_searchInvoiceByInvoiceNojTextFieldKeyReleased
 
@@ -9535,14 +9574,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void searchInvoiceByJobNumberjTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInvoiceByJobNumberjTextFieldKeyReleased
         // TODO add your handling code here:
+        searchInvoiceByInvoiceNojTextField.setText("");
         final String inputText = searchInvoiceByJobNumberjTextField.getText();
-        final DefaultTableModel table = (DefaultTableModel) invoicejTable.getModel();
+        final DefaultTableModel table = (DefaultTableModel) invoicejTable1.getModel();
         final TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(table);
-        invoicejTable.setRowSorter(tr);
+        invoicejTable1.setRowSorter(tr);
         if (inputText.length() != 0) {
             tr.setRowFilter(RowFilter.regexFilter(inputText, 1));
         } else {
-            tr.removeRowSorterListener(invoicejTable);
+            tr.removeRowSorterListener(invoicejTable1);
         }
     }//GEN-LAST:event_searchInvoiceByJobNumberjTextFieldKeyReleased
 
@@ -9559,31 +9599,24 @@ public class MainFrame extends javax.swing.JFrame {
         String[] accountDefaultOptions = {"true", "false"};
         JComboBox accountStatusOptionsJComboBox = new JComboBox(accountStatusOptions);
         JComboBox accountDefaultOptionsJComboBox = new JComboBox(accountDefaultOptions);
-
-        JDialog dialog = new JDialog(this, "Update account status");
+        
+        JPanel panel = new JPanel(new FlowLayout());
+        
         JButton applyButton = new JButton("Apply");
         JButton cancelAccountStatusUpdateButton = new JButton("Cancel");
-
-        Object[] obj = new Object[] {};
-        JOptionPane optionPane = new JOptionPane(
-            null,
-            JOptionPane.QUESTION_MESSAGE,
-            JOptionPane.DEFAULT_OPTION,
-            null,
-            obj
-        );
-
-        optionPane.add(new JLabel("Status Options:"));
-        optionPane.add(accountStatusOptionsJComboBox);
-        optionPane.add(new JLabel("Default Options:"));
-        optionPane.add(accountDefaultOptionsJComboBox);
-        optionPane.add(applyButton);
-        optionPane.add(cancelAccountStatusUpdateButton);
-
-        dialog.getContentPane().add(optionPane);
+        
+        panel.add(new JLabel("Status Options:"));
+        panel.add(accountStatusOptionsJComboBox);
+        panel.add(new JLabel("Default Options:"));
+        panel.add(accountDefaultOptionsJComboBox);
+        panel.add(applyButton);
+        panel.add(cancelAccountStatusUpdateButton);
+        
+        JDialog dialog = new JDialog(this, "Update account status");
+        dialog.getContentPane().add(panel, "Center");
         dialog.pack();
-        dialog.setSize(300, 250);
-        dialog.setLocationRelativeTo(null);
+        dialog.setLocationRelativeTo(this);
+        dialog.setSize(250, 150);
         dialog.setResizable(false);
         dialog.setFocusable(true);
         dialog.setVisible(true);
@@ -9682,31 +9715,23 @@ public class MainFrame extends javax.swing.JFrame {
     private void updateAccountTypejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAccountTypejButtonActionPerformed
         // TODO add your handling code here:
         final String[] typeOptions = {"Valued", "Standard"};
-
         JComboBox accountTypeOptionsJComboBox = new JComboBox(typeOptions);
-        JDialog dialog = new JDialog(this, "Update account type");
-
+        
         JButton applyButton = new JButton("Apply");
         JButton cancelAccountTypeButton = new JButton("Cancel");
 
-        Object[] obj = new Object[] {};
-        JOptionPane optionPane = new JOptionPane(
-            null,
-            JOptionPane.QUESTION_MESSAGE,
-            JOptionPane.DEFAULT_OPTION,
-            null,
-            obj
-        );
+        JPanel panel = new JPanel(new FlowLayout());
+        panel.add(new JLabel("Type Options:"));
+        panel.add(accountTypeOptionsJComboBox);
+        panel.add(applyButton);
+        panel.add(cancelAccountTypeButton);
 
-        optionPane.add(new JLabel("Type Options:"));
-        optionPane.add(accountTypeOptionsJComboBox);
-        optionPane.add(applyButton);
-        optionPane.add(cancelAccountTypeButton);
-
-        dialog.getContentPane().add(optionPane);
+        
+        JDialog dialog = new JDialog(this, "Update account type");
+        dialog.getContentPane().add(panel);
         dialog.pack();
-        dialog.setSize(200, 250);
-        dialog.setLocationRelativeTo(null);
+        dialog.setSize(200, 120);
+        dialog.setLocationRelativeTo(this);
         dialog.setResizable(false);
         dialog.setFocusable(true);
         dialog.setVisible(true);
@@ -9795,12 +9820,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void selectInvoicejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectInvoicejButtonActionPerformed
         // TODO add your handling code here:
-        //previousPage = currentPage;
-        //currentPage = "searchInvoicePage";
-
         // updates the tables for selecting invoices
         invoiceModelTable = (DefaultTableModel) invoicejTable1.getModel(); // grabs the current model
         invoiceModelTable.setRowCount(0);
+        
         ArrayList<Invoice> invoicesList;
         try {
             // initialse invoicesList arraylist with data from controller
@@ -9872,35 +9895,64 @@ public class MainFrame extends javax.swing.JFrame {
             // switch statement used to check if payment card is card or cash based on the paymentTypeComboBox.
             switch (paymentTypeComboBox.getSelectedItem().toString()) {
                 case "Card":
-                if (
-                    // checks to see if format for the card info is entered correctly
-                    expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
-                    && last4DigitjTextField.getText().matches("[0-9]{4}")
-                ) {
-                    // card information
-                    final String cardType = cardTypejComboBox.getSelectedItem().toString();
-                    final String cardDetailsLast4digits = last4DigitjTextField.getText();
-                    final String cardDetailsExpiryDate = expiryDatejTextField.getText();
+                    if (
+                        // checks to see if format for the card info is entered correctly
+                        expiryDatejTextField.getText().matches("[0-9]{4}[/]{1}[0-9]{2}[/]{1}[0-9]{2}")
+                        && last4DigitjTextField.getText().matches("[0-9]{4}")
+                    ) {
+                        // card information
+                        final String cardType = cardTypejComboBox.getSelectedItem().toString();
+                        final String cardDetailsLast4digits = last4DigitjTextField.getText();
+                        final String cardDetailsExpiryDate = expiryDatejTextField.getText();
 
-                    final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
+                        final Card card = new Card(cardDetailsLast4digits, cardType, cardDetailsExpiryDate);
 
-                    final Payment paymentRecord = new PaymentCard(
+                        final Payment paymentRecord = new PaymentCard(
+                            paymentNo,
+                            total,
+                            paymentType, 
+                            paymentDate,
+                            invoiceNumber,
+                            card.getCardType(),
+                            card.getLast4Digits(),
+                            card.getExpiryDate()
+                        );
+
+                        // records payment informaiton to database.
+                        if (controller.recordPayment(paymentRecord, paymentType, invoice, card)) 
+                            // displays message to inform user that payment for card has not been made.
+                            JOptionPane.showMessageDialog(this, "Card payment successful");
+                        else 
+                            JOptionPane.showMessageDialog(this, "Card payment unsuccessful");
+
+                        // clears the model and the total
+                        TotalLatePayjTextField.setText("");
+                        invoiceListModel.clear();
+
+                        // clears the data for card detials
+                        expiryDatejTextField.setText("");
+                        last4DigitjTextField.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Incorrect details inputted");
+                    }
+                break;
+                
+                case "Cash":
+                    final Payment paymentRecord = new PaymentCash(
                         paymentNo,
                         total,
-                        paymentType,
+                        paymentType, 
                         paymentDate,
-                        invoiceNumber,
-                        card.getCardType(),
-                        card.getLast4Digits(),
-                        card.getExpiryDate()
+                        invoiceNumber
                     );
 
                     // records payment informaiton to database.
-                    if (controller.recordPayment(paymentRecord, paymentType, invoice, card))
-                    // displays message to inform user that payment for card has not been made.
-                    JOptionPane.showMessageDialog(this, "Card payment successful");
-                    else
-                    JOptionPane.showMessageDialog(this, "Card payment unsuccessful");
+                    if (controller.recordPayment(paymentRecord, paymentType, invoice))
+                        // displays message to inform user that payment for cash has been made.
+                        JOptionPane.showMessageDialog(this, "Cash payment successful");
+                    else 
+                        // displays message to inform user that payment for cash has not been made.
+                        JOptionPane.showMessageDialog(this, "Cash payment unsuccessful");
 
                     // clears the model and the total
                     TotalLatePayjTextField.setText("");
@@ -9909,41 +9961,12 @@ public class MainFrame extends javax.swing.JFrame {
                     // clears the data for card detials
                     expiryDatejTextField.setText("");
                     last4DigitjTextField.setText("");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Incorrect details inputted");
-                }
                 break;
-
-                case "Cash":
-                final Payment paymentRecord = new PaymentCash(
-                    paymentNo,
-                    total,
-                    paymentType,
-                    paymentDate,
-                    invoiceNumber
-                );
-
-                // records payment informaiton to database.
-                if (controller.recordPayment(paymentRecord, paymentType, invoice))
-                // displays message to inform user that payment for cash has been made.
-                JOptionPane.showMessageDialog(this, "Cash payment successful");
-                else
-                // displays message to inform user that payment for cash has not been made.
-                JOptionPane.showMessageDialog(this, "Cash payment unsuccessful");
-
-                // clears the model and the total
-                TotalLatePayjTextField.setText("");
-                invoiceListModel.clear();
-
-                // clears the data for card detials
-                expiryDatejTextField.setText("");
-                last4DigitjTextField.setText("");
-                break;
-
+                
                 default:
-                // displays message to inform user that payment cannot be made due to payment type
-                // not being chosen.
-                JOptionPane.showMessageDialog(this, "No payment type was selected");
+                    // displays message to inform user that payment cannot be made due to payment type
+                    // not being chosen.
+                    JOptionPane.showMessageDialog(this, "No payment type was selected");
                 break;
             }
         } else {
